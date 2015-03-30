@@ -14,12 +14,16 @@ namespace cozy.LearnCSharp.A
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             Console.WriteLine("-----------------------------------------------");
 
+            // 单行注释的写法
             // 111111111
+
             /*
-             * 2222222
+             * 多行注释的写法
+             * 呵呵哒
              */
+
             ///<summary>
-            ///33333333
+            ///xml文档注释
             ///</summary>
         }
     }
