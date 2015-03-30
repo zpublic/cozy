@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cozy.LearnCSharp.E
 {
-    class E8StructEquatable
+    class E8StructuralComparison
     {
         public static void Cozy()
         {

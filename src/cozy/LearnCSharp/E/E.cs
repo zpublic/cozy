@@ -15,9 +15,9 @@ namespace cozy.LearnCSharp.E
             E3JaggedArray.Cozy();
             E4ArrayClass.Cozy();
             E5ArrayParameter.Cozy();
-            E6Enumerator.Cozy();
+            E6Enumeraton.Cozy();
             E7Tuple.Cozy();
-            E8StructEquatable.Cozy();
+            E8StructuralComparison.Cozy();
         }
     }
 }

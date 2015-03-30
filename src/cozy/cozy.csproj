@@ -66,7 +66,7 @@
     <Compile Include="LearnCSharp\C\C4Interface.cs" />
     <Compile Include="LearnCSharp\D\D.cs" />
     <Compile Include="LearnCSharp\D\D1GenericClass.cs" />
-    <Compile Include="LearnCSharp\D\D2GenericClassDetails.cs" />
+    <Compile Include="LearnCSharp\D\D2GenericFeatures.cs" />
     <Compile Include="LearnCSharp\D\D3GenericInterface.cs" />
     <Compile Include="LearnCSharp\D\D4GenericStruct.cs" />
     <Compile Include="LearnCSharp\D\D5GenericMethod.cs" />
@@ -76,9 +76,9 @@
     <Compile Include="LearnCSharp\E\E3JaggedArray.cs" />
     <Compile Include="LearnCSharp\E\E4ArrayClass.cs" />
     <Compile Include="LearnCSharp\E\E5ArrayParameter.cs" />
-    <Compile Include="LearnCSharp\E\E6Enumerator.cs" />
+    <Compile Include="LearnCSharp\E\E6Enumeraton.cs" />
     <Compile Include="LearnCSharp\E\E7Tuple.cs" />
-    <Compile Include="LearnCSharp\E\E8StructEquatable.cs" />
+    <Compile Include="LearnCSharp\E\E8StructuralComparison.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

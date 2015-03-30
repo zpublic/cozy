@@ -11,7 +11,7 @@ namespace cozy.LearnCSharp.D
         public static void Cozy()
         {
             D1GenericClass.Cozy();
-            D2GenericClassDetails.Cozy();
+            D2GenericFeatures.Cozy();
             D3GenericInterface.Cozy();
             D4GenericStruct.Cozy();
             D5GenericMethod.Cozy();

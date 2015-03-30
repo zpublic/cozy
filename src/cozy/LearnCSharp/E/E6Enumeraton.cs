@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cozy.LearnCSharp.D
+namespace cozy.LearnCSharp.E
 {
-    class D2GenericClassDetails
+    class E6Enumeraton
     {
         public static void Cozy()
         {
