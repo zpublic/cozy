@@ -83,49 +83,49 @@ namespace cozy
         static void J()
         {
             Console.WriteLine("\n===============================================");
-            Console.WriteLine("E - LINQ");
+            Console.WriteLine("J - LINQ");
             Console.WriteLine("===============================================");
-            LearnCSharp.E.E.Cozy();
+            LearnCSharp.J.J.Cozy();
         }
 
         static void K()
         {
             Console.WriteLine("\n===============================================");
-            Console.WriteLine("E - 动态语言扩展");
+            Console.WriteLine("K - 动态语言扩展");
             Console.WriteLine("===============================================");
-            LearnCSharp.E.E.Cozy();
+            LearnCSharp.K.K.Cozy();
         }
 
         static void L()
         {
             Console.WriteLine("\n===============================================");
-            Console.WriteLine("E - 异步编程");
+            Console.WriteLine("L - 异步编程");
             Console.WriteLine("===============================================");
-            LearnCSharp.E.E.Cozy();
+            LearnCSharp.L.L.Cozy();
         }
 
         static void M()
         {
             Console.WriteLine("\n===============================================");
-            Console.WriteLine("E - 内存管理和指针");
+            Console.WriteLine("M - 内存管理和指针");
             Console.WriteLine("===============================================");
-            LearnCSharp.E.E.Cozy();
+            LearnCSharp.M.M.Cozy();
         }
 
         static void N()
         {
             Console.WriteLine("\n===============================================");
-            Console.WriteLine("E - 反射");
+            Console.WriteLine("N - 反射");
             Console.WriteLine("===============================================");
-            LearnCSharp.E.E.Cozy();
+            LearnCSharp.N.N.Cozy();
         }
 
         static void O()
         {
             Console.WriteLine("\n===============================================");
-            Console.WriteLine("E - 错误和异常");
+            Console.WriteLine("O - 错误和异常");
             Console.WriteLine("===============================================");
-            LearnCSharp.E.E.Cozy();
+            LearnCSharp.O.O.Cozy();
         }
 
         static void Main(string[] args)
@@ -135,7 +135,7 @@ namespace cozy
             Console.WriteLine("===============================================");
 
             //A();
-            B();
+            //B();
             //C();
             D();
             E();
@@ -143,6 +143,12 @@ namespace cozy
             G();
             H();
             I();
+            J();
+            K();
+            L();
+            M();
+            N();
+            O();
         }
     }
 }
