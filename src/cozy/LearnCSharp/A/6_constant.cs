@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cozy.LearnCSharp
+namespace cozy.LearnCSharp.A
 {
-    class _3_declare_initialize
+    class _6_constant
     {
     }
 }

@@ -41,19 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LearnCSharp\A、语言基础\10_string.cs" />
-    <Compile Include="LearnCSharp\A、语言基础\11_delegate.cs" />
-    <Compile Include="LearnCSharp\A、语言基础\12_event.cs" />
-    <Compile Include="LearnCSharp\A、语言基础\13_flow_control.cs" />
-    <Compile Include="LearnCSharp\A、语言基础\1_comments.cs" />
-    <Compile Include="LearnCSharp\A、语言基础\2_identifier.cs" />
-    <Compile Include="LearnCSharp\A、语言基础\3_declare+initialize.cs" />
-    <Compile Include="LearnCSharp\A、语言基础\4_operational.cs" />
-    <Compile Include="LearnCSharp\A、语言基础\5_variable.cs" />
-    <Compile Include="LearnCSharp\A、语言基础\6_constant.cs" />
-    <Compile Include="LearnCSharp\A、语言基础\7_struct.cs" />
-    <Compile Include="LearnCSharp\A、语言基础\8_enum.cs" />
-    <Compile Include="LearnCSharp\A、语言基础\9_array.cs" />
+    <Compile Include="LearnCSharp\A\10_string.cs" />
+    <Compile Include="LearnCSharp\A\11_delegate.cs" />
+    <Compile Include="LearnCSharp\A\12_event.cs" />
+    <Compile Include="LearnCSharp\A\13_flow_control.cs" />
+    <Compile Include="LearnCSharp\A\1_comments.cs" />
+    <Compile Include="LearnCSharp\A\2_identifier.cs" />
+    <Compile Include="LearnCSharp\A\3_declare+initialize.cs" />
+    <Compile Include="LearnCSharp\A\4_operational.cs" />
+    <Compile Include="LearnCSharp\A\5_variable.cs" />
+    <Compile Include="LearnCSharp\A\6_constant.cs" />
+    <Compile Include="LearnCSharp\A\7_struct.cs" />
+    <Compile Include="LearnCSharp\A\8_enum.cs" />
+    <Compile Include="LearnCSharp\A\9_array.cs" />
+    <Compile Include="LearnCSharp\A\A.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -61,7 +62,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="LearnCSharp\B、oop基础\" />
+    <Folder Include="LearnCSharp\B\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cozy.LearnCSharp
+namespace cozy.LearnCSharp.A
 {
-    class _4_operational
+    class _5_variable
     {
+        public static void cozy()
+        {
+            int a = 3;
+        }
     }
 }
