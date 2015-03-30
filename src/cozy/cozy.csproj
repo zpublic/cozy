@@ -85,6 +85,7 @@
     <Compile Include="LearnCSharp\F\F3ComparingObjects.cs" />
     <Compile Include="LearnCSharp\F\F4OperatorOverloading.cs" />
     <Compile Include="LearnCSharp\F\F5UserDefinedCasts.cs" />
+    <Compile Include="LearnCSharp\G\Details\G1MathOperations.cs" />
     <Compile Include="LearnCSharp\G\G.cs" />
     <Compile Include="LearnCSharp\G\G1Delegates.cs" />
     <Compile Include="LearnCSharp\G\G2Lambda.cs" />
