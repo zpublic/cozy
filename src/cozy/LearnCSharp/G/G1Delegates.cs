@@ -16,7 +16,7 @@ namespace cozy.LearnCSharp.G
             Console.WriteLine("Value is {0}, result of operation is {1}", value, result);
         }
 
-        static void SimpleDalagate()
+        static void SimpleDelegate()
         {
             DoubleOp[] operations =
             {
@@ -37,7 +37,7 @@ namespace cozy.LearnCSharp.G
             Console.WriteLine("\n-----------------------------------------------");
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             Console.WriteLine("-----------------------------------------------");
-            SimpleDalagate();
+            SimpleDelegate();
         }
     }
 }
