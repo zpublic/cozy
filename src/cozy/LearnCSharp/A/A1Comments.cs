@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace cozy.LearnCSharp.A
 {
-    class _1_comments
+    class A1Comments
     {
-        public static void cozy()
+        public static void Cozy()
         {
+            Console.WriteLine("\n-----------------------------------------------");
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
+            Console.WriteLine("-----------------------------------------------");
+
             // 111111111
             /*
              * 2222222

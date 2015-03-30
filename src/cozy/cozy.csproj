@@ -41,19 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LearnCSharp\A\10_string.cs" />
-    <Compile Include="LearnCSharp\A\11_delegate.cs" />
-    <Compile Include="LearnCSharp\A\12_event.cs" />
-    <Compile Include="LearnCSharp\A\13_flow_control.cs" />
-    <Compile Include="LearnCSharp\A\1_comments.cs" />
-    <Compile Include="LearnCSharp\A\2_identifier.cs" />
-    <Compile Include="LearnCSharp\A\3_declare+initialize.cs" />
-    <Compile Include="LearnCSharp\A\4_operational.cs" />
-    <Compile Include="LearnCSharp\A\5_variable.cs" />
-    <Compile Include="LearnCSharp\A\6_constant.cs" />
-    <Compile Include="LearnCSharp\A\7_struct.cs" />
-    <Compile Include="LearnCSharp\A\8_enum.cs" />
-    <Compile Include="LearnCSharp\A\9_array.cs" />
+    <Compile Include="LearnCSharp\A\A10String.cs" />
+    <Compile Include="LearnCSharp\A\A11Delegate.cs" />
+    <Compile Include="LearnCSharp\A\A12Event.cs" />
+    <Compile Include="LearnCSharp\A\A13FlowControl.cs" />
+    <Compile Include="LearnCSharp\A\A1Comments.cs" />
+    <Compile Include="LearnCSharp\A\A3DeclareAndInitialize.cs" />
+    <Compile Include="LearnCSharp\A\A4Operational.cs" />
+    <Compile Include="LearnCSharp\A\A2Variable.cs" />
+    <Compile Include="LearnCSharp\A\A6Constant.cs" />
+    <Compile Include="LearnCSharp\A\A7Struct.cs" />
+    <Compile Include="LearnCSharp\A\A8Enum.cs" />
+    <Compile Include="LearnCSharp\A\A9Array.cs" />
     <Compile Include="LearnCSharp\A\A.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

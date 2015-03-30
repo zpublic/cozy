@@ -10,7 +10,11 @@ namespace cozy
     {
         static void Main(string[] args)
         {
-            LearnCSharp.A.A.cozy();
+            Console.WriteLine("===============================================");
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
+            Console.WriteLine("===============================================");
+            Console.WriteLine("hello cozy!");
+            LearnCSharp.A.A.Cozy();
         }
     }
 }

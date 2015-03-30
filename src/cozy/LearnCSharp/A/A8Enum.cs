@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cozy.LearnCSharp.A
 {
-    class _11_delegate
+    class A8Enum
     {
     }
 }

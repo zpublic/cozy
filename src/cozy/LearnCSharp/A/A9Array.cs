@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cozy.LearnCSharp.A
 {
-    class _4_operational
+    class A9Array
     {
     }
 }

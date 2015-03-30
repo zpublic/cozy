@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cozy.LearnCSharp.A
 {
-    class _10_string
+    class A12Event
     {
     }
 }

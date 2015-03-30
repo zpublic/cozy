@@ -8,10 +8,10 @@ namespace cozy.LearnCSharp.A
 {
     class A
     {
-        public static void cozy()
+        public static void Cozy()
         {
-            _1_comments.cozy();
-            _5_variable.cozy();
+            A1Comments.Cozy();
+            A2Variable.Cozy();
         }
     }
 }

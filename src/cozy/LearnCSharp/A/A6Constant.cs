@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cozy.LearnCSharp.A
 {
-    class _8_enum
+    class A6Constant
     {
     }
 }

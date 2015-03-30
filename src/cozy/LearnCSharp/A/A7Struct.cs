@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cozy.LearnCSharp.A
 {
-    class _13_flow_control
+    class A7Struct
     {
     }
 }

@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace cozy.LearnCSharp.A
 {
-    class _5_variable
+    class A4Operational
     {
-        public static void cozy()
-        {
-            int a = 3;
-        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cozy.LearnCSharp.A
 {
-    class _3_declare_initialize
+    class A3DeclareAndInitialize
     {
     }
 }
