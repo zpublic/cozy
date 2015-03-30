@@ -41,18 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LearnCSharp\A\A10String.cs" />
-    <Compile Include="LearnCSharp\A\A11Delegate.cs" />
-    <Compile Include="LearnCSharp\A\A12Event.cs" />
-    <Compile Include="LearnCSharp\A\A13FlowControl.cs" />
+    <Compile Include="LearnCSharp\A\A4FlowControl.cs" />
     <Compile Include="LearnCSharp\A\A1Comments.cs" />
-    <Compile Include="LearnCSharp\A\A3DeclareAndInitialize.cs" />
-    <Compile Include="LearnCSharp\A\A4Operational.cs" />
+    <Compile Include="LearnCSharp\A\A3PredefinedDataType.cs" />
+    <Compile Include="LearnCSharp\A\A5Enum.cs" />
     <Compile Include="LearnCSharp\A\A2Variable.cs" />
-    <Compile Include="LearnCSharp\A\A6Constant.cs" />
-    <Compile Include="LearnCSharp\A\A7Struct.cs" />
-    <Compile Include="LearnCSharp\A\A8Enum.cs" />
-    <Compile Include="LearnCSharp\A\A9Array.cs" />
+    <Compile Include="LearnCSharp\A\A6Namespace.cs" />
+    <Compile Include="LearnCSharp\A\A7Console.cs" />
+    <Compile Include="LearnCSharp\A\A8Preprocess.cs" />
     <Compile Include="LearnCSharp\A\A.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
