@@ -62,6 +62,7 @@ namespace cozy.LearnCSharp.A
 
             {
                 int y = 10;
+                Console.WriteLine(y);
                 // int y = 20;   同一个作用域内不可以定义多个同名变量
             }
 
