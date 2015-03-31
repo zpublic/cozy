@@ -21,8 +21,8 @@ namespace cozy.LearnCSharp.A
         public static void Console_IO()
         {
             // 输入一行
-            string str_line = Console.ReadLine();
-            Console.WriteLine(str_line);                                // 输出输入的一行
+            //string str_line = Console.ReadLine();
+            //Console.WriteLine(str_line);                                // 输出输入的一行
             
             // 输出
             int i = 1;
