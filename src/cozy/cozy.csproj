@@ -59,6 +59,7 @@
     <Compile Include="LearnCSharp\B\B6StaticClass.cs" />
     <Compile Include="LearnCSharp\B\B7ObjectClass.cs" />
     <Compile Include="LearnCSharp\B\B8ExtensionMethod.cs" />
+    <Compile Include="LearnCSharp\B\Details\B5PartialClass.cs" />
     <Compile Include="LearnCSharp\C\C.cs" />
     <Compile Include="LearnCSharp\C\C1InheritanceType.cs" />
     <Compile Include="LearnCSharp\C\C2ImplementInheritance.cs" />
