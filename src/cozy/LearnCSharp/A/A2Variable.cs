@@ -17,6 +17,14 @@ namespace cozy.LearnCSharp.A
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             Console.WriteLine("-----------------------------------------------");
 
+            Initialization_of_Variables();
+            Type_Inference();
+            Variable_Scope();
+            Constants();
+        }
+
+        public static void Initialization_of_Variables()
+        {
             // 变量声明
             int a;
             a = 1;
@@ -36,7 +44,10 @@ namespace cozy.LearnCSharp.A
             int no_init;
             no_init = 42;   // 如果不初始化就使用会产生错误
             Console.WriteLine(no_init);
+        }
 
+        public static void Type_Inference()
+        {
             // 类型推导
             var c = 3;
             var str = "123";
@@ -51,7 +62,10 @@ namespace cozy.LearnCSharp.A
              *      类型推断的变量必须初始化
              *      例: var noinit;      // 错误
              */
+        }
 
+        public static void Variable_Scope()
+        {
             //      作用域
             { //    作用域开始
 
@@ -86,9 +100,11 @@ namespace cozy.LearnCSharp.A
             int SomeVar = 233;
             Console.WriteLine(SomeVar);                 // 输出局部变量SomeVar = 233
             Console.WriteLine(A2Variable.SomeVar);      // 输出静态字段SomeVar = 1
+        }
 
+        public static void Constants()
+        {
             // 常量
-
             const int d = 4;
             // d = 3; // 错误 常量初始化之后不可更改
             Console.WriteLine(d);

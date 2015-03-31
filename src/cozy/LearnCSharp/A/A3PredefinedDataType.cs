@@ -26,60 +26,15 @@ namespace cozy.LearnCSharp.A
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             Console.WriteLine("-----------------------------------------------");
 
+            Value_Types_and_Reference_Types();
+            Predefined_Value_Types();
+            Predefined_Reference_Types();
+        }
+
+          
+        public static void Value_Types_and_Reference_Types()
+        {
             // 引用类型和值类型
-
-            /*
-             * 预定义的值类型
-             * 
-             * 整数类型:
-             * sbyte    System.SByte    8位有符号整数
-             * byte     System.Byte     8位无符号整数
-             * short    System.Int16    16位有符号整数
-             * ushort   System.UInt16   16位无符号整数
-             * int      System.Int32    32位有符号整数
-             * uint     System.UInt32   32位无符号整数
-             * long     System.Int64    64位有符号整数
-             * ulong    System.UInt64   64位无符号整数
-             * 
-             * 浮点类型:
-             * float    System.Single   32位单精度浮点数
-             * double   System.Double   64位双精度浮点数
-             * 
-             * decimal类型:
-             * decimal  System.Decimal  128位高精度十进制数表示法
-             * 
-             * bool类型:
-             * bool     System.Boolean  true或false
-             * 
-             * 字符类型:
-             * char     System.Char     16位的(Unicode)字符
-             * 
-             */
-
-            /*
-             * 预定义的引用类型
-             * 
-             * object   System.Object   根类型,CTS中的其他类型都是从它派生而来的(包括值类型)
-             * string   System.String   Unicode字符串
-             * 
-             */
-
-            /*
-             * 转义序列
-             * 
-             * 单引号      \'
-             * 双引号      \"
-             * 反斜杠      \\
-             * 空          \0
-             * 警告        \a
-             * 退格        \b
-             * 换页        \f
-             * 换行        \n
-             * 回车        \r
-             * 水平制表符  \t
-             * 垂直制表符  \v
-             * 
-             */
 
             // 声明值类型并初始化
             int i = 0;
@@ -123,6 +78,102 @@ namespace cozy.LearnCSharp.A
             ref_type = null;
             // ref_type.value = 42; 在运行期抛出一个异常
 
+        }
+
+        public static void Predefined_Value_Types()
+        {
+            // 预定义的值类型
+
+            /*
+             * 整数类型:
+             * sbyte    System.SByte    8位有符号整数
+             * byte     System.Byte     8位无符号整数
+             * short    System.Int16    16位有符号整数
+             * ushort   System.UInt16   16位无符号整数
+             * int      System.Int32    32位有符号整数
+             * uint     System.UInt32   32位无符号整数
+             * long     System.Int64    64位有符号整数
+             * ulong    System.UInt64   64位无符号整数
+             */
+             sbyte _sbyte = 0;
+             byte _byte = 0;
+             short _short = 0;
+             ushort _ushort = 0;
+             int _int = 0;
+             uint _uint = 0U;
+             long _long = 0L;
+             ulong _ulong = 0UL;
+             Console.Write(_sbyte);
+             Console.Write(_byte);
+             Console.Write(_short);
+             Console.Write(_ushort);
+             Console.Write(_int);
+             Console.Write(_uint);
+             Console.Write(_long);
+             Console.Write(_ulong);
+
+            /*
+             * 浮点类型:
+             * float    System.Single   32位单精度浮点数
+             * double   System.Double   64位双精度浮点数
+             */
+             float _float = 0.0F;
+             double _double = 0.0;
+             Console.Write(_float);
+             Console.Write(_double);
+
+            /*
+             * decimal类型:
+             * decimal  System.Decimal  128位高精度十进制数表示法
+             */
+             decimal _decimal = 0.0M;
+             Console.Write(_decimal);
+
+            /*
+             * bool类型:
+             * bool     System.Boolean  true或false
+             */
+             bool _bool_true = true;
+             bool _bool_false = false;
+             Console.Write(_bool_true);
+             Console.Write(_bool_false);
+
+            /*
+             * 字符类型:
+             * char     System.Char     16位的(Unicode)字符
+             * 
+             * 转义序列
+             * 
+             * 单引号      \'
+             * 双引号      \"
+             * 反斜杠      \\
+             * 空          \0
+             * 警告        \a
+             * 退格        \b
+             * 换页        \f
+             * 换行        \n
+             * 回车        \r
+             * 水平制表符  \t
+             * 垂直制表符  \v
+             * 
+             */
+             
+             char _char = '\u0041';
+             Console.Write(_char);
+             Console.Write('\n');
+
+        }
+
+        public static void Predefined_Reference_Types()
+        {
+            /*
+             * 预定义的引用类型
+             * 
+             * object   System.Object   根类型,CTS中的其他类型都是从它派生而来的(包括值类型)
+             * string   System.String   Unicode字符串
+             * 
+             */
+
             // object类型是任何类型的父类 可以绑定任何子类型的对象
             int a = 0;
             object objA = a;
@@ -164,7 +215,6 @@ namespace cozy.LearnCSharp.A
             Console.WriteLine(convStr);             // 输出 \hello\
             string noconvStr = @"\hello\";
             Console.WriteLine(noconvStr);           // 输出 \hello\
-            
         }
     }
 }
