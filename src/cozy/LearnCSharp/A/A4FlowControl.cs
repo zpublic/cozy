@@ -14,9 +14,17 @@ namespace cozy.LearnCSharp.A
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             Console.WriteLine("-----------------------------------------------");
 
+            Conditiona_Statements();
+            Loops();
+            Jump_Statements();
+
+        }
+
+        public static void Conditiona_Statements()
+        {
             // if..语句
             bool conditionIf = false;
-            if(conditionIf)
+            if (conditionIf)
             {
                 // 如果conditionIf为真执行
                 Console.WriteLine("conditionIf为真");
@@ -24,7 +32,7 @@ namespace cozy.LearnCSharp.A
 
             // if...else...语句
             bool condition = false;
-            if(condition)
+            if (condition)
             {
                 // 如果condition为真执行
                 Console.WriteLine("condition为真");
@@ -37,12 +45,12 @@ namespace cozy.LearnCSharp.A
 
             // if..else if..else 语句
             int conditionInt = 0;
-            if(conditionInt == 0)
+            if (conditionInt == 0)
             {
                 // 如果满足conditionInt等于0执行
                 Console.WriteLine("conditionInt为0");
             }
-            else if(conditionInt == 1)
+            else if (conditionInt == 1)
             {
                 // 如果满足conditionInt等于1执行
                 Console.WriteLine("conditionInt为1");
@@ -60,7 +68,7 @@ namespace cozy.LearnCSharp.A
 
             // switch语句
             int integer = 0;
-            switch(integer) // integer为测试的变量
+            switch (integer) // integer为测试的变量
             {
                 case 1:
                     // 当 integer等于1执行
@@ -104,7 +112,7 @@ namespace cozy.LearnCSharp.A
 
             // 可以用string作为测试的变量
             string caseStr = "case";
-            switch(caseStr)
+            switch (caseStr)
             {
                 case "case1":
                     Console.WriteLine("caseStr 等于 case1");
@@ -117,23 +125,19 @@ namespace cozy.LearnCSharp.A
                     break;
             }
 
-            /*
-             * for循环
-             * 
-             * for (initializer; condition; iterator):
-             * statement(s)
-             * 
-             */
+        }
 
-            // 输出从0到9的整数
-            for(int i = 0 /* 将i初始化为0 */ ; i < 10 /* 判断i < 10 如果为假则停止 */ ; ++i /* 将i增加1 */)
+        public static void Loops()
+        {
+            // for循环
+            for (int i = 0 /* 将i初始化为0 */ ; i < 10 /* 判断i < 10 如果为假则停止 */ ; ++i /* 将i增加1 */)
             {
                 Console.WriteLine(i);
             }
 
             // while循环
             int while_i = 0;
-            while( while_i < 10) // 当while_i < 10 则循环
+            while (while_i < 10) // 当while_i < 10 则循环
             {
                 Console.WriteLine(while_i);
                 ++while_i;  // 自增while_i
@@ -149,7 +153,7 @@ namespace cozy.LearnCSharp.A
 
             // foreach语句
             int[] container = new int[10];   // 声明一个int数组
-            for (int i = 0; i < 10; ++i )   // 给数组中的元素赋值
+            for (int i = 0; i < 10; ++i)   // 给数组中的元素赋值
             {
                 container[i] = i;
             }
@@ -160,14 +164,17 @@ namespace cozy.LearnCSharp.A
                 Console.WriteLine(elemt);
                 //elemt = 0; 错误 foreach不能修改集合中的值
             }
+        }
 
+        public static int Jump_Statements()
+        {
             // goto 语句 一般不建议使用
             goto Label1;    // 跳转到Label1标签的语句
-            Label1:         // Label1标签
+        Label1:         // Label1标签
             Console.WriteLine("goto Label1");
 
             // break语句 跳出最内部循环
-            for(int i = 0; i < 10; ++i)         // i从0循环到9
+            for (int i = 0; i < 10; ++i)         // i从0循环到9
             {
                 if (i == 5) break;              // 如果i等于5 则跳出
                 Console.WriteLine(i);
@@ -182,8 +189,7 @@ namespace cozy.LearnCSharp.A
             }
             // 输出的结果为 0 1 2 3 4 6 7 8 9
 
-            // return语句 结束当前方法
-
+            return 42; // return语句 结束当前方法 如果有非void返回则返回一个值
         }
     }
 }
