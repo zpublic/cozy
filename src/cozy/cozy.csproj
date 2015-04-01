@@ -107,6 +107,11 @@
     <Compile Include="LearnCSharp\I\I7Dictionarie.cs" />
     <Compile Include="LearnCSharp\I\I8Set.cs" />
     <Compile Include="LearnCSharp\I\I9ObservableCollection.cs" />
+    <Compile Include="LearnCSharp\J\Details\DataLib\Championship.cs" />
+    <Compile Include="LearnCSharp\J\Details\DataLib\Formula.cs" />
+    <Compile Include="LearnCSharp\J\Details\DataLib\Racer.cs" />
+    <Compile Include="LearnCSharp\J\Details\DataLib\Team.cs" />
+    <Compile Include="LearnCSharp\J\Details\StandardQuery.cs" />
     <Compile Include="LearnCSharp\J\J.cs" />
     <Compile Include="LearnCSharp\J\J1StandardQuery.cs" />
     <Compile Include="LearnCSharp\J\J2ParallelLinq.cs" />
