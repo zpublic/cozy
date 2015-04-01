@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LearnCSharpPlayer.cs" />
     <Compile Include="LearnCSharp\A\A4FlowControl.cs" />
     <Compile Include="LearnCSharp\A\A1Comments.cs" />
     <Compile Include="LearnCSharp\A\A3PredefinedDataType.cs" />
@@ -144,7 +145,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="LearnFoundation\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

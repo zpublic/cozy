@@ -8,7 +8,7 @@ namespace cozy.LearnCSharp.B
 {
     class B8ExtensionMethod
     {        
-        static void Cozy() {
+        public static void Cozy() {
             Console.WriteLine("\n-----------------------------------------------");
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             Console.WriteLine("-----------------------------------------------");
