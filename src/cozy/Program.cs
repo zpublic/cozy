@@ -8,147 +8,73 @@ namespace cozy
 {
     class Program
     {
-        static void A()
-        {
-            Console.WriteLine("\n===============================================");
-            Console.WriteLine("A - 核心C#");
-            Console.WriteLine("===============================================");
-            LearnCSharp.A.A.Cozy();
-        }
-
-        static void B()
-        {
-            Console.WriteLine("\n===============================================");
-            Console.WriteLine("B - 对象和类型");
-            Console.WriteLine("===============================================");
-            LearnCSharp.B.B.Cozy();
-        }
-
-        static void C()
-        {
-            Console.WriteLine("\n===============================================");
-            Console.WriteLine("C - 继承");
-            Console.WriteLine("===============================================");
-            LearnCSharp.C.C.Cozy();
-        }
-
-        static void D()
-        {
-            Console.WriteLine("\n===============================================");
-            Console.WriteLine("D - 泛型");
-            Console.WriteLine("===============================================");
-            LearnCSharp.D.D.Cozy();
-        }
-
-        static void E()
-        {
-            Console.WriteLine("\n===============================================");
-            Console.WriteLine("E - 数组和元组");
-            Console.WriteLine("===============================================");
-            LearnCSharp.E.E.Cozy();
-        }
-
-        static void F()
-        {
-            Console.WriteLine("\n===============================================");
-            Console.WriteLine("F - 运算符和类型转换");
-            Console.WriteLine("===============================================");
-            LearnCSharp.F.F.Cozy();
-        }
-
-        static void G()
-        {
-            Console.WriteLine("\n===============================================");
-            Console.WriteLine("G - 委托、lambda表达式和事件");
-            Console.WriteLine("===============================================");
-            LearnCSharp.G.G.Cozy();
-        }
-
-        static void H()
-        {
-            Console.WriteLine("\n===============================================");
-            Console.WriteLine("H - 字符串和正则表达式");
-            Console.WriteLine("===============================================");
-            LearnCSharp.H.H.Cozy();
-        }
-
-        static void I()
-        {
-            Console.WriteLine("\n===============================================");
-            Console.WriteLine("I - 集合");
-            Console.WriteLine("===============================================");
-            LearnCSharp.I.I.Cozy();
-        }
-
-        static void J()
-        {
-            Console.WriteLine("\n===============================================");
-            Console.WriteLine("J - LINQ");
-            Console.WriteLine("===============================================");
-            LearnCSharp.J.J.Cozy();
-        }
-
-        static void K()
-        {
-            Console.WriteLine("\n===============================================");
-            Console.WriteLine("K - 动态语言扩展");
-            Console.WriteLine("===============================================");
-            LearnCSharp.K.K.Cozy();
-        }
-
-        static void L()
-        {
-            Console.WriteLine("\n===============================================");
-            Console.WriteLine("L - 异步编程");
-            Console.WriteLine("===============================================");
-            LearnCSharp.L.L.Cozy();
-        }
-
-        static void M()
-        {
-            Console.WriteLine("\n===============================================");
-            Console.WriteLine("M - 内存管理和指针");
-            Console.WriteLine("===============================================");
-            LearnCSharp.M.M.Cozy();
-        }
-
-        static void N()
-        {
-            Console.WriteLine("\n===============================================");
-            Console.WriteLine("N - 反射");
-            Console.WriteLine("===============================================");
-            LearnCSharp.N.N.Cozy();
-        }
-
-        static void O()
-        {
-            Console.WriteLine("\n===============================================");
-            Console.WriteLine("O - 错误和异常");
-            Console.WriteLine("===============================================");
-            LearnCSharp.O.O.Cozy();
-        }
-
         static void Main(string[] args)
         {
             Console.WriteLine("===============================================");
             Console.WriteLine("hello cozy!");
             Console.WriteLine("===============================================");
 
-            //A();
-            B();
-            //C();
-            //D();
-            //E();
-            //F();
-            //G();
-            //H();
-            //I();
-            //J();
-            //K();
-            //L();
-            //M();
-            //N();
-            //O();
+            PlayLearnCSharp();
+            PlayLearnFoundation();
+
+        }
+
+        static void PlayLearnCSharp()
+        {
+            /*
+            >> LearnCSharp  
+            >>> A  - 核心C#  
+            >>> B  - 对象和类型  
+            >>> C  - 继承  
+            >>> D  - 泛型  
+            >>> E  - 数组和元组  
+            >>> F  - 运算符和类型转换  
+            >>> G  - 委托、lambda表达式和事件  
+            >>> H  - 字符串和正则表达式  
+            >>> I  - 集合  
+            >>> J  - LINQ  
+            >>> K  - 动态语言扩展  
+            >>> L  - 异步编程  
+            >>> M  - 内存管理和指针  
+            >>> N  - 反射  
+            >>> O  - 错误和异常  
+            */
+            LearnCSharpPlayer.A();
+            LearnCSharpPlayer.B();
+            LearnCSharpPlayer.C();
+            LearnCSharpPlayer.D();
+            LearnCSharpPlayer.E();
+            LearnCSharpPlayer.F();
+            LearnCSharpPlayer.G();
+            LearnCSharpPlayer.H();
+            LearnCSharpPlayer.I();
+            LearnCSharpPlayer.J();
+            LearnCSharpPlayer.K();
+            LearnCSharpPlayer.L();
+            LearnCSharpPlayer.M();
+            LearnCSharpPlayer.N();
+            LearnCSharpPlayer.O();
+        }
+
+        static void PlayLearnFoundation()
+        {
+            /*
+            >> LearnFoundation  
+            >>> A  - 任务、线程和同步  
+            >>> B  - 安全性  
+            >>> C  - 互操作  
+            >>> D  - 文件和注册表操作  
+            >>> E  - 网络  
+            >>> F  - 本地化  
+            >>> G  - XML处理  
+            */
+            LearnFoundationPlayer.A();
+            LearnFoundationPlayer.B();
+            LearnFoundationPlayer.C();
+            LearnFoundationPlayer.D();
+            LearnFoundationPlayer.E();
+            LearnFoundationPlayer.F();
+            LearnFoundationPlayer.G();
         }
     }
 }
