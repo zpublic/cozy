@@ -15,6 +15,7 @@ namespace cozy
             Console.WriteLine("===============================================");
 
             PlayLearnCSharp();
+            PlayLearnFoundation();
 
         }
 
@@ -53,6 +54,27 @@ namespace cozy
             LearnCSharpPlayer.M();
             LearnCSharpPlayer.N();
             LearnCSharpPlayer.O();
+        }
+
+        static void PlayLearnFoundation()
+        {
+            /*
+            >> LearnFoundation  
+            >>> A  - 任务、线程和同步  
+            >>> B  - 安全性  
+            >>> C  - 互操作  
+            >>> D  - 文件和注册表操作  
+            >>> E  - 网络  
+            >>> F  - 本地化  
+            >>> G  - XML处理  
+            */
+            LearnFoundationPlayer.A();
+            LearnFoundationPlayer.B();
+            LearnFoundationPlayer.C();
+            LearnFoundationPlayer.D();
+            LearnFoundationPlayer.E();
+            LearnFoundationPlayer.F();
+            LearnFoundationPlayer.G();
         }
     }
 }

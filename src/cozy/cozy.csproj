@@ -139,15 +139,56 @@
     <Compile Include="LearnCSharp\O\O2CatchingExceptions.cs" />
     <Compile Include="LearnCSharp\O\O3UserDefinedException.cs" />
     <Compile Include="LearnCSharp\O\O4CallerInformation.cs" />
+    <Compile Include="LearnFoundationPlayer.cs" />
+    <Compile Include="LearnFoundation\A\A.cs" />
+    <Compile Include="LearnFoundation\A\A1Parallel.cs" />
+    <Compile Include="LearnFoundation\A\A2Task.cs" />
+    <Compile Include="LearnFoundation\A\A3CancellationFramework.cs" />
+    <Compile Include="LearnFoundation\A\A4ThreadPool.cs" />
+    <Compile Include="LearnFoundation\A\A5ThreadClass.cs" />
+    <Compile Include="LearnFoundation\A\A6ThreadingIssues.cs" />
+    <Compile Include="LearnFoundation\A\A7Synchronization.cs" />
+    <Compile Include="LearnFoundation\A\A8Timer.cs" />
+    <Compile Include="LearnFoundation\A\A9DataFlow.cs" />
+    <Compile Include="LearnFoundation\B\B.cs" />
+    <Compile Include="LearnFoundation\B\B1AuthenticationAndAuthorization.cs" />
+    <Compile Include="LearnFoundation\B\B2Encryption.cs" />
+    <Compile Include="LearnFoundation\B\B3AccessControl.cs" />
+    <Compile Include="LearnFoundation\B\B4CodeAccessSecurity.cs" />
+    <Compile Include="LearnFoundation\C\C.cs" />
+    <Compile Include="LearnFoundation\C\C1Com.cs" />
+    <Compile Include="LearnFoundation\C\C2PlatformInvoke.cs" />
+    <Compile Include="LearnFoundation\D\D.cs" />
+    <Compile Include="LearnFoundation\D\D1FileSystem.cs" />
+    <Compile Include="LearnFoundation\D\D2FileOperate.cs" />
+    <Compile Include="LearnFoundation\D\D3FileReadAndWrite.cs" />
+    <Compile Include="LearnFoundation\D\D4MappedMemoryFile.cs" />
+    <Compile Include="LearnFoundation\D\D5DriveInformation.cs" />
+    <Compile Include="LearnFoundation\D\D6FileSecurity.cs" />
+    <Compile Include="LearnFoundation\D\D7RegistryReadAndWrite.cs" />
+    <Compile Include="LearnFoundation\D\D8IsolatedStorageReadAndWrite.cs" />
+    <Compile Include="LearnFoundation\E\E.cs" />
+    <Compile Include="LearnFoundation\E\E1HttpclientClass.cs" />
+    <Compile Include="LearnFoundation\E\E2HTMLPage.cs" />
+    <Compile Include="LearnFoundation\E\E3NetworkUtilityClasse.cs" />
+    <Compile Include="LearnFoundation\E\E4LowerLevelProtocols.cs" />
+    <Compile Include="LearnFoundation\F\F.cs" />
+    <Compile Include="LearnFoundation\F\F1SystemGlobalization.cs" />
+    <Compile Include="LearnFoundation\F\F2Resources.cs" />
+    <Compile Include="LearnFoundation\G\G.cs" />
+    <Compile Include="LearnFoundation\G\G1SStreamedXML.cs" />
+    <Compile Include="LearnFoundation\G\G2DOM.cs" />
+    <Compile Include="LearnFoundation\G\G3XPathNavigators.cs" />
+    <Compile Include="LearnFoundation\G\G4XmlSerialization.cs" />
+    <Compile Include="LearnFoundation\G\G5DifferentXMLObjects.cs" />
+    <Compile Include="LearnFoundation\G\G6XmlLINQ.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LearnFoundation\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
