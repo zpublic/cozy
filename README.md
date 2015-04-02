@@ -35,6 +35,23 @@ cozy - 这是一个用于学习C＃的开源项目
 >>> E  - 网络  
 >>> F  - 本地化  
 >>> G  - XML处理  
+>
+> WpfCozy
+>> A
+>>> ShapesDemo - 形状  
+>>> GeometryDemo - 几何图形  
+>>> TransformationDemo - 变换  
+>>> BrushesDemo - 画刷  
+>>> FrameDemo - 内容控件  
+>>> ExpanderDemo - 伸缩控件  
+>>> DecorationsDemo - 修饰  
+>>> LayoutDemo - 布局  
+>>> StylesAndResources - 样式和资源  
+>>> TriggerDemo - 触发器  
+>>> TemplateDemo - 模板  
+>>> AnimationDemo - 动画  
+>>> VisualStateDemo - 可见状态  
+>>> 3DDemo - 3D  
 
   
 交流QQ群
