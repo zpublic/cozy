@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfCozy
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ShapesDemo.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ShapesDemo : Window
     {
-        public MainWindow()
+        public ShapesDemo()
         {
             InitializeComponent();
-        }
-
-        private void OnBtnShapesDemo(object sender, RoutedEventArgs e)
-        {
-            ShapesDemo w = new ShapesDemo();
-            w.ShowDialog();
         }
     }
 }

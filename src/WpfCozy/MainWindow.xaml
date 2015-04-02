@@ -1,9 +1,8 @@
 ﻿<Window x:Class="WpfCozy.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="357" Width="586">
     <Grid>
-        <Button Content="Button" Margin="147,115"/>
-
+        <Button x:Name="BtnShapesDemo" Content="ShapesDemo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="154" Height="49" Click="OnBtnShapesDemo"/>
     </Grid>
 </Window>
