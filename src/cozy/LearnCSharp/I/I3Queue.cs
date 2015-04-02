@@ -26,6 +26,7 @@ namespace cozy.LearnCSharp.I
 
             //在队列尾部添加一个元素
             queue.Enqueue(1);
+            queue.Enqueue(2);
 
             //取出(访问)队列中的元素(因为Queue<T>不实现IList<T>接口，所有不能使用索引执行访问)
             queue.Dequeue();
