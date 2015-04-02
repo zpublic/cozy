@@ -4,5 +4,6 @@
         Title="MainWindow" Height="357" Width="586">
     <Grid>
         <Button x:Name="BtnShapesDemo" Content="ShapesDemo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="154" Height="49" Click="OnBtnShapesDemo"/>
+        <Button Content="GeometryDemo" HorizontalAlignment="Left" Margin="154,0,0,0" VerticalAlignment="Top" Width="154" Height="49" Click="OnBtnGeometryDemo"/>
     </Grid>
 </Window>

@@ -30,5 +30,11 @@ namespace WpfCozy
             ShapesDemo w = new ShapesDemo();
             w.ShowDialog();
         }
+
+        private void OnBtnGeometryDemo(object sender, RoutedEventArgs e)
+        {
+            GeometryDemo w = new GeometryDemo();
+            w.ShowDialog();
+        }
     }
 }
