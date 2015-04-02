@@ -94,11 +94,11 @@ namespace cozy.LearnCSharp.L
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             Console.WriteLine("-----------------------------------------------");
 
-            //DontHandle();
-            HandleOneError();
-            StartTwoTasks();
-            StartTwoTasksParallel();
-            ShowAggregatedException();
+//             DontHandle();
+//             HandleOneError();
+//             StartTwoTasks();
+//             StartTwoTasksParallel();
+//             ShowAggregatedException();
         }
     }
 }
