@@ -82,7 +82,6 @@ namespace cozy.LearnCSharp.D
             Constraints();
             Inheritance();
             Static_Members();
-            Console.ReadKey();
         }
 
         public static void Default_Values()
