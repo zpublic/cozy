@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -136,6 +137,7 @@
     <Compile Include="LearnCSharp\L\L2AsynchronousProgramming.cs" />
     <Compile Include="LearnCSharp\L\L3ErrorHandling.cs" />
     <Compile Include="LearnCSharp\L\L4Cancellation.cs" />
+    <Compile Include="LearnCSharp\M\Details\ResourceHolder.cs" />
     <Compile Include="LearnCSharp\M\M.cs" />
     <Compile Include="LearnCSharp\M\M1HoodMemoryManagement.cs" />
     <Compile Include="LearnCSharp\M\M2FreeingUnmanagedResources.cs" />
@@ -143,6 +145,10 @@
     <Compile Include="LearnCSharp\N\N.cs" />
     <Compile Include="LearnCSharp\N\N1CustomAttributes.cs" />
     <Compile Include="LearnCSharp\N\N2Reflection.cs" />
+    <Compile Include="LearnCSharp\O\Details\ColdCallFileFormatException.cs" />
+    <Compile Include="LearnCSharp\O\Details\ColdCallFileReader.cs" />
+    <Compile Include="LearnCSharp\O\Details\SalesSpyFoundException.cs" />
+    <Compile Include="LearnCSharp\O\Details\UnexpectedException.cs" />
     <Compile Include="LearnCSharp\O\O.cs" />
     <Compile Include="LearnCSharp\O\O1ExceptionClasses.cs" />
     <Compile Include="LearnCSharp\O\O2CatchingExceptions.cs" />
@@ -199,6 +205,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LearnCSharp\O\Details\cold_calling.txt" />
     <Content Include="LearnFoundation\G\Details\books.xml" />
   </ItemGroup>
   <ItemGroup>

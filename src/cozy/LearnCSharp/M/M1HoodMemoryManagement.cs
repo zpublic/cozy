@@ -13,6 +13,13 @@ namespace cozy.LearnCSharp.M
             Console.WriteLine("\n-----------------------------------------------");
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             Console.WriteLine("-----------------------------------------------");
+
+            // 主动进行垃圾回收
+            GC.Collect();
+
+            // 回收第0代堆内存
+            GC.Collect(0);
+            GC.Collect(1, GCCollectionMode.Forced);
         }
     }
 }
