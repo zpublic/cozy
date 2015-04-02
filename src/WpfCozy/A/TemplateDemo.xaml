@@ -1,0 +1,9 @@
+﻿<Window x:Class="WpfCozy.A.TemplateDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TemplateDemo" Height="100" Width="500">
+    <StackPanel>
+        <Button Content="Styled Button" Margin="3" Click="OnStyledButton" />
+        <Button Content="Styled ListBox" Margin="3" Click="OnStyledListBox" />
+    </StackPanel>
+</Window>

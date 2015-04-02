@@ -1,0 +1,10 @@
+﻿<Window x:Class="WpfCozy.A.TriggerDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TriggerDemo" Height="140" Width="500">
+    <StackPanel>
+        <Button Content="Property Trigger" Click="OnPropertyTrigger" Margin="5" />
+        <Button Content="Multi Trigger" Click="OnMultiTrigger" Margin="5" />
+        <Button Content="Data Trigger" Click="OnDataTrigger" Margin="5" />
+    </StackPanel>
+</Window>

@@ -1,0 +1,36 @@
+﻿<Window x:Class="WpfCozy.A.AnimationDemoDetails.EllipseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EllipseWindow" Height="300" Width="300">
+  <Grid>
+    <Ellipse Height="50" Width="100">
+      <Ellipse.Fill>
+        <SolidColorBrush x:Name="ellipseBrush" Color="Yellow" />
+      </Ellipse.Fill>
+      <Ellipse.Triggers>
+        <EventTrigger RoutedEvent="Ellipse.Loaded" >
+          <EventTrigger.Actions>
+            <BeginStoryboard>
+              <Storyboard Duration="00:00:06" RepeatBehavior="Forever">
+                <DoubleAnimation Storyboard.TargetProperty="(Ellipse.Width)" Duration="0:0:3" AutoReverse="True" 
+                                                 FillBehavior="Stop" RepeatBehavior="Forever"
+                                                 From="100" To="300">
+                  <DoubleAnimation.EasingFunction>
+                    <BounceEase EasingMode="EaseInOut" />
+                  </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <ColorAnimation Storyboard.TargetName="ellipseBrush" Storyboard.TargetProperty="(SolidColorBrush.Color)" Duration="0:0:3" AutoReverse="True" FillBehavior="Stop" RepeatBehavior="Forever"
+                                                From="Yellow" To="Red">
+                  <ColorAnimation.EasingFunction>
+                    <CubicEase />
+                  </ColorAnimation.EasingFunction>
+                </ColorAnimation>
+              </Storyboard>
+            </BeginStoryboard>
+          </EventTrigger.Actions>
+        </EventTrigger>
+      </Ellipse.Triggers>
+    </Ellipse>
+
+  </Grid>
+</Window>

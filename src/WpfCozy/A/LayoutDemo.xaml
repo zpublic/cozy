@@ -1,0 +1,12 @@
+﻿<Window x:Class="WpfCozy.A.LayoutDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="LayoutDemo" Height="200" Width="500">
+    <StackPanel>
+        <Button Content="Stack Panel" Click="ShowStackPanel" Margin="5" />
+        <Button Content="Wrap Panel" Click="ShowWrapPanel" Margin="5" />
+        <Button Content="Canvas" Click="ShowCanvas" Margin="5" />
+        <Button Content="Dock Panel" Click="ShowDockPanel" Margin="5" />
+        <Button Content="Grid" Click="ShowGrid" Margin="5" />
+    </StackPanel>
+</Window>

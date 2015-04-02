@@ -1,0 +1,11 @@
+﻿<Window x:Class="WpfCozy.A.AnimationDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AnimationDemo" Height="120" Width="500">
+    <StackPanel>
+        <Button Content="Ellipse Animation" Click="OnEllipseAnimation" />
+        <Button Content="Button Animation" Click="OnButtonAnimation" />
+        <Button Content="Keyframe Animation" Click="OnKeyframeAnimation" />
+        <Button Content="Event Trigger" Click="OnEventTrigger" />
+    </StackPanel>
+</Window>
