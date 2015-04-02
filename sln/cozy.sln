@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cozy", "..\src\cozy\cozy.csproj", "{B195B4A4-9CEE-4742-8436-3E022EAAA157}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfCozy", "..\src\WpfCozy\WpfCozy.csproj", "{73EB5963-9E60-4FD2-AE5D-2A918D37644C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B195B4A4-9CEE-4742-8436-3E022EAAA157}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B195B4A4-9CEE-4742-8436-3E022EAAA157}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B195B4A4-9CEE-4742-8436-3E022EAAA157}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73EB5963-9E60-4FD2-AE5D-2A918D37644C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73EB5963-9E60-4FD2-AE5D-2A918D37644C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73EB5963-9E60-4FD2-AE5D-2A918D37644C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73EB5963-9E60-4FD2-AE5D-2A918D37644C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
