@@ -1,0 +1,97 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:src="clr-namespace:WpfCozy.A">
+
+  <Style TargetType="Button">
+    <Setter Property="Width" Value="100" />
+    <Setter Property="Height" Value="100" />
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Button}">
+
+          <Grid>
+            <Ellipse Name="GelBackground" StrokeThickness="0.5">
+              <Ellipse.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                  <GradientStop Offset="0" Color="Black" />
+                  <GradientStop Offset="1" Color="Black" />
+                </LinearGradientBrush>
+              </Ellipse.Fill>
+              <Ellipse.Stroke>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                  <GradientStop  Offset="0" Color="#ff7e7e7e" />
+                  <GradientStop Offset="1" Color="Black" />
+                </LinearGradientBrush>
+              </Ellipse.Stroke>
+            </Ellipse>
+
+            <Ellipse Margin="15,5,15,50">
+              <Ellipse.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                  <GradientStop Offset="0" Color="#aaffffff" />
+                  <GradientStop Offset="1" Color="Transparent" />
+                </LinearGradientBrush>
+              </Ellipse.Fill>
+            </Ellipse>
+            <ContentPresenter Name="GelButtonContent" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{TemplateBinding Content}" />
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup Name="CommonStates">
+                <VisualState Name="Normal" />
+                <VisualState Name="MouseOver">
+                  <Storyboard>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="GelBackground">
+                      <EasingColorKeyFrame KeyTime="0" Value="Lime"/>
+                    </ColorAnimationUsingKeyFrames>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="GelBackground">
+                      <EasingColorKeyFrame KeyTime="0" Value="DarkGreen"/>
+                    </ColorAnimationUsingKeyFrames>
+                    <!-- using a SolidColorBrush -->
+                    <!--<ColorAnimation x:Name="To" Storyboard.TargetName="GelBackground" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" To="Red"  Duration="0:0:0.5" />-->
+                  </Storyboard>
+
+                </VisualState>
+                <VisualState Name="Pressed">
+                  <Storyboard>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="GelBackground">
+                      <EasingColorKeyFrame KeyTime="0" Value="#ffcc34"/>
+                    </ColorAnimationUsingKeyFrames>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="GelBackground">
+                      <EasingColorKeyFrame KeyTime="0" Value="#cc9900"/>
+                    </ColorAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualStateGroup.Transitions>
+                  <VisualTransition GeneratedDuration="0:0:0.2" >
+                    <VisualTransition.GeneratedEasingFunction>
+                      <QuadraticEase EasingMode="EaseOut" />
+                    </VisualTransition.GeneratedEasingFunction>
+                  </VisualTransition>
+                  <VisualTransition GeneratedDuration="0:0:0.5" To="MouseOver">
+                    <Storyboard>
+                      <!--<DoubleAnimation By="2" Duration="0:0:0.5" AutoReverse="True" Storyboard.TargetProperty="(Control.FontSize)" Storyboard.TargetName="GelButtonContent">
+                        
+                      </DoubleAnimation>-->
+                      <DoubleAnimation By="2" Duration="0:0:0.5" AutoReverse="True" Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="GelBackground" />
+                    </Storyboard>
+                  </VisualTransition>
+                </VisualStateGroup.Transitions>
+              </VisualStateGroup>
+
+              <VisualStateGroup Name="FocusedStates">
+                <VisualState Name="Focused">
+
+                </VisualState>
+                <VisualState Name="Unfocused">
+
+                </VisualState>
+              </VisualStateGroup>
+
+            </VisualStateManager.VisualStateGroups>
+
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

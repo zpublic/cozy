@@ -1,0 +1,70 @@
+﻿<Window x:Class="WpfCozy.A.AnimationDemoDetails.EventTriggerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EventTriggerWindow" Height="300" Width="300">
+    <DockPanel>
+        <DockPanel.Triggers>
+            <EventTrigger RoutedEvent="Button.Click" SourceName="buttonBeginMoveEyes">
+                <BeginStoryboard x:Name="beginMoveEyes">
+                    <Storyboard>
+                        <DoubleAnimation RepeatBehavior="Forever" DecelerationRatio=".8" AutoReverse="True" By="6" Duration="0:0:1"
+                                         Storyboard.TargetName="eyeLeft" Storyboard.TargetProperty="(Canvas.Left)" />
+                        <DoubleAnimation RepeatBehavior="Forever" AutoReverse="True" By="6" Duration="0:0:5" 
+                                         Storyboard.TargetName="eyeLeft" Storyboard.TargetProperty="(Canvas.Top)" />
+                        <DoubleAnimation RepeatBehavior="Forever" DecelerationRatio=".8" AutoReverse="True" By="-6" Duration="0:0:3"
+                                         Storyboard.TargetName="eyeRight" Storyboard.TargetProperty="(Canvas.Left)" />
+                        <DoubleAnimation RepeatBehavior="Forever" AutoReverse="True" By="6" Duration="0:0:6" 
+                                         Storyboard.TargetName="eyeRight" Storyboard.TargetProperty="(Canvas.Top)" />
+
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Button.Click" SourceName="buttonStopMoveEyes">
+                <StopStoryboard BeginStoryboardName="beginMoveEyes" />                
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Button.Click" SourceName="buttonResize">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation RepeatBehavior="2" AutoReverse="True" Storyboard.TargetName="scale1" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" From="0.1" To="3" Duration="0:0:5">
+                            <DoubleAnimation.EasingFunction>
+                                <ElasticEase />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation RepeatBehavior="2" AutoReverse="True" Storyboard.TargetName="scale1" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="0.1" To="3" Duration="0:0:5">
+                            <DoubleAnimation.EasingFunction>
+                                <BounceEase />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </DockPanel.Triggers>
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+            <Button x:Name="buttonBeginMoveEyes" Content="Start Move Eyes" Margin="5" />
+            <Button x:Name="buttonStopMoveEyes" Content="Stop Move Eyes" Margin="5" />
+            <Button x:Name="buttonResize" Content="Resize" Margin="5" />
+        </StackPanel>
+        <Canvas>
+            <Canvas.LayoutTransform>
+                <ScaleTransform x:Name="scale1" ScaleX="1" ScaleY="1" />
+            </Canvas.LayoutTransform>
+
+            <Ellipse Canvas.Left="10" Canvas.Top="10" Width="100" Height="100" Stroke="Blue" StrokeThickness="4" Fill="Yellow" />
+            <Ellipse Canvas.Left="30" Canvas.Top="12" Width="60" Height="30">
+                <Ellipse.Fill>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5, 1">
+                        <GradientStop Offset="0.1" Color="DarkGreen" />
+                        <GradientStop Offset="0.7" Color="Transparent" />
+                    </LinearGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Ellipse Canvas.Left="30" Canvas.Top="35" Width="25" Height="20" Stroke="Blue" StrokeThickness="3" Fill="White" />
+            <Ellipse x:Name="eyeLeft" Canvas.Left="40" Canvas.Top="43" Width="6" Height="5" Fill="Black" />
+
+            <Ellipse Canvas.Left="65" Canvas.Top="35" Width="25" Height="20" Stroke="Blue" StrokeThickness="3" Fill="White" />
+            <Ellipse x:Name="eyeRight" Canvas.Left="75" Canvas.Top="43" Width="6" Height="5" Fill="Black" />
+            <Path Name="mouth" Stroke="Blue" StrokeThickness="4" Data="M 40,74 Q 57,95 80,74 " />
+        </Canvas>
+
+    </DockPanel>
+</Window>

@@ -53,15 +53,186 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="GeometryDemo.xaml.cs">
+    <Compile Include="A\3DDemo.xaml.cs">
+      <DependentUpon>3DDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\AnimationDemo.xaml.cs">
+      <DependentUpon>AnimationDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\AnimationDemoDetails\ButtonAnimationWindow.xaml.cs">
+      <DependentUpon>ButtonAnimationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\AnimationDemoDetails\EllipseWindow.xaml.cs">
+      <DependentUpon>EllipseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\AnimationDemoDetails\EventTriggerWindow.xaml.cs">
+      <DependentUpon>EventTriggerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\AnimationDemoDetails\KeyFrameWindow.xaml.cs">
+      <DependentUpon>KeyFrameWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\BrushesDemo.xaml.cs">
+      <DependentUpon>BrushesDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\DecorationsDemo.xaml.cs">
+      <DependentUpon>DecorationsDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\LayoutDemoDetails\CanvasWindow.xaml.cs">
+      <DependentUpon>CanvasWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\LayoutDemoDetails\DockPanelWindow.xaml.cs">
+      <DependentUpon>DockPanelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\LayoutDemoDetails\GridWindow.xaml.cs">
+      <DependentUpon>GridWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\LayoutDemoDetails\StackPanelWindow.xaml.cs">
+      <DependentUpon>StackPanelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\LayoutDemoDetails\WrapPanelWindow.xaml.cs">
+      <DependentUpon>WrapPanelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\ExpanderDemo.xaml.cs">
+      <DependentUpon>ExpanderDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\FrameDemo.xaml.cs">
+      <DependentUpon>FrameDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\GeometryDemo.xaml.cs">
       <DependentUpon>GeometryDemo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ShapesDemo.xaml.cs">
+    <Compile Include="A\LayoutDemo.xaml.cs">
+      <DependentUpon>LayoutDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\ResourceDemo.xaml.cs">
+      <DependentUpon>ResourceDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\ShapesDemo.xaml.cs">
       <DependentUpon>ShapesDemo.xaml</DependentUpon>
     </Compile>
-    <Page Include="GeometryDemo.xaml">
+    <Page Include="A\3DDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="A\AnimationDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="A\AnimationDemoDetails\ButtonAnimationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\AnimationDemoDetails\EllipseWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\AnimationDemoDetails\EventTriggerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\AnimationDemoDetails\KeyFrameWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\BrushesDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="A\DecorationsDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="A\LayoutDemoDetails\CanvasWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\LayoutDemoDetails\DockPanelWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\LayoutDemoDetails\GridWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\LayoutDemoDetails\StackPanelWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\LayoutDemoDetails\WrapPanelWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\ExpanderDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="A\FrameDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="A\GeometryDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="A\LayoutDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="A\ResourceDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="A\ResourceLib\Dictionary1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\StylesAndResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="A\TemplateDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="A\TemplateDemoDetails\StyledButtonWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\TemplateDemoDetails\StyledListBoxWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\TemplateDemoDetails\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\TransformationDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="A\TriggerDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="A\TriggerDemoDetails\DataTriggerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\TriggerDemoDetails\MultiTriggerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\TriggerDemoDetails\PropertyTriggerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="A\VisualStateDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="A\VisualStateDemoDetails\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -71,11 +242,44 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="A\StylesAndResources.xaml.cs">
+      <DependentUpon>StylesAndResources.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\TemplateDemo.xaml.cs">
+      <DependentUpon>TemplateDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\TemplateDemoDetails\Countries.cs" />
+    <Compile Include="A\TemplateDemoDetails\Country.cs" />
+    <Compile Include="A\TemplateDemoDetails\StyledButtonWindow.xaml.cs">
+      <DependentUpon>StyledButtonWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\TemplateDemoDetails\StyledListBoxWindow.xaml.cs">
+      <DependentUpon>StyledListBoxWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\TransformationDemo.xaml.cs">
+      <DependentUpon>TransformationDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\TriggerDemo.xaml.cs">
+      <DependentUpon>TriggerDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\TriggerDemoDetails\Book.cs" />
+    <Compile Include="A\TriggerDemoDetails\DataTriggerWindow.xaml.cs">
+      <DependentUpon>DataTriggerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\TriggerDemoDetails\MultiTriggerWindow.xaml.cs">
+      <DependentUpon>MultiTriggerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\TriggerDemoDetails\PropertyTriggerWindow.xaml.cs">
+      <DependentUpon>PropertyTriggerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A\VisualStateDemo.xaml.cs">
+      <DependentUpon>VisualStateDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ShapesDemo.xaml">
+    <Page Include="A\ShapesDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -107,6 +311,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="A\Budapest.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="A\3DDemoDetails\Stephanie.jpg" />
+    <Content Include="A\Stephanie.wmv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="A\VisualStateDemoDetails\Images\Crying.jpg" />
+    <Resource Include="A\VisualStateDemoDetails\Images\Playing.jpg" />
+    <Resource Include="A\VisualStateDemoDetails\Images\Sleeping.jpg" />
+    <Resource Include="A\TemplateDemoDetails\Images\Austria.bmp" />
+    <Resource Include="A\TemplateDemoDetails\Images\Germany.bmp" />
+    <Resource Include="A\TemplateDemoDetails\Images\Norway.bmp" />
+    <Resource Include="A\TemplateDemoDetails\Images\USA.bmp" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

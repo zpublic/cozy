@@ -1,0 +1,15 @@
+﻿<Window x:Class="WpfCozy.A.LayoutDemoDetails.WrapPanelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WrapPanelWindow" Height="300" Width="300">
+    <WrapPanel>
+        <Button Width="100" Margin="5">Button</Button>
+        <Button Width="100" Margin="5">Button</Button>
+        <Button Width="100" Margin="5">Button</Button>
+        <Button Width="100" Margin="5">Button</Button>
+        <Button Width="100" Margin="5">Button</Button>
+        <Button Width="100" Margin="5">Button</Button>
+        <Button Width="100" Margin="5">Button</Button>
+        <Button Width="100" Margin="5">Button</Button>
+    </WrapPanel>
+</Window>

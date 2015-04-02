@@ -1,0 +1,16 @@
+﻿<Window x:Class="WpfCozy.A.ExpanderDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ExpanderDemo" Height="240" Width="500">
+    <StackPanel Margin="5">
+        <TextBlock>Short information</TextBlock>
+        <Expander Header="Additional Information">
+            <Border Height="200" Width="200" Background="Yellow">
+                <TextBlock HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+                  More information here!
+                </TextBlock>
+            </Border>
+        </Expander>
+    </StackPanel>
+</Window>

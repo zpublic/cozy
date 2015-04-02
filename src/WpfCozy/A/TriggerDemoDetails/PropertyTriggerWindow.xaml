@@ -1,0 +1,24 @@
+﻿<Window x:Class="WpfCozy.A.TriggerDemoDetails.PropertyTriggerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PropertyTriggerWindow" Height="300" Width="300">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="LightBlue" />
+            <Setter Property="FontSize" Value="17" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Red" />
+                    <Setter Property="FontSize" Value="22" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Foreground" Value="Yellow" />
+                    <Setter Property="FontSize" Value="22" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Button Width="200" Height="30" Content="Click me!" />
+    </Grid>
+</Window>
