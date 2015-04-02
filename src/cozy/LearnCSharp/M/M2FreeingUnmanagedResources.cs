@@ -13,6 +13,21 @@ namespace cozy.LearnCSharp.M
             Console.WriteLine("\n-----------------------------------------------");
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             Console.WriteLine("-----------------------------------------------");
+
+            Details.ResourceHolder res1 = new Details.ResourceHolder();
+            res1.SomeMethod();
+            res1.Dispose();
+            try
+            {
+                res1.SomeMethod();
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            Details.ResourceHolder res2 = new Details.ResourceHolder();
+            res2.SomeMethod();
         }
     }
 }
