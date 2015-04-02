@@ -79,7 +79,7 @@ namespace cozy.LearnCSharp.L
             //SyncGet();
             //AsyncGet();
             //AsyncEventGet();
-            AsyncTaskGet();
+            //AsyncTaskGet();
             cts.Cancel();
         }
     }
