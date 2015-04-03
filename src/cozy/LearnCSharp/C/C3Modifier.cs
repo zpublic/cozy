@@ -40,6 +40,8 @@ namespace cozy.LearnCSharp.C
                 Console.WriteLine(intInt);
                 Console.WriteLine(intPro);
                 Console.WriteLine(intPri);
+                Console.WriteLine(intPubInner);
+                Console.WriteLine(intPriInner);
             }
         }
     }
