@@ -10,7 +10,7 @@ namespace CozyPublic.Win
 {
     public class MonitorDevice
     {
-        private IntPtr handle_;
+        private IntPtr handle_ = IntPtr.Zero;
         public string name { get; set; }
         public int index { get; set; }
         public IntPtr handle
@@ -140,7 +140,7 @@ namespace CozyPublic.Win
             return false;
         }
 
-        protected Rect CenterRectToMonitor(Rect lprc, bool bWorkArea = false)
+        public Rect CenterRectToMonitor(Rect lprc, bool bWorkArea = false)
         {
             double w = lprc.Right - lprc.Left;
             double h = lprc.Bottom - lprc.Top;
