@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Win\MonitorDevice.cs" />
+    <Compile Include="Win\MonitorManager.cs" />
     <Compile Include="Win\WindowsAPI.cs" />
     <Compile Include="Win\HotKey.cs" />
   </ItemGroup>

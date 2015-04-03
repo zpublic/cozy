@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using System.Data;
 using System.Runtime.InteropServices;
-using System.Drawing;
+using System.Windows;
 
 namespace CozyPublic.Win
 {
@@ -3861,8 +3861,8 @@ namespace CozyPublic.Win
         #region mouse_event 46
 
         [DllImport("user32.dll")]
-        public static extern void mouse_event(uint flags, int dx, int dy, int data, int extraInfo);
-        
+        public static extern void mouse_event(CommonConst.MouseEventFlag flags, int dx, int dy, int data, int extraInfo);
+
         #endregion
 
         #region GetDlgItem 47
@@ -5949,6 +5949,9 @@ namespace CozyPublic.Win
         [DllImport("user32.dll")]
         public static extern bool GetMonitorInfo(IntPtr hMonitor, ref MONITORINFO lpmi);
 
+        [DllImport("user32.dll")]
+        public static extern bool GetMonitorInfo(IntPtr hMonitor, ref MONITORINFOEX lpmi);
+
         #endregion
 
         #region PrintWindow 332
@@ -6118,25 +6121,57 @@ namespace CozyPublic.Win
         public static extern bool LockWorkStation();
 
         #endregion
-        
+
         #region EnumDesktopWindows 356
         public delegate bool EnumDesktopWindowsDelegate(IntPtr hWnd, uint lParam);
-        
-        [DllImport("user32.dll", EntryPoint = "EnumDesktopWindows", ExactSpelling = false, 
+
+        [DllImport("user32.dll", EntryPoint = "EnumDesktopWindows", ExactSpelling = false,
             CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool EnumDesktopWindows(IntPtr hDesktop, EnumDesktopWindowsDelegate lpEnumCallbackFunction, IntPtr lParam);
 
         #endregion
-        
-        #region EnumDesktopWindows 357
+
+        #region EnumChildWindows 357
         public delegate bool EnumChildWindowsDelegate(IntPtr hwnd, IntPtr lParam);
-        
-         [DllImport("user32.Dll")]
+
+        [DllImport("user32.Dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool EnumChildWindows(IntPtr parentHandle, EnumChildWindowsDelegate callback, IntPtr lParam);
 
         #endregion
+
+        #region EnumDisplayMonitors
+
+        public delegate bool EnumMonitorsDelegate(IntPtr hMonitor, IntPtr hdcMonitor, ref RECT lprcMonitor, IntPtr lParam);
+
+        [DllImport("user32.Dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool EnumDisplayMonitors(IntPtr hdc, IntPtr lprcClip, EnumMonitorsDelegate callback, IntPtr lParam);
+
+        #endregion
+
+        #region MonitorFromRect
+
+        [DllImport("user32.Dll")]
+        public static extern IntPtr MonitorFromRect(Rect lprc, int dwFlags);
+
+        #endregion
+
+        #region MonitorFromPoint
+
+        [DllImport("user32.Dll")]
+        public static extern IntPtr MonitorFromPoint(Point pt, int dwFlags);
+
+        #endregion
+
+        #region MonitorFromWindow
+
+        [DllImport("user32.Dll")]
+        public static extern IntPtr MonitorFromWindow(IntPtr hWnd, int dwFlags);
+
+        #endregion
+
 
         #endregion
     }
