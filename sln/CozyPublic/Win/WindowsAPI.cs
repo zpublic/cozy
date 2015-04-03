@@ -986,7 +986,7 @@ namespace CozyPublic.Win
         public RECT rcMonitor;
         public RECT rcWork;
         public int dwFlags;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 512)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
         public string szDevice;
     }
 
