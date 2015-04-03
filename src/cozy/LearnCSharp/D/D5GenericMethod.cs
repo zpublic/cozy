@@ -96,9 +96,15 @@ namespace cozy.LearnCSharp.D
             Console.WriteLine(less(ls1, ls2));
         }
 
+        public static T GenericDelegates<T>(T element, Func<T,T> action)
+        {
+            return action(element);
+        }
+
         public static void Generic_Methods_with_Delegates()
         {
-            Console.WriteLine("带委托的泛型方法 未实现");
+            //带委托的泛型方法
+            Console.WriteLine(GenericDelegates<int>(41, a => a + 1));
         }
     }
 }
