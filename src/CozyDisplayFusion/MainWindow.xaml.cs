@@ -22,8 +22,8 @@ namespace CozyDisplayFusion
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const int HOTKEY_ID_A   = 1;
-        private const int WM_HOTKEY = 0x0312;
+        private const int HOTKEY_ID_A       = 1;
+        private const int WM_HOTKEY         = 0x0312;
 
         public MainWindow()
         {
@@ -50,8 +50,8 @@ namespace CozyDisplayFusion
             HotKey.RegisterHotKey(
                 handle,
                 HOTKEY_ID_A,
-                HotKey.ModifierAlt + HotKey.ModifierControl + HotKey.ModifierShift,
-                0x43);
+                ModifierKeys.Control | ModifierKeys.Alt | ModifierKeys.Shift,
+                KeyInterop.VirtualKeyFromKey(Key.C));
             HwndSource source = PresentationSource.FromVisual(this) as HwndSource;
             source.AddHook(WndProc);
         }
