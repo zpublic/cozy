@@ -36,9 +36,10 @@ namespace CozyDisplayFusion
             {
                 if (wParam.ToInt32() == HOTKEY_ID_A)
                 {
-                    StringBuilder s = new StringBuilder();
-                    s.AppendFormat("hwnd:{0},msg:{1},wParam:{2},lParam{3}:,handle:{4}", hwnd, msg, wParam, lParam, handle);
-                    MessageBox.Show(s.ToString());
+//                     StringBuilder s = new StringBuilder();
+//                     s.AppendFormat("hwnd:{0},msg:{1},wParam:{2},lParam{3}:,handle:{4}", hwnd, msg, wParam, lParam, handle);
+//                     MessageBox.Show(s.ToString());
+                    WindowsAPI.MoveWindow(hwnd, 0, 0, 100, 100, true);
                 }
             }
             return IntPtr.Zero;
