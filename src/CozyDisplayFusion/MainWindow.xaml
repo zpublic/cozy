@@ -1,0 +1,9 @@
+﻿<Window x:Class="CozyDisplayFusion.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CozyDisplayFusion" Height="329" Width="505" Background="#FFC9C959" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" SourceInitialized="OnSourceInitialized">
+    <Grid>
+        <Label Content="Ctrl + Win + X 移动窗口到下一个显示器(单显示器下无效)&#xD;&#xA;Ctrl + Win + Z 移动窗口到下一个显示器并且调整到合适尺寸&#xD;&#xA;Ctrl + Win + A 移动窗口到下一个显示器并且最大化&#xD;&#xA;Ctrl + Win + Q 移动窗口到显示器中心&#xD;&#xA;Ctrl + Win + S 移动窗口到显示器中心并且缩小 75%&#xD;&#xA;Ctrl + Win + W 移动窗口到显示器中心并且缩小 95%&#xD;&#xA;Ctrl + Win + ← 移动窗口到显示器左边&#xD;&#xA;Ctrl + Win + → 移动窗口到显示器右边&#xD;&#xA;Ctrl + Win + ↑ 移动窗口到显示器上边&#xD;&#xA;Ctrl + Win + ↓ 移动窗口到显示器下边" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center"/>
+
+    </Grid>
+</Window>

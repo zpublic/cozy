@@ -7,6 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cozy", "..\src\cozy\Cozy.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfCozy", "..\src\WpfCozy\WpfCozy.csproj", "{73EB5963-9E60-4FD2-AE5D-2A918D37644C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Learn", "Learn", "{17D64332-6E2F-45E4-A71F-9C905F53BE8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tool", "Tool", "{38164D2F-0D13-489E-B26E-E55D83CCBC27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyDisplayFusion", "..\src\CozyDisplayFusion\CozyDisplayFusion.csproj", "{3646A074-7644-4650-80F2-8B7BE7E1D141}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Public", "Public", "{2B94ECC9-7617-4AD0-9A62-EEEE1468C82A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPublic", "CozyPublic\CozyPublic.csproj", "{78A922FA-21BD-4577-9AC5-281425B3265C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +31,22 @@ Global
 		{73EB5963-9E60-4FD2-AE5D-2A918D37644C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73EB5963-9E60-4FD2-AE5D-2A918D37644C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73EB5963-9E60-4FD2-AE5D-2A918D37644C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3646A074-7644-4650-80F2-8B7BE7E1D141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3646A074-7644-4650-80F2-8B7BE7E1D141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3646A074-7644-4650-80F2-8B7BE7E1D141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3646A074-7644-4650-80F2-8B7BE7E1D141}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B195B4A4-9CEE-4742-8436-3E022EAAA157} = {17D64332-6E2F-45E4-A71F-9C905F53BE8B}
+		{73EB5963-9E60-4FD2-AE5D-2A918D37644C} = {17D64332-6E2F-45E4-A71F-9C905F53BE8B}
+		{3646A074-7644-4650-80F2-8B7BE7E1D141} = {38164D2F-0D13-489E-B26E-E55D83CCBC27}
+		{78A922FA-21BD-4577-9AC5-281425B3265C} = {2B94ECC9-7617-4AD0-9A62-EEEE1468C82A}
 	EndGlobalSection
 EndGlobal
