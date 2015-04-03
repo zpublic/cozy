@@ -27,7 +27,11 @@ namespace CozyPublic.Win
         public void UpdateMonitors()
         {
             FreeMonitors();
-            WindowsAPI.EnumDisplayMonitors(IntPtr.Zero, IntPtr.Zero, delegate(IntPtr hMonitor, IntPtr hdcMonitor, ref RECT lprcMonitor, IntPtr dwData)
+            WindowsAPI.EnumDisplayMonitors(IntPtr.Zero, IntPtr.Zero, delegate(
+                IntPtr hMonitor,
+                IntPtr hdcMonitor,
+                ref RECT lprcMonitor,
+                IntPtr dwData)
             {
                 MonitorDevice mi = new MonitorDevice();
                 mi.handle = hMonitor;
@@ -65,13 +69,26 @@ namespace CozyPublic.Win
             return FindMonitor(hMonitor);
         }
 
-        public bool FullScreenWindow(IntPtr hWnd, bool bFullScreen, int iMonitorIndex = 0)
+        public bool FullScreenWindow(IntPtr hWnd, int iMonitorIndex = 0)
         {
-            return false;
-        }
-
-        public bool FullScreenWindow(IntPtr hWndFirst, IntPtr hWndSecond)
-        {
+            if (hWnd == IntPtr.Zero || !WindowsAPI.IsWindow(hWnd))
+            {
+                return false;
+            }
+            MonitorDevice md = GetMonitor(iMonitorIndex);
+            if (md.handle != IntPtr.Zero)
+            {
+                Rect rc = md.GetMonitorRect();
+                WindowsAPI.SetWindowPos(
+                    hWnd,
+                    IntPtr.Zero,
+                    (int)rc.Left,
+                    (int)rc.Top,
+                    (int)rc.Width,
+                    (int)rc.Height,
+                    CommonConst.SWP_SHOWWINDOW | CommonConst.SWP_FRAMECHANGED | CommonConst.SWP_NOZORDER);
+                return true;
+            }
             return false;
         }
 
@@ -150,23 +167,24 @@ namespace CozyPublic.Win
             return listMonitors.Find(r => r.handle == hMonitor);
         }
 
+        ///> 以后可能做全屏之后的恢复
+        //         private class WndInfo
+        //         {
+        //             public WndInfo(bool f, int s, int s2, RECT rc)
+        //             {
+        //                 bfull = f;
+        //                 style = s;
+        //                 exstyle = s2;
+        //                 rcWnd = rc;
+        //             }
+        //             public bool bfull { get; set; }
+        //             public int style { get; set; }
+        //             public int exstyle { get; set; }
+        //             RECT rcWnd { get; set; }
+        //         }
+        //         private Dictionary<IntPtr, WndInfo> mapWnd = new Dictionary<IntPtr, WndInfo>();
         private List<MonitorDevice> listMonitors = new List<MonitorDevice>();
 
         private const int MONITOR_DEFAULTTONEAREST = 2;
-        // 
-        // private:
-        //     vector<CMonitor*> m_vec_monitor;
-        //     struct WndInfo
-        //     {
-        //         WndInfo(long lStyle, long lExStyle, RECT rcWnd, bool bFull):
-        //         _lStyle(lStyle), _lExStyle(lExStyle), _rcWnd(rcWnd), _bFull(bFull){}
-        //         WndInfo(){};
-        //         long _lStyle;   ///< 普通样式
-        //         long _lExStyle; ///< 扩展样式
-        //         RECT _rcWnd;    ///< 矩形
-        //         bool _bFull;    ///< 是否已全屏:true是,false否
-        //     };
-        //     ///< 保存恢复窗口时的状态
-        //     map<HWND, WndInfo> m_map_wnd;  */
     }
 }

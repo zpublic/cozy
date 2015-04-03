@@ -22,8 +22,10 @@ namespace CozyDisplayFusion
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const int HOTKEY_ID_A       = 1;
-        private const int WM_HOTKEY         = 0x0312;
+        private const int HOTKEY_ID_A = 1;
+        private const int HOTKEY_ID_B = 2;
+        private const int HOTKEY_ID_C = 3;
+        private const int WM_HOTKEY = 0x0312;
 
         private MonitorManager monitorMgr = new MonitorManager();
 
@@ -37,10 +39,21 @@ namespace CozyDisplayFusion
         {
             if (msg == WM_HOTKEY)
             {
-                if (wParam.ToInt32() == HOTKEY_ID_A)
+                int i = wParam.ToInt32();
+                if (i == HOTKEY_ID_A)
                 {
                     IntPtr hWnd = WindowsAPI.GetForegroundWindow();
-                    WindowsAPI.MoveWindow(hWnd, 0, 0, 100, 100, true);
+                    monitorMgr.CenterWindow(hWnd);
+                }
+                else if (i == HOTKEY_ID_B)
+                {
+                    IntPtr hWnd = WindowsAPI.GetForegroundWindow();
+                    monitorMgr.FullScreenWindow(hWnd);
+                }
+                else if (i == HOTKEY_ID_C)
+                {
+                    IntPtr hWnd = WindowsAPI.GetForegroundWindow();
+                    monitorMgr.FullScreenWindow(hWnd, 1);
                 }
             }
             return IntPtr.Zero;
@@ -54,6 +67,16 @@ namespace CozyDisplayFusion
                 HOTKEY_ID_A,
                 ModifierKeys.Control | ModifierKeys.Alt | ModifierKeys.Shift,
                 KeyInterop.VirtualKeyFromKey(Key.C));
+            HotKey.RegisterHotKey(
+                handle,
+                HOTKEY_ID_B,
+                ModifierKeys.Control | ModifierKeys.Alt | ModifierKeys.Shift,
+                KeyInterop.VirtualKeyFromKey(Key.X));
+            HotKey.RegisterHotKey(
+               handle,
+               HOTKEY_ID_C,
+               ModifierKeys.Control | ModifierKeys.Alt | ModifierKeys.Shift,
+               KeyInterop.VirtualKeyFromKey(Key.Z));
             HwndSource source = PresentationSource.FromVisual(this) as HwndSource;
             source.AddHook(WndProc);
         }

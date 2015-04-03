@@ -5300,7 +5300,7 @@ namespace CozyPublic.Win
         #region ScreenToClient 241
 
         [DllImport("user32.dll")]
-        public static extern bool ScreenToClient(IntPtr hWnd, Point lpPoint);
+        public static extern bool ScreenToClient(IntPtr hWnd, ref Point lpPoint);
 
         #endregion
 
