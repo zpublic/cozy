@@ -8,7 +8,8 @@ cozy - 这是一个用于学习C＃的开源项目
 
 源码结构
 --------------------------------
-> cozy  
+Learn
+> Cozy  
 >>
 >> LearnCSharp  
 >>> A  - 核心C#  
@@ -52,6 +53,10 @@ cozy - 这是一个用于学习C＃的开源项目
 >>> AnimationDemo - 动画  
 >>> VisualStateDemo - 可见状态  
 >>> 3DDemo - 3D  
+>
+
+Practice  
+Public  
 
   
 交流QQ群
