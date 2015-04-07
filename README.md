@@ -8,9 +8,7 @@ cozy - 这是一个用于学习C＃的开源项目
 
 源码结构
 --------------------------------
-Learn
-> Cozy  
->>
+> Cozy - 命令行版c＃学习工程  
 >> LearnCSharp  
 >>> A  - 核心C#  
 >>> B  - 对象和类型  
@@ -37,7 +35,7 @@ Learn
 >>> F  - 本地化  
 >>> G  - XML处理  
 >
-> WpfCozy
+> WpfCozy - WPF版c＃学习工程
 >> A
 >>> ShapesDemo - 形状  
 >>> GeometryDemo - 几何图形  
@@ -54,9 +52,26 @@ Learn
 >>> VisualStateDemo - 可见状态  
 >>> 3DDemo - 3D  
 >
-
-Practice  
-Public  
+> Public - 公共代码
+>> CozyPublic - 暂未整理的公共代码  
+>> CozyPublic.WinApi - 调用windows api的包装  
+>
+>
+> Practice - 实践工程  
+> 
+>> CozyDisplayFusion - 多显示器管理软件  
+>>>   可以通过快捷键来控制应用程序窗口，实现将当前窗口移到另一个显示器并最大化等功能。  
+>>
+>> CozyQuick - 快捷启动工具
+>>> 通过快捷键、命令行、鼠标手势、定时、监控等实现快捷的搜索、创建进程、切换窗口、计算md5、关闭显示器、查看天气、调节音量操作。  
+>>> 
+>>> CozyQuick.Exe - 主程序  
+>>> CozyQuick.Engine - 调度引擎  
+>>> CozyQuick.Interface - 接口定义  
+>>> CozyQuick.Plugin.Timer - 定时支持插件  
+>>> CozyQuick.Plugin.HotKey - 快捷键支持插件  
+>>> CozyQuick.Plugin.Msgbox - 消息框功能插件  
+>>> CozyQuick.Plugin.AudioPlayer - 声音提示功能插件  
 
   
 交流QQ群
