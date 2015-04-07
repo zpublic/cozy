@@ -54,7 +54,7 @@ namespace Cozy.LearnCSharp.F
         // 重载operator==必须重载operator!=
         public static bool operator==(OperatorClass lhs, OperatorClass rhs)
         {
-            return lhs.Equals(rhs);
+            return lhs.value == rhs.value;
         }
 
         public static bool operator !=(OperatorClass lhs, OperatorClass rhs)
@@ -65,10 +65,7 @@ namespace Cozy.LearnCSharp.F
         // 重载operator==和operator!=必须重载Equals和GetHashCode
         public override bool Equals(object obj)
         {
-            if (obj == null) return false;
-            OperatorClass roc = obj as OperatorClass;
-            if (roc == null) return false;
-            return this.value == roc.value;
+            return (this == (obj as OperatorClass));
         }
 
         public override int GetHashCode()
