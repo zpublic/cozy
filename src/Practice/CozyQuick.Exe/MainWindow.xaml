@@ -3,6 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Canvas x:Name="CozyCanvas" Margin="0,0,0,0">
+            <Ellipse x:Name="CozyObj"  Canvas.Left="10" Canvas.Top="10" Width="100" Height="100" Stroke="Blue" StrokeThickness="4" Fill="Yellow" RenderTransformOrigin="1.94,0.5" />
+            <Ellipse Canvas.Left="30" Canvas.Top="12" Width="60" Height="30">
+                <Ellipse.Fill>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5, 1">
+                        <GradientStop Offset="0.1" Color="DarkGreen" />
+                        <GradientStop Offset="0.7" Color="Transparent" />
+                    </LinearGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Ellipse Canvas.Left="30" Canvas.Top="35" Width="25" Height="20" Stroke="Blue" StrokeThickness="3" Fill="White" />
+            <Ellipse Canvas.Left="40" Canvas.Top="43" Width="6" Height="5" Fill="Black" />
+
+            <Ellipse Canvas.Left="65" Canvas.Top="35" Width="25" Height="20" Stroke="Blue" StrokeThickness="3" Fill="White" />
+            <Ellipse Canvas.Left="75" Canvas.Top="43" Width="6" Height="5" Fill="Black" />
+            <Path Name="mouth" Stroke="Blue" StrokeThickness="4" Data="M 40,74 Q 57,95 80,74 " Canvas.Top="3" />
+        </Canvas>
     </Grid>
 </Window>
