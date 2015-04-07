@@ -17,7 +17,6 @@ namespace Cozy.LearnCSharp.F
             Implicit_Conversions();
             Explicit_Conversions();
             Boxing_an_Unboxing();
-            Console.ReadKey();
         }
 
         public static void Implicit_Conversions()
