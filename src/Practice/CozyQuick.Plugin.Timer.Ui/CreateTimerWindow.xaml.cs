@@ -20,14 +20,27 @@ namespace CozyQuick.Plugin.Timer.Ui
     /// </summary>
     public partial class CreateTimerWindow : Window
     {
+        public event Action<string, string> EventCreateTimer;
+
         public CreateTimerWindow()
         {
             InitializeComponent();
             var click = Observable.FromEventPattern<RoutedEventArgs>(CreateTimerBtn, "Click");
             click.Subscribe(_ =>
             {
-                MessageBox.Show(TimerName.GetLineText(0) + TimerInputTime.GetLineText(0));
+                //触发事件
+                TriggerEvent(TimerName.GetLineText(0), TimerInputTime.GetLineText(0));
+                //MessageBox.Show(TimerName.GetLineText(0) + TimerInputTime.GetLineText(0));
             });
+        }
+
+        private void TriggerEvent(string timerName,string second)
+        {
+            if (EventCreateTimer != null)
+            {
+                //调用该事件注册的方法
+                EventCreateTimer(timerName, second);
+            }
         }
     }
 }
