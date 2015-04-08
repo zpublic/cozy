@@ -24,8 +24,15 @@ namespace CozyQuick.Plugin.Timer
             return true;
         }
 
-        private void WindowOnEventCreateTimer(string timerName, string second) {
-            MessageBox.Show(string.Format("Timer名称:{0}\n {1}秒后触发", timerName, second));
+        private void WindowOnEventCreateTimer(string timerName, string second)
+        {
+
+            Observable.Start(() =>
+            {
+                System.Threading.Thread.Sleep(int.Parse(second) * 1000);
+                _disp.OnReceiveEvent(TimerEvent.CreateEvent(timerName));
+            });
+            //MessageBox.Show(string.Format("Timer名称:{0}\n {1}秒后触发", timerName, second));
         }
 
         public bool Uninit()
@@ -41,11 +48,6 @@ namespace CozyQuick.Plugin.Timer
         public bool ShowPublishConfigurePanel()
         {
             _window.Show();
-//             Observable.Start(() =>
-//             {
-//                 System.Threading.Thread.Sleep(2000);
-//                 _disp.OnReceiveEvent(TimerEvent.CreateEvent(10086));
-//             })
             return true;
         }
     }
