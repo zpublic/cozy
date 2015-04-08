@@ -5,6 +5,7 @@ using System.Composition;
 using System.Linq;
 using System.Text;
 using System.Reactive.Linq;
+using CozyQuick.Plugin.Timer.Ui;
 
 namespace CozyQuick.Plugin.Timer
 {
@@ -12,6 +13,7 @@ namespace CozyQuick.Plugin.Timer
     public class PluginImpl : IEventPublish
     {
         private IEventDispatcher _disp = null;
+        private CreateTimerWindow _window = new CreateTimerWindow();
 
         public bool Init(IEventDispatcher disp)
         {
@@ -31,13 +33,12 @@ namespace CozyQuick.Plugin.Timer
 
         public bool ShowPublishConfigurePanel()
         {
-            Observable.Start(() =>
-            {
-                System.Threading.Thread.Sleep(2000);
-                _disp.OnReceiveEvent(TimerEvent.CreateEvent(10086));
-            })
-            .Delay(new TimeSpan(4000))
-            .Subscribe(x => _disp.OnReceiveEvent(TimerEvent.CreateEvent(65535)));
+            _window.Show();
+//             Observable.Start(() =>
+//             {
+//                 System.Threading.Thread.Sleep(2000);
+//                 _disp.OnReceiveEvent(TimerEvent.CreateEvent(10086));
+//             })
             return true;
         }
     }
