@@ -30,6 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Composition.AttributedModel">
       <HintPath>..\..\..\sln\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.AttributedModel.dll</HintPath>
@@ -47,6 +49,7 @@
       <HintPath>..\..\..\sln\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.TypedParts.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Reactive.Core">
       <HintPath>..\..\..\sln\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
     </Reference>
@@ -59,11 +62,13 @@
     <Reference Include="System.Reactive.PlatformServices">
       <HintPath>..\..\..\sln\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PluginImpl.cs" />
@@ -86,6 +91,10 @@
     <ProjectReference Include="..\CozyQuick.Interface\CozyQuick.Interface.csproj">
       <Project>{6599caaf-6da6-4dac-a93a-1f542f94aa47}</Project>
       <Name>CozyQuick.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyQuick.Plugin.Timer.Ui\CozyQuick.Plugin.Timer.Ui.csproj">
+      <Project>{e2dcd91e-ce3b-4b17-adc3-7a640d8272e9}</Project>
+      <Name>CozyQuick.Plugin.Timer.Ui</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -61,6 +61,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyQuick.CommonDialogs", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPublic.WinApi", "..\src\Public\CozyPublic.WinApi\CozyPublic.WinApi.csproj", "{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyQuick.Plugin.Timer.Ui", "..\src\Practice\CozyQuick.Plugin.Timer.Ui\CozyQuick.Plugin.Timer.Ui.csproj", "{E2DCD91E-CE3B-4B17-ADC3-7A640D8272E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -147,6 +149,10 @@ Global
 		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2DCD91E-CE3B-4B17-ADC3-7A640D8272E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2DCD91E-CE3B-4B17-ADC3-7A640D8272E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2DCD91E-CE3B-4B17-ADC3-7A640D8272E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2DCD91E-CE3B-4B17-ADC3-7A640D8272E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -178,5 +184,6 @@ Global
 		{0C82A06B-F535-4D43-B2EE-DEB837CDC064} = {5C9BF636-6656-4357-A589-62668C11B0A0}
 		{56EB3CE2-8B77-4F39-9926-9344BABD562B} = {5C9BF636-6656-4357-A589-62668C11B0A0}
 		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23} = {2B94ECC9-7617-4AD0-9A62-EEEE1468C82A}
+		{E2DCD91E-CE3B-4B17-ADC3-7A640D8272E9} = {98BE9D23-B945-4C87-87E3-3630057DE39A}
 	EndGlobalSection
 EndGlobal

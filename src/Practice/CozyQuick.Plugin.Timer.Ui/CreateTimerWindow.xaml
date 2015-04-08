@@ -1,0 +1,12 @@
+﻿<Window x:Class="CozyQuick.Plugin.Timer.Ui.CreateTimerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CreateTimerWindow" Height="215" Width="287">
+    <Grid>
+        <Button x:Name="CreateTimerBtn"  Content="Create Timer" HorizontalAlignment="Left" Margin="93,104,0,0" VerticalAlignment="Top" Width="100" Height="57"/>
+        <TextBox x:Name="TimerInputTime" HorizontalAlignment="Left" Height="23" Margin="32,58,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextAlignment="Right"/>
+        <Label Content="秒后触发" HorizontalAlignment="Left" Margin="168,56,0,0" VerticalAlignment="Top" Width="62"/>
+        <Label Content="定时器名字:" HorizontalAlignment="Left" Margin="32,22,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TimerName"  HorizontalAlignment="Left" Height="23" Margin="110,24,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+    </Grid>
+</Window>
