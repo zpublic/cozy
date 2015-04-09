@@ -31,9 +31,7 @@ namespace CozyQuickGui
 
             var mousedown = Observable.FromEventPattern<MouseButtonEventArgs>(CozyObj, "MouseLeftButtonDown")
                 .Select(x => x.EventArgs.GetPosition(CozyObj));
-
             var mouseup = Observable.FromEventPattern<MouseButtonEventArgs>(this, "MouseLeftButtonUp");
-
             var mousemove = Observable.FromEventPattern<MouseEventArgs>(this, "MouseMove")
                 .Select(x => x.EventArgs.GetPosition(this));
 
