@@ -127,7 +127,6 @@ namespace Cozy.LearnCSharp.F
 
             Implementing_User_Defined_Casts();
             Casts_Between_Classes();
-            Console.ReadKey();
         }
 
         public static void Implementing_User_Defined_Casts()
