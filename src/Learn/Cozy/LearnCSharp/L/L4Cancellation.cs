@@ -30,21 +30,22 @@ namespace Cozy.LearnCSharp.L
 
         static async void AsyncTaskGet2()
         {
-            try
+            await Task.Run(() =>
             {
-                await Task.Run(() =>
+                try
                 {
                     for (int i = 0; i < 1000; ++i)
                     {
                         cts.Token.ThrowIfCancellationRequested();
                         Task.Delay(100);
                     }
-                }, cts.Token);
-            }
-            catch (OperationCanceledException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+                }
+                catch (OperationCanceledException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+            }, cts.Token);
         }
 
         public static void Cozy()
