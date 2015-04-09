@@ -20,8 +20,8 @@ namespace Cozy.LearnFoundation.A
             ActionBlockSample();
             SourceAndTargetBlocksSample();
 
-            var target = SetupPipeline();
-            target.Post("../..");
+            //var target = SetupPipeline();
+            //target.Post("../..");
         }
 
         private static void ActionBlockSample()
