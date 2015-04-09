@@ -16,7 +16,7 @@ namespace Cozy.LearnFoundation.A
                 if (state == 5)
                 {
                     state++;
-                    Trace.Assert(state == 6, "Race condition occurred after " + loop + " loops");
+                    //Trace.Assert(state == 6, "Race condition occurred after " + loop + " loops");
                 }
                 state = 5;
             }
