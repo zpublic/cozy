@@ -72,14 +72,7 @@ namespace Cozy.LearnFoundation.A
                     if (token.IsCancellationRequested)
                     {
                         Console.WriteLine("cancelling was requested, cancelling from within the task");
-                        try
-                        {
-                            token.ThrowIfCancellationRequested();
-                        }
-                        catch (OperationCanceledException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
+                        token.ThrowIfCancellationRequested();
                         break;
                     }
                     Console.WriteLine("in loop");
