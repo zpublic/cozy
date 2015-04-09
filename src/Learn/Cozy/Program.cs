@@ -14,7 +14,7 @@ namespace Cozy
             Console.WriteLine("hello cozy!");
             Console.WriteLine("===============================================");
 
-            //PlayLearnCSharp();
+            PlayLearnCSharp();
             PlayLearnFoundation();
 
         }
@@ -68,13 +68,13 @@ namespace Cozy
             >>> F  - 本地化  
             >>> G  - XML处理  
             */
-             LearnFoundationPlayer.A();
-//             LearnFoundationPlayer.B();
-//             LearnFoundationPlayer.C();
-//             LearnFoundationPlayer.D();
-//             LearnFoundationPlayer.E();
-//             LearnFoundationPlayer.F();
-//             LearnFoundationPlayer.G();
+            LearnFoundationPlayer.A();
+            LearnFoundationPlayer.B();
+            LearnFoundationPlayer.C();
+            LearnFoundationPlayer.D();
+            LearnFoundationPlayer.E();
+            LearnFoundationPlayer.F();
+            LearnFoundationPlayer.G();
         }
     }
 }
