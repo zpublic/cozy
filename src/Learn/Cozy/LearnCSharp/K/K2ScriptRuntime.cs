@@ -17,7 +17,11 @@ namespace Cozy.LearnCSharp.K
 
             var scrptRuntime = Python.CreateRuntime();
             dynamic script = scrptRuntime.UseFile(@"LearnCSharp\K\Details\Script.py");
-            Console.WriteLine(script.SayHello("Max"));
+            var list = script.GetPaths();
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }

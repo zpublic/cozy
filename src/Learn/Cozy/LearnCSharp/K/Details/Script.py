@@ -1,2 +1,5 @@
-﻿def SayHello(name):
-    return "Hello" + name
+﻿import clr
+import sys
+
+def GetPaths():
+    return sys.path
