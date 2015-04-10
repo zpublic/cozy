@@ -15,7 +15,7 @@ namespace Cozy
             Console.WriteLine("===============================================");
 
             PlayLearnCSharp();
-            //PlayLearnFoundation();
+            PlayLearnFoundation();
 
         }
 
@@ -39,21 +39,21 @@ namespace Cozy
             >>> N  - 反射  
             >>> O  - 错误和异常  
             */
-            //LearnCSharpPlayer.A();
-            //LearnCSharpPlayer.B();
-            //LearnCSharpPlayer.C();
-            //LearnCSharpPlayer.D();
-            //LearnCSharpPlayer.E();
-            //LearnCSharpPlayer.F();
-            //LearnCSharpPlayer.G();
-            //LearnCSharpPlayer.H();
-            //LearnCSharpPlayer.I();
-            //LearnCSharpPlayer.J();
+            LearnCSharpPlayer.A();
+            LearnCSharpPlayer.B();
+            LearnCSharpPlayer.C();
+            LearnCSharpPlayer.D();
+            LearnCSharpPlayer.E();
+            LearnCSharpPlayer.F();
+            LearnCSharpPlayer.G();
+            LearnCSharpPlayer.H();
+            LearnCSharpPlayer.I();
+            LearnCSharpPlayer.J();
             LearnCSharpPlayer.K();
-            //LearnCSharpPlayer.L();
-            //LearnCSharpPlayer.M();
-            //LearnCSharpPlayer.N();
-            //LearnCSharpPlayer.O();
+            LearnCSharpPlayer.L();
+            LearnCSharpPlayer.M();
+            LearnCSharpPlayer.N();
+            LearnCSharpPlayer.O();
         }
 
         static void PlayLearnFoundation()
