@@ -4,7 +4,23 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:viewModel="clr-namespace:CozySqlite.Model;assembly=CozySqlite.Model"
         Title="CozySqlite" Height="600" Width="800">
+    <Controls:MetroWindow.DataContext>
+        <viewModel:MainWindowsViewModel x:Name="ViewModel"/>
+    </Controls:MetroWindow.DataContext>
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Controls:ToggleSwitch Margin="0,-2,0,0" OnLabel="Yes" OffLabel="No" IsChecked="{Binding Path=IsLight}"/>
+            <Button>
+                <StackPanel>
+                    <ComboBox Width="{Binding Path=ComboBoxWidth}" 
+                              ItemsSource="{Binding Path=Accents}"
+                              SelectedValue="{Binding Path=SelectedAccent,Mode=TwoWay}"/>
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="109*"/>
