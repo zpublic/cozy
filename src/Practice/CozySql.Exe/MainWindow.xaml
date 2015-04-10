@@ -1,11 +1,11 @@
-﻿<Controls:MetroWindow x:Class="CozySqlite.Exe.MainWindow"
+﻿<Controls:MetroWindow x:Class="CozySql.Exe.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
-        xmlns:viewModel="clr-namespace:CozySqlite.Model;assembly=CozySqlite.Model"
-        Title="CozySqlite" Height="600" Width="800">
+        xmlns:viewModel="clr-namespace:CozySql.Model;assembly=CozySql.Model"
+        Title="CozySql" Height="600" Width="800">
     <Controls:MetroWindow.DataContext>
         <viewModel:MainWindowsViewModel x:Name="ViewModel"/>
     </Controls:MetroWindow.DataContext>

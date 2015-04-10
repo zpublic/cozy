@@ -7,8 +7,8 @@
     <ProjectGuid>{AA7DC6D8-7ABE-479A-9940-5C99368DC2DC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozySqlite.Exe</RootNamespace>
-    <AssemblyName>CozySqlite.Exe</AssemblyName>
+    <RootNamespace>CozySql.Exe</RootNamespace>
+    <AssemblyName>CozySql.Exe</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -104,9 +104,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CozySqlite.Model\CozySqlite.Model.csproj">
+    <ProjectReference Include="..\CozySql.Model\CozySql.Model.csproj">
       <Project>{c6d35c15-22e6-4c8d-9404-bd8f3b0d44e0}</Project>
-      <Name>CozySqlite.Model</Name>
+      <Name>CozySql.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

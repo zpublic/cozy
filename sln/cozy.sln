@@ -67,11 +67,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyQuick.Plugin.MouseGestu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyQuick.Plugin.FileMonitor", "..\src\Practice\CozyQuick.Plugin.FileMonitor\CozyQuick.Plugin.FileMonitor.csproj", "{A350AA24-D717-49B2-8262-F4D4569A5A35}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CozySqlite", "CozySqlite", "{131B68D6-1705-40A8-A666-C8E2AECDC101}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CozySql", "CozySql", "{131B68D6-1705-40A8-A666-C8E2AECDC101}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozySqlite.Exe", "..\src\Practice\CozySqlite.Exe\CozySqlite.Exe.csproj", "{AA7DC6D8-7ABE-479A-9940-5C99368DC2DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozySql.Exe", "..\src\Practice\CozySql.Exe\CozySql.Exe.csproj", "{AA7DC6D8-7ABE-479A-9940-5C99368DC2DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozySqlite.Model", "..\src\Practice\CozySqlite.Model\CozySqlite.Model.csproj", "{C6D35C15-22E6-4C8D-9404-BD8F3B0D44E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozySql.Model", "..\src\Practice\CozySql.Model\CozySql.Model.csproj", "{C6D35C15-22E6-4C8D-9404-BD8F3B0D44E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

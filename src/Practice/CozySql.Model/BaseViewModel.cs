@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozySqlite.Model
+namespace CozySql.Model
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

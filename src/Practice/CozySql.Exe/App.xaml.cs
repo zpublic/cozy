@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace CozySqlite.Exe
+namespace CozySql.Exe
 {
     /// <summary>
     /// Interaction logic for App.xaml

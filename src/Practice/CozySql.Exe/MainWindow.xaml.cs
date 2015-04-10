@@ -14,9 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CozySqlite.Model;
+using CozySql.Model;
 
-namespace CozySqlite.Exe
+namespace CozySql.Exe
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

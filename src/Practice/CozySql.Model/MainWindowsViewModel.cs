@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace CozySqlite.Model
+namespace CozySql.Model
 {
     public class MainWindowsViewModel : BaseViewModel
     {

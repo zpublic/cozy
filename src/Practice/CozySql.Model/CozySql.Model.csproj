@@ -7,8 +7,8 @@
     <ProjectGuid>{C6D35C15-22E6-4C8D-9404-BD8F3B0D44E0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozySqlite.Model</RootNamespace>
-    <AssemblyName>CozySqlite.Model</AssemblyName>
+    <RootNamespace>CozySql.Model</RootNamespace>
+    <AssemblyName>CozySql.Model</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
