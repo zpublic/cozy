@@ -26,7 +26,7 @@ namespace CozySql.Exe
         public MainWindow()
         {
             InitializeComponent();
-            ChangedTheme();
+            //ChangedTheme();
             this.ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
