@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IronPython.Hosting;
 
 namespace Cozy.LearnCSharp.K
 {
@@ -13,6 +14,10 @@ namespace Cozy.LearnCSharp.K
             Console.WriteLine("\n-----------------------------------------------");
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             Console.WriteLine("-----------------------------------------------");
+
+            var scrptRuntime = Python.CreateRuntime();
+            dynamic script = scrptRuntime.UseFile(@"LearnCSharp\K\Details\Script.py");
+            Console.WriteLine(script.SayHello("Max"));
         }
     }
 }
