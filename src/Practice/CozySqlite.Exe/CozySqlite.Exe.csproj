@@ -104,7 +104,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\sln\CozySqlite.Model\CozySqlite.Model.csproj">
+    <ProjectReference Include="..\CozySqlite.Model\CozySqlite.Model.csproj">
       <Project>{c6d35c15-22e6-4c8d-9404-bd8f3b0d44e0}</Project>
       <Name>CozySqlite.Model</Name>
     </ProjectReference>
