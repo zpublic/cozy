@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfCozy.A;
+using WpfCozy.B.Books;
 
 namespace WpfCozy
 {
@@ -107,6 +108,12 @@ namespace WpfCozy
         private void OnBtn3DDemo(object sender, RoutedEventArgs e)
         {
             _3DDemo w = new _3DDemo();
+            w.ShowDialog();
+        }
+
+        private void OnBooksDemo(object sender, RoutedEventArgs e)
+        {
+            BooksDemo w = new BooksDemo();
             w.ShowDialog();
         }
     }
