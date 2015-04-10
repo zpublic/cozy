@@ -16,17 +16,17 @@ namespace CozyQuick.Plugin.Timer
             get { return "TimerEvent";  }
         }
 
-        public void SetTimerId(int id)
+        public void SetTimerId(string name)
         {
             _Arg = new Dictionary<string, string>();
-            _Arg.Add("id", id.ToString());
+            _Arg.Add("name", name);
             this.Switches = _Arg;
         }
 
-        public static TimerEvent CreateEvent(int id)
+        public static TimerEvent CreateEvent(string name)
         {
             TimerEvent e = new TimerEvent();
-            e.SetTimerId(id);
+            e.SetTimerId(name);
             return e;
         }
     }

@@ -16,7 +16,7 @@ namespace CozyQuick.Plugin.Msgbox
             CozyQuick.CommonDialogs.MessageBox.Show(
                 IntPtr.Zero,
                 context.EventName,
-                context.Switches["id"].ToString(),
+                context.Switches["name"].ToString(),
                 0);
         }
     }
