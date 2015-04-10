@@ -34,6 +34,8 @@ Cozy
 >>>> E  - 网络  
 >>>> F  - 本地化  
 >>>> G  - XML处理  
+>>>> H  - Dates, Times, and Time Zones  
+>>>> I  - Serialization  
 >>>
 >>> LearnThirdPartyPackage
 >>
@@ -92,6 +94,9 @@ Cozy
 >>> CozyQuick.Plugin.HotKey - 快捷键支持插件  
 >>> CozyQuick.Plugin.Msgbox - 消息框功能插件  
 >>> CozyQuick.Plugin.AudioPlayer - 声音提示功能插件  
+>>
+>> CozySqlite - sqlite数据库查看工具
+>>> CozySqlite.Exe - 主程序
 
   
 交流QQ群
