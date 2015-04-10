@@ -8,6 +8,7 @@ namespace Cozy.LearnCSharp.E
 {
     class CozyCollection
     {
+        // 要枚举的数据
         private string[] StrVar = 
         { 
             "zapline",
@@ -17,6 +18,7 @@ namespace Cozy.LearnCSharp.E
             "1900s"
         };
 
+        // foreach默认调用的迭代块
         public IEnumerator<string> GetEnumerator()
         {
             for (int i = 0; i < StrVar.Length; ++i)
@@ -25,6 +27,7 @@ namespace Cozy.LearnCSharp.E
             }
         }
 
+        // 自定的迭代
         public IEnumerable<string> Reverse()
         {
             for (int i = StrVar.Length - 1; i >= 0; --i)
@@ -56,6 +59,8 @@ namespace Cozy.LearnCSharp.E
         public static void yield_Statement()
         {
             CozyCollection collect = new CozyCollection();
+
+            // 使用迭代
             foreach(var elemt in collect)
             {
                 Console.WriteLine(elemt);
