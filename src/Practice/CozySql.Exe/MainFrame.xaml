@@ -58,41 +58,19 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="300" />
             </Grid.ColumnDefinitions>
-            <TabControl Margin="0,10,0,0">
-                <TabItem Header="Welcome!">
-                    <ListBox Margin="50"
-                             ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Vertical"></WrapPanel>
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
-                        <ListBoxItem>
-                            <StackPanel>
-                                <TextBlock FontSize="50"
-                                           Foreground="{StaticResource Foreground}">Open a sqlite db</TextBlock>
-                                <TextBlock FontSize="30"
-                                           Foreground="{StaticResource Foreground}">sqlite db viewer</TextBlock>
-                                <TextBlock FontSize="18"
-                                           Foreground="{StaticResource Foreground}">Select a *.db file</TextBlock>
-                                <TextBlock FontSize="18"
-                                           Foreground="#FFAAAA">For sqlite: only read</TextBlock>
-                            </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem>
-                            <StackPanel>
-                                <TextBlock FontSize="30"
-                                           Foreground="{StaticResource Foreground}">Connect a mysql db</TextBlock>
-                                <TextBlock FontSize="18"
-                                           Foreground="{StaticResource Foreground}">query mysql</TextBlock>
-                                <TextBlock FontSize="18"
-                                           Foreground="{StaticResource Foreground}">Input server's ip address</TextBlock>
-                                <TextBlock FontSize="18"
-                                           Foreground="#AAAAAA">run sql</TextBlock>
-                            </StackPanel>
-                        </ListBoxItem>
-                    </ListBox>
-                </TabItem>
+            <TabControl x:Name="MainTab"  Margin="0,10,0,0" ItemsSource="{Binding MainTabItems}">
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <ContentPresenter Content="{Binding Content}" />
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0">
+                            <TextBlock Text="{Binding Title}" Margin="0" />
+                        </StackPanel>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
             </TabControl>
             <StackPanel Grid.Column="1"
                         Margin="50,25,25,0">

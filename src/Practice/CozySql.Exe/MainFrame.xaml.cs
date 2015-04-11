@@ -1,6 +1,7 @@
 ﻿using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,30 @@ namespace CozySql.Exe
     /// </summary>
     public partial class MainFrame : MetroWindow
     {
+        public class UIControlInfo
+        {
+            public string Title { get; set; }
+            public UserControl Content { get; set; }
+        }
+
         public MainFrame()
         {
             InitializeComponent();
+
+            this.DataContext = this;
+            _MainTabItems.Add(new UIControlInfo { Title = "Welcome!", Content = new UserControls.WelcomePage() });
+            _MainTabItems.Add(new UIControlInfo { Title = "SqlView1", Content = new UserControls.SqlView() });
+            _MainTabItems.Add(new UIControlInfo { Title = "SqlView2", Content = new UserControls.SqlView() });
+            _MainTabItems.Add(new UIControlInfo { Title = "SqlView3", Content = new UserControls.SqlView() });
+        }
+
+        private ObservableCollection<UIControlInfo> _MainTabItems = new ObservableCollection<UIControlInfo>();
+        public IEnumerable<UIControlInfo> MainTabItems
+        {
+            get
+            {
+                return _MainTabItems;
+            }
         }
     }
 }
