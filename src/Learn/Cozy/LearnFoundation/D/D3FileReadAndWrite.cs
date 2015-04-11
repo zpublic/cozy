@@ -84,7 +84,7 @@ namespace Cozy.LearnFoundation.D
 
         public static void Reading_and_Writing_to_Text_Files()
         {
-            //string fileName = @"D:\cozy.txt";
+            string fileName = @"D:\cozy.txt";
 
             //// 使用不同方法创建StreamReader
             //StreamReader reader1 = new StreamReader(fileName);
