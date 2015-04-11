@@ -62,6 +62,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControls\ConnectEditor.xaml.cs">
+      <DependentUpon>ConnectEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DatabasesView.xaml.cs">
+      <DependentUpon>DatabasesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SqlFavorites.xaml.cs">
+      <DependentUpon>SqlFavorites.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SqlInput.xaml.cs">
+      <DependentUpon>SqlInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SqlView.xaml.cs">
+      <DependentUpon>SqlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TablesView.xaml.cs">
+      <DependentUpon>TablesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\WelcomePage.xaml.cs">
+      <DependentUpon>WelcomePage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -70,10 +95,41 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MainFrame.xaml.cs">
+      <DependentUpon>MainFrame.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\ConnectEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DatabasesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SqlFavorites.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SqlInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SqlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TablesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\WelcomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -104,9 +160,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CozySql.Configure\CozySql.Configure.csproj">
+      <Project>{853c1be0-7639-430c-aa16-aee9fe1e55f8}</Project>
+      <Name>CozySql.Configure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozySql.Model\CozySql.Model.csproj">
       <Project>{c6d35c15-22e6-4c8d-9404-bd8f3b0d44e0}</Project>
       <Name>CozySql.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozySql.Mysql\CozySql.Mysql.csproj">
+      <Project>{0dd78bf7-5153-4bfb-b860-67b566f5d738}</Project>
+      <Name>CozySql.Mysql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozySql.Sqlite\CozySql.Sqlite.csproj">
+      <Project>{96c257e1-b74c-4af0-8d47-2b1f72655439}</Project>
+      <Name>CozySql.Sqlite</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
