@@ -62,8 +62,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControls\ConnectEditor.xaml.cs">
+      <DependentUpon>ConnectEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DatabasesView.xaml.cs">
+      <DependentUpon>DatabasesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SqlFavorites.xaml.cs">
+      <DependentUpon>SqlFavorites.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SqlInput.xaml.cs">
+      <DependentUpon>SqlInput.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SqlView.xaml.cs">
       <DependentUpon>SqlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TablesView.xaml.cs">
+      <DependentUpon>TablesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
@@ -87,7 +102,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\ConnectEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DatabasesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SqlFavorites.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SqlInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\SqlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TablesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
