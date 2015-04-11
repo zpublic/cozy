@@ -29,14 +29,14 @@ namespace CozySql.Exe
 
         public MainFrame()
         {
-            InitializeComponent();
-
             this.DataContext = this;
             _MainTabItems.Add(new UIControlInfo { Title = "Welcome!", Content = new UserControls.WelcomePage() });
             _MainTabItems.Add(new UIControlInfo { Title = "Sql Favorites", Content = new UserControls.SqlFavorites() });
             _MainTabItems.Add(new UIControlInfo { Title = "Query!", Content = new UserControls.SqlInput() });
             _MainTabItems.Add(new UIControlInfo { Title = "SqlView1", Content = new UserControls.SqlView() });
             _MainTabItems.Add(new UIControlInfo { Title = "SqlView2", Content = new UserControls.SqlView() });
+
+            InitializeComponent();
         }
 
         private ObservableCollection<UIControlInfo> _MainTabItems = new ObservableCollection<UIControlInfo>();
