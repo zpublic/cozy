@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
+using System.Net;
 using Newtonsoft.Json;
 using System.IO;
 
@@ -40,6 +41,36 @@ namespace Cozy.LearnFoundation.E
             Console.WriteLine("-----------------------------------------------");
 
             GetData();
+            Downloading_Files();
+            Uploading_Files();
+        }
+
+        public static void Downloading_Files()
+        {
+            string url = @"https://www.baidu.com";
+
+            WebClient wc = new WebClient();
+
+            // 直接下载文件 
+            //wc.DownloadFile(url, @"D:\index.html");
+
+            Stream strm = wc.OpenRead(url);
+            StreamReader sr = new StreamReader(strm);
+            Console.WriteLine(sr.ReadLine());
+        }
+
+        public static void Uploading_Files()
+        {
+            //string url = @"http://www.baidu.com";
+            //string fileName = @"D:\cozy.txt";
+
+            //// 直接上传文件
+            //WebClient wc = new WebClient();
+            //wc.UploadFile(url, fileName);
+
+            //// 上传数据
+            //byte[] image = new byte[10];
+            //wc.UploadData(url, image);
         }
     }
 }
