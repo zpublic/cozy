@@ -27,6 +27,11 @@ namespace CozySql.Configure
                 name = value;
             }
         }
+
+        public override string ToString()
+        {
+            return "SqlInfo Name : " + Name;
+        }
     }
 
     // MySql的信息
@@ -87,9 +92,20 @@ namespace CozySql.Configure
                 password = value;
             }
         }
+
+        public override string ToString()
+        {
+            StringBuilder strbd = new StringBuilder();
+            strbd.AppendLine("MySqlInfo Name : " + Name);
+            strbd.AppendLine("MySqlInfo Address : " + Address);
+            strbd.AppendLine("MySqlInfo UserName : " + UserName);
+            strbd.AppendLine("MySqlInfo PassWord : " + PassWord);
+
+            return strbd.ToString();
+        }
     }
 
-    // Sqlitle信息的基类
+    // Sqlitle类的信息
     class SqliteInfo : SqlInfo
     {
         public SqliteInfo(string name)

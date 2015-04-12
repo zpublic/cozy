@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 namespace CozySql.Configure
 {
@@ -34,11 +33,19 @@ namespace CozySql.Configure
             get;
             set;
         }
+
+        // 支持迭代
+        IEnumerator<SqlInfo> GetEnumerator();
     }
 
     // 实现接口
     class LastOpen : ILastOpen
     {
+        public LastOpen(int maxSize)
+        {
+            this.MaxSize = maxSize;
+        }
+
         public void Add(SqlInfo info)
         {
             if(LastOpenList.Count > MaxSize)
@@ -98,5 +105,10 @@ namespace CozySql.Configure
 
         // 容器
         private List<SqlInfo> LastOpenList = new List<SqlInfo>();
+
+        public IEnumerator<SqlInfo> GetEnumerator()
+        {
+            return LastOpenList.GetEnumerator();
+        }
     }
 }
