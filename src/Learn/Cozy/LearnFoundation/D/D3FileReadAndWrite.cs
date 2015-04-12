@@ -17,7 +17,7 @@ namespace Cozy.LearnFoundation.D
 
             Reading_a_File();
             Writing_to_a_File();
-            Console.ReadKey();
+            Reading_and_Writing_to_Text_Files();
         }
 
         public static void Reading_a_File()
@@ -80,6 +80,84 @@ namespace Cozy.LearnFoundation.D
             //fs.Write(data, 0, dataSize);
 
             //fs.Close();
+        }
+
+        public static void Reading_and_Writing_to_Text_Files()
+        {
+            string fileName = @"D:\cozy.txt";
+
+            //// 使用不同方法创建StreamReader
+            //StreamReader reader1 = new StreamReader(fileName);
+            //reader1.Close();
+
+            //FileStream fs1 = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+            //StreamReader reader2 = new StreamReader(fs1);
+            //reader2.Close();
+            //fs1.Close();
+
+            //FileInfo fi = new FileInfo(fileName);
+            //StreamReader reader3 = fi.OpenText();
+            //reader3.Close();
+
+            //// 使用不同方法创建StreamWriter
+
+            //StreamWriter writer1 = new StreamWriter(fileName);
+            //writer1.Close();
+            //StreamWriter writer2 = new StreamWriter(fileName, true, Encoding.ASCII);
+            //writer2.Close();
+
+            //FileStream fs2 = new FileStream(fileName, FileMode.Open, FileAccess.Write, FileShare.Read);
+            //StreamWriter writer3 = new StreamWriter(fs2);
+            //writer3.Close();
+            //fs2.Close();
+
+            Read_Text_File(fileName);
+            Write_Text_File(fileName);
+        }
+
+        public static void Read_Text_File(string fileName)
+        {
+            // 用ASCII格式读取
+            //StreamReader reader = new StreamReader(fileName, Encoding.ASCII);
+
+            //// 读取一行
+            //string nextLine = reader.ReadLine();
+            //Console.WriteLine(nextLine);
+
+            //// 读取一个字符
+            //int nextChar = reader.Read();
+            //Console.WriteLine(nextChar);
+
+            //// 读取指定大小的数据
+            //int nChars = 10;
+            //char[] charArray = new char[nChars];
+            //int nCharRead = reader.Read(charArray, 0, nChars);
+            //Console.WriteLine(charArray);
+
+            //// 读取到结尾
+            //nextLine = reader.ReadToEnd();
+            //Console.WriteLine(nextLine);
+
+            //reader.Close();
+        }
+
+        public static void Write_Text_File(string fileName)
+        {
+            //StreamWriter writer = new StreamWriter(fileName);
+
+            //// 输出字符串
+            //string nextLine = "hello";
+            //writer.Write(nextLine);
+
+            //// 输出单个字符
+            //char nextChar = 'a';
+            //writer.Write(nextChar);
+
+            //// 输出字符数组
+            //char[] charArray = new char[10];
+            //writer.Write(charArray);
+
+            //writer.Close();
         }
     }
 }
