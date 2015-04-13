@@ -25,7 +25,7 @@ namespace Cozy.LearnFoundation.D
         public static void Reading_ACLs_from_a_File()
         {
             string fileName = @"D:\cozy1.txt";
-
+            Console.WriteLine(fileName);
             //try
             //{
             //    using (FileStream mFile = new FileStream(fileName, FileMode.Open, FileAccess.Read))
@@ -49,6 +49,7 @@ namespace Cozy.LearnFoundation.D
         public static void Reading_ACLs_from_a_Directory()
         {
             string direName = @"D:\cozy_dire";
+            Console.WriteLine(direName);
 
             //try
             //{
@@ -83,6 +84,7 @@ namespace Cozy.LearnFoundation.D
         public static void Adding_and_Removing_ACLs_from_a_File()
         {
             string fileName = @"D:\cozy1.txt";
+            Console.WriteLine(fileName);
 
             //try
             //{

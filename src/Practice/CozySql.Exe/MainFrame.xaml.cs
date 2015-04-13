@@ -52,5 +52,20 @@ namespace CozySql.Exe
         {
             MessageBox.Show("open");
         }
+
+        private void ShowLeft(object sender, RoutedEventArgs e)
+        {
+            this.ToggleFlyout(0);
+        }
+
+        private void ToggleFlyout(int index)
+        {
+            var flyout = this.Flyouts.Items[index] as Flyout;
+            if (flyout == null)
+            {
+                return;
+            }
+            flyout.IsOpen = !flyout.IsOpen;
+        }
     }
 }
