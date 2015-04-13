@@ -1,4 +1,5 @@
 ﻿using ICSharpCode.AvalonEdit;
+using ICSharpCode.AvalonEdit.CodeCompletion;
 using ICSharpCode.AvalonEdit.Folding;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,9 @@ namespace CozySql.Exe.UserControls
             foldingStrategy = new BraceFoldingStrategy();
             foldingStrategy.UpdateFoldings(foldingManager, textEditor.Document);
 
+            textEditor.TextArea.TextEntering += textEditor_TextArea_TextEntering;
+            textEditor.TextArea.TextEntered += textEditor_TextArea_TextEntered;
+
             DispatcherTimer foldingUpdateTimer = new DispatcherTimer();
             foldingUpdateTimer.Interval = TimeSpan.FromSeconds(2);
             foldingUpdateTimer.Tick += foldingUpdateTimer_Tick;
@@ -51,6 +55,41 @@ namespace CozySql.Exe.UserControls
             {
                 foldingStrategy.UpdateFoldings(foldingManager, textEditor.Document);
             }
+        }
+
+        CompletionWindow completionWindow;
+        void textEditor_TextArea_TextEntered(object sender, TextCompositionEventArgs e)
+        {
+            if (e.Text == ".")
+            {
+                // open code completion after the user has pressed dot:
+                completionWindow = new CompletionWindow(textEditor.TextArea);
+                // provide AvalonEdit with the data:
+                IList<ICompletionData> data = completionWindow.CompletionList.CompletionData;
+                data.Add(new MyCompletionData("zapline"));
+                data.Add(new MyCompletionData("is"));
+                data.Add(new MyCompletionData("a"));
+                data.Add(new MyCompletionData("sb"));
+                completionWindow.Show();
+                completionWindow.Closed += delegate
+                {
+                    completionWindow = null;
+                };
+            }
+        }
+
+        void textEditor_TextArea_TextEntering(object sender, TextCompositionEventArgs e)
+        {
+            if (e.Text.Length > 0 && completionWindow != null)
+            {
+                if (!char.IsLetterOrDigit(e.Text[0]))
+                {
+                    // Whenever a non-letter is typed while the completion window is open,
+                    // insert the currently selected element.
+                    completionWindow.CompletionList.RequestInsertion(e);
+                }
+            }
+            // do not set e.Handled=true - we still want to insert the character that was typed
         }
     }
 }

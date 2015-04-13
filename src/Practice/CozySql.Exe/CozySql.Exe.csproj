@@ -75,6 +75,7 @@
     <Compile Include="UserControls\DatabasesView.xaml.cs">
       <DependentUpon>DatabasesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\MyCompletionData.cs" />
     <Compile Include="UserControls\SqlFavorites.xaml.cs">
       <DependentUpon>SqlFavorites.xaml</DependentUpon>
     </Compile>
