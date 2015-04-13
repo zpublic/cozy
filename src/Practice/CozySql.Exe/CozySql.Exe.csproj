@@ -67,6 +67,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\MainCommand.cs" />
+    <Compile Include="UserControls\AbstractFoldingStrategy.cs" />
+    <Compile Include="UserControls\BraceFoldingStrategy.cs" />
     <Compile Include="UserControls\ConnectEditor.xaml.cs">
       <DependentUpon>ConnectEditor.xaml</DependentUpon>
     </Compile>
