@@ -62,6 +62,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\MainCommand.cs" />
     <Compile Include="UserControls\ConnectEditor.xaml.cs">
       <DependentUpon>ConnectEditor.xaml</DependentUpon>
     </Compile>

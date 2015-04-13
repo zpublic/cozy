@@ -47,5 +47,10 @@ namespace CozySql.Exe
                 return _MainTabItems;
             }
         }
+
+        private void OnOpenSqlite(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("open");
+        }
     }
 }
