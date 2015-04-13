@@ -92,7 +92,7 @@ namespace CozySql.Configure
             set
             {
                 // 当maxsize 小于等于0 设置为1 
-                if(maxsize <= 0)
+                if(value <= 0)
                 {
                     maxsize = 1;
                 }
