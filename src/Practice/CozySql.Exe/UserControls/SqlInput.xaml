@@ -14,9 +14,14 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="127" Margin="29,47,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="234"/>
-        <Button Content="Reset" HorizontalAlignment="Left" Margin="58,228,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Submit" HorizontalAlignment="Left" Margin="163,228,0,0" VerticalAlignment="Top" Width="75"/>
+        <avalonEdit:TextEditor
+            xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+            Name="textEditor"
+            FontFamily="Consolas"
+            SyntaxHighlighting="C#"
+            FontSize="12pt" Margin="10,10,10,40" Background="#FFC7C7D1"/>
+        <Button Content="Reset" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="75"/>
+        <Button Content="Submit" HorizontalAlignment="Left" Margin="90,0,0,10" VerticalAlignment="Bottom" Width="75"/>
 
     </Grid>
 </UserControl>

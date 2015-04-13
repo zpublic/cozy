@@ -35,7 +35,7 @@ namespace CozySql.Exe
             _MainTabItems.Add(new UIControlInfo { Title = "Query!", Content = new UserControls.SqlInput() });
             _MainTabItems.Add(new UIControlInfo { Title = "SqlView1", Content = new UserControls.SqlView() });
             _MainTabItems.Add(new UIControlInfo { Title = "SqlView2", Content = new UserControls.SqlView() });
-
+            _MainTabItems.Add(new UIControlInfo { Title = "SqlInput", Content = new UserControls.SqlInput() });
             InitializeComponent();
         }
 
@@ -46,6 +46,11 @@ namespace CozySql.Exe
             {
                 return _MainTabItems;
             }
+        }
+
+        private void OnOpenSqlite(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("open");
         }
     }
 }

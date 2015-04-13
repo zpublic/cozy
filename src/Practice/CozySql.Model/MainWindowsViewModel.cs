@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simple.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -70,6 +71,8 @@ namespace CozySql.Model
 
         public MainWindowsViewModel()
         {
+            var fileDb = Database.OpenFile("c:\\mysql.db");
+
             Accents = new[] { "Red", "Green", "Blue", "Purple", "Orange",
                     "Lime", "Emerald", "Teal", "Cyan", "Cobalt", "Indigo",
                     "Violet", "Pink", "Magenta", "Crimson", "Amber","Yellow",
