@@ -42,6 +42,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="LastOpen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectPropertyNodeItem.cs" />
     <Compile Include="SqlInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
