@@ -15,27 +15,9 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <DataGrid x:Name="AzureDataGrid"
-                  Grid.Column="1"
-                  Grid.Row="3"
-                  RenderOptions.ClearTypeHint="Enabled"
-                  TextOptions.TextFormattingMode="Display"
-                  Margin="5"
-                  ItemsSource="{Binding Path=Albums}"
-                  Style="{DynamicResource AzureDataGrid}"
-                  AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Title"
-                                    Binding="{Binding Title}" />
-                <DataGridTextColumn Header="Artist"
-                                    Binding="{Binding Artist.Name}" />
-                <DataGridTextColumn Header="Genre"
-                                    Binding="{Binding Genre.Name}" />
-                <controls:DataGridNumericUpDownColumn Header="Price"
-                                                      Binding="{Binding Price}"
-                                                      StringFormat="C"
-                                                      Minimum="0" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <DataGrid AutoGenerateColumns="True"
+                              HorizontalGridLinesBrush="LightGray"
+                              ItemsSource="{Binding Data}"
+                              VerticalGridLinesBrush="LightGray" />
     </Grid>
 </UserControl>
