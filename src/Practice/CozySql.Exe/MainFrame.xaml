@@ -19,6 +19,8 @@
         <CommandBinding Command="local:MainCommand.OpenSqlite" Executed="OnOpenSqlite" />
     </Window.CommandBindings>
     <DockPanel>
+        <Button Click="ShowLeft" Content="Show Left"/>
+
         <Menu DockPanel.Dock="Top"
               SnapsToDevicePixels="True"
               Margin="2,0,0,0">
@@ -109,4 +111,15 @@
             </StackPanel>
         </Grid>
     </DockPanel>
+
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl x:Name="flyoutsControl">
+            <Controls:Flyout Header="Left"
+                             Position="Left">
+                <StackPanel Width="150"
+                            Margin="5,5,5,5">
+                </StackPanel>
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
 </Controls:MetroWindow>
