@@ -91,5 +91,11 @@ namespace CozySql.Exe.UserControls
             }
             // do not set e.Handled=true - we still want to insert the character that was typed
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var sql = textEditor.Text;
+
+        }
     }
 }
