@@ -15,6 +15,9 @@
             <DataTemplate x:Key="ListTemp">
                 <TextBlock x:Name="textBlockName" Text="{Binding Text}"></TextBlock>
             </DataTemplate>
+            <DataTemplate x:Key="InnerBlock" DataType="{x:Type model:WelcomePageInfo}">
+                <TextBlock Text="{Binding Text}" FontSize="{Binding FontSize}" Foreground="{Binding Foreground}"></TextBlock>
+            </DataTemplate>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -27,27 +30,13 @@
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type model:WelcomePageModel}">
                     <StackPanel>
-                        <TextBlock FontSize="{Binding FontSize}" Foreground ="{Binding Foreground}" Text="{Binding Text}">
-                        </TextBlock>
+                        <StackPanel.Children>
+                            <ItemsControl ItemsSource="{Binding elemts}" ItemTemplate="{StaticResource InnerBlock}">
+                            </ItemsControl>
+                        </StackPanel.Children>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-            <!--<ListBoxItem>
-                <StackPanel>
-                    <TextBlock FontSize="50" Foreground="{StaticResource Foreground}">Open a sqlite db</TextBlock>
-                    <TextBlock FontSize="30" Foreground="{StaticResource Foreground}">sqlite db viewer</TextBlock>
-                    <TextBlock FontSize="18" Foreground="{StaticResource Foreground}">Select a *.db file</TextBlock>
-                    <TextBlock FontSize="18" Foreground="#FFAAAA">For sqlite: only read</TextBlock>
-                </StackPanel>
-            </ListBoxItem>
-            <ListBoxItem>
-                <StackPanel>
-                    <TextBlock FontSize="30" Foreground="{StaticResource Foreground}">Connect a mysql db</TextBlock>
-                    <TextBlock FontSize="18" Foreground="{StaticResource Foreground}">query mysql</TextBlock>
-                    <TextBlock FontSize="18" Foreground="{StaticResource Foreground}">Input server's ip address</TextBlock>
-                    <TextBlock FontSize="18" Foreground="#AAAAAA">run sql</TextBlock>
-                </StackPanel>
-            </ListBoxItem>-->
         </ListBox>
     </Grid>
 </UserControl>
