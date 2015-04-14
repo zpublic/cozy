@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozySql.Model
+namespace CozySql.Model.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
