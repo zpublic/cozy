@@ -14,6 +14,9 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="TreeViewItemStyle" TargetType="TreeViewItem">
+                <Setter Property="Margin" Value="5,5,0,0" />
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
     <Window.CommandBindings>
@@ -114,23 +117,22 @@
 
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl x:Name="flyoutsControl">
-            <Controls:Flyout Header="Left"
+            <Controls:Flyout Name="LeftFlyout"  Header="Left"
                              Position="Left">
-                <StackPanel Width="260"
-                            Margin="5,5,5,5">
+                <Grid Width="300">
                     <Label Content="Sample" FontSize="24"></Label>
-                    <TreeView Name ="SelectTreeView" Width ="250" Height="580" Margin="0" ScrollViewer.CanContentScroll="True">
+                    <TreeView Name ="SelectTreeView" ItemContainerStyle="{StaticResource TreeViewItemStyle}" Margin="8,48,8,8" ScrollViewer.CanContentScroll="True" BorderThickness="0">
                         <TreeView.ItemTemplate>
                             <HierarchicalDataTemplate DataType="{x:Type loaclConfig:SelectPropertyNodeItem}" 
                                                       ItemsSource="{Binding Path=Children}">
                                 <Grid>
                                     <TextBlock VerticalAlignment="Center" Text="{Binding DisplayName}" 
-                                            FontSize="12" Padding="0" FontFamily="新宋体"></TextBlock>
+                                            FontSize="12" Padding="0" LineHeight="6" />
                                 </Grid>
                             </HierarchicalDataTemplate>
                         </TreeView.ItemTemplate>
                     </TreeView>
-                </StackPanel>
+                </Grid>
             </Controls:Flyout>
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>
