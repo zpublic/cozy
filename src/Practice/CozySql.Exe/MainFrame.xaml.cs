@@ -121,5 +121,11 @@ namespace CozySql.Exe
 
             SelectTreeView.ItemsSource = itemList;
         }
+
+        private void ShowLeft(object sender, MouseButtonEventArgs e)
+        {
+            ShowTreeList();
+            this.ToggleFlyout(0);
+        }
     }
 }

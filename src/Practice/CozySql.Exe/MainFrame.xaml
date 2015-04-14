@@ -53,15 +53,13 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <TextBlock DockPanel.Dock="Left"
-                   Foreground="{StaticResource Foreground}"
-                   Margin="5"
-                   VerticalAlignment="Center">
-            <TextBlock.LayoutTransform>
-                <RotateTransform Angle="90" />
-            </TextBlock.LayoutTransform>
-        </TextBlock>
-        <Button Click="ShowLeft" Width="20"/>
+        <DockPanel Name="LeftPanel"  DockPanel.Dock="Left" Margin="5" MouseLeftButtonUp="ShowLeft">
+            <TextBlock Foreground="{StaticResource Foreground}" Text="My DATA" TextAlignment="Center">
+                <TextBlock.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+        </DockPanel>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
