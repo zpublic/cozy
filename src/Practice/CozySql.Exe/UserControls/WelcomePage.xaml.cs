@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CozySql.Model.ViewModels;
 
 namespace CozySql.Exe.UserControls
 {
@@ -20,9 +21,22 @@ namespace CozySql.Exe.UserControls
     /// </summary>
     public partial class WelcomePage : UserControl
     {
+        private readonly WelcomePageViewModel _viewMode;
         public WelcomePage()
         {
             InitializeComponent();
+            _viewMode = new WelcomePageViewModel();
+            _viewMode.PropertyChanged += ViewModelPropertyChanged;
+
+            _viewMode.TestData();
+        }
+
+        void ViewModelPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == "Data")
+            {
+                WelcomeList.ItemsSource = _viewMode.Data;
+            }
         }
     }
 }
