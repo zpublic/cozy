@@ -44,6 +44,14 @@
     <Reference Include="MahApps.Metro">
       <HintPath>..\..\..\sln\packages\MahApps.Metro.1.1.2.0\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
+    <Reference Include="Simple.Data, Version=0.19.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\sln\packages\Simple.Data.Core.0.19.0.0\lib\net40\Simple.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.Data.Ado, Version=0.19.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\sln\packages\Simple.Data.Ado.0.19.0.0\lib\net40\Simple.Data.Ado.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -94,6 +102,11 @@
     <Compile Include="UserControls\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowsViewModel.cs" />
+    <Compile Include="ViewModels\SqlViewViewModel.cs" />
+    <Compile Include="ViewModels\WelcomePageModel.cs" />
+    <Compile Include="ViewModels\WelcomePageViewModel.cs" />
     <Page Include="MainFrame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -186,6 +199,10 @@
     <ProjectReference Include="..\CozySql.Sqlite\CozySql.Sqlite.csproj">
       <Project>{96c257e1-b74c-4af0-8d47-2b1f72655439}</Project>
       <Name>CozySql.Sqlite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simple.Data.Interop\Simple.Data.Interop.csproj">
+      <Project>{1bbcf939-00fe-4ff4-bf63-c460ac7c3c05}</Project>
+      <Name>Simple.Data.Interop</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
