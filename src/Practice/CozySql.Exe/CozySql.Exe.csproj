@@ -77,6 +77,8 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\MainCommand.cs" />
     <Compile Include="Models\UIControlInfo.cs" />
+    <Compile Include="Models\WelcomePageBlockInfo.cs" />
+    <Compile Include="Models\WelcomePageInfo.cs" />
     <Compile Include="UserControls\AbstractFoldingStrategy.cs" />
     <Compile Include="UserControls\BraceFoldingStrategy.cs" />
     <Compile Include="UserControls\ConnectEditor.xaml.cs">
@@ -105,7 +107,6 @@
     <Compile Include="ViewModels\MainFrameViewModel.cs" />
     <Compile Include="ViewModels\MainWindowsViewModel.cs" />
     <Compile Include="ViewModels\SqlViewViewModel.cs" />
-    <Compile Include="ViewModels\WelcomePageModel.cs" />
     <Compile Include="ViewModels\WelcomePageViewModel.cs" />
     <Page Include="MainFrame.xaml">
       <SubType>Designer</SubType>
