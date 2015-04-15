@@ -76,8 +76,6 @@
     </ApplicationDefinition>
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\MainCommand.cs" />
-    <Compile Include="Converts\UserControlConverter.cs" />
-    <Compile Include="Converts\UserControlsAdapter.cs" />
     <Compile Include="Models\UIControlInfo.cs" />
     <Compile Include="UserControls\AbstractFoldingStrategy.cs" />
     <Compile Include="UserControls\BraceFoldingStrategy.cs" />
@@ -207,7 +205,9 @@
       <Name>Simple.Data.Interop</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Converts\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
