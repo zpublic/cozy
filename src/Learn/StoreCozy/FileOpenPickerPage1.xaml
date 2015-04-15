@@ -1,0 +1,141 @@
+﻿<Page
+    x:Name="pageRoot"
+    x:Class="StoreCozy.FileOpenPickerPage1"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StoreCozy"
+    xmlns:common="using:StoreCozy.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:ExtensionType="FileOpenPicker">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="filesViewSource" Source="{Binding Files}"/>
+        <DataTemplate x:Key="StandardFileWithTooltip190x130ItemTemplate">
+            <Grid>
+                <Grid Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                    <Image
+                    Source="{Binding Image}"
+                    Width="190"
+                    Height="130"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Stretch="Uniform"/>
+                </Grid>
+                <ToolTipService.Placement>Mouse</ToolTipService.Placement>
+                <ToolTipService.ToolTip>
+                    <ToolTip>
+                        <ToolTip.Style>
+                            <Style TargetType="ToolTip">
+                                <Setter Property="BorderBrush" Value="{ThemeResource ToolTipBackgroundThemeBrush}" />
+                                <Setter Property="Padding" Value="0" />
+                            </Style>
+                        </ToolTip.Style>
+
+                        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Margin="20">
+                                <Image
+                                Source="{Binding Image}"
+                                Width="160"
+                                Height="160"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Stretch="Uniform"/>
+                            </Grid>
+                            <StackPanel Width="200" Grid.Column="1" Margin="0,20,20,20">
+                                <TextBlock Text="{Binding Title}" TextWrapping="NoWrap" Style="{StaticResource BodyTextBlockStyle}"/>
+                                <TextBlock Text="{Binding Description}" MaxHeight="140" Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}" Style="{StaticResource BodyTextBlockStyle}"/>
+                            </StackPanel>
+                        </Grid>
+                    </ToolTip>
+                </ToolTipService.ToolTip>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <!--
+        此网格用作定义以下两行的页的根面板: 
+        * 第 0 行包含命令区
+        * 第 1 行包含页布局的其余部分
+    -->
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- 文件的水平滚动网格填充其余部分-->
+        <GridView
+            x:Name="fileGridView"
+            AutomationProperties.AutomationId="FileGridView"
+            AutomationProperties.Name="Files"
+            Grid.RowSpan="2"
+            ItemsSource="{Binding Source={StaticResource filesViewSource}}"
+            ItemTemplate="{StaticResource StandardFileWithTooltip190x130ItemTemplate}"
+            SelectionMode="Multiple"
+            SelectionChanged="FileGridView_SelectionChanged"
+            Padding="116,76,116,20" />
+
+        <!-- 当窗口小于 500 px 宽时使用垂直滚动列表-->
+        <ListView
+            x:Name="fileListView"
+            AutomationProperties.AutomationId="fileListView"
+            AutomationProperties.Name="Files"
+            Grid.Row="2"
+            ItemsSource="{Binding Source={StaticResource filesViewSource}}"
+            ItemTemplate="{StaticResource StandardFileWithTooltip190x130ItemTemplate}"
+            SelectionMode="Multiple"
+            SelectionChanged="FileGridView_SelectionChanged"
+            Margin="10,0,0,0"
+            Padding="0,0,0,60"
+            Visibility="Collapsed" />
+
+        <!-- 命令区-->
+        <StackPanel x:Name="commandPanel" Orientation="Horizontal" Margin="120,20,120,30">
+            <Button
+                AutomationProperties.AutomationId="GoUpButton"
+                AutomationProperties.Name="Go Up"
+                Click="GoUpButton_Click"
+                IsEnabled="{Binding CanGoUp}"
+                Margin="-3,-3,35,0"
+                Style="{StaticResource TextBlockButtonStyle}"
+                Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
+                <TextBlock Text="Go Up" Margin="3,-7,3,10" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
+            </Button>
+        </StackPanel>
+
+        <VisualStateManager.VisualStateGroups>
+            <!-- 视觉状态反映应用程序的视图状态-->
+            <VisualStateGroup x:Name="ViewStates">
+                <VisualState x:Name="HorizontalView" />
+                <!-- 当窗口大小小于 500px 时切换到垂直滚动-->
+                <VisualState x:Name="VerticalView">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="fileGridView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="fileListView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="commandPanel" Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="20,20,20,30"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>

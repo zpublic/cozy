@@ -105,5 +105,25 @@ namespace StoreCozy
             //TODO:  保存应用程序状态并停止任何后台活动
             deferral.Complete();
         }
+
+        /// <summary>
+        /// 在将应用程序作为共享操作的目标激活时调用。
+        /// </summary>
+        /// <param name="e">有关激活请求的详细信息。</param>
+        protected override void OnShareTargetActivated(Windows.ApplicationModel.Activation.ShareTargetActivatedEventArgs e)
+        {
+            var shareTargetPage = new StoreCozy.ShareTargetPage1();
+            shareTargetPage.Activate(e);
+        }
+
+        /// <summary>
+        /// 在应用程序激活以显示文件打开选取器时调用。
+        /// </summary>
+        /// <param name="e">有关激活请求的详细信息。</param>
+        protected override void OnFileOpenPickerActivated(Windows.ApplicationModel.Activation.FileOpenPickerActivatedEventArgs e)
+        {
+            var fileOpenPickerPage = new StoreCozy.FileOpenPickerPage1();
+            fileOpenPickerPage.Activate(e);
+        }
     }
 }

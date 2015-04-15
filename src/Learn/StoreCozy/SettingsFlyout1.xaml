@@ -1,0 +1,37 @@
+﻿<SettingsFlyout
+    x:Class="StoreCozy.SettingsFlyout1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StoreCozy"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    IconSource="Assets/SmallLogo.png"
+    Title="SettingsFlyout1"
+    d:DesignWidth="346">
+
+    <!-- 此 StackPanel 充当内容部分的垂直布局的根面板-->
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+
+        <!-- 下列 StackPanel 定义个别内容部分-->
+
+        <!-- 第 1 部分内容-->
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+
+            <!-- 第 1 部分标题-->
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Lorem ipsum" />
+
+            <!-- 第 1 部分正文-->
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </TextBlock.Text>
+            </TextBlock>
+
+        </StackPanel>
+
+        <!-- 根据需要在下面定义更多内容部分-->
+
+    </StackPanel>
+</SettingsFlyout>

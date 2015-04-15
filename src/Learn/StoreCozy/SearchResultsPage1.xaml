@@ -1,0 +1,163 @@
+﻿<Page
+    x:Name="pageRoot"
+    x:Class="StoreCozy.SearchResultsPage1"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StoreCozy"
+    xmlns:common="using:StoreCozy.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:ExtensionType="Search">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="resultsViewSource" Source="{Binding Results}"/>
+        <CollectionViewSource x:Name="filtersViewSource" Source="{Binding Filters}"/>
+        <common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <!-- TODO:  将以下字符串更新为您的应用程序的名称-->
+        <x:String x:Key="AppName">应用程序名</x:String>
+    </Page.Resources>
+
+    <!--
+        此网格用作定义以下两行的页的根面板: 
+        * 第 0 行包含后退按钮和页标题
+        * 第 1 行包含页布局的其余部分
+    -->
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="resultsPanel" Grid.Row="1">
+            <!--
+           在大多数视图状态中，页面正文都使用项控件来创建多个单选按钮
+            以在搜索结果的水平滚动网格上方进行筛选
+        -->
+            <Grid x:Name="typicalPanel">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <ItemsControl
+                    x:Name="filtersItemsControl"
+                    Canvas.ZIndex="1"
+                    Margin="120,-3,120,30"
+                    ItemsSource="{Binding Source={StaticResource filtersViewSource}}"
+                    Visibility="{Binding ShowFilters, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton
+                                Margin="0,0,30,0"
+                                GroupName="Filters"
+                                IsChecked="{Binding Active, Mode=TwoWay}"
+                                Checked="Filter_Checked"
+                                Style="{StaticResource TextBlockButtonStyle}">
+                                <TextBlock Text="{Binding Description}"  TextWrapping="NoWrap"
+                                           Margin="3,-7,3,10" Style="{StaticResource SubheaderTextBlockStyle}" />
+                            </RadioButton>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <GridView
+                    x:Name="resultsGridView"
+                    AutomationProperties.AutomationId="ResultsGridView"
+                    AutomationProperties.Name="Search Results"
+                    TabIndex="1"
+                    Grid.Row="1"
+                    Margin="0,-238,0,0"
+                    Padding="110,240,110,46"
+                    SelectionMode="None"
+                    IsSwipeEnabled="false"
+                    IsItemClickEnabled="True"
+                    ItemsSource="{Binding Source={StaticResource resultsViewSource}}">
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="294" Margin="6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Margin="0,0,0,10" Width="40" Height="40">
+                                    <Image Source="{Binding Image}" Stretch="UniformToFill"/>
+                                </Border>
+                                <StackPanel Grid.Column="1" Margin="10,-10,0,0">
+                                    <TextBlock Text="{Binding Title}" TextWrapping="NoWrap" Style="{StaticResource BodyTextBlockStyle}"/>
+                                    <TextBlock Text="{Binding Subtitle}" TextWrapping="NoWrap" Style="{StaticResource BodyTextBlockStyle}" Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"/>
+                                    <TextBlock Text="{Binding Description}" TextWrapping="NoWrap" Style="{StaticResource BodyTextBlockStyle}" Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                    <GridView.ItemContainerStyle>
+                        <Style TargetType="Control">
+                            <Setter Property="Height" Value="70"/>
+                            <Setter Property="Margin" Value="0,0,38,8"/>
+                        </Style>
+                    </GridView.ItemContainerStyle>
+                </GridView>
+            </Grid>
+        </Grid>
+
+        <!-- 后退按钮和页标题-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        Style="{StaticResource NavigationBackButtonNormalStyle}"
+                        VerticalAlignment="Top"
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button"/>
+            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                       IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+            <TextBlock x:Name="resultText" Grid.Column="2" Text="Results for &#x00a0;" IsHitTestVisible="false" Style="{StaticResource SubheaderTextBlockStyle}"
+                       TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,0,40" />
+            <TextBlock x:Name="queryText" Grid.Column="3" Text="{Binding QueryText}" IsHitTestVisible="false" Style="{StaticResource SubheaderTextBlockStyle}"
+                       TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,0,40" />
+        </Grid>
+
+        <TextBlock
+            x:Name="noResultsTextBlock"
+            Grid.Row="1"
+            Margin="120,50,0,0"
+            Visibility="Collapsed"
+            Style="{StaticResource SubheaderTextBlockStyle}"
+            Text="No results match your search." />
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="ResultStates">
+                <VisualState x:Name="ResultsFound" />
+                <!-- 当没有结果时，结果面板会由信息性 TextBlock 替换 -->
+                <VisualState x:Name="NoResultsFound">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="resultsGridView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="noResultsTextBlock" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>
