@@ -1,0 +1,3 @@
+[submodule "src/Practice/CozyBlog/App_Data"]
+	path = src/Practice/CozyBlog/App_Data
+	url = https://git.oschina.net/zapline/cozy_res_cozyblogdb.git
