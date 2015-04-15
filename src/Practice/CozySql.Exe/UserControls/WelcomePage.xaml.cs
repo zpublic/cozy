@@ -26,8 +26,7 @@ namespace CozySql.Exe.UserControls
         {
             InitializeComponent();
             _viewMode = new WelcomePageViewModel();
-            _viewMode.PropertyChanged += ViewModelPropertyChanged;
-
+            _viewMode.PropertyChanged += ViewModelPropertyChanged;            
             _viewMode.TestData();
         }
 
