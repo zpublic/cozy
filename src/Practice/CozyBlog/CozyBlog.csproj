@@ -17,8 +17,8 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -39,10 +39,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -111,13 +121,56 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Blogs.cs">
+      <DependentUpon>CozyBlogDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>CozyBlogDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Comments.cs">
+      <DependentUpon>CozyBlogDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CozyBlogDb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CozyBlogDb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CozyBlogDb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CozyBlogDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CozyBlogDb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CozyBlogDb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Repositories\BlogRepository.cs" />
+    <Compile Include="Models\Repositories\CategoryRepository.cs" />
+    <Compile Include="Models\Repositories\CommentsRepository.cs" />
+    <Compile Include="Models\Repositories\IBlogRepository.cs" />
+    <Compile Include="Models\Repositories\ICategoryRepository.cs" />
+    <Compile Include="Models\Repositories\ICommentsRepository.cs" />
+    <Compile Include="Models\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="Models\UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="Models\ViewModels\CategoryListViewModel.cs" />
+    <Compile Include="Models\ViewModels\CreateBlogViewModel.cs" />
+    <Compile Include="Models\ViewModels\PaginatedViewBlogList.cs" />
+    <Compile Include="Models\ViewModels\ViewBlogViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\CozyBlog.mdf" />
+    <Content Include="App_Data\CozyBlog_log.ldf">
+      <DependentUpon>CozyBlog.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -126,6 +179,23 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\CozyBlogDb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CozyBlogDb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\CozyBlogDb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CozyBlogDb.edmx</DependentUpon>
+      <LastGenOutput>CozyBlogDb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\CozyBlogDb.edmx.diagram">
+      <DependentUpon>CozyBlogDb.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\CozyBlogDb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CozyBlogDb.edmx</DependentUpon>
+      <LastGenOutput>CozyBlogDb.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -153,10 +223,10 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Category\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -165,6 +235,7 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
