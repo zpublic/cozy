@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using CozySql.Exe.Commands;
 using CozySql.Exe.Models;
@@ -9,8 +11,8 @@ namespace CozySql.Exe.ViewModels
 {
     public class MainFrameViewModel : BaseViewModel
     {
-        private List<UIControlInfo> mainTabItems;
-        public List<UIControlInfo> MainTabItems
+        private ObservableCollection<UIControlInfo> mainTabItems;
+        public ObservableCollection<UIControlInfo> MainTabItems
         {
             get
             {
@@ -23,19 +25,48 @@ namespace CozySql.Exe.ViewModels
         }
 
         private ICommand openSqliteCommand;
-        public ICommand OpenSqliteCommand {
-            get {
+        public ICommand OpenSqliteCommand
+        {
+            get
+            {
                 return openSqliteCommand ?? new DelegateCommand(x => MessageBox.Show("open"));
             }
         }
 
-        public MainFrameViewModel() {
+        private ICommand addTabCommand;
+        public ICommand AddTabCommand
+        {
+            get
+            {
+                return addTabCommand ?? new DelegateCommand(x =>
+                {
+                    MainTabItems.Add(new UIControlInfo
+                    {
+                        Title = "新建",
+                        Content = new SqlInput()
+                    });
+                });
+            }
+        }
+
+        private ICommand removeTabCommand;
+        public ICommand RemoveTabCommand
+        {
+            get
+            {
+                return removeTabCommand ?? new DelegateCommand(x => MainTabItems.RemoveAt(MainTabItems.Count - 1),
+                    x => MainTabItems.Count > 0);
+            }
+        }
+
+        public MainFrameViewModel()
+        {
             TestData();
         }
 
         void TestData()
         {
-            MainTabItems = new List<UIControlInfo>(new[]
+            MainTabItems = new ObservableCollection<UIControlInfo>(new[]
             {
                 new UIControlInfo { Title = "Welcome!", Content = new WelcomePage() },
                 new UIControlInfo { Title = "Sql Favorites", Content = new SqlFavorites() },
