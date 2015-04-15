@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Category";
+}
+
+<br />
+<h2>List of Existing Categories</h2>
+
+<table>
+    <tr>
+        <th></th>
+        <th>
+            CategoryId
+        </th>
+        <th>
+            CategoryName
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @item.Id
+        </td>
+        <td>
+            @item.CategoryName
+        </td>
+    </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Create New Category", "Create") 
+</p>
