@@ -7,7 +7,7 @@ using CozyBlog.Models;
 
 namespace CozyBlog.Controllers
 {
-    [Authorize(Roles = "Authors")]
+    //[Authorize(Roles = "Authors")]
     public class CategoryController : AController
     {
         // use our DbContext unit of work in case the page runs
@@ -27,7 +27,6 @@ namespace CozyBlog.Controllers
         //
         // GET: /Category/
 
-        [AllowAnonymous]
         public ActionResult Index()
         {
             List<Category> categories = UnitOfWork_.CategoryRepo.GetCategories();
