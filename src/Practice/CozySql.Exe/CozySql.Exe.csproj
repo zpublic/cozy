@@ -67,6 +67,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\MainCommand.cs" />
+    <Compile Include="Converts\UserControlConverter.cs" />
+    <Compile Include="Converts\UserControlsAdapter.cs" />
+    <Compile Include="Models\UIControlInfo.cs" />
     <Compile Include="UserControls\AbstractFoldingStrategy.cs" />
     <Compile Include="UserControls\BraceFoldingStrategy.cs" />
     <Compile Include="UserControls\ConnectEditor.xaml.cs">
@@ -185,6 +188,7 @@
       <Name>CozySql.Sqlite</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
