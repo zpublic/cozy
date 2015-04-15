@@ -76,6 +76,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\MainCommand.cs" />
+    <Compile Include="Models\SelectPropertyInfo.cs" />
     <Compile Include="Models\UIControlInfo.cs" />
     <Compile Include="Models\WelcomePageBlockInfo.cs" />
     <Compile Include="Models\WelcomePageInfo.cs" />
