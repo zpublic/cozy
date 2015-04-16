@@ -21,20 +21,17 @@ namespace CozySql.Exe.UserControls
     /// </summary>
     public partial class WelcomePage : UserControl
     {
-        private readonly WelcomePageViewModel _viewMode;
         public WelcomePage()
         {
             InitializeComponent();
-            _viewMode = new WelcomePageViewModel();
-            _viewMode.PropertyChanged += ViewModelPropertyChanged;            
-            _viewMode.TestData();
+            this.ViewMode.PropertyChanged += ViewModelPropertyChanged;
         }
 
         void ViewModelPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if(e.PropertyName == "Data")
             {
-                WelcomeList.ItemsSource = _viewMode.Data;
+
             }
         }
     }

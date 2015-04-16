@@ -24,6 +24,19 @@ namespace CozySql.Exe.ViewModels
             }
         }
 
+        private List<SelectPropertyInfo> _SelectTreeItems;
+        public List<SelectPropertyInfo> SelectTreeItems
+        {
+            get 
+            {
+                return _SelectTreeItems;
+            }
+            set 
+            {
+                Set(ref _SelectTreeItems, value, "SelectTreeInfo");
+            }
+        }
+
         private ICommand openSqliteCommand;
         public ICommand OpenSqliteCommand
         {
@@ -61,6 +74,7 @@ namespace CozySql.Exe.ViewModels
         public MainFrameViewModel()
         {
             TestData();
+            TreeTestData();
         }
 
         void TestData()
@@ -74,6 +88,59 @@ namespace CozySql.Exe.ViewModels
                 new UIControlInfo { Title = "SqlView2", Content = new SqlView() },
                 new UIControlInfo { Title = "SqlInput", Content = new SqlInput() }
             });
+        }
+
+        void TreeTestData()
+        {
+            var TempItem = new List<SelectPropertyInfo>
+            {
+                new SelectPropertyInfo
+                {
+                    Name = "TreeView Floder",
+                    Children = 
+                    {
+                        new SelectPropertyInfo
+                        {
+                            Name = "TreeView Floder",
+                            Children = 
+                            {
+                                new SelectPropertyInfo
+                                {
+                                    Name = "TreeView Node 1",
+                                },
+                                new SelectPropertyInfo
+                                {
+                                    Name = "TreeView Node 2",
+                                },
+                            },
+                        },
+                        new SelectPropertyInfo
+                        {
+                            Name = "TreeView Floder",
+                            Children = 
+                            {
+                                new SelectPropertyInfo
+                                {
+                                    Name = "TreeView Node",
+                                },
+                            },
+                        },
+                    },
+                },
+                new SelectPropertyInfo
+                {
+                    Name = "TreeView Floder",
+                    Children = 
+                    {
+                        new SelectPropertyInfo
+                        {
+                            Name = "TreeView Node",
+                        },
+                    },
+                },
+            };
+
+            SelectTreeItems = TempItem;
         }
     }
 }

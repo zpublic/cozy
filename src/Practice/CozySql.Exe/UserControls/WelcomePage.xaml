@@ -4,8 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:model ="clr-namespace:CozySql.Model.ViewModels;assembly=CozySql.Model"
+             xmlns:viewmode="clr-namespace:CozySql.Exe.ViewModels"
+             xmlns:newmodel ="clr-namespace:CozySql.Exe.Models"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
+    <UserControl.DataContext>
+        <viewmode:WelcomePageViewModel x:Name="ViewMode"/>
+    </UserControl.DataContext>
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,23 +20,25 @@
             <DataTemplate x:Key="ListTemp">
                 <TextBlock x:Name="textBlockName" Text="{Binding Text}"></TextBlock>
             </DataTemplate>
-            <DataTemplate x:Key="InnerBlock" DataType="{x:Type model:WelcomePageInfo}">
+            <DataTemplate x:Key="InnerBlock" DataType="{x:Type newmodel:WelcomePageBlockInfo}">
                 <TextBlock Text="{Binding Text}" FontSize="{Binding FontSize}" Foreground="{Binding Foreground}"></TextBlock>
             </DataTemplate>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <ListBox Name ="WelcomeList" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="10,10,10,10">
+        <ListBox Name ="WelcomeList" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="10,10,10,10"
+                 ItemsSource="{Binding Path=Data}"
+                 >
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                 <WrapPanel Orientation="Vertical"></WrapPanel>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
-                <DataTemplate DataType="{x:Type model:WelcomePageModel}">
+                <DataTemplate DataType="{x:Type newmodel:WelcomePageInfo}">
                     <StackPanel>
                         <StackPanel.Children>
-                            <ItemsControl ItemsSource="{Binding elemts}" ItemTemplate="{StaticResource InnerBlock}">
+                            <ItemsControl ItemsSource="{Binding Elemts}" ItemTemplate="{StaticResource InnerBlock}">
                             </ItemsControl>
                         </StackPanel.Children>
                     </StackPanel>

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CozySql.Exe.Models;
 
 namespace CozySql.Exe.ViewModels
 {
     public class WelcomePageViewModel : BaseViewModel
     {
-        private WelcomePageModel[] _Data;
-        public WelcomePageModel[] Data
+        private List<WelcomePageInfo> _Data;
+        public List<WelcomePageInfo> Data
         {
             get
             {
@@ -23,36 +24,36 @@ namespace CozySql.Exe.ViewModels
 
         public WelcomePageViewModel()
         {
-
+            TestData();
         }
 
         public void TestData()
         {
-            var WelcomeBlockList = new WelcomePageModel[]
+            var WelcomeBlockList = new List<WelcomePageInfo>
             {
-                new WelcomePageModel
+                new WelcomePageInfo
                 {
-                    elemts = new WelcomePageInfo[]
+                    Elemts = new List<WelcomePageBlockInfo>
                     {
-                        new WelcomePageInfo
+                        new WelcomePageBlockInfo
                         {
                             Text = "Open a sqlite db",
                             FontSize = 50,
                             Foreground = "#FFFFFF",
                         },
-                        new WelcomePageInfo
+                        new WelcomePageBlockInfo
                         {
                             Text = "sqlite db viewer",
                             FontSize = 30,
                             Foreground = "#FFFFFF",
                         },
-                        new WelcomePageInfo
+                        new WelcomePageBlockInfo
                         {
                             Text = "Select a *.db file",
                             FontSize = 18,
                             Foreground = "#FFFFFF",
                         },
-                        new WelcomePageInfo
+                        new WelcomePageBlockInfo
                         {
                             Text = "For sqlite: only read",
                             FontSize = 18,
@@ -60,30 +61,29 @@ namespace CozySql.Exe.ViewModels
                         },
                     },
                 },
-
-                new WelcomePageModel
+                new WelcomePageInfo
                 {
-                    elemts = new WelcomePageInfo[]
+                    Elemts = new List<WelcomePageBlockInfo>
                     {
-                        new WelcomePageInfo
+                        new WelcomePageBlockInfo
                         {
                             Text = "Connect a mysql db",
                             FontSize = 30,
                             Foreground = "#FFFFFF",
                         },
-                        new WelcomePageInfo
+                        new WelcomePageBlockInfo
                         {
                             Text = "query mysql",
                             FontSize = 18,
                             Foreground = "#FFFFFF",
                         },
-                        new WelcomePageInfo
+                        new WelcomePageBlockInfo
                         {
                             Text = "Input server's ip address",
                             FontSize = 18,
                             Foreground = "#FFFFFF",
                         },
-                        new WelcomePageInfo
+                        new WelcomePageBlockInfo
                         {
                             Text = "run sql",
                             FontSize = 18,
