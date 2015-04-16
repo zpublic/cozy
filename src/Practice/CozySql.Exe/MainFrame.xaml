@@ -131,7 +131,15 @@
                     <Label Content="Sample" FontSize="24"></Label>
                     <TreeView Name ="SelectTreeView" ItemContainerStyle="{StaticResource TreeViewItemStyle}" 
                               Margin="8,48,8,8" ScrollViewer.CanContentScroll="True" BorderThickness="0"
-                              ItemsSource="{Binding Path=SelectTreeItems}">
+                              ItemsSource="{Binding Path=SelectTreeItems, Mode=TwoWay}">
+                        <TreeView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Add" Command="{Binding AddTreeViewItem}"
+                                          CommandParameter="{Binding ElementName=SelectTreeView, Path=SelectedValuePath}"
+                                          ></MenuItem>
+                                <MenuItem Header="Remove"></MenuItem>
+                            </ContextMenu>
+                        </TreeView.ContextMenu>
                         <TreeView.ItemTemplate>
                             <HierarchicalDataTemplate DataType="{x:Type model:SelectPropertyInfo}" 
                                                       ItemsSource="{Binding Path=Children}">

@@ -7,6 +7,7 @@ using CozySql.Exe.Models;
 using CozySql.Exe.UserControls;
 using Microsoft.Win32;
 using Simple.Data;
+using System.ComponentModel;
 
 namespace CozySql.Exe.ViewModels
 {
@@ -27,8 +28,8 @@ namespace CozySql.Exe.ViewModels
             }
         }
 
-        private List<SelectPropertyInfo> _SelectTreeItems;
-        public List<SelectPropertyInfo> SelectTreeItems
+        private ObservableCollection<SelectPropertyInfo> _SelectTreeItems;
+        public ObservableCollection<SelectPropertyInfo> SelectTreeItems
         {
             get
             {
@@ -109,10 +110,26 @@ namespace CozySql.Exe.ViewModels
             }
         }
 
+        private ICommand addTreeViewItem;
+        public ICommand AddTreeViewItem
+        {
+            get
+            {
+                return addTreeViewItem = addTreeViewItem ?? new DelegateCommand(x => 
+                {
+                    SelectTreeItems.Add(new SelectPropertyInfo
+                    {
+                        Name = "New Item",
+                    });
+                });
+            }
+        }
+
         #endregion
 
         public MainFrameViewModel()
         {
+            PropertyChanged += ItemChangeEvent;
             TestData();
             TreeTestData();
         }
@@ -132,7 +149,7 @@ namespace CozySql.Exe.ViewModels
 
         void TreeTestData()
         {
-            var TempItem = new List<SelectPropertyInfo>
+            var TempItem = new ObservableCollection<SelectPropertyInfo>
             {
                 new SelectPropertyInfo
                 {
@@ -181,6 +198,14 @@ namespace CozySql.Exe.ViewModels
             };
 
             SelectTreeItems = TempItem;
+        }
+
+        private void ItemChangeEvent(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "SelectTreeInfo")
+            {
+                MessageBox.Show("fuck");
+            }
         }
     }
 }
