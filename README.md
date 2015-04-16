@@ -39,7 +39,7 @@ Cozy
 >>>
 >>> LearnThirdPartyPackage
 >>
->> WpfCozy - WPF版c＃学习工程
+>> WpfCozy - WPF学习工程
 >>> A - 核心WPF  
 >>>> ShapesDemo - 形状  
 >>>> GeometryDemo - 几何图形  
@@ -72,6 +72,8 @@ Cozy
 >>>> TableDemo  
 >>>> CreateXps  
 >>>> PrintingDemo  
+>>
+>> StoreCozy - win8.1 store app学习工程  
 >
 >
 > Public - 公共代码目录  
@@ -95,7 +97,7 @@ Cozy
 >>> CozyQuick.Plugin.Msgbox - 消息框功能插件  
 >>> CozyQuick.Plugin.AudioPlayer - 声音提示功能插件  
 >>
->> CozySql - 数据库查看/查询工具  
+>> CozySql - 数据库查看/查询工具（目标是超越LinqPad）  
 >>> CozySql.Exe - 主程序  
 >>> CozySql.Model - ViewModel层  
 >>> CozySql.Sqlite - Sqlite控制  
