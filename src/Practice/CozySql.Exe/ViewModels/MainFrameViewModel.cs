@@ -40,9 +40,8 @@ namespace CozySql.Exe.ViewModels
         private ICommand openSqliteCommand;
         public ICommand OpenSqliteCommand
         {
-            get
-            {
-                return openSqliteCommand ?? new DelegateCommand(x => MessageBox.Show("open"));
+            get {
+                return openSqliteCommand = openSqliteCommand ?? new DelegateCommand(x => MessageBox.Show("open"));
             }
         }
 
@@ -51,7 +50,7 @@ namespace CozySql.Exe.ViewModels
         {
             get
             {
-                return addTabCommand ?? new DelegateCommand(x =>
+                return addTabCommand = addTabCommand ?? new DelegateCommand(x =>
                 {
                     MainTabItems.Add(new UIControlInfo
                     {
@@ -67,7 +66,7 @@ namespace CozySql.Exe.ViewModels
         {
             get
             {
-                return removeTabCommand ?? new DelegateCommand(x => MainTabItems.RemoveAt(MainTabItems.Count - 1),
+                return removeTabCommand = removeTabCommand ?? new DelegateCommand(x => MainTabItems.RemoveAt(MainTabItems.Count - 1),
                     x => MainTabItems.Count > 0);
             }
         }
