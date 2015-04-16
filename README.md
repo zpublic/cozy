@@ -99,9 +99,6 @@ Cozy
 >>
 >> CozySql - 数据库查看/查询工具（目标是超越LinqPad）  
 >>> CozySql.Exe - 主程序  
->>> CozySql.Model - ViewModel层  
->>> CozySql.Sqlite - Sqlite控制  
->>> CozySql.Mysql - Mysql控制  
 >>> CozySql.Configure - 配置和记录  
 >>
 >> CozyBlog - 简单博客  

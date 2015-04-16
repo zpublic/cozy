@@ -198,14 +198,6 @@
       <Project>{853c1be0-7639-430c-aa16-aee9fe1e55f8}</Project>
       <Name>CozySql.Configure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CozySql.Mysql\CozySql.Mysql.csproj">
-      <Project>{0dd78bf7-5153-4bfb-b860-67b566f5d738}</Project>
-      <Name>CozySql.Mysql</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozySql.Sqlite\CozySql.Sqlite.csproj">
-      <Project>{96c257e1-b74c-4af0-8d47-2b1f72655439}</Project>
-      <Name>CozySql.Sqlite</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Simple.Data.Interop\Simple.Data.Interop.csproj">
       <Project>{1bbcf939-00fe-4ff4-bf63-c460ac7c3c05}</Project>
       <Name>Simple.Data.Interop</Name>
