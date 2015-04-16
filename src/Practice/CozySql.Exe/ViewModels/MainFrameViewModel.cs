@@ -204,7 +204,7 @@ namespace CozySql.Exe.ViewModels
         {
             if (e.PropertyName == "SelectTreeInfo")
             {
-                MessageBox.Show("fuck");
+
             }
         }
     }
