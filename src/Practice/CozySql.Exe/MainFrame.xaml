@@ -14,7 +14,7 @@
             </ResourceDictionary.MergedDictionaries>
             <Style x:Key="TreeViewItemStyle" TargetType="TreeViewItem">
                 <Setter Property="Margin" Value="5,5,0,0" />
-            </Style>
+            </Style>    
         </ResourceDictionary>
     </Window.Resources>
     <Controls:MetroWindow.DataContext>
@@ -51,12 +51,14 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <DockPanel Name="LeftPanel"  DockPanel.Dock="Left" Margin="5" MouseLeftButtonUp="ShowLeft">
-            <TextBlock Foreground="{StaticResource Foreground}" Text="My DATA" TextAlignment="Center">
-                <TextBlock.LayoutTransform>
-                    <RotateTransform Angle="90" />
-                </TextBlock.LayoutTransform>
-            </TextBlock>
+        <DockPanel Name="LeftPanel"  DockPanel.Dock="Left" Margin="5">            
+            <Button Command="{Binding Path=ShowLeftCommand}">
+                <TextBlock Foreground="{StaticResource Foreground}" Text="My DATA" TextAlignment="Center">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="90" />
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Button>            
         </DockPanel>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -121,10 +123,10 @@
         </Grid>
     </DockPanel>
 
-    <Controls:MetroWindow.Flyouts>
+    <Controls:MetroWindow.Flyouts>        
         <Controls:FlyoutsControl x:Name="flyoutsControl">
             <Controls:Flyout Name="LeftFlyout"  Header="Left"
-                             Position="Left">
+                             Position="Left" IsOpen="{Binding Path=IsOpenLeftFlyout}">
                 <Grid Width="300">
                     <Label Content="Sample" FontSize="24"></Label>
                     <TreeView Name ="SelectTreeView" ItemContainerStyle="{StaticResource TreeViewItemStyle}" 
