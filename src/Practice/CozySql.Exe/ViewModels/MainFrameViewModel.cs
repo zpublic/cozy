@@ -11,6 +11,8 @@ namespace CozySql.Exe.ViewModels
 {
     public class MainFrameViewModel : BaseViewModel
     {
+        #region Property
+
         private ObservableCollection<UIControlInfo> mainTabItems;
         public ObservableCollection<UIControlInfo> MainTabItems
         {
@@ -37,10 +39,28 @@ namespace CozySql.Exe.ViewModels
             }
         }
 
+        private bool isOpenLeftFlyout;
+        public bool IsOpenLeftFlyout
+        {
+            get
+            {
+                return isOpenLeftFlyout;
+            }
+            set
+            {
+                Set(ref isOpenLeftFlyout, value, "IsOpenLeftFlyout");
+            }
+        }
+
+        #endregion
+
+        #region Commad
+
         private ICommand openSqliteCommand;
         public ICommand OpenSqliteCommand
         {
-            get {
+            get
+            {
                 return openSqliteCommand = openSqliteCommand ?? new DelegateCommand(x => MessageBox.Show("open"));
             }
         }
@@ -70,6 +90,18 @@ namespace CozySql.Exe.ViewModels
                     x => MainTabItems.Count > 0);
             }
         }
+
+        private ICommand showLeftCommand;
+
+        public ICommand ShowLeftCommand {
+            get {
+                return showLeftCommand = showLeftCommand ?? new DelegateCommand(x => IsOpenLeftFlyout = true);
+            }
+        }
+
+        #endregion
+
+
 
         public MainFrameViewModel()
         {
