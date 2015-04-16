@@ -65,9 +65,9 @@ namespace CozySql.Exe.ViewModels
                 return openSqliteCommand = openSqliteCommand ?? new DelegateCommand(x =>
                 {
                     var openFileDialog = new OpenFileDialog();
-                    if (openFileDialog.ShowDialog().Value)
+                    if (openFileDialog.ShowDialog() ?? false)
                     {
-                        var db = Database.OpenFile(openFileDialog.FileName);                        
+                        var db = Database.OpenFile(openFileDialog.FileName);
                         MessageBox.Show(openFileDialog.FileName);
                     }
                 });
