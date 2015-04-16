@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
-        xmlns:viewModel="clr-namespace:CozySql.Model.ViewModels;assembly=CozySql.Model"
+        xmlns:viewModel="clr-namespace:CozySql.Exe.ViewModels"
         Title="CozySql" Height="600" Width="800">
     <Controls:MetroWindow.DataContext>
         <viewModel:MainWindowsViewModel x:Name="ViewModel"/>
