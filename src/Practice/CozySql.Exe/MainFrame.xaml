@@ -51,7 +51,7 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <DockPanel Name="LeftPanel"  DockPanel.Dock="Left" Margin="5">
+        <DockPanel Name="LeftPanel"  DockPanel.Dock="Left" Margin="5">            
             <Button Command="{Binding Path=ShowLeftCommand}">
                 <TextBlock Foreground="{StaticResource Foreground}" Text="My DATA" TextAlignment="Center">
                     <TextBlock.LayoutTransform>

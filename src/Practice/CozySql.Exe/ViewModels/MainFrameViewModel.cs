@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using CozySql.Exe.Commands;
 using CozySql.Exe.Models;
 using CozySql.Exe.UserControls;
+using Microsoft.Win32;
+using Simple.Data;
 
 namespace CozySql.Exe.ViewModels
 {
@@ -29,11 +30,11 @@ namespace CozySql.Exe.ViewModels
         private List<SelectPropertyInfo> _SelectTreeItems;
         public List<SelectPropertyInfo> SelectTreeItems
         {
-            get 
+            get
             {
                 return _SelectTreeItems;
             }
-            set 
+            set
             {
                 Set(ref _SelectTreeItems, value, "SelectTreeInfo");
             }
@@ -61,7 +62,15 @@ namespace CozySql.Exe.ViewModels
         {
             get
             {
-                return openSqliteCommand = openSqliteCommand ?? new DelegateCommand(x => MessageBox.Show("open"));
+                return openSqliteCommand = openSqliteCommand ?? new DelegateCommand(x =>
+                {
+                    var openFileDialog = new OpenFileDialog();
+                    if (openFileDialog.ShowDialog().Value)
+                    {
+                        var db = Database.OpenFile(openFileDialog.FileName);                        
+                        MessageBox.Show(openFileDialog.FileName);
+                    }
+                });
             }
         }
 
@@ -92,16 +101,15 @@ namespace CozySql.Exe.ViewModels
         }
 
         private ICommand showLeftCommand;
-
-        public ICommand ShowLeftCommand {
-            get {
+        public ICommand ShowLeftCommand
+        {
+            get
+            {
                 return showLeftCommand = showLeftCommand ?? new DelegateCommand(x => IsOpenLeftFlyout = true);
             }
         }
 
         #endregion
-
-
 
         public MainFrameViewModel()
         {
