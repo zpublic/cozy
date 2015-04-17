@@ -1,5 +1,6 @@
 ﻿<Controls:MetroWindow x:Class="CozySql.Exe.MainFrame"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:viewModel="clr-namespace:CozySql.Exe.ViewModels"
@@ -54,14 +55,17 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <DockPanel Name="LeftPanel"  DockPanel.Dock="Left" Margin="5">            
-            <Button Command="{Binding Path=ShowLeftCommand}">
-                <TextBlock Foreground="{StaticResource Foreground}" Text="My DATA" TextAlignment="Center">
-                    <TextBlock.LayoutTransform>
-                        <RotateTransform Angle="90" />
-                    </TextBlock.LayoutTransform>
-                </TextBlock>
-            </Button>            
+        <DockPanel Name="LeftPanel"  DockPanel.Dock="Left" Margin="5">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonUp">
+                    <i:InvokeCommandAction Command="{Binding Path=ShowLeftCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <TextBlock Foreground="{StaticResource Foreground}" Text="My DATA" TextAlignment="Center">
+                <TextBlock.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
         </DockPanel>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -107,8 +111,8 @@
                         Margin="0,3,0,10"
                         Content="Remove Tab"
                         Style="{StaticResource LinkButton}"
-                        Command="{Binding Path=RemoveTabCommand}"/>        
-                <Separator Background="#11FFFFFF" />                
+                        Command="{Binding Path=RemoveTabCommand}"/>
+                <Separator Background="#11FFFFFF" />
                 <TextBlock Margin="0,10,0,10"
                            FontSize="18"
                            Foreground="{StaticResource Foreground}"
@@ -126,7 +130,7 @@
         </Grid>
     </DockPanel>
 
-    <Controls:MetroWindow.Flyouts>        
+    <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl x:Name="flyoutsControl">
             <Controls:Flyout Name="LeftFlyout"  Header="Left"
                              Position="Left" IsOpen="{Binding Path=IsOpenLeftFlyout}">
