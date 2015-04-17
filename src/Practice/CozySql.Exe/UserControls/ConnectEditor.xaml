@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
     mc:Ignorable="d" 
-    d:DesignHeight="400" d:DesignWidth="600">
+    d:DesignHeight="400" d:DesignWidth="800">
     <Grid>
         <Grid.Resources>
             <ResourceDictionary>
@@ -20,7 +20,19 @@
         <TabControl Margin="10,10,10,10" TabStripPlacement="Left">
             <Controls:MetroTabItem Header="Mysql" FontWeight="Bold">
                 <Grid Background="#FF1E1E1E">
-                    <TextBlock FontSize="30" Text="Cool transition" />
+                    <Label Content="连接名：" HorizontalAlignment="Left" Margin="52,40,0,0" VerticalAlignment="Top" Foreground="Gainsboro" Height="26"/>
+                    <Label Content="连接名主机名或IP地址：" HorizontalAlignment="Left" Margin="52,80,0,0" VerticalAlignment="Top" Foreground="Gainsboro" Height="26" RenderTransformOrigin="0.472,0.615"/>
+                    <Label Content="端口：" HorizontalAlignment="Left" Margin="52,120,0,0" VerticalAlignment="Top" Foreground="Gainsboro" Height="26"/>
+                    <Label Content="用户名：" HorizontalAlignment="Left" Margin="52,160,0,0" VerticalAlignment="Top" Foreground="Gainsboro" Height="26"/>
+                    <Label Content="密码：" HorizontalAlignment="Left" Margin="52,200,0,0" VerticalAlignment="Top" Foreground="Gainsboro" Height="26"/>
+                    <Button Content="连接测试" HorizontalAlignment="Left" Margin="52,277,0,0" VerticalAlignment="Top" Width="120" Height="51"/>
+                    <Button Content="添加" HorizontalAlignment="Left" Margin="423,277,0,0" VerticalAlignment="Top" Width="120" Height="51"/>
+                    <Button Content="清空" HorizontalAlignment="Left" Margin="188,277,0,0" VerticalAlignment="Top" Width="120" Height="51"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="233,40,0,0" TextWrapping="Wrap" Text="Connect01" VerticalAlignment="Top" Width="310" AcceptsTab="True"/>
+                    <TextBox HorizontalAlignment="Left" Height="26" Margin="233,81,0,0" TextWrapping="Wrap" Text="127.0.0.1" VerticalAlignment="Top" Width="310" AcceptsTab="True"/>
+                    <TextBox HorizontalAlignment="Left" Height="26" Margin="233,121,0,0" TextWrapping="Wrap" Text="3306" VerticalAlignment="Top" Width="310" AcceptsTab="True"/>
+                    <TextBox HorizontalAlignment="Left" Height="26" Margin="233,160,0,0" TextWrapping="Wrap" Text="user" VerticalAlignment="Top" Width="310" AcceptsTab="True"/>
+                    <TextBox HorizontalAlignment="Left" Height="26" Margin="233,201,0,0" TextWrapping="Wrap" Text="pass" VerticalAlignment="Top" Width="310" AcceptsTab="True"/>
                 </Grid>
             </Controls:MetroTabItem>
             <Controls:MetroTabItem Header="Sqlite">
