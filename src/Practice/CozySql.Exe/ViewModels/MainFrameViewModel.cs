@@ -69,6 +69,7 @@ namespace CozySql.Exe.ViewModels
                     if (openFileDialog.ShowDialog() ?? false)
                     {
                         var db = Database.OpenFile(openFileDialog.FileName);
+                        var table = db.GetTables();
                         MessageBox.Show(openFileDialog.FileName);
                     }
                 });
