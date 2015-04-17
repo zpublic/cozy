@@ -12,7 +12,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Styles.xaml" />
-                <!--ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" /-->
             </ResourceDictionary.MergedDictionaries>
             <Style x:Key="TreeViewItemStyle" TargetType="TreeViewItem">
                 <Setter Property="Margin" Value="5,5,0,0" />

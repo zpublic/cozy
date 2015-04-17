@@ -11,19 +11,21 @@
         <Grid.Resources>
             <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
         </Grid.Resources>
-        <TabControl Margin="10,10,10,10" Controls:TabControlHelper.IsUnderlined="True">
-            <TabItem Header="Mysql">
+        <TabControl Margin="10,10,10,10" Controls:TabControlHelper.IsUnderlined="True" TabStripPlacement="Left">
+            <Controls:MetroTabItem Header="Mysql" FontWeight="Bold">
+                <Grid Background="#FF1E1E1E">
+                    <TextBlock FontSize="30" Text="Cool transition" />
+                </Grid>
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="Sqlite">
                 <Grid Background="#FF1E1E1E"/>
-            </TabItem>
-            <TabItem Header="Sqlite">
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="Sql Server">
                 <Grid Background="#FF1E1E1E"/>
-            </TabItem>
-            <TabItem Header="Sql Server">
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="Sql Server(Local)">
                 <Grid Background="#FF1E1E1E"/>
-            </TabItem>
-            <TabItem Header="Sql Server(Local)">
-                <Grid Background="#FF1E1E1E"/>
-            </TabItem>
+            </Controls:MetroTabItem>
         </TabControl>
     </Grid>
 </UserControl>
