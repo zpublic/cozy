@@ -143,8 +143,7 @@ namespace CozySql.Exe.ViewModels
                 new UIControlInfo { Title = "Sql Favorites", Content = new SqlFavorites() },
                 new UIControlInfo { Title = "Query!", Content = new SqlInput() },
                 new UIControlInfo { Title = "SqlView1", Content = new SqlView() },
-                new UIControlInfo { Title = "SqlView2", Content = new SqlView() },
-                new UIControlInfo { Title = "SqlInput", Content = new SqlInput() }
+                new UIControlInfo { Title = "ConnectEditor", Content = new ConnectEditor() },
             });
         }
 
