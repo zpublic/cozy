@@ -19,6 +19,40 @@
             <Style x:Key="ContextItemStyle" TargetType="MenuItem">
                 <Setter Property="Foreground" Value="#FFFFFF" />
             </Style>
+            <Style x:Key="TreeViewToolBarButtonStyle" TargetType="Button">
+                <Setter Property="Margin" Value="2"></Setter>
+                <Setter Property="Width" Value="24"></Setter>
+                <Setter Property="Height" Value="24"></Setter>
+                <Setter Property="Visibility" Value="Visible" />
+                <Setter Property="Foreground" Value="{StaticResource Foreground}" />
+                <Setter Property="Background" Value="{DynamicResource TransparentWhiteBrush}" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border SnapsToDevicePixels="True" BorderThickness="0"
+                            BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                                <Grid>
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource BackgroundSelected}" />
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrushSelected}" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver"
+                                 Value="True">
+                                    <Setter Property="BorderBrush"
+                                    Value="{StaticResource BorderBrushHighlighted}" />
+                                    <Setter Property="Background"
+                                    Value="{StaticResource BackgroundHighlighted}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
     <Controls:MetroWindow.DataContext>
@@ -135,26 +169,65 @@
             <Controls:Flyout Name="LeftFlyout"  Header="Left"
                              Position="Left" IsOpen="{Binding Path=IsOpenLeftFlyout}">
                 <Grid Width="300">
-                    <Label Content="Sample" FontSize="24"></Label>
-                    <TreeView Name ="SelectTreeView" ItemContainerStyle="{StaticResource TreeViewItemStyle}" 
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button Style="{StaticResource TreeViewToolBarButtonStyle}">
+                                <Canvas Width="24" Height="24">
+                                    <Path Data="M7,12L12,7V10H16V14H12V17L7,12M22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12M20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12Z" Fill="White" />
+                                </Canvas>
+                            </Button>
+                            <Button Style="{StaticResource TreeViewToolBarButtonStyle}">
+                                <Canvas Width="24" Height="24">
+                                    <Path Data="M17,12L12,17V14H8V10H12V7L17,12M2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12M4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12Z" Fill="White" />
+                                </Canvas>
+                            </Button>
+                            <Button Style="{StaticResource TreeViewToolBarButtonStyle}">
+                                <Canvas Width="24" Height="24">
+                                    <Path Data="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z" Fill="White" />
+                                </Canvas>
+                            </Button>
+                            <Button Style="{StaticResource TreeViewToolBarButtonStyle}">
+                                <Canvas Width="24" Height="24">
+                                    <Path Data="M11,2H13V4H15V6H13V9.4L22,13V15L20,14.2V22H14V17A2,2 0 0,0 12,15A2,2 0 0,0 10,17V22H4V14.2L2,15V13L11,9.4V6H9V4H11V2M6,20H8V15L7,14L6,15V20M16,20H18V15L17,14L16,15V20Z" Fill="White" />
+                                </Canvas>
+                            </Button>
+                            <Button Style="{StaticResource TreeViewToolBarButtonStyle}">
+                                <Canvas Width="24" Height="24">
+                                    <Path Data="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" Fill="White" />
+                                </Canvas>
+                            </Button>
+                            <Button Style="{StaticResource TreeViewToolBarButtonStyle}">
+                                <Canvas Width="24" Height="24">
+                                    <Path Data="M4,2H20A2,2 0 0,1 22,4V20A2,2 0 0,1 20,22H14.85C14.5,21.92 14.5,21.24 14.5,21V18.26C14.5,17.33 14.17,16.72 13.81,16.41C16.04,16.16 18.38,15.32 18.38,11.5C18.38,10.39 18,9.5 17.35,8.79C17.45,8.54 17.8,7.5 17.25,6.15C17.25,6.15 16.41,5.88 14.5,7.17C13.71,6.95 12.85,6.84 12,6.84C11.15,6.84 10.29,6.95 9.5,7.17C7.59,5.88 6.75,6.15 6.75,6.15C6.2,7.5 6.55,8.54 6.65,8.79C6,9.5 5.62,10.39 5.62,11.5C5.62,15.31 7.95,16.17 10.17,16.42C9.89,16.67 9.63,17.11 9.54,17.76C8.97,18 7.5,18.45 6.63,16.93C6.63,16.93 6.1,15.97 5.1,15.9C5.1,15.9 4.12,15.88 5,16.5C5,16.5 5.68,16.81 6.14,17.97C6.14,17.97 6.73,19.91 9.5,19.31V21C9.5,21.24 9.5,21.92 9.14,22H4A2,2 0 0,1 2,20V4A2,2 0 0,1 4,2Z" Fill="White" />
+                                </Canvas>
+                            </Button>
+                            <Button Style="{StaticResource TreeViewToolBarButtonStyle}">
+                                <Canvas Width="24" Height="24">
+                                    <Path Data="M12.89,3L14.85,3.4L11.11,21L9.15,20.6L12.89,3M19.59,12L16,8.41V5.58L22.42,12L16,18.41V15.58L19.59,12M1.58,12L8,5.58V8.41L4.41,12L8,15.58V18.41L1.58,12Z" Fill="White" />
+                                </Canvas>
+                            </Button>
+                        </WrapPanel>
+                        <Label Content="Sample" FontSize="24"></Label>
+                        <TreeView Name ="SelectTreeView" ItemContainerStyle="{StaticResource TreeViewItemStyle}" 
                               Margin="8,48,8,8" ScrollViewer.CanContentScroll="True" BorderThickness="0"
                               ItemsSource="{Binding Path=SelectTreeItems, Mode=TwoWay}">
-                        <TreeView.ContextMenu>
-                            <ContextMenu ItemContainerStyle="{StaticResource ContextItemStyle}">
-                                <MenuItem Header="Add" Command="{Binding AddTreeViewItem}"
+                            <TreeView.ContextMenu>
+                                <ContextMenu ItemContainerStyle="{StaticResource ContextItemStyle}">
+                                    <MenuItem Header="Add" Command="{Binding AddTreeViewItem}"
                                           CommandParameter="{Binding ElementName=SelectTreeView, Path=SelectedValuePath}"
                                           ></MenuItem>
-                                <MenuItem Header="Remove"></MenuItem>
-                            </ContextMenu>
-                        </TreeView.ContextMenu>
-                        <TreeView.ItemTemplate>
-                            <HierarchicalDataTemplate DataType="{x:Type model:SelectPropertyInfo}" 
+                                    <MenuItem Header="Remove"></MenuItem>
+                                </ContextMenu>
+                            </TreeView.ContextMenu>
+                            <TreeView.ItemTemplate>
+                                <HierarchicalDataTemplate DataType="{x:Type model:SelectPropertyInfo}" 
                                                       ItemsSource="{Binding Path=Children}">
                                     <TextBlock VerticalAlignment="Center" Text="{Binding Name}" 
                                             FontSize="12" Padding="0" LineHeight="6" />
-                            </HierarchicalDataTemplate>
-                        </TreeView.ItemTemplate>
-                    </TreeView>
+                                </HierarchicalDataTemplate>
+                            </TreeView.ItemTemplate>
+                        </TreeView>
+                    </StackPanel>
                 </Grid>
             </Controls:Flyout>
         </Controls:FlyoutsControl>
