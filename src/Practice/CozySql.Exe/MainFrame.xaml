@@ -12,6 +12,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Styles.xaml" />
+                <!--ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" /-->
             </ResourceDictionary.MergedDictionaries>
             <Style x:Key="TreeViewItemStyle" TargetType="TreeViewItem">
                 <Setter Property="Margin" Value="5,5,0,0" />
@@ -55,13 +56,13 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <DockPanel Name="LeftPanel"  DockPanel.Dock="Left" Margin="5">
+        <DockPanel x:Name="LeftPanel"  DockPanel.Dock="Left" Margin="5">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonUp">
-                    <i:InvokeCommandAction Command="{Binding Path=ShowLeftCommand}"/>
+                    <i:InvokeCommandAction Command="{Binding ShowLeftCommand}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-            <TextBlock Foreground="{StaticResource Foreground}" Text="My DATA" TextAlignment="Center">
+            <TextBlock Text="My DATA" TextAlignment="Center">
                 <TextBlock.LayoutTransform>
                     <RotateTransform Angle="90" />
                 </TextBlock.LayoutTransform>
@@ -72,7 +73,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="6" />
             </Grid.ColumnDefinitions>
-            <TabControl x:Name="MainTab"  Margin="0,10" ItemsSource="{Binding Path=MainTabItems}">
+            <TabControl x:Name="MainTab"  Margin="0,10" ItemsSource="{Binding MainTabItems}">
                 <TabControl.ContentTemplate>
                     <DataTemplate>
                         <ContentPresenter Content="{Binding Content}" />

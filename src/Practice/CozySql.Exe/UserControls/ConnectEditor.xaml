@@ -1,11 +1,29 @@
-﻿<UserControl x:Class="CozySql.Exe.UserControls.ConnectEditor"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+﻿<UserControl
+    x:Class="CozySql.Exe.UserControls.ConnectEditor" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    mc:Ignorable="d" 
+    d:DesignHeight="400" d:DesignWidth="600">
     <Grid>
-            
+        <Grid.Resources>
+            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
+        </Grid.Resources>
+        <TabControl Margin="10,10,10,10" Controls:TabControlHelper.IsUnderlined="True">
+            <TabItem Header="Mysql">
+                <Grid Background="#FF1E1E1E"/>
+            </TabItem>
+            <TabItem Header="Sqlite">
+                <Grid Background="#FF1E1E1E"/>
+            </TabItem>
+            <TabItem Header="Sql Server">
+                <Grid Background="#FF1E1E1E"/>
+            </TabItem>
+            <TabItem Header="Sql Server(Local)">
+                <Grid Background="#FF1E1E1E"/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>
