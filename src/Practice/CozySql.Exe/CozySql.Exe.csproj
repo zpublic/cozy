@@ -113,6 +113,7 @@
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ConnectEditorViewModel.cs" />
     <Compile Include="ViewModels\MainFrameViewModel.cs" />
     <Compile Include="ViewModels\MainWindowsViewModel.cs" />
     <Compile Include="ViewModels\SqlViewViewModel.cs" />
