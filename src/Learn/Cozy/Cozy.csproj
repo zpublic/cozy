@@ -203,6 +203,7 @@
     <Compile Include="LearnFoundation\B\B2Encryption.cs" />
     <Compile Include="LearnFoundation\B\B3AccessControl.cs" />
     <Compile Include="LearnFoundation\B\B4CodeAccessSecurity.cs" />
+    <Compile Include="LearnFoundation\B\Details\ExchangeAndTransfer.cs" />
     <Compile Include="LearnFoundation\C\C.cs" />
     <Compile Include="LearnFoundation\C\C1Com.cs" />
     <Compile Include="LearnFoundation\C\C2PlatformInvoke.cs" />
