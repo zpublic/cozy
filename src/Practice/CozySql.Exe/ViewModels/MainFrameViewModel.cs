@@ -86,7 +86,8 @@ namespace CozySql.Exe.ViewModels
                     MainTabItems.Add(new UIControlInfo
                     {
                         Title = "新建",
-                        Content = new SqlInput()
+                        Content = new SqlInput(),
+                        Parent = this
                     });
                 });
             }
@@ -97,7 +98,8 @@ namespace CozySql.Exe.ViewModels
         {
             get
             {
-                return removeTabCommand = removeTabCommand ?? new DelegateCommand(x => MainTabItems.RemoveAt(MainTabItems.Count - 1),
+                return removeTabCommand = removeTabCommand ?? new DelegateCommand(
+                    x => MainTabItems.RemoveAt(MainTabItems.Count - 1),
                     x => MainTabItems.Count > 0);
             }
         }
@@ -139,11 +141,11 @@ namespace CozySql.Exe.ViewModels
         {
             MainTabItems = new ObservableCollection<UIControlInfo>(new[]
             {
-                new UIControlInfo { Title = "Welcome!", Content = new WelcomePage() },
-                new UIControlInfo { Title = "Sql Favorites", Content = new SqlFavorites() },
-                new UIControlInfo { Title = "Query!", Content = new SqlInput() },
-                new UIControlInfo { Title = "SqlView1", Content = new SqlView() },
-                new UIControlInfo { Title = "ConnectEditor", Content = new ConnectEditor() },
+                new UIControlInfo { Title = "Welcome!", Content = new WelcomePage(), Parent = this },
+                new UIControlInfo { Title = "Sql Favorites", Content = new SqlFavorites(), Parent = this },
+                new UIControlInfo { Title = "Query!", Content = new SqlInput(), Parent = this },
+                new UIControlInfo { Title = "SqlView1", Content = new SqlView(), Parent = this },
+                new UIControlInfo { Title = "ConnectEditor", Content = new ConnectEditor(), Parent = this },
             });
         }
 
@@ -206,6 +208,11 @@ namespace CozySql.Exe.ViewModels
             {
 
             }
+        }
+
+        public void CloseTab(UIControlInfo obj)
+        {
+            MainTabItems.Remove(obj);
         }
     }
 }
