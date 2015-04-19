@@ -21,7 +21,6 @@ namespace Cozy.LearnFoundation.B
             Identity_and_Principal();
             Declarative_RoleBase_Security();
             Claims();
-            Console.ReadKey();
         }
 
         public static void Identity_and_Principal()
