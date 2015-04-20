@@ -14,17 +14,5 @@ namespace CozySql.Exe.Models
     {
         public string Title { get; set; }
         public UserControl Content { get; set; }
-        public MainFrameViewModel Parent { get; set; }
-        private ICommand closeCommand;
-        public ICommand CloseCommand
-        {
-            get
-            {
-                return closeCommand = closeCommand ?? new DelegateCommand(x =>
-                {
-                    Parent.CloseTab(this);
-                });
-            }
-        }
     }
 }

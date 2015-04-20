@@ -86,8 +86,7 @@ namespace CozySql.Exe.ViewModels
                     MainTabItems.Add(new UIControlInfo
                     {
                         Title = "新建",
-                        Content = new SqlInput(),
-                        Parent = this
+                        Content = new SqlInput()
                     });
                 });
             }
@@ -118,7 +117,7 @@ namespace CozySql.Exe.ViewModels
         {
             get
             {
-                return addTreeViewItem = addTreeViewItem ?? new DelegateCommand(x => 
+                return addTreeViewItem = addTreeViewItem ?? new DelegateCommand(x =>
                 {
                     SelectTreeItems.Add(new SelectPropertyInfo
                     {
@@ -141,11 +140,11 @@ namespace CozySql.Exe.ViewModels
         {
             MainTabItems = new ObservableCollection<UIControlInfo>(new[]
             {
-                new UIControlInfo { Title = "Welcome!", Content = new WelcomePage(), Parent = this },
-                new UIControlInfo { Title = "Sql Favorites", Content = new SqlFavorites(), Parent = this },
-                new UIControlInfo { Title = "Query!", Content = new SqlInput(), Parent = this },
-                new UIControlInfo { Title = "SqlView1", Content = new SqlView(), Parent = this },
-                new UIControlInfo { Title = "ConnectEditor", Content = new ConnectEditor(), Parent = this },
+                new UIControlInfo { Title = "Welcome!", Content = new WelcomePage() },
+                new UIControlInfo { Title = "Sql Favorites", Content = new SqlFavorites() },
+                new UIControlInfo { Title = "Query!", Content = new SqlInput() },
+                new UIControlInfo { Title = "SqlView1", Content = new SqlView() },
+                new UIControlInfo { Title = "ConnectEditor", Content = new ConnectEditor() },
             });
         }
 
