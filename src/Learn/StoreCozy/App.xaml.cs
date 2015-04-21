@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -14,6 +16,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using StoreCozy.Repositories;
+using StoreCozy.Model;
+using StoreCozy.Storage;
 
 // “空白应用程序”模板在 http://go.microsoft.com/fwlink/?LinkId=234227 上有介绍
 
@@ -39,7 +44,7 @@ namespace StoreCozy
         /// 以打开特定文件等情况下使用其他入口点。
         /// </summary>
         /// <param name="e">有关启动请求和过程的详细信息。</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
 
 #if DEBUG
@@ -48,6 +53,7 @@ namespace StoreCozy
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
+            await InitSampleDataAsync();
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -124,6 +130,28 @@ namespace StoreCozy
         {
             var fileOpenPickerPage = new StoreCozy.FileOpenPickerPage1();
             fileOpenPickerPage.Activate(e);
+        }
+
+        private static async Task InitSampleDataAsync()
+        {
+            var storage = new MenuCardStorage();
+            var imageStorage = new MenuCardImageStorage();
+            if (await storage.IsRoamingFolderEmpty())
+            {
+                List<MenuCard> menuCards = MenuCardRepository.GetSampleMenuCards().ToList();
+                foreach (var card in menuCards)
+                {
+                    RandomAccessStreamReference streamRef =
+                      RandomAccessStreamReference.CreateFromUri(new Uri(card.ImagePath));
+                    using (IRandomAccessStreamWithContentType stream =
+                      await streamRef.OpenReadAsync())
+                    {
+                        card.ImagePath = string.Format("{0}.png", Guid.NewGuid());
+                        await imageStorage.WriteImageAsync(stream, card.ImagePath);
+                    }
+                }
+                await storage.WriteMenuCardsAsync(menuCards);
+            }
         }
     }
 }

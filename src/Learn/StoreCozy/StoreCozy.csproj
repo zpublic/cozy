@@ -105,6 +105,9 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sample\AddMenuCardPage.xaml.cs">
+      <DependentUpon>AddMenuCardPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,7 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="CustomControl1.cs" />
+    <Compile Include="Extensions\BindableBase.cs" />
     <Compile Include="FileOpenPickerPage1.xaml.cs">
       <DependentUpon>FileOpenPickerPage1.xaml</DependentUpon>
     </Compile>
@@ -139,10 +143,17 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sample\MenuItemsPage.xaml.cs">
+      <DependentUpon>MenuItemsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AddMenuCardInfo.cs" />
+    <Compile Include="Model\MenuCard.cs" />
+    <Compile Include="Model\MenuItem.cs" />
     <Compile Include="MyUserControl1.xaml.cs">
       <DependentUpon>MyUserControl1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\MenuCardRepository.cs" />
     <Compile Include="SearchResultsPage1.xaml.cs">
       <DependentUpon>SearchResultsPage1.xaml</DependentUpon>
     </Compile>
@@ -155,6 +166,10 @@
     <Compile Include="SplitPage1.xaml.cs">
       <DependentUpon>SplitPage1.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Storage\MenuCardData.cs" />
+    <Compile Include="Storage\MenuCardImageStorage.cs" />
+    <Compile Include="Storage\MenuCardStorage.cs" />
+    <Compile Include="Storage\MenuItemData.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -163,16 +178,23 @@
     <None Include="StoreCozy_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Breakfast.jpg" />
     <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\Salads.jpg" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\Sweets.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Sample\AddMenuCardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BasicPage1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -209,6 +231,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sample\MenuItemsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyUserControl1.xaml">
       <SubType>Designer</SubType>
