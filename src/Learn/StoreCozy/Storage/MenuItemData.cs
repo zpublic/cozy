@@ -6,7 +6,10 @@ namespace StoreCozy.Storage
     [DataContract(Name = "MenuItem")]
     public class MenuItemData
     {
-        public MenuItemData() { }
+        public MenuItemData() 
+        { 
+        
+        }
         public MenuItemData(MenuItem item)
         {
             if (item != null)
@@ -23,8 +26,10 @@ namespace StoreCozy.Storage
                 Price = this.Price
             };
         }
+
         [DataMember]
         public string Text { get; set; }
+
         [DataMember]
         public double Price { get; set; }
     }

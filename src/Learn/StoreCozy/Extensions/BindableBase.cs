@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace StoreCozy.Extensions
 {
+    // 实现INotifyPropertyChanged接口 将更改通知传递到UI上
     public class BindableBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

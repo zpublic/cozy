@@ -53,6 +53,7 @@ namespace StoreCozy
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
+            // 初始化数据
             await InitSampleDataAsync();
 
             Frame rootFrame = Window.Current.Content as Frame;

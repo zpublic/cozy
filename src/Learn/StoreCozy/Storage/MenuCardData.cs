@@ -11,8 +11,11 @@ namespace StoreCozy.Storage
     [DataContract(Name = "MenuCard")]
     public class MenuCardData
     {
+        public MenuCardData() 
+        { 
         
-        public MenuCardData() { }
+        }
+
         public MenuCardData(MenuCard menuCard)
         {
             this.Title = menuCard.Title;
@@ -24,6 +27,7 @@ namespace StoreCozy.Storage
                 MenuItems.Add(new MenuItemData(item));
             }
         }
+
         public MenuCard ToMenuCard()
         {
             var menuCard = new MenuCard
@@ -39,14 +43,17 @@ namespace StoreCozy.Storage
             menuCard.ClearDirty();
             return menuCard;
         }
+
         [DataMember]
         public string Title { get; set; }
+
         [DataMember]
         public string Description { get; set; }
+
         [DataMember]
         public string ImagePath { get; set; }
+
         [DataMember]
         public List<MenuItemData> MenuItems { get; set; }
-
     }
 }

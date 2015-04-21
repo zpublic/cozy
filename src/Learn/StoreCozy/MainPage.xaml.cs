@@ -26,13 +26,21 @@ namespace StoreCozy
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        #region Property
 
+        /// <summary>
+        /// NavigationHelper 在每页上用于协助导航和
+        /// 进程生命期管理
+        /// </summary>
         private NavigationHelper navigationHelper;
         public NavigationHelper NavigationHelper
         {
             get { return this.navigationHelper; }
         }
 
+        /// <summary>
+        /// 可将其更改为强类型视图模型。
+        /// </summary>
         private ObservableDictionary defaultViewModel;
         public ObservableDictionary DefaultViewModel
         {
@@ -41,6 +49,7 @@ namespace StoreCozy
                 return defaultViewModel = defaultViewModel ?? new ObservableDictionary();
             }
         }
+        #endregion
 
         public MainPage()
         {
@@ -58,6 +67,7 @@ namespace StoreCozy
                 await storage.ReadMenuCardsAsync()));
             this.DefaultViewModel["Items"] = MenuCardRepository.Instance.Cards;
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
@@ -67,6 +77,8 @@ namespace StoreCozy
         {
             navigationHelper.OnNavigatedFrom(e);
         }
+
+        #region Command
 
         private void OnAdd()
         {
@@ -112,5 +124,6 @@ namespace StoreCozy
                 return deleteCommand ?? (deleteCommand = new RelayCommand(OnDelete));
             }
         }
+        #endregion
     }
 }
