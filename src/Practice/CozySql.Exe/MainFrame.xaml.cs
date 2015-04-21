@@ -13,15 +13,17 @@ namespace CozySql.Exe
         public MainFrame()
         {
             InitializeComponent();
-
             MainTab.AddHandler(Button.ClickEvent, new RoutedEventHandler((sender, args) =>
             {
                 var button = (Button)args.OriginalSource;
                 //因为VS Style的TabItem结构是Grid下面套一个Button，所以拿它父节点的父节点
                 //如果后面的勇士有更好的方法请继续修改
-                var tabItem = (TabItem)button.GetParentObject().GetParentObject();
-                var info = (UIControlInfo)tabItem.Content;
-                ViewModel.CloseTab(info);
+                var tabItem = button.GetParentObject().GetParentObject() as TabItem;
+                if (tabItem != null)
+                {
+                    var info = tabItem.Content as UIControlInfo;
+                    ViewModel.CloseTab(info);
+                }
             }));
         }
     }
