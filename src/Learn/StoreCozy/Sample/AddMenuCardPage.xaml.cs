@@ -50,7 +50,6 @@ namespace StoreCozy
             get { return this.navigationHelper; }
         }
 
-
         public AddMenuCardPage()
         {
             this.InitializeComponent();
@@ -74,7 +73,7 @@ namespace StoreCozy
         private AddMenuCardInfo info = new AddMenuCardInfo();
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            // 将AddMenuCardInfo类型的实例被赋予AddItem属性
+            // AddMenuCardInfo类型的实例被赋予AddItem属性
             this.DefaultViewModel["AddItem"] = info;
         }
 
@@ -88,9 +87,20 @@ namespace StoreCozy
         ///的事件数据。</param>
         ///
 
-        private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
+        // 退出页面时会调用 保存添加的Card
+        private async void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
+            var mc = new MenuCard
+            {
+                Title = info.Title,
+                Description = info.Description,
+                Image = info.Image,
+                ImagePath = info.ImageFileName
+            };
 
+            MenuCardRepository.Instance.Cards.Add(mc);
+            var storage = new MenuCardStorage();
+            await storage.WriteMenuCardsAsync(MenuCardRepository.Instance.Cards.ToList());
         }
 
         #region NavigationHelper 注册
@@ -118,6 +128,7 @@ namespace StoreCozy
 
         private async void OnUploadImage(object sender, RoutedEventArgs e)
         {
+            // 定义选择器
             var filePicker = new FileOpenPicker();
             filePicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
             filePicker.FileTypeFilter.Add(".jpg");

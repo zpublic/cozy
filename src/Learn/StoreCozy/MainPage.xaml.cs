@@ -85,6 +85,7 @@ namespace StoreCozy
 
         #region Command
 
+         // 添加MenuCard 添加的操作在AddMenuCardPage中
         private void OnAdd()
         {
             Frame.Navigate(typeof(AddMenuCardPage));
@@ -99,6 +100,7 @@ namespace StoreCozy
             }
         }
 
+        // 将选中的Item从storage中删除
         private void DeleteMenuCard(IUICommand command)
         {
             var menuCards = this.DefaultViewModel["Items"] as ObservableCollection<MenuCard>;
@@ -113,7 +115,7 @@ namespace StoreCozy
             var selectedMenuCard = itemGridView.SelectedItem as MenuCard;
             if (selectedMenuCard != null)
             {
-
+                // 确认对话框
                 var dlg = new MessageDialog(string.Format("Delete the menu card {0}?", selectedMenuCard.Title));
                 dlg.Commands.Add(new UICommand("Delete", new UICommandInvokedHandler(DeleteMenuCard)));
                 dlg.Commands.Add(new UICommand("Cancel"));

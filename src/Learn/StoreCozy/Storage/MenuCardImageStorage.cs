@@ -15,9 +15,11 @@ namespace StoreCozy.Storage
     {
         public async Task WriteImageAsync(IRandomAccessStream sourceStream, string filename)
         {
+            // 维持横纵比的重置图像大小
             BitmapDecoder decoder = await BitmapDecoder.CreateAsync(sourceStream);
             uint scaledWidth = 0;
             uint scaledHeight = 0;
+            
             if (decoder.PixelWidth > decoder.PixelHeight)
             {
                 scaledWidth = 600;

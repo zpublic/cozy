@@ -22,6 +22,7 @@ namespace StoreCozy.Storage
             return files.Count == 0;
         }
 
+        // 写数据到文件
         public async Task WriteMenuCardAsync(MenuCard menuCard)
         {
             StorageFolder folder = ApplicationData.Current.RoamingFolder;
@@ -41,7 +42,6 @@ namespace StoreCozy.Storage
             foreach (var menuCard in menuCards)
             {
                 await WriteMenuCardAsync(menuCard);
-
             }
         }
 
@@ -61,9 +61,9 @@ namespace StoreCozy.Storage
                 await cardStream.CopyToAsync(fileStream);
                 await fileStream.FlushAsync();
             }
-
         }
 
+        // 从文件读取数据
         public async Task<IEnumerable<MenuCard>> ReadMenuCardsAsync()
         {
             var menuCards = new List<MenuCard>();
