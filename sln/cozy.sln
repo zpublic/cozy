@@ -91,10 +91,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyDraw.Windows", "..\src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyDraw.WindowsPhone", "..\src\Practice\CozyDraw\CozyDraw.WindowsPhone\CozyDraw.WindowsPhone.csproj", "{6BBEF9E5-225E-472F-B666-CAED11EF3718}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CozyHttpServer", "CozyHttpServer", "{A97907AE-BF5E-4776-B995-71E6D070A5B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyHttpServer", "..\src\Practice\CozyHttpServer\CozyHttpServer.csproj", "{405F4115-1D51-43B9-A5CF-AA11A565CE98}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		..\src\Practice\CozyDraw\CozyDraw.Shared\CozyDraw.Shared.projitems*{eae8e276-86d0-4430-ac50-edafe592cca6}*SharedItemsImports = 4
-		..\src\Practice\CozyDraw\CozyDraw.Shared\CozyDraw.Shared.projitems*{6bbef9e5-225e-472f-b666-caed11ef3718}*SharedItemsImports = 4
 		..\src\Practice\CozyDraw\CozyDraw.Shared\CozyDraw.Shared.projitems*{bf4246e4-b792-4049-abce-55e11afba4c5}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -446,6 +448,16 @@ Global
 		{6BBEF9E5-225E-472F-B666-CAED11EF3718}.Release|x86.ActiveCfg = Release|x86
 		{6BBEF9E5-225E-472F-B666-CAED11EF3718}.Release|x86.Build.0 = Release|x86
 		{6BBEF9E5-225E-472F-B666-CAED11EF3718}.Release|x86.Deploy.0 = Release|x86
+		{405F4115-1D51-43B9-A5CF-AA11A565CE98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{405F4115-1D51-43B9-A5CF-AA11A565CE98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{405F4115-1D51-43B9-A5CF-AA11A565CE98}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{405F4115-1D51-43B9-A5CF-AA11A565CE98}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{405F4115-1D51-43B9-A5CF-AA11A565CE98}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{405F4115-1D51-43B9-A5CF-AA11A565CE98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{405F4115-1D51-43B9-A5CF-AA11A565CE98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{405F4115-1D51-43B9-A5CF-AA11A565CE98}.Release|ARM.ActiveCfg = Release|Any CPU
+		{405F4115-1D51-43B9-A5CF-AA11A565CE98}.Release|x64.ActiveCfg = Release|Any CPU
+		{405F4115-1D51-43B9-A5CF-AA11A565CE98}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -492,5 +504,7 @@ Global
 		{BF4246E4-B792-4049-ABCE-55E11AFBA4C5} = {EA3FB12E-B0E9-4C47-A0D4-73E7F2199A10}
 		{EAE8E276-86D0-4430-AC50-EDAFE592CCA6} = {EA3FB12E-B0E9-4C47-A0D4-73E7F2199A10}
 		{6BBEF9E5-225E-472F-B666-CAED11EF3718} = {EA3FB12E-B0E9-4C47-A0D4-73E7F2199A10}
+		{A97907AE-BF5E-4776-B995-71E6D070A5B7} = {38164D2F-0D13-489E-B26E-E55D83CCBC27}
+		{405F4115-1D51-43B9-A5CF-AA11A565CE98} = {A97907AE-BF5E-4776-B995-71E6D070A5B7}
 	EndGlobalSection
 EndGlobal
