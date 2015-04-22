@@ -45,6 +45,10 @@
     <Reference Include="MahApps.Metro">
       <HintPath>..\..\..\sln\packages\MahApps.Metro.1.1.2.0\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\MySql.Data.6.9.6\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Simple.Data, Version=0.19.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\sln\packages\Simple.Data.Core.0.19.0.0\lib\net40\Simple.Data.dll</HintPath>
@@ -53,8 +57,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\sln\packages\Simple.Data.Ado.0.19.0.0\lib\net40\Simple.Data.Ado.dll</HintPath>
     </Reference>
+    <Reference Include="Simple.Data.Mysql, Version=0.19.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\Simple.Data.Mysql.0.19.0.5\lib\net40\Simple.Data.Mysql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Simple.Data.Sqlite">
       <HintPath>..\..\..\sln\packages\Simple.Data.Sqlite.0.18.3.2\lib\net40\Simple.Data.Sqlite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Simple.Data.SqlServer, Version=0.19.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\Simple.Data.SqlServer.0.19.0.0\lib\net40\Simple.Data.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
