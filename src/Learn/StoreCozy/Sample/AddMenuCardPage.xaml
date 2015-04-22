@@ -48,7 +48,8 @@
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
         
-        <Grid Grid.Row="1" DataContext="{Binding Item}">
+        <!--绑定AddItem属性 也就是之前声明的AddMenuCardIfno实例-->
+        <Grid Grid.Row="1" DataContext="{Binding AddItem}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="300"/>
@@ -65,7 +66,7 @@
             <TextBox Grid.Column="1" Text="{Binding Title, Mode=TwoWay}" Margin="20" VerticalAlignment="Center" />
             <TextBlock Grid.Row="1" Text="Description:" Style="{StaticResource TitleTextBlockStyle}" Margin="20" VerticalAlignment="Center" HorizontalAlignment="Right" />
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Description, Mode=TwoWay}" Margin="20" MaxHeight="100" VerticalAlignment="Center" />
-            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Content="Upload Image" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource  TextBlockButtonStyle}" Padding="10" Margin="20" />
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Content="Upload Image" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource  TextBlockButtonStyle}" Padding="10" Margin="20" Click="OnUploadImage"/>
         </Grid>
     </Grid>
 </Page>

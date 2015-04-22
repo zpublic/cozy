@@ -6,6 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:StoreCozy"
     xmlns:common="using:StoreCozy.Common"
+    xmlns:convert="using:StoreCozy.Converts"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -14,7 +15,7 @@
     <Page.Resources>
         <CollectionViewSource x:Name="resultsViewSource" Source="{Binding Results}"/>
         <CollectionViewSource x:Name="filtersViewSource" Source="{Binding Filters}"/>
-        <common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <convert:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <!-- TODO:  将以下字符串更新为您的应用程序的名称-->
         <x:String x:Key="AppName">应用程序名</x:String>
     </Page.Resources>

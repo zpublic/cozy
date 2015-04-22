@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 
-namespace StoreCozy.Common
+namespace StoreCozy.Converts
 {
     /// <summary>
     /// 从 true 转换为 false 以及进行相反转换的值转换器。

@@ -13,7 +13,12 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Storage.Pickers;
+using Windows.Storage;
+using Windows.UI.Xaml.Media.Imaging;
 using StoreCozy.Model;
+using StoreCozy.Storage;
+using StoreCozy.Repositories;
 
 // “基本页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234237 上有介绍
 
@@ -69,7 +74,8 @@ namespace StoreCozy
         private AddMenuCardInfo info = new AddMenuCardInfo();
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            this.DefaultViewModel["Items"] = info;
+            // 将AddMenuCardInfo类型的实例被赋予AddItem属性
+            this.DefaultViewModel["AddItem"] = info;
         }
 
         /// <summary>
@@ -84,6 +90,7 @@ namespace StoreCozy
 
         private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
+
         }
 
         #region NavigationHelper 注册
@@ -108,5 +115,42 @@ namespace StoreCozy
         }
 
         #endregion
+
+        private async void OnUploadImage(object sender, RoutedEventArgs e)
+        {
+            var filePicker = new FileOpenPicker();
+            filePicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            filePicker.FileTypeFilter.Add(".jpg");
+            filePicker.FileTypeFilter.Add(".png");
+            StorageFile file = await filePicker.PickSingleFileAsync();
+            if (file == null) return;
+
+            var stream = await file.OpenAsync(FileAccessMode.Read);
+            var image = new BitmapImage();
+
+            image.SetSource(stream);
+            image.ImageOpened += async (sender1, e1) =>
+            {
+                if (image.PixelHeight > image.PixelWidth)
+                {
+                    image.DecodePixelHeight = 900;
+                }
+                else
+                {
+                    image.DecodePixelWidth = 900;
+                }
+                stream.Seek(0);
+                var imageStorage = new MenuCardImageStorage();
+                var storage = new MenuCardStorage();
+                info.ImageFileName = string.Format("{0}.jpg", Guid.NewGuid().ToString());
+
+                await imageStorage.WriteImageAsync(stream, info.ImageFileName);
+            };
+            image.ImageFailed += (sender1, e1) =>
+            {
+                string s = e1.ErrorMessage;
+            };
+            info.Image = image;
+        }
     }
 }

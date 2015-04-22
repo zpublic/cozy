@@ -7,6 +7,7 @@ using StoreCozy.Extensions;
 
 namespace StoreCozy.Model
 {
+    // MenuCard的简单属性
     public class MenuItem : BindableBase
     {
         private string text;

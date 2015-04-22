@@ -11,7 +11,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 
-namespace StoreCozy.Common
+namespace StoreCozy.Converts
 {
     /// <summary>
     /// 将 true 转换为 <see cref="Visibility.Visible"/> 并将 false 转换为

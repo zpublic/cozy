@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 
 namespace StoreCozy.Model
 {
-    // 包含MenuItem数据
+    // 包含应用程序主要数据
     public class MenuCard : BindableBase
     {
         private string title;
