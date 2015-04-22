@@ -19,11 +19,20 @@
 
         private static readonly string[] ConsoleAssemblyNames = new[]
                                                                     {
-                                                                        "mscorlib.dll", "Microsoft.CSharp.dll",
-                                                                        "System.dll", "System.Core.dll",
-                                                                        "System.Data.dll", "System.Data.DataSetExtensions.dll",
-                                                                        "System.Xml.dll", "System.Xml.Linq.dll",
-                                                                        "Simple.Data.dll"
+                                                                        "mscorlib.dll",
+                                                                        "Microsoft.CSharp.dll",
+                                                                        "System.dll",
+                                                                        "System.Core.dll",
+                                                                        "System.Data.dll",
+                                                                        "System.Data.DataSetExtensions.dll",
+                                                                        "System.Xml.dll",
+                                                                        "System.Xml.Linq.dll",
+                                                                        "Simple.Data.dll",
+                                                                        "Simple.Data.Ado.dll",
+                                                                        "Simple.Data.Mysql.dll",
+                                                                        "System.Data.SQLite.dll",
+                                                                        "MySql.Data.dll",
+                                                                        "CozySql.Configure.dll"
                                                                     };
 
         private static readonly Dictionary<string, string> CSharpCodeProviderOptions = new Dictionary<string, string>() { { "CompilerVersion", "v4.0" } };
