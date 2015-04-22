@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CozySql.Exe.Commands;
 using System.Windows;
+using Microsoft.Win32;
 
 namespace CozySql.Exe.ViewModels
 {
@@ -76,6 +77,32 @@ namespace CozySql.Exe.ViewModels
                 Set(ref passWord, value, "PassWord");
             }
         }
+
+        private string dbPath;
+        public string DbPath
+        {
+            get
+            {
+                return dbPath;
+            }
+            set
+            {
+                Set(ref dbPath, value, "DbPath");
+            }
+        }
+
+        private int dbType;
+        public int DbType
+        {
+            get
+            {
+                return dbType;
+            }
+            set
+            {
+                Set(ref dbType, value, "DbType");
+            }
+        }
         #endregion
 
         #region Commad
@@ -94,10 +121,49 @@ namespace CozySql.Exe.ViewModels
             get
             {
                 return showTestData = showTestData ?? new DelegateCommand(x =>
-                MessageBox.Show(String.Format("{0}\n{1}\n{2}\n{3}\n{4}", ConnectName, ConnectAddress, ConnectPort, UserName, PassWord)));
+                {
+                    switch (DbType)
+                    {
+                        //MySql
+                        case 0:
+                            MySqlDbTodo();
+                            return;
+                        //Sqlite
+                        case 1:
+                            SqliteDbTodo();
+                            return;
+                    }
+                });
             }
         }
+
+        private ICommand openDbFileCommand;
+        public ICommand OpenDbFileCommand
+        {
+            get
+            {
+                return openDbFileCommand = openDbFileCommand ?? new DelegateCommand(x =>
+                {
+                    var openFileDialog = new OpenFileDialog();
+                    if (openFileDialog.ShowDialog() ?? false)
+                    {
+                        DbPath = openFileDialog.FileName;
+                    }
+                });
+            }
+        }
+
         #endregion
+
+        void SqliteDbTodo()
+        {
+            //Todo
+        }
+
+        void MySqlDbTodo()
+        {
+            MessageBox.Show(String.Format("{0}\n{1}\n{2}\n{3}\n{4}", ConnectName, ConnectAddress, ConnectPort, UserName, PassWord));
+        }
 
         public ConnectEditorViewModel()
         {
