@@ -78,6 +78,11 @@ namespace StoreCozy
             navigationHelper.OnNavigatedFrom(e);
         }
 
+         private void OnMenuCardClick(object sender, ItemClickEventArgs e)
+        {
+            Frame.Navigate(typeof(MenuItemsPage), e.ClickedItem);
+        }
+
         #region Command
 
         private void OnAdd()

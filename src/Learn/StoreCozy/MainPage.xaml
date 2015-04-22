@@ -35,7 +35,7 @@
         <GridView  x:Name="itemGridView" AutomationProperties.AutomationId="ItemsGridView"
             AutomationProperties.Name="Items" TabIndex="1" Grid.RowSpan="2" Padding="116,136,116,46"
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-            SelectionMode="None" IsItemClickEnabled="True" IsSwipeEnabled="false">
+            SelectionMode="None" IsItemClickEnabled="True" IsSwipeEnabled="false" ItemClick="OnMenuCardClick">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="6">

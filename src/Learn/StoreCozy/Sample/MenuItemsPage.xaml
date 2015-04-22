@@ -8,16 +8,13 @@
     xmlns:common="using:StoreCozy.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:convert="using:StoreCozy.Converts"
     mc:Ignorable="d">
 
     <Page.Resources>
         <!-- 此页所显示的项集合-->
-        <CollectionViewSource
-        x:Name="itemsViewSource"
-        Source="{Binding Items}"/>
-
-        <!-- TODO:  如果在 App.xaml 中声明了关键 AppName，则删除此行-->
-        <x:String x:Key="AppName">My Application</x:String>
+        <CollectionViewSource x:Name="itemsViewSource" Source="{Binding Items}"/>
+        <convert:DoubleToCurrencyConverter x:Key="currencyConverter"/>
     </Page.Resources>
 
     <!--
@@ -49,14 +46,23 @@
             IsSwipeEnabled="false">
             <GridView.ItemTemplate>
                 <DataTemplate>
-                    <Grid HorizontalAlignment="Left" Width="250" Height="250">
-                        <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                            <Image Source="{Binding ImagePath}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
-                        </Border>
-                        <StackPanel VerticalAlignment="Bottom" Background="{ThemeResource ListViewItemOverlayBackgroundThemeBrush}">
-                            <TextBlock Text="{Binding Title}" Foreground="{ThemeResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource BaseTextBlockStyle}" Height="60" Margin="15,0,15,0" FontWeight="SemiBold"/>
-                            <TextBlock Text="{Binding Subtitle}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource BaseTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10" FontSize="12"/>
-                        </StackPanel>
+                    <Grid Margin="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Text" Style="{StaticResource BodyTextBlockStyle}" Height="60" Margin="15,0,15,0"></TextBlock>
+                        <TextBlock Grid.Row="1" Text="Price" Style="{StaticResource BodyTextBlockStyle}" Height="60" Margin="15,0,15,0"></TextBlock>
+                        <TextBox Text="{Binding Text, Mode=TwoWay}" Grid.Column="1" MinWidth="300"/>
+                        <TextBox Text="{Binding Price, Mode=TwoWay, Converter={StaticResource currencyConverter}}" Grid.Column="1"
+                                 Grid.Row="1" MinWidth="300">
+                            
+                        </TextBox>
                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
