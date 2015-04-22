@@ -4,4 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:StoreCozy">
 
+    <!--在这里定义应用名-->
+    <Application.Resources>
+        <x:String x:Key="AppName">MENU card</x:String>
+    </Application.Resources>
 </Application>

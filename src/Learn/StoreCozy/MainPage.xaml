@@ -5,10 +5,67 @@
     xmlns:local="using:StoreCozy"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Content="Button" HorizontalAlignment="Left" Margin="189,139,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+    <Page.Resources>
+        <!-- Collection of items displayed by this page -->
+        <CollectionViewSource x:Name="itemsViewSource" Source="{Binding Items}"/>
+    </Page.Resources>
 
+    <!--在BottomAppBar中定义AppBarButton-->
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Tag="Add" Icon="Add" Label="Add" Command="{Binding Commands.AddCommand}" />
+            <AppBarButton Tag="Delete" Icon="Delete" Label="Delete" Command="{Binding Commands.DeleteCommand}" />
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <GridView  x:Name="itemGridView" AutomationProperties.AutomationId="ItemsGridView"
+            AutomationProperties.Name="Items" TabIndex="1" Grid.RowSpan="2" Padding="116,136,116,46"
+            ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
+            SelectionMode="None" IsItemClickEnabled="True" IsSwipeEnabled="false">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="450" Height="450">
+                            <Image Source="{Binding Image}" Stretch="UniformToFill"/>
+                        </Border>
+                        <StackPanel Grid.Row="1" Margin="10,0,0,0">
+                            <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--定义按钮与应用名-->
+            <Button x:Name="backButton" Margin="39,59,39,0" AutomationProperties.ItemType="Navigation Button"
+                    Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Top"
+                        AutomationProperties.Name="Back" AutomationProperties.AutomationId="BackButton"/>
+            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}"                   Grid.Column="1" IsHitTestVisible="false" TextWrapping="NoWrap" 
+                       VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+        </Grid>
     </Grid>
 </Page>
