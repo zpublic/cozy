@@ -232,9 +232,11 @@
     <Compile Include="LearnFoundation\G\G5DifferentXMLObjects.cs" />
     <Compile Include="LearnFoundation\G\G6XmlLINQ.cs" />
     <Compile Include="LearnLinqPlayer.cs" />
+    <Compile Include="LearnLinq\Details\Compare\AnagramEqualityComparer.cs" />
     <Compile Include="LearnLinq\Details\Compare\CaseInsensitiveComparer.cs" />
     <Compile Include="LearnLinq\Details\ObjectDumper.cs" />
     <Compile Include="LearnLinq\Details\PublicData.cs" />
+    <Compile Include="LearnLinq\GroupingOperators.cs" />
     <Compile Include="LearnLinq\OrderingOperators.cs" />
     <Compile Include="LearnLinq\PartitioningOperators.cs" />
     <Compile Include="LearnLinq\ProjectionOperators.cs">

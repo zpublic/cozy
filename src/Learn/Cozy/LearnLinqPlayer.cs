@@ -14,6 +14,7 @@ namespace Cozy
             LearnLinq.ProjectionOperators.Cozy();
             LearnLinq.PartitioningOperators.Cozy();
             LearnLinq.OrderingOperators.Cozy();
+            LearnLinq.GroupingOperators.Cozy();
         }
     }
 }

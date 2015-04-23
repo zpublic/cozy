@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cozy.LearnLinq.Details;
+using Cozy.LearnLinq.Details.Compare;
 
 namespace Cozy.LearnLinq
 {

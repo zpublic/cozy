@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cozy.LearnLinq.Details
+namespace Cozy.LearnLinq.Details.Compare
 {
     public class CaseInsensitiveComparer : IComparer<string>
     {
