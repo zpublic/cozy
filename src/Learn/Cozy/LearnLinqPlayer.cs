@@ -12,6 +12,7 @@ namespace Cozy
         {
             LearnLinq.RestrictionOperators.Cozy();
             LearnLinq.ProjectionOperators.Cozy();
+            LearnLinq.PartitioningOperators.Cozy();
         }
     }
 }
