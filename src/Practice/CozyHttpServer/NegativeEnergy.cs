@@ -23,7 +23,14 @@ namespace CozyHttpServer
         {
             Get["/fnl"] = x =>
             {
-                return strline.ElementAt(r.Next(strline.Count() - 1));
+                string html = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><title>每天来点负能量</title></head><body>"
+                    + strline.ElementAt(r.Next(strline.Count() - 1))
+                    + "</body></html>";
+
+//                 Encoding gb2312 = Encoding.GetEncoding("gb2312");
+//                 byte[] b = Encoding.Default.GetBytes(strline.ElementAt(r.Next(strline.Count() - 1)));
+//                 string gb2312str = gb2312.GetString(b);
+                return html;
             };
         }
     }
