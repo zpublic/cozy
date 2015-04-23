@@ -10,12 +10,17 @@ namespace CozyHttpServer
 {
     public class NegativeEnergy : NancyModule
     {
-        public static string[] strline = null;
+        private static string[] strline1 = null;
+        private static string[] strline2 = null;
         public static void LoadData()
         {
             string fileName = System.Environment.CurrentDirectory + "/NegativeEnergy.txt";
             string text = File.ReadAllText(fileName, Encoding.ASCII);
-            strline = File.ReadAllLines(fileName);
+            strline1 = File.ReadAllLines(fileName);
+
+            string fileName2 = System.Environment.CurrentDirectory + "/PositiveEnergy.txt";
+            string text2 = File.ReadAllText(fileName2, Encoding.ASCII);
+            strline2 = File.ReadAllLines(fileName2);
         }
 
         private Random r = new Random();
@@ -24,12 +29,15 @@ namespace CozyHttpServer
             Get["/fnl"] = x =>
             {
                 string html = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><title>每天来点负能量</title></head><body>"
-                    + strline.ElementAt(r.Next(strline.Count() - 1))
+                    + strline1.ElementAt(r.Next(strline1.Count() - 1))
                     + "</body></html>";
-
-//                 Encoding gb2312 = Encoding.GetEncoding("gb2312");
-//                 byte[] b = Encoding.Default.GetBytes(strline.ElementAt(r.Next(strline.Count() - 1)));
-//                 string gb2312str = gb2312.GetString(b);
+                return html;
+            };
+            Get["/znl"] = x =>
+            {
+                string html = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><title>每天来点负能量</title></head><body>"
+                    + strline2.ElementAt(r.Next(strline2.Count() - 1))
+                    + "</body></html>";
                 return html;
             };
         }
