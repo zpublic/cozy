@@ -243,6 +243,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LearnLinq\RestrictionOperators.cs" />
+    <Compile Include="LearnLinq\SetOperators.cs" />
     <Compile Include="LearnThirdPartyPackagePlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
