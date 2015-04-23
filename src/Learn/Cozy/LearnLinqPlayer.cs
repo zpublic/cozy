@@ -24,6 +24,7 @@ namespace Cozy
             LearnLinq.QueryExecution.Cozy();
             LearnLinq.JoinOperators.Cozy();
             LearnLinq.AggregateOperators.Cozy();
+            LearnLinq.CustomSequenceOperators.Cozy();
         }
     }
 }

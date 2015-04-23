@@ -234,8 +234,10 @@
     <Compile Include="LearnLinqPlayer.cs" />
     <Compile Include="LearnLinq\AggregateOperators.cs" />
     <Compile Include="LearnLinq\ConversionOperators.cs" />
+    <Compile Include="LearnLinq\CustomSequenceOperators.cs" />
     <Compile Include="LearnLinq\Details\Compare\AnagramEqualityComparer.cs" />
     <Compile Include="LearnLinq\Details\Compare\CaseInsensitiveComparer.cs" />
+    <Compile Include="LearnLinq\Details\CustomSequenceOperatorsExt.cs" />
     <Compile Include="LearnLinq\Details\ObjectDumper.cs" />
     <Compile Include="LearnLinq\Details\PublicData.cs" />
     <Compile Include="LearnLinq\ElementOperators.cs" />
