@@ -21,7 +21,6 @@ namespace Cozy.LearnLinq
             self.Linq51();
             self.Linq52();
             self.Linq53();
-            Console.ReadKey();
         }
 
         public void Linq46()
