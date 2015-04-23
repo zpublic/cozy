@@ -11,6 +11,7 @@ namespace Cozy
         public static void RestrictionOperators()
         {
             LearnLinq.RestrictionOperators.Cozy();
+            LearnLinq.ProjectionOperators.Cozy();
         }
     }
 }

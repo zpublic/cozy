@@ -233,6 +233,9 @@
     <Compile Include="LearnFoundation\G\G6XmlLINQ.cs" />
     <Compile Include="LearnLinqPlayer.cs" />
     <Compile Include="LearnLinq\Details\PublicData.cs" />
+    <Compile Include="LearnLinq\ProjectionOperators.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="LearnLinq\RestrictionOperators.cs" />
     <Compile Include="LearnThirdPartyPackagePlayer.cs" />
     <Compile Include="Program.cs" />
