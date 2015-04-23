@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Cozy.LearnLinq.Details
 {
@@ -47,6 +48,15 @@ namespace Cozy.LearnLinq.Details
                 createLists();
 
             return productList;
+        }
+
+        private List<Customer> customerList;
+        public List<Customer> GetCustomerList()
+        {
+            if (customerList == null)
+                createLists();
+
+            return customerList;
         }
 
         private void createLists()
@@ -132,6 +142,32 @@ namespace Cozy.LearnLinq.Details
                     new Product { ProductID = 76, ProductName = "Lakkalikööri", Category = "Beverages", UnitPrice = 18.0000M, UnitsInStock = 57 },
                     new Product { ProductID = 77, ProductName = "Original Frankfurter grüne Soße", Category = "Condiments", UnitPrice = 13.0000M, UnitsInStock = 32 }
                 };
+
+            customerList = (
+                    from e in XDocument.Load(@"..\..\LearnLinq\Details\Customers.xml").
+                              Root.Elements("customer")
+                    select new Customer
+                    {
+                        CustomerID = (string)e.Element("id"),
+                        CompanyName = (string)e.Element("name"),
+                        Address = (string)e.Element("address"),
+                        City = (string)e.Element("city"),
+                        Region = (string)e.Element("region"),
+                        PostalCode = (string)e.Element("postalcode"),
+                        Country = (string)e.Element("country"),
+                        Phone = (string)e.Element("phone"),
+                        Fax = (string)e.Element("fax"),
+                        Orders = (
+                            from o in e.Elements("orders").Elements("order")
+                            select new Order
+                            {
+                                OrderID = (int)o.Element("id"),
+                                OrderDate = (DateTime)o.Element("orderdate"),
+                                Total = (decimal)o.Element("total")
+                            })
+                            .ToArray()
+                    })
+                    .ToList();
         }
     }
 }

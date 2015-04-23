@@ -22,6 +22,11 @@ namespace Cozy.LearnLinq
             self.Linq12();
             self.Linq13();
             self.Linq14();
+            self.Linq15();
+            self.Linq16();
+            self.Linq17();
+            self.Linq18();
+            self.Linq19();
         }
 
         public void Linq6()
@@ -160,6 +165,74 @@ namespace Cozy.LearnLinq
             {
                 Console.WriteLine("{0} is less than {1}", pair.a, pair.b);
             }
+        }
+
+        public void Linq15()
+        {
+            List<Customer> customers = PublicData.instance.GetCustomerList();
+
+            var orders =
+                from c in customers
+                from o in c.Orders
+                where o.Total < 500.00M
+                select new { c.CustomerID, o.OrderID, o.Total };
+
+            ObjectDumper.Write(orders);
+        }
+
+        public void Linq16()
+        {
+            List<Customer> customers = PublicData.instance.GetCustomerList();
+
+            var orders =
+                from c in customers
+                from o in c.Orders
+                where o.OrderDate >= new DateTime(1998, 1, 1)
+                select new { c.CustomerID, o.OrderID, o.OrderDate };
+
+            ObjectDumper.Write(orders);
+        }
+
+        public void Linq17()
+        {
+            List<Customer> customers = PublicData.instance.GetCustomerList();
+
+            var orders =
+                from c in customers
+                from o in c.Orders
+                where o.Total >= 2000.0M
+                select new { c.CustomerID, o.OrderID, o.Total };
+
+            ObjectDumper.Write(orders);
+        }
+
+        public void Linq18()
+        {
+            List<Customer> customers = PublicData.instance.GetCustomerList();
+
+            DateTime cutoffDate = new DateTime(1997, 1, 1);
+
+            var orders =
+                from c in customers
+                where c.Region == "WA"
+                from o in c.Orders
+                where o.OrderDate >= cutoffDate
+                select new { c.CustomerID, o.OrderID };
+
+            ObjectDumper.Write(orders);
+        }
+
+        public void Linq19()
+        {
+            List<Customer> customers = PublicData.instance.GetCustomerList();
+
+            var customerOrders =
+                customers.SelectMany(
+                    (cust, custIndex) =>
+                    cust.Orders.Select(o => "Customer #" + (custIndex + 1) +
+                                            " has an order with OrderID " + o.OrderID));
+
+            ObjectDumper.Write(customerOrders);
         }
     }
 }

@@ -251,6 +251,7 @@
     </Content>
     <Content Include="LearnCSharp\O\Details\cold_calling.txt" />
     <Content Include="LearnFoundation\G\Details\books.xml" />
+    <Content Include="LearnLinq\Details\Customers.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="LearnThirdPartyPackage\" />

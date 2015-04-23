@@ -71,6 +71,26 @@ namespace Cozy.LearnLinq
             }
         }
 
+        public void Linq4()
+        {
+            List<Customer> customers = PublicData.instance.GetCustomerList();
+
+            var waCustomers =
+                from cust in customers
+                where cust.Region == "WA"
+                select cust;
+
+            Console.WriteLine("Customers from Washington and their orders:");
+            foreach (var customer in waCustomers)
+            {
+                Console.WriteLine("Customer {0}: {1}", customer.CustomerID, customer.CompanyName);
+                foreach (var order in customer.Orders)
+                {
+                    Console.WriteLine("  Order {0}: {1}", order.OrderID, order.OrderDate);
+                }
+            }
+        }
+
         public void Linq5()
         {
             string[] digits = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
