@@ -245,6 +245,7 @@
     <Compile Include="LearnLinq\ProjectionOperators.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LearnLinq\Quantifiers.cs" />
     <Compile Include="LearnLinq\RestrictionOperators.cs" />
     <Compile Include="LearnLinq\SetOperators.cs" />
     <Compile Include="LearnThirdPartyPackagePlayer.cs" />

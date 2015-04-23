@@ -19,6 +19,7 @@ namespace Cozy
             LearnLinq.ConversionOperators.Cozy();
             LearnLinq.ElementOperators.Cozy();
             LearnLinq.GenerationOperators.Cozy();
+            LearnLinq.Quantifiers.Cozy();
         }
     }
 }
