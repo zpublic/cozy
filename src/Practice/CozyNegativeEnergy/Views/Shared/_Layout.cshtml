@@ -6,11 +6,63 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style type="text/css">
+        * {
+            margin: 0;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background-color: #000;
+        }
+
+        .wrapper {
+            min-height: 100%;
+            height: auto !important;
+            height: 100%;
+            margin: 0 auto -12px;
+        }
+
+        #container {
+            margin: 0 auto;
+            width: 750px;
+            padding-top: 32px;
+            overflow: hidden;
+        }
+
+        h2 {
+            color: #fff;
+            font-family: Consolas,'Andale Mono','Lucida Console','DejaVu Sans Mono',monospace;
+            font-size: 30px;
+            font-weight: normal;
+        }
+
+        #footer {
+            font-family: Consolas,'Andale Mono','Lucida Console','DejaVu Sans Mono',monospace;
+            font-size: 10px;
+            text-align: right;
+            color: #353535;
+            width: 750px;
+        }
+    </style>
 </head>
 <body>
-    @RenderBody()
-
+    <div class="wrapper">
+        <div id="container">
+            @RenderBody()
+        </div>
+    </div>
+    <div class="footer">
+        <div id="footer">
+            Supported by <img src="images/jetbrains-logo.png" title="JetBrains" />
+            Copyright (c) 2010 Andreas H&aring;kansson, Steven Robbins and contributors
+        </div>
+    </div>    
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
