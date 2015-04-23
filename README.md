@@ -37,6 +37,23 @@ Cozy
 >>>> H  - Dates, Times, and Time Zones  
 >>>> I  - Serialization  
 >>>
+>>> LearnLinq  
+>>>> Restriction Operators  
+>>>> Projection Operators  
+>>>> Partitioning Operators  
+>>>> Ordering Operators  
+>>>> Grouping Operators  
+>>>> Set Operators  
+>>>> Conversion Operators  
+>>>> Element Operators  
+>>>> Generation Operators  
+>>>> Quantifiers  
+>>>> Aggregate Operators  
+>>>> Miscellaneous Operators  
+>>>> Custom Sequence Operators   
+>>>> Query Execution  
+>>>> Join Operators  
+>>>
 >>> LearnThirdPartyPackage
 >>
 >> WpfCozy - WPF学习工程
@@ -103,7 +120,16 @@ Cozy
 >>
 >> CozyBlog - 简单博客  
 >>> 用ASP.NET MVC做一个简单的博客系统。  
-
+>>
+>> CozyDraw  
+>>> windows universal app版本的绘图（UML图？）工具  
+>>
+>> CozyHttpServer  
+>>> 基于Nancy的跨平台http服务端尝试  
+>>
+>> CozyNegativeEnergy  
+>>> 每天来点负能量，社交练级形式的负能量分享网站  
+>>
   
 交流QQ群
 --------------------------------
