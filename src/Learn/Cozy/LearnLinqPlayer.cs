@@ -16,6 +16,7 @@ namespace Cozy
             LearnLinq.OrderingOperators.Cozy();
             LearnLinq.GroupingOperators.Cozy();
             LearnLinq.SetOperators.Cozy();
+            LearnLinq.ConversionOperators.Cozy();
         }
     }
 }
