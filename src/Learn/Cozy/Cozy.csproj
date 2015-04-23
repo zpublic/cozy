@@ -7,8 +7,8 @@
     <ProjectGuid>{B195B4A4-9CEE-4742-8436-3E022EAAA157}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>cozy</RootNamespace>
-    <AssemblyName>cozy</AssemblyName>
+    <RootNamespace>Cozy</RootNamespace>
+    <AssemblyName>Cozy</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -231,6 +231,8 @@
     <Compile Include="LearnFoundation\G\G4XmlSerialization.cs" />
     <Compile Include="LearnFoundation\G\G5DifferentXMLObjects.cs" />
     <Compile Include="LearnFoundation\G\G6XmlLINQ.cs" />
+    <Compile Include="LearnLinqPlayer.cs" />
+    <Compile Include="LearnLinq\RestrictionOperators.cs" />
     <Compile Include="LearnThirdPartyPackagePlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

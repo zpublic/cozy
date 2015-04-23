@@ -14,9 +14,9 @@ namespace Cozy
             Console.WriteLine("hello cozy!");
             Console.WriteLine("===============================================");
 
-            PlayLearnCSharp();
-            PlayLearnFoundation();
-
+            //PlayLearnCSharp();
+            //PlayLearnFoundation();
+            PlayLearnLinq();
         }
 
         static void PlayLearnCSharp()
@@ -75,6 +75,11 @@ namespace Cozy
             LearnFoundationPlayer.E();
             LearnFoundationPlayer.F();
             LearnFoundationPlayer.G();
+        }
+
+        static void PlayLearnLinq()
+        {
+            LearnLinqPlayer.RestrictionOperators();
         }
     }
 }
