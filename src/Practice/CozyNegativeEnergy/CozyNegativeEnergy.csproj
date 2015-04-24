@@ -126,12 +126,37 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\creative\css\animate.min.css" />
+    <Content Include="Content\creative\css\bootstrap.css" />
+    <Content Include="Content\creative\css\bootstrap.min.css" />
+    <Content Include="Content\creative\css\creative.css" />
+    <Content Include="Content\creative\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\creative\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\creative\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\creative\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\creative\img\header.jpg" />
+    <Content Include="Content\creative\img\portfolio\1.jpg" />
+    <Content Include="Content\creative\img\portfolio\2.jpg" />
+    <Content Include="Content\creative\img\portfolio\3.jpg" />
+    <Content Include="Content\creative\img\portfolio\4.jpg" />
+    <Content Include="Content\creative\img\portfolio\5.jpg" />
+    <Content Include="Content\creative\img\portfolio\6.jpg" />
+    <Content Include="Content\creative\js\bootstrap.js" />
+    <Content Include="Content\creative\js\bootstrap.min.js" />
+    <Content Include="Content\creative\js\cbpAnimatedHeader.js" />
+    <Content Include="Content\creative\js\classie.js" />
+    <Content Include="Content\creative\js\creative.js" />
+    <Content Include="Content\creative\js\jquery.easing.min.js" />
+    <Content Include="Content\creative\js\jquery.fittext.js" />
+    <Content Include="Content\creative\js\jquery.js" />
+    <Content Include="Content\creative\js\wow.min.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -188,6 +213,44 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\creative\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\creative\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\creative\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\creative\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\creative\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\creative\font-awesome\less\animated.less" />
+    <Content Include="Content\creative\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Content\creative\font-awesome\less\core.less" />
+    <Content Include="Content\creative\font-awesome\less\fixed-width.less" />
+    <Content Include="Content\creative\font-awesome\less\font-awesome.less" />
+    <Content Include="Content\creative\font-awesome\less\icons.less" />
+    <Content Include="Content\creative\font-awesome\less\larger.less" />
+    <Content Include="Content\creative\font-awesome\less\list.less" />
+    <Content Include="Content\creative\font-awesome\less\mixins.less" />
+    <Content Include="Content\creative\font-awesome\less\path.less" />
+    <Content Include="Content\creative\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Content\creative\font-awesome\less\stacked.less" />
+    <Content Include="Content\creative\font-awesome\less\variables.less" />
+    <Content Include="Content\creative\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Content\creative\font-awesome\scss\_animated.scss" />
+    <Content Include="Content\creative\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Content\creative\font-awesome\scss\_core.scss" />
+    <Content Include="Content\creative\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Content\creative\font-awesome\scss\_icons.scss" />
+    <Content Include="Content\creative\font-awesome\scss\_larger.scss" />
+    <Content Include="Content\creative\font-awesome\scss\_list.scss" />
+    <Content Include="Content\creative\font-awesome\scss\_mixins.scss" />
+    <Content Include="Content\creative\font-awesome\scss\_path.scss" />
+    <Content Include="Content\creative\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Content\creative\font-awesome\scss\_stacked.scss" />
+    <Content Include="Content\creative\font-awesome\scss\_variables.scss" />
+    <Content Include="Content\creative\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\creative\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\creative\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\creative\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\creative\less\creative.less" />
+    <Content Include="Content\creative\less\mixins.less" />
+    <Content Include="Content\creative\less\variables.less" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -215,10 +278,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -242,7 +305,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>64229</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:62627/</IISUrl>
+          <IISUrl>http://localhost:64229/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
