@@ -7,13 +7,14 @@ using System.ComponentModel;
 using System.Windows.Input;
 using CozyWifi.Command;
 using System.Windows;
+using System.Runtime.InteropServices;
 
 namespace CozyWifi.ViewModel
 {
     public class MainWindowViewModel : BaseViewModel
     {
         #region Property
-        private bool isWifiOpened;
+        private bool isWifiOpened = false;
         public bool IsWifiOpened
         {
             get
@@ -22,33 +23,33 @@ namespace CozyWifi.ViewModel
             }
             set
             {
-                Set(ref isWifiOpened, value, "WifiOpened");
+                Set(ref isWifiOpened, value, "IsWifiOpened");
             }
         }
 
-        private string userName;
-        public string UserName
+        private string username;
+        public string Username
         {
             get
             {
-                return userName;
+                return username;
             }
             set
             {
-                Set(ref userName, value, "UserName");
+                Set(ref username, value, "Username");
             }
         }
 
-        private string passWord;
-        public string PassWord
+        private string password;
+        public string Password
         {
             get
             {
-                return passWord;
+                return password;
             }
             set
             {
-                Set(ref passWord, value, "PassWord");
+                Set(ref password, value, "Password");
             }
         }
         #endregion
@@ -68,20 +69,32 @@ namespace CozyWifi.ViewModel
         public MainWindowViewModel()
         {
             this.PropertyChanged += PropertyChangedEvent;
-            this.TestData();
         }
 
         private void PropertyChangedEvent(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "WifiOpened")
+            if (e.PropertyName == "IsWifiOpened")
             {
-
+                // 由于是先改变值再触发事件 所以当事件触发时 当前状态应该是已经更改过的状态
+                if(IsWifiOpened)
+                {
+                    StartWifi();
+                }
+                else
+                {
+                    StopWifi();
+                }
             }
         }
 
-        private void TestData()
+        private void StartWifi()
         {
+            MessageBox.Show("Start Wifi");
+        }
 
+        private void StopWifi()
+        {
+            MessageBox.Show("Stop Wifi");
         }
     }
 }

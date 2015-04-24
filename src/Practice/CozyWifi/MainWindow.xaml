@@ -20,15 +20,15 @@
     <DockPanel>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
             <StackPanel Orientation="Horizontal" Margin="5">
-                <Label Content="UserName：" MinWidth="100"/>
-                <TextBox Height="24" Width="200" Text="{Binding UserName, Mode=TwoWay}"></TextBox>
+                <Label Content="Wifi名称 ：" MinWidth="100"/>
+                <TextBox Height="24" Width="200" Text="{Binding Username, Mode=TwoWay}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
-                <Label Content="PassWrod：" MinWidth="100" />
-                <TextBox Height="24" Width="200" Text="{Binding PassWord, Mode=TwoWay}"></TextBox>
+                <Label Content="Wifi密码 ：" MinWidth="100" />
+                <TextBox Height="24" Width="200" Text="{Binding Password, Mode=TwoWay}"></TextBox>
             </StackPanel>
-            <Button Margin="5" Height="24" Command="{Binding SwitchStateCommand}" 
-                    Content="{Binding IsWifiOpened, Mode=TwoWay}"></Button>
+            <Button Margin="5" Height="24" Command="{Binding SwitchStateCommand}"
+                    Content="{Binding IsWifiOpened, Mode=TwoWay, Converter={StaticResource StateConvert}}"></Button>
         </StackPanel>
     </DockPanel>
 </Control:MetroWindow>
