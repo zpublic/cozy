@@ -29,6 +29,7 @@
             </StackPanel>
             <Button Margin="5" Height="24" Command="{Binding SwitchStateCommand}"
                     Content="{Binding IsWifiOpened, Mode=TwoWay, Converter={StaticResource StateConvert}}"></Button>
+            <TextBlock Text="{Binding Message}"></TextBlock>
         </StackPanel>
     </DockPanel>
 </Control:MetroWindow>

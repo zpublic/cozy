@@ -8,6 +8,7 @@ using System.Windows.Input;
 using CozyWifi.Command;
 using System.Windows;
 using System.Runtime.InteropServices;
+using CozyWifi.Operator;
 
 namespace CozyWifi.ViewModel
 {
@@ -27,7 +28,7 @@ namespace CozyWifi.ViewModel
             }
         }
 
-        private string username;
+        private string username = "";
         public string Username
         {
             get
@@ -40,7 +41,7 @@ namespace CozyWifi.ViewModel
             }
         }
 
-        private string password;
+        private string password = "";
         public string Password
         {
             get
@@ -52,6 +53,20 @@ namespace CozyWifi.ViewModel
                 Set(ref password, value, "Password");
             }
         }
+
+        private string message;
+        public string Message
+        {
+            get
+            {
+                return message;
+            }
+            set
+            {
+                Set(ref message, value, "Message");
+            }
+        }
+
         #endregion
 
         #region Command
@@ -60,7 +75,33 @@ namespace CozyWifi.ViewModel
         {
             get
             {
-                return switchStateCommand = switchStateCommand ?? new DelegateCommand(x => IsWifiOpened = !IsWifiOpened);
+                return switchStateCommand = switchStateCommand ?? new DelegateCommand(x =>
+                    {
+                        if(IsWifiOpened)
+                        {
+                            StopWifi();
+                        }
+                        else
+                        {
+                            string user = Username.Trim();
+                            string pass = Password.Trim();
+                            if (user.Length == 0)
+                            {
+                                Message = "请输入名称";
+                                return;
+                            }
+                            else if (pass.Length < 8)
+                            {
+                                Message = "密码长度必须大于8";
+                                return;
+                            }
+                            else
+                            {
+                                StartWifi();
+                            }
+                        }
+                        IsWifiOpened = !IsWifiOpened;
+                    });
             }
         }
 
@@ -87,14 +128,29 @@ namespace CozyWifi.ViewModel
             }
         }
 
+        private IWifiOperator wifiOperator;
+        public IWifiOperator WifiOperator
+        {
+            get
+            {
+                return wifiOperator = wifiOperator ?? new WifiOperatorCommand();
+            }
+        }
+
         private void StartWifi()
         {
-            MessageBox.Show("Start Wifi");
+            Message = "正在启动Wifi";
+            WifiOperator.StopWifi();
+            WifiOperator.SetWifiProperty(Username, Password);
+            WifiOperator.StartWifi();
+            Message = "Wifi已启动";
         }
 
         private void StopWifi()
         {
-            MessageBox.Show("Stop Wifi");
+            Message = "正在停止Wifi";
+            WifiOperator.StopWifi();
+            Message = "Wifi已停止";
         }
     }
 }
