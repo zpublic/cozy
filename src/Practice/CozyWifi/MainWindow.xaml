@@ -1,0 +1,36 @@
+﻿<Control:MetroWindow x:Class="CozyWifi.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Control="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:viewmodel="clr-namespace:CozyWifi.ViewModel"
+        xmlns:convert="clr-namespace:CozyWifi.Convert"
+        Title="CozyWifi" Height="200" Width="400">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <convert:BooleanToOpenStateConverter x:Key="StateConvert"></convert:BooleanToOpenStateConverter>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Control:MetroWindow.DataContext>
+        <viewmodel:MainWindowViewModel x:Name="ViewModel"/>
+    </Control:MetroWindow.DataContext>
+    <DockPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="Wifi名称 ：" MinWidth="100"/>
+                <TextBox Height="24" Width="200" Text="{Binding Username, Mode=TwoWay}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="Wifi密码 ：" MinWidth="100" />
+                <TextBox Height="24" Width="200" Text="{Binding Password, Mode=TwoWay}"></TextBox>
+            </StackPanel>
+            <Button Margin="5" Height="24" Command="{Binding SwitchStateCommand}"
+                    Content="{Binding IsWifiOpened, Mode=TwoWay, Converter={StaticResource StateConvert}}"
+                    IsEnabled="{Binding IsAdmin}"></Button>
+            <TextBlock Text="{Binding Message}"></TextBlock>
+        </StackPanel>
+    </DockPanel>
+</Control:MetroWindow>
