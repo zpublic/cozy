@@ -67,6 +67,8 @@ namespace CozyWifi.ViewModel
             }
         }
 
+        public bool IsAdmin { get; private set; }
+
         #endregion
 
         #region Command
@@ -144,6 +146,14 @@ namespace CozyWifi.ViewModel
             {
                 IsWifiOpened = false;
                 Message = "Wifi未启动";
+            }
+
+            System.Security.Principal.WindowsIdentity wid = System.Security.Principal.WindowsIdentity.GetCurrent();
+            System.Security.Principal.WindowsPrincipal printcipal = new System.Security.Principal.WindowsPrincipal(wid);
+            IsAdmin = (printcipal.IsInRole(System.Security.Principal.WindowsBuiltInRole.Administrator));
+            if (!IsAdmin)
+            {
+                Message = "请用管理员权限运行";
             }
         }
 

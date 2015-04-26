@@ -28,7 +28,8 @@
                 <TextBox Height="24" Width="200" Text="{Binding Password, Mode=TwoWay}"></TextBox>
             </StackPanel>
             <Button Margin="5" Height="24" Command="{Binding SwitchStateCommand}"
-                    Content="{Binding IsWifiOpened, Mode=TwoWay, Converter={StaticResource StateConvert}}"></Button>
+                    Content="{Binding IsWifiOpened, Mode=TwoWay, Converter={StaticResource StateConvert}}"
+                    IsEnabled="{Binding IsAdmin}"></Button>
             <TextBlock Text="{Binding Message}"></TextBlock>
         </StackPanel>
     </DockPanel>
