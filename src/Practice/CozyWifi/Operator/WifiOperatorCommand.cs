@@ -28,7 +28,15 @@ namespace CozyWifi.Operator
             ExecuteCmd(command);
         }
 
-        private void ExecuteCmd(string command)
+        public bool WifiStateQuery()
+        {
+            string command = @"netsh wlan show hostednetwork";
+            string request = ExecuteCmd(command).Replace(" ","");
+            string result = request.Substring(request.LastIndexOf("状态:") + 3, 3);
+            return result == "已启动";
+        }
+
+        private string ExecuteCmd(string command)
         {
             ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
 
@@ -43,13 +51,13 @@ namespace CozyWifi.Operator
             cmdProcess.StartInfo = cmdStartInfo;
             cmdProcess.EnableRaisingEvents = true;
             cmdProcess.Start();
-            cmdProcess.BeginOutputReadLine();
-            cmdProcess.BeginErrorReadLine();
 
             cmdProcess.StandardInput.WriteLine(command);
             cmdProcess.StandardInput.WriteLine("exit");
 
+            string result = cmdProcess.StandardOutput.ReadToEnd();
             cmdProcess.WaitForExit();
+            return result;
         }
     }
 }

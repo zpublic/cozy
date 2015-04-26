@@ -11,5 +11,6 @@ namespace CozyWifi.Operator
         void StartWifi();
         void StopWifi();
         void SetWifiProperty(string name, string password);
+        bool WifiStateQuery();
     }
 }

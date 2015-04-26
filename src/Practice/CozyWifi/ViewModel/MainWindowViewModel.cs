@@ -80,6 +80,16 @@ namespace CozyWifi.ViewModel
                         if(IsWifiOpened)
                         {
                             StopWifi();
+                            bool result = WifiOperator.WifiStateQuery();
+                            if (result)
+                            {
+                                Message = "Wifi停止失败";
+                            }
+                            else
+                            {
+                                Message = "Wifi已停止";
+                                IsWifiOpened = false;
+                            }
                         }
                         else
                         {
@@ -98,9 +108,18 @@ namespace CozyWifi.ViewModel
                             else
                             {
                                 StartWifi();
+                                bool result = WifiOperator.WifiStateQuery();
+                                if(result)
+                                {
+                                    IsWifiOpened = true;
+                                    Message = "Wifi已启动";
+                                }
+                                else
+                                {
+                                    Message = "Wifi启动失败";
+                                }
                             }
                         }
-                        IsWifiOpened = !IsWifiOpened;
                     });
             }
         }
@@ -110,21 +129,29 @@ namespace CozyWifi.ViewModel
         public MainWindowViewModel()
         {
             this.PropertyChanged += PropertyChangedEvent;
+            InitWifiState();
+        }
+
+        private void InitWifiState()
+        {
+            bool result = WifiOperator.WifiStateQuery();
+            if(result)
+            {
+                IsWifiOpened = true;
+                Message = "Wifi已启动";
+            }
+            else
+            {
+                IsWifiOpened = false;
+                Message = "Wifi未启动";
+            }
         }
 
         private void PropertyChangedEvent(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "IsWifiOpened")
             {
-                // 由于是先改变值再触发事件 所以当事件触发时 当前状态应该是已经更改过的状态
-                if(IsWifiOpened)
-                {
-                    StartWifi();
-                }
-                else
-                {
-                    StopWifi();
-                }
+
             }
         }
 
@@ -143,14 +170,12 @@ namespace CozyWifi.ViewModel
             WifiOperator.StopWifi();
             WifiOperator.SetWifiProperty(Username, Password);
             WifiOperator.StartWifi();
-            Message = "Wifi已启动";
         }
 
         private void StopWifi()
         {
             Message = "正在停止Wifi";
             WifiOperator.StopWifi();
-            Message = "Wifi已停止";
         }
     }
 }
