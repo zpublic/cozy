@@ -8,7 +8,7 @@ namespace CozyKxlol.Network
 {
     public class GameServer
     {
-        private NetworkSession mSession = null;
+        public NetworkSession mSession = null;
         public bool CreateServer()
         {
             mSession = NetworkSession.Create(NetworkSessionType.SystemLink, 4, 16);
@@ -19,13 +19,9 @@ namespace CozyKxlol.Network
             return true;
         }
 
-        public void Update()
-        {
-            mSession.Update();
-        }
-
         void GamerJoined(object sender, GamerJoinedEventArgs e)
         {
+
             DebugHelper.Print("GameServer GamerJoined");
         }
 
