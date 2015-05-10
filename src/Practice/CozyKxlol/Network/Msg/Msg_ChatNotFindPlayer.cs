@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CozyKxlol.Network.Common.Msg
+namespace CozyKxlol.Network.Msg
 {
     public class Msg_ChatNotFindPlayer : MsgBase
     {

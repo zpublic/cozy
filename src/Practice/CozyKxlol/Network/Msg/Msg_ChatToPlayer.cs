@@ -4,13 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CozyKxlol.Network.Common.Msg
+namespace CozyKxlol.Network.Msg
 {
-    public class Msg_ChatToAll : MsgBase
+    public class Msg_ChatToPlayer : MsgBase
     {
-        public Msg_ChatToAll()
-            : base(MsgId.ChatToAll)
+        public Msg_ChatToPlayer()
+            : base(MsgId.ChatToPlayer)
         {
+        }
+
+        public String ChatTo
+        {
+            set;
+            get;
         }
 
         public String ChatText
@@ -21,6 +27,7 @@ namespace CozyKxlol.Network.Common.Msg
 
         override public PacketWriter GetPacket()
         {
+            mPacketWriter.Write(ChatTo);
             mPacketWriter.Write(ChatText);
             return mPacketWriter;
         }
