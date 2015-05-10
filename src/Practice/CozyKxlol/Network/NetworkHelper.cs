@@ -9,41 +9,79 @@ namespace CozyKxlol.Network
 {
     public class NetworkHelper
     {
-        GameServer server = null;
-        GameClient client = null;
+        GameServer server = new GameServer();
+        GameClient client = new GameClient();
         GamerServices gamerServices = null;
         PacketWriter writer = new PacketWriter();
         PacketReader reader = new PacketReader();
+
+        private NetworkState.Status netState = NetworkState.Status.alone;
 
         public void Init(Game game)
         {
             gamerServices = new GamerServices();
             gamerServices.Init(game);
+        }
 
-            client = new GameClient();
-            if (client.FindServer())
+        public bool CreateServer()
+        {
+            if (netState == NetworkState.Status.alone)
             {
-                DebugHelper.Print("FindServer");
+                if (server.CreateServer())
+                {
+                    netState = NetworkState.Status.server;
+                    return true;
+                }
             }
-            else
+            return false;
+        }
+
+        public bool FindServer()
+        {
+            if (netState == NetworkState.Status.alone)
             {
-                server = new GameServer();
-                server.CreateServer();
+                if (client.FindServer())
+                {
+                    netState = NetworkState.Status.client;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void DisConnect()
+        {
+            switch (netState)
+            {
+                case NetworkState.Status.client:
+                    if (client.mSession != null)
+                    {
+                        client.mSession.Dispose();
+                        client.mSession = null;
+                    }
+                    break;
+                case NetworkState.Status.server:
+                    if (server.mSession != null)
+                    {
+                        server.mSession.Dispose();
+                        server.mSession = null;
+                    }
+                    break;
             }
         }
 
         public void Update()
         {
             NetworkSession session = null;
-            if (server != null)
+            switch (netState)
             {
-                session = server.mSession;
+                case NetworkState.Status.client:
+                    session = client.mSession;
+                    break;
+                case NetworkState.Status.server:
+                    session = server.mSession;
+                    break;
             }
-            else if (client != null)
-            {
-                session = client.mSession;
-            }
-
             if (session != null)
             {
                 SendData(session);

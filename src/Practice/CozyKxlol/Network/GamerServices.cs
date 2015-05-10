@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CozyKxlol.Network
 {
-    public class GamerServices
+    class GamerServices
     {
         public enum Status
         {

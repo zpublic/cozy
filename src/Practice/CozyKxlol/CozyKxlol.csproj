@@ -49,6 +49,7 @@
     <Compile Include="Network\GamerServices.cs" />
     <Compile Include="Network\GameServer.cs" />
     <Compile Include="Network\NetworkHelper.cs" />
+    <Compile Include="Network\NetworkState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
