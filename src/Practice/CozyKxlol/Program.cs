@@ -14,8 +14,13 @@ namespace CozyKxlol
         [STAThread]
         static void Main()
         {
+            DebugHelper.ShowDebugPrint();
+            DebugHelper.Print("Cozy!");
+
             using (var game = new KxlolGame())
                 game.Run();
+
+            DebugHelper.HideDebugPrint();
         }
     }
 #endif
