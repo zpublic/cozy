@@ -40,19 +40,26 @@
   <ItemGroup>
     <Compile Include="DebugHelper.cs" />
     <Compile Include="KxlolGame.cs" />
-    <Compile Include="Network\Client\GameClient.cs" />
-    <Compile Include="Network\Server\GameServer.cs" />
+    <Compile Include="Network\GameClient.cs" />
+    <Compile Include="Network\Common\Msg\MsgBase.cs" />
+    <Compile Include="Network\Common\Msg\MsgId.cs" />
+    <Compile Include="Network\Common\Msg\Msg_ChatNotFindPlayer.cs" />
+    <Compile Include="Network\Common\Msg\Msg_ChatToPlayer.cs" />
+    <Compile Include="Network\Common\Msg\Msg_ChatToAll.cs" />
+    <Compile Include="Network\GamerServices.cs" />
+    <Compile Include="Network\GameServer.cs" />
+    <Compile Include="Network\NetworkHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.4.0.456, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework.Net, Version=3.4.0.456, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.Net.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsGL\MonoGame.Framework.Net.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK">
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows\OpenTK.dll</HintPath>
@@ -66,9 +73,7 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Network\Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">
     <CreateProperty Value="$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows;$(AssemblySearchPaths)">

@@ -4,29 +4,34 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Net;
 
-namespace CozyKxlol.Network.Server
+namespace CozyKxlol.Network
 {
     public class GameServer
     {
         private NetworkSession mSession = null;
         public bool CreateServer()
         {
-            mSession = NetworkSession.Create(NetworkSessionType.SystemLink, 1, 4);
-            mSession.AllowHostMigration = true;
+            mSession = NetworkSession.Create(NetworkSessionType.SystemLink, 4, 16);
+            mSession.AllowHostMigration = false;
             mSession.AllowJoinInProgress = false;
             mSession.GamerJoined += GamerJoined;
             mSession.GamerLeft += GamerLeft;
             return true;
         }
 
+        public void Update()
+        {
+            mSession.Update();
+        }
+
         void GamerJoined(object sender, GamerJoinedEventArgs e)
         {
-            DebugHelper.Print("GamerJoined");
+            DebugHelper.Print("GameServer GamerJoined");
         }
 
         void GamerLeft(object sender, GamerLeftEventArgs e)
         {
-            DebugHelper.Print("GamerLeft");
+            DebugHelper.Print("GameServer GamerLeft");
         }
     }
 }

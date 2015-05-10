@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CozyKxlol.Network;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -11,6 +13,7 @@ namespace CozyKxlol
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        NetworkHelper network;
 
         public KxlolGame()
         {
@@ -28,7 +31,8 @@ namespace CozyKxlol
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            network = new NetworkHelper();
+            network.Init(this);
 
             base.Initialize();
         }
@@ -64,7 +68,7 @@ namespace CozyKxlol
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            network.Update();
 
             base.Update(gameTime);
         }
