@@ -39,7 +39,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DebugHelper.cs" />
+    <Compile Include="Engine\CozyAnimation.cs" />
+    <Compile Include="Engine\CozyDirector.cs" />
+    <Compile Include="Engine\CozyGame.cs" />
+    <Compile Include="Engine\CozyLabel.cs" />
+    <Compile Include="Engine\CozyLayer.cs" />
+    <Compile Include="Engine\CozyLayerColor.cs" />
+    <Compile Include="Engine\CozyNode.cs" />
+    <Compile Include="Engine\CozyScene.cs" />
+    <Compile Include="Engine\CozySprite.cs" />
+    <Compile Include="Kxlol\Scene\WelcomeScene.cs" />
     <Compile Include="KxlolGame.cs" />
+    <Compile Include="Kxlol\Scene\WelcomeSceneLayer.cs" />
     <Compile Include="Network\GameClient.cs" />
     <Compile Include="Network\Msg\MsgBase.cs" />
     <Compile Include="Network\Msg\MsgId.cs" />
