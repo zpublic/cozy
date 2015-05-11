@@ -5,6 +5,7 @@ using System.Text;
 using CozyKxlol.Kxlol.Object;
 using CozyKxlol.Engine;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Starbound.Input;
 using Starbound.UI.Resources;
@@ -25,35 +26,68 @@ namespace CozyKxlol.Kxlol.Scene
         StackPanel panel;
         XNARenderer renderer;
         NetClientHelper client = new NetClientHelper();
+        public CozyCircle Player = null;
 
         public BallGameSceneLayer()
         {
             keyboard = new KeyboardEvents();
             keyboard.KeyPressed += (sender, e) =>
             {
-                sdbg = String.Format("Key Pressed: " + e.Key + " Modifiers: " + e.Modifiers);
+                switch(e.Key)
+                {
+                    case Keys.W:
+                        Player.Direction += new Vector2(0.0f, -0.1f);
+                        break;
+                    case Keys.S:
+                        Player.Direction += new Vector2(0.0f, 0.1f);
+                        break;
+                    case Keys.A:
+                        Player.Direction += new Vector2(-0.1f, 0.0f);
+                        break;
+                    case Keys.D:
+                        Player.Direction += new Vector2(0.1f, 0.0f);
+                        break;
+                    default:
+                        sdbg = String.Format("Key Pressed: " + e.Key + " Modifiers: " + e.Modifiers);
+                        break;
+                }
             };
             keyboard.KeyReleased += (sender, e) =>
             {
-                sdbg = String.Format("Key Released: " + e.Key + " Modifiers: " + e.Modifiers);
+                switch (e.Key)
+                {
+                    case Keys.W:
+                        break;
+                    case Keys.S:
+                        break;
+                    case Keys.A:
+                        break;
+                    case Keys.D:
+                        break;
+                    default:
+                        sdbg = String.Format("Key Released: " + e.Key + " Modifiers: " + e.Modifiers);
+                        break;
+                }
             };
 
             mouse = new MouseEvents();
             mouse.ButtonClicked += MouseEvents_ButtonClicked;
 
-            var circle1 = new CozyCircle(new Vector2(300.0f, 300.0f), 20.0f, Color.Red, new Vector2(20.0f, 0.0f));
-            var circle2 = new CozyCircle(new Vector2(400.0f, 300.0f), 20.0f, Color.Blue, new Vector2(0.0f, 20.0f));
-            var circle3 = new CozyCircle(new Vector2(500.0f, 300.0f), 20.0f, Color.Green, new Vector2(-20.0f, 20.0f));
+            var circle1 = new CozyCircle(new Vector2(300.0f, 300.0f), 20.0f, Color.Red, new Vector2(1.0f, 0.0f));
+            var circle2 = new CozyCircle(new Vector2(400.0f, 300.0f), 20.0f, Color.Blue, new Vector2(0.0f, 1.0f));
+            var circle3 = new CozyCircle(new Vector2(500.0f, 300.0f), 20.0f, Color.Green, new Vector2(-1.0f, 1.0f));
             var circle4 = new CozyCircle(
                 new Vector2(500.0f, 200.0f),
                 50.0f,
                 CozyCircle.RandomColor(),
-                new Vector2(-20.0f, 20.0f));
+                new Vector2(-1.0f, 1.0f));
 
             CircleList.Add(circle1);
             CircleList.Add(circle2);
             CircleList.Add(circle3);
             CircleList.Add(circle4);
+
+            Player = circle4;
 
             renderer = new XNARenderer();
             controls = new List<Control>();

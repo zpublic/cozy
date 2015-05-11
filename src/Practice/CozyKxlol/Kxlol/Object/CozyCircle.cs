@@ -27,15 +27,25 @@ namespace CozyKxlol.Kxlol.Object
             }
             set
             {
-                _Direction = value;
-                if (Math.Abs(_Direction.X) < 0.00005f && Math.Abs(_Direction.Y) < 0.00005f)
+                if (Math.Abs(value.X) < 0.00005f && Math.Abs(value.Y) < 0.00005f)
                 {
                     IsMoveing = false;
                 }
                 else
                 {
                     IsMoveing = true;
+                    _Direction = new Vector2(value.X > 1.0f ? 1.0f : value.X, value.Y > 1.0f ? 1.0f : value.Y);
                 }
+            }
+        }
+
+        public const float BaseSpeed = 20.0f;
+        public const float FloatSpeed = 200.0f;
+        public float Speed
+        {
+            get
+            {
+                return BaseSpeed + FloatSpeed / Radius;
             }
         }
 
@@ -91,11 +101,10 @@ namespace CozyKxlol.Kxlol.Object
         public void Move(GameTime gameTime)
         {
             float timeDelta     = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position            += Direction * timeDelta;
+            Position            += Direction * timeDelta * Speed;
         }
 
         static Random ColorRandom = new Random();
-
         public static Color RandomColor()
         {
             ushort color = (ushort)ColorRandom.Next(0xffffff);
