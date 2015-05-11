@@ -7,6 +7,10 @@ using CozyKxlol.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Starbound.Input;
+using Starbound.UI.Resources;
+using Starbound.UI.Controls;
+using Starbound.UI.XNA.Resources;
+using Starbound.UI.XNA.Renderers;
 
 namespace CozyKxlol.Kxlol.Scene
 {
@@ -15,8 +19,10 @@ namespace CozyKxlol.Kxlol.Scene
         List<CozyCircle> CircleList = new List<CozyCircle>();
         KeyboardEvents keyboard;
         String sdbg;
-
         MouseEvents mouse;
+        List<Control> controls;
+        StackPanel panel;
+        XNARenderer renderer;
 
         public BallGameSceneLayer()
         {
@@ -46,13 +52,45 @@ namespace CozyKxlol.Kxlol.Scene
             CircleList.Add(circle2);
             CircleList.Add(circle3);
             CircleList.Add(circle4);
+
+            renderer = new XNARenderer();
+            controls = new List<Control>();
+            panel = new StackPanel() { Orientation = Orientation.Horizontal, ActualWidth = 1280, ActualHeight = 800 };
+            panel.UpdateLayout();
         }
 
+        private Random random = new Random();
         void MouseEvents_ButtonClicked(object sender, MouseButtonEventArgs e)
         {
             if (e.Button == MouseButton.Left)
             {
-                sdbg = "lbtn click";
+                string text = "";
+                for (int index = 0; index < 10; index++)
+                {
+                    text += (char)random.Next(65, 105);
+                }
+
+                panel.AddChild(new Starbound.UI.Controls.Rectangle()
+                {
+                    PreferredHeight = random.Next(20) + 10,
+                    PreferredWidth = random.Next(20) + 10,
+                    Margin = new Starbound.UI.Thickness(3, 3, 0, 0),
+                    Color = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble())
+                });
+            }
+            else if (e.Button == MouseButton.Right)
+            {
+                panel.AddChild(new Starbound.UI.Controls.Button()
+                {
+                    PreferredHeight = random.Next(50) + 50,
+                    PreferredWidth = random.Next(50) + 50,
+                    Margin = new Starbound.UI.Thickness(3, 3, 0, 0),
+                    Font = Starbound.UI.Application.ResourceManager.GetResource<IFontResource>("Font"),
+                    Content = "hehe",
+                    Background = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble()),
+                    Foreground = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble())
+                });
+                panel.Orientation = panel.Orientation == Orientation.Horizontal ? Orientation.Veritical : Orientation.Horizontal;
             }
         }
 
@@ -86,6 +124,18 @@ namespace CozyKxlol.Kxlol.Scene
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            spriteBatch.End();
+            foreach (Control control in controls)
+            {
+                renderer.Render(control, spriteBatch);
+            }
+
+            foreach (Control control in panel.Children)
+            {
+                renderer.Render(control, spriteBatch);
+            }
+            spriteBatch.Begin();
+
             foreach (var obj in CircleList)
             {
                 obj.Draw(gameTime, spriteBatch);

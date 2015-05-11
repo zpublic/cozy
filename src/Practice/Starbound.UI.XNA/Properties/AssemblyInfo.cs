@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CozyKxlol.Gui")]
+[assembly: AssemblyTitle("Starbound.UI.XNA")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CozyKxlol.Gui")]
+[assembly: AssemblyProduct("Starbound.UI.XNA")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d94ad6a9-018a-4441-a619-a973f31953a7")]
+[assembly: Guid("f0411617-1629-4bb0-961f-5cafa77f982e")]
 
 // Version information for an assembly consists of the following four values:
 //

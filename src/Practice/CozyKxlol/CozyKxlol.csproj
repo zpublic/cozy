@@ -82,6 +82,14 @@
       <Project>{69679010-74a0-4052-99fd-18389f883295}</Project>
       <Name>Starbound.Input</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Starbound.UI.XNA\Starbound.UI.XNA.csproj">
+      <Project>{3341b3ac-7ca4-4cd9-af6f-06e64cbf5f68}</Project>
+      <Name>Starbound.UI.XNA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Starbound.UI\Starbound.UI.csproj">
+      <Project>{0d0afbb1-1dfa-4062-a657-518abbb9efc9}</Project>
+      <Name>Starbound.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">
