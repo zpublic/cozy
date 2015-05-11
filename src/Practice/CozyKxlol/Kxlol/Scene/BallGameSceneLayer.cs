@@ -15,14 +15,20 @@ namespace CozyKxlol.Kxlol.Scene
 
         public BallGameSceneLayer()
         {
-            var circle1 = new CozyCircle(new Vector2(300.0f, 300.0f), 20.0f, Color.Red);
-            var circle2 = new CozyCircle(new Vector2(400.0f, 300.0f), 20.0f, Color.Blue);
+            var circle1 = new CozyCircle(new Vector2(300.0f, 300.0f), 20.0f, Color.Red, new Vector2(10.0f, 0.0f));
+            var circle2 = new CozyCircle(new Vector2(400.0f, 300.0f), 20.0f, Color.Blue, new Vector2(0.0f, 10.0f));
+            var circle3 = new CozyCircle(new Vector2(500.0f, 300.0f), 20.0f, Color.Green, new Vector2(-10.0f, 10.0f));
             CircleList.Add(circle1);
             CircleList.Add(circle2);
+            CircleList.Add(circle3);
         }
 
         public override void Update(GameTime gameTime)
         {
+            foreach (var obj in CircleList)
+            {
+                obj.Update(gameTime);
+            }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
