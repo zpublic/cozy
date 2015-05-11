@@ -16,17 +16,22 @@ namespace CozyKxlol.Kxlol.Scene
         KeyboardEvents keyboard;
         String sdbg;
 
+        MouseEvents mouse;
+
         public BallGameSceneLayer()
         {
-            keyboard = new KeyboardEvents(null);
-            KeyboardEvents.KeyPressed += (sender, e) =>
+            keyboard = new KeyboardEvents();
+            keyboard.KeyPressed += (sender, e) =>
             {
                 sdbg = String.Format("Key Pressed: " + e.Key + " Modifiers: " + e.Modifiers);
             };
-            KeyboardEvents.KeyReleased += (sender, e) =>
+            keyboard.KeyReleased += (sender, e) =>
             {
                 sdbg = String.Format("Key Released: " + e.Key + " Modifiers: " + e.Modifiers);
             };
+
+            mouse = new MouseEvents();
+            mouse.ButtonClicked += MouseEvents_ButtonClicked;
 
             var circle1 = new CozyCircle(new Vector2(300.0f, 300.0f), 20.0f, Color.Red, new Vector2(20.0f, 0.0f));
             var circle2 = new CozyCircle(new Vector2(400.0f, 300.0f), 20.0f, Color.Blue, new Vector2(0.0f, 20.0f));
@@ -43,9 +48,18 @@ namespace CozyKxlol.Kxlol.Scene
             CircleList.Add(circle4);
         }
 
+        void MouseEvents_ButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            if (e.Button == MouseButton.Left)
+            {
+                sdbg = "lbtn click";
+            }
+        }
+
         public override void Update(GameTime gameTime)
         {
             keyboard.Update(gameTime);
+            mouse.Update(gameTime);
             foreach (var obj in CircleList)
             {
                 obj.Update(gameTime);

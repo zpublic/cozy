@@ -11,26 +11,26 @@ namespace Starbound.Input
     /// An abstraction around keyboard input that turns XNA's underlying polling model into an event-based
     /// model for keyboard input.
     /// </summary>
-    public class KeyboardEvents : GameComponent
+    public class KeyboardEvents
     {
         /// <summary>
         /// Represents the amount of time between a key being pressed, and the time that key typed events
         /// start repeating. This is measured in milliseconds. The initial delay is traditionally 
         /// significantly longer than other delays. The default is 800 milliseconds.
         /// </summary>
-        public static int InitialDelay { get; set; }
+        public int InitialDelay { get; set; }
 
         /// <summary>
         /// Represents the amount of time delay between key typed events after the first repeat. This 
         /// "normal" repeat delay is typically much faster than the initial. The default is 50 milliseconds
         /// (20 times per second).
         /// </summary>
-        public static int RepeatDelay { get; set; }
+        public int RepeatDelay { get; set; }
 
         /// <summary>
         /// A list of key sequences that should be monitored and maintained.
         /// </summary>
-        private static List<KeySequence> keySequences;
+        private List<KeySequence> keySequences;
         
         /// <summary>
         /// Stores the last keyboard state from the previous update.
@@ -57,7 +57,7 @@ namespace Starbound.Input
         /// <summary>
         /// Sets up the class with defaults.
         /// </summary>
-        static KeyboardEvents()
+        public KeyboardEvents()
         {
             InitialDelay = 800;
             RepeatDelay = 50;
@@ -72,7 +72,7 @@ namespace Starbound.Input
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void KeyTypedHandler(object sender, KeyboardEventArgs e)
+        private void KeyTypedHandler(object sender, KeyboardEventArgs e)
         {
             foreach(KeySequence sequence in keySequences)
             {
@@ -81,19 +81,10 @@ namespace Starbound.Input
         }
 
         /// <summary>
-        /// Creates a new KeyboardEvents object.
-        /// </summary>
-        /// <param name="game"></param>
-        public KeyboardEvents(Game game)
-            : base(game)
-        {
-        }
-
-        /// <summary>
         /// Adds a KeySequence to the list of key sequences that are being monitored.
         /// </summary>
         /// <param name="keySequence"></param>
-        public static void AddKeySequence(KeySequence keySequence)
+        public void AddKeySequence(KeySequence keySequence)
         {
             keySequences.Add(keySequence);
         }
@@ -102,7 +93,7 @@ namespace Starbound.Input
         /// Removes a KeySequence from the list of key sequences that are being monitored.
         /// </summary>
         /// <param name="keySequence"></param>
-        public static void RemoveKeySequence(KeySequence keySequence)
+        public void RemoveKeySequence(KeySequence keySequence)
         {
             keySequences.Remove(keySequence);
         }
@@ -112,10 +103,8 @@ namespace Starbound.Input
         /// events as they happen.
         /// </summary>
         /// <param name="gameTime"></param>
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-
             KeyboardState current = Keyboard.GetState();
 
             // Build the modifiers that currently apply to the current situation.
@@ -188,12 +177,12 @@ namespace Starbound.Input
         /// <summary>
         /// An event that is raised when a key is first pressed.
         /// </summary>
-        public static event EventHandler<KeyboardEventArgs> KeyPressed;
+        public event EventHandler<KeyboardEventArgs> KeyPressed;
 
         /// <summary>
         /// An event that is raised when a key is released.
         /// </summary>
-        public static event EventHandler<KeyboardEventArgs> KeyReleased;
+        public event EventHandler<KeyboardEventArgs> KeyReleased;
 
         /// <summary>
         /// An event that is raised when a key is first pressed, and then periodically again afterwards
@@ -201,6 +190,6 @@ namespace Starbound.Input
         /// KeyboardEvents.InitialDelay, and then subsequent repeats happen at regular intervals as 
         /// determined by KeyboardEvents.RepeatDelay.
         /// </summary>
-        public static event EventHandler<KeyboardEventArgs> KeyTyped;
+        public event EventHandler<KeyboardEventArgs> KeyTyped;
     }
 }

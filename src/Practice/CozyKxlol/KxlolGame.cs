@@ -16,6 +16,7 @@ namespace CozyKxlol
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 600;
             Content.RootDirectory = "Content";
+            IsMouseVisible = true;
         }
 
         protected override void Initialize()

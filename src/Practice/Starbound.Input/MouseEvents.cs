@@ -11,7 +11,7 @@ namespace Starbound.Input
     /// An abstraction around mouse input that turns XNA's underlying polling model into an event-based
     /// model for mouse input.
     /// </summary>
-    public class MouseEvents : GameComponent
+    public class MouseEvents
     {
         /// <summary>
         /// Stores the previous mouse state for comparision later.
@@ -21,25 +21,25 @@ namespace Starbound.Input
         /// <summary>
         /// Stores information about when the last click was for the purposes of handling double clicks.
         /// </summary>
-        private static Dictionary<MouseButton, MouseButtonEventArgs> lastClicks;
+        private Dictionary<MouseButton, MouseButtonEventArgs> lastClicks;
 
         /// <summary>
         /// Stores information about when the last double click was for the purposes of handling triple
         /// clicks.
         /// </summary>
-        private static Dictionary<MouseButton, MouseButtonEventArgs> lastDoubleClicks;
+        private Dictionary<MouseButton, MouseButtonEventArgs> lastDoubleClicks;
 
         /// <summary>
         /// The maximum amount of time allowed between clicks for it to count as a double-click. Measured in
         /// milliseconds. Defaults to 300 milliseconds.
         /// </summary>
-        public static int DoubleClickTime { get; set; }
+        public int DoubleClickTime { get; set; }
 
         /// <summary>
         /// The maximum amount that the cursor can move (in pixels) and still count as a double-click.
         /// Defaults to 2.
         /// </summary>
-        public static int DoubleClickMaxMove { get; set; }
+        public int DoubleClickMaxMove { get; set; }
 
         /// <summary>
         /// Indicates whether a MouseMoved event is raised even when being dragged. If set to <code>false</code>,
@@ -49,26 +49,16 @@ namespace Starbound.Input
         /// only occur when a button is pressed. In this case, a MouseMoved and MouseDragged event will both
         /// be raised.
         /// </summary>
-        public static bool MoveRaisedOnDrag { get; set; } 
+        public bool MoveRaisedOnDrag { get; set; } 
 
         /// <summary>
         /// Sets defaults for the various mouse input settings.
         /// </summary>
-        static MouseEvents()
+        public MouseEvents()
         {
             DoubleClickTime = 300;
             DoubleClickMaxMove = 2;
-            MoveRaisedOnDrag = true;
-        }
-
-        /// <summary>
-        /// Creates a new MouseEvents object.
-        /// </summary>
-        /// <param name="game"></param>
-        public MouseEvents(Game game)
-            : base(game)
-        {
-            lastClicks = new Dictionary<MouseButton, MouseButtonEventArgs>();
+            MoveRaisedOnDrag = true; lastClicks = new Dictionary<MouseButton, MouseButtonEventArgs>();
             lastClicks.Add(MouseButton.Left, new MouseButtonEventArgs(new TimeSpan(-1, 0, 0), new MouseState(), new MouseState(), MouseButton.Left));
             lastClicks.Add(MouseButton.Right, new MouseButtonEventArgs(new TimeSpan(-1, 0, 0), new MouseState(), new MouseState(), MouseButton.Right));
             lastClicks.Add(MouseButton.Middle, new MouseButtonEventArgs(new TimeSpan(-1, 0, 0), new MouseState(), new MouseState(), MouseButton.Middle));
@@ -81,6 +71,7 @@ namespace Starbound.Input
             lastDoubleClicks.Add(MouseButton.Middle, new MouseButtonEventArgs(new TimeSpan(-1, 0, 0), new MouseState(), new MouseState(), MouseButton.Middle));
             lastDoubleClicks.Add(MouseButton.XButton1, new MouseButtonEventArgs(new TimeSpan(-1, 0, 0), new MouseState(), new MouseState(), MouseButton.XButton1));
             lastDoubleClicks.Add(MouseButton.XButton2, new MouseButtonEventArgs(new TimeSpan(-1, 0, 0), new MouseState(), new MouseState(), MouseButton.XButton2));
+        
         }
 
         /// <summary>
@@ -88,10 +79,8 @@ namespace Starbound.Input
         /// since the last update.
         /// </summary>
         /// <param name="gameTime"></param>
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-
             MouseState current = Mouse.GetState();
             
             // Check button press events.
@@ -148,7 +137,7 @@ namespace Starbound.Input
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public static void OnButtonReleased(object sender, MouseButtonEventArgs args)
+        public void OnButtonReleased(object sender, MouseButtonEventArgs args)
         {
             if (ButtonReleased != null) { ButtonReleased(sender, args); }
         }
@@ -159,7 +148,7 @@ namespace Starbound.Input
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public static void OnButtonClicked(object sender, MouseButtonEventArgs args)
+        public void OnButtonClicked(object sender, MouseButtonEventArgs args)
         {
             // If this click is within the right time and position of the last double click, raise
             // a triple-click event as well.
@@ -187,7 +176,7 @@ namespace Starbound.Input
         /// <summary>
         /// Calculates the Manhattan distance between two mouse positions.
         /// </summary>
-        private static int DistanceBetween(MouseState a, MouseState b)
+        private int DistanceBetween(MouseState a, MouseState b)
         {
             return Math.Abs(a.X - b.X) + Math.Abs(a.Y - b.Y);
         }
@@ -198,7 +187,7 @@ namespace Starbound.Input
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public static void OnButtonPressed(object sender, MouseButtonEventArgs args)
+        public void OnButtonPressed(object sender, MouseButtonEventArgs args)
         {
             if (ButtonPressed != null) { ButtonPressed(sender, args); }
         }
@@ -209,7 +198,7 @@ namespace Starbound.Input
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public static void OnButtonDoubleClicked(object sender, MouseButtonEventArgs args)
+        public void OnButtonDoubleClicked(object sender, MouseButtonEventArgs args)
         {
             if (ButtonDoubleClicked != null) { ButtonDoubleClicked(sender, args); }
         }
@@ -220,7 +209,7 @@ namespace Starbound.Input
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public static void OnButtonTripleClicked(object sender, MouseButtonEventArgs args)
+        public void OnButtonTripleClicked(object sender, MouseButtonEventArgs args)
         {
             if (ButtonTripleClicked != null) { ButtonTripleClicked(sender, args); }
         }
@@ -231,7 +220,7 @@ namespace Starbound.Input
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public static void OnMouseMoved(object sender, MouseEventArgs args)
+        public void OnMouseMoved(object sender, MouseEventArgs args)
         {
             if (MouseMoved != null) { MouseMoved(sender, args); }
         }
@@ -242,7 +231,7 @@ namespace Starbound.Input
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public static void OnMouseDragged(object sender, MouseEventArgs args)
+        public void OnMouseDragged(object sender, MouseEventArgs args)
         {
             if (MouseDragged != null) { MouseDragged(sender, args); }
         }
@@ -253,7 +242,7 @@ namespace Starbound.Input
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public static void OnMouseWheelMoved(object sender, MouseWheelEventArgs args)
+        public void OnMouseWheelMoved(object sender, MouseWheelEventArgs args)
         {
             if (MouseWheelMoved != null) { MouseWheelMoved(sender, args); }
         }
@@ -262,13 +251,13 @@ namespace Starbound.Input
         /// An event that is raised whenever any mouse button is released. The specific button, as well as
         /// other relevant information, can be looked up through the MouseButtonEventArgs parameter.
         /// </summary>
-        public static event EventHandler<MouseButtonEventArgs> ButtonReleased;
+        public event EventHandler<MouseButtonEventArgs> ButtonReleased;
 
         /// <summary>
         /// An event that is raised whenever any mouse button is pressed. The specific button, as well as
         /// other relevant information, can be looked up through the MouseButtonEventArgs parameter.
         /// </summary>
-        public static event EventHandler<MouseButtonEventArgs> ButtonPressed;
+        public event EventHandler<MouseButtonEventArgs> ButtonPressed;
 
         /// <summary>
         /// An event that is raised whenever any mouse button is clicked. The specific button, as well as
@@ -277,7 +266,7 @@ namespace Starbound.Input
         /// actually gets pressed in) but it represents a different conceptual model, and other 
         /// implementations may not define clicks in the same way.
         /// </summary>
-        public static event EventHandler<MouseButtonEventArgs> ButtonClicked;
+        public event EventHandler<MouseButtonEventArgs> ButtonClicked;
 
         /// <summary>
         /// An event that is raised whenever two button clicks occur in the same spot in a short period
@@ -285,7 +274,7 @@ namespace Starbound.Input
         /// MouseEvents.DoubleClickMaxMove, while the tolerance for the time period can be configured through
         /// MouseEvents.DoubleClickTime.
         /// </summary>
-        public static event EventHandler<MouseButtonEventArgs> ButtonDoubleClicked;
+        public event EventHandler<MouseButtonEventArgs> ButtonDoubleClicked;
 
         /// <summary>
         /// An event that is raised whenever three button clicks occur in the same spot in a short period
@@ -293,21 +282,21 @@ namespace Starbound.Input
         /// MouseEvents.DoubleClickMaxMove, while the tolerance for the time period can be configured through
         /// MouseEvents.DoubleClickTime.
         /// </summary>
-        public static event EventHandler<MouseButtonEventArgs> ButtonTripleClicked;
+        public event EventHandler<MouseButtonEventArgs> ButtonTripleClicked;
 
         /// <summary>
         /// An event that is raised whenever the mouse moves.
         /// </summary>
-        public static event EventHandler<MouseEventArgs> MouseMoved;
+        public event EventHandler<MouseEventArgs> MouseMoved;
 
         /// <summary>
         /// An event that is raised whenever the mouse is dragged (a mouse move with any button pressed).
         /// </summary>
-        public static event EventHandler<MouseEventArgs> MouseDragged;
+        public event EventHandler<MouseEventArgs> MouseDragged;
 
         /// <summary>
         /// An event that is raised whenever the mouse wheel is rotated.
         /// </summary>
-        public static event EventHandler<MouseWheelEventArgs> MouseWheelMoved;
+        public event EventHandler<MouseWheelEventArgs> MouseWheelMoved;
     }
 }
