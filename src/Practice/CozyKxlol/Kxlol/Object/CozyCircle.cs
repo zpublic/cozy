@@ -101,5 +101,13 @@ namespace CozyKxlol.Kxlol.Object
             ushort color = (ushort)ColorRandom.Next(0xffffff);
             return new Color(color & 0xFF0000, color & 0x00FF00, color & 0x0000FF);
         }
+
+        public bool CanEat(CozyCircle circle)
+        {
+            if (circle == this) return false;
+            Vector2 distanceVector = Position - circle.Position;
+            float distance = (float)Math.Sqrt(distanceVector.X * distanceVector.X + distanceVector.Y * distanceVector.Y);
+            return Radius > (distance + circle.Radius);
+        }
     }
 }

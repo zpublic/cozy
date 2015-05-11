@@ -15,14 +15,14 @@ namespace CozyKxlol.Kxlol.Scene
 
         public BallGameSceneLayer()
         {
-            var circle1 = new CozyCircle(new Vector2(300.0f, 300.0f), 20.0f, Color.Red, new Vector2(10.0f, 0.0f));
-            var circle2 = new CozyCircle(new Vector2(400.0f, 300.0f), 20.0f, Color.Blue, new Vector2(0.0f, 10.0f));
-            var circle3 = new CozyCircle(new Vector2(500.0f, 300.0f), 20.0f, Color.Green, new Vector2(-10.0f, 10.0f));
+            var circle1 = new CozyCircle(new Vector2(300.0f, 300.0f), 20.0f, Color.Red, new Vector2(20.0f, 0.0f));
+            var circle2 = new CozyCircle(new Vector2(400.0f, 300.0f), 20.0f, Color.Blue, new Vector2(0.0f, 20.0f));
+            var circle3 = new CozyCircle(new Vector2(500.0f, 300.0f), 20.0f, Color.Green, new Vector2(-20.0f, 20.0f));
             var circle4 = new CozyCircle(
-                new Vector2(500.0f, 200.0f), 
-                20.0f, 
-                CozyCircle.RandomColor(), 
-                new Vector2(-10.0f, 10.0f));
+                new Vector2(500.0f, 200.0f),
+                50.0f,
+                CozyCircle.RandomColor(),
+                new Vector2(-20.0f, 20.0f));
 
             CircleList.Add(circle1);
             CircleList.Add(circle2);
@@ -35,6 +35,24 @@ namespace CozyKxlol.Kxlol.Scene
             foreach (var obj in CircleList)
             {
                 obj.Update(gameTime);
+            }
+
+            List<KeyValuePair<CozyCircle, CozyCircle>> RemoveList = new List<KeyValuePair<CozyCircle, CozyCircle>>();
+            foreach (var obj1 in CircleList)
+            {
+                foreach(var obj2 in CircleList)
+                {
+                    if(obj1.CanEat(obj2))
+                    {
+                        RemoveList.Add(new KeyValuePair<CozyCircle,CozyCircle>(obj1, obj2));
+                    }
+                }
+            }
+
+            foreach(var obj in RemoveList)
+            {
+                obj.Key.Radius = obj.Key.Radius + obj.Value.Radius;
+                CircleList.Remove(obj.Value);
             }
         }
 
