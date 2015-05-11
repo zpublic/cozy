@@ -5,11 +5,13 @@ using System.Text;
 using CozyKxlol.Engine;
 using CozyKxlol.Kxlol.Impl;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+using Starbound.Input;
 
 namespace CozyKxlol.Kxlol.Object
 {
-    class CozyCircle : CozyNode, IMoveAble
+    class CozyCircle : CozyNode, IMoveAble, IControlAble
     {
         #region Property
 
@@ -29,18 +31,18 @@ namespace CozyKxlol.Kxlol.Object
             {
                 if (Math.Abs(value.X) < 0.00005f && Math.Abs(value.Y) < 0.00005f)
                 {
-                    IsMoveing = false;
+                    IsMoveing   = false;
                 }
                 else
                 {
-                    IsMoveing = true;
-                    _Direction = new Vector2(value.X > 1.0f ? 1.0f : value.X, value.Y > 1.0f ? 1.0f : value.Y);
+                    IsMoveing   = true;
+                    _Direction  = new Vector2(value.X > 1.0f ? 1.0f : value.X, value.Y > 1.0f ? 1.0f : value.Y);
                 }
             }
         }
 
-        public const float BaseSpeed = 20.0f;
-        public const float FloatSpeed = 200.0f;
+        public const float BaseSpeed    = 20.0f;
+        public const float FloatSpeed   = 200.0f;
         public float Speed
         {
             get
@@ -49,6 +51,7 @@ namespace CozyKxlol.Kxlol.Object
             }
         }
 
+        // IMoveAble
         private bool _IsMoveing;
         public bool IsMoveing
         {
@@ -100,8 +103,8 @@ namespace CozyKxlol.Kxlol.Object
         // IMoveAble
         public void Move(GameTime gameTime)
         {
-            float timeDelta     = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position            += Direction * timeDelta * Speed;
+            float timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Position += Direction * timeDelta * Speed;
         }
 
         static Random ColorRandom = new Random();
@@ -117,6 +120,45 @@ namespace CozyKxlol.Kxlol.Object
             Vector2 distanceVector = Position - circle.Position;
             float distance = distanceVector.Length();
             return Radius > (distance + circle.Radius);
+        }
+
+        // IControlAble
+        public void OnKeyPressd(object sender, KeyboardEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Keys.W:
+                    Direction += new Vector2(0.0f, -0.1f);
+                    break;
+                case Keys.S:
+                    Direction += new Vector2(0.0f, 0.1f);
+                    break;
+                case Keys.A:
+                    Direction += new Vector2(-0.1f, 0.0f);
+                    break;
+                case Keys.D:
+                    Direction += new Vector2(0.1f, 0.0f);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void OnKeyResleased(object sender, KeyboardEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Keys.W:
+                    break;
+                case Keys.S:
+                    break;
+                case Keys.A:
+                    break;
+                case Keys.D:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

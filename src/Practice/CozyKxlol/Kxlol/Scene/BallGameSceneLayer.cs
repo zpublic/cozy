@@ -13,6 +13,7 @@ using Starbound.UI.Controls;
 using Starbound.UI.XNA.Resources;
 using Starbound.UI.XNA.Renderers;
 using CozyKxlol.Network;
+using CozyKxlol.Kxlol.Impl;
 
 namespace CozyKxlol.Kxlol.Scene
 {
@@ -26,7 +27,7 @@ namespace CozyKxlol.Kxlol.Scene
         StackPanel panel;
         XNARenderer renderer;
         NetClientHelper client = new NetClientHelper();
-        public CozyCircle Player = null;
+        public IControlAble Player = null;
 
         public BallGameSceneLayer()
         {
@@ -36,16 +37,10 @@ namespace CozyKxlol.Kxlol.Scene
                 switch(e.Key)
                 {
                     case Keys.W:
-                        Player.Direction += new Vector2(0.0f, -0.1f);
-                        break;
                     case Keys.S:
-                        Player.Direction += new Vector2(0.0f, 0.1f);
-                        break;
                     case Keys.A:
-                        Player.Direction += new Vector2(-0.1f, 0.0f);
-                        break;
                     case Keys.D:
-                        Player.Direction += new Vector2(0.1f, 0.0f);
+                        Player.OnKeyPressd(sender, e);
                         break;
                     default:
                         sdbg = String.Format("Key Pressed: " + e.Key + " Modifiers: " + e.Modifiers);
@@ -57,12 +52,10 @@ namespace CozyKxlol.Kxlol.Scene
                 switch (e.Key)
                 {
                     case Keys.W:
-                        break;
                     case Keys.S:
-                        break;
                     case Keys.A:
-                        break;
                     case Keys.D:
+                        Player.OnKeyResleased(sender, e);
                         break;
                     default:
                         sdbg = String.Format("Key Released: " + e.Key + " Modifiers: " + e.Modifiers);
