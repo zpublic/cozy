@@ -1,6 +1,5 @@
 ﻿using CozyKxlol.Engine;
 using CozyKxlol.Kxlol.Scene;
-using CozyKxlol.Network;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -11,7 +10,6 @@ namespace CozyKxlol
 {
     public class KxlolGame : CozyGame
     {
-        NetworkHelper network;
         IResourceManager resourceManager;
 
         public KxlolGame()
@@ -24,9 +22,6 @@ namespace CozyKxlol
 
         protected override void Initialize()
         {
-            network = new NetworkHelper();
-            network.Init(this);
-
             director.RunWithScene(new BallGameScene());
             base.Initialize();
         }
@@ -46,7 +41,6 @@ namespace CozyKxlol
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            network.Update();
             base.Update(gameTime);
         }
 

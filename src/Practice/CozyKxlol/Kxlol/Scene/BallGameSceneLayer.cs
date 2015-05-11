@@ -11,6 +11,7 @@ using Starbound.UI.Resources;
 using Starbound.UI.Controls;
 using Starbound.UI.XNA.Resources;
 using Starbound.UI.XNA.Renderers;
+using CozyKxlol.Network;
 
 namespace CozyKxlol.Kxlol.Scene
 {
@@ -23,6 +24,7 @@ namespace CozyKxlol.Kxlol.Scene
         List<Control> controls;
         StackPanel panel;
         XNARenderer renderer;
+        NetClientHelper client = new NetClientHelper();
 
         public BallGameSceneLayer()
         {
@@ -64,6 +66,7 @@ namespace CozyKxlol.Kxlol.Scene
         {
             if (e.Button == MouseButton.Left)
             {
+                client.Connect();
                 string text = "";
                 for (int index = 0; index < 10; index++)
                 {
@@ -96,6 +99,7 @@ namespace CozyKxlol.Kxlol.Scene
 
         public override void Update(GameTime gameTime)
         {
+            client.Update();
             keyboard.Update(gameTime);
             mouse.Update(gameTime);
             foreach (var obj in CircleList)
