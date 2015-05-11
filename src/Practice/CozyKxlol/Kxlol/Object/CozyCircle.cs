@@ -28,7 +28,7 @@ namespace CozyKxlol.Kxlol.Object
             set
             {
                 _Direction = value;
-                if (_Direction.X < 0.00005 && _Direction.Y < 0.00005)
+                if (Math.Abs(_Direction.X) < 0.00005f && Math.Abs(_Direction.Y) < 0.00005f)
                 {
                     IsMoveing = false;
                 }
