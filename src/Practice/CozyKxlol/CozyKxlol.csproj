@@ -38,30 +38,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Helper\DebugHelper.cs" />
-    <Compile Include="Engine\CozyAnimation.cs" />
-    <Compile Include="Engine\CozyDirector.cs" />
-    <Compile Include="Engine\CozyGame.cs" />
-    <Compile Include="Engine\CozyLabel.cs" />
-    <Compile Include="Engine\CozyLayer.cs" />
-    <Compile Include="Engine\CozyLayerColor.cs" />
-    <Compile Include="Engine\CozyNode.cs" />
-    <Compile Include="Engine\CozyScene.cs" />
-    <Compile Include="Engine\CozySprite.cs" />
-    <Compile Include="Helper\Primitives2D.cs" />
     <Compile Include="Kxlol\Scene\WelcomeScene.cs" />
     <Compile Include="KxlolGame.cs" />
     <Compile Include="Kxlol\Scene\WelcomeSceneLayer.cs" />
-    <Compile Include="Network\GameClient.cs" />
-    <Compile Include="Network\Msg\MsgBase.cs" />
-    <Compile Include="Network\Msg\MsgId.cs" />
-    <Compile Include="Network\Msg\Msg_ChatNotFindPlayer.cs" />
-    <Compile Include="Network\Msg\Msg_ChatToPlayer.cs" />
-    <Compile Include="Network\Msg\Msg_ChatToAll.cs" />
-    <Compile Include="Network\GamerServices.cs" />
-    <Compile Include="Network\GameServer.cs" />
-    <Compile Include="Network\NetworkHelper.cs" />
-    <Compile Include="Network\NetworkState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -86,7 +65,20 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CozyDebugHelper\CozyDebugHelper.csproj">
+      <Project>{c39f668c-59c2-4fe1-922e-5c7544e70d1f}</Project>
+      <Name>CozyDebugHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyKxlol.Engine\CozyKxlol.Engine.csproj">
+      <Project>{d07c7246-89df-4b33-873a-01fd64d78ba1}</Project>
+      <Name>CozyKxlol.Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyKxlol.Network\CozyKxlol.Network.csproj">
+      <Project>{6cf49aac-6451-4d25-9baa-a4693c3fe564}</Project>
+      <Name>CozyKxlol.Network</Name>
+    </ProjectReference>
+  </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">
     <CreateProperty Value="$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows;$(AssemblySearchPaths)">
