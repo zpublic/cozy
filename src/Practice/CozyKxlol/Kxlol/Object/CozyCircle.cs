@@ -93,5 +93,13 @@ namespace CozyKxlol.Kxlol.Object
             float timeDelta     = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position            = new Vector2(Position.X + timeDelta * Direction.X, Position.Y + timeDelta * Direction.Y);
         }
+
+        static Random ColorRandom = new Random();
+
+        public static Color RandomColor()
+        {
+            ushort color = (ushort)ColorRandom.Next(0xffffff);
+            return new Color(color & 0xFF0000, color & 0x00FF00, color & 0x0000FF);
+        }
     }
 }
