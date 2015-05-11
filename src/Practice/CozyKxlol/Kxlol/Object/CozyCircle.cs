@@ -15,6 +15,14 @@ namespace CozyKxlol.Kxlol.Object
     {
         #region Property
 
+        enum EnableMoveTag : int
+        {
+            LeftTag,
+            RightTag,
+            UpTag,
+            DownTag,
+        }
+
         public Vector2 Position { get; set; }
         public float Radius { get; set; }
         public Color ColorProperty { get; set; }
@@ -36,7 +44,8 @@ namespace CozyKxlol.Kxlol.Object
                 else
                 {
                     IsMoveing   = true;
-                    _Direction  = new Vector2(value.X > 1.0f ? 1.0f : value.X, value.Y > 1.0f ? 1.0f : value.Y);
+                    _Direction = new Vector2(Math.Abs(value.X) > 1.0f ? (value.X > 0.0f ? 1.0f : -1.0f) : value.X,
+                                                Math.Abs(value.Y) > 1.0f ? (value.Y > 0.0f ? 1.0f : -1.0f) : value.Y);
                 }
             }
         }
@@ -64,7 +73,15 @@ namespace CozyKxlol.Kxlol.Object
                 _IsMoveing = value;
             }
         }
-        // IMoveAble
+
+        private bool[] _MoveEnable = new bool[4];
+        public bool[] MoveEnable 
+        { 
+            get
+            {
+                return _MoveEnable;
+            }
+        }
 
         #endregion
 
@@ -89,10 +106,39 @@ namespace CozyKxlol.Kxlol.Object
             Direction       = dire;
         }
 
+        static Random ColorRandom = new Random();
+        public static Color RandomColor()
+        {
+            ushort color = (ushort)ColorRandom.Next(0xffffff);
+            return new Color(color & 0xFF0000, color & 0x00FF00, color & 0x0000FF);
+        }
+
         public override void Update(GameTime gameTime)
         {
+            UpdateKeysState(gameTime);
             if (IsMoveing)
                 Move(gameTime);
+        }
+
+        private void UpdateKeysState(GameTime gameTime)
+        {
+            float speedOffset = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (QueryKeyState(EnableMoveTag.UpTag))
+            {
+                Direction += new Vector2(0.0f, -speedOffset);
+            }
+            if (QueryKeyState(EnableMoveTag.DownTag))
+            {
+                Direction += new Vector2(0.0f, speedOffset);
+            }
+            if (QueryKeyState(EnableMoveTag.LeftTag))
+            {
+                Direction += new Vector2(-speedOffset, 0.0f);
+            }
+            if (QueryKeyState(EnableMoveTag.RightTag))
+            {
+                Direction += new Vector2(speedOffset, 0.0f);
+            }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -105,13 +151,6 @@ namespace CozyKxlol.Kxlol.Object
         {
             float timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Direction * timeDelta * Speed;
-        }
-
-        static Random ColorRandom = new Random();
-        public static Color RandomColor()
-        {
-            ushort color = (ushort)ColorRandom.Next(0xffffff);
-            return new Color(color & 0xFF0000, color & 0x00FF00, color & 0x0000FF);
         }
 
         public bool CanEat(CozyCircle circle)
@@ -128,16 +167,16 @@ namespace CozyKxlol.Kxlol.Object
             switch (e.Key)
             {
                 case Keys.W:
-                    Direction += new Vector2(0.0f, -0.1f);
+                    SetKeyState(EnableMoveTag.UpTag, true);
                     break;
                 case Keys.S:
-                    Direction += new Vector2(0.0f, 0.1f);
+                    SetKeyState(EnableMoveTag.DownTag, true);
                     break;
                 case Keys.A:
-                    Direction += new Vector2(-0.1f, 0.0f);
+                    SetKeyState(EnableMoveTag.LeftTag, true);
                     break;
                 case Keys.D:
-                    Direction += new Vector2(0.1f, 0.0f);
+                    SetKeyState(EnableMoveTag.RightTag, true);
                     break;
                 default:
                     break;
@@ -149,16 +188,30 @@ namespace CozyKxlol.Kxlol.Object
             switch (e.Key)
             {
                 case Keys.W:
+                    SetKeyState(EnableMoveTag.UpTag, false);
                     break;
                 case Keys.S:
+                    SetKeyState(EnableMoveTag.DownTag, false);
                     break;
                 case Keys.A:
+                    SetKeyState(EnableMoveTag.LeftTag, false);
                     break;
                 case Keys.D:
+                    SetKeyState(EnableMoveTag.RightTag, false);
                     break;
                 default:
                     break;
             }
+        }
+
+        private bool QueryKeyState(EnableMoveTag tag)
+        {
+            return MoveEnable[(int)tag];
+        }
+
+        private void SetKeyState(EnableMoveTag tag, bool state)
+        {
+            MoveEnable[(int)tag] = state;
         }
     }
 }
