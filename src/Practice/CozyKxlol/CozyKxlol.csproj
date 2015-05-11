@@ -38,7 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DebugHelper.cs" />
+    <Compile Include="Helper\DebugHelper.cs" />
     <Compile Include="Engine\CozyAnimation.cs" />
     <Compile Include="Engine\CozyDirector.cs" />
     <Compile Include="Engine\CozyGame.cs" />
@@ -48,6 +48,7 @@
     <Compile Include="Engine\CozyNode.cs" />
     <Compile Include="Engine\CozyScene.cs" />
     <Compile Include="Engine\CozySprite.cs" />
+    <Compile Include="Helper\Primitives2D.cs" />
     <Compile Include="Kxlol\Scene\WelcomeScene.cs" />
     <Compile Include="KxlolGame.cs" />
     <Compile Include="Kxlol\Scene\WelcomeSceneLayer.cs" />
