@@ -38,6 +38,10 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Kxlol\Impl\IMoveAble.cs" />
+    <Compile Include="Kxlol\Object\CozyCircle.cs" />
+    <Compile Include="Kxlol\Scene\BallGameScene.cs" />
+    <Compile Include="Kxlol\Scene\BallGameSceneLayer.cs" />
     <Compile Include="Kxlol\Scene\WelcomeScene.cs" />
     <Compile Include="KxlolGame.cs" />
     <Compile Include="Kxlol\Scene\WelcomeSceneLayer.cs" />
