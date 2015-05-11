@@ -91,7 +91,7 @@ namespace CozyKxlol.Kxlol.Object
         public void Move(GameTime gameTime)
         {
             float timeDelta     = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position            = new Vector2(Position.X + timeDelta * Direction.X, Position.Y + timeDelta * Direction.Y);
+            Position            += Direction * timeDelta;
         }
 
         static Random ColorRandom = new Random();
@@ -106,7 +106,7 @@ namespace CozyKxlol.Kxlol.Object
         {
             if (circle == this) return false;
             Vector2 distanceVector = Position - circle.Position;
-            float distance = (float)Math.Sqrt(distanceVector.X * distanceVector.X + distanceVector.Y * distanceVector.Y);
+            float distance = distanceVector.Length();
             return Radius > (distance + circle.Radius);
         }
     }
