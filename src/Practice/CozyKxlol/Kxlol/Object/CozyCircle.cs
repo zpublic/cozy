@@ -84,7 +84,7 @@ namespace CozyKxlol.Kxlol.Object
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawCircle(Position, Radius, 20, ColorProperty, 20.0f);
+            spriteBatch.DrawCircle(Position, Radius, 20, ColorProperty, Radius);
         }
 
         // IMoveAble
