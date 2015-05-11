@@ -6,15 +6,28 @@ using CozyKxlol.Kxlol.Object;
 using CozyKxlol.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Starbound.Input;
 
 namespace CozyKxlol.Kxlol.Scene
 {
     class BallGameSceneLayer : CozyLayer
     {
         List<CozyCircle> CircleList = new List<CozyCircle>();
+        KeyboardEvents keyboard;
+        String sdbg;
 
         public BallGameSceneLayer()
         {
+            keyboard = new KeyboardEvents(null);
+            KeyboardEvents.KeyPressed += (sender, e) =>
+            {
+                sdbg = String.Format("Key Pressed: " + e.Key + " Modifiers: " + e.Modifiers);
+            };
+            KeyboardEvents.KeyReleased += (sender, e) =>
+            {
+                sdbg = String.Format("Key Released: " + e.Key + " Modifiers: " + e.Modifiers);
+            };
+
             var circle1 = new CozyCircle(new Vector2(300.0f, 300.0f), 20.0f, Color.Red, new Vector2(20.0f, 0.0f));
             var circle2 = new CozyCircle(new Vector2(400.0f, 300.0f), 20.0f, Color.Blue, new Vector2(0.0f, 20.0f));
             var circle3 = new CozyCircle(new Vector2(500.0f, 300.0f), 20.0f, Color.Green, new Vector2(-20.0f, 20.0f));
@@ -32,6 +45,7 @@ namespace CozyKxlol.Kxlol.Scene
 
         public override void Update(GameTime gameTime)
         {
+            keyboard.Update(gameTime);
             foreach (var obj in CircleList)
             {
                 obj.Update(gameTime);
@@ -40,16 +54,16 @@ namespace CozyKxlol.Kxlol.Scene
             List<KeyValuePair<CozyCircle, CozyCircle>> RemoveList = new List<KeyValuePair<CozyCircle, CozyCircle>>();
             foreach (var obj1 in CircleList)
             {
-                foreach(var obj2 in CircleList)
+                foreach (var obj2 in CircleList)
                 {
-                    if(obj1.CanEat(obj2))
+                    if (obj1.CanEat(obj2))
                     {
-                        RemoveList.Add(new KeyValuePair<CozyCircle,CozyCircle>(obj1, obj2));
+                        RemoveList.Add(new KeyValuePair<CozyCircle, CozyCircle>(obj1, obj2));
                     }
                 }
             }
 
-            foreach(var obj in RemoveList)
+            foreach (var obj in RemoveList)
             {
                 obj.Key.Radius = obj.Key.Radius + obj.Value.Radius;
                 CircleList.Remove(obj.Value);
@@ -61,6 +75,10 @@ namespace CozyKxlol.Kxlol.Scene
             foreach (var obj in CircleList)
             {
                 obj.Draw(gameTime, spriteBatch);
+            }
+            if (sdbg != null)
+            {
+                spriteBatch.DrawString(CozyGame.nolmalFont, sdbg, new Vector2(20, 20), Color.Red);
             }
         }
     }

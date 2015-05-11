@@ -53,10 +53,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>c:\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsGL\MonoGame.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="MonoGame.Framework.Net, Version=3.4.0.456, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>c:\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsGL\MonoGame.Framework.Net.dll</HintPath>
-    </Reference>
     <Reference Include="OpenTK">
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows\OpenTK.dll</HintPath>
     </Reference>
@@ -81,6 +77,10 @@
     <ProjectReference Include="..\CozyKxlol.Network\CozyKxlol.Network.csproj">
       <Project>{6cf49aac-6451-4d25-9baa-a4693c3fe564}</Project>
       <Name>CozyKxlol.Network</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Starbound.Input\Starbound.Input.csproj">
+      <Project>{69679010-74a0-4052-99fd-18389f883295}</Project>
+      <Name>Starbound.Input</Name>
     </ProjectReference>
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->

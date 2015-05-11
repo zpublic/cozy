@@ -2,7 +2,6 @@
 using CozyKxlol.Kxlol.Scene;
 using CozyKxlol.Network;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -24,7 +23,7 @@ namespace CozyKxlol
             network = new NetworkHelper();
             network.Init(this);
 
-            director.RunWithScene(new WelcomeScene());
+            director.RunWithScene(new BallGameScene());
             base.Initialize();
         }
 
