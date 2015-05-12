@@ -39,11 +39,11 @@ namespace CozyKxlol.Kxlol.Object
             {
                 if (Math.Abs(value.X) < 0.00005f && Math.Abs(value.Y) < 0.00005f)
                 {
-                    IsMoveing   = false;
+                    IsMoving   = false;
                 }
                 else
                 {
-                    IsMoveing   = true;
+                    IsMoving   = true;
                     _Direction = new Vector2(Math.Abs(value.X) > 1.0f ? (value.X > 0.0f ? 1.0f : -1.0f) : value.X,
                                                 Math.Abs(value.Y) > 1.0f ? (value.Y > 0.0f ? 1.0f : -1.0f) : value.Y);
                 }
@@ -61,16 +61,16 @@ namespace CozyKxlol.Kxlol.Object
         }
 
         // IMoveAble
-        private bool _IsMoveing;
-        public bool IsMoveing
+        private bool _IsMoving;
+        public bool IsMoving
         {
             get
             {
-                return _IsMoveing;
+                return _IsMoving;
             }
             set
             {
-                _IsMoveing = value;
+                _IsMoving = value;
             }
         }
 
@@ -116,7 +116,7 @@ namespace CozyKxlol.Kxlol.Object
         public override void Update(GameTime gameTime)
         {
             UpdateKeysState(gameTime);
-            if (IsMoveing)
+            if (IsMoving)
                 Move(gameTime);
         }
 
