@@ -14,7 +14,7 @@ namespace CozyKxlol
 
         public KxlolGame()
         {
-            WindowSize = new Vector2(1100.0f, 600.0f);
+            WindowSize = new Point(800, 600);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }

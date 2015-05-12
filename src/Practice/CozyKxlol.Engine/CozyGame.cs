@@ -15,7 +15,7 @@ namespace CozyKxlol.Engine
         
         public static SpriteFont nolmalFont;
 
-        public Vector2 WindowSize
+        public Point WindowSize
         {
             get
             {
@@ -23,8 +23,8 @@ namespace CozyKxlol.Engine
             }
             set
             {
-                graphics.PreferredBackBufferWidth   = (int)(value.X + 0.5f);
-                graphics.PreferredBackBufferHeight  = (int)(value.Y + 0.5f);
+                graphics.PreferredBackBufferWidth   = value.X;
+                graphics.PreferredBackBufferHeight  = value.Y;
                 director.WindowSize = value;
             }
         }

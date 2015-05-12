@@ -10,7 +10,7 @@ namespace CozyKxlol.Engine
     {
         readonly List<CozyScene> scenesStack = new List<CozyScene>();
         public CozyScene RunningScene { get; private set; }
-        public Vector2 WindowSize { get; set; }
+        public Point WindowSize { get; set; }
 
         public void RunWithScene(CozyScene scene)
         {
