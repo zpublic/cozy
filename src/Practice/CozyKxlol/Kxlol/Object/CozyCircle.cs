@@ -5,13 +5,23 @@ using System.Text;
 using CozyKxlol.Engine;
 using CozyKxlol.Kxlol.Impl;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+using Starbound.Input;
 
 namespace CozyKxlol.Kxlol.Object
 {
-    class CozyCircle : CozyNode, IMoveAble
+    class CozyCircle : CozyNode, IMoveAble, IControlAble
     {
         #region Property
+
+        enum EnableMoveTag : int
+        {
+            LeftTag,
+            RightTag,
+            UpTag,
+            DownTag,
+        }
 
         public Vector2 Position { get; set; }
         public float Radius { get; set; }
@@ -27,18 +37,30 @@ namespace CozyKxlol.Kxlol.Object
             }
             set
             {
-                _Direction = value;
-                if (_Direction.X < 0.00005 && _Direction.Y < 0.00005)
+                if (Math.Abs(value.X) < 0.00005f && Math.Abs(value.Y) < 0.00005f)
                 {
-                    IsMoveing = false;
+                    IsMoveing   = false;
                 }
                 else
                 {
-                    IsMoveing = true;
+                    IsMoveing   = true;
+                    _Direction = new Vector2(Math.Abs(value.X) > 1.0f ? (value.X > 0.0f ? 1.0f : -1.0f) : value.X,
+                                                Math.Abs(value.Y) > 1.0f ? (value.Y > 0.0f ? 1.0f : -1.0f) : value.Y);
                 }
             }
         }
 
+        public const float BaseSpeed    = 20.0f;
+        public const float FloatSpeed   = 200.0f;
+        public float Speed
+        {
+            get
+            {
+                return BaseSpeed + FloatSpeed / Radius;
+            }
+        }
+
+        // IMoveAble
         private bool _IsMoveing;
         public bool IsMoveing
         {
@@ -51,7 +73,15 @@ namespace CozyKxlol.Kxlol.Object
                 _IsMoveing = value;
             }
         }
-        // IMoveAble
+
+        private bool[] _MoveEnable = new bool[4];
+        public bool[] MoveEnable 
+        { 
+            get
+            {
+                return _MoveEnable;
+            }
+        }
 
         #endregion
 
@@ -76,10 +106,39 @@ namespace CozyKxlol.Kxlol.Object
             Direction       = dire;
         }
 
+        static Random ColorRandom = new Random();
+        public static Color RandomColor()
+        {
+            ushort color = (ushort)ColorRandom.Next(0xffffff);
+            return new Color(color & 0xFF0000, color & 0x00FF00, color & 0x0000FF);
+        }
+
         public override void Update(GameTime gameTime)
         {
+            UpdateKeysState(gameTime);
             if (IsMoveing)
                 Move(gameTime);
+        }
+
+        private void UpdateKeysState(GameTime gameTime)
+        {
+            float speedOffset = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (QueryKeyState(EnableMoveTag.UpTag))
+            {
+                Direction += new Vector2(0.0f, -speedOffset);
+            }
+            if (QueryKeyState(EnableMoveTag.DownTag))
+            {
+                Direction += new Vector2(0.0f, speedOffset);
+            }
+            if (QueryKeyState(EnableMoveTag.LeftTag))
+            {
+                Direction += new Vector2(-speedOffset, 0.0f);
+            }
+            if (QueryKeyState(EnableMoveTag.RightTag))
+            {
+                Direction += new Vector2(speedOffset, 0.0f);
+            }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -90,24 +149,69 @@ namespace CozyKxlol.Kxlol.Object
         // IMoveAble
         public void Move(GameTime gameTime)
         {
-            float timeDelta     = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position            = new Vector2(Position.X + timeDelta * Direction.X, Position.Y + timeDelta * Direction.Y);
-        }
-
-        static Random ColorRandom = new Random();
-
-        public static Color RandomColor()
-        {
-            ushort color = (ushort)ColorRandom.Next(0xffffff);
-            return new Color(color & 0xFF0000, color & 0x00FF00, color & 0x0000FF);
+            float timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Position += Direction * timeDelta * Speed;
         }
 
         public bool CanEat(CozyCircle circle)
         {
             if (circle == this) return false;
             Vector2 distanceVector = Position - circle.Position;
-            float distance = (float)Math.Sqrt(distanceVector.X * distanceVector.X + distanceVector.Y * distanceVector.Y);
+            float distance = distanceVector.Length();
             return Radius > (distance + circle.Radius);
+        }
+
+        // IControlAble
+        public void OnKeyPressd(object sender, KeyboardEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Keys.W:
+                    SetKeyState(EnableMoveTag.UpTag, true);
+                    break;
+                case Keys.S:
+                    SetKeyState(EnableMoveTag.DownTag, true);
+                    break;
+                case Keys.A:
+                    SetKeyState(EnableMoveTag.LeftTag, true);
+                    break;
+                case Keys.D:
+                    SetKeyState(EnableMoveTag.RightTag, true);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void OnKeyResleased(object sender, KeyboardEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Keys.W:
+                    SetKeyState(EnableMoveTag.UpTag, false);
+                    break;
+                case Keys.S:
+                    SetKeyState(EnableMoveTag.DownTag, false);
+                    break;
+                case Keys.A:
+                    SetKeyState(EnableMoveTag.LeftTag, false);
+                    break;
+                case Keys.D:
+                    SetKeyState(EnableMoveTag.RightTag, false);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private bool QueryKeyState(EnableMoveTag tag)
+        {
+            return MoveEnable[(int)tag];
+        }
+
+        private void SetKeyState(EnableMoveTag tag, bool state)
+        {
+            MoveEnable[(int)tag] = state;
         }
     }
 }
