@@ -151,6 +151,30 @@ namespace CozyKxlol.Kxlol.Scene
                 obj.Key.Radius = obj.Key.Radius + obj.Value.Radius;
                 CircleList.Remove(obj.Value);
             }
+
+            Point winSize = CozyDirector.Instance.WindowSize;
+            foreach(var obj in CircleList)
+            {
+                Vector2 newPos = obj.Position;
+                if(obj.Position.X < 0.0f && obj.Direction.X < 0.0f)
+                {
+                    newPos.X = 0.0f;
+                }
+                else if(obj.Position.X > winSize.X && obj.Direction.Y > 0.0f)
+                {
+                    newPos.X = winSize.X;
+                }
+
+                if (obj.Position.Y < 0.0f && obj.Direction.Y < 0.0f)
+                {
+                    newPos.Y = 0.0f;
+                }
+                else if (obj.Position.Y > winSize.Y && obj.Direction.Y > 0.0f)
+                {
+                    newPos.Y = winSize.Y;
+                }
+                obj.Position = newPos;
+            }
             //sdbg = String.Format("{0} {1} {2} {3}", Player.IsMoving, Player.Position, Player.Direction, Player.MoveDamping);
         }
 
