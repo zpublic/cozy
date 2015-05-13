@@ -15,6 +15,7 @@ namespace CozyKxlol.Kxlol.Impl
         }
 
         bool IsMoveing
+        bool IsMoving
         {
             get;
             set;
