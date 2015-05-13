@@ -27,7 +27,7 @@ namespace CozyKxlol.Kxlol.Scene
         StackPanel panel;
         XNARenderer renderer;
         NetClientHelper client = new NetClientHelper();
-        public IControlAble Player = null;
+        public CozyCircle Player = null;
 
         public BallGameSceneLayer()
         {
@@ -151,6 +151,7 @@ namespace CozyKxlol.Kxlol.Scene
                 obj.Key.Radius = obj.Key.Radius + obj.Value.Radius;
                 CircleList.Remove(obj.Value);
             }
+            sdbg = String.Format("{0} {1} {2}", Player.Direction.X, Player.Direction.Y, Player.IsMoving);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

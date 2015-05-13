@@ -28,6 +28,7 @@ namespace CozyKxlol.Kxlol.Object
         public Color ColorProperty { get; set; }
 
         // IMoveAble
+        private float MoveDamping = 1.0f;
         private Vector2 _Direction;
         public Vector2 Direction
         {
@@ -42,6 +43,7 @@ namespace CozyKxlol.Kxlol.Object
             }
         }
 
+        // v = 20 + 200 / S
         public const float BaseSpeed    = 20.0f;
         public const float FloatSpeed   = 200.0f;
         public float Speed
@@ -103,8 +105,14 @@ namespace CozyKxlol.Kxlol.Object
         public override void Update(GameTime gameTime)
         {
             UpdateKeysState(gameTime);
-            if (IsMoving)
+            if (IsMoving || MoveDamping > 0.0f)
+            {
                 Move(gameTime);
+            }
+            else
+            {
+                Direction = new Vector2();
+            }
         }
 
         private void UpdateKeysState(GameTime gameTime)
@@ -137,7 +145,7 @@ namespace CozyKxlol.Kxlol.Object
         public void Move(GameTime gameTime)
         {
             float timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position += Direction * timeDelta * Speed;
+            Position += Direction * timeDelta * Speed * (IsMoving ? 1.0f : MoveDamping -= timeDelta);
         }
 
         public bool CanEat(CozyCircle circle)
@@ -176,15 +184,19 @@ namespace CozyKxlol.Kxlol.Object
             {
                 case Keys.W:
                     SetKeyState(EnableMoveTag.UpTag, false);
+                    MoveDamping = 1.0f;
                     break;
                 case Keys.S:
                     SetKeyState(EnableMoveTag.DownTag, false);
+                    MoveDamping = 1.0f;
                     break;
                 case Keys.A:
                     SetKeyState(EnableMoveTag.LeftTag, false);
+                    MoveDamping = 1.0f;
                     break;
                 case Keys.D:
                     SetKeyState(EnableMoveTag.RightTag, false);
+                    MoveDamping = 1.0f;
                     break;
                 default:
                     break;
