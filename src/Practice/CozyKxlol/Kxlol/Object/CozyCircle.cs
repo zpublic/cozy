@@ -28,8 +28,20 @@ namespace CozyKxlol.Kxlol.Object
         public Color ColorProperty { get; set; }
 
         // IMoveAble
-        private float MoveDamping = 1.0f;
-        private Vector2 _Direction;
+        private float _MoveDamping = 0.0f;
+        public float MoveDamping
+        {
+            get
+            {
+                return _MoveDamping;
+            }
+            set
+            {
+                _MoveDamping = (value > 1.0f ? 1.0f : (value < 0.0f ? 0.0f : value));
+            }
+        }
+
+        private Vector2 _Direction = new Vector2();
         public Vector2 Direction
         {
             get
@@ -38,8 +50,9 @@ namespace CozyKxlol.Kxlol.Object
             }
             set
             {
-                _Direction = new Vector2(Math.Abs(value.X) > 1.0f ? (value.X > 0.0f ? 1.0f : -1.0f) : value.X,
-                                         Math.Abs(value.Y) > 1.0f ? (value.Y > 0.0f ? 1.0f : -1.0f) : value.Y);
+                _Direction = value;
+                if(_Direction != Vector2.Zero)
+                    _Direction.Normalize();
             }
         }
 
@@ -111,7 +124,7 @@ namespace CozyKxlol.Kxlol.Object
             }
             else
             {
-                Direction = new Vector2();
+                Direction = Vector2.Zero;
             }
         }
 
@@ -120,19 +133,17 @@ namespace CozyKxlol.Kxlol.Object
             float speedOffset = (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (QueryKeyState(EnableMoveTag.UpTag))
             {
-                Direction += new Vector2(0.0f, -speedOffset);
-            }
-            if (QueryKeyState(EnableMoveTag.DownTag))
+                Direction -= Vector2.Lerp(Vector2.Zero, Vector2.UnitY, speedOffset); 
+            }else if (QueryKeyState(EnableMoveTag.DownTag))
             {
-                Direction += new Vector2(0.0f, speedOffset);
+                Direction += Vector2.Lerp(Vector2.Zero, Vector2.UnitY, speedOffset);
             }
             if (QueryKeyState(EnableMoveTag.LeftTag))
             {
-                Direction += new Vector2(-speedOffset, 0.0f);
-            }
-            if (QueryKeyState(EnableMoveTag.RightTag))
+                Direction -= Vector2.Lerp(Vector2.Zero, Vector2.UnitX, speedOffset);
+            }else if (QueryKeyState(EnableMoveTag.RightTag))
             {
-                Direction += new Vector2(speedOffset, 0.0f);
+                Direction += Vector2.Lerp(Vector2.Zero, Vector2.UnitX, speedOffset);
             }
         }
 
@@ -145,7 +156,15 @@ namespace CozyKxlol.Kxlol.Object
         public void Move(GameTime gameTime)
         {
             float timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position += Direction * timeDelta * Speed * (IsMoving ? 1.0f : MoveDamping -= timeDelta);
+            Position += Direction * timeDelta * Speed * MoveDamping;
+            if(IsMoving)
+            {
+                MoveDamping += timeDelta;
+            }
+            else
+            {
+                MoveDamping -= timeDelta;
+            }
         }
 
         public bool CanEat(CozyCircle circle)
@@ -184,19 +203,15 @@ namespace CozyKxlol.Kxlol.Object
             {
                 case Keys.W:
                     SetKeyState(EnableMoveTag.UpTag, false);
-                    MoveDamping = 1.0f;
                     break;
                 case Keys.S:
                     SetKeyState(EnableMoveTag.DownTag, false);
-                    MoveDamping = 1.0f;
                     break;
                 case Keys.A:
                     SetKeyState(EnableMoveTag.LeftTag, false);
-                    MoveDamping = 1.0f;
                     break;
                 case Keys.D:
                     SetKeyState(EnableMoveTag.RightTag, false);
-                    MoveDamping = 1.0f;
                     break;
                 default:
                     break;
