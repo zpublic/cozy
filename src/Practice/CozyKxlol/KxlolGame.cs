@@ -14,8 +14,7 @@ namespace CozyKxlol
 
         public KxlolGame()
         {
-            graphics.PreferredBackBufferWidth = 800;
-            graphics.PreferredBackBufferHeight = 600;
+            WindowSize = new Point(800, 600);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }

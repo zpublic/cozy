@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace CozyKxlol.Engine
 {
@@ -9,6 +10,7 @@ namespace CozyKxlol.Engine
     {
         readonly List<CozyScene> scenesStack = new List<CozyScene>();
         public CozyScene RunningScene { get; private set; }
+        public Point WindowSize { get; set; }
 
         public void RunWithScene(CozyScene scene)
         {
@@ -26,6 +28,15 @@ namespace CozyKxlol.Engine
 
         public void PopScene()
         {
+        }
+
+        private static CozyDirector _Instance = new CozyDirector();
+        public static CozyDirector Instance
+        {
+            get
+            {
+                return _Instance;
+            }
         }
     }
 }

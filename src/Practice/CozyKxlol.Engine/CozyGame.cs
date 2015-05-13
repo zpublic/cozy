@@ -9,11 +9,25 @@ namespace CozyKxlol.Engine
 {
     public class CozyGame : Game
     {
-        protected CozyDirector director = new CozyDirector();
+        protected CozyDirector director = CozyDirector.Instance;
         protected GraphicsDeviceManager graphics;
         protected SpriteBatch spriteBatch;
         
         public static SpriteFont nolmalFont;
+
+        public Point WindowSize
+        {
+            get
+            {
+                return director.WindowSize;
+            }
+            set
+            {
+                graphics.PreferredBackBufferWidth   = value.X;
+                graphics.PreferredBackBufferHeight  = value.Y;
+                director.WindowSize = value;
+            }
+        }
 
         public CozyGame()
         {
