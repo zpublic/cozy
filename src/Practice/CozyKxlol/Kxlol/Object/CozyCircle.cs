@@ -37,16 +37,8 @@ namespace CozyKxlol.Kxlol.Object
             }
             set
             {
-                if (Math.Abs(value.X) < 0.00005f && Math.Abs(value.Y) < 0.00005f)
-                {
-                    IsMoving   = false;
-                }
-                else
-                {
-                    IsMoving   = true;
-                    _Direction = new Vector2(Math.Abs(value.X) > 1.0f ? (value.X > 0.0f ? 1.0f : -1.0f) : value.X,
-                                                Math.Abs(value.Y) > 1.0f ? (value.Y > 0.0f ? 1.0f : -1.0f) : value.Y);
-                }
+                _Direction = new Vector2(Math.Abs(value.X) > 1.0f ? (value.X > 0.0f ? 1.0f : -1.0f) : value.X,
+                                         Math.Abs(value.Y) > 1.0f ? (value.Y > 0.0f ? 1.0f : -1.0f) : value.Y);
             }
         }
 
@@ -61,16 +53,11 @@ namespace CozyKxlol.Kxlol.Object
         }
 
         // IMoveAble
-        private bool _IsMoving;
         public bool IsMoving
         {
             get
             {
-                return _IsMoving;
-            }
-            set
-            {
-                _IsMoving = value;
+                return MoveEnable[0] || MoveEnable[1] || MoveEnable[2] || MoveEnable[3];
             }
         }
 

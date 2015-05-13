@@ -17,7 +17,6 @@ namespace CozyKxlol.Kxlol.Impl
         bool IsMoving
         {
             get;
-            set;
         }
 
         void Move(GameTime gameTime);
