@@ -21,6 +21,7 @@ namespace CozyKxlol.Kxlol.Scene
     {
         List<CozyCircle> CircleList = new List<CozyCircle>();
         List<CozyCircle> FoodList   = new List<CozyCircle>();
+        List<CozyCircle> RenderList = new List<CozyCircle>();
         KeyboardEvents keyboard;
         String sdbg;
         MouseEvents mouse;
@@ -76,6 +77,11 @@ namespace CozyKxlol.Kxlol.Scene
             CircleList.Add(circle2);
             CircleList.Add(circle3);
             CircleList.Add(circle4);
+            RenderList.Add(circle1);
+            RenderList.Add(circle2);
+            RenderList.Add(circle3);
+            RenderList.Add(circle4);
+
 
             Player = circle4;
 
@@ -157,11 +163,13 @@ namespace CozyKxlol.Kxlol.Scene
             {
                 obj.Key.Radius = obj.Key.Radius + obj.Value.Radius;
                 CircleList.Remove(obj.Value);
+                RenderList.Remove(obj.Value);
             }
             foreach (var obj in RemoveFoodList)
             {
                 obj.Key.Radius = obj.Key.Radius + 1;
                 FoodList.Remove(obj.Value);
+                RenderList.Remove(obj.Value);
             }
 
             Point winSize = CozyDirector.Instance.WindowSize;
@@ -197,7 +205,9 @@ namespace CozyKxlol.Kxlol.Scene
         {
             while(FoodList.Count < MaxFoodSize)
             {
-                FoodList.Add(new DefaultFoodCircle(CozyCircle.RandomPosition()));
+                var newFood = new DefaultFoodCircle(CozyCircle.RandomPosition());
+                FoodList.Add(newFood);
+                RenderList.Add(newFood);
             }
         }
 
@@ -215,15 +225,11 @@ namespace CozyKxlol.Kxlol.Scene
             }
             spriteBatch.Begin();
 
-            foreach (var obj in CircleList)
+            foreach (var obj in RenderList)
             {
                 obj.Draw(gameTime, spriteBatch);
             }
 
-            foreach(var obj in FoodList)
-            {
-                obj.Draw(gameTime, spriteBatch);
-            }
             if (sdbg != null)
             {
                 spriteBatch.DrawString(CozyGame.nolmalFont, sdbg, new Vector2(20, 20), Color.Red);
