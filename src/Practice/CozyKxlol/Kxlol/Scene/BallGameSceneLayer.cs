@@ -22,6 +22,7 @@ namespace CozyKxlol.Kxlol.Scene
         List<CozyCircle> CircleList = new List<CozyCircle>();
         List<CozyCircle> FoodList   = new List<CozyCircle>();
         List<CozyCircle> RenderList = new List<CozyCircle>();
+
         KeyboardEvents keyboard;
         String sdbg;
         MouseEvents mouse;
@@ -77,11 +78,11 @@ namespace CozyKxlol.Kxlol.Scene
             CircleList.Add(circle2);
             CircleList.Add(circle3);
             CircleList.Add(circle4);
+
             RenderList.Add(circle1);
             RenderList.Add(circle2);
             RenderList.Add(circle3);
             RenderList.Add(circle4);
-
 
             Player = circle4;
 
