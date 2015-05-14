@@ -66,14 +66,10 @@ namespace CozyKxlol.Kxlol.Scene
             mouse = new MouseEvents();
             mouse.ButtonClicked += MouseEvents_ButtonClicked;
 
-            var circle1 = new CozyCircle(new Vector2(300.0f, 300.0f), 20.0f, Color.Red, new Vector2(1.0f, 0.0f));
-            var circle2 = new CozyCircle(new Vector2(400.0f, 300.0f), 20.0f, Color.Blue, new Vector2(0.0f, 1.0f));
-            var circle3 = new CozyCircle(new Vector2(500.0f, 300.0f), 20.0f, Color.Green, new Vector2(-1.0f, 1.0f));
-            var circle4 = new CozyCircle(
-                new Vector2(500.0f, 200.0f),
-                50.0f,
-                CozyCircle.RandomColor(),
-                new Vector2(-1.0f, 1.0f));
+            var circle1 = new DefaultUserCircle(new Vector2(300.0f, 300.0f));
+            var circle2 = new DefaultUserCircle(new Vector2(400.0f, 300.0f));
+            var circle3 = new DefaultUserCircle(new Vector2(500.0f, 300.0f));
+            var circle4 = new DefaultUserCircle(new Vector2(500.0f, 200.0f));
 
             CircleList.Add(circle1);
             CircleList.Add(circle2);
@@ -151,6 +147,31 @@ namespace CozyKxlol.Kxlol.Scene
                 obj.Key.Radius = obj.Key.Radius + obj.Value.Radius;
                 CircleList.Remove(obj.Value);
             }
+
+            Point winSize = CozyDirector.Instance.WindowSize;
+            foreach(var obj in CircleList)
+            {
+                Vector2 newPos = obj.Position;
+                if(obj.Position.X < 0.0f && obj.Direction.X < 0.0f)
+                {
+                    newPos.X = 0.0f;
+                }
+                else if(obj.Position.X > winSize.X && obj.Direction.Y > 0.0f)
+                {
+                    newPos.X = winSize.X;
+                }
+
+                if (obj.Position.Y < 0.0f && obj.Direction.Y < 0.0f)
+                {
+                    newPos.Y = 0.0f;
+                }
+                else if (obj.Position.Y > winSize.Y && obj.Direction.Y > 0.0f)
+                {
+                    newPos.Y = winSize.Y;
+                }
+                obj.Position = newPos;
+            }
+            //sdbg = String.Format("{0} {1} {2} {3}", Player.IsMoving, Player.Position, Player.Direction, Player.MoveDamping);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

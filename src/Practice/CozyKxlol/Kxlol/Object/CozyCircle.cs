@@ -15,6 +15,12 @@ namespace CozyKxlol.Kxlol.Object
     {
         #region Property
 
+        public Vector2 Position { get; set; }
+        public float Radius { get; set; }
+        public Color ColorProperty { get; set; }
+
+        #region Move
+
         enum EnableMoveTag : int
         {
             LeftTag,
@@ -23,12 +29,21 @@ namespace CozyKxlol.Kxlol.Object
             DownTag,
         }
 
-        public Vector2 Position { get; set; }
-        public float Radius { get; set; }
-        public Color ColorProperty { get; set; }
-
         // IMoveAble
-        private Vector2 _Direction;
+        private float _MoveDamping = 0.0f;
+        public float MoveDamping
+        {
+            get
+            {
+                return _MoveDamping;
+            }
+            set
+            {
+                _MoveDamping = (value > 1.0f ? 1.0f : (value < 0.0f ? 0.0f : value));
+            }
+        }
+
+        private Vector2 _Direction = new Vector2();
         public Vector2 Direction
         {
             get
@@ -37,19 +52,13 @@ namespace CozyKxlol.Kxlol.Object
             }
             set
             {
-                if (Math.Abs(value.X) < 0.00005f && Math.Abs(value.Y) < 0.00005f)
-                {
-                    IsMoving   = false;
-                }
-                else
-                {
-                    IsMoving   = true;
-                    _Direction = new Vector2(Math.Abs(value.X) > 1.0f ? (value.X > 0.0f ? 1.0f : -1.0f) : value.X,
-                                                Math.Abs(value.Y) > 1.0f ? (value.Y > 0.0f ? 1.0f : -1.0f) : value.Y);
-                }
+                _Direction = value;
+                if(_Direction != Vector2.Zero)
+                    _Direction.Normalize();
             }
         }
 
+        // v = 20 + 200 / S
         public const float BaseSpeed    = 20.0f;
         public const float FloatSpeed   = 200.0f;
         public float Speed
@@ -61,16 +70,11 @@ namespace CozyKxlol.Kxlol.Object
         }
 
         // IMoveAble
-        private bool _IsMoving;
         public bool IsMoving
         {
             get
             {
-                return _IsMoving;
-            }
-            set
-            {
-                _IsMoving = value;
+                return MoveEnable[0] || MoveEnable[1] || MoveEnable[2] || MoveEnable[3];
             }
         }
 
@@ -82,15 +86,43 @@ namespace CozyKxlol.Kxlol.Object
                 return _MoveEnable;
             }
         }
+        #endregion
+
+        #region Border
+        private bool _HasBorder = false;
+        public bool HasBorder
+        {
+            get
+            {
+                return _HasBorder;
+            }
+            set
+            {
+                _HasBorder = value;
+            }
+        }
+        private float _BorderSize = 0.0f;
+        public float BorderSize
+        {
+            get
+            {
+                return _BorderSize;
+            }
+            set
+            {
+                _BorderSize = value;
+            }
+        }
+        #endregion
 
         #endregion
 
         public CozyCircle()
         {
-            Position        = new Vector2(0.0f, 0.0f);
+            Position        = Vector2.Zero;
             Radius          = 0.0f;
             ColorProperty   = Color.Black;
-            Direction       = new Vector2(0.0f, 0.0f);
+            Direction       = Vector2.Zero;
         }
 
         public CozyCircle(Vector2 pos, float radius, Color color)
@@ -98,12 +130,19 @@ namespace CozyKxlol.Kxlol.Object
             Position        = pos;
             Radius          = radius;
             ColorProperty   = color;
-            Direction       = new Vector2(0.0f, 0.0f);
+            Direction       = Vector2.Zero;
         }
         public CozyCircle(Vector2 pos, float radius, Color color, Vector2 dire)
             : this(pos, radius, color)
         {
             Direction       = dire;
+        }
+
+        public CozyCircle(Vector2 pos, float radius, Color color, Vector2 dire, float borderSize)
+            :this(pos, radius, color, dire)
+        {
+            HasBorder = true;
+            BorderSize = borderSize;
         }
 
         static Random ColorRandom = new Random();
@@ -116,41 +155,38 @@ namespace CozyKxlol.Kxlol.Object
         public override void Update(GameTime gameTime)
         {
             UpdateKeysState(gameTime);
-            if (IsMoving)
+            if (IsMoving || MoveDamping > 0.0f)
+            {
                 Move(gameTime);
-        }
-
-        private void UpdateKeysState(GameTime gameTime)
-        {
-            float speedOffset = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (QueryKeyState(EnableMoveTag.UpTag))
-            {
-                Direction += new Vector2(0.0f, -speedOffset);
             }
-            if (QueryKeyState(EnableMoveTag.DownTag))
+            else
             {
-                Direction += new Vector2(0.0f, speedOffset);
-            }
-            if (QueryKeyState(EnableMoveTag.LeftTag))
-            {
-                Direction += new Vector2(-speedOffset, 0.0f);
-            }
-            if (QueryKeyState(EnableMoveTag.RightTag))
-            {
-                Direction += new Vector2(speedOffset, 0.0f);
+                Direction = Vector2.Zero;
             }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawCircle(Position, Radius, 20, ColorProperty, Radius);
+            if(HasBorder)
+            {
+                spriteBatch.DrawCircle(Position, Radius + BorderSize, (int)Radius, Color.Black, BorderSize);
+            }
+            spriteBatch.DrawCircle(Position, Radius, (int)Radius, ColorProperty, Radius);
         }
 
         // IMoveAble
         public void Move(GameTime gameTime)
         {
             float timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position += Direction * timeDelta * Speed;
+            Position += Direction * timeDelta * Speed * MoveDamping;
+            if(IsMoving)
+            {
+                MoveDamping += timeDelta;
+            }
+            else
+            {
+                MoveDamping -= timeDelta;
+            }
         }
 
         public bool CanEat(CozyCircle circle)
@@ -159,6 +195,29 @@ namespace CozyKxlol.Kxlol.Object
             Vector2 distanceVector = Position - circle.Position;
             float distance = distanceVector.Length();
             return Radius > (distance + circle.Radius);
+        }
+
+        #region KeyEvent
+
+        private void UpdateKeysState(GameTime gameTime)
+        {
+            float speedOffset = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (QueryKeyState(EnableMoveTag.UpTag))
+            {
+                Direction -= Vector2.Lerp(Vector2.Zero, Vector2.UnitY, speedOffset);
+            }
+            else if (QueryKeyState(EnableMoveTag.DownTag))
+            {
+                Direction += Vector2.Lerp(Vector2.Zero, Vector2.UnitY, speedOffset);
+            }
+            if (QueryKeyState(EnableMoveTag.LeftTag))
+            {
+                Direction -= Vector2.Lerp(Vector2.Zero, Vector2.UnitX, speedOffset);
+            }
+            else if (QueryKeyState(EnableMoveTag.RightTag))
+            {
+                Direction += Vector2.Lerp(Vector2.Zero, Vector2.UnitX, speedOffset);
+            }
         }
 
         // IControlAble
@@ -213,5 +272,7 @@ namespace CozyKxlol.Kxlol.Object
         {
             MoveEnable[(int)tag] = state;
         }
+
+        #endregion
     }
 }
