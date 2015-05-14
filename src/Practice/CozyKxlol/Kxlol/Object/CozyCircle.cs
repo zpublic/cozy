@@ -145,11 +145,17 @@ namespace CozyKxlol.Kxlol.Object
             BorderSize = borderSize;
         }
 
-        static Random ColorRandom = new Random();
+        static Random RandomMaker = new Random();
         public static Color RandomColor()
         {
-            ushort color = (ushort)ColorRandom.Next(0xffffff);
+            ushort color = (ushort)RandomMaker.Next(0xffffff);
             return new Color(color & 0xFF0000, color & 0x00FF00, color & 0x0000FF);
+        }
+
+        public static Vector2 RandomPosition()
+        {
+            Point MaxSize = CozyDirector.Instance.WindowSize;
+            return new Vector2(RandomMaker.Next(MaxSize.X), RandomMaker.Next(MaxSize.Y));
         }
 
         public override void Update(GameTime gameTime)
