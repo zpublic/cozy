@@ -53,7 +53,7 @@ namespace CozyKxlol.Kxlol.Object
             set
             {
                 _Direction = value;
-                if(_Direction != Vector2.Zero)
+                if (_Direction != Vector2.Zero)
                     _Direction.Normalize();
             }
         }
@@ -79,8 +79,8 @@ namespace CozyKxlol.Kxlol.Object
         }
 
         private bool[] _MoveEnable = new bool[4];
-        public bool[] MoveEnable 
-        { 
+        public bool[] MoveEnable
+        {
             get
             {
                 return _MoveEnable;
@@ -139,17 +139,39 @@ namespace CozyKxlol.Kxlol.Object
         }
 
         public CozyCircle(Vector2 pos, float radius, Color color, Vector2 dire, float borderSize)
-            :this(pos, radius, color, dire)
+            : this(pos, radius, color, dire)
         {
-            HasBorder = true;
-            BorderSize = borderSize;
+            HasBorder       = true;
+            BorderSize      = borderSize;
         }
 
-        static Random ColorRandom = new Random();
+        #region CustomColors
+
+        static readonly int[] CozyColors = new int[] {
+            0xE51400,   // Red
+            0x339933,   // Green
+            0x1BA1E2,   // Blue
+            0xF09609,   // Orange
+            0x8CBF26,   // Grass Green
+            0x00ABA9,   // Acid Blue
+            0xFF0097,   // Magenta
+            0xE671B8,   // Pink
+            0x996600,   // Brown
+            0xA200FF};  // Purple
+
+        #endregion
+
+        static Random RandomMaker = new Random();
         public static Color RandomColor()
         {
-            ushort color = (ushort)ColorRandom.Next(0xffffff);
-            return new Color(color & 0xFF0000, color & 0x00FF00, color & 0x0000FF);
+            int ColorTag = CozyColors[RandomMaker.Next(CozyColors.Length)];
+            return new Color(ColorTag & 0xFF0000, ColorTag & 0x00FF00, ColorTag & 0x0000FF);
+        }
+
+        public static Vector2 RandomPosition()
+        {
+            Point MaxSize = CozyDirector.Instance.WindowSize;
+            return new Vector2(RandomMaker.Next(MaxSize.X), RandomMaker.Next(MaxSize.Y));
         }
 
         public override void Update(GameTime gameTime)
@@ -167,7 +189,7 @@ namespace CozyKxlol.Kxlol.Object
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if(HasBorder)
+            if (HasBorder)
             {
                 spriteBatch.DrawCircle(Position, Radius + BorderSize, (int)Radius, Color.Black, BorderSize);
             }
@@ -179,7 +201,7 @@ namespace CozyKxlol.Kxlol.Object
         {
             float timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Direction * timeDelta * Speed * MoveDamping;
-            if(IsMoving)
+            if (IsMoving)
             {
                 MoveDamping += timeDelta;
             }
