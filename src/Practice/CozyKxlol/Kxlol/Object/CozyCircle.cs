@@ -264,7 +264,7 @@ namespace CozyKxlol.Kxlol.Object
             }
         }
 
-        public void OnKeyResleased(object sender, KeyboardEventArgs e)
+        public void OnKeyReleased(object sender, KeyboardEventArgs e)
         {
             switch (e.Key)
             {

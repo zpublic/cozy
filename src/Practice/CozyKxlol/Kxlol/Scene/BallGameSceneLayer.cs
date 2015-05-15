@@ -58,7 +58,7 @@ namespace CozyKxlol.Kxlol.Scene
                     case Keys.S:
                     case Keys.A:
                     case Keys.D:
-                        Player.OnKeyResleased(sender, e);
+                        Player.OnKeyReleased(sender, e);
                         break;
                     default:
                         sdbg = String.Format("Key Released: " + e.Key + " Modifiers: " + e.Modifiers);
