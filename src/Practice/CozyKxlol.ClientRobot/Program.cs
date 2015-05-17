@@ -27,8 +27,8 @@ namespace CozyKxlol.ClientRobot
             };
             netClient.DataMessage += (sender, e) =>
             {
-                Console.WriteLine(e.Msg.Id);
                 Msg_ChatToAll c = e.Msg as Msg_ChatToAll;
+                Console.WriteLine(c.Id);
                 Console.WriteLine(c.chatMsg);
             };
 

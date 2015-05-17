@@ -13,7 +13,7 @@ namespace CozyKxlol.Server
         static void Main(string[] args)
         {
             NetPeerConfiguration config = new NetPeerConfiguration("CozyKxlol");
-            config.MaximumConnections = 4;
+            config.MaximumConnections = 10000;
             config.Port = 48360;
 
             NetServer server = new NetServer(config);
