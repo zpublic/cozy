@@ -97,7 +97,6 @@ namespace CozyKxlol.Kxlol.Scene
         {
             if (e.Button == MouseButton.Left)
             {
-                client.Connect();
                 string text = "";
                 for (int index = 0; index < 10; index++)
                 {
