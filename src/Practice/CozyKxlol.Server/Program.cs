@@ -1,4 +1,5 @@
-﻿using Lidgren.Network;
+﻿using CozyKxlol.Network.Msg;
+using Lidgren.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,13 +44,9 @@ namespace CozyKxlol.Server
                             }
                             break;
                         case NetIncomingMessageType.Data:
-                            List<NetConnection> all = server.Connections;
-                            all.Remove(msg.SenderConnection);
-                            if (all.Count > 0)
+                            if (!ProcessPacket(server, msg))
                             {
-                                NetOutgoingMessage om = server.CreateMessage();
-                                om.Write(msg);
-                                server.SendMessage(om, all, NetDeliveryMethod.Unreliable, 0);
+                                DispatchPacket(server, msg);
                             }
                             break;
                     }
@@ -57,6 +54,37 @@ namespace CozyKxlol.Server
                 Thread.Sleep(1);
             }
             server.Shutdown("app exiting");
+        }
+
+        private static void DispatchPacket(NetServer server, NetIncomingMessage msg)
+        {
+            List<NetConnection> all = server.Connections;
+            all.Remove(msg.SenderConnection);
+            if (all.Count > 0)
+            {
+                NetOutgoingMessage om = server.CreateMessage();
+                om.Write(msg);
+                server.SendMessage(om, all, NetDeliveryMethod.Unreliable, 0);
+            }
+        }
+
+        private static bool ProcessPacket(NetServer server, NetIncomingMessage msg)
+        {
+            MsgBase m = new MsgBase();
+            m.R(msg);
+            if (m.Id == MsgId.AccountReg)
+            {
+                Msg_AccountReg r = new Msg_AccountReg();
+                r.R(msg);
+                Msg_AccountRegRsp rr = new Msg_AccountRegRsp();
+                rr.suc = true;
+                rr.detail = r.name + r.pass;
+                NetOutgoingMessage om = server.CreateMessage();
+                rr.W(om);
+                server.SendMessage(om, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
+                return true;
+            }
+            return false;
         }
     }
 }

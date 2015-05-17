@@ -51,9 +51,18 @@
     <Compile Include="ConnectionStatus.cs" />
     <Compile Include="Msg\MsgBase.cs" />
     <Compile Include="Msg\MsgId.cs" />
+    <Compile Include="Msg\Msg_AccountLoginRsp.cs" />
+    <Compile Include="Msg\Msg_AccountModifyPasswordRsp.cs" />
+    <Compile Include="Msg\Msg_AccountRegRsp.cs" />
+    <Compile Include="Msg\Msg_AccountReg.cs" />
+    <Compile Include="Msg\Msg_AccountLogin.cs" />
+    <Compile Include="Msg\Msg_AccountModifyPassword.cs" />
     <Compile Include="Msg\Msg_ChatToAll.cs" />
     <Compile Include="NetClientHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Server\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

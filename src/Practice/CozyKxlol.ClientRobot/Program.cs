@@ -27,9 +27,20 @@ namespace CozyKxlol.ClientRobot
             };
             netClient.DataMessage += (sender, e) =>
             {
-                Msg_ChatToAll c = e.Msg as Msg_ChatToAll;
-                Console.WriteLine(c.Id);
-                Console.WriteLine(c.chatMsg);
+                MsgBase b = e.Msg as MsgBase;
+                if (b.Id == MsgId.ChatToAll)
+                {
+                    Msg_ChatToAll c = e.Msg as Msg_ChatToAll;
+                    Console.WriteLine(c.Id);
+                    Console.WriteLine(c.chatMsg);
+                }
+                else if (b.Id == MsgId.AccountRegRsp)
+                {
+                    Msg_AccountRegRsp c = e.Msg as Msg_AccountRegRsp;
+                    Console.WriteLine(c.Id);
+                    Console.WriteLine(c.suc);
+                    Console.WriteLine(c.detail);
+                }
             };
 
             var timer = new System.Timers.Timer(5000);
@@ -40,6 +51,16 @@ namespace CozyKxlol.ClientRobot
                 netClient.SendMessage(chat);
             };
             timer.Start();
+
+            var timer2 = new System.Timers.Timer(3000);
+            timer2.Elapsed += (sender, e) =>
+            {
+                Msg_AccountReg reg = new Msg_AccountReg();
+                reg.name = "zapline";
+                reg.pass = "000000";
+                netClient.SendMessage(reg);
+            };
+            timer2.Start();
 
             while (true)
             {

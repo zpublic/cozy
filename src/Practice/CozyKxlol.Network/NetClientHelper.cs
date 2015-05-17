@@ -158,9 +158,9 @@ namespace CozyKxlol.Network
 
         public class DataMessageArgs : EventArgs
         {
-            public MsgBase Msg { get; set; }
+            public object Msg { get; set; }
 
-            public DataMessageArgs(MsgBase msg)
+            public DataMessageArgs(object msg)
             {
                 Msg = msg;
             }
