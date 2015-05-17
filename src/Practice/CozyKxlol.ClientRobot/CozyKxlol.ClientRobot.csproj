@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6CF49AAC-6451-4D25-9BAA-A4693C3FE564}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{A80DF379-A575-4168-9B3C-C32193C7E445}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyKxlol.Network</RootNamespace>
-    <AssemblyName>CozyKxlol.Network</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>CozyKxlol.ClientRobot</RootNamespace>
+    <AssemblyName>CozyKxlol.ClientRobot</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,14 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Lidgren.Network, Version=3.4.0.456, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>c:\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsGL\Lidgren.Network.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Framework, Version=3.4.0.456, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>c:\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsGL\MonoGame.Framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,21 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionStatus.cs" />
-    <Compile Include="Msg\MsgBase.cs" />
-    <Compile Include="Msg\MsgId.cs" />
-    <Compile Include="Msg\Msg_AccountLoginRsp.cs" />
-    <Compile Include="Msg\Msg_AccountModifyPasswordRsp.cs" />
-    <Compile Include="Msg\Msg_AccountRegRsp.cs" />
-    <Compile Include="Msg\Msg_AccountReg.cs" />
-    <Compile Include="Msg\Msg_AccountLogin.cs" />
-    <Compile Include="Msg\Msg_AccountModifyPassword.cs" />
-    <Compile Include="Msg\Msg_ChatToAll.cs" />
-    <Compile Include="NetClientHelper.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Server\" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyKxlol.Network\CozyKxlol.Network.csproj">
+      <Project>{6cf49aac-6451-4d25-9baa-a4693c3fe564}</Project>
+      <Name>CozyKxlol.Network</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
