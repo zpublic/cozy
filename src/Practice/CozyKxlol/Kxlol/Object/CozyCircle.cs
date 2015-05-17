@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Starbound.Input;
+using CozyKxlol.Kxlol.Ext;
 
 namespace CozyKxlol.Kxlol.Object
 {
@@ -16,8 +17,22 @@ namespace CozyKxlol.Kxlol.Object
         #region Property
 
         public Vector2 Position { get; set; }
-        public float Radius { get; set; }
+        
         public Color ColorProperty { get; set; }
+
+        private float _Radius = 0.0f;
+        public float Radius 
+        { 
+            get
+            {
+                return _Radius;
+            }
+            set
+            {
+                _Radius     = value;
+                MaxSpeed    = BaseSpeed + FloatSpeed / Radius;
+            }
+        }
 
         #region Move
 
@@ -30,42 +45,108 @@ namespace CozyKxlol.Kxlol.Object
         }
 
         // IMoveAble
-        private float _MoveDamping = 0.0f;
-        public float MoveDamping
-        {
-            get
-            {
-                return _MoveDamping;
-            }
-            set
-            {
-                _MoveDamping = (value > 1.0f ? 1.0f : (value < 0.0f ? 0.0f : value));
-            }
-        }
 
-        private Vector2 _Direction = new Vector2();
-        public Vector2 Direction
+        private Vector2 _Speed = Vector2.Zero;
+        public Vector2 Speed
         {
             get
             {
-                return _Direction;
+                return _Speed;
             }
             set
             {
-                _Direction = value;
-                if (_Direction != Vector2.Zero)
-                    _Direction.Normalize();
+                _Speed = value.ClampWithLength(MaxSpeed);
             }
         }
 
         // v = 20 + 200 / S
         public const float BaseSpeed    = 20.0f;
         public const float FloatSpeed   = 200.0f;
-        public float Speed
+
+        #region Direction
+
+        private static Vector2 _Up = Vector2.Zero;
+        public static Vector2 Up
         {
             get
             {
-                return BaseSpeed + FloatSpeed / Radius;
+                return _Up;
+            }
+
+            private set
+            {
+                _Up = value;
+            }
+        }
+
+        private static Vector2 _Down = Vector2.Zero;
+        public static Vector2 Down
+        {
+            get
+            {
+                return _Down;
+            }
+            private set
+            {
+                _Down = value;
+            }
+        }
+
+        private static Vector2 _Left = Vector2.Zero;
+        public static Vector2 Left
+        {
+            get
+            {
+                return _Left;
+            }
+            private set
+            {
+                _Left = value;
+            }
+        }
+
+        private static Vector2 _Right = Vector2.Zero;
+        public static Vector2 Right
+        {
+            get
+            {
+                return _Right;
+            }
+            private set
+            {
+                _Right = value;
+            }
+        }
+
+        #endregion
+
+        private float _MaxSpeed = 0.0f;
+        public float MaxSpeed
+        {
+            get
+            {
+                return _MaxSpeed;
+            }
+            private set
+            {
+                _MaxSpeed   = value;
+                Up          = new Vector2(0.0f, -MaxSpeed);
+                Down        = new Vector2(0.0f, MaxSpeed);
+                Left        = new Vector2(-MaxSpeed, 0.0f);
+                Right       = new Vector2(MaxSpeed, 0.0f);
+            }
+        }
+
+        private float _LinearDamping;
+        public float LinearDamping
+        {
+            get
+            {
+                return _LinearDamping;
+            }
+            set
+            {
+                _LinearDamping = MathHelper.Clamp(value, 0.0f, 1.0f);
             }
         }
 
@@ -120,9 +201,7 @@ namespace CozyKxlol.Kxlol.Object
         public CozyCircle()
         {
             Position        = Vector2.Zero;
-            Radius          = 0.0f;
             ColorProperty   = Color.Black;
-            Direction       = Vector2.Zero;
         }
 
         public CozyCircle(Vector2 pos, float radius, Color color)
@@ -130,16 +209,10 @@ namespace CozyKxlol.Kxlol.Object
             Position        = pos;
             Radius          = radius;
             ColorProperty   = color;
-            Direction       = Vector2.Zero;
-        }
-        public CozyCircle(Vector2 pos, float radius, Color color, Vector2 dire)
-            : this(pos, radius, color)
-        {
-            Direction       = dire;
         }
 
-        public CozyCircle(Vector2 pos, float radius, Color color, Vector2 dire, float borderSize)
-            : this(pos, radius, color, dire)
+        public CozyCircle(Vector2 pos, float radius, Color color, float borderSize)
+            : this(pos, radius, color)
         {
             HasBorder       = true;
             BorderSize      = borderSize;
@@ -177,13 +250,15 @@ namespace CozyKxlol.Kxlol.Object
         public override void Update(GameTime gameTime)
         {
             UpdateKeysState(gameTime);
-            if (IsMoving || MoveDamping > 0.0f)
+
+            float timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (IsMoving || LinearDamping > 0.0f)
             {
                 Move(gameTime);
             }
             else
             {
-                Direction = Vector2.Zero;
+                Speed = Vector2.Zero;
             }
         }
 
@@ -200,14 +275,14 @@ namespace CozyKxlol.Kxlol.Object
         public void Move(GameTime gameTime)
         {
             float timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position += Direction * timeDelta * Speed * MoveDamping;
-            if (IsMoving)
+            Position += timeDelta * LinearDamping * Speed;
+            if(IsMoving)
             {
-                MoveDamping += timeDelta;
+                LinearDamping += MathHelper.Lerp(0.0f, 1.0f, timeDelta);
             }
             else
             {
-                MoveDamping -= timeDelta;
+                LinearDamping += MathHelper.Lerp(0.0f, -1.0f, timeDelta);
             }
         }
 
@@ -226,19 +301,19 @@ namespace CozyKxlol.Kxlol.Object
             float speedOffset = (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (QueryKeyState(EnableMoveTag.UpTag))
             {
-                Direction -= Vector2.Lerp(Vector2.Zero, Vector2.UnitY, speedOffset);
+                Speed += Vector2.Lerp(Vector2.Zero, Up, speedOffset);
             }
             else if (QueryKeyState(EnableMoveTag.DownTag))
             {
-                Direction += Vector2.Lerp(Vector2.Zero, Vector2.UnitY, speedOffset);
+                Speed += Vector2.Lerp(Vector2.Zero, Down, speedOffset);
             }
             if (QueryKeyState(EnableMoveTag.LeftTag))
             {
-                Direction -= Vector2.Lerp(Vector2.Zero, Vector2.UnitX, speedOffset);
+                Speed += Vector2.Lerp(Vector2.Zero, Left, speedOffset);
             }
             else if (QueryKeyState(EnableMoveTag.RightTag))
             {
-                Direction += Vector2.Lerp(Vector2.Zero, Vector2.UnitX, speedOffset);
+                Speed += Vector2.Lerp(Vector2.Zero, Right, speedOffset);
             }
         }
 

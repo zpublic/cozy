@@ -10,7 +10,7 @@ namespace CozyKxlol.Kxlol.Object
     {
         public const float DefaultFoodRadius = 5.0f;
         public DefaultFoodCircle(Vector2 pos)
-            :base(pos, DefaultFoodRadius, RandomColor(), Vector2.Zero)
+            :base(pos, DefaultFoodRadius, RandomColor())
         { 
 
         }
