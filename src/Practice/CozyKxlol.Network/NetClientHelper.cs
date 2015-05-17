@@ -1,4 +1,5 @@
-﻿using Lidgren.Network;
+﻿using CozyKxlol.Network.Msg;
+using Lidgren.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,11 +39,21 @@ namespace CozyKxlol.Network
             //client.DiscoverLocalPeers(48360);
         }
 
-        public void SendMessage(NetOutgoingMessage msg, NetDeliveryMethod method = NetDeliveryMethod.Unreliable)
+//         public void SendMessage(NetOutgoingMessage msg, NetDeliveryMethod method = NetDeliveryMethod.Unreliable)
+//         {
+//             lock(msgQueuelocker)
+//             {
+//                 msgQueue.Enqueue(new NetClientMsg(msg, method));
+//             }
+//         }
+
+        public void SendMessage(MsgBase msg)
         {
-            lock(msgQueuelocker)
+            lock (msgQueuelocker)
             {
-                msgQueue.Enqueue(new NetClientMsg(msg, method));
+                NetOutgoingMessage om = client.CreateMessage();
+                msg.W(om);
+                msgQueue.Enqueue(new NetClientMsg(om, NetDeliveryMethod.Unreliable));
             }
         }
 
@@ -147,18 +158,20 @@ namespace CozyKxlol.Network
 
         public class DataMessageArgs : EventArgs
         {
-            public NetIncomingMessage Msg { get; set; }
+            public MsgBase Msg { get; set; }
 
-            public DataMessageArgs(NetIncomingMessage msg)
+            public DataMessageArgs(MsgBase msg)
             {
                 Msg = msg;
             }
         }
         public event EventHandler<DataMessageArgs> DataMessage;
-        public void OnDataMessage(object sender, NetIncomingMessage msg)
+        public void OnDataMessage(object sender, NetIncomingMessage im)
         {
             if (DataMessage != null)
             {
+                MsgBase msg = new Msg_ChatToAll();
+                msg.R(im);
                 DataMessage(sender, new DataMessageArgs(msg));
             }
         }

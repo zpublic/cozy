@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionStatus.cs" />
+    <Compile Include="Msg\MsgBase.cs" />
     <Compile Include="Msg\MsgId.cs" />
     <Compile Include="Msg\Msg_ChatToAll.cs" />
     <Compile Include="NetClientHelper.cs" />

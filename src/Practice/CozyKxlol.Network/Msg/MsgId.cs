@@ -8,6 +8,7 @@ namespace CozyKxlol.Network.Msg
     public static class MsgId
     {
         // 0 - 10000 保留
+        public const int Zero = 0;
 
         // 10001 - 20000 游戏相关
         // 10001 - 10100 聊天
