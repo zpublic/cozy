@@ -44,9 +44,10 @@ namespace CozyKxlol.Server
                             }
                             break;
                         case NetIncomingMessageType.Data:
-                            if (!ProcessPacket(server, msg))
+                            int id = msg.ReadInt32();
+                            if (!ProcessPacket(server, id, msg))
                             {
-                                DispatchPacket(server, msg);
+                                DispatchPacket(server, id, msg);
                             }
                             break;
                     }
@@ -56,23 +57,22 @@ namespace CozyKxlol.Server
             server.Shutdown("app exiting");
         }
 
-        private static void DispatchPacket(NetServer server, NetIncomingMessage msg)
+        private static void DispatchPacket(NetServer server, int id, NetIncomingMessage msg)
         {
             List<NetConnection> all = server.Connections;
             all.Remove(msg.SenderConnection);
             if (all.Count > 0)
             {
                 NetOutgoingMessage om = server.CreateMessage();
+                om.Write(id);
                 om.Write(msg);
                 server.SendMessage(om, all, NetDeliveryMethod.Unreliable, 0);
             }
         }
 
-        private static bool ProcessPacket(NetServer server, NetIncomingMessage msg)
+        private static bool ProcessPacket(NetServer server, int id, NetIncomingMessage msg)
         {
-            MsgBase m = new MsgBase();
-            m.R(msg);
-            if (m.Id == MsgId.AccountReg)
+            if (id == MsgId.AccountReg)
             {
                 Msg_AccountReg r = new Msg_AccountReg();
                 r.R(msg);
@@ -80,6 +80,7 @@ namespace CozyKxlol.Server
                 rr.suc = true;
                 rr.detail = r.name + r.pass;
                 NetOutgoingMessage om = server.CreateMessage();
+                om.Write(rr.Id);
                 rr.W(om);
                 server.SendMessage(om, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
                 return true;

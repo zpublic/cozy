@@ -39,19 +39,12 @@ namespace CozyKxlol.Network
             //client.DiscoverLocalPeers(48360);
         }
 
-//         public void SendMessage(NetOutgoingMessage msg, NetDeliveryMethod method = NetDeliveryMethod.Unreliable)
-//         {
-//             lock(msgQueuelocker)
-//             {
-//                 msgQueue.Enqueue(new NetClientMsg(msg, method));
-//             }
-//         }
-
         public void SendMessage(MsgBase msg)
         {
             lock (msgQueuelocker)
             {
                 NetOutgoingMessage om = client.CreateMessage();
+                om.Write(msg.Id);
                 msg.W(om);
                 msgQueue.Enqueue(new NetClientMsg(om, NetDeliveryMethod.Unreliable));
             }
@@ -158,9 +151,9 @@ namespace CozyKxlol.Network
 
         public class DataMessageArgs : EventArgs
         {
-            public object Msg { get; set; }
+            public MsgBase Msg { get; set; }
 
-            public DataMessageArgs(object msg)
+            public DataMessageArgs(MsgBase msg)
             {
                 Msg = msg;
             }
@@ -170,9 +163,19 @@ namespace CozyKxlol.Network
         {
             if (DataMessage != null)
             {
-                MsgBase msg = new Msg_ChatToAll();
-                msg.R(im);
-                DataMessage(sender, new DataMessageArgs(msg));
+                int id = im.ReadInt32();
+                if (id == MsgId.ChatToAll)
+                {
+                    MsgBase msg = new Msg_ChatToAll();
+                    msg.R(im);
+                    DataMessage(sender, new DataMessageArgs(msg));
+                }
+                else if (id == MsgId.AccountRegRsp)
+                {
+                    MsgBase msg = new Msg_AccountRegRsp();
+                    msg.R(im);
+                    DataMessage(sender, new DataMessageArgs(msg));
+                }
             }
         }
     }

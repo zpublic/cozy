@@ -27,16 +27,15 @@ namespace CozyKxlol.ClientRobot
             };
             netClient.DataMessage += (sender, e) =>
             {
-                MsgBase b = e.Msg as MsgBase;
-                if (b.Id == MsgId.ChatToAll)
+                if (e.Msg.Id == MsgId.ChatToAll)
                 {
-                    Msg_ChatToAll c = e.Msg as Msg_ChatToAll;
+                    Msg_ChatToAll c = (Msg_ChatToAll)e.Msg;
                     Console.WriteLine(c.Id);
                     Console.WriteLine(c.chatMsg);
                 }
-                else if (b.Id == MsgId.AccountRegRsp)
+                else if (e.Msg.Id == MsgId.AccountRegRsp)
                 {
-                    Msg_AccountRegRsp c = e.Msg as Msg_AccountRegRsp;
+                    Msg_AccountRegRsp c = (Msg_AccountRegRsp)e.Msg;
                     Console.WriteLine(c.Id);
                     Console.WriteLine(c.suc);
                     Console.WriteLine(c.detail);
@@ -52,7 +51,7 @@ namespace CozyKxlol.ClientRobot
             };
             timer.Start();
 
-            var timer2 = new System.Timers.Timer(3000);
+            var timer2 = new System.Timers.Timer(6000);
             timer2.Elapsed += (sender, e) =>
             {
                 Msg_AccountReg reg = new Msg_AccountReg();
