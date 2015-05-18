@@ -9,6 +9,6 @@ namespace CozyKxlol.Kxlol.Impl
     interface IControlAble
     {
         void OnKeyPressd(object sender, KeyboardEventArgs e);
-        void OnKeyResleased(object sender, KeyboardEventArgs e);
+        void OnKeyReleased(object sender, KeyboardEventArgs e);
     }
 }

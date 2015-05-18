@@ -58,7 +58,7 @@ namespace CozyKxlol.Kxlol.Scene
                     case Keys.S:
                     case Keys.A:
                     case Keys.D:
-                        Player.OnKeyResleased(sender, e);
+                        Player.OnKeyReleased(sender, e);
                         break;
                     default:
                         sdbg = String.Format("Key Released: " + e.Key + " Modifiers: " + e.Modifiers);
@@ -97,7 +97,6 @@ namespace CozyKxlol.Kxlol.Scene
         {
             if (e.Button == MouseButton.Left)
             {
-                client.Connect();
                 string text = "";
                 for (int index = 0; index < 10; index++)
                 {
@@ -177,20 +176,20 @@ namespace CozyKxlol.Kxlol.Scene
             foreach(var obj in CircleList)
             {
                 Vector2 newPos = obj.Position;
-                if(obj.Position.X < 0.0f && obj.Direction.X < 0.0f)
+                if(obj.Position.X < 0.0f && obj.Speed.X < 0.0f)
                 {
                     newPos.X = 0.0f;
                 }
-                else if(obj.Position.X > winSize.X && obj.Direction.Y > 0.0f)
+                else if (obj.Position.X > winSize.X && obj.Speed.Y > 0.0f)
                 {
                     newPos.X = winSize.X;
                 }
 
-                if (obj.Position.Y < 0.0f && obj.Direction.Y < 0.0f)
+                if (obj.Position.Y < 0.0f && obj.Speed.Y < 0.0f)
                 {
                     newPos.Y = 0.0f;
                 }
-                else if (obj.Position.Y > winSize.Y && obj.Direction.Y > 0.0f)
+                else if (obj.Position.Y > winSize.Y && obj.Speed.Y > 0.0f)
                 {
                     newPos.Y = winSize.Y;
                 }
