@@ -8,7 +8,7 @@ namespace CozyKxlol.Kxlol.Impl
 {
     interface IMoveAble
     {
-        Vector2 Direction
+        Vector2 Speed
         {
             get;
             set;
