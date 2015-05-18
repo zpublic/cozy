@@ -21,8 +21,8 @@ namespace CozyKxlol.Network.Msg
 
         public void R(NetIncomingMessage im)
         {
-            suc = im.ReadBoolean();
-            detail = im.ReadString();
+            suc     = im.ReadBoolean();
+            detail  = im.ReadString();
         }
     }
 }
