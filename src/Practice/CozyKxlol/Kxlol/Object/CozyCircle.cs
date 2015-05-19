@@ -218,35 +218,6 @@ namespace CozyKxlol.Kxlol.Object
             BorderSize      = borderSize;
         }
 
-        #region CustomColors
-
-        static readonly int[] CozyColors = new int[] {
-            0xE51400,   // Red
-            0x339933,   // Green
-            0x1BA1E2,   // Blue
-            0xF09609,   // Orange
-            0x8CBF26,   // Grass Green
-            0x00ABA9,   // Acid Blue
-            0xFF0097,   // Magenta
-            0xE671B8,   // Pink
-            0x996600,   // Brown
-            0xA200FF};  // Purple
-
-        #endregion
-
-        static Random RandomMaker = new Random();
-        public static Color RandomColor()
-        {
-            int ColorTag = CozyColors[RandomMaker.Next(CozyColors.Length)];
-            return new Color(ColorTag & 0xFF0000, ColorTag & 0x00FF00, ColorTag & 0x0000FF);
-        }
-
-        public static Vector2 RandomPosition()
-        {
-            Point MaxSize = CozyDirector.Instance.WindowSize;
-            return new Vector2(RandomMaker.Next(MaxSize.X), RandomMaker.Next(MaxSize.Y));
-        }
-
         public override void Update(GameTime gameTime)
         {
             UpdateKeysState(gameTime);

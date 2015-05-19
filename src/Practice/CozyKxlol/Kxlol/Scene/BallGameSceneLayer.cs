@@ -14,14 +14,16 @@ using Starbound.UI.XNA.Resources;
 using Starbound.UI.XNA.Renderers;
 using CozyKxlol.Network;
 using CozyKxlol.Kxlol.Impl;
+using CozyKxlol.Network.Msg;
 
 namespace CozyKxlol.Kxlol.Scene
 {
     class BallGameSceneLayer : CozyLayer
     {
         List<CozyCircle> CircleList = new List<CozyCircle>();
-        List<CozyCircle> FoodList   = new List<CozyCircle>();
         List<CozyCircle> RenderList = new List<CozyCircle>();
+
+        Dictionary<uint, CozyCircle> FoodList = new Dictionary<uint, CozyCircle>();
 
         KeyboardEvents keyboard;
         String sdbg;
@@ -30,7 +32,7 @@ namespace CozyKxlol.Kxlol.Scene
         StackPanel panel;
         XNARenderer renderer;
         NetClientHelper client      = new NetClientHelper();
-        public IControlAble Player  = null;
+        public CozyCircle Player  = null;
 
         public BallGameSceneLayer()
         {
@@ -69,27 +71,43 @@ namespace CozyKxlol.Kxlol.Scene
             mouse = new MouseEvents();
             mouse.ButtonClicked += MouseEvents_ButtonClicked;
 
-            var circle1 = new DefaultUserCircle(new Vector2(300.0f, 300.0f));
-            var circle2 = new DefaultUserCircle(new Vector2(400.0f, 300.0f));
-            var circle3 = new DefaultUserCircle(new Vector2(500.0f, 300.0f));
-            var circle4 = new DefaultUserCircle(new Vector2(500.0f, 200.0f));
-
-            CircleList.Add(circle1);
-            CircleList.Add(circle2);
-            CircleList.Add(circle3);
-            CircleList.Add(circle4);
-
-            RenderList.Add(circle1);
-            RenderList.Add(circle2);
-            RenderList.Add(circle3);
-            RenderList.Add(circle4);
-
-            Player = circle4;
-
             renderer = new XNARenderer();
             controls = new List<Control>();
             panel = new StackPanel() { Orientation = Orientation.Horizontal, ActualWidth = 1280, ActualHeight = 800 };
             panel.UpdateLayout();
+
+            client.StatusMessage += (sender, msg) =>
+            {
+                if(msg.Status == ConnectionStatus.Connected)
+                {
+                    var loginMsg = new Msg_AgarLogin();
+                    client.SendMessage(loginMsg);
+                }
+            };
+
+            client.DataMessage += (sender, msg) =>
+            {
+                MsgBase b = msg.Msg;
+                if(b.Id == MsgId.AgarLoginRsp)
+                {
+                    var selfMsg = (Msg_AgarLoginRsp)b;
+                    Player = new DefaultUserCircle(new Vector2(selfMsg.X, selfMsg.Y));
+                    RenderList.Add(Player);
+                }
+                else if(b.Id == MsgId.AgarFixedBall)
+                {
+                    var selfMsg = (Msg_AgarFixedBall)b;
+                    if(selfMsg.Operat == Msg_AgarFixedBall.Add)
+                    {
+                        uint id = selfMsg.BallId;
+                        var food = new DefaultFoodCircle(new Vector2(selfMsg.X, selfMsg.Y), selfMsg.Color);
+                        FoodList[id] = food;
+                        RenderList.Add(food);
+                    }
+                }
+            };
+
+            client.Connect("127.0.0.1", 48360);
         }
 
         private Random random = new Random();
@@ -136,79 +154,71 @@ namespace CozyKxlol.Kxlol.Scene
             {
                 obj.Update(gameTime);
             }
-
-            List<KeyValuePair<CozyCircle, CozyCircle>> RemoveUserList = new List<KeyValuePair<CozyCircle, CozyCircle>>();
-            List<KeyValuePair<CozyCircle, CozyCircle>> RemoveFoodList = new List<KeyValuePair<CozyCircle, CozyCircle>>();
-
-            foreach (var obj1 in CircleList)
+            if(Player != null)
             {
-                foreach (var obj2 in CircleList)
-                {
-                    if (obj1.CanEat(obj2))
-                    {
-                        RemoveUserList.Add(new KeyValuePair<CozyCircle, CozyCircle>(obj1, obj2));
-                    }
-                }
-
-                foreach(var obj2 in FoodList)
-                {
-                    if(obj1.CanEat(obj2))
-                    {
-                        RemoveFoodList.Add(new KeyValuePair<CozyCircle, CozyCircle>(obj1, obj2));
-                    }
-                }
+                Player.Update(gameTime);
             }
 
-            foreach (var obj in RemoveUserList)
-            {
-                obj.Key.Radius = obj.Key.Radius + obj.Value.Radius;
-                CircleList.Remove(obj.Value);
-                RenderList.Remove(obj.Value);
-            }
-            foreach (var obj in RemoveFoodList)
-            {
-                obj.Key.Radius = obj.Key.Radius + 1;
-                FoodList.Remove(obj.Value);
-                RenderList.Remove(obj.Value);
-            }
+            //List<KeyValuePair<CozyCircle, CozyCircle>> RemoveUserList = new List<KeyValuePair<CozyCircle, CozyCircle>>();
+            //List<KeyValuePair<CozyCircle, CozyCircle>> RemoveFoodList = new List<KeyValuePair<CozyCircle, CozyCircle>>();
 
-            Point winSize = CozyDirector.Instance.WindowSize;
-            foreach(var obj in CircleList)
-            {
-                Vector2 newPos = obj.Position;
-                if(obj.Position.X < 0.0f && obj.Speed.X < 0.0f)
-                {
-                    newPos.X = 0.0f;
-                }
-                else if (obj.Position.X > winSize.X && obj.Speed.Y > 0.0f)
-                {
-                    newPos.X = winSize.X;
-                }
+            //foreach (var obj1 in CircleList)
+            //{
+            //    foreach (var obj2 in CircleList)
+            //    {
+            //        if (obj1.CanEat(obj2))
+            //        {
+            //            RemoveUserList.Add(new KeyValuePair<CozyCircle, CozyCircle>(obj1, obj2));
+            //        }
+            //    }
 
-                if (obj.Position.Y < 0.0f && obj.Speed.Y < 0.0f)
-                {
-                    newPos.Y = 0.0f;
-                }
-                else if (obj.Position.Y > winSize.Y && obj.Speed.Y > 0.0f)
-                {
-                    newPos.Y = winSize.Y;
-                }
-                obj.Position = newPos;
-            }
+            //    foreach(var obj2 in FoodList)
+            //    {
+            //        if(obj1.CanEat(obj2))
+            //        {
+            //            RemoveFoodList.Add(new KeyValuePair<CozyCircle, CozyCircle>(obj1, obj2));
+            //        }
+            //    }
+            //}
 
-            UpdateFood();
+            //foreach (var obj in RemoveUserList)
+            //{
+            //    obj.Key.Radius = obj.Key.Radius + obj.Value.Radius;
+            //    CircleList.Remove(obj.Value);
+            //    RenderList.Remove(obj.Value);
+            //}
+            //foreach (var obj in RemoveFoodList)
+            //{
+            //    obj.Key.Radius = obj.Key.Radius + 1;
+            //    FoodList.Remove(obj.Value);
+            //    RenderList.Remove(obj.Value);
+            //}
+
+            //Point winSize = CozyDirector.Instance.WindowSize;
+            //foreach(var obj in CircleList)
+            //{
+            //    Vector2 newPos = obj.Position;
+            //    if(obj.Position.X < 0.0f && obj.Speed.X < 0.0f)
+            //    {
+            //        newPos.X = 0.0f;
+            //    }
+            //    else if (obj.Position.X > winSize.X && obj.Speed.Y > 0.0f)
+            //    {
+            //        newPos.X = winSize.X;
+            //    }
+
+            //    if (obj.Position.Y < 0.0f && obj.Speed.Y < 0.0f)
+            //    {
+            //        newPos.Y = 0.0f;
+            //    }
+            //    else if (obj.Position.Y > winSize.Y && obj.Speed.Y > 0.0f)
+            //    {
+            //        newPos.Y = winSize.Y;
+            //    }
+            //    obj.Position = newPos;
+            //}
+
             //sdbg = String.Format("{0} {1} {2} {3}", Player.IsMoving, Player.Position, Player.Direction, Player.MoveDamping);
-        }
-
-        private int MaxFoodSize = 20;
-        private void UpdateFood()
-        {
-            while(FoodList.Count < MaxFoodSize)
-            {
-                var newFood = new DefaultFoodCircle(CozyCircle.RandomPosition());
-                FoodList.Add(newFood);
-                RenderList.Add(newFood);
-            }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

@@ -11,7 +11,7 @@ namespace CozyKxlol.Kxlol.Object
         public const float DefaultUserCircleRadius      = 15.0f;
         public const float DefaultUserCircleBorderSize  = 2.0f;
         public DefaultUserCircle(Vector2 pos)
-            : base(pos, DefaultUserCircleRadius, RandomColor(), DefaultUserCircleBorderSize)
+            : base(pos, DefaultUserCircleRadius, Color.White, DefaultUserCircleBorderSize)
         {
             
         }

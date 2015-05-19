@@ -41,6 +41,16 @@ namespace CozyKxlol.Network.Msg
         // 可被吃小球产生
         public const int AgarNpc = 11103;
 
+        public const int AgarLogin = 11104;
+
+        public const int AgarSelf = 11105;
+
+        public const int AgarPlayInfo = 11106;
+
+        public const int AgarFixedBall = 11107;
+
+        public const int AgarLoginRsp = 11108;
+
         ////// 20001 - 40000 游戏扩展
 
         ////// 40001+ 保留
