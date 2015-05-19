@@ -77,8 +77,9 @@ namespace CozyKxlol.Kxlol.Scene
             };
 
             mouse       = new MouseEvents();
+#if MouseDebug
             mouse.ButtonClicked += MouseEvents_ButtonClicked;
-
+#endif
             renderer    = new XNARenderer();
             controls    = new List<Control>();
             panel       = new StackPanel() { Orientation = Orientation.Horizontal, ActualWidth = 1280, ActualHeight = 800 };
@@ -222,66 +223,6 @@ namespace CozyKxlol.Kxlol.Scene
                 }
             }
 
-            //List<KeyValuePair<CozyCircle, CozyCircle>> RemoveUserList = new List<KeyValuePair<CozyCircle, CozyCircle>>();
-            //List<KeyValuePair<CozyCircle, CozyCircle>> RemoveFoodList = new List<KeyValuePair<CozyCircle, CozyCircle>>();
-
-            //foreach (var obj1 in CircleList)
-            //{
-            //    foreach (var obj2 in CircleList)
-            //    {
-            //        if (obj1.CanEat(obj2))
-            //        {
-            //            RemoveUserList.Add(new KeyValuePair<CozyCircle, CozyCircle>(obj1, obj2));
-            //        }
-            //    }
-
-            //    foreach(var obj2 in FoodList)
-            //    {
-            //        if(obj1.CanEat(obj2))
-            //        {
-            //            RemoveFoodList.Add(new KeyValuePair<CozyCircle, CozyCircle>(obj1, obj2));
-            //        }
-            //    }
-            //}
-
-            //foreach (var obj in RemoveUserList)
-            //{
-            //    obj.Key.Radius = obj.Key.Radius + obj.Value.Radius;
-            //    CircleList.Remove(obj.Value);
-            //    RenderList.Remove(obj.Value);
-            //}
-            //foreach (var obj in RemoveFoodList)
-            //{
-            //    obj.Key.Radius = obj.Key.Radius + 1;
-            //    FoodList.Remove(obj.Value);
-            //    RenderList.Remove(obj.Value);
-            //}
-
-            //Point winSize = CozyDirector.Instance.WindowSize;
-            //foreach(var obj in CircleList)
-            //{
-            //    Vector2 newPos = obj.Position;
-            //    if(obj.Position.X < 0.0f && obj.Speed.X < 0.0f)
-            //    {
-            //        newPos.X = 0.0f;
-            //    }
-            //    else if (obj.Position.X > winSize.X && obj.Speed.Y > 0.0f)
-            //    {
-            //        newPos.X = winSize.X;
-            //    }
-
-            //    if (obj.Position.Y < 0.0f && obj.Speed.Y < 0.0f)
-            //    {
-            //        newPos.Y = 0.0f;
-            //    }
-            //    else if (obj.Position.Y > winSize.Y && obj.Speed.Y > 0.0f)
-            //    {
-            //        newPos.Y = winSize.Y;
-            //    }
-            //    obj.Position = newPos;
-            //}
-
-            //sdbg = String.Format("{0} {1} {2} {3}", Player.IsMoving, Player.Position, Player.Direction, Player.MoveDamping);
             if(!IsConnect)
             {
                 sdbg = "Cannot Connect!";
