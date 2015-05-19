@@ -8,8 +8,8 @@ namespace CozyKxlol.Network.Msg
 {
     public struct Msg_AgarFixedBall : MsgBase
     {
-        public const byte Add = 0;
-        public const byte Remove = 1;
+        public const byte Add       = 0;
+        public const byte Remove    = 1;
         public int Id { get { return MsgId.AgarFixedBall; } }
 
         public byte Operat { get; set; }
@@ -37,9 +37,9 @@ namespace CozyKxlol.Network.Msg
             BallId = im.ReadUInt32();
             if(Operat == Add)
             {
-                X = im.ReadFloat();
-                Y = im.ReadFloat();
-                Color = im.ReadUInt32();
+                X       = im.ReadFloat();
+                Y       = im.ReadFloat();
+                Color   = im.ReadUInt32();
             }
         }
     }

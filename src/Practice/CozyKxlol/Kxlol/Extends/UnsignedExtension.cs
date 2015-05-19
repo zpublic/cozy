@@ -10,8 +10,8 @@ namespace CozyKxlol.Kxlol.Extends
     {
         public static Color ToColor(this uint value)
         {
-            var c = new Color();
-            c.PackedValue = value;
+            var c           = new Color();
+            c.PackedValue   = value;
             return c;
         }
     }

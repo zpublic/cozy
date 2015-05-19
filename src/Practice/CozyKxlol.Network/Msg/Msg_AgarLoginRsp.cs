@@ -27,11 +27,11 @@ namespace CozyKxlol.Network.Msg
 
         public void R(NetIncomingMessage im)
         {
-            Uid = im.ReadUInt32();
-            X = im.ReadFloat();
-            Y = im.ReadFloat();
-            Radius = im.ReadFloat();
-            Color = im.ReadUInt32();
+            Uid     = im.ReadUInt32();
+            X       = im.ReadFloat();
+            Y       = im.ReadFloat();
+            Radius  = im.ReadFloat();
+            Color   = im.ReadUInt32();
         }
     }
 }

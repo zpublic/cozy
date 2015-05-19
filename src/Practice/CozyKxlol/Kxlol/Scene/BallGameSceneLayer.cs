@@ -21,9 +21,8 @@ namespace CozyKxlol.Kxlol.Scene
 {
     class BallGameSceneLayer : CozyLayer
     {
-        List<CozyCircle> RenderList = new List<CozyCircle>();
-
-        Dictionary<uint, CozyCircle> FoodList = new Dictionary<uint, CozyCircle>();
+        List<CozyCircle> RenderList             = new List<CozyCircle>();
+        Dictionary<uint, CozyCircle> FoodList   = new Dictionary<uint, CozyCircle>();
         Dictionary<uint, CozyCircle> CircleList = new Dictionary<uint, CozyCircle>();
 
         KeyboardEvents keyboard;
@@ -32,9 +31,9 @@ namespace CozyKxlol.Kxlol.Scene
         List<Control> controls;
         StackPanel panel;
         XNARenderer renderer;
-        NetClientHelper client      = new NetClientHelper();
-        public CozyCircle Player  = null;
-        public uint Uid = 0;
+        NetClientHelper client                  = new NetClientHelper();
+        public CozyCircle Player                = null;
+        public uint Uid                         = 0;
 
         public BallGameSceneLayer()
         {
@@ -70,12 +69,12 @@ namespace CozyKxlol.Kxlol.Scene
                 }
             };
 
-            mouse = new MouseEvents();
+            mouse       = new MouseEvents();
             mouse.ButtonClicked += MouseEvents_ButtonClicked;
 
-            renderer = new XNARenderer();
-            controls = new List<Control>();
-            panel = new StackPanel() { Orientation = Orientation.Horizontal, ActualWidth = 1280, ActualHeight = 800 };
+            renderer    = new XNARenderer();
+            controls    = new List<Control>();
+            panel       = new StackPanel() { Orientation = Orientation.Horizontal, ActualWidth = 1280, ActualHeight = 800 };
             panel.UpdateLayout();
 
             client.StatusMessage += (sender, msg) =>
@@ -93,18 +92,18 @@ namespace CozyKxlol.Kxlol.Scene
                 if(b.Id == MsgId.AgarLoginRsp)
                 {
                     var selfMsg = (Msg_AgarLoginRsp)b;
-                    Uid = selfMsg.Uid;
-                    Player = new DefaultUserCircle(new Vector2(selfMsg.X, selfMsg.Y),selfMsg.Radius, selfMsg.Color);
+                    Uid         = selfMsg.Uid;
+                    Player      = new DefaultUserCircle(new Vector2(selfMsg.X, selfMsg.Y),selfMsg.Radius, selfMsg.Color);
                     RenderList.Add(Player);
                 }
                 else if(b.Id == MsgId.AgarFixedBall)
                 {
                     var selfMsg = (Msg_AgarFixedBall)b;
-                    uint id = selfMsg.BallId;
+                    uint id     = selfMsg.BallId;
                     if(selfMsg.Operat == Msg_AgarFixedBall.Add)
                     {
-                        var food = new DefaultFoodCircle(new Vector2(selfMsg.X, selfMsg.Y), selfMsg.Color);
-                        FoodList[id] = food;
+                        var food        = new DefaultFoodCircle(new Vector2(selfMsg.X, selfMsg.Y), selfMsg.Color);
+                        FoodList[id]    = food;
                         RenderList.Add(food);
                     }
                     else if(selfMsg.Operat == Msg_AgarFixedBall.Remove)
@@ -118,11 +117,15 @@ namespace CozyKxlol.Kxlol.Scene
                 else if(b.Id == MsgId.AgarPlayInfo)
                 {
                     var selfMsg = (Msg_AgarPlayInfo)b;
-                    uint id = selfMsg.PlayerId;
+                    uint id     = selfMsg.PlayerId;
                     if(selfMsg.Operat == Msg_AgarPlayInfo.Add)
                     {
-                        var player = new DefaultUserCircle(new Vector2(selfMsg.X, selfMsg.Y), selfMsg.Radius, selfMsg.Color);
-                        CircleList[id] = player;
+                        var player      = new DefaultUserCircle(
+                            new Vector2(selfMsg.X, selfMsg.Y), 
+                            selfMsg.Radius, 
+                            selfMsg.Color);
+
+                        CircleList[id]  = player;
                         RenderList.Add(player);
                     }
                     else if(selfMsg.Operat == Msg_AgarPlayInfo.Remove)
@@ -133,9 +136,9 @@ namespace CozyKxlol.Kxlol.Scene
                     }
                     else if(selfMsg.Operat == Msg_AgarPlayInfo.Changed)
                     {
-                        var player = CircleList[id];
+                        var player      = CircleList[id];
                         player.Position = new Vector2(selfMsg.X, selfMsg.Y);
-                        player.Radius = selfMsg.Radius;
+                        player.Radius   = selfMsg.Radius;
                         player.ColorProperty = selfMsg.Color.ToColor();
                     }
                 }
@@ -158,9 +161,9 @@ namespace CozyKxlol.Kxlol.Scene
                 panel.AddChild(new Starbound.UI.Controls.Rectangle()
                 {
                     PreferredHeight = random.Next(20) + 10,
-                    PreferredWidth = random.Next(20) + 10,
-                    Margin = new Starbound.UI.Thickness(3, 3, 0, 0),
-                    Color = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble())
+                    PreferredWidth  = random.Next(20) + 10,
+                    Margin          = new Starbound.UI.Thickness(3, 3, 0, 0),
+                    Color           = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble())
                 });
             }
             else if (e.Button == MouseButton.Right)
@@ -168,12 +171,12 @@ namespace CozyKxlol.Kxlol.Scene
                 panel.AddChild(new Starbound.UI.Controls.Button()
                 {
                     PreferredHeight = random.Next(50) + 50,
-                    PreferredWidth = random.Next(50) + 50,
-                    Margin = new Starbound.UI.Thickness(3, 3, 0, 0),
-                    Font = Starbound.UI.Application.ResourceManager.GetResource<IFontResource>("Font"),
-                    Content = "hehe",
-                    Background = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble()),
-                    Foreground = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble())
+                    PreferredWidth  = random.Next(50) + 50,
+                    Margin          = new Starbound.UI.Thickness(3, 3, 0, 0),
+                    Font            = Starbound.UI.Application.ResourceManager.GetResource<IFontResource>("Font"),
+                    Content         = "hehe",
+                    Background      = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble()),
+                    Foreground      = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble())
                 });
                 panel.Orientation = panel.Orientation == Orientation.Horizontal ? Orientation.Veritical : Orientation.Horizontal;
             }
@@ -193,14 +196,14 @@ namespace CozyKxlol.Kxlol.Scene
                 Player.Update(gameTime);
                 if(Player.Changed)
                 {
-                    Player.Changed = false;
-                    var msg = new Msg_AgarPlayInfo();
-                    msg.Operat = Msg_AgarPlayInfo.Changed;
-                    msg.PlayerId = Uid;
-                    msg.X = Player.Position.X;
-                    msg.Y = Player.Position.Y;
-                    msg.Radius = Player.Radius;
-                    msg.Color = Player.ColorProperty.PackedValue;
+                    Player.Changed  = false;
+                    var msg         = new Msg_AgarPlayInfo();
+                    msg.Operat      = Msg_AgarPlayInfo.Changed;
+                    msg.PlayerId    = Uid;
+                    msg.X           = Player.Position.X;
+                    msg.Y           = Player.Position.Y;
+                    msg.Radius      = Player.Radius;
+                    msg.Color       = Player.ColorProperty.PackedValue;
                     client.SendMessage(msg);
                 }
             }

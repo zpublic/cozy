@@ -10,8 +10,8 @@ namespace CozyKxlol.Server.Manager
     
     public class FixedBallManager
     {
-        private const uint DefaultMaxSize = 20;
-        private uint _MaxSize = DefaultMaxSize;
+        private const uint DefaultMaxSize   = 20;
+        private uint _MaxSize               = DefaultMaxSize;
         public uint MaxSize
         {
             get
@@ -24,7 +24,7 @@ namespace CozyKxlol.Server.Manager
             }
         }
 
-        private static uint _FixedBallId = 1;
+        private static uint _FixedBallId    = 1;
         public static uint FixedBallId
         {
             get
@@ -35,7 +35,7 @@ namespace CozyKxlol.Server.Manager
 
         Dictionary<uint, FixedBall> FixedDictionary = new Dictionary<uint, FixedBall>();
 
-        public static Random _RandomMaker = new Random();
+        public static Random _RandomMaker           = new Random();
         public static Random RandomMaker
         {
             get
@@ -59,8 +59,8 @@ namespace CozyKxlol.Server.Manager
             public FixedBall Ball{ get; set;}
             public FixedCreateArgs(uint id, FixedBall ball)
             {
-                BallId = id;
-                Ball = ball;
+                BallId  = id;
+                Ball    = ball;
             }
         }
         public class FixedRemoveArgs : EventArgs
@@ -77,16 +77,16 @@ namespace CozyKxlol.Server.Manager
 
         public static FixedBall RandomBall()
         {
-            var ball = new FixedBall();
-            ball.X = RandomMaker.Next(800);
-            ball.Y = RandomMaker.Next(600);
-            ball.Color = CustomColors.Colors[RandomMaker.Next(CustomColors.Colors.Length)];
+            var ball    = new FixedBall();
+            ball.X      = RandomMaker.Next(800);
+            ball.Y      = RandomMaker.Next(600);
+            ball.Color  = CustomColors.Colors[RandomMaker.Next(CustomColors.Colors.Length)];
             return ball;
         }
 
         private void Add(FixedBall ball)
         {
-            uint id = FixedBallId;
+            uint id     = FixedBallId;
             FixedDictionary[id] = ball;
             FixedCreateMessage(this, new FixedCreateArgs(id, ball));
         }
