@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Starbound.Input;
-using CozyKxlol.Kxlol.Ext;
+using CozyKxlol.Kxlol.Extends;
 
 namespace CozyKxlol.Kxlol.Object
 {
