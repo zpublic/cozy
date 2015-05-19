@@ -271,14 +271,6 @@ namespace CozyKxlol.Kxlol.Object
             Changed = true;
         }
 
-        public bool CanEat(CozyCircle circle)
-        {
-            if (circle == this) return false;
-            Vector2 distanceVector = Position - circle.Position;
-            float distance = distanceVector.Length();
-            return Radius > (distance + circle.Radius);
-        }
-
         #region KeyEvent
 
         private void UpdateKeysState(GameTime gameTime)

@@ -241,6 +241,7 @@ namespace CozyKxlol.Server
                     newBall.Radius          = r.Radius;
                     newBall.Color           = r.Color;
                     PlayerBallMgr.Change(uid, newBall);
+                    Update(uid, newBall);
                 }
                 else if(r.Operat == Msg_AgarPlayInfo.Remove)
                 {
@@ -254,6 +255,33 @@ namespace CozyKxlol.Server
                 return true;
             }
             return false;
+        }
+
+        public static bool CanEat(PlayerBall player, FixedBall ball)
+        {
+            const float DefaultBallRadius = 5.0f;
+
+            float X_Distance    = player.X - ball.X;
+            float Y_Distance    = player.Y - ball.Y;
+            float Distance      = (float)Math.Sqrt(X_Distance * X_Distance + Y_Distance * Y_Distance);
+            return player.Radius > (Distance + DefaultBallRadius);
+        }
+
+        public static void Update(uint id, PlayerBall ball)
+        {
+            bool FoodRemoveFlag = false;
+            foreach(var obj in FixedBallMgr.ToList())
+            {
+                if(CanEat(ball, obj.Value))
+                {
+                    FoodRemoveFlag = true;
+                    FixedBallMgr.Remove(obj.Key);
+                }
+            }
+            if(FoodRemoveFlag)
+            {
+                FixedBallMgr.Update();
+            }
         }
     }
 }
