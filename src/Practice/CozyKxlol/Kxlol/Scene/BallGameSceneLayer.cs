@@ -15,15 +15,16 @@ using Starbound.UI.XNA.Renderers;
 using CozyKxlol.Network;
 using CozyKxlol.Kxlol.Impl;
 using CozyKxlol.Network.Msg;
+using CozyKxlol.Kxlol.Extends;
 
 namespace CozyKxlol.Kxlol.Scene
 {
     class BallGameSceneLayer : CozyLayer
     {
-        List<CozyCircle> CircleList = new List<CozyCircle>();
         List<CozyCircle> RenderList = new List<CozyCircle>();
 
         Dictionary<uint, CozyCircle> FoodList = new Dictionary<uint, CozyCircle>();
+        Dictionary<uint, CozyCircle> CircleList = new Dictionary<uint, CozyCircle>();
 
         KeyboardEvents keyboard;
         String sdbg;
@@ -33,6 +34,7 @@ namespace CozyKxlol.Kxlol.Scene
         XNARenderer renderer;
         NetClientHelper client      = new NetClientHelper();
         public CozyCircle Player  = null;
+        public uint Uid = 0;
 
         public BallGameSceneLayer()
         {
@@ -91,18 +93,50 @@ namespace CozyKxlol.Kxlol.Scene
                 if(b.Id == MsgId.AgarLoginRsp)
                 {
                     var selfMsg = (Msg_AgarLoginRsp)b;
-                    Player = new DefaultUserCircle(new Vector2(selfMsg.X, selfMsg.Y));
+                    Uid = selfMsg.Uid;
+                    Player = new DefaultUserCircle(new Vector2(selfMsg.X, selfMsg.Y),selfMsg.Radius, selfMsg.Color);
                     RenderList.Add(Player);
                 }
                 else if(b.Id == MsgId.AgarFixedBall)
                 {
                     var selfMsg = (Msg_AgarFixedBall)b;
+                    uint id = selfMsg.BallId;
                     if(selfMsg.Operat == Msg_AgarFixedBall.Add)
                     {
-                        uint id = selfMsg.BallId;
                         var food = new DefaultFoodCircle(new Vector2(selfMsg.X, selfMsg.Y), selfMsg.Color);
                         FoodList[id] = food;
                         RenderList.Add(food);
+                    }
+                    else if(selfMsg.Operat == Msg_AgarFixedBall.Remove)
+                    {
+                        CozyCircle food = FoodList[id];
+                        RenderList.Remove(food);
+                        FoodList.Remove(id);
+                    }
+
+                }
+                else if(b.Id == MsgId.AgarPlayInfo)
+                {
+                    var selfMsg = (Msg_AgarPlayInfo)b;
+                    uint id = selfMsg.PlayerId;
+                    if(selfMsg.Operat == Msg_AgarPlayInfo.Add)
+                    {
+                        var player = new DefaultUserCircle(new Vector2(selfMsg.X, selfMsg.Y), selfMsg.Radius, selfMsg.Color);
+                        CircleList[id] = player;
+                        RenderList.Add(player);
+                    }
+                    else if(selfMsg.Operat == Msg_AgarPlayInfo.Remove)
+                    {
+                        var player = CircleList[id];
+                        RenderList.Remove(player);
+                        CircleList.Remove(id);
+                    }
+                    else if(selfMsg.Operat == Msg_AgarPlayInfo.Changed)
+                    {
+                        var player = CircleList[id];
+                        player.Position = new Vector2(selfMsg.X, selfMsg.Y);
+                        player.Radius = selfMsg.Radius;
+                        player.ColorProperty = selfMsg.Color.ToColor();
                     }
                 }
             };
@@ -152,11 +186,23 @@ namespace CozyKxlol.Kxlol.Scene
             mouse.Update(gameTime);
             foreach (var obj in CircleList)
             {
-                obj.Update(gameTime);
+                obj.Value.Update(gameTime);
             }
-            if(Player != null)
+            if (Player != null)
             {
                 Player.Update(gameTime);
+                if(Player.Changed)
+                {
+                    Player.Changed = false;
+                    var msg = new Msg_AgarPlayInfo();
+                    msg.Operat = Msg_AgarPlayInfo.Changed;
+                    msg.PlayerId = Uid;
+                    msg.X = Player.Position.X;
+                    msg.Y = Player.Position.Y;
+                    msg.Radius = Player.Radius;
+                    msg.Color = Player.ColorProperty.PackedValue;
+                    client.SendMessage(msg);
+                }
             }
 
             //List<KeyValuePair<CozyCircle, CozyCircle>> RemoveUserList = new List<KeyValuePair<CozyCircle, CozyCircle>>();

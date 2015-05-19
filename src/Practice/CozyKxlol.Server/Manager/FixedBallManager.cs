@@ -5,7 +5,7 @@ using System.Text;
 using CozyKxlol.Server.Model;
 using CozyKxlol.Network.Msg;
 
-namespace CozyKxlol.Server
+namespace CozyKxlol.Server.Manager
 {
     
     public class FixedBallManager
@@ -47,7 +47,8 @@ namespace CozyKxlol.Server
         {
             while(FixedDictionary.Count < MaxSize)
             {
-                Add();
+                FixedBall ball = RandomBall();
+                Add(ball);
             }
         }
 
@@ -62,15 +63,30 @@ namespace CozyKxlol.Server
                 Ball = ball;
             }
         }
-        public event EventHandler<FixedCreateArgs> FixedCreateMessage;
-
-        private void Add()
+        public class FixedRemoveArgs : EventArgs
         {
-            uint id = FixedBallId;
+            public uint BallId { get; set; }
+            public FixedRemoveArgs(uint id)
+            {
+                BallId = id;
+            }
+        }
+
+        public event EventHandler<FixedCreateArgs> FixedCreateMessage;
+        public event EventHandler<FixedRemoveArgs> FixedRemoveMessage;
+
+        public static FixedBall RandomBall()
+        {
             var ball = new FixedBall();
             ball.X = RandomMaker.Next(800);
             ball.Y = RandomMaker.Next(600);
-            ball.Color = CustomColors.Colors[RandomMaker.Next(10)];
+            ball.Color = CustomColors.Colors[RandomMaker.Next(CustomColors.Colors.Length)];
+            return ball;
+        }
+
+        private void Add(FixedBall ball)
+        {
+            uint id = FixedBallId;
             FixedDictionary[id] = ball;
             FixedCreateMessage(this, new FixedCreateArgs(id, ball));
         }
@@ -78,6 +94,7 @@ namespace CozyKxlol.Server
         public void Remove(uint id)
         {
             FixedDictionary.Remove(id);
+            FixedRemoveMessage(this, new FixedRemoveArgs(id));
         }
 
         public List<KeyValuePair<uint, FixedBall>> ToList()

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using CozyKxlol.Server.Manager;
+using CozyKxlol.Server.Model;
 
 namespace CozyKxlol.Server
 {
@@ -30,6 +32,7 @@ namespace CozyKxlol.Server
         }
 
         public static FixedBallManager FixedBallMgr = new FixedBallManager();
+        public static PlayerBallManager PlayerBallMgr = new PlayerBallManager();
 
         static void Main(string[] args)
         {
@@ -49,6 +52,18 @@ namespace CozyKxlol.Server
                 r.X = msg.Ball.X;
                 r.Y = msg.Ball.Y;
                 r.Color = msg.Ball.Color;
+
+                NetOutgoingMessage om = server.CreateMessage();
+                om.Write(r.Id);
+                r.W(om);
+                server.SendToAll(om, NetDeliveryMethod.Unreliable);
+            };
+
+            FixedBallMgr.FixedRemoveMessage += (sender, msg) =>
+            {
+                Msg_AgarFixedBall r = new Msg_AgarFixedBall();
+                r.Operat = Msg_AgarFixedBall.Remove;
+                r.BallId = msg.BallId;
 
                 NetOutgoingMessage om = server.CreateMessage();
                 om.Write(r.Id);
@@ -108,6 +123,15 @@ namespace CozyKxlol.Server
             }
         }
 
+        private static void SendToAllExceptOne(NetServer server, int id, NetOutgoingMessage msg, NetConnection except)
+        {
+            List<NetConnection> all = server.Connections;
+            all.Remove(except);
+            if(all.Count > 0)
+            {
+                server.SendMessage(msg, all, NetDeliveryMethod.Unreliable, 0);
+            }
+        }
 
         private static bool ProcessPacket(NetServer server, int id, NetIncomingMessage msg)
         {
@@ -131,13 +155,58 @@ namespace CozyKxlol.Server
 
                 // 返回客户端玩家坐标
                 Msg_AgarLoginRsp rr = new Msg_AgarLoginRsp();
-                rr.Uid = GameId;
+                uint uid = GameId;
+                rr.Uid = uid;
                 rr.X = RandomMaker.Next(800);
                 rr.Y = RandomMaker.Next(600);
+                rr.Radius = PlayerBall.DefaultPlayerRadius;
+                rr.Color = CustomColors.Colors[RandomMaker.Next(CustomColors.Colors.Length)];
+
                 NetOutgoingMessage om = server.CreateMessage();
                 om.Write(rr.Id);
                 rr.W(om);
                 server.SendMessage(om, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
+
+                // 推送之前加入的玩家数据
+                var PlayerList = PlayerBallMgr.ToList();
+                foreach(var obj in PlayerList)
+                {
+                    Msg_AgarPlayInfo rp = new Msg_AgarPlayInfo();
+                    rp.Operat = Msg_AgarPlayInfo.Add;
+                    rp.PlayerId = obj.Key;
+                    rp.X = obj.Value.X;
+                    rp.Y = obj.Value.Y;
+                    rp.Radius = obj.Value.Radius;
+                    rp.Color = obj.Value.Color;
+
+                    NetOutgoingMessage pom = server.CreateMessage();
+                    pom.Write(rp.Id);
+                    rp.W(pom);
+                    server.SendMessage(pom, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
+                }
+
+                Msg_AgarPlayInfo lp = new Msg_AgarPlayInfo();
+                lp.Operat = Msg_AgarPlayInfo.Add;
+                lp.PlayerId = uid;
+                lp.X = rr.X;
+                lp.Y = rr.Y;
+                lp.Radius = rr.Radius;
+                lp.Color = rr.Color;
+
+                NetOutgoingMessage lom = server.CreateMessage();
+                lom.Write(lp.Id);
+                lp.W(lom);
+                SendToAllExceptOne(server, id, lom, msg.SenderConnection);
+
+                // 加入Manager
+                PlayerBall player = new PlayerBall();
+                player.X = rr.X;
+                player.Y = rr.Y;
+                player.Radius = rr.Radius;
+                player.Color = rr.Color;
+                PlayerBallMgr.Add(uid, player);
+
+                
 
                 // 为新加入的玩家推送FixedBall
                 var FixedList = FixedBallMgr.ToList();
@@ -155,7 +224,31 @@ namespace CozyKxlol.Server
                     rb.W(bom);
                     server.SendMessage(bom, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
                 }
-                
+                return true;
+            }
+            else if(id == MsgId.AgarPlayInfo)
+            {
+                Msg_AgarPlayInfo r = new Msg_AgarPlayInfo();
+                r.R(msg);
+                uint uid = r.PlayerId;
+                if(r.Operat == Msg_AgarPlayInfo.Changed)
+                {
+                    PlayerBall newBall = new PlayerBall();
+                    newBall.X = r.X;
+                    newBall.Y = r.Y;
+                    newBall.Radius = r.Radius;
+                    newBall.Color = r.Color;
+                    PlayerBallMgr.Change(uid, newBall);
+                }
+                else if(r.Operat == Msg_AgarPlayInfo.Remove)
+                {
+                    PlayerBallMgr.Remove(uid);
+                }
+
+                NetOutgoingMessage com = server.CreateMessage();
+                com.Write(r.Id);
+                r.W(com);
+                SendToAllExceptOne(server, id, com, msg.SenderConnection);
                 return true;
             }
             return false;

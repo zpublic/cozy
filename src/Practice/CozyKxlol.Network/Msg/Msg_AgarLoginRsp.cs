@@ -13,12 +13,16 @@ namespace CozyKxlol.Network.Msg
         public uint Uid { get; set; }
         public float X { get; set; }
         public float Y { get; set; }
+        public float Radius { get; set; }
+        public uint Color { get; set; }
 
         public void W(NetOutgoingMessage om)
         {
             om.Write(Uid);
             om.Write(X);
             om.Write(Y);
+            om.Write(Radius);
+            om.Write(Color);
         }
 
         public void R(NetIncomingMessage im)
@@ -26,6 +30,8 @@ namespace CozyKxlol.Network.Msg
             Uid = im.ReadUInt32();
             X = im.ReadFloat();
             Y = im.ReadFloat();
+            Radius = im.ReadFloat();
+            Color = im.ReadUInt32();
         }
     }
 }

@@ -34,6 +34,19 @@ namespace CozyKxlol.Kxlol.Object
             }
         }
 
+        private bool _Changed = false;
+        public bool Changed
+        {
+            get
+            {
+                return _Changed;
+            }
+            set
+            {
+                _Changed = value;
+            }
+        }
+
         #region Move
 
         enum EnableMoveTag : int
@@ -255,6 +268,7 @@ namespace CozyKxlol.Kxlol.Object
             {
                 LinearDamping += MathHelper.Lerp(0.0f, -1.0f, timeDelta);
             }
+            Changed = true;
         }
 
         public bool CanEat(CozyCircle circle)
