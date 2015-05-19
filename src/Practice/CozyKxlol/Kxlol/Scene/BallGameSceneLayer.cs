@@ -34,6 +34,7 @@ namespace CozyKxlol.Kxlol.Scene
         NetClientHelper client                  = new NetClientHelper();
         public CozyCircle Player                = null;
         public uint Uid                         = 0;
+        public bool IsConnect                   = false;
 
         public BallGameSceneLayer()
         {
@@ -46,7 +47,10 @@ namespace CozyKxlol.Kxlol.Scene
                     case Keys.S:
                     case Keys.A:
                     case Keys.D:
-                        Player.OnKeyPressd(sender, e);
+                        if(Player != null)
+                        {
+                            Player.OnKeyPressd(sender, e);
+                        }
                         break;
                     default:
                         sdbg = String.Format("Key Pressed: " + e.Key + " Modifiers: " + e.Modifiers);
@@ -61,7 +65,10 @@ namespace CozyKxlol.Kxlol.Scene
                     case Keys.S:
                     case Keys.A:
                     case Keys.D:
-                        Player.OnKeyReleased(sender, e);
+                        if(Player != null)
+                        {
+                            Player.OnKeyReleased(sender, e);
+                        }
                         break;
                     default:
                         sdbg = String.Format("Key Released: " + e.Key + " Modifiers: " + e.Modifiers);
@@ -81,13 +88,20 @@ namespace CozyKxlol.Kxlol.Scene
             {
                 if(msg.Status == ConnectionStatus.Connected)
                 {
+                    IsConnect = true;
                     var loginMsg = new Msg_AgarLogin();
                     client.SendMessage(loginMsg);
+                }
+                else if(msg.Status == ConnectionStatus.Disconnected)
+                {
+                    IsConnect = false;
                 }
             };
 
             client.DataMessage += (sender, msg) =>
             {
+                if (!IsConnect) return;
+
                 MsgBase b = msg.Msg;
                 if(b.Id == MsgId.AgarLoginRsp)
                 {
@@ -194,7 +208,7 @@ namespace CozyKxlol.Kxlol.Scene
             if (Player != null)
             {
                 Player.Update(gameTime);
-                if(Player.Changed)
+                if(IsConnect && Player.Changed)
                 {
                     Player.Changed  = false;
                     var msg         = new Msg_AgarPlayInfo();
@@ -268,6 +282,10 @@ namespace CozyKxlol.Kxlol.Scene
             //}
 
             //sdbg = String.Format("{0} {1} {2} {3}", Player.IsMoving, Player.Position, Player.Direction, Player.MoveDamping);
+            if(!IsConnect)
+            {
+                sdbg = "Cannot Connect!";
+            }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
