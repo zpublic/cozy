@@ -20,6 +20,11 @@ namespace CozyKxlol.Kxlol.Object
         
         public Color ColorProperty { get; set; }
 
+
+        // v = 20 + 200 / S
+        public const float BaseSpeed = 20.0f;
+        public const float FloatSpeed = 900.0f;
+
         private float _Radius = 0.0f;
         public float Radius 
         { 
@@ -72,9 +77,6 @@ namespace CozyKxlol.Kxlol.Object
             }
         }
 
-        // v = 20 + 200 / S
-        public const float BaseSpeed    = 20.0f;
-        public const float FloatSpeed   = 200.0f;
 
         #region Direction
 
@@ -269,6 +271,12 @@ namespace CozyKxlol.Kxlol.Object
                 LinearDamping += MathHelper.Lerp(0.0f, -1.0f, timeDelta);
             }
             Changed = true;
+        }
+
+        public bool IsContain(Vector2 pos)
+        {
+            float distance2 = (Position - pos).LengthSquared();
+            return Radius * Radius > distance2;
         }
 
         #region KeyEvent
