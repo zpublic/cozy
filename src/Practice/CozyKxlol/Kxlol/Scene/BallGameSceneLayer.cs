@@ -157,6 +157,17 @@ namespace CozyKxlol.Kxlol.Scene
                         player.ColorProperty = selfMsg.Color.ToColor();
                     }
                 }
+                else if(b.Id == MsgId.AgarFixBallPack)
+                {
+                    var selfMsg = (Msg_AgarFixBallPack)b;
+                    foreach(var obj in selfMsg.FixedList)
+                    {
+                        uint fid = obj.Item1;
+                        var food = new DefaultFoodCircle(new Vector2(obj.Item2, obj.Item3), obj.Item4);
+                        FoodList[fid] = food;
+                        RenderList.Add(food);
+                    }
+                } 
             };
 
             client.Connect("127.0.0.1", 48360);

@@ -194,6 +194,12 @@ namespace CozyKxlol.Network
                     msg.R(im);
                     DataMessage(sender, new DataMessageArgs(msg));
                 }
+                else if(id == MsgId.AgarFixBallPack)
+                {
+                    MsgBase msg = new Msg_AgarFixBallPack();
+                    msg.R(im);
+                    DataMessage(sender, new DataMessageArgs(msg));
+                }
             }
         }
     }

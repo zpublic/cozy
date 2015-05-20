@@ -208,24 +208,20 @@ namespace CozyKxlol.Server
                 player.Color            = rr.Color;
                 PlayerBallMgr.Add(uid, player);
 
-                
-
                 // 为新加入的玩家推送FixedBall
                 var FixedList           = FixedBallMgr.ToList();
-                foreach(var obj in FixedList)
-                {
-                    Msg_AgarFixedBall rb    = new Msg_AgarFixedBall();
-                    rb.Operat               = Msg_AgarFixedBall.Add;
-                    rb.BallId               = obj.Key;
-                    rb.X                    = obj.Value.X;
-                    rb.Y                    = obj.Value.Y;
-                    rb.Color                = obj.Value.Color;
-                    
-                    NetOutgoingMessage bom  = server.CreateMessage();
-                    bom.Write(rb.Id);
-                    rb.W(bom);
-                    server.SendMessage(bom, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
-                }
+                var FixedPackList = 
+                    from f 
+                    in FixedList 
+                    select Tuple.Create<uint, float, float, uint>(f.Key, f.Value.X, f.Value.Y, f.Value.Color);
+
+                var FixedPack = new Msg_AgarFixBallPack();
+                FixedPack.FixedList = FixedPackList.ToList();
+                NetOutgoingMessage bom = server.CreateMessage();
+                bom.Write(FixedPack.Id);
+                FixedPack.W(bom);
+                server.SendMessage(bom, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
+
                 return true;
             }
             else if(id == MsgId.AgarPlayInfo)

@@ -51,6 +51,8 @@ namespace CozyKxlol.Network.Msg
         public const int AgarFixedBall = 11107;
         // 返回自己的位置
         public const int AgarLoginRsp = 11108;
+        // 可被吃小球打包发送
+        public const int AgarFixBallPack = 11109;
 
         ////// 20001 - 40000 游戏扩展
 
