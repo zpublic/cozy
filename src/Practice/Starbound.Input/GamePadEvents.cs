@@ -11,19 +11,19 @@ namespace Starbound.Input
     /// An abstraction around game pad input that turns XNA's underlying polling model into an event-based
     /// model for game pad input.
     /// </summary>
-    public class GamePadEvents : GameComponent
+    public class GamePadEvents
     {
         /// <summary>
         /// Represents the amount that a trigger needs to be pressed for it to count as a trigger button press.
         /// The default is 0.5f (half way pressed).
         /// </summary>
-        public static float TriggerThreshold { get; set; }
+        public float TriggerThreshold { get; set; }
 
         /// <summary>
         /// Represents the amount that a thumbstick needs to be pressed as a distance from the center for
         /// it to register as a thumbstick press in any direction. The default is half way out (0.5f).
         /// </summary>
-        public static float ThumbstickThreshold { get; set; }
+        public float ThumbstickThreshold { get; set; }
 
         /// <summary>
         /// Stores the state of the game pad in the previous update.
@@ -45,7 +45,7 @@ namespace Starbound.Input
         /// <summary>
         /// Creates a new GamePadEvents object.
         /// </summary>
-        static GamePadEvents()
+        public GamePadEvents()
         {
             TriggerThreshold = 0.5f;
             ThumbstickThreshold = 0.5f;
@@ -57,8 +57,8 @@ namespace Starbound.Input
         /// </summary>
         /// <param name="physicalIndex"></param>
         /// <param name="game"></param>
-        public GamePadEvents(PlayerIndex physicalIndex, Game game)
-            : this(physicalIndex, physicalIndex, game)
+        public GamePadEvents(PlayerIndex physicalIndex)
+            : this(physicalIndex, physicalIndex)
         {
         }
         
@@ -68,8 +68,7 @@ namespace Starbound.Input
         /// <param name="physicalIndex"></param>
         /// <param name="logicalIndex"></param>
         /// <param name="game"></param>
-        public GamePadEvents(PlayerIndex physicalIndex, PlayerIndex logicalIndex, Game game)
-            : base(game)
+        public GamePadEvents(PlayerIndex physicalIndex, PlayerIndex logicalIndex)
         {
             PhysicalIndex = physicalIndex;
             LogicalIndex = logicalIndex;
@@ -79,10 +78,8 @@ namespace Starbound.Input
         /// Updates the GamePadEvents, performing polling and raising any events that have occurred.
         /// </summary>
         /// <param name="gameTime"></param>
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-
             GamePadState current = GamePad.GetState(PhysicalIndex);
             
             // Button Down
@@ -326,52 +323,52 @@ namespace Starbound.Input
         /// An event that is raised whenever a button is pressed. This includes all of the normal buttons,
         /// but it also includes triggers and thumb sticks being treated as buttons.
         /// </summary>
-        public static event EventHandler<GamePadButtonEventArgs> ButtonDown;
+        public event EventHandler<GamePadButtonEventArgs> ButtonDown;
 
         /// <summary>
         /// An event that is raised whenever a button is released. This includes all of the normal buttons,
         /// but it also includes triggers and thumb sticks being treated as buttons.
         /// </summary>
-        public static event EventHandler<GamePadButtonEventArgs> ButtonUp;
+        public event EventHandler<GamePadButtonEventArgs> ButtonUp;
 
         /// <summary>
         /// An event that is raised any time the left trigger is moved.
         /// </summary>
-        public static event EventHandler<GamePadTriggerEventArgs> LeftTriggerMoved;
+        public event EventHandler<GamePadTriggerEventArgs> LeftTriggerMoved;
 
         /// <summary>
         /// An event that is raised any time that the right trigger is moved.
         /// </summary>
-        public static event EventHandler<GamePadTriggerEventArgs> RightTriggerMoved;
+        public event EventHandler<GamePadTriggerEventArgs> RightTriggerMoved;
 
         /// <summary>
         /// An event that is raised any time either trigger is moved.
         /// </summary>
-        public static event EventHandler<GamePadTriggerEventArgs> TriggerMoved;
+        public event EventHandler<GamePadTriggerEventArgs> TriggerMoved;
 
         /// <summary>
         /// An event that is raised any time the left thumbstick is moved.
         /// </summary>
-        public static event EventHandler<GamePadThumbstickEventArgs> LeftThumbstickMoved;
+        public event EventHandler<GamePadThumbstickEventArgs> LeftThumbstickMoved;
 
         /// <summary>
         /// An event that is raised any time that the right thumbstick is moved.
         /// </summary>
-        public static event EventHandler<GamePadThumbstickEventArgs> RightThumbstickMoved;
+        public event EventHandler<GamePadThumbstickEventArgs> RightThumbstickMoved;
 
         /// <summary>
         /// An event that is raised any time either thumbstick is moved.
         /// </summary>
-        public static event EventHandler<GamePadThumbstickEventArgs> ThumbstickMoved;
+        public event EventHandler<GamePadThumbstickEventArgs> ThumbstickMoved;
 
         /// <summary>
         /// an event that is raised when this controller connects.
         /// </summary>
-        public static event EventHandler<GamePadEventArgs> Connected;
+        public event EventHandler<GamePadEventArgs> Connected;
 
         /// <summary>
         /// An event that is raised when this controller disconnects.
         /// </summary>
-        public static event EventHandler<GamePadEventArgs> Disconnected;
+        public event EventHandler<GamePadEventArgs> Disconnected;
     }
 }
