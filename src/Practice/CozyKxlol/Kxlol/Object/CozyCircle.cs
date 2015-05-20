@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Starbound.Input;
-using CozyKxlol.Kxlol.Ext;
+using CozyKxlol.Kxlol.Extends;
 
 namespace CozyKxlol.Kxlol.Object
 {
@@ -31,6 +31,19 @@ namespace CozyKxlol.Kxlol.Object
             {
                 _Radius     = value;
                 MaxSpeed    = BaseSpeed + FloatSpeed / Radius;
+            }
+        }
+
+        private bool _Changed = false;
+        public bool Changed
+        {
+            get
+            {
+                return _Changed;
+            }
+            set
+            {
+                _Changed = value;
             }
         }
 
@@ -218,35 +231,6 @@ namespace CozyKxlol.Kxlol.Object
             BorderSize      = borderSize;
         }
 
-        #region CustomColors
-
-        static readonly int[] CozyColors = new int[] {
-            0xE51400,   // Red
-            0x339933,   // Green
-            0x1BA1E2,   // Blue
-            0xF09609,   // Orange
-            0x8CBF26,   // Grass Green
-            0x00ABA9,   // Acid Blue
-            0xFF0097,   // Magenta
-            0xE671B8,   // Pink
-            0x996600,   // Brown
-            0xA200FF};  // Purple
-
-        #endregion
-
-        static Random RandomMaker = new Random();
-        public static Color RandomColor()
-        {
-            int ColorTag = CozyColors[RandomMaker.Next(CozyColors.Length)];
-            return new Color(ColorTag & 0xFF0000, ColorTag & 0x00FF00, ColorTag & 0x0000FF);
-        }
-
-        public static Vector2 RandomPosition()
-        {
-            Point MaxSize = CozyDirector.Instance.WindowSize;
-            return new Vector2(RandomMaker.Next(MaxSize.X), RandomMaker.Next(MaxSize.Y));
-        }
-
         public override void Update(GameTime gameTime)
         {
             UpdateKeysState(gameTime);
@@ -284,14 +268,7 @@ namespace CozyKxlol.Kxlol.Object
             {
                 LinearDamping += MathHelper.Lerp(0.0f, -1.0f, timeDelta);
             }
-        }
-
-        public bool CanEat(CozyCircle circle)
-        {
-            if (circle == this) return false;
-            Vector2 distanceVector = Position - circle.Position;
-            float distance = distanceVector.Length();
-            return Radius > (distance + circle.Radius);
+            Changed = true;
         }
 
         #region KeyEvent

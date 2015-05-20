@@ -57,6 +57,11 @@
     <Compile Include="Msg\Msg_AccountReg.cs" />
     <Compile Include="Msg\Msg_AccountLogin.cs" />
     <Compile Include="Msg\Msg_AccountModifyPassword.cs" />
+    <Compile Include="Msg\Msg_AgarFixedBall.cs" />
+    <Compile Include="Msg\Msg_AgarLogin.cs" />
+    <Compile Include="Msg\Msg_AgarLoginRsp.cs" />
+    <Compile Include="Msg\Msg_AgarPlayInfo.cs" />
+    <Compile Include="Msg\Msg_AgarSelf.cs" />
     <Compile Include="Msg\Msg_ChatToAll.cs" />
     <Compile Include="NetClientHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

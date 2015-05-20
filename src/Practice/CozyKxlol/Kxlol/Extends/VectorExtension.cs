@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace CozyKxlol.Kxlol.Ext
+namespace CozyKxlol.Kxlol.Extends
 {
     public static class VectorExtension
     {

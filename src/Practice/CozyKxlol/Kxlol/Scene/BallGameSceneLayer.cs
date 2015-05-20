@@ -14,14 +14,16 @@ using Starbound.UI.XNA.Resources;
 using Starbound.UI.XNA.Renderers;
 using CozyKxlol.Network;
 using CozyKxlol.Kxlol.Impl;
+using CozyKxlol.Network.Msg;
+using CozyKxlol.Kxlol.Extends;
 
 namespace CozyKxlol.Kxlol.Scene
 {
     class BallGameSceneLayer : CozyLayer
     {
-        List<CozyCircle> CircleList = new List<CozyCircle>();
-        List<CozyCircle> FoodList   = new List<CozyCircle>();
-        List<CozyCircle> RenderList = new List<CozyCircle>();
+        List<CozyCircle> RenderList             = new List<CozyCircle>();
+        Dictionary<uint, CozyCircle> FoodList   = new Dictionary<uint, CozyCircle>();
+        Dictionary<uint, CozyCircle> CircleList = new Dictionary<uint, CozyCircle>();
 
         KeyboardEvents keyboard;
         String sdbg;
@@ -29,8 +31,10 @@ namespace CozyKxlol.Kxlol.Scene
         List<Control> controls;
         StackPanel panel;
         XNARenderer renderer;
-        NetClientHelper client      = new NetClientHelper();
-        public IControlAble Player  = null;
+        NetClientHelper client                  = new NetClientHelper();
+        public CozyCircle Player                = null;
+        public uint Uid                         = 0;
+        public bool IsConnect                   = false;
 
         public BallGameSceneLayer()
         {
@@ -43,7 +47,10 @@ namespace CozyKxlol.Kxlol.Scene
                     case Keys.S:
                     case Keys.A:
                     case Keys.D:
-                        Player.OnKeyPressd(sender, e);
+                        if(Player != null)
+                        {
+                            Player.OnKeyPressd(sender, e);
+                        }
                         break;
                     default:
                         sdbg = String.Format("Key Pressed: " + e.Key + " Modifiers: " + e.Modifiers);
@@ -58,7 +65,10 @@ namespace CozyKxlol.Kxlol.Scene
                     case Keys.S:
                     case Keys.A:
                     case Keys.D:
-                        Player.OnKeyReleased(sender, e);
+                        if(Player != null)
+                        {
+                            Player.OnKeyReleased(sender, e);
+                        }
                         break;
                     default:
                         sdbg = String.Format("Key Released: " + e.Key + " Modifiers: " + e.Modifiers);
@@ -66,30 +76,90 @@ namespace CozyKxlol.Kxlol.Scene
                 }
             };
 
-            mouse = new MouseEvents();
+            mouse       = new MouseEvents();
+#if MouseDebug
             mouse.ButtonClicked += MouseEvents_ButtonClicked;
-
-            var circle1 = new DefaultUserCircle(new Vector2(300.0f, 300.0f));
-            var circle2 = new DefaultUserCircle(new Vector2(400.0f, 300.0f));
-            var circle3 = new DefaultUserCircle(new Vector2(500.0f, 300.0f));
-            var circle4 = new DefaultUserCircle(new Vector2(500.0f, 200.0f));
-
-            CircleList.Add(circle1);
-            CircleList.Add(circle2);
-            CircleList.Add(circle3);
-            CircleList.Add(circle4);
-
-            RenderList.Add(circle1);
-            RenderList.Add(circle2);
-            RenderList.Add(circle3);
-            RenderList.Add(circle4);
-
-            Player = circle4;
-
-            renderer = new XNARenderer();
-            controls = new List<Control>();
-            panel = new StackPanel() { Orientation = Orientation.Horizontal, ActualWidth = 1280, ActualHeight = 800 };
+#endif
+            renderer    = new XNARenderer();
+            controls    = new List<Control>();
+            panel       = new StackPanel() { Orientation = Orientation.Horizontal, ActualWidth = 1280, ActualHeight = 800 };
             panel.UpdateLayout();
+
+            client.StatusMessage += (sender, msg) =>
+            {
+                if(msg.Status == ConnectionStatus.Connected)
+                {
+                    IsConnect = true;
+                    var loginMsg = new Msg_AgarLogin();
+                    client.SendMessage(loginMsg);
+                }
+                else if(msg.Status == ConnectionStatus.Disconnected)
+                {
+                    IsConnect = false;
+                }
+            };
+
+            client.DataMessage += (sender, msg) =>
+            {
+                if (!IsConnect) return;
+
+                MsgBase b = msg.Msg;
+                if(b.Id == MsgId.AgarLoginRsp)
+                {
+                    var selfMsg = (Msg_AgarLoginRsp)b;
+                    Uid         = selfMsg.Uid;
+                    Player      = new DefaultUserCircle(new Vector2(selfMsg.X, selfMsg.Y),selfMsg.Radius, selfMsg.Color);
+                    RenderList.Add(Player);
+                }
+                else if(b.Id == MsgId.AgarFixedBall)
+                {
+                    var selfMsg = (Msg_AgarFixedBall)b;
+                    uint id     = selfMsg.BallId;
+                    if(selfMsg.Operat == Msg_AgarFixedBall.Add)
+                    {
+                        var food        = new DefaultFoodCircle(new Vector2(selfMsg.X, selfMsg.Y), selfMsg.Color);
+                        FoodList[id]    = food;
+                        RenderList.Add(food);
+                    }
+                    else if(selfMsg.Operat == Msg_AgarFixedBall.Remove)
+                    {
+                        CozyCircle food = FoodList[id];
+                        RenderList.Remove(food);
+                        FoodList.Remove(id);
+                    }
+
+                }
+                else if(b.Id == MsgId.AgarPlayInfo)
+                {
+                    var selfMsg = (Msg_AgarPlayInfo)b;
+                    uint id     = selfMsg.PlayerId;
+                    if(selfMsg.Operat == Msg_AgarPlayInfo.Add)
+                    {
+                        var player      = new DefaultUserCircle(
+                            new Vector2(selfMsg.X, selfMsg.Y), 
+                            selfMsg.Radius, 
+                            selfMsg.Color);
+
+                        CircleList[id]  = player;
+                        RenderList.Add(player);
+                    }
+                    else if(selfMsg.Operat == Msg_AgarPlayInfo.Remove)
+                    {
+                        var player = CircleList[id];
+                        RenderList.Remove(player);
+                        CircleList.Remove(id);
+                    }
+                    else if(selfMsg.Operat == Msg_AgarPlayInfo.Changed)
+                    {
+                        var player      = CircleList[id];
+                        player.Position = new Vector2(selfMsg.X, selfMsg.Y);
+                        player.Radius   = selfMsg.Radius;
+                        player.ColorProperty = selfMsg.Color.ToColor();
+                    }
+                }
+            };
+
+            client.Connect("127.0.0.1", 48360);
         }
 
         private Random random = new Random();
@@ -106,9 +176,9 @@ namespace CozyKxlol.Kxlol.Scene
                 panel.AddChild(new Starbound.UI.Controls.Rectangle()
                 {
                     PreferredHeight = random.Next(20) + 10,
-                    PreferredWidth = random.Next(20) + 10,
-                    Margin = new Starbound.UI.Thickness(3, 3, 0, 0),
-                    Color = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble())
+                    PreferredWidth  = random.Next(20) + 10,
+                    Margin          = new Starbound.UI.Thickness(3, 3, 0, 0),
+                    Color           = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble())
                 });
             }
             else if (e.Button == MouseButton.Right)
@@ -116,12 +186,12 @@ namespace CozyKxlol.Kxlol.Scene
                 panel.AddChild(new Starbound.UI.Controls.Button()
                 {
                     PreferredHeight = random.Next(50) + 50,
-                    PreferredWidth = random.Next(50) + 50,
-                    Margin = new Starbound.UI.Thickness(3, 3, 0, 0),
-                    Font = Starbound.UI.Application.ResourceManager.GetResource<IFontResource>("Font"),
-                    Content = "hehe",
-                    Background = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble()),
-                    Foreground = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble())
+                    PreferredWidth  = random.Next(50) + 50,
+                    Margin          = new Starbound.UI.Thickness(3, 3, 0, 0),
+                    Font            = Starbound.UI.Application.ResourceManager.GetResource<IFontResource>("Font"),
+                    Content         = "hehe",
+                    Background      = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble()),
+                    Foreground      = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble())
                 });
                 panel.Orientation = panel.Orientation == Orientation.Horizontal ? Orientation.Veritical : Orientation.Horizontal;
             }
@@ -134,80 +204,28 @@ namespace CozyKxlol.Kxlol.Scene
             mouse.Update(gameTime);
             foreach (var obj in CircleList)
             {
-                obj.Update(gameTime);
+                obj.Value.Update(gameTime);
             }
-
-            List<KeyValuePair<CozyCircle, CozyCircle>> RemoveUserList = new List<KeyValuePair<CozyCircle, CozyCircle>>();
-            List<KeyValuePair<CozyCircle, CozyCircle>> RemoveFoodList = new List<KeyValuePair<CozyCircle, CozyCircle>>();
-
-            foreach (var obj1 in CircleList)
+            if (Player != null)
             {
-                foreach (var obj2 in CircleList)
+                Player.Update(gameTime);
+                if(IsConnect && Player.Changed)
                 {
-                    if (obj1.CanEat(obj2))
-                    {
-                        RemoveUserList.Add(new KeyValuePair<CozyCircle, CozyCircle>(obj1, obj2));
-                    }
-                }
-
-                foreach(var obj2 in FoodList)
-                {
-                    if(obj1.CanEat(obj2))
-                    {
-                        RemoveFoodList.Add(new KeyValuePair<CozyCircle, CozyCircle>(obj1, obj2));
-                    }
+                    Player.Changed  = false;
+                    var msg         = new Msg_AgarPlayInfo();
+                    msg.Operat      = Msg_AgarPlayInfo.Changed;
+                    msg.PlayerId    = Uid;
+                    msg.X           = Player.Position.X;
+                    msg.Y           = Player.Position.Y;
+                    msg.Radius      = Player.Radius;
+                    msg.Color       = Player.ColorProperty.PackedValue;
+                    client.SendMessage(msg);
                 }
             }
 
-            foreach (var obj in RemoveUserList)
+            if(!IsConnect)
             {
-                obj.Key.Radius = obj.Key.Radius + obj.Value.Radius;
-                CircleList.Remove(obj.Value);
-                RenderList.Remove(obj.Value);
-            }
-            foreach (var obj in RemoveFoodList)
-            {
-                obj.Key.Radius = obj.Key.Radius + 1;
-                FoodList.Remove(obj.Value);
-                RenderList.Remove(obj.Value);
-            }
-
-            Point winSize = CozyDirector.Instance.WindowSize;
-            foreach(var obj in CircleList)
-            {
-                Vector2 newPos = obj.Position;
-                if(obj.Position.X < 0.0f && obj.Speed.X < 0.0f)
-                {
-                    newPos.X = 0.0f;
-                }
-                else if (obj.Position.X > winSize.X && obj.Speed.Y > 0.0f)
-                {
-                    newPos.X = winSize.X;
-                }
-
-                if (obj.Position.Y < 0.0f && obj.Speed.Y < 0.0f)
-                {
-                    newPos.Y = 0.0f;
-                }
-                else if (obj.Position.Y > winSize.Y && obj.Speed.Y > 0.0f)
-                {
-                    newPos.Y = winSize.Y;
-                }
-                obj.Position = newPos;
-            }
-
-            UpdateFood();
-            //sdbg = String.Format("{0} {1} {2} {3}", Player.IsMoving, Player.Position, Player.Direction, Player.MoveDamping);
-        }
-
-        private int MaxFoodSize = 20;
-        private void UpdateFood()
-        {
-            while(FoodList.Count < MaxFoodSize)
-            {
-                var newFood = new DefaultFoodCircle(CozyCircle.RandomPosition());
-                FoodList.Add(newFood);
-                RenderList.Add(newFood);
+                sdbg = "Cannot Connect!";
             }
         }
 

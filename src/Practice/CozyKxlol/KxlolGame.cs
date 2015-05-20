@@ -14,9 +14,9 @@ namespace CozyKxlol
 
         public KxlolGame()
         {
-            WindowSize = new Point(800, 600);
-            Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            WindowSize              = new Point(800, 600);
+            Content.RootDirectory   = "Content";
+            IsMouseVisible          = true;
         }
 
         protected override void Initialize()

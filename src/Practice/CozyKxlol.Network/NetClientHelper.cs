@@ -176,6 +176,24 @@ namespace CozyKxlol.Network
                     msg.R(im);
                     DataMessage(sender, new DataMessageArgs(msg));
                 }
+                else if(id == MsgId.AgarLoginRsp)
+                {
+                    MsgBase msg = new Msg_AgarLoginRsp();
+                    msg.R(im);
+                    DataMessage(sender, new DataMessageArgs(msg));
+                }
+                else if(id == MsgId.AgarFixedBall)
+                {
+                    MsgBase msg = new Msg_AgarFixedBall();
+                    msg.R(im);
+                    DataMessage(sender, new DataMessageArgs(msg));
+                }
+                else if(id == MsgId.AgarPlayInfo)
+                {
+                    MsgBase msg = new Msg_AgarPlayInfo();
+                    msg.R(im);
+                    DataMessage(sender, new DataMessageArgs(msg));
+                }
             }
         }
     }
