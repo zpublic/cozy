@@ -180,6 +180,25 @@ namespace CozyKxlol.Kxlol.Scene
                         RenderList.Add(player);
                     }
                 }
+                else if(b.Id == MsgId.AgarSelf)
+                {
+                    var selfMsg = (Msg_AgarSelf)b;
+                    uint uid = selfMsg.UserId;
+
+                    if(uid != Uid)
+                    {
+                        // throw exception
+                    }
+
+                    if(selfMsg.Operat == Msg_AgarSelf.GroupUp)
+                    {
+                        Player.Radius = selfMsg.Radius;
+                    }
+                    else if(selfMsg.Operat == Msg_AgarSelf.Dead)
+                    {
+                        // doSomething
+                    }
+                }
             };
 
             client.Connect("127.0.0.1", 48360);
