@@ -31,8 +31,9 @@ namespace CozyKxlol.Server
             }
         }
 
-        public static FixedBallManager FixedBallMgr     = new FixedBallManager();
-        public static PlayerBallManager PlayerBallMgr   = new PlayerBallManager();
+        public static FixedBallManager FixedBallMgr                 = new FixedBallManager();
+        public static PlayerBallManager PlayerBallMgr               = new PlayerBallManager();
+        public static Dictionary<NetConnection, uint> ConnectionMgr = new Dictionary<NetConnection, uint>();
 
         static void Main(string[] args)
         {
@@ -72,6 +73,18 @@ namespace CozyKxlol.Server
                 server.SendToAll(om, NetDeliveryMethod.Unreliable);
             };
 
+            PlayerBallMgr.PlayerExitMessage += (sender, msg) =>
+            {
+                var removeMsg = new Msg_AgarPlayInfo();
+                removeMsg.Operat = Msg_AgarPlayInfo.Remove;
+                removeMsg.PlayerId = msg.PlayerId;
+
+                NetOutgoingMessage om = server.CreateMessage();
+                om.Write(removeMsg.Id);
+                removeMsg.W(om);
+                server.SendToAll(om, NetDeliveryMethod.Unreliable);
+            };
+
             FixedBallMgr.Update();
 
             while (!Console.KeyAvailable || Console.ReadKey().Key != ConsoleKey.Escape)
@@ -95,6 +108,15 @@ namespace CozyKxlol.Server
                             if (status == NetConnectionStatus.Connected)
                             {
                                 Console.WriteLine(NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier) + " connected!");
+                                Console.WriteLine(server.Connections.Count);
+                            }
+                            else if(status == NetConnectionStatus.Disconnected)
+                            {
+                                Console.WriteLine(NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier) + " disconnect!");
+                                uint removeId = ConnectionMgr[msg.SenderConnection];
+                                PlayerBallMgr.Remove(removeId);
+                                ConnectionMgr.Remove(msg.SenderConnection);
+                                Console.WriteLine(server.Connections.Count);
                             }
                             break;
                         case NetIncomingMessageType.Data:
@@ -151,12 +173,15 @@ namespace CozyKxlol.Server
             }
             else if(id == MsgId.AgarLogin)
             {
+                uint uid                = GameId;
+                NetConnection conn      = msg.SenderConnection;
+                ConnectionMgr[conn]     = uid;
+
                 Msg_AgarLogin r         = new Msg_AgarLogin();
                 r.R(msg);
 
                 // 返回客户端玩家坐标
                 Msg_AgarLoginRsp rr     = new Msg_AgarLoginRsp();
-                uint uid                = GameId;
                 rr.Uid                  = uid;
                 rr.X                    = RandomMaker.Next(800);
                 rr.Y                    = RandomMaker.Next(600);
