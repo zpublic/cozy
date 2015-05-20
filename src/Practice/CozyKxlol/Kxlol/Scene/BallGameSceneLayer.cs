@@ -168,6 +168,21 @@ namespace CozyKxlol.Kxlol.Scene
                         RenderList.Add(food);
                     }
                 } 
+                else if(b.Id == MsgId.AgarPlayInfoPack)
+                {
+                    var selfMsg = (Msg_AgarPlayInfoPack)b;
+                    foreach(var obj in selfMsg.PLayerList)
+                    {
+                        uint pid = obj.Item1;
+                        var player = new DefaultUserCircle(
+                            new Vector2(obj.Item2, obj.Item3),
+                            obj.Item4,
+                            obj.Item5);
+
+                        CircleList[pid] = player;
+                        RenderList.Add(player);
+                    }
+                }
             };
 
             client.Connect("127.0.0.1", 48360);

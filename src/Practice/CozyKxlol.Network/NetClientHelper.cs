@@ -200,6 +200,12 @@ namespace CozyKxlol.Network
                     msg.R(im);
                     DataMessage(sender, new DataMessageArgs(msg));
                 }
+                else if(id == MsgId.AgarPlayInfoPack)
+                {
+                    MsgBase msg = new Msg_AgarPlayInfoPack();
+                    msg.R(im);
+                    DataMessage(sender, new DataMessageArgs(msg));
+                }
             }
         }
     }

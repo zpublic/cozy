@@ -54,6 +54,8 @@ namespace CozyKxlol.Network.Msg
         // 可被吃小球打包发送
         public const int AgarFixBallPack = 11109;
 
+        public const int AgarPlayInfoPack = 11110;
+
         ////// 20001 - 40000 游戏扩展
 
         ////// 40001+ 保留

@@ -6,45 +6,47 @@ using Lidgren.Network;
 
 namespace CozyKxlol.Network.Msg
 {
-    public struct Msg_AgarFixBallPack : MsgBase
+    public struct Msg_AgarPlayInfoPack : MsgBase
     {
-        public int Id { get { return Msg.MsgId.AgarFixBallPack; } }
+        public int Id { get { return MsgId.AgarPlayInfoPack; } }
 
-        private List<Tuple<uint, float, float, uint>> _FixedList;
-        public List<Tuple<uint, float, float, uint>> FixedList
+        private List<Tuple<uint, float, float, float, uint>> _PLayerList;
+        public List<Tuple<uint, float, float, float, uint>> PLayerList
         {
             get
             {
-                return _FixedList = _FixedList ?? new List<Tuple<uint, float, float, uint>>();
+                return _PLayerList = _PLayerList ?? new List<Tuple<uint, float, float, float, uint>>();
             }
             set
             {
-                _FixedList = value;
+                _PLayerList = value;
             }
         }
 
         public void W(NetOutgoingMessage om)
         {
-            om.Write(FixedList.Count);
-            foreach(var obj in FixedList)
+            om.Write(PLayerList.Count);
+            foreach (var obj in PLayerList)
             {
                 om.Write(obj.Item1);
                 om.Write(obj.Item2);
                 om.Write(obj.Item3);
                 om.Write(obj.Item4);
+                om.Write(obj.Item5);
             }
         }
 
         public void R(NetIncomingMessage im)
         {
             int Count = im.ReadInt32();
-            for(int i = 0; i < Count; ++i)
+            for (int i = 0; i < Count; ++i)
             {
                 uint uid = im.ReadUInt32();
                 float x = im.ReadFloat();
                 float y = im.ReadFloat();
+                float r = im.ReadFloat();
                 uint color = im.ReadUInt32();
-                FixedList.Add(Tuple.Create<uint, float, float, uint>(uid, x, y, color));
+                PLayerList.Add(Tuple.Create<uint, float, float, float, uint>(uid, x, y, r, color));
             }
         }
     }

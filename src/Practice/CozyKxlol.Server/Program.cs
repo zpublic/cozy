@@ -170,21 +170,18 @@ namespace CozyKxlol.Server
 
                 // 推送之前加入的玩家数据到新玩家
                 var PlayerList          = PlayerBallMgr.ToList();
-                foreach(var obj in PlayerList)
-                {
-                    Msg_AgarPlayInfo rp = new Msg_AgarPlayInfo();
-                    rp.Operat           = Msg_AgarPlayInfo.Add;
-                    rp.PlayerId         = obj.Key;
-                    rp.X                = obj.Value.X;
-                    rp.Y                = obj.Value.Y;
-                    rp.Radius           = obj.Value.Radius;
-                    rp.Color            = obj.Value.Color;
+                var PlayerPackList =
+                    from p
+                    in PlayerList
+                    select Tuple.Create<uint, float, float, float, uint>
+                    (p.Key, p.Value.X, p.Value.Y, p.Value.Radius, p.Value.Color);
 
-                    NetOutgoingMessage pom = server.CreateMessage();
-                    pom.Write(rp.Id);
-                    rp.W(pom);
-                    server.SendMessage(pom, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
-                }
+                var PlayerPack = new Msg_AgarPlayInfoPack();
+                PlayerPack.PLayerList = PlayerPackList.ToList();
+                NetOutgoingMessage pom = server.CreateMessage();
+                pom.Write(PlayerPack.Id);
+                PlayerPack.W(pom);
+                server.SendMessage(pom, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
 
                 // 推送新玩家的数据到之前加入的玩家
                 Msg_AgarPlayInfo lp     = new Msg_AgarPlayInfo();
