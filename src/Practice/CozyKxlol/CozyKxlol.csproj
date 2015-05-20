@@ -38,8 +38,13 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Kxlol\Extends\UnsignedExtension.cs" />
+    <Compile Include="Kxlol\Extends\VectorExtension.cs" />
+    <Compile Include="Kxlol\Impl\IControlAble.cs" />
     <Compile Include="Kxlol\Impl\IMoveAble.cs" />
     <Compile Include="Kxlol\Object\CozyCircle.cs" />
+    <Compile Include="Kxlol\Object\DefaultFoodCircle.cs" />
+    <Compile Include="Kxlol\Object\DefaultUserCircle.cs" />
     <Compile Include="Kxlol\Scene\BallGameScene.cs" />
     <Compile Include="Kxlol\Scene\BallGameSceneLayer.cs" />
     <Compile Include="Kxlol\Scene\WelcomeScene.cs" />

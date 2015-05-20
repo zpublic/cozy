@@ -8,16 +8,15 @@ namespace CozyKxlol.Kxlol.Impl
 {
     interface IMoveAble
     {
-        Vector2 Direction
+        Vector2 Speed
         {
             get;
             set;
         }
 
-        bool IsMoveing
+        bool IsMoving
         {
             get;
-            set;
         }
 
         void Move(GameTime gameTime);
