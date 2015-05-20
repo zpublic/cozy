@@ -161,7 +161,7 @@ namespace CozyKxlol.Server
                 rr.X                    = RandomMaker.Next(800);
                 rr.Y                    = RandomMaker.Next(600);
                 rr.Radius               = PlayerBall.DefaultPlayerRadius;
-                rr.Color                = CustomColors.Colors[RandomMaker.Next(CustomColors.Colors.Length)];
+                rr.Color                = CustomColors.RandomColor;
 
                 NetOutgoingMessage om   = server.CreateMessage();
                 om.Write(rr.Id);

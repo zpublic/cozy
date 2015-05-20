@@ -7,16 +7,26 @@ namespace CozyKxlol.Server.Model
 {
     public static class CustomColors
     {
+        // ABGR
         public static readonly uint[] Colors = new uint[] {
-            0xE51400U,   // Red
-            0x339933U,   // Green
-            0x1BA1E2U,   // Blue
-            0xF09609U,   // Orange
-            0x8CBF26U,   // Grass Green
-            0x00ABA9U,   // Acid Blue
-            0xFF0097U,   // Magenta
-            0xE671B8U,   // Pink
-            0x996600U,   // Brown
-            0xA200FFU};  // Purple
+            0xFF0014E5U,   // Red
+            0xFF339933U,   // Green
+            0xFFE2A11BU,   // Blue
+            0xFF0996F0U,   // Orange
+            0xFF26BF8CU,   // Grass Green
+            0xFFA9AB00U,   // Acid Blue
+            0xFF9700FFU,   // Magenta
+            0xFFB871E6U,   // Pink
+            0xFF006699U,   // Brown
+            0xFFFF00A2U};  // Purple
+
+        public static Random ColorRandomMaker = new Random();
+        public static uint RandomColor
+        {
+            get
+            {
+                return Colors[ColorRandomMaker.Next(Colors.Length)];
+            }
+        }
     }
 }
