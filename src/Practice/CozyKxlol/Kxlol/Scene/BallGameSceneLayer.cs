@@ -27,10 +27,11 @@ namespace CozyKxlol.Kxlol.Scene
 
         KeyboardEvents keyboard;
         String sdbg;
+
+#if EnableMouse
         MouseEvents mouse;
-        List<Control> controls;
-        StackPanel panel;
-        XNARenderer renderer;
+#endif
+
         NetClientHelper client                  = new NetClientHelper();
         public CozyCircle Player                = null;
         public uint Uid                         = 0;
@@ -75,16 +76,12 @@ namespace CozyKxlol.Kxlol.Scene
                         break;
                 }
             };
-
+#if EnableMouse
             mouse       = new MouseEvents();
-#if MouseDebug
-            mouse.ButtonClicked += MouseEvents_ButtonClicked;
+            mouse.MouseMoved += (sender, msg) =>
+            {
+            };
 #endif
-            renderer    = new XNARenderer();
-            controls    = new List<Control>();
-            panel       = new StackPanel() { Orientation = Orientation.Horizontal, ActualWidth = 1280, ActualHeight = 800 };
-            panel.UpdateLayout();
-
             client.StatusMessage += (sender, msg) =>
             {
                 if(msg.Status == ConnectionStatus.Connected)
@@ -157,51 +154,64 @@ namespace CozyKxlol.Kxlol.Scene
                         player.ColorProperty = selfMsg.Color.ToColor();
                     }
                 }
+                else if(b.Id == MsgId.AgarFixBallPack)
+                {
+                    var selfMsg = (Msg_AgarFixBallPack)b;
+                    foreach(var obj in selfMsg.FixedList)
+                    {
+                        uint fid = obj.Item1;
+                        var food = new DefaultFoodCircle(new Vector2(obj.Item2, obj.Item3), obj.Item4);
+                        FoodList[fid] = food;
+                        RenderList.Add(food);
+                    }
+                } 
+                else if(b.Id == MsgId.AgarPlayInfoPack)
+                {
+                    var selfMsg = (Msg_AgarPlayInfoPack)b;
+                    foreach(var obj in selfMsg.PLayerList)
+                    {
+                        uint pid = obj.Item1;
+                        var player = new DefaultUserCircle(
+                            new Vector2(obj.Item2, obj.Item3),
+                            obj.Item4,
+                            obj.Item5);
+
+                        CircleList[pid] = player;
+                        RenderList.Add(player);
+                    }
+                }
+                else if(b.Id == MsgId.AgarSelf)
+                {
+                    var selfMsg = (Msg_AgarSelf)b;
+                    uint uid = selfMsg.UserId;
+
+                    if(uid != Uid)
+                    {
+                        // throw exception
+                    }
+
+                    if(selfMsg.Operat == Msg_AgarSelf.GroupUp)
+                    {
+                        Player.Radius = selfMsg.Radius;
+                    }
+                    else if(selfMsg.Operat == Msg_AgarSelf.Dead)
+                    {
+                        // doSomething
+                    }
+                }
             };
 
             client.Connect("127.0.0.1", 48360);
-        }
-
-        private Random random = new Random();
-        void MouseEvents_ButtonClicked(object sender, MouseButtonEventArgs e)
-        {
-            if (e.Button == MouseButton.Left)
-            {
-                string text = "";
-                for (int index = 0; index < 10; index++)
-                {
-                    text += (char)random.Next(65, 105);
-                }
-
-                panel.AddChild(new Starbound.UI.Controls.Rectangle()
-                {
-                    PreferredHeight = random.Next(20) + 10,
-                    PreferredWidth  = random.Next(20) + 10,
-                    Margin          = new Starbound.UI.Thickness(3, 3, 0, 0),
-                    Color           = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble())
-                });
-            }
-            else if (e.Button == MouseButton.Right)
-            {
-                panel.AddChild(new Starbound.UI.Controls.Button()
-                {
-                    PreferredHeight = random.Next(50) + 50,
-                    PreferredWidth  = random.Next(50) + 50,
-                    Margin          = new Starbound.UI.Thickness(3, 3, 0, 0),
-                    Font            = Starbound.UI.Application.ResourceManager.GetResource<IFontResource>("Font"),
-                    Content         = "hehe",
-                    Background      = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble()),
-                    Foreground      = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble())
-                });
-                panel.Orientation = panel.Orientation == Orientation.Horizontal ? Orientation.Veritical : Orientation.Horizontal;
-            }
         }
 
         public override void Update(GameTime gameTime)
         {
             client.Update();
             keyboard.Update(gameTime);
+
+#if EnableMouse
             mouse.Update(gameTime);
+#endif
             foreach (var obj in CircleList)
             {
                 obj.Value.Update(gameTime);
@@ -231,18 +241,6 @@ namespace CozyKxlol.Kxlol.Scene
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.End();
-            foreach (Control control in controls)
-            {
-                renderer.Render(control, spriteBatch);
-            }
-
-            foreach (Control control in panel.Children)
-            {
-                renderer.Render(control, spriteBatch);
-            }
-            spriteBatch.Begin();
-
             foreach (var obj in RenderList)
             {
                 obj.Draw(gameTime, spriteBatch);
