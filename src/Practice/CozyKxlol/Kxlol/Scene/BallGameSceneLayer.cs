@@ -38,6 +38,7 @@ namespace CozyKxlol.Kxlol.Scene
         public bool IsConnect                   = false;
         private static Random RandomMaker       = new Random();
         private string Name                     = null;
+        private int DefaultRadius               = 0;
 
         public BallGameSceneLayer()
         {
@@ -113,6 +114,8 @@ namespace CozyKxlol.Kxlol.Scene
                     Player      = new DefaultUserCircle(new Vector2(selfMsg.X, selfMsg.Y),selfMsg.Radius, selfMsg.Color);
                     Player.Name = Name;
                     RenderList.Add(Player);
+
+                    DefaultRadius = selfMsg.Radius;
 
                     var m       = new Msg_AgarPlayInfo();
                     m.Operat    = Msg_AgarPlayInfo.Changed;
@@ -281,6 +284,11 @@ namespace CozyKxlol.Kxlol.Scene
             if (sdbg != null)
             {
                 spriteBatch.DrawString(CozyGame.nolmalFont, sdbg, new Vector2(20, 20), Color.Red);
+            }
+
+            if (Player != null)
+            {
+                spriteBatch.DrawString(CozyGame.nolmalFont, (Player.Radius - DefaultRadius).ToString(), Vector2.Zero, Color.White);
             }
         }
     }
