@@ -113,6 +113,16 @@ namespace CozyKxlol.Kxlol.Scene
                     Player      = new DefaultUserCircle(new Vector2(selfMsg.X, selfMsg.Y),selfMsg.Radius, selfMsg.Color);
                     Player.Name = Name;
                     RenderList.Add(Player);
+
+                    var m = new Msg_AgarPlayInfo();
+                    m.Operat = Msg_AgarPlayInfo.Changed;
+                    m.PlayerId = Uid;
+                    m.X = Player.Position.X;
+                    m.Y = Player.Position.Y;
+                    m.Radius = Player.Radius;
+                    m.Color = Player.ColorProperty.PackedValue;
+                    m.Name = Player.Name;
+                    client.SendMessage(m);
                 }
                 else if(b.Id == MsgId.AgarFixedBall)
                 {
