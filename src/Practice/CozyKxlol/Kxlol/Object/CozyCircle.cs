@@ -17,16 +17,15 @@ namespace CozyKxlol.Kxlol.Object
         #region Property
 
         public Vector2 Position { get; set; }
-        
         public Color ColorProperty { get; set; }
-
+        public string Name { get; set; }
 
         // v = 20 + 200 / S
         public const float BaseSpeed = 20.0f;
         public const float FloatSpeed = 900.0f;
 
-        private float _Radius = 0.0f;
-        public float Radius 
+        private int _Radius = 0;
+        public int Radius 
         { 
             get
             {
@@ -219,14 +218,14 @@ namespace CozyKxlol.Kxlol.Object
             ColorProperty   = Color.Black;
         }
 
-        public CozyCircle(Vector2 pos, float radius, Color color)
+        public CozyCircle(Vector2 pos, int radius, Color color)
         {
             Position        = pos;
             Radius          = radius;
             ColorProperty   = color;
         }
 
-        public CozyCircle(Vector2 pos, float radius, Color color, float borderSize)
+        public CozyCircle(Vector2 pos, int radius, Color color, float borderSize)
             : this(pos, radius, color)
         {
             HasBorder       = true;
@@ -255,6 +254,12 @@ namespace CozyKxlol.Kxlol.Object
                 spriteBatch.DrawCircle(Position, Radius + BorderSize, (int)Radius, Color.Black, BorderSize);
             }
             spriteBatch.DrawCircle(Position, Radius, (int)Radius, ColorProperty, Radius);
+
+            if(Name != null)
+            {
+                var FontOrigin = CozyGame.nolmalFont.MeasureString(Name) / 2;
+                spriteBatch.DrawString(CozyGame.nolmalFont, Name, Position, Color.Red, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
+            }
         }
 
         // IMoveAble

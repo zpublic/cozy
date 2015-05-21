@@ -36,6 +36,8 @@ namespace CozyKxlol.Kxlol.Scene
         public CozyCircle Player                = null;
         public uint Uid                         = 0;
         public bool IsConnect                   = false;
+        private static Random RandomMaker       = new Random();
+        private string Name                     = null;
 
         public BallGameSceneLayer()
         {
@@ -86,8 +88,11 @@ namespace CozyKxlol.Kxlol.Scene
             {
                 if(msg.Status == ConnectionStatus.Connected)
                 {
-                    IsConnect = true;
-                    var loginMsg = new Msg_AgarLogin();
+                    IsConnect       = true;
+                    var loginMsg    = new Msg_AgarLogin();
+                    string RdName   = "TestName-" + RandomMaker.NextString(5);
+                    loginMsg.Name   = RdName;
+                    Name = RdName;
                     client.SendMessage(loginMsg);
                 }
                 else if(msg.Status == ConnectionStatus.Disconnected)
@@ -106,6 +111,7 @@ namespace CozyKxlol.Kxlol.Scene
                     var selfMsg = (Msg_AgarLoginRsp)b;
                     Uid         = selfMsg.Uid;
                     Player      = new DefaultUserCircle(new Vector2(selfMsg.X, selfMsg.Y),selfMsg.Radius, selfMsg.Color);
+                    Player.Name = Name;
                     RenderList.Add(Player);
                 }
                 else if(b.Id == MsgId.AgarFixedBall)
@@ -136,6 +142,7 @@ namespace CozyKxlol.Kxlol.Scene
                             new Vector2(selfMsg.X, selfMsg.Y), 
                             selfMsg.Radius, 
                             selfMsg.Color);
+                        player.Name = selfMsg.Name;
 
                         CircleList[id]  = player;
                         RenderList.Add(player);
@@ -148,10 +155,11 @@ namespace CozyKxlol.Kxlol.Scene
                     }
                     else if(selfMsg.Operat == Msg_AgarPlayInfo.Changed)
                     {
-                        var player      = CircleList[id];
-                        player.Position = new Vector2(selfMsg.X, selfMsg.Y);
-                        player.Radius   = selfMsg.Radius;
-                        player.ColorProperty = selfMsg.Color.ToColor();
+                        var player              = CircleList[id];
+                        player.Position         = new Vector2(selfMsg.X, selfMsg.Y);
+                        player.Radius           = selfMsg.Radius;
+                        player.ColorProperty    = selfMsg.Color.ToColor();
+                        player.Name             = selfMsg.Name;
                     }
                 }
                 else if(b.Id == MsgId.AgarFixBallPack)
@@ -170,11 +178,12 @@ namespace CozyKxlol.Kxlol.Scene
                     var selfMsg = (Msg_AgarPlayInfoPack)b;
                     foreach(var obj in selfMsg.PLayerList)
                     {
-                        uint pid = obj.Item1;
-                        var player = new DefaultUserCircle(
+                        uint pid        = obj.Item1;
+                        var player      = new DefaultUserCircle(
                             new Vector2(obj.Item2, obj.Item3),
                             obj.Item4,
                             obj.Item5);
+                        player.Name     = obj.Item6;
 
                         CircleList[pid] = player;
                         RenderList.Add(player);
@@ -229,6 +238,7 @@ namespace CozyKxlol.Kxlol.Scene
                     msg.Y           = Player.Position.Y;
                     msg.Radius      = Player.Radius;
                     msg.Color       = Player.ColorProperty.PackedValue;
+                    msg.Name        = Player.Name;
                     client.SendMessage(msg);
                 }
             }
