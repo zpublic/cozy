@@ -212,6 +212,7 @@ namespace CozyKxlol.Server
                 // 推送新玩家的数据到之前加入的玩家
                 Msg_AgarPlayInfo lp     = new Msg_AgarPlayInfo();
                 lp.Operat               = Msg_AgarPlayInfo.Add;
+                lp.Tag                  = GameMessageHelper.ALL_TAG;
                 lp.PlayerId             = uid;
                 lp.X                    = rr.X;
                 lp.Y                    = rr.Y;
@@ -256,15 +257,30 @@ namespace CozyKxlol.Server
                 uint uid                    = r.PlayerId;
                 if(r.Operat == Msg_AgarPlayInfo.Changed)
                 {
-                    PlayerBall newBall      = new PlayerBall();
-                    newBall.X               = r.X;
-                    newBall.Y               = r.Y;
-                    newBall.Radius          = r.Radius;
-                    newBall.Color           = r.Color;
-                    newBall.Name            = r.Name;
-                    PlayerBallMgr.Change(uid, newBall);
+                    PlayerBall newBall      = PlayerBallMgr.Get(uid);
+                    uint tag                = r.Tag;
+                    if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.POSITION_TAG))
+                    {
+                        newBall.X = r.X;
+                        newBall.Y = r.Y;
+                    }
+                    if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.RADIUS_TAG))
+                    {
+                        newBall.Radius = r.Radius;
+                    }
+                    if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.COLOR_TAG))
+                    {
+                        newBall.Color = r.Color;
+                    }
+                    if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.NAME_TAG))
+                    {
+                        newBall.Name = r.Name;
+                    }
+
                     if(Update(uid, ref newBall))
                     {
+                        r.Tag               = r.Tag | GameMessageHelper.RADIUS_TAG;
+                        r.Radius            = newBall.Radius;
                         var self            = new Msg_AgarSelf();
                         self.Operat         = Msg_AgarSelf.GroupUp;
                         self.UserId         = uid;
@@ -275,6 +291,7 @@ namespace CozyKxlol.Server
                         self.W(som);
                         server.SendMessage(som, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
                     }
+                    PlayerBallMgr.Change(uid, newBall);
                 }
                 else if(r.Operat == Msg_AgarPlayInfo.Remove)
                 {
