@@ -57,7 +57,6 @@ namespace CozyKxlol.Kxlol.Scene
                         }
                         break;
                     default:
-                        sdbg = String.Format("Key Pressed: " + e.Key + " Modifiers: " + e.Modifiers);
                         break;
                 }
             };
@@ -75,7 +74,6 @@ namespace CozyKxlol.Kxlol.Scene
                         }
                         break;
                     default:
-                        sdbg = String.Format("Key Released: " + e.Key + " Modifiers: " + e.Modifiers);
                         break;
                 }
             };
