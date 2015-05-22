@@ -35,7 +35,8 @@ namespace CozyKxlol.Server
         public static FixedBallManager FixedBallMgr                 = new FixedBallManager();
         public static PlayerBallManager PlayerBallMgr               = new PlayerBallManager();
         public static Dictionary<NetConnection, uint> ConnectionMgr = new Dictionary<NetConnection, uint>();
-
+        public const int GameWidth  = 800;
+        public const int GameHeight = 610;
         static void Main(string[] args)
         {
             NetPeerConfiguration config     = new NetPeerConfiguration("CozyKxlol");
@@ -77,9 +78,9 @@ namespace CozyKxlol.Server
 
             PlayerBallMgr.PlayerExitMessage += (sender, msg) =>
             {
-                var removeMsg = new Msg_AgarPlayInfo();
-                removeMsg.Operat = Msg_AgarPlayInfo.Remove;
-                removeMsg.PlayerId = msg.PlayerId;
+                var removeMsg       = new Msg_AgarPlayInfo();
+                removeMsg.Operat    = Msg_AgarPlayInfo.Remove;
+                removeMsg.PlayerId  = msg.PlayerId;
 
                 NetOutgoingMessage om = server.CreateMessage();
                 om.Write(removeMsg.Id);
@@ -186,10 +187,12 @@ namespace CozyKxlol.Server
                 // 返回客户端玩家坐标
                 Msg_AgarLoginRsp rr     = new Msg_AgarLoginRsp();
                 rr.Uid                  = uid;
-                rr.X                    = RandomMaker.Next(800);
-                rr.Y                    = RandomMaker.Next(600);
+                rr.X                    = RandomMaker.Next(GameWidth);
+                rr.Y                    = RandomMaker.Next(GameHeight);
                 rr.Radius               = PlayerBall.DefaultPlayerRadius;
                 rr.Color                = CustomColors.RandomColor;
+                rr.Width                = GameWidth;
+                rr.Height               = GameHeight;
 
                 NetOutgoingMessage om   = server.CreateMessage();
                 om.Write(rr.Id);
