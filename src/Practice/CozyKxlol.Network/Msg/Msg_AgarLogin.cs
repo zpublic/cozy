@@ -10,14 +10,16 @@ namespace CozyKxlol.Network.Msg
     {
         public int Id { get { return MsgId.AgarLogin; } }
 
+        public string Name { get; set; }
+
         public void W(NetOutgoingMessage om)
         {
-
+            om.Write(Name);
         }
 
         public void R(NetIncomingMessage im)
         {
-
+            Name = im.ReadString();
         }
     }
 }

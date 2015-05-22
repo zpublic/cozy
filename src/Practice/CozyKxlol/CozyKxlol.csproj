@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Kxlol\Extends\RandomExtension.cs" />
     <Compile Include="Kxlol\Extends\UnsignedExtension.cs" />
     <Compile Include="Kxlol\Extends\VectorExtension.cs" />
     <Compile Include="Kxlol\Impl\IControlAble.cs" />

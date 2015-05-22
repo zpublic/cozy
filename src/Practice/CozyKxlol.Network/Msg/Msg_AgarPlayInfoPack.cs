@@ -10,12 +10,12 @@ namespace CozyKxlol.Network.Msg
     {
         public int Id { get { return MsgId.AgarPlayInfoPack; } }
 
-        private List<Tuple<uint, float, float, float, uint>> _PLayerList;
-        public List<Tuple<uint, float, float, float, uint>> PLayerList
+        private List<Tuple<uint, float, float, int, uint, string>> _PLayerList;
+        public List<Tuple<uint, float, float, int, uint, string>> PLayerList
         {
             get
             {
-                return _PLayerList = _PLayerList ?? new List<Tuple<uint, float, float, float, uint>>();
+                return _PLayerList = _PLayerList ?? new List<Tuple<uint, float, float, int, uint, string>>();
             }
             set
             {
@@ -33,6 +33,7 @@ namespace CozyKxlol.Network.Msg
                 om.Write(obj.Item3);
                 om.Write(obj.Item4);
                 om.Write(obj.Item5);
+                om.Write(obj.Item6);
             }
         }
 
@@ -41,12 +42,13 @@ namespace CozyKxlol.Network.Msg
             int Count = im.ReadInt32();
             for (int i = 0; i < Count; ++i)
             {
-                uint uid = im.ReadUInt32();
-                float x = im.ReadFloat();
-                float y = im.ReadFloat();
-                float r = im.ReadFloat();
-                uint color = im.ReadUInt32();
-                PLayerList.Add(Tuple.Create<uint, float, float, float, uint>(uid, x, y, r, color));
+                uint uid    = im.ReadUInt32();
+                float x     = im.ReadFloat();
+                float y     = im.ReadFloat();
+                int r     = im.ReadInt32();
+                uint color  = im.ReadUInt32();
+                string name = im.ReadString();
+                PLayerList.Add(Tuple.Create<uint, float, float, int, uint, string>(uid, x, y, r, color, name));
             }
         }
     }

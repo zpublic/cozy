@@ -13,7 +13,7 @@ namespace CozyKxlol.Network.Msg
         public int Id { get { return MsgId.AgarSelf; } }
         public byte Operat { get; set; }
         public uint UserId { get; set; }
-        public float Radius { get; set; }
+        public int Radius { get; set; }
 
         public void W(NetOutgoingMessage om)
         {
@@ -31,7 +31,7 @@ namespace CozyKxlol.Network.Msg
             UserId      = im.ReadUInt32();
             if(Operat == GroupUp)
             {
-                Radius  = im.ReadFloat();
+                Radius  = im.ReadInt32();
             }
         }
     }
