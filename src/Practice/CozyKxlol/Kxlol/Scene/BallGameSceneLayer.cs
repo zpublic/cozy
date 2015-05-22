@@ -286,7 +286,7 @@ namespace CozyKxlol.Kxlol.Scene
 
             if (Player != null)
             {
-                spriteBatch.DrawString(CozyGame.nolmalFont, (Player.Radius - DefaultRadius).ToString(), Vector2.Zero, Color.White);
+                spriteBatch.DrawString(CozyGame.nolmalFont, "score: " + (Player.Radius - DefaultRadius).ToString(), Vector2.Zero, Color.Red);
             }
         }
     }
