@@ -58,7 +58,6 @@ namespace CozyKxlol.Kxlol.Scene
                         }
                         break;
                     default:
-                        sdbg = String.Format("Key Pressed: " + e.Key + " Modifiers: " + e.Modifiers);
                         break;
                 }
             };
@@ -76,7 +75,6 @@ namespace CozyKxlol.Kxlol.Scene
                         }
                         break;
                     default:
-                        sdbg = String.Format("Key Released: " + e.Key + " Modifiers: " + e.Modifiers);
                         break;
                 }
             };
@@ -244,7 +242,7 @@ namespace CozyKxlol.Kxlol.Scene
                 }
             };
 
-            client.Connect("127.0.0.1", 48360);
+            client.Connect("114.215.134.101", 48360);
         }
 
         public override void Update(GameTime gameTime)
@@ -319,7 +317,7 @@ namespace CozyKxlol.Kxlol.Scene
 
             if (Player != null)
             {
-                spriteBatch.DrawString(CozyGame.nolmalFont, (Player.Radius - DefaultRadius).ToString(), Vector2.Zero, Color.White);
+                spriteBatch.DrawString(CozyGame.nolmalFont, "score: " + (Player.Radius - DefaultRadius).ToString(), Vector2.Zero, Color.Red);
             }
         }
     }
