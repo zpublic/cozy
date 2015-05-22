@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using CozyKxlol.Server.Manager;
 using CozyKxlol.Server.Model;
+using CozyKxlol.Server.Model.Impl;
 
 namespace CozyKxlol.Server
 {
@@ -52,6 +53,7 @@ namespace CozyKxlol.Server
                 r.BallId                = msg.BallId;
                 r.X                     = msg.Ball.X;
                 r.Y                     = msg.Ball.Y;
+                r.Radius                = msg.Ball.Radius;
                 r.Color                 = msg.Ball.Color;
 
                 NetOutgoingMessage om   = server.CreateMessage();
@@ -239,7 +241,8 @@ namespace CozyKxlol.Server
                 var FixedPackList = 
                     from f 
                     in FixedList 
-                    select Tuple.Create<uint, float, float, uint>(f.Key, f.Value.X, f.Value.Y, f.Value.Color);
+                    select Tuple.Create<uint, float, float, int, uint>(f.Key, f.Value.X, f.Value.Y,
+                    f.Value.Radius, f.Value.Color);
 
                 var FixedPack = new Msg_AgarFixBallPack();
                 FixedPack.FixedList = FixedPackList.ToList();
@@ -307,14 +310,12 @@ namespace CozyKxlol.Server
             return false;
         }
 
-        public static bool CanEat(PlayerBall player, FixedBall ball)
+        public static bool CanEat(ICircle player, ICircle ball)
         {
-            const float DefaultBallRadius = 5.0f;
-
             float X_Distance    = player.X - ball.X;
             float Y_Distance    = player.Y - ball.Y;
             float Distance      = (float)Math.Sqrt(X_Distance * X_Distance + Y_Distance * Y_Distance);
-            return player.Radius > (Distance + DefaultBallRadius);
+            return player.Radius > (Distance + ball.Radius);
         }
 
         public static bool Update(uint id, ref PlayerBall ball)

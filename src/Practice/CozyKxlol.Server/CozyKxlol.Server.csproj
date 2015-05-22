@@ -50,6 +50,7 @@
     <Compile Include="Model\CustomColors.cs" />
     <Compile Include="Model\FixedBall.cs" />
     <Compile Include="Manager\FixedBallManager.cs" />
+    <Compile Include="Model\Impl\ICircle.cs" />
     <Compile Include="Model\PlayerBall.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CozyKxlol.Server.Model.Impl;
 
 namespace CozyKxlol.Server.Model
 {
-    public struct PlayerBall
+    public struct PlayerBall : ICircle
     {
         public const int DefaultPlayerRadius = 15;
         public float X { get; set; }

@@ -80,6 +80,7 @@ namespace CozyKxlol.Server.Manager
             var ball    = new FixedBall();
             ball.X      = RandomMaker.Next(800);
             ball.Y      = RandomMaker.Next(600);
+            ball.Radius = FixedBall.DefaultPlayerRadius;
             ball.Color  = CustomColors.RandomColor;
             return ball;
         }

@@ -9,9 +9,8 @@ namespace CozyKxlol.Kxlol.Object
 {
     class DefaultFoodCircle : CozyCircle
     {
-        public const int DefaultFoodRadius = 5;
-        public DefaultFoodCircle(Vector2 pos, uint color)
-            :base(pos, DefaultFoodRadius, color.ToColor())
+        public DefaultFoodCircle(Vector2 pos, int radius, uint color)
+            : base(pos, radius, color.ToColor())
         {
 
         }

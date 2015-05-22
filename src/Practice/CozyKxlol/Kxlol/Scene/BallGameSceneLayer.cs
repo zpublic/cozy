@@ -134,7 +134,10 @@ namespace CozyKxlol.Kxlol.Scene
                     uint id     = selfMsg.BallId;
                     if(selfMsg.Operat == Msg_AgarFixedBall.Add)
                     {
-                        var food        = new DefaultFoodCircle(new Vector2(selfMsg.X, selfMsg.Y), selfMsg.Color);
+                        var food        = new DefaultFoodCircle(
+                            new Vector2(selfMsg.X, selfMsg.Y), 
+                            selfMsg.Radius, selfMsg.Color);
+
                         FoodList[id]    = food;
                         RenderList.Add(food);
                     }
@@ -195,7 +198,7 @@ namespace CozyKxlol.Kxlol.Scene
                     foreach(var obj in selfMsg.FixedList)
                     {
                         uint fid        = obj.Item1;
-                        var food        = new DefaultFoodCircle(new Vector2(obj.Item2, obj.Item3), obj.Item4);
+                        var food        = new DefaultFoodCircle(new Vector2(obj.Item2, obj.Item3), obj.Item4, obj.Item5);
                         FoodList[fid]   = food;
                         RenderList.Add(food);
                     }
