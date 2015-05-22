@@ -36,6 +36,9 @@ namespace CozyKxlol.Kxlol.Scene
         public CozyCircle Player                = null;
         public uint Uid                         = 0;
         public bool IsConnect                   = false;
+        private static Random RandomMaker       = new Random();
+        private string Name                     = null;
+        private int DefaultRadius               = 0;
 
         public BallGameSceneLayer()
         {
@@ -86,8 +89,11 @@ namespace CozyKxlol.Kxlol.Scene
             {
                 if(msg.Status == ConnectionStatus.Connected)
                 {
-                    IsConnect = true;
-                    var loginMsg = new Msg_AgarLogin();
+                    IsConnect       = true;
+                    var loginMsg    = new Msg_AgarLogin();
+                    string RdName   = "TestName-" + RandomMaker.NextString(5);
+                    loginMsg.Name   = RdName;
+                    Name = RdName;
                     client.SendMessage(loginMsg);
                 }
                 else if(msg.Status == ConnectionStatus.Disconnected)
@@ -106,7 +112,21 @@ namespace CozyKxlol.Kxlol.Scene
                     var selfMsg = (Msg_AgarLoginRsp)b;
                     Uid         = selfMsg.Uid;
                     Player      = new DefaultUserCircle(new Vector2(selfMsg.X, selfMsg.Y),selfMsg.Radius, selfMsg.Color);
+                    Player.Name = Name;
                     RenderList.Add(Player);
+
+                    DefaultRadius = selfMsg.Radius;
+
+                    var m       = new Msg_AgarPlayInfo();
+                    m.Operat    = Msg_AgarPlayInfo.Changed;
+                    m.Tag       = GameMessageHelper.ALL_TAG;
+                    m.PlayerId  = Uid;
+                    m.X         = Player.Position.X;
+                    m.Y         = Player.Position.Y;
+                    m.Radius    = Player.Radius;
+                    m.Color     = Player.ColorProperty.PackedValue;
+                    m.Name      = Player.Name;
+                    client.SendMessage(m);
                 }
                 else if(b.Id == MsgId.AgarFixedBall)
                 {
@@ -136,8 +156,9 @@ namespace CozyKxlol.Kxlol.Scene
                             new Vector2(selfMsg.X, selfMsg.Y), 
                             selfMsg.Radius, 
                             selfMsg.Color);
+                        player.Name = selfMsg.Name;
 
-                        CircleList[id]  = player;
+                        CircleList[id] = player;
                         RenderList.Add(player);
                     }
                     else if(selfMsg.Operat == Msg_AgarPlayInfo.Remove)
@@ -148,10 +169,24 @@ namespace CozyKxlol.Kxlol.Scene
                     }
                     else if(selfMsg.Operat == Msg_AgarPlayInfo.Changed)
                     {
-                        var player      = CircleList[id];
-                        player.Position = new Vector2(selfMsg.X, selfMsg.Y);
-                        player.Radius   = selfMsg.Radius;
-                        player.ColorProperty = selfMsg.Color.ToColor();
+                        uint tag                    = selfMsg.Tag;
+                        var player                  = CircleList[id];
+                        if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.POSITION_TAG))
+                        {
+                            player.Position         = new Vector2(selfMsg.X, selfMsg.Y);
+                        }
+                        if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.RADIUS_TAG))
+                        {
+                            player.Radius           = selfMsg.Radius;
+                        }
+                        if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.COLOR_TAG))
+                        {
+                            player.ColorProperty    = selfMsg.Color.ToColor();
+                        }
+                        if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.NAME_TAG))
+                        {
+                            player.Name             = selfMsg.Name;
+                        }
                     }
                 }
                 else if(b.Id == MsgId.AgarFixBallPack)
@@ -159,9 +194,9 @@ namespace CozyKxlol.Kxlol.Scene
                     var selfMsg = (Msg_AgarFixBallPack)b;
                     foreach(var obj in selfMsg.FixedList)
                     {
-                        uint fid = obj.Item1;
-                        var food = new DefaultFoodCircle(new Vector2(obj.Item2, obj.Item3), obj.Item4);
-                        FoodList[fid] = food;
+                        uint fid        = obj.Item1;
+                        var food        = new DefaultFoodCircle(new Vector2(obj.Item2, obj.Item3), obj.Item4);
+                        FoodList[fid]   = food;
                         RenderList.Add(food);
                     }
                 } 
@@ -170,11 +205,12 @@ namespace CozyKxlol.Kxlol.Scene
                     var selfMsg = (Msg_AgarPlayInfoPack)b;
                     foreach(var obj in selfMsg.PLayerList)
                     {
-                        uint pid = obj.Item1;
-                        var player = new DefaultUserCircle(
+                        uint pid        = obj.Item1;
+                        var player      = new DefaultUserCircle(
                             new Vector2(obj.Item2, obj.Item3),
                             obj.Item4,
                             obj.Item5);
+                        player.Name     = obj.Item6;
 
                         CircleList[pid] = player;
                         RenderList.Add(player);
@@ -225,10 +261,9 @@ namespace CozyKxlol.Kxlol.Scene
                     var msg         = new Msg_AgarPlayInfo();
                     msg.Operat      = Msg_AgarPlayInfo.Changed;
                     msg.PlayerId    = Uid;
+                    msg.Tag         = GameMessageHelper.POSITION_TAG;
                     msg.X           = Player.Position.X;
                     msg.Y           = Player.Position.Y;
-                    msg.Radius      = Player.Radius;
-                    msg.Color       = Player.ColorProperty.PackedValue;
                     client.SendMessage(msg);
                 }
             }
@@ -249,6 +284,11 @@ namespace CozyKxlol.Kxlol.Scene
             if (sdbg != null)
             {
                 spriteBatch.DrawString(CozyGame.nolmalFont, sdbg, new Vector2(20, 20), Color.Red);
+            }
+
+            if (Player != null)
+            {
+                spriteBatch.DrawString(CozyGame.nolmalFont, (Player.Radius - DefaultRadius).ToString(), Vector2.Zero, Color.White);
             }
         }
     }

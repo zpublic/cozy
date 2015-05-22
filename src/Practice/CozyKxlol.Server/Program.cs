@@ -179,6 +179,7 @@ namespace CozyKxlol.Server
 
                 Msg_AgarLogin r         = new Msg_AgarLogin();
                 r.R(msg);
+                string PlayerName       = r.Name;
 
                 // 返回客户端玩家坐标
                 Msg_AgarLoginRsp rr     = new Msg_AgarLoginRsp();
@@ -198,8 +199,8 @@ namespace CozyKxlol.Server
                 var PlayerPackList =
                     from p
                     in PlayerList
-                    select Tuple.Create<uint, float, float, float, uint>
-                    (p.Key, p.Value.X, p.Value.Y, p.Value.Radius, p.Value.Color);
+                    select Tuple.Create<uint, float, float, int, uint, string>
+                    (p.Key, p.Value.X, p.Value.Y, p.Value.Radius, p.Value.Color, p.Value.Name);
 
                 var PlayerPack = new Msg_AgarPlayInfoPack();
                 PlayerPack.PLayerList = PlayerPackList.ToList();
@@ -211,11 +212,13 @@ namespace CozyKxlol.Server
                 // 推送新玩家的数据到之前加入的玩家
                 Msg_AgarPlayInfo lp     = new Msg_AgarPlayInfo();
                 lp.Operat               = Msg_AgarPlayInfo.Add;
+                lp.Tag                  = GameMessageHelper.ALL_TAG;
                 lp.PlayerId             = uid;
                 lp.X                    = rr.X;
                 lp.Y                    = rr.Y;
                 lp.Radius               = rr.Radius;
                 lp.Color                = rr.Color;
+                lp.Name                 = PlayerName;
 
                 NetOutgoingMessage lom = server.CreateMessage();
                 lom.Write(lp.Id);
@@ -228,6 +231,7 @@ namespace CozyKxlol.Server
                 player.Y                = rr.Y;
                 player.Radius           = rr.Radius;
                 player.Color            = rr.Color;
+                player.Name             = PlayerName;
                 PlayerBallMgr.Add(uid, player);
 
                 // 为新加入的玩家推送FixedBall
@@ -253,14 +257,30 @@ namespace CozyKxlol.Server
                 uint uid                    = r.PlayerId;
                 if(r.Operat == Msg_AgarPlayInfo.Changed)
                 {
-                    PlayerBall newBall      = new PlayerBall();
-                    newBall.X               = r.X;
-                    newBall.Y               = r.Y;
-                    newBall.Radius          = r.Radius;
-                    newBall.Color           = r.Color;
-                    PlayerBallMgr.Change(uid, newBall);
+                    PlayerBall newBall      = PlayerBallMgr.Get(uid);
+                    uint tag                = r.Tag;
+                    if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.POSITION_TAG))
+                    {
+                        newBall.X = r.X;
+                        newBall.Y = r.Y;
+                    }
+                    if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.RADIUS_TAG))
+                    {
+                        newBall.Radius = r.Radius;
+                    }
+                    if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.COLOR_TAG))
+                    {
+                        newBall.Color = r.Color;
+                    }
+                    if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.NAME_TAG))
+                    {
+                        newBall.Name = r.Name;
+                    }
+
                     if(Update(uid, ref newBall))
                     {
+                        r.Tag               = r.Tag | GameMessageHelper.RADIUS_TAG;
+                        r.Radius            = newBall.Radius;
                         var self            = new Msg_AgarSelf();
                         self.Operat         = Msg_AgarSelf.GroupUp;
                         self.UserId         = uid;
@@ -271,6 +291,7 @@ namespace CozyKxlol.Server
                         self.W(som);
                         server.SendMessage(som, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
                     }
+                    PlayerBallMgr.Change(uid, newBall);
                 }
                 else if(r.Operat == Msg_AgarPlayInfo.Remove)
                 {
@@ -304,7 +325,7 @@ namespace CozyKxlol.Server
                 if(CanEat(ball, obj.Value))
                 {
                     FoodRemoveFlag = true;
-                    ball.Radius += 1.0f;
+                    ball.Radius++;
                     FixedBallMgr.Remove(obj.Key);
                 }
             }

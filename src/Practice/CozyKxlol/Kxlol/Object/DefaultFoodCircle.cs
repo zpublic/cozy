@@ -9,7 +9,7 @@ namespace CozyKxlol.Kxlol.Object
 {
     class DefaultFoodCircle : CozyCircle
     {
-        public const float DefaultFoodRadius = 5.0f;
+        public const int DefaultFoodRadius = 5;
         public DefaultFoodCircle(Vector2 pos, uint color)
             :base(pos, DefaultFoodRadius, color.ToColor())
         {

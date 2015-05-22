@@ -37,6 +37,11 @@ namespace CozyKxlol.Server.Manager
             PlayerDictionary[id] = newBall;
         }
 
+        public PlayerBall Get(uint id)
+        {
+            return PlayerDictionary[id];
+        }
+
         public List<KeyValuePair<uint, PlayerBall>> ToList()
         {
             return PlayerDictionary.ToList();
