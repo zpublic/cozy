@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using CozyKxlol.Server.Manager;
 using CozyKxlol.Server.Model;
+using CozyKxlol.Server.Model.Impl;
 
 namespace CozyKxlol.Server
 {
@@ -34,7 +35,8 @@ namespace CozyKxlol.Server
         public static FixedBallManager FixedBallMgr                 = new FixedBallManager();
         public static PlayerBallManager PlayerBallMgr               = new PlayerBallManager();
         public static Dictionary<NetConnection, uint> ConnectionMgr = new Dictionary<NetConnection, uint>();
-
+        public const int GameWidth  = 800;
+        public const int GameHeight = 610;
         static void Main(string[] args)
         {
             NetPeerConfiguration config     = new NetPeerConfiguration("CozyKxlol");
@@ -52,6 +54,7 @@ namespace CozyKxlol.Server
                 r.BallId                = msg.BallId;
                 r.X                     = msg.Ball.X;
                 r.Y                     = msg.Ball.Y;
+                r.Radius                = msg.Ball.Radius;
                 r.Color                 = msg.Ball.Color;
 
                 NetOutgoingMessage om   = server.CreateMessage();
@@ -75,9 +78,9 @@ namespace CozyKxlol.Server
 
             PlayerBallMgr.PlayerExitMessage += (sender, msg) =>
             {
-                var removeMsg = new Msg_AgarPlayInfo();
-                removeMsg.Operat = Msg_AgarPlayInfo.Remove;
-                removeMsg.PlayerId = msg.PlayerId;
+                var removeMsg       = new Msg_AgarPlayInfo();
+                removeMsg.Operat    = Msg_AgarPlayInfo.Remove;
+                removeMsg.PlayerId  = msg.PlayerId;
 
                 NetOutgoingMessage om = server.CreateMessage();
                 om.Write(removeMsg.Id);
@@ -184,10 +187,12 @@ namespace CozyKxlol.Server
                 // 返回客户端玩家坐标
                 Msg_AgarLoginRsp rr     = new Msg_AgarLoginRsp();
                 rr.Uid                  = uid;
-                rr.X                    = RandomMaker.Next(800);
-                rr.Y                    = RandomMaker.Next(600);
+                rr.X                    = RandomMaker.Next(GameWidth);
+                rr.Y                    = RandomMaker.Next(GameHeight);
                 rr.Radius               = PlayerBall.DefaultPlayerRadius;
                 rr.Color                = CustomColors.RandomColor;
+                rr.Width                = GameWidth;
+                rr.Height               = GameHeight;
 
                 NetOutgoingMessage om   = server.CreateMessage();
                 om.Write(rr.Id);
@@ -239,7 +244,8 @@ namespace CozyKxlol.Server
                 var FixedPackList = 
                     from f 
                     in FixedList 
-                    select Tuple.Create<uint, float, float, uint>(f.Key, f.Value.X, f.Value.Y, f.Value.Color);
+                    select Tuple.Create<uint, float, float, int, uint>(f.Key, f.Value.X, f.Value.Y,
+                    f.Value.Radius, f.Value.Color);
 
                 var FixedPack = new Msg_AgarFixBallPack();
                 FixedPack.FixedList = FixedPackList.ToList();
@@ -307,14 +313,12 @@ namespace CozyKxlol.Server
             return false;
         }
 
-        public static bool CanEat(PlayerBall player, FixedBall ball)
+        public static bool CanEat(ICircle player, ICircle ball)
         {
-            const float DefaultBallRadius = 5.0f;
-
             float X_Distance    = player.X - ball.X;
             float Y_Distance    = player.Y - ball.Y;
             float Distance      = (float)Math.Sqrt(X_Distance * X_Distance + Y_Distance * Y_Distance);
-            return player.Radius > (Distance + DefaultBallRadius);
+            return player.Radius > (Distance + ball.Radius);
         }
 
         public static bool Update(uint id, ref PlayerBall ball)

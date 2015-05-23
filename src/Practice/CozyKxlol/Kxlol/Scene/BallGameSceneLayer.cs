@@ -39,6 +39,7 @@ namespace CozyKxlol.Kxlol.Scene
         private static Random RandomMaker       = new Random();
         private string Name                     = null;
         private int DefaultRadius               = 0;
+        private Point MapSize                   = Point.Zero;
 
         public BallGameSceneLayer()
         {
@@ -113,7 +114,10 @@ namespace CozyKxlol.Kxlol.Scene
                     Player.Name = Name;
                     RenderList.Add(Player);
 
-                    DefaultRadius = selfMsg.Radius;
+                    DefaultRadius   = selfMsg.Radius;
+                    int X_Size      = selfMsg.Width;
+                    int Y_Size      = selfMsg.Height;
+                    MapSize         = new Point(X_Size, Y_Size);
 
                     var m       = new Msg_AgarPlayInfo();
                     m.Operat    = Msg_AgarPlayInfo.Changed;
@@ -132,7 +136,10 @@ namespace CozyKxlol.Kxlol.Scene
                     uint id     = selfMsg.BallId;
                     if(selfMsg.Operat == Msg_AgarFixedBall.Add)
                     {
-                        var food        = new DefaultFoodCircle(new Vector2(selfMsg.X, selfMsg.Y), selfMsg.Color);
+                        var food        = new DefaultFoodCircle(
+                            new Vector2(selfMsg.X, selfMsg.Y), 
+                            selfMsg.Radius, selfMsg.Color);
+
                         FoodList[id]    = food;
                         RenderList.Add(food);
                     }
@@ -193,7 +200,7 @@ namespace CozyKxlol.Kxlol.Scene
                     foreach(var obj in selfMsg.FixedList)
                     {
                         uint fid        = obj.Item1;
-                        var food        = new DefaultFoodCircle(new Vector2(obj.Item2, obj.Item3), obj.Item4);
+                        var food        = new DefaultFoodCircle(new Vector2(obj.Item2, obj.Item3), obj.Item4, obj.Item5);
                         FoodList[fid]   = food;
                         RenderList.Add(food);
                     }
@@ -253,7 +260,31 @@ namespace CozyKxlol.Kxlol.Scene
             if (Player != null)
             {
                 Player.Update(gameTime);
-                if(IsConnect && Player.Changed)
+
+                #region MapSize
+
+                var pos = Player.Position;
+                if(pos.X < 0.0f && Player.Speed.X < 0.0f)
+                {
+                    pos.X = 0.0f;
+                }
+                else if(pos.X > MapSize.X && Player.Speed.X > 0.0f)
+                {
+                    pos.X = MapSize.X;
+                }
+                if(pos.Y < 0.0f && Player.Speed.Y < 0.0f)
+                {
+                    pos.Y = 0.0f;
+                }
+                else if(pos.Y > MapSize.Y && Player.Speed.Y > 0.0f)
+                {
+                    pos.Y = MapSize.Y;
+                }
+                Player.Position = pos;
+
+                #endregion
+
+                if (IsConnect && Player.Changed)
                 {
                     Player.Changed  = false;
                     var msg         = new Msg_AgarPlayInfo();

@@ -10,12 +10,12 @@ namespace CozyKxlol.Network.Msg
     {
         public int Id { get { return Msg.MsgId.AgarFixBallPack; } }
 
-        private List<Tuple<uint, float, float, uint>> _FixedList;
-        public List<Tuple<uint, float, float, uint>> FixedList
+        private List<Tuple<uint, float, float, int, uint>> _FixedList;
+        public List<Tuple<uint, float, float, int, uint>> FixedList
         {
             get
             {
-                return _FixedList = _FixedList ?? new List<Tuple<uint, float, float, uint>>();
+                return _FixedList = _FixedList ?? new List<Tuple<uint, float, float, int, uint>>();
             }
             set
             {
@@ -32,6 +32,7 @@ namespace CozyKxlol.Network.Msg
                 om.Write(obj.Item2);
                 om.Write(obj.Item3);
                 om.Write(obj.Item4);
+                om.Write(obj.Item5);
             }
         }
 
@@ -43,8 +44,9 @@ namespace CozyKxlol.Network.Msg
                 uint uid = im.ReadUInt32();
                 float x = im.ReadFloat();
                 float y = im.ReadFloat();
+                int r = im.ReadInt32();
                 uint color = im.ReadUInt32();
-                FixedList.Add(Tuple.Create<uint, float, float, uint>(uid, x, y, color));
+                FixedList.Add(Tuple.Create<uint, float, float, int, uint>(uid, x, y, r, color));
             }
         }
     }
