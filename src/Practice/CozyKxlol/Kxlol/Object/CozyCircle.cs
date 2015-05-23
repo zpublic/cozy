@@ -16,7 +16,6 @@ namespace CozyKxlol.Kxlol.Object
     {
         #region Property
 
-        public Vector2 Position { get; set; }
         public Color ColorProperty { get; set; }
         public string Name { get; set; }
 
@@ -214,7 +213,6 @@ namespace CozyKxlol.Kxlol.Object
 
         public CozyCircle()
         {
-            Position        = Vector2.Zero;
             ColorProperty   = Color.Black;
         }
 
@@ -234,6 +232,8 @@ namespace CozyKxlol.Kxlol.Object
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             UpdateKeysState(gameTime);
 
             float timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -249,6 +249,10 @@ namespace CozyKxlol.Kxlol.Object
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            if (!IsVisible) return;
+
+            base.Draw(gameTime, spriteBatch);
+
             if (HasBorder)
             {
                 spriteBatch.DrawCircle(Position, Radius + BorderSize, (int)Radius, Color.Black, BorderSize);
@@ -276,12 +280,6 @@ namespace CozyKxlol.Kxlol.Object
                 LinearDamping += MathHelper.Lerp(0.0f, -1.0f, timeDelta);
             }
             Changed = true;
-        }
-
-        public bool IsContain(Vector2 pos)
-        {
-            float distance2 = (Position - pos).LengthSquared();
-            return Radius * Radius > distance2;
         }
 
         #region KeyEvent
