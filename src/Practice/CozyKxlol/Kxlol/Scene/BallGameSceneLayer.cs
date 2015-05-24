@@ -111,11 +111,11 @@ namespace CozyKxlol.Kxlol.Scene
                     int Y_Size      = selfMsg.Height;
                     MapSize         = new Point(X_Size, Y_Size);
 
-                    string RdName = "TestName-" + RandomMaker.NextString(5);
-                    var bornMsg = new Msg_AgarBorn();
-                    bornMsg.UserId = Uid;
-                    bornMsg.Name = RdName;
-                    Name = RdName;
+                    string RdName   = "TestName-" + RandomMaker.NextString(5);
+                    var bornMsg     = new Msg_AgarBorn();
+                    bornMsg.UserId  = Uid;
+                    bornMsg.Name    = RdName;
+                    Name            = RdName;
 
                     client.SendMessage(bornMsg);
                 }
@@ -223,9 +223,9 @@ namespace CozyKxlol.Kxlol.Scene
                         int r   = selfMsg.Radius;
                         uint c  = selfMsg.Color;
 
-                        Player = new DefaultUserCircle(new Vector2(x, y), r, c);
-                        Player.Name = Name;
                         DefaultRadius   = r;
+                        Player          = new DefaultUserCircle(new Vector2(x, y), r, c);
+                        Player.Name     = Name;
 
                         this.AddChind(Player);
                     }
@@ -239,11 +239,11 @@ namespace CozyKxlol.Kxlol.Scene
                         Player = null;
 
                         // 玩家重生
-                        string RdName = "TestName-" + RandomMaker.NextString(5);
-                        var bornMsg = new Msg_AgarBorn();
-                        bornMsg.UserId = Uid;
-                        bornMsg.Name = RdName;
-                        Name = RdName;
+                        string RdName   = "TestName-" + RandomMaker.NextString(5);
+                        var bornMsg     = new Msg_AgarBorn();
+                        bornMsg.UserId  = Uid;
+                        bornMsg.Name    = RdName;
+                        Name            = RdName;
 
                         client.SendMessage(bornMsg);
                     }
@@ -296,7 +296,7 @@ namespace CozyKxlol.Kxlol.Scene
                     Player.Changed  = false;
                     var msg         = new Msg_AgarPlayInfo();
                     msg.Operat      = Msg_AgarPlayInfo.Changed;
-                    msg.UserId    = Uid;
+                    msg.UserId      = Uid;
                     msg.Tag         = GameMessageHelper.POSITION_TAG;
                     msg.X           = Player.Position.X;
                     msg.Y           = Player.Position.Y;

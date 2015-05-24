@@ -281,8 +281,8 @@ namespace CozyKxlol.Server
                     uint tag                = r.Tag;
                     if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.POSITION_TAG))
                     {
-                        newBall.X = r.X;
-                        newBall.Y = r.Y;
+                        newBall.X       = r.X;
+                        newBall.Y       = r.Y;
                     }
                     if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.RADIUS_TAG))
                     {
@@ -415,7 +415,8 @@ namespace CozyKxlol.Server
                 if(CanEat(ball, obj.Value))
                 {
                     FoodRemoveFlag = true;
-                    ball.Radius++;
+                    if(ball.Radius < PlayerBall.DefaultPlayerNoFoodRadius)
+                        ball.Radius++;
                     FixedBallMgr.Remove(obj.Key);
                 }
             }
