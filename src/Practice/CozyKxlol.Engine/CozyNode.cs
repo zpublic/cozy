@@ -17,10 +17,18 @@ namespace CozyKxlol.Engine
 
         public int ZOrder { get; set; }
 
+        public CozyNode()
+        {
+            IsVisible = true;
+        }
+
 
         public virtual void Update(GameTime gameTime)
         {
-
+            foreach(var child in Children)
+            {
+                child.Update(gameTime);
+            }
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
