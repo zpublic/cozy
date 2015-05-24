@@ -35,6 +35,7 @@ namespace CozyKxlol.Server
         public static FixedBallManager FixedBallMgr                 = new FixedBallManager();
         public static PlayerBallManager PlayerBallMgr               = new PlayerBallManager();
         public static Dictionary<NetConnection, uint> ConnectionMgr = new Dictionary<NetConnection, uint>();
+        public static MarkManager MarkMgr                           = new MarkManager();
         public const int GameWidth  = 800;
         public const int GameHeight = 610;
         static void Main(string[] args)
@@ -83,6 +84,8 @@ namespace CozyKxlol.Server
                 removeMsg.Operat    = Msg_AgarPlayInfo.Remove;
                 removeMsg.UserId    = msg.UserId;
 
+                MarkMgr.Remove(msg.UserId);
+
                 NetOutgoingMessage om = server.CreateMessage();
                 om.Write(removeMsg.Id);
                 removeMsg.W(om);
@@ -92,6 +95,8 @@ namespace CozyKxlol.Server
             PlayerBallMgr.PlayerDeadMessage += (sender, msg) =>
             {
                 var conn        = ConnectionMgr.First(obj => obj.Value == msg.UserId).Key;
+
+                MarkMgr.Remove(msg.UserId);
 
                 // 为自己发送死亡信息
                 var selfMsg     = new Msg_AgarSelf();
@@ -111,6 +116,22 @@ namespace CozyKxlol.Server
                 pom.Write(pubMsg.Id);
                 pubMsg.W(pom);
                 SendToAllExceptOne(server, pubMsg.Id, pom, conn);
+            };
+
+            MarkMgr.MarkChangedMessage += (sender, msg) =>
+            {
+                var markList =
+                    from m
+                        in msg.TopMarkList
+                        orderby m.Value descending
+                    select m;
+
+                Console.WriteLine("-----------------------------------------------------------");
+                foreach(var obj in markList.Take(5))
+                {
+                    string name = PlayerBallMgr.Get(obj.Key).Name;
+                    Console.WriteLine(name + " " + obj.Value);
+                }
             };
 
             FixedBallMgr.Update();
@@ -276,6 +297,7 @@ namespace CozyKxlol.Server
                         newBall.Name    = r.Name;
                     }
 
+                    bool RaduisChanged = false;
                     if (UpdateFood(uid, ref newBall))
                     {
                         r.Tag               = r.Tag | GameMessageHelper.RADIUS_TAG;
@@ -283,6 +305,7 @@ namespace CozyKxlol.Server
                         var self            = new Msg_AgarSelf();
                         self.Operat         = Msg_AgarSelf.GroupUp;
                         self.Radius         = newBall.Radius;
+                        RaduisChanged       = true;
 
                         NetOutgoingMessage som = server.CreateMessage();
                         som.Write(self.Id);
@@ -291,11 +314,12 @@ namespace CozyKxlol.Server
                     }
                     if (UpdatePlayer(uid, ref newBall))
                     {
-                        r.Tag = r.Tag | GameMessageHelper.RADIUS_TAG;
-                        r.Radius = newBall.Radius;
-                        var self = new Msg_AgarSelf();
-                        self.Operat = Msg_AgarSelf.GroupUp;
-                        self.Radius = newBall.Radius;
+                        r.Tag               = r.Tag | GameMessageHelper.RADIUS_TAG;
+                        r.Radius            = newBall.Radius;
+                        var self            = new Msg_AgarSelf();
+                        self.Operat         = Msg_AgarSelf.GroupUp;
+                        self.Radius         = newBall.Radius;
+                        RaduisChanged       = true;
 
                         NetOutgoingMessage som = server.CreateMessage();
                         som.Write(self.Id);
@@ -303,6 +327,10 @@ namespace CozyKxlol.Server
                         server.SendMessage(som, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
                     }
                     PlayerBallMgr.Change(uid, newBall);
+                    if(RaduisChanged)
+                    {
+                        MarkMgr.Update(uid, newBall.Radius);
+                    }
                 }
 
                 NetOutgoingMessage com = server.CreateMessage();
@@ -332,6 +360,8 @@ namespace CozyKxlol.Server
                 player.Color        = c;
                 player.Name         = name;
                 PlayerBallMgr.Add(uid, player);
+
+                MarkMgr.Update(uid, radius);
 
                 // 更新链接对应的ID
                 ConnectionMgr[msg.SenderConnection] = uid;

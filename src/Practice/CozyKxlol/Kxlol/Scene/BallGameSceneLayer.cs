@@ -239,6 +239,7 @@ namespace CozyKxlol.Kxlol.Scene
                     }
                 }
             };
+            client.Connect("127.0.0.1", 48360);
         }
 
         public override void Update(GameTime gameTime)
