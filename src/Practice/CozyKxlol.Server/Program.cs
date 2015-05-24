@@ -76,16 +76,41 @@ namespace CozyKxlol.Server
                 server.SendToAll(om, NetDeliveryMethod.Unreliable);
             };
 
+            // 用户断开链接
             PlayerBallMgr.PlayerExitMessage += (sender, msg) =>
             {
                 var removeMsg       = new Msg_AgarPlayInfo();
                 removeMsg.Operat    = Msg_AgarPlayInfo.Remove;
-                removeMsg.UserId    = msg.PlayerId;
+                removeMsg.UserId    = msg.UserId;
 
                 NetOutgoingMessage om = server.CreateMessage();
                 om.Write(removeMsg.Id);
                 removeMsg.W(om);
                 server.SendToAll(om, NetDeliveryMethod.Unreliable);
+            };
+
+            PlayerBallMgr.PlayerDeadMessage += (sender, msg) =>
+            {
+                var conn        = ConnectionMgr.First(obj => obj.Value == msg.UserId).Key;
+
+                // 为自己发送死亡信息
+                var selfMsg     = new Msg_AgarSelf();
+                selfMsg.Operat  = Msg_AgarSelf.Dead;
+
+                NetOutgoingMessage som = server.CreateMessage();
+                som.Write(selfMsg.Id);
+                selfMsg.W(som);
+                server.SendMessage(som, conn, NetDeliveryMethod.Unreliable, 0);
+
+                // 为其他玩家推送玩家死亡信息
+                var pubMsg      = new Msg_AgarPlayInfo();
+                pubMsg.Operat   = Msg_AgarPlayInfo.Remove;
+                pubMsg.UserId   = msg.UserId;
+
+                NetOutgoingMessage pom = server.CreateMessage();
+                pom.Write(pubMsg.Id);
+                pubMsg.W(pom);
+                SendToAllExceptOne(server, pubMsg.Id, pom, conn);
             };
 
             FixedBallMgr.Update();
@@ -251,13 +276,26 @@ namespace CozyKxlol.Server
                         newBall.Name    = r.Name;
                     }
 
-                    if(Update(uid, ref newBall))
+                    if (UpdateFood(uid, ref newBall))
                     {
                         r.Tag               = r.Tag | GameMessageHelper.RADIUS_TAG;
                         r.Radius            = newBall.Radius;
                         var self            = new Msg_AgarSelf();
                         self.Operat         = Msg_AgarSelf.GroupUp;
                         self.Radius         = newBall.Radius;
+
+                        NetOutgoingMessage som = server.CreateMessage();
+                        som.Write(self.Id);
+                        self.W(som);
+                        server.SendMessage(som, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
+                    }
+                    if (UpdatePlayer(uid, ref newBall))
+                    {
+                        r.Tag = r.Tag | GameMessageHelper.RADIUS_TAG;
+                        r.Radius = newBall.Radius;
+                        var self = new Msg_AgarSelf();
+                        self.Operat = Msg_AgarSelf.GroupUp;
+                        self.Radius = newBall.Radius;
 
                         NetOutgoingMessage som = server.CreateMessage();
                         som.Write(self.Id);
@@ -339,7 +377,7 @@ namespace CozyKxlol.Server
             return player.Radius > (Distance + ball.Radius);
         }
 
-        public static bool Update(uint id, ref PlayerBall ball)
+        public static bool UpdateFood(uint id, ref PlayerBall ball)
         {
             bool FoodRemoveFlag = false;
             foreach(var obj in FixedBallMgr.ToList())
@@ -356,6 +394,21 @@ namespace CozyKxlol.Server
                 FixedBallMgr.Update();
             }
             return FoodRemoveFlag;
+        }
+
+        public static bool UpdatePlayer(uint id, ref PlayerBall ball)
+        {
+            bool PlayerDeadFlag = false;
+            foreach(var obj in PlayerBallMgr.ToList())
+            {
+                if(obj.Key != id && CanEat(ball, obj.Value))
+                {
+                    PlayerDeadFlag = true;
+                    ball.Radius += obj.Value.Radius;
+                    PlayerBallMgr.Dead(obj.Key);
+                }
+            }
+            return PlayerDeadFlag;
         }
     }
 }

@@ -157,12 +157,14 @@ namespace CozyKxlol.Kxlol.Scene
                     }
                     else if(selfMsg.Operat == Msg_AgarPlayInfo.Remove)
                     {
+                        if (!CircleList.ContainsKey(id)) return;
                         var player = CircleList[id];
                         this.RemoveChild(player);
                         CircleList.Remove(id);
                     }
                     else if(selfMsg.Operat == Msg_AgarPlayInfo.Changed)
                     {
+                        if (!CircleList.ContainsKey(id)) return;
                         uint tag                    = selfMsg.Tag;
                         var player                  = CircleList[id];
                         if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.POSITION_TAG))
@@ -232,11 +234,11 @@ namespace CozyKxlol.Kxlol.Scene
                     }
                     else if(selfMsg.Operat == Msg_AgarSelf.Dead)
                     {
-                        // doSomething
+                        this.RemoveChild(Player);
+                        Player = null;
                     }
                 }
             };
-
         }
 
         public override void Update(GameTime gameTime)

@@ -12,14 +12,23 @@ namespace CozyKxlol.Server.Manager
 
         public class PlayerExitArgs : EventArgs
         {
-            public uint PlayerId { get; set; }
+            public uint UserId { get; set; }
             public PlayerExitArgs(uint id)
             {
-                PlayerId = id;
+                UserId = id;
             }
         }
-
         public event EventHandler<PlayerExitArgs> PlayerExitMessage;
+
+        public class PlayerDeadArgs : EventArgs
+        {
+            public uint UserId { get; set; }
+            public PlayerDeadArgs(uint id)
+            {
+                UserId = id;
+            }
+        }
+        public event EventHandler<PlayerDeadArgs> PlayerDeadMessage;
 
         public void Add(uint id, PlayerBall player)
         {
@@ -40,6 +49,15 @@ namespace CozyKxlol.Server.Manager
             if (PlayerDictionary.ContainsKey(id))
             {
                 PlayerDictionary[id] = newBall;
+            }
+        }
+
+        public void Dead(uint id)
+        {
+            if (PlayerDictionary.ContainsKey(id))
+            {
+                PlayerDictionary.Remove(id);
+                PlayerDeadMessage(this, new PlayerDeadArgs(id));
             }
         }
 
