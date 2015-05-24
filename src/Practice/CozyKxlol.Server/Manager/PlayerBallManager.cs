@@ -28,13 +28,19 @@ namespace CozyKxlol.Server.Manager
 
         public void Remove(uint id)
         {
-            PlayerDictionary.Remove(id);
-            PlayerExitMessage(this, new PlayerExitArgs(id));
+            if(PlayerDictionary.ContainsKey(id))
+            {
+                PlayerDictionary.Remove(id);
+                PlayerExitMessage(this, new PlayerExitArgs(id));
+            }
         }
 
         public void Change(uint id, PlayerBall newBall)
         {
-            PlayerDictionary[id] = newBall;
+            if (PlayerDictionary.ContainsKey(id))
+            {
+                PlayerDictionary[id] = newBall;
+            }
         }
 
         public PlayerBall Get(uint id)

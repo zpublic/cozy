@@ -53,8 +53,10 @@ namespace CozyKxlol.Network.Msg
         public const int AgarLoginRsp = 11108;
         // 可被吃小球打包发送
         public const int AgarFixBallPack = 11109;
-
+        // 打包发送玩家信息
         public const int AgarPlayInfoPack = 11110;
+        // 玩家出生信息
+        public const int AgarBorn = 11111;
 
         ////// 20001 - 40000 游戏扩展
 

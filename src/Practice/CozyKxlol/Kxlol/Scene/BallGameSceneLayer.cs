@@ -89,9 +89,7 @@ namespace CozyKxlol.Kxlol.Scene
                 {
                     IsConnect       = true;
                     var loginMsg    = new Msg_AgarLogin();
-                    string RdName   = "TestName-" + RandomMaker.NextString(5);
-                    loginMsg.Name   = RdName;
-                    Name = RdName;
+
                     client.SendMessage(loginMsg);
                 }
                 else if(msg.Status == ConnectionStatus.Disconnected)
@@ -107,27 +105,19 @@ namespace CozyKxlol.Kxlol.Scene
                 MsgBase b = msg.Msg;
                 if(b.Id == MsgId.AgarLoginRsp)
                 {
-                    var selfMsg = (Msg_AgarLoginRsp)b;
-                    Uid         = selfMsg.Uid;
-                    Player      = new DefaultUserCircle(new Vector2(selfMsg.X, selfMsg.Y),selfMsg.Radius, selfMsg.Color);
-                    Player.Name = Name;
-                    this.AddChind(Player);
-
-                    DefaultRadius   = selfMsg.Radius;
+                    var selfMsg     = (Msg_AgarLoginRsp)b;
+                    Uid             = selfMsg.Uid;
                     int X_Size      = selfMsg.Width;
                     int Y_Size      = selfMsg.Height;
                     MapSize         = new Point(X_Size, Y_Size);
 
-                    var m       = new Msg_AgarPlayInfo();
-                    m.Operat    = Msg_AgarPlayInfo.Changed;
-                    m.Tag       = GameMessageHelper.ALL_TAG;
-                    m.PlayerId  = Uid;
-                    m.X         = Player.Position.X;
-                    m.Y         = Player.Position.Y;
-                    m.Radius    = Player.Radius;
-                    m.Color     = Player.ColorProperty.PackedValue;
-                    m.Name      = Player.Name;
-                    client.SendMessage(m);
+                    string RdName = "TestName-" + RandomMaker.NextString(5);
+                    var bornMsg = new Msg_AgarBorn();
+                    bornMsg.UserId = Uid;
+                    bornMsg.Name = RdName;
+                    Name = RdName;
+
+                    client.SendMessage(bornMsg);
                 }
                 else if(b.Id == MsgId.AgarFixedBall)
                 {
@@ -153,10 +143,10 @@ namespace CozyKxlol.Kxlol.Scene
                 else if(b.Id == MsgId.AgarPlayInfo)
                 {
                     var selfMsg = (Msg_AgarPlayInfo)b;
-                    uint id     = selfMsg.PlayerId;
+                    uint id     = selfMsg.UserId;
                     if(selfMsg.Operat == Msg_AgarPlayInfo.Add)
                     {
-                        var player      = new DefaultUserCircle(
+                        var player  = new DefaultUserCircle(
                             new Vector2(selfMsg.X, selfMsg.Y), 
                             selfMsg.Radius, 
                             selfMsg.Color);
@@ -223,14 +213,20 @@ namespace CozyKxlol.Kxlol.Scene
                 else if(b.Id == MsgId.AgarSelf)
                 {
                     var selfMsg = (Msg_AgarSelf)b;
-                    uint uid = selfMsg.UserId;
 
-                    if(uid != Uid)
+                    if(selfMsg.Operat == Msg_AgarSelf.Born)
                     {
-                        // throw exception
-                    }
+                        float x = selfMsg.X;
+                        float y = selfMsg.Y;
+                        int r   = selfMsg.Radius;
+                        uint c  = selfMsg.Color;
 
-                    if(selfMsg.Operat == Msg_AgarSelf.GroupUp)
+                        Player = new DefaultUserCircle(new Vector2(x, y), r, c);
+                        Player.Name = Name;
+
+                        this.AddChind(Player);
+                    }
+                    else if(selfMsg.Operat == Msg_AgarSelf.GroupUp)
                     {
                         Player.Radius = selfMsg.Radius;
                     }
@@ -241,7 +237,6 @@ namespace CozyKxlol.Kxlol.Scene
                 }
             };
 
-            client.Connect("114.215.134.101", 48360);
         }
 
         public override void Update(GameTime gameTime)
@@ -288,7 +283,7 @@ namespace CozyKxlol.Kxlol.Scene
                     Player.Changed  = false;
                     var msg         = new Msg_AgarPlayInfo();
                     msg.Operat      = Msg_AgarPlayInfo.Changed;
-                    msg.PlayerId    = Uid;
+                    msg.UserId    = Uid;
                     msg.Tag         = GameMessageHelper.POSITION_TAG;
                     msg.X           = Player.Position.X;
                     msg.Y           = Player.Position.Y;
