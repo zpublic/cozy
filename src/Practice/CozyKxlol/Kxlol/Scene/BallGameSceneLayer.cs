@@ -236,6 +236,15 @@ namespace CozyKxlol.Kxlol.Scene
                     {
                         this.RemoveChild(Player);
                         Player = null;
+
+                        // 玩家重生
+                        string RdName = "TestName-" + RandomMaker.NextString(5);
+                        var bornMsg = new Msg_AgarBorn();
+                        bornMsg.UserId = Uid;
+                        bornMsg.Name = RdName;
+                        Name = RdName;
+
+                        client.SendMessage(bornMsg);
                     }
                 }
             };
