@@ -21,7 +21,6 @@ namespace CozyKxlol.Kxlol.Scene
 {
     class BallGameSceneLayer : CozyLayer
     {
-        List<CozyCircle> RenderList             = new List<CozyCircle>();
         Dictionary<uint, CozyCircle> FoodList   = new Dictionary<uint, CozyCircle>();
         Dictionary<uint, CozyCircle> CircleList = new Dictionary<uint, CozyCircle>();
 
@@ -112,7 +111,7 @@ namespace CozyKxlol.Kxlol.Scene
                     Uid         = selfMsg.Uid;
                     Player      = new DefaultUserCircle(new Vector2(selfMsg.X, selfMsg.Y),selfMsg.Radius, selfMsg.Color);
                     Player.Name = Name;
-                    RenderList.Add(Player);
+                    this.AddChind(Player);
 
                     DefaultRadius   = selfMsg.Radius;
                     int X_Size      = selfMsg.Width;
@@ -141,12 +140,12 @@ namespace CozyKxlol.Kxlol.Scene
                             selfMsg.Radius, selfMsg.Color);
 
                         FoodList[id]    = food;
-                        RenderList.Add(food);
+                        this.AddChind(food);
                     }
                     else if(selfMsg.Operat == Msg_AgarFixedBall.Remove)
                     {
                         CozyCircle food = FoodList[id];
-                        RenderList.Remove(food);
+                        this.RemoveChild(food);
                         FoodList.Remove(id);
                     }
 
@@ -164,12 +163,12 @@ namespace CozyKxlol.Kxlol.Scene
                         player.Name = selfMsg.Name;
 
                         CircleList[id] = player;
-                        RenderList.Add(player);
+                        this.AddChind(player);
                     }
                     else if(selfMsg.Operat == Msg_AgarPlayInfo.Remove)
                     {
                         var player = CircleList[id];
-                        RenderList.Remove(player);
+                        this.RemoveChild(player);
                         CircleList.Remove(id);
                     }
                     else if(selfMsg.Operat == Msg_AgarPlayInfo.Changed)
@@ -202,7 +201,7 @@ namespace CozyKxlol.Kxlol.Scene
                         uint fid        = obj.Item1;
                         var food        = new DefaultFoodCircle(new Vector2(obj.Item2, obj.Item3), obj.Item4, obj.Item5);
                         FoodList[fid]   = food;
-                        RenderList.Add(food);
+                        this.AddChind(food);
                     }
                 } 
                 else if(b.Id == MsgId.AgarPlayInfoPack)
@@ -218,7 +217,7 @@ namespace CozyKxlol.Kxlol.Scene
                         player.Name     = obj.Item6;
 
                         CircleList[pid] = player;
-                        RenderList.Add(player);
+                        this.AddChind(player);
                     }
                 }
                 else if(b.Id == MsgId.AgarSelf)
@@ -305,10 +304,9 @@ namespace CozyKxlol.Kxlol.Scene
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            foreach (var obj in RenderList)
-            {
-                obj.Draw(gameTime, spriteBatch);
-            }
+            if (!IsVisible) return;
+
+            base.Draw(gameTime, spriteBatch);
 
             if (sdbg != null)
             {

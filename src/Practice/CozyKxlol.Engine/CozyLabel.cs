@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CozyKxlol.Engine
 {
-    class CozyLabel
+    public class CozyLabel : CozyNode
     {
     }
 }
