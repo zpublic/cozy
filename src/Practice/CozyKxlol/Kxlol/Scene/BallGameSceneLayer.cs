@@ -225,6 +225,7 @@ namespace CozyKxlol.Kxlol.Scene
 
                         Player = new DefaultUserCircle(new Vector2(x, y), r, c);
                         Player.Name = Name;
+                        DefaultRadius   = r;
 
                         this.AddChind(Player);
                     }
