@@ -66,6 +66,11 @@ namespace CozyKxlol.Server.Manager
             return PlayerDictionary[id];
         }
 
+        public bool IsContain(uint id)
+        {
+            return PlayerDictionary.ContainsKey(id);
+        }
+
         public List<KeyValuePair<uint, PlayerBall>> ToList()
         {
             return PlayerDictionary.ToList();

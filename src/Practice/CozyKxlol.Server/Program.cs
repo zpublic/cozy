@@ -138,8 +138,11 @@ namespace CozyKxlol.Server
                 Console.WriteLine("-----------------------------------------------------------");
                 foreach (var obj in sendList)
                 {
-                    string name = PlayerBallMgr.Get(obj.Key).Name;
-                    Console.WriteLine(name + " " + obj.Value);
+                    if(PlayerBallMgr.IsContain(obj.Key))
+                    {
+                        string name = PlayerBallMgr.Get(obj.Key).Name;
+                        Console.WriteLine(name + " " + obj.Value);
+                    }
                 }
             };
 
@@ -286,6 +289,8 @@ namespace CozyKxlol.Server
                 uint uid                    = r.UserId;
                 if(r.Operat == Msg_AgarPlayInfo.Changed)
                 {
+                    if (!PlayerBallMgr.IsContain(uid)) return true;
+
                     PlayerBall newBall      = PlayerBallMgr.Get(uid);
                     uint tag                = r.Tag;
                     if (GameMessageHelper.Is_Changed(tag, GameMessageHelper.POSITION_TAG))
@@ -335,7 +340,44 @@ namespace CozyKxlol.Server
                         self.W(som);
                         server.SendMessage(som, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
                     }
+                    
                     PlayerBallMgr.Change(uid, newBall);
+
+                    uint EatId = 0;
+                    if (UpdateOtherPlayer(uid, newBall, out EatId))
+                    {
+                        if(PlayerBallMgr.IsContain(EatId))
+                        {
+                            var EatBall     = PlayerBallMgr.Get(EatId);
+                            EatBall.Radius  += newBall.Radius;
+                            PlayerBallMgr.Change(EatId, EatBall);
+
+                            Msg_AgarPlayInfo eatMsg = new Msg_AgarPlayInfo();
+                            eatMsg.Operat   = Msg_AgarPlayInfo.Changed;
+                            eatMsg.UserId   = EatId;
+                            eatMsg.Tag      = GameMessageHelper.RADIUS_TAG;
+                            eatMsg.Radius   = EatBall.Radius;
+
+                            var conn        = ConnectionMgr.First(obj => obj.Value == EatId).Key;
+
+                            NetOutgoingMessage eom = server.CreateMessage();
+                            eom.Write(eatMsg.Id);
+                            eatMsg.W(eom);
+
+                            SendToAllExceptOne(server, eatMsg.Id, eom, conn);
+
+                            var selfEatMsg      = new Msg_AgarSelf();
+                            selfEatMsg.Operat   = Msg_AgarSelf.GroupUp;
+                            selfEatMsg.Radius   = EatBall.Radius;
+
+                            NetOutgoingMessage seom = server.CreateMessage();
+                            seom.Write(selfEatMsg.Id);
+                            selfEatMsg.W(seom);
+
+                            server.SendMessage(seom, conn, NetDeliveryMethod.Unreliable, 0);
+                        }
+                    }
+
                     if(RaduisChanged)
                     {
                         MarkMgr.Update(uid, newBall.Radius);
@@ -448,6 +490,23 @@ namespace CozyKxlol.Server
                     PlayerBallMgr.Dead(obj.Key);
                 }
             }
+            return PlayerDeadFlag;
+        }
+
+        public static bool UpdateOtherPlayer(uint id, PlayerBall ball, out uint EatId)
+        {
+            bool PlayerDeadFlag = false;
+            uint did = 0;
+            foreach(var obj in PlayerBallMgr.ToList())
+            {
+                if(obj.Key != id && CanEat(obj.Value, ball))
+                {
+                    PlayerDeadFlag = true;
+                    did = obj.Key;
+                    PlayerBallMgr.Dead(id);
+                }
+            }
+            EatId = did;
             return PlayerDeadFlag;
         }
     }
