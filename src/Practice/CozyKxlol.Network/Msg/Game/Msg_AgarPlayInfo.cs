@@ -15,7 +15,7 @@ namespace CozyKxlol.Network.Msg
 
         public int Id { get { return MsgId.AgarPlayInfo; } }
         public byte Operat { get; set; }
-        public uint PlayerId { get; set; }
+        public uint UserId { get; set; }
         public uint Tag { get; set; }
         public float X { get; set; }
         public float Y { get; set; }
@@ -26,7 +26,7 @@ namespace CozyKxlol.Network.Msg
         public void W(NetOutgoingMessage om)
         {
             om.Write(Operat);
-            om.Write(PlayerId);
+            om.Write(UserId);
             if (Operat == Add || Operat == Changed)
             {
                 om.Write(Tag);
@@ -53,7 +53,7 @@ namespace CozyKxlol.Network.Msg
         public void R(NetIncomingMessage im)
         {
             Operat          = im.ReadByte();
-            PlayerId        = im.ReadUInt32();
+            UserId          = im.ReadUInt32();
             if (Operat == Add || Operat == Changed)
             {
                 Tag         = im.ReadUInt32();
