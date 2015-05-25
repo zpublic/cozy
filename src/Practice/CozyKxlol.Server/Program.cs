@@ -311,61 +311,60 @@ namespace CozyKxlol.Server
                         newBall.Name    = r.Name;
                     }
 
-                    bool RaduisChanged = false;
+                    bool RaduisChanged  = false;
+                    bool FoodChanged    = false;
+                    bool PlayerChanged  = false;
+                    // 检查食物有没有被吃
                     if (UpdateFood(uid, ref newBall))
                     {
-                        r.Tag               = r.Tag | GameMessageHelper.RADIUS_TAG;
-                        r.Radius            = newBall.Radius;
-                        var self            = new Msg_AgarSelf();
-                        self.Operat         = Msg_AgarSelf.GroupUp;
-                        self.Radius         = newBall.Radius;
-                        RaduisChanged       = true;
-
-                        NetOutgoingMessage som = server.CreateMessage();
-                        som.Write(self.Id);
-                        self.W(som);
-                        server.SendMessage(som, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
+                        FoodChanged = true;
                     }
+                    // 检查能不能吃其他玩家
                     if (UpdatePlayer(uid, ref newBall))
                     {
-                        r.Tag               = r.Tag | GameMessageHelper.RADIUS_TAG;
-                        r.Radius            = newBall.Radius;
-                        var self            = new Msg_AgarSelf();
-                        self.Operat         = Msg_AgarSelf.GroupUp;
-                        self.Radius         = newBall.Radius;
-                        RaduisChanged       = true;
+                        PlayerChanged = true;
+                    }
+                    if(FoodChanged || PlayerChanged)
+                    {
+                        r.Tag = r.Tag | GameMessageHelper.RADIUS_TAG;
+                        r.Radius = newBall.Radius;
+                        var self = new Msg_AgarSelf();
+                        self.Operat = Msg_AgarSelf.GroupUp;
+                        self.Radius = newBall.Radius;
+                        RaduisChanged = true;
 
                         NetOutgoingMessage som = server.CreateMessage();
                         som.Write(self.Id);
                         self.W(som);
                         server.SendMessage(som, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
                     }
-                    
                     PlayerBallMgr.Change(uid, newBall);
 
+                    // 检查会不会被其他玩家吃
                     uint EatId = 0;
                     if (UpdateOtherPlayer(uid, newBall, out EatId))
                     {
                         if(PlayerBallMgr.IsContain(EatId))
                         {
                             var EatBall     = PlayerBallMgr.Get(EatId);
+                            var conn        = ConnectionMgr.First(obj => obj.Value == EatId).Key;
                             EatBall.Radius  += newBall.Radius;
                             PlayerBallMgr.Change(EatId, EatBall);
 
+                            // 向其他玩家发送
                             Msg_AgarPlayInfo eatMsg = new Msg_AgarPlayInfo();
                             eatMsg.Operat   = Msg_AgarPlayInfo.Changed;
                             eatMsg.UserId   = EatId;
                             eatMsg.Tag      = GameMessageHelper.RADIUS_TAG;
                             eatMsg.Radius   = EatBall.Radius;
-
-                            var conn        = ConnectionMgr.First(obj => obj.Value == EatId).Key;
+                            RaduisChanged   = true;
 
                             NetOutgoingMessage eom = server.CreateMessage();
                             eom.Write(eatMsg.Id);
                             eatMsg.W(eom);
-
                             SendToAllExceptOne(server, eatMsg.Id, eom, conn);
 
+                            // 向自身发送
                             var selfEatMsg      = new Msg_AgarSelf();
                             selfEatMsg.Operat   = Msg_AgarSelf.GroupUp;
                             selfEatMsg.Radius   = EatBall.Radius;
@@ -373,7 +372,6 @@ namespace CozyKxlol.Server
                             NetOutgoingMessage seom = server.CreateMessage();
                             seom.Write(selfEatMsg.Id);
                             selfEatMsg.W(seom);
-
                             server.SendMessage(seom, conn, NetDeliveryMethod.Unreliable, 0);
                         }
                     }
@@ -504,6 +502,7 @@ namespace CozyKxlol.Server
                     PlayerDeadFlag = true;
                     did = obj.Key;
                     PlayerBallMgr.Dead(id);
+                    break;
                 }
             }
             EatId = did;
