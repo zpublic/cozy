@@ -21,8 +21,9 @@ namespace CozyKxlol.Kxlol.Scene
 {
     class BallGameSceneLayer : CozyLayer
     {
-        Dictionary<uint, CozyCircle> FoodList   = new Dictionary<uint, CozyCircle>();
-        Dictionary<uint, CozyCircle> CircleList = new Dictionary<uint, CozyCircle>();
+        Dictionary<uint, CozyCircle> FoodList       = new Dictionary<uint, CozyCircle>();
+        Dictionary<uint, CozyCircle> CircleList     = new Dictionary<uint, CozyCircle>();
+        List<KeyValuePair<string, int>> MarkList    = new List<KeyValuePair<string, int>>();
 
         KeyboardEvents keyboard;
         String sdbg;
@@ -247,6 +248,24 @@ namespace CozyKxlol.Kxlol.Scene
 
                         client.SendMessage(bornMsg);
                     }
+                }
+                else if(b.Id == MsgId.AgarMarkListPark)
+                {
+                    var selfMsg = (Msg_AgarMarkListPack)b;
+                    MarkList.Clear();
+
+                    foreach(var obj in selfMsg.MarkList)
+                    {
+                        if(CircleList.ContainsKey(obj.Key))
+                        {
+                            MarkList.Add(new KeyValuePair<string, int>(CircleList[obj.Key].Name, obj.Value));
+                        }
+                        else if(obj.Key == Uid && Player != null)
+                        {
+                            MarkList.Add(new KeyValuePair<string, int>(Player.Name, obj.Value));
+                        }
+                    }
+                    // 暂时只接受数据不显示
                 }
             };
 

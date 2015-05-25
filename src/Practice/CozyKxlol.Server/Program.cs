@@ -126,8 +126,17 @@ namespace CozyKxlol.Server
                         orderby m.Value descending
                     select m;
 
+                var markMsg         = new Msg_AgarMarkListPack();
+                var sendList        = markList.Take(5).ToList();
+                markMsg.MarkList    = sendList;
+
+                NetOutgoingMessage mom = server.CreateMessage();
+                mom.Write(markMsg.Id);
+                markMsg.W(mom);
+                server.SendToAll(mom, NetDeliveryMethod.Unreliable);
+
                 Console.WriteLine("-----------------------------------------------------------");
-                foreach(var obj in markList.Take(5))
+                foreach (var obj in sendList)
                 {
                     string name = PlayerBallMgr.Get(obj.Key).Name;
                     Console.WriteLine(name + " " + obj.Value);
