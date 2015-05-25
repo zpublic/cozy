@@ -45,8 +45,9 @@ namespace CozyKxlol.Engine
 
         public bool IsChildDirty { get; set; }
 
-        public void InsertChild(CozyNode child)
+        public void InsertChild(CozyNode child, int zorder = 0)
         {
+            child.ZOrder = zorder;
             Children.Add(child);
             IsChildDirty = true;
         }
@@ -57,11 +58,11 @@ namespace CozyKxlol.Engine
             Children.Remove(child);
         }
 
-        public void AddChind(CozyNode child)
+        public void AddChind(CozyNode child, int zorder = 0)
         {
             if (child == null) return;
 
-            InsertChild(child);
+            InsertChild(child, zorder);
             child.Parent = this;
         }
 

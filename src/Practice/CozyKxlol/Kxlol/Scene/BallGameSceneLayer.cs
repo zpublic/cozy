@@ -41,6 +41,10 @@ namespace CozyKxlol.Kxlol.Scene
         private int DefaultRadius               = 0;
         private Point MapSize                   = Point.Zero;
 
+        public const int PlayerZOrder           = 2;
+        public const int OtherPlayerZOrder      = 1;
+        public const int FoodZOrder             = 0;
+
         public BallGameSceneLayer()
         {
             keyboard = new KeyboardEvents();
@@ -131,7 +135,7 @@ namespace CozyKxlol.Kxlol.Scene
                             selfMsg.Radius, selfMsg.Color);
 
                         FoodList[id]    = food;
-                        this.AddChind(food);
+                        this.AddChind(food, FoodZOrder);
                     }
                     else if(selfMsg.Operat == Msg_AgarFixedBall.Remove)
                     {
@@ -154,7 +158,7 @@ namespace CozyKxlol.Kxlol.Scene
                         player.Name = selfMsg.Name;
 
                         CircleList[id] = player;
-                        this.AddChind(player);
+                        this.AddChind(player, OtherPlayerZOrder);
                     }
                     else if(selfMsg.Operat == Msg_AgarPlayInfo.Remove)
                     {
@@ -194,7 +198,7 @@ namespace CozyKxlol.Kxlol.Scene
                         uint fid        = obj.Item1;
                         var food        = new DefaultFoodCircle(new Vector2(obj.Item2, obj.Item3), obj.Item4, obj.Item5);
                         FoodList[fid]   = food;
-                        this.AddChind(food);
+                        this.AddChind(food, FoodZOrder);
                     }
                 } 
                 else if(b.Id == MsgId.AgarPlayInfoPack)
@@ -210,7 +214,7 @@ namespace CozyKxlol.Kxlol.Scene
                         player.Name     = obj.Item6;
 
                         CircleList[pid] = player;
-                        this.AddChind(player);
+                        this.AddChind(player, OtherPlayerZOrder);
                     }
                 }
                 else if(b.Id == MsgId.AgarSelf)
@@ -228,7 +232,7 @@ namespace CozyKxlol.Kxlol.Scene
                         Player          = new DefaultUserCircle(new Vector2(x, y), r, c);
                         Player.Name     = Name;
 
-                        this.AddChind(Player);
+                        this.AddChind(Player, PlayerZOrder);
                     }
                     else if(selfMsg.Operat == Msg_AgarSelf.GroupUp)
                     {
