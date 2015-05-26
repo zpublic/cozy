@@ -58,11 +58,32 @@ namespace CozyKxlol.Engine
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            if (!IsVisible) return;
             SortAllChildren();
-            foreach(var child in Children)
+            int i = 0;
+            for (; i < Children.Count; ++i)
             {
-                child.Draw(gameTime, spriteBatch);
+                if(Children[i].ZOrder < 0)
+                {
+                    Children[i].Draw(gameTime, spriteBatch);
+                }
+                else
+                {
+                    break;
+                }
             }
+
+            DrawSelf(gameTime, spriteBatch);
+
+            for (; i < Children.Count; ++i)
+            {
+                Children[i].Draw(gameTime, spriteBatch);
+            }
+        }
+
+        protected virtual void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+
         }
 
         protected List<CozyNode> Children = new List<CozyNode>();

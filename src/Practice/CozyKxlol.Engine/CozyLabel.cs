@@ -23,17 +23,13 @@ namespace CozyKxlol.Engine
             FontColor   = color;
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (!IsVisible) return;
-
-            if(Text != null)
+            if (Text != null)
             {
                 var FontOrigin = CozyGame.nolmalFont.MeasureString(Text) / 2;
                 spriteBatch.DrawString(CozyGame.nolmalFont, Text, GlobalPosition, FontColor, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
             }
-
-            base.Draw(gameTime, spriteBatch);
         }
     }
 }

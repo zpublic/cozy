@@ -247,10 +247,8 @@ namespace CozyKxlol.Kxlol.Object
             }
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (!IsVisible) return;
-
             if (HasBorder)
             {
                 spriteBatch.DrawCircle(GlobalPosition, Radius + BorderSize, (int)Radius, Color.Black, BorderSize);
@@ -262,8 +260,6 @@ namespace CozyKxlol.Kxlol.Object
                 var FontOrigin = CozyGame.nolmalFont.MeasureString(Name) / 2;
                 spriteBatch.DrawString(CozyGame.nolmalFont, Name, GlobalPosition, Color.WhiteSmoke, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
             }
-
-            base.Draw(gameTime, spriteBatch);
         }
 
         // IMoveAble

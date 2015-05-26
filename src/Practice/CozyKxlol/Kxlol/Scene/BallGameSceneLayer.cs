@@ -334,12 +334,8 @@ namespace CozyKxlol.Kxlol.Scene
             }
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (!IsVisible) return;
-
-            base.Draw(gameTime, spriteBatch);
-
             if (sdbg != null)
             {
                 spriteBatch.DrawString(CozyGame.nolmalFont, sdbg, new Vector2(20, 20), Color.Red);
