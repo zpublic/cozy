@@ -233,10 +233,6 @@ namespace CozyKxlol.Kxlol.Scene
                         Player.Name     = Name;
 
                         this.AddChind(Player, PlayerZOrder);
-
-                        var test = new DefaultFoodCircle(Vector2.Zero, 5, Color.Red.PackedValue);
-                        Player.AddChind(test);
-
                     }
                     else if(selfMsg.Operat == Msg_AgarSelf.GroupUp)
                     {
