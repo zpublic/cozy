@@ -17,11 +17,36 @@ namespace CozyKxlol.Engine
 
         public int ZOrder { get; set; }
 
+        public int GlobalZOrder 
+        {
+            get
+            {
+                int zorder = ZOrder;
+                for(CozyNode iter = this; iter != null; iter = iter.Parent)
+                {
+                    zorder += iter.ZOrder;
+                }
+                return zorder;
+            }
+        }
+
+        public Vector2 GlobalPosition
+        {
+            get
+            {
+                var _GlobalPosition = Position;
+                for (CozyNode iter = this.Parent; iter != null; iter = iter.Parent)
+                {
+                    _GlobalPosition += iter.Position;
+                }
+                return _GlobalPosition;
+            }
+        }
+
         public CozyNode()
         {
             IsVisible = true;
         }
-
 
         public virtual void Update(GameTime gameTime)
         {
