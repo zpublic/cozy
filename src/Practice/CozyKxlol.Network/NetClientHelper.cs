@@ -212,6 +212,12 @@ namespace CozyKxlol.Network
                     msg.R(im);
                     DataMessage(sender, new DataMessageArgs(msg));
                 }
+                else if(id == MsgId.AgarMarkListPark)
+                {
+                    MsgBase msg = new Msg_AgarMarkListPack();
+                    msg.R(im);
+                    DataMessage(sender, new DataMessageArgs(msg));
+                }
             }
         }
     }

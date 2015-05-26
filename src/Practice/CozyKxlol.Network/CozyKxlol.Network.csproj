@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="ConnectionStatus.cs" />
     <Compile Include="Msg\GameMessageHelper.cs" />
+    <Compile Include="Msg\Game\Msg_AgarMarkListPack.cs" />
     <Compile Include="Msg\MsgBase.cs" />
     <Compile Include="Msg\MsgId.cs" />
     <Compile Include="Msg\Account\Msg_AccountLoginRsp.cs" />

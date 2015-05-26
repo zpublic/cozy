@@ -21,8 +21,9 @@ namespace CozyKxlol.Kxlol.Scene
 {
     class BallGameSceneLayer : CozyLayer
     {
-        Dictionary<uint, CozyCircle> FoodList   = new Dictionary<uint, CozyCircle>();
-        Dictionary<uint, CozyCircle> CircleList = new Dictionary<uint, CozyCircle>();
+        Dictionary<uint, CozyCircle> FoodList       = new Dictionary<uint, CozyCircle>();
+        Dictionary<uint, CozyCircle> CircleList     = new Dictionary<uint, CozyCircle>();
+        List<KeyValuePair<string, int>> MarkList    = new List<KeyValuePair<string, int>>();
 
         KeyboardEvents keyboard;
         String sdbg;
@@ -39,6 +40,10 @@ namespace CozyKxlol.Kxlol.Scene
         private string Name                     = null;
         private int DefaultRadius               = 0;
         private Point MapSize                   = Point.Zero;
+
+        public const int PlayerZOrder           = 2;
+        public const int OtherPlayerZOrder      = 1;
+        public const int FoodZOrder             = 0;
 
         public BallGameSceneLayer()
         {
@@ -130,7 +135,7 @@ namespace CozyKxlol.Kxlol.Scene
                             selfMsg.Radius, selfMsg.Color);
 
                         FoodList[id]    = food;
-                        this.AddChind(food);
+                        this.AddChind(food, FoodZOrder);
                     }
                     else if(selfMsg.Operat == Msg_AgarFixedBall.Remove)
                     {
@@ -153,7 +158,7 @@ namespace CozyKxlol.Kxlol.Scene
                         player.Name = selfMsg.Name;
 
                         CircleList[id] = player;
-                        this.AddChind(player);
+                        this.AddChind(player, OtherPlayerZOrder);
                     }
                     else if(selfMsg.Operat == Msg_AgarPlayInfo.Remove)
                     {
@@ -193,7 +198,7 @@ namespace CozyKxlol.Kxlol.Scene
                         uint fid        = obj.Item1;
                         var food        = new DefaultFoodCircle(new Vector2(obj.Item2, obj.Item3), obj.Item4, obj.Item5);
                         FoodList[fid]   = food;
-                        this.AddChind(food);
+                        this.AddChind(food, FoodZOrder);
                     }
                 } 
                 else if(b.Id == MsgId.AgarPlayInfoPack)
@@ -209,7 +214,7 @@ namespace CozyKxlol.Kxlol.Scene
                         player.Name     = obj.Item6;
 
                         CircleList[pid] = player;
-                        this.AddChind(player);
+                        this.AddChind(player, OtherPlayerZOrder);
                     }
                 }
                 else if(b.Id == MsgId.AgarSelf)
@@ -227,7 +232,7 @@ namespace CozyKxlol.Kxlol.Scene
                         Player          = new DefaultUserCircle(new Vector2(x, y), r, c);
                         Player.Name     = Name;
 
-                        this.AddChind(Player);
+                        this.AddChind(Player, PlayerZOrder);
                     }
                     else if(selfMsg.Operat == Msg_AgarSelf.GroupUp)
                     {
@@ -247,6 +252,24 @@ namespace CozyKxlol.Kxlol.Scene
 
                         client.SendMessage(bornMsg);
                     }
+                }
+                else if(b.Id == MsgId.AgarMarkListPark)
+                {
+                    var selfMsg = (Msg_AgarMarkListPack)b;
+                    MarkList.Clear();
+
+                    foreach(var obj in selfMsg.MarkList)
+                    {
+                        if(CircleList.ContainsKey(obj.Key))
+                        {
+                            MarkList.Add(new KeyValuePair<string, int>(CircleList[obj.Key].Name, obj.Value));
+                        }
+                        else if(obj.Key == Uid && Player != null)
+                        {
+                            MarkList.Add(new KeyValuePair<string, int>(Player.Name, obj.Value));
+                        }
+                    }
+                    // 暂时只接受数据不显示
                 }
             };
 
