@@ -262,7 +262,7 @@ namespace CozyKxlol.Kxlol.Object
             if(Name != null)
             {
                 var FontOrigin = CozyGame.nolmalFont.MeasureString(Name) / 2;
-                spriteBatch.DrawString(CozyGame.nolmalFont, Name, GlobalPosition + Transform, Color.WhiteSmoke, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.DrawString(CozyGame.nolmalFont, Name, center, Color.WhiteSmoke, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
             }
         }
 
