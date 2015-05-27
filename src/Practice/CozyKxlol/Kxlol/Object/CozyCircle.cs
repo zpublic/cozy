@@ -33,7 +33,7 @@ namespace CozyKxlol.Kxlol.Object
             set
             {
                 _Radius     = value;
-                ContentSize = new Vector2((Radius + BorderSize) * 2, (Radius + BorderSize) * 2);
+                UpdateContentSize();
                 MaxSpeed    = BaseSpeed + FloatSpeed / Radius;
             }
         }
@@ -206,6 +206,7 @@ namespace CozyKxlol.Kxlol.Object
             set
             {
                 _BorderSize = value;
+                UpdateContentSize();
             }
         }
         #endregion
@@ -230,6 +231,12 @@ namespace CozyKxlol.Kxlol.Object
         {
             HasBorder       = true;
             BorderSize      = borderSize;
+        }
+
+
+        private void UpdateContentSize()
+        {
+            ContentSize = new Vector2((Radius + BorderSize) * 2, (Radius + BorderSize) * 2);
         }
 
         public override void Update(GameTime gameTime)
