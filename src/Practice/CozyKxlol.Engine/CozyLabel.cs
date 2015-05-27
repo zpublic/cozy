@@ -33,6 +33,7 @@ namespace CozyKxlol.Engine
         {
             Text        = str;
             FontColor   = color;
+            AnchorPoint = Vector2.One / 2;
         }
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)

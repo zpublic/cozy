@@ -12,12 +12,11 @@ using CozyKxlol.Kxlol.Extends;
 
 namespace CozyKxlol.Kxlol.Object
 {
-    class CozyCircle : CozyNode, IMoveAble, IControlAble
+    public class CozyCircle : CozyNode, IMoveAble, IControlAble
     {
         #region Property
 
         public Color ColorProperty { get; set; }
-        public string Name { get; set; }
 
         // v = 20 + 200 / S
         public const float BaseSpeed    = 20.0f;
@@ -265,12 +264,6 @@ namespace CozyKxlol.Kxlol.Object
                 spriteBatch.DrawCircle(center, Radius + BorderSize, (int)Radius, Color.Black, BorderSize);
             }
             spriteBatch.DrawCircle(center, Radius, (int)Radius, ColorProperty, Radius);
-
-            if(Name != null)
-            {
-                var FontOrigin = CozyGame.nolmalFont.MeasureString(Name) / 2;
-                spriteBatch.DrawString(CozyGame.nolmalFont, Name, center, Color.WhiteSmoke, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
-            }
         }
 
         // IMoveAble
