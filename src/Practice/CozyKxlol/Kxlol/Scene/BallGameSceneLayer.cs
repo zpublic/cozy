@@ -281,7 +281,7 @@ namespace CozyKxlol.Kxlol.Scene
             ScoreShow.AnchorPoint = Vector2.Zero;
             this.AddChind(ScoreShow, 1000);
 
-            client.Connect("127.0.0.1", 48360);
+            client.Connect("114.215.134.101", 48360);
 
             //CozySprite s = new CozySprite(@"Images\dota.png");
             //this.AddChind(s,100);
