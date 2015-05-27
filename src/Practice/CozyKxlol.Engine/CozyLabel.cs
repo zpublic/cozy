@@ -9,7 +9,19 @@ namespace CozyKxlol.Engine
 {
     public class CozyLabel : CozyNode
     {
-        public string Text { get; set; }
+        public string _Text;
+        public string Text 
+        { 
+            get
+            {
+                return _Text;
+            }
+            set
+            {
+                _Text = value;
+                ContentSize = CozyGame.nolmalFont.MeasureString(Text);
+            }
+        }
         public Color FontColor { get; set; }
 
         public CozyLabel()
@@ -28,7 +40,7 @@ namespace CozyKxlol.Engine
             if (Text != null)
             {
                 var FontOrigin = CozyGame.nolmalFont.MeasureString(Text) / 2;
-                spriteBatch.DrawString(CozyGame.nolmalFont, Text, GlobalPosition, FontColor, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.DrawString(CozyGame.nolmalFont, Text, GlobalPosition + Transform, FontColor);
             }
         }
     }
