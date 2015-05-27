@@ -273,7 +273,7 @@ namespace CozyKxlol.Kxlol.Scene
                 }
             };
 
-            client.Connect("114.215.134.101", 48360);
+            client.Connect("127.0.0.1", 48360);
         }
 
         public override void Update(GameTime gameTime)
@@ -334,12 +334,8 @@ namespace CozyKxlol.Kxlol.Scene
             }
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (!IsVisible) return;
-
-            base.Draw(gameTime, spriteBatch);
-
             if (sdbg != null)
             {
                 spriteBatch.DrawString(CozyGame.nolmalFont, sdbg, new Vector2(20, 20), Color.Red);

@@ -17,11 +17,36 @@ namespace CozyKxlol.Engine
 
         public int ZOrder { get; set; }
 
+        public int GlobalZOrder 
+        {
+            get
+            {
+                int zorder = ZOrder;
+                for(CozyNode iter = this; iter != null; iter = iter.Parent)
+                {
+                    zorder += iter.ZOrder;
+                }
+                return zorder;
+            }
+        }
+
+        public Vector2 GlobalPosition
+        {
+            get
+            {
+                var _GlobalPosition = Position;
+                for (CozyNode iter = this.Parent; iter != null; iter = iter.Parent)
+                {
+                    _GlobalPosition += iter.Position;
+                }
+                return _GlobalPosition;
+            }
+        }
+
         public CozyNode()
         {
             IsVisible = true;
         }
-
 
         public virtual void Update(GameTime gameTime)
         {
@@ -33,11 +58,32 @@ namespace CozyKxlol.Engine
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            if (!IsVisible) return;
             SortAllChildren();
-            foreach(var child in Children)
+            int i = 0;
+            for (; i < Children.Count; ++i)
             {
-                child.Draw(gameTime, spriteBatch);
+                if(Children[i].ZOrder < 0)
+                {
+                    Children[i].Draw(gameTime, spriteBatch);
+                }
+                else
+                {
+                    break;
+                }
             }
+
+            DrawSelf(gameTime, spriteBatch);
+
+            for (; i < Children.Count; ++i)
+            {
+                Children[i].Draw(gameTime, spriteBatch);
+            }
+        }
+
+        protected virtual void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+
         }
 
         protected List<CozyNode> Children = new List<CozyNode>();

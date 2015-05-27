@@ -14,7 +14,7 @@ namespace CozyKxlol.Kxlol.Scene
         {
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(CozyGame.nolmalFont, "hehe", new Vector2(100, 100), Color.Black);
         }
