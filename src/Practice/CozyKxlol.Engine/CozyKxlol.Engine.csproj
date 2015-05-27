@@ -53,6 +53,8 @@
     <Compile Include="CozyNode.cs" />
     <Compile Include="CozyScene.cs" />
     <Compile Include="CozySprite.cs" />
+    <Compile Include="CozyTexture.cs" />
+    <Compile Include="CozyTextureCache.cs" />
     <Compile Include="Primitives2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
