@@ -22,18 +22,18 @@ namespace CozyKxlol.Kxlol.Scene
     class BallGameSceneLayer : CozyLayer
     {
         Dictionary<uint, CozyCircle> FoodList       = new Dictionary<uint, CozyCircle>();
-        Dictionary<uint, CozyCircle> CircleList     = new Dictionary<uint, CozyCircle>();
+        Dictionary<uint, UserCircle> CircleList     = new Dictionary<uint, UserCircle>();
         List<KeyValuePair<string, int>> MarkList    = new List<KeyValuePair<string, int>>();
 
         KeyboardEvents keyboard;
-        String sdbg;
 
 #if EnableMouse
         MouseEvents mouse;
 #endif
 
         NetClientHelper client                  = new NetClientHelper();
-        public CozyCircle Player                = null;
+        public UserCircle Player                = null;
+        public CozyLabel ScoreShow              = null;
         public uint Uid                         = 0;
         public bool IsConnect                   = false;
         private static Random RandomMaker       = new Random();
@@ -154,8 +154,8 @@ namespace CozyKxlol.Kxlol.Scene
                         var player  = new DefaultUserCircle(
                             new Vector2(selfMsg.X, selfMsg.Y), 
                             selfMsg.Radius, 
-                            selfMsg.Color);
-                        player.Name = selfMsg.Name;
+                            selfMsg.Color,
+                            selfMsg.Name);
 
                         CircleList[id] = player;
                         this.AddChind(player, OtherPlayerZOrder);
@@ -210,8 +210,8 @@ namespace CozyKxlol.Kxlol.Scene
                         var player      = new DefaultUserCircle(
                             new Vector2(obj.Item2, obj.Item3),
                             obj.Item4,
-                            obj.Item5);
-                        player.Name     = obj.Item6;
+                            obj.Item5,
+                            obj.Item6);
 
                         CircleList[pid] = player;
                         this.AddChind(player, OtherPlayerZOrder);
@@ -229,14 +229,18 @@ namespace CozyKxlol.Kxlol.Scene
                         uint c  = selfMsg.Color;
 
                         DefaultRadius   = r;
-                        Player          = new DefaultUserCircle(new Vector2(x, y), r, c);
-                        Player.Name     = Name;
+                        Player          = new DefaultUserCircle(new Vector2(x, y), r, c, Name);
 
                         this.AddChind(Player, PlayerZOrder);
+
+                        if(ScoreShow != null)
+                            ScoreShow.Text = String.Format("Score : {0}", Player.Radius - DefaultRadius);
                     }
                     else if(selfMsg.Operat == Msg_AgarSelf.GroupUp)
                     {
                         Player.Radius = selfMsg.Radius;
+                        if (ScoreShow != null)
+                            ScoreShow.Text = String.Format("Score : {0}", Player.Radius - DefaultRadius);
                     }
                     else if(selfMsg.Operat == Msg_AgarSelf.Dead)
                     {
@@ -273,7 +277,14 @@ namespace CozyKxlol.Kxlol.Scene
                 }
             };
 
-            client.Connect("127.0.0.1", 48360);
+            ScoreShow = new CozyLabel("Score : 0", Color.Red);
+            ScoreShow.AnchorPoint = Vector2.Zero;
+            this.AddChind(ScoreShow, 1000);
+
+            client.Connect("114.215.134.101", 48360);
+
+            //CozySprite s = new CozySprite(@"Images\dota.png");
+            //this.AddChind(s,100);
         }
 
         public override void Update(GameTime gameTime)
@@ -326,24 +337,6 @@ namespace CozyKxlol.Kxlol.Scene
                     msg.Y           = Player.Position.Y;
                     client.SendMessage(msg);
                 }
-            }
-
-            if(!IsConnect)
-            {
-                sdbg = "Cannot Connect!";
-            }
-        }
-
-        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            if (sdbg != null)
-            {
-                spriteBatch.DrawString(CozyGame.nolmalFont, sdbg, new Vector2(20, 20), Color.Red);
-            }
-
-            if (Player != null)
-            {
-                spriteBatch.DrawString(CozyGame.nolmalFont, "score: " + (Player.Radius - DefaultRadius).ToString(), Vector2.Zero, Color.Red);
             }
         }
     }

@@ -9,9 +9,19 @@ namespace CozyKxlol.Engine
 {
     public class CozyNode
     {
-        public Vector2 Position { get; set; }
-
-        public Vector2 AnchorPoint { get; set; }
+        private Vector2 _Position;
+        public Vector2 Position 
+        { 
+            get
+            {
+                return _Position;
+            }
+            set
+            {
+                _Position = value;
+                UpdateAnchorPointInPoint();
+            }
+        }
 
         public bool IsVisible { get; set; }
 
@@ -37,7 +47,7 @@ namespace CozyKxlol.Engine
                 var _GlobalPosition = Position;
                 for (CozyNode iter = this.Parent; iter != null; iter = iter.Parent)
                 {
-                    _GlobalPosition += iter.Position;
+                    _GlobalPosition += iter.OriginPoint;
                 }
                 return _GlobalPosition;
             }
@@ -46,6 +56,7 @@ namespace CozyKxlol.Engine
         public CozyNode()
         {
             IsVisible = true;
+            IsTransformDirty = true;
         }
 
         public virtual void Update(GameTime gameTime)
@@ -59,6 +70,9 @@ namespace CozyKxlol.Engine
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (!IsVisible) return;
+
+            if (IsTransformDirty) UpdateTransform();
+
             SortAllChildren();
             int i = 0;
             for (; i < Children.Count; ++i)
@@ -143,6 +157,72 @@ namespace CozyKxlol.Engine
                 });
                 IsChildDirty = false;
             }
+        }
+
+        private Vector2 _ContentSize;
+        public Vector2 ContentSize
+        {
+            get
+            {
+                return _ContentSize;
+            }
+            set
+            {
+                _ContentSize = value;
+                UpdateAnchorPointInPoint();
+                IsTransformDirty = true;
+            }
+        }
+
+        private Vector2 _AnchorPoint;
+        public Vector2 AnchorPoint 
+        { 
+            get
+            {
+                return _AnchorPoint;
+            }
+            set
+            {
+                _AnchorPoint = value;
+                UpdateAnchorPointInPoint();
+                IsTransformDirty = true;
+            }
+        }
+
+        public Vector2 AnchorPointInPoint { get; set; }
+
+        public Vector2 OriginPoint 
+        {
+            get 
+            {
+                return Position - AnchorPointInPoint;
+            } 
+        }
+        public void UpdateAnchorPointInPoint()
+        {
+            AnchorPointInPoint = new Vector2(AnchorPoint.X * ContentSize.X, AnchorPoint.Y * ContentSize.Y);
+        }
+
+        private Vector2 _Transform;
+        public Vector2 Transform
+        {
+            get
+            {
+                return _Transform;
+            }
+            set
+            {
+                _Transform = value;
+            }
+        }
+
+        public bool IsTransformDirty { get; set; }
+
+        public void UpdateTransform()
+        {
+            Transform = -AnchorPointInPoint;
+
+            IsTransformDirty = false;
         }
     }
 }

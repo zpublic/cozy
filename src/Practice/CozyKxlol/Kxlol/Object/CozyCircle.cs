@@ -12,16 +12,15 @@ using CozyKxlol.Kxlol.Extends;
 
 namespace CozyKxlol.Kxlol.Object
 {
-    class CozyCircle : CozyNode, IMoveAble, IControlAble
+    public class CozyCircle : CozyNode, IMoveAble, IControlAble
     {
         #region Property
 
         public Color ColorProperty { get; set; }
-        public string Name { get; set; }
 
         // v = 20 + 200 / S
-        public const float BaseSpeed = 20.0f;
-        public const float FloatSpeed = 900.0f;
+        public const float BaseSpeed    = 20.0f;
+        public const float FloatSpeed   = 900.0f;
 
         private int _Radius = 0;
         public int Radius 
@@ -33,6 +32,7 @@ namespace CozyKxlol.Kxlol.Object
             set
             {
                 _Radius     = value;
+                UpdateContentSize();
                 MaxSpeed    = BaseSpeed + FloatSpeed / Radius;
             }
         }
@@ -205,6 +205,7 @@ namespace CozyKxlol.Kxlol.Object
             set
             {
                 _BorderSize = value;
+                UpdateContentSize();
             }
         }
         #endregion
@@ -221,6 +222,7 @@ namespace CozyKxlol.Kxlol.Object
             Position        = pos;
             Radius          = radius;
             ColorProperty   = color;
+            AnchorPoint     = new Vector2(0.5f, 0.5f);
         }
 
         public CozyCircle(Vector2 pos, int radius, Color color, float borderSize)
@@ -228,6 +230,12 @@ namespace CozyKxlol.Kxlol.Object
         {
             HasBorder       = true;
             BorderSize      = borderSize;
+        }
+
+
+        private void UpdateContentSize()
+        {
+            ContentSize = new Vector2((Radius + BorderSize) * 2, (Radius + BorderSize) * 2);
         }
 
         public override void Update(GameTime gameTime)
@@ -249,17 +257,13 @@ namespace CozyKxlol.Kxlol.Object
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            var center = GlobalPosition + Transform + ContentSize / 2;
+
             if (HasBorder)
             {
-                spriteBatch.DrawCircle(GlobalPosition, Radius + BorderSize, (int)Radius, Color.Black, BorderSize);
+                spriteBatch.DrawCircle(center, Radius + BorderSize, (int)Radius, Color.Black, BorderSize);
             }
-            spriteBatch.DrawCircle(GlobalPosition, Radius, (int)Radius, ColorProperty, Radius);
-
-            if(Name != null)
-            {
-                var FontOrigin = CozyGame.nolmalFont.MeasureString(Name) / 2;
-                spriteBatch.DrawString(CozyGame.nolmalFont, Name, GlobalPosition, Color.WhiteSmoke, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
-            }
+            spriteBatch.DrawCircle(center, Radius, (int)Radius, ColorProperty, Radius);
         }
 
         // IMoveAble

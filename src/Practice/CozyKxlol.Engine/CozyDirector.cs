@@ -11,6 +11,14 @@ namespace CozyKxlol.Engine
         readonly List<CozyScene> scenesStack = new List<CozyScene>();
         public CozyScene RunningScene { get; private set; }
         public Point WindowSize { get; set; }
+        public CozyGame GameInstance { get; set; }
+
+        public CozyTextureCache TextureCacheInstance { get; set; }
+
+        private CozyDirector()
+        {
+            TextureCacheInstance = new CozyTextureCache();
+        }
 
         public void RunWithScene(CozyScene scene)
         {
