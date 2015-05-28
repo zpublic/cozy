@@ -212,11 +212,6 @@ namespace CozyKxlol.Kxlol.Object
 
         #endregion
 
-        public CozyCircle()
-        {
-            ColorProperty   = Color.Black;
-        }
-
         public CozyCircle(Vector2 pos, int radius, Color color)
         {
             Position        = pos;
