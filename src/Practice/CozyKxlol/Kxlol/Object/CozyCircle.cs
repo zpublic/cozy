@@ -212,11 +212,6 @@ namespace CozyKxlol.Kxlol.Object
 
         #endregion
 
-        public CozyCircle()
-        {
-            ColorProperty   = Color.Black;
-        }
-
         public CozyCircle(Vector2 pos, int radius, Color color)
         {
             Position        = pos;
@@ -261,9 +256,9 @@ namespace CozyKxlol.Kxlol.Object
 
             if (HasBorder)
             {
-                spriteBatch.DrawCircle(center, Radius + BorderSize, (int)Radius, Color.Black, BorderSize);
+                spriteBatch.DrawCircle(center, Radius + BorderSize, Radius, Color.Black, BorderSize);
             }
-            spriteBatch.DrawCircle(center, Radius, (int)Radius, ColorProperty, Radius);
+            spriteBatch.DrawCircle(center, Radius, Radius, ColorProperty, Radius);
         }
 
         // IMoveAble
