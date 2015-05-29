@@ -57,6 +57,7 @@ namespace CozyKxlol.Engine
         protected override void Update(GameTime gameTime)
         {
             CozyDirector.Instance.RunningScene.Update(gameTime);
+            CozyDirector.Instance.ActionManagerInstance.Update(gameTime);
             base.Update(gameTime);
         }
     }

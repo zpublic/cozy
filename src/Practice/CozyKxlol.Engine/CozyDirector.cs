@@ -15,9 +15,12 @@ namespace CozyKxlol.Engine
 
         public CozyTextureCache TextureCacheInstance { get; set; }
 
+        public CozyActionManager ActionManagerInstance { get; set; }
+
         private CozyDirector()
         {
-            TextureCacheInstance = new CozyTextureCache();
+            TextureCacheInstance    = new CozyTextureCache();
+            ActionManagerInstance   = new CozyActionManager();
         }
 
         public void RunWithScene(CozyScene scene)
@@ -58,6 +61,11 @@ namespace CozyKxlol.Engine
         public void Dispose()
         {
             TextureCacheInstance.Dispose();
+        }
+
+        public void Update(GameTime dt)
+        {
+            ActionManagerInstance.Update(dt);
         }
     }
 }

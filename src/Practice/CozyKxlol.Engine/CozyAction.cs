@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace CozyKxlol.Engine
 {
@@ -12,7 +13,7 @@ namespace CozyKxlol.Engine
 
         public virtual void StartWithTarget(CozyNode target)
         {
-
+            Target = target;
         }
 
         protected virtual void Step(float dt)
@@ -20,7 +21,7 @@ namespace CozyKxlol.Engine
 
         }
 
-        public virtual void Update(float dt)
+        public virtual void Update(GameTime gameTime)
         {
 
         }
