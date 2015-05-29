@@ -224,5 +224,20 @@ namespace CozyKxlol.Engine
 
             IsTransformDirty = false;
         }
+
+        public void RunAction(CozyAction action)
+        {
+            CozyDirector.Instance.ActionManagerInstance.AddAction(action, this);
+        }
+
+        public void StopAllActions()
+        {
+            CozyDirector.Instance.ActionManagerInstance.RemoveAllActionsWithTarget(this);
+        }
+
+        public void StopAction(CozyAction action)
+        {
+            CozyDirector.Instance.ActionManagerInstance.RemoveAction(action);
+        }
     }
 }
