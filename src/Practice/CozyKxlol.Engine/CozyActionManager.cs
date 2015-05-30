@@ -56,12 +56,28 @@ namespace CozyKxlol.Engine
 
         public void Update(GameTime gameTime)
         {
+            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            List<CozyAction> RemoveList = new List<CozyAction>();
+
             foreach(var obj in Targets)
             {
                 foreach(var act in obj.Value)
                 {
-                    act.Update(gameTime);
+                    if(act.IsDone)
+                    {
+                        act.Stop();
+                        RemoveList.Add(act);
+                    }
+                    else
+                    {
+                        act.Step(dt);
+                    }
                 }
+            }
+
+            foreach(var obj in RemoveList)
+            {
+                RemoveAction(obj);
             }
         }
     }

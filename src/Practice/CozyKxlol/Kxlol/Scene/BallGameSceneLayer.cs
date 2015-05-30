@@ -282,9 +282,6 @@ namespace CozyKxlol.Kxlol.Scene
             this.AddChind(ScoreShow, 1000);
 
             client.Connect("114.215.134.101", 48360);
-
-            //CozySprite s = new CozySprite(@"Images\dota.png");
-            //this.AddChind(s,100);
         }
 
         public override void Update(GameTime gameTime)
