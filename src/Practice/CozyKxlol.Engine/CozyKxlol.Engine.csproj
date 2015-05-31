@@ -56,6 +56,7 @@
     <Compile Include="CozyLayer.cs" />
     <Compile Include="CozyLayerColor.cs" />
     <Compile Include="CozyMoveBy.cs" />
+    <Compile Include="CozyMoveTo.cs" />
     <Compile Include="CozyNode.cs" />
     <Compile Include="CozyScene.cs" />
     <Compile Include="CozySprite.cs" />
