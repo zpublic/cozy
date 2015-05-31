@@ -11,17 +11,25 @@ namespace CozyKxlol.Engine
         public int Tag { get; set; }
         public CozyNode Target { get; set; }
 
+        public virtual bool IsDone 
+        { 
+            get
+            {
+                return true;
+            }
+        }
+
         public virtual void StartWithTarget(CozyNode target)
         {
             Target = target;
         }
 
-        protected virtual void Step(float dt)
+        public virtual void Step(float dt)
         {
 
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(float dt)
         {
 
         }
@@ -31,7 +39,7 @@ namespace CozyKxlol.Engine
             Target = null;
         }
 
-        public object Clone()
+        public virtual object Clone()
         {
             return new CozyAction();
         }

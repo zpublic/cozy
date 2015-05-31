@@ -44,14 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CozyActionInstant.cs" />
+    <Compile Include="CozyActionInterval.cs" />
     <Compile Include="CozyActionManager.cs" />
     <Compile Include="CozyAction.cs" />
     <Compile Include="CozyAnimation.cs" />
     <Compile Include="CozyDirector.cs" />
+    <Compile Include="CozyFiniteTimeAction.cs" />
     <Compile Include="CozyGame.cs" />
     <Compile Include="CozyLabel.cs" />
     <Compile Include="CozyLayer.cs" />
     <Compile Include="CozyLayerColor.cs" />
+    <Compile Include="CozyMoveBy.cs" />
     <Compile Include="CozyNode.cs" />
     <Compile Include="CozyScene.cs" />
     <Compile Include="CozySprite.cs" />
