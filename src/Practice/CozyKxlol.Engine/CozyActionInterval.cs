@@ -45,5 +45,14 @@ namespace CozyKxlol.Engine
         {
             return null;
         }
+
+        public virtual bool InitWithDuraction(float d)
+        {
+            Duration    = d;
+            Elapsed     = 0;
+            FirstTick   = true;
+
+            return true;
+        }
     }
 }

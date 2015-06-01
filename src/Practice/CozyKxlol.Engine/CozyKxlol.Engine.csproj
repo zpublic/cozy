@@ -60,6 +60,7 @@
     <Compile Include="CozyMoveBy.cs" />
     <Compile Include="CozyMoveTo.cs" />
     <Compile Include="CozyNode.cs" />
+    <Compile Include="CozyRepeat.cs" />
     <Compile Include="CozyScene.cs" />
     <Compile Include="CozySequence.cs" />
     <Compile Include="CozySprite.cs" />

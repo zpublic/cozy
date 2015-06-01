@@ -42,7 +42,7 @@ namespace CozyKxlol.Engine
         public bool InitWithTwoAction(CozyFiniteTimeAction act1, CozyFiniteTimeAction act2)
         {
             float d     = act1.Duration + act2.Duration;
-            Duration    = d;
+            InitWithDuraction(d);
 
             Actions[0]  = act1;
             Actions[1]  = act2;

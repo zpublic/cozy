@@ -13,7 +13,7 @@ namespace CozyKxlol.Engine
         public new static CozyMoveTo Create(float duration, Vector2 endPosition)
         {
             var act = new CozyMoveTo();
-            act.Duration = duration;
+            act.InitWithDuraction(duration);
             act.EndPosition = endPosition;
             return act;
         }
@@ -26,9 +26,9 @@ namespace CozyKxlol.Engine
 
         public override object Clone()
         {
-            var temp = new CozyMoveTo();
-            temp.Duration = Duration;
-            temp.EndPosition = EndPosition;
+            var temp            = new CozyMoveTo();
+            temp.InitWithDuraction(Duration);
+            temp.EndPosition    = EndPosition;
             return temp;
         }
     }
