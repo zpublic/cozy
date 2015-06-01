@@ -29,7 +29,7 @@ namespace CozyKxlol.Engine
 
         public void RemoveAction(CozyAction action)
         {
-            CozyNode target = action.Target;
+            CozyNode target = action.OriginalTarget;
             if(target != null)
             {
                 if(Targets.ContainsKey(target))

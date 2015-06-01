@@ -24,5 +24,10 @@ namespace CozyKxlol.Engine
         {
 
         }
+
+        public override object Clone()
+        {
+            return null;
+        }
     }
 }

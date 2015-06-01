@@ -10,7 +10,7 @@ namespace CozyKxlol.Engine
     {
         private Vector2 EndPosition;
 
-        public static CozyMoveTo Create(float duration, Vector2 endPosition)
+        public new static CozyMoveTo Create(float duration, Vector2 endPosition)
         {
             var act = new CozyMoveTo();
             act.Duration = duration;
