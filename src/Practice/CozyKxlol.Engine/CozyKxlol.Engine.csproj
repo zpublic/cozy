@@ -50,6 +50,7 @@
     <Compile Include="CozyAction.cs" />
     <Compile Include="CozyAnimation.cs" />
     <Compile Include="CozyCallFunc.cs" />
+    <Compile Include="CozyDelayTime.cs" />
     <Compile Include="CozyDirector.cs" />
     <Compile Include="CozyExtraAction.cs" />
     <Compile Include="CozyFiniteTimeAction.cs" />
