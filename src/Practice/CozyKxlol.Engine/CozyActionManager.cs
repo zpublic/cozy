@@ -63,14 +63,11 @@ namespace CozyKxlol.Engine
             {
                 foreach(var act in obj.Value)
                 {
+                    act.Step(dt);
                     if(act.IsDone)
                     {
                         act.Stop();
                         RemoveList.Add(act);
-                    }
-                    else
-                    {
-                        act.Step(dt);
                     }
                 }
             }
