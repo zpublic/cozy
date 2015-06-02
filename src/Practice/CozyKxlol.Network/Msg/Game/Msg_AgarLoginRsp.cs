@@ -9,29 +9,22 @@ namespace CozyKxlol.Network.Msg
     public struct Msg_AgarLoginRsp : MsgBase
     {
         public int Id { get { return MsgId.AgarLoginRsp; } }
-
         public uint Uid { get; set; }
-        public float X { get; set; }
-        public float Y { get; set; }
-        public float Radius { get; set; }
-        public uint Color { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
 
         public void W(NetOutgoingMessage om)
         {
             om.Write(Uid);
-            om.Write(X);
-            om.Write(Y);
-            om.Write(Radius);
-            om.Write(Color);
+            om.Write(Width);
+            om.Write(Height);
         }
 
         public void R(NetIncomingMessage im)
         {
             Uid     = im.ReadUInt32();
-            X       = im.ReadFloat();
-            Y       = im.ReadFloat();
-            Radius  = im.ReadFloat();
-            Color   = im.ReadUInt32();
+            Width   = im.ReadInt32();
+            Height  = im.ReadInt32();
         }
     }
 }

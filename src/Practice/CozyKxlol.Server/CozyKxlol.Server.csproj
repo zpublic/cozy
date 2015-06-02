@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\kxlol\s\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -46,10 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Manager\MarkManager.cs" />
     <Compile Include="Manager\PlayerBallManager.cs" />
     <Compile Include="Model\CustomColors.cs" />
     <Compile Include="Model\FixedBall.cs" />
     <Compile Include="Manager\FixedBallManager.cs" />
+    <Compile Include="Model\Impl\ICircle.cs" />
     <Compile Include="Model\PlayerBall.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

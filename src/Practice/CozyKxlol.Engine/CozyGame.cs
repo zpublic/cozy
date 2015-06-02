@@ -9,7 +9,6 @@ namespace CozyKxlol.Engine
 {
     public class CozyGame : Game
     {
-        protected CozyDirector director = CozyDirector.Instance;
         protected GraphicsDeviceManager graphics;
         protected SpriteBatch spriteBatch;
         
@@ -19,19 +18,20 @@ namespace CozyKxlol.Engine
         {
             get
             {
-                return director.WindowSize;
+                return CozyDirector.Instance.WindowSize;
             }
             set
             {
                 graphics.PreferredBackBufferWidth   = value.X;
                 graphics.PreferredBackBufferHeight  = value.Y;
-                director.WindowSize = value;
+                CozyDirector.Instance.WindowSize = value;
             }
         }
 
         public CozyGame()
         {
             graphics = new GraphicsDeviceManager(this);
+            CozyDirector.Instance.GameInstance = this;
         }
 
         protected override void Initialize()
@@ -49,14 +49,15 @@ namespace CozyKxlol.Engine
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(SpriteSortMode.Immediate);
-            director.RunningScene.Draw(gameTime, spriteBatch);
+            CozyDirector.Instance.RunningScene.Draw(gameTime, spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            director.RunningScene.Update(gameTime);
+            CozyDirector.Instance.RunningScene.Update(gameTime);
+            CozyDirector.Instance.ActionManagerInstance.Update(gameTime);
             base.Update(gameTime);
         }
     }

@@ -5,7 +5,8 @@ using System.Text;
 
 namespace CozyKxlol.Engine
 {
-    class CozyLayerColor
+    public class CozyLayerColor : CozyLayer
     {
+
     }
 }

@@ -10,7 +10,7 @@ namespace CozyKxlol.Kxlol.Scene
     {
         public WelcomeScene()
         {
-            Layer = new WelcomeSceneLayer();
+            this.AddChind(new WelcomeSceneLayer());
         }
     }
 }

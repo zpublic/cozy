@@ -21,8 +21,8 @@ namespace CozyKxlol
 
         protected override void Initialize()
         {
-            director.RunWithScene(new BallGameScene());
             base.Initialize();
+            CozyDirector.Instance.RunWithScene(new BallGameScene());
         }
 
         protected override void LoadContent()

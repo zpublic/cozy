@@ -44,15 +44,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CozyActionInstant.cs" />
+    <Compile Include="CozyActionInterval.cs" />
+    <Compile Include="CozyActionManager.cs" />
+    <Compile Include="CozyAction.cs" />
+    <Compile Include="CozyAnimate.cs" />
     <Compile Include="CozyAnimation.cs" />
+    <Compile Include="CozyAnimationFrame.cs" />
+    <Compile Include="CozyCallFunc.cs" />
+    <Compile Include="CozyDelayTime.cs" />
     <Compile Include="CozyDirector.cs" />
+    <Compile Include="CozyExtraAction.cs" />
+    <Compile Include="CozyFiniteTimeAction.cs" />
     <Compile Include="CozyGame.cs" />
     <Compile Include="CozyLabel.cs" />
     <Compile Include="CozyLayer.cs" />
     <Compile Include="CozyLayerColor.cs" />
+    <Compile Include="CozyMoveBy.cs" />
+    <Compile Include="CozyMoveTo.cs" />
     <Compile Include="CozyNode.cs" />
+    <Compile Include="CozyRepeat.cs" />
     <Compile Include="CozyScene.cs" />
+    <Compile Include="CozySequence.cs" />
     <Compile Include="CozySprite.cs" />
+    <Compile Include="CozyTexture.cs" />
+    <Compile Include="CozyTextureCache.cs" />
     <Compile Include="Primitives2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -6,25 +6,24 @@ using Lidgren.Network;
 
 namespace CozyKxlol.Network.Msg
 {
-    public struct Msg_AgarPlayInfo : MsgBase
+    public struct Msg_AgarFixedBall : MsgBase
     {
         public const byte Add       = 0;
         public const byte Remove    = 1;
-        public const byte Changed   = 2;
+        public int Id { get { return MsgId.AgarFixedBall; } }
 
-        public int Id { get { return MsgId.AgarPlayInfo; } }
         public byte Operat { get; set; }
-        public uint PlayerId { get; set; }
+        public uint BallId { get; set; }
         public float X { get; set; }
         public float Y { get; set; }
-        public float Radius { get; set; }
+        public int Radius { get; set; }
         public uint Color { get; set; }
 
         public void W(NetOutgoingMessage om)
         {
             om.Write(Operat);
-            om.Write(PlayerId);
-            if(Operat == Add || Operat == Changed)
+            om.Write(BallId);
+            if(Operat == Add)
             {
                 om.Write(X);
                 om.Write(Y);
@@ -35,13 +34,13 @@ namespace CozyKxlol.Network.Msg
 
         public void R(NetIncomingMessage im)
         {
-            Operat      = im.ReadByte();
-            PlayerId    = im.ReadUInt32();
-            if (Operat == Add || Operat == Changed)
+            Operat = im.ReadByte();
+            BallId = im.ReadUInt32();
+            if(Operat == Add)
             {
                 X       = im.ReadFloat();
                 Y       = im.ReadFloat();
-                Radius  = im.ReadFloat();
+                Radius  = im.ReadInt32();
                 Color   = im.ReadUInt32();
             }
         }

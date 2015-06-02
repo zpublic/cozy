@@ -6,11 +6,22 @@ using Microsoft.Xna.Framework;
 
 namespace CozyKxlol.Engine
 {
-    public class CozyDirector
+    public class CozyDirector : IDisposable
     {
-        readonly List<CozyScene> scenesStack = new List<CozyScene>();
+        readonly Stack<CozyScene> scenesStack = new Stack<CozyScene>();
         public CozyScene RunningScene { get; private set; }
         public Point WindowSize { get; set; }
+        public CozyGame GameInstance { get; set; }
+
+        public CozyTextureCache TextureCacheInstance { get; set; }
+
+        public CozyActionManager ActionManagerInstance { get; set; }
+
+        private CozyDirector()
+        {
+            TextureCacheInstance    = new CozyTextureCache();
+            ActionManagerInstance   = new CozyActionManager();
+        }
 
         public void RunWithScene(CozyScene scene)
         {
@@ -23,11 +34,19 @@ namespace CozyKxlol.Engine
 
         public void PushScene(CozyScene scene)
         {
+            if(RunningScene != null)
+            {
+                scenesStack.Push(RunningScene);
+            }
             RunningScene = scene;
         }
 
         public void PopScene()
         {
+            if(scenesStack.Count > 0)
+            {
+                RunningScene = scenesStack.Pop();
+            }
         }
 
         private static CozyDirector _Instance = new CozyDirector();
@@ -37,6 +56,16 @@ namespace CozyKxlol.Engine
             {
                 return _Instance;
             }
+        }
+
+        public void Dispose()
+        {
+            TextureCacheInstance.Dispose();
+        }
+
+        public void Update(GameTime dt)
+        {
+            ActionManagerInstance.Update(dt);
         }
     }
 }

@@ -12,16 +12,18 @@ using CozyKxlol.Kxlol.Extends;
 
 namespace CozyKxlol.Kxlol.Object
 {
-    class CozyCircle : CozyNode, IMoveAble, IControlAble
+    public class CozyCircle : CozyNode, IMoveAble, IControlAble
     {
         #region Property
 
-        public Vector2 Position { get; set; }
-        
         public Color ColorProperty { get; set; }
 
-        private float _Radius = 0.0f;
-        public float Radius 
+        // v = 20 + 200 / S
+        public const float BaseSpeed    = 20.0f;
+        public const float FloatSpeed   = 900.0f;
+
+        private int _Radius = 0;
+        public int Radius 
         { 
             get
             {
@@ -30,6 +32,7 @@ namespace CozyKxlol.Kxlol.Object
             set
             {
                 _Radius     = value;
+                UpdateContentSize();
                 MaxSpeed    = BaseSpeed + FloatSpeed / Radius;
             }
         }
@@ -72,9 +75,6 @@ namespace CozyKxlol.Kxlol.Object
             }
         }
 
-        // v = 20 + 200 / S
-        public const float BaseSpeed    = 20.0f;
-        public const float FloatSpeed   = 200.0f;
 
         #region Direction
 
@@ -205,34 +205,38 @@ namespace CozyKxlol.Kxlol.Object
             set
             {
                 _BorderSize = value;
+                UpdateContentSize();
             }
         }
         #endregion
 
         #endregion
 
-        public CozyCircle()
-        {
-            Position        = Vector2.Zero;
-            ColorProperty   = Color.Black;
-        }
-
-        public CozyCircle(Vector2 pos, float radius, Color color)
+        public CozyCircle(Vector2 pos, int radius, Color color)
         {
             Position        = pos;
             Radius          = radius;
             ColorProperty   = color;
+            AnchorPoint     = new Vector2(0.5f, 0.5f);
         }
 
-        public CozyCircle(Vector2 pos, float radius, Color color, float borderSize)
+        public CozyCircle(Vector2 pos, int radius, Color color, float borderSize)
             : this(pos, radius, color)
         {
             HasBorder       = true;
             BorderSize      = borderSize;
         }
 
+
+        private void UpdateContentSize()
+        {
+            ContentSize = new Vector2((Radius + BorderSize) * 2, (Radius + BorderSize) * 2);
+        }
+
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             UpdateKeysState(gameTime);
 
             float timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -246,13 +250,15 @@ namespace CozyKxlol.Kxlol.Object
             }
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            var center = GlobalPosition + Transform + ContentSize / 2;
+
             if (HasBorder)
             {
-                spriteBatch.DrawCircle(Position, Radius + BorderSize, (int)Radius, Color.Black, BorderSize);
+                spriteBatch.DrawCircle(center, Radius + BorderSize, Radius, Color.Black, BorderSize);
             }
-            spriteBatch.DrawCircle(Position, Radius, (int)Radius, ColorProperty, Radius);
+            spriteBatch.DrawCircle(center, Radius, Radius, ColorProperty, Radius);
         }
 
         // IMoveAble

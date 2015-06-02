@@ -77,10 +77,13 @@ namespace CozyKxlol.Server.Manager
 
         public static FixedBall RandomBall()
         {
+            var width   = Program.GameWidth;
+            var height  = Program.GameHeight;
             var ball    = new FixedBall();
-            ball.X      = RandomMaker.Next(800);
-            ball.Y      = RandomMaker.Next(600);
-            ball.Color  = CustomColors.Colors[RandomMaker.Next(CustomColors.Colors.Length)];
+            ball.X      = RandomMaker.Next(width);
+            ball.Y      = RandomMaker.Next(height);
+            ball.Radius = FixedBall.DefaultPlayerRadius;
+            ball.Color  = CustomColors.RandomColor;
             return ball;
         }
 

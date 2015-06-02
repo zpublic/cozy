@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\WindowsGL\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\kxlol\c\</OutputPath>
     <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Kxlol\Extends\RandomExtension.cs" />
     <Compile Include="Kxlol\Extends\UnsignedExtension.cs" />
     <Compile Include="Kxlol\Extends\VectorExtension.cs" />
     <Compile Include="Kxlol\Impl\IControlAble.cs" />
@@ -45,6 +46,7 @@
     <Compile Include="Kxlol\Object\CozyCircle.cs" />
     <Compile Include="Kxlol\Object\DefaultFoodCircle.cs" />
     <Compile Include="Kxlol\Object\DefaultUserCircle.cs" />
+    <Compile Include="Kxlol\Object\UserCircle.cs" />
     <Compile Include="Kxlol\Scene\BallGameScene.cs" />
     <Compile Include="Kxlol\Scene\BallGameSceneLayer.cs" />
     <Compile Include="Kxlol\Scene\WelcomeScene.cs" />
@@ -96,6 +98,7 @@
       <Name>Starbound.UI</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">
     <CreateProperty Value="$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows;$(AssemblySearchPaths)">
