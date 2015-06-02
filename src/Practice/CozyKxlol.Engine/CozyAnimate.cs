@@ -26,7 +26,6 @@ namespace CozyKxlol.Engine
         }
 
         public CozyTexture OrigFrame { get; set; }
-
         public uint ExecutedLoops { get; set; }
 
         private List<float> _SplitTimes = new List<float>();
@@ -40,7 +39,7 @@ namespace CozyKxlol.Engine
             {
                 _SplitTimes = value;
             }
-        } 
+        }
 
         public static CozyAnimate Create(CozyAnimation animation)
         {
@@ -75,12 +74,21 @@ namespace CozyKxlol.Engine
         {
             base.StartWithTarget(target);
 
+            if(Animaction.RestoreOriginalFrame)
+            {
+                OrigFrame = (Target as CozySprite).Texture;
+            }
+
             NextFrame = 0;
             ExecutedLoops = 0;
         }
 
         public override void Stop()
         {
+            if(Animaction.RestoreOriginalFrame && Target != null)
+            {
+                (Target as CozySprite).Texture = OrigFrame;
+            }
             base.Stop();
         }
 

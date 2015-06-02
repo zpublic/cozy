@@ -19,6 +19,8 @@ namespace CozyKxlol.Engine
             }
         }
 
+        public bool RestoreOriginalFrame { get; set; }
+
         private List<CozyAnimationFrame> _Frames = new List<CozyAnimationFrame>();
         public List<CozyAnimationFrame> Frames
         {
@@ -86,6 +88,7 @@ namespace CozyKxlol.Engine
         {
             var a = new CozyAnimation();
             a.InitWithAnimationFrames(_Frames, DelayPerUnit, Loops);
+            a.RestoreOriginalFrame = RestoreOriginalFrame;
             return a;
         }
     }
