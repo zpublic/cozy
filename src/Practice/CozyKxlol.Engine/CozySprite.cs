@@ -10,7 +10,7 @@ namespace CozyKxlol.Engine
 {
     public class CozySprite : CozyNode
     {
-        private CozyTexture _Texture;
+        public CozyTexture Texture { get; set; }
         public CozySprite()
         {
             
@@ -18,14 +18,14 @@ namespace CozyKxlol.Engine
 
         public CozySprite(string path)
         {
-            _Texture = CozyDirector.Instance.TextureCacheInstance.AddImage(path);
+            Texture = CozyDirector.Instance.TextureCacheInstance.AddImage(path);
         }
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if(_Texture != null)
+            if (Texture != null)
             {
-                spriteBatch.Draw(_Texture.Get(), GlobalPosition + Transform);
+                spriteBatch.Draw(Texture.Get(), GlobalPosition + Transform);
             }
         }
     }
