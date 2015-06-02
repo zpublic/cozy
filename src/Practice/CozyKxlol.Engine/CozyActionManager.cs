@@ -29,7 +29,7 @@ namespace CozyKxlol.Engine
 
         public void RemoveAction(CozyAction action)
         {
-            CozyNode target = action.Target;
+            CozyNode target = action.OriginalTarget;
             if(target != null)
             {
                 if(Targets.ContainsKey(target))
@@ -63,14 +63,11 @@ namespace CozyKxlol.Engine
             {
                 foreach(var act in obj.Value)
                 {
+                    act.Step(dt);
                     if(act.IsDone)
                     {
                         act.Stop();
                         RemoveList.Add(act);
-                    }
-                    else
-                    {
-                        act.Step(dt);
                     }
                 }
             }

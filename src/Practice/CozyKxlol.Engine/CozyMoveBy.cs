@@ -29,23 +29,19 @@ namespace CozyKxlol.Engine
         {
             var act             = new CozyMoveBy();
             act.PositionDelta   = deltaPosition;
-            act.Duration        = duration;
+            act.InitWithDuraction(duration);
             if(act.Duration == 0.0f)
             {
                 act.Duration    = float.Epsilon;
             }
-            act.Elapsed         = 0.0f;
-            act.FirstTick       = true;
             return act;
         }
 
         public override object Clone()
         {
             var act             = new CozyMoveBy();
-            act.Duration        = this.Duration;
+            act.InitWithDuraction(this.Duration);
             act.PositionDelta   = this.PositionDelta;
-            act.Elapsed         = 0.0f;
-            act.FirstTick       = true;
             return act;
         }
     }
