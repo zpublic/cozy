@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CozyKxlol.Engine.Tiled
 {
-    public class CozyTiledLayer : CozyLayer
+    public class CozyTiledMap : CozyNode
     {
         public Point TiledMapSize 
         { 
@@ -32,12 +32,14 @@ namespace CozyKxlol.Engine.Tiled
 
         public Vector2 NodeContentSize { get; set; }
 
-        public CozyTiledLayer(Point Size)
+        public CozyTiledMap(Point MapSize)
         {
-            TiledData       = new uint[Size.X, Size.Y];
+            TiledData       = new uint[MapSize.X, MapSize.Y];
+            NodeContentSize = Vector2.One * 32;
+            ContentSize     = new Vector2(NodeContentSize.X * MapSize.X, 
+                NodeContentSize.Y * MapSize.Y);
 
-            var winSize     = CozyDirector.Instance.WindowSize;
-            NodeContentSize = new Vector2(winSize.X / Size.X, winSize.Y / Size.Y);
+            TestData();
         }
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
@@ -47,17 +49,22 @@ namespace CozyKxlol.Engine.Tiled
                 for (int j = 0; j < TiledMapSize.Y; ++j)
                 {
                     var node = CozyTiledFactory.GetInstance(TiledData[i, j]);
+                    node.ContentSize = NodeContentSize;
                     node.DrawAt(gameTime, spriteBatch, ConvertTiledPosToPosition(i, j));
                 }
             }
         }
 
-        // 要求锚点为(0.5, 0.5)
+        // 锚点为(0, 0)
         public Vector2 ConvertTiledPosToPosition(int x, int y)
         {
-            return new Vector2(
-                NodeContentSize.X * (0.5f + x),
-                NodeContentSize.Y * (0.5f + y));
+            return new Vector2(NodeContentSize.X * x, NodeContentSize.Y * y);
+        }
+
+        public void TestData()
+        {
+            TiledData[0, 0] = CozyTiledId.RedTiled;
+            TiledData[1, 1] = CozyTiledId.GreenTiled;
         }
     }
 }
