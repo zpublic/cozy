@@ -41,8 +41,11 @@
     <Compile Include="MapEditorScene.cs" />
     <Compile Include="MapEditorSceneLayer.cs" />
     <Compile Include="KxlolMapEditor.cs" />
+    <Compile Include="MapEditorSceneOperateLayer.cs" />
+    <Compile Include="MapEditorSceneTiledLayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TiledMapDataContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
