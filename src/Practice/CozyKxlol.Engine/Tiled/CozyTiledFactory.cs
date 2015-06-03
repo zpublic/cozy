@@ -16,7 +16,7 @@ namespace CozyKxlol.Engine.Tiled
 
         public static CreateFunc Create;
 
-        // 必须先设置Create委托
+        // 0保留为无方块
         public static CozyTiledNode GetInstance(uint id)
         {
             if (!NodeDictionary.ContainsKey(id))
@@ -27,8 +27,6 @@ namespace CozyKxlol.Engine.Tiled
                     {
                         if (Create != null)
                             NodeDictionary[id] = Create(id);
-                        else
-                            NodeDictionary[id] = new CozyTiledNode();
                     }
                 }
             }
