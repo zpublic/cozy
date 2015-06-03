@@ -69,7 +69,6 @@
     <Compile Include="CozySprite.cs" />
     <Compile Include="CozyTexture.cs" />
     <Compile Include="CozyTextureCache.cs" />
-    <Compile Include="Tiled\CozyNoneTiled.cs" />
     <Compile Include="Tiled\CozyTiledFactory.cs" />
     <Compile Include="Tiled\CozyTiledMap.cs" />
     <Compile Include="Primitives2D.cs" />
