@@ -7,39 +7,33 @@ namespace CozyKxlol.Engine.Tiled
 {
     public static class CozyTiledFactory
     {
-        private static Dictionary<uint, CozyTiledNode> NodeDictionary 
-            = new Dictionary<uint,CozyTiledNode>();
+        private static Dictionary<uint, CozyTiledNode> NodeDictionary
+            = new Dictionary<uint, CozyTiledNode>();
 
+        private static object _objLock = new object();
+
+        public delegate CozyTiledNode CreateFunc(uint id);
+
+        public static CreateFunc Create;
+
+        // 必须先设置Create委托
         public static CozyTiledNode GetInstance(uint id)
         {
-            CozyTiledNode node = null;
-
-            if (NodeDictionary.ContainsKey(id))
+            if (!NodeDictionary.ContainsKey(id))
             {
-                node = NodeDictionary[id];
-            }
-            else
-            {
-                switch(id)
+                lock(_objLock)
                 {
-                    case CozyTiledId.NoneTiled:
-                        node                = new CozyNoneTiled();
-                        NodeDictionary[id]  = node;
-                        break;
-                    case CozyTiledId.RedTiled:
-                        node                = new CozyRedTiled();
-                        NodeDictionary[id]  = node;
-                        break;
-                    case CozyTiledId.GreenTiled:
-                        node                = new CozyGreenTiled();
-                        NodeDictionary[id]  = node;
-                        break;
-                    default:
-                        break;
+                    if(!NodeDictionary.ContainsKey(id))
+                    {
+                        if (Create != null)
+                            NodeDictionary[id] = Create(id);
+                        else
+                            NodeDictionary[id] = new CozyTiledNode();
+                    }
                 }
             }
 
-            return node;
+            return NodeDictionary[id];
         }
     }
 }

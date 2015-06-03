@@ -38,8 +38,6 @@ namespace CozyKxlol.Engine.Tiled
             NodeContentSize = Vector2.One * 32;
             ContentSize     = new Vector2(NodeContentSize.X * MapSize.X, 
                 NodeContentSize.Y * MapSize.Y);
-
-            TestData();
         }
 
         protected override void DrawSelf(GameTime gameTime, SpriteBatch spriteBatch)
@@ -59,12 +57,6 @@ namespace CozyKxlol.Engine.Tiled
         public Vector2 ConvertTiledPosToPosition(int x, int y)
         {
             return new Vector2(NodeContentSize.X * x, NodeContentSize.Y * y);
-        }
-
-        public void TestData()
-        {
-            TiledData[0, 0] = CozyTiledId.RedTiled;
-            TiledData[1, 1] = CozyTiledId.GreenTiled;
         }
     }
 }

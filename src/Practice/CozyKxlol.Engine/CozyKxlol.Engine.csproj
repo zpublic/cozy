@@ -69,16 +69,12 @@
     <Compile Include="CozySprite.cs" />
     <Compile Include="CozyTexture.cs" />
     <Compile Include="CozyTextureCache.cs" />
-    <Compile Include="Tiled\CozyGreenTiled.cs" />
     <Compile Include="Tiled\CozyNoneTiled.cs" />
-    <Compile Include="Tiled\CozyRedTiled.cs" />
     <Compile Include="Tiled\CozyTiledFactory.cs" />
-    <Compile Include="Tiled\CozyTiledId.cs" />
     <Compile Include="Tiled\CozyTiledMap.cs" />
     <Compile Include="Primitives2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tiled\CozyTiledNode.cs" />
-    <Compile Include="Tiled\ITiledNodeBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
