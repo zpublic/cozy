@@ -5,19 +5,19 @@ using System.Text;
 
 namespace CozyKxlol.Engine.Tiled
 {
-    public static class CozyTiledFactory
+    public class CozyTiledFactory
     {
-        private static Dictionary<uint, CozyTiledNode> NodeDictionary
+        private Dictionary<uint, CozyTiledNode> NodeDictionary
             = new Dictionary<uint, CozyTiledNode>();
 
-        private static object _objLock = new object();
+        private object _objLock = new object();
 
         public delegate CozyTiledNode CreateFunc(uint id);
 
-        public static CreateFunc Create;
+        public CreateFunc Create;
 
         // 0保留为无方块
-        public static CozyTiledNode GetInstance(uint id)
+        public CozyTiledNode GetInstance(uint id)
         {
             if (!NodeDictionary.ContainsKey(id))
             {

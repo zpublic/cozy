@@ -23,7 +23,7 @@ namespace CozyKxlol.Kxlol.Scene
         public virtual bool Init()
         {
             Tileds = new CozyTiledMap(new Point(15, 20));
-            CozyTiledFactory.Create += Create;
+            Tileds.Factory.Create += Create;
             this.AddChind(Tileds);
 
             var loader = new CozyTiledDataLoader();
