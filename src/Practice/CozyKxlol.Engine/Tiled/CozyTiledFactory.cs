@@ -22,8 +22,16 @@ namespace CozyKxlol.Engine.Tiled
             {
                 switch(id)
                 {
-                    case CozyTiledId.DrawNode:
-                        node                = new CozyTiledDrawNode();
+                    case CozyTiledId.NoneTiled:
+                        node                = new CozyNoneTiled();
+                        NodeDictionary[id]  = node;
+                        break;
+                    case CozyTiledId.RedTiled:
+                        node                = new CozyRedTiled();
+                        NodeDictionary[id]  = node;
+                        break;
+                    case CozyTiledId.GreenTiled:
+                        node                = new CozyGreenTiled();
                         NodeDictionary[id]  = node;
                         break;
                     default:

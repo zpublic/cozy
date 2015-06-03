@@ -7,7 +7,8 @@ namespace CozyKxlol.Engine.Tiled
 {
     public static class CozyTiledId
     {
-        public const uint Base      = 0x0000;
-        public const uint DrawNode  = 0x0001;
+        public const uint NoneTiled     = 00000;
+        public const uint RedTiled      = 00001;
+        public const uint GreenTiled    = 00002;
     }
 }

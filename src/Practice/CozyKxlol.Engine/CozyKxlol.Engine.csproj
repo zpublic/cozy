@@ -54,7 +54,6 @@
     <Compile Include="CozyCallFunc.cs" />
     <Compile Include="CozyDelayTime.cs" />
     <Compile Include="CozyDirector.cs" />
-    <Compile Include="Tiled\CozyTiledDrawNode.cs" />
     <Compile Include="CozyExtraAction.cs" />
     <Compile Include="CozyFiniteTimeAction.cs" />
     <Compile Include="CozyGame.cs" />
@@ -70,6 +69,9 @@
     <Compile Include="CozySprite.cs" />
     <Compile Include="CozyTexture.cs" />
     <Compile Include="CozyTextureCache.cs" />
+    <Compile Include="Tiled\CozyGreenTiled.cs" />
+    <Compile Include="Tiled\CozyNoneTiled.cs" />
+    <Compile Include="Tiled\CozyRedTiled.cs" />
     <Compile Include="Tiled\CozyTiledFactory.cs" />
     <Compile Include="Tiled\CozyTiledId.cs" />
     <Compile Include="Tiled\CozyTiledLayer.cs" />

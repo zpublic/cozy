@@ -11,6 +11,7 @@ namespace CozyKxlol.Engine.Tiled
     public class CozyTiledNode : CozyNode
     {
         public Point TiledPosition { get; set; }
+        public Color ColorProperty { get; set; }
 
         public CozyTiledNode()
         {
@@ -19,8 +20,9 @@ namespace CozyKxlol.Engine.Tiled
 
         public virtual void DrawAt(GameTime gameTime, SpriteBatch spriteBatch, Vector2 pos)
         {
-            Position    = pos;
-            DrawSelf(gameTime, spriteBatch);
+            spriteBatch.FillRectangle(
+                new Rectangle(pos.ToPoint(), ContentSize.ToPoint()), 
+                ColorProperty);
         }
     }
 }
