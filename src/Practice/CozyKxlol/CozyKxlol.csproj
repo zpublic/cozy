@@ -49,6 +49,8 @@
     <Compile Include="Kxlol\Object\UserCircle.cs" />
     <Compile Include="Kxlol\Scene\BallGameScene.cs" />
     <Compile Include="Kxlol\Scene\BallGameSceneLayer.cs" />
+    <Compile Include="Kxlol\Scene\HappinessGameLayer.cs" />
+    <Compile Include="Kxlol\Scene\HappinessGameScene.cs" />
     <Compile Include="Kxlol\Scene\WelcomeScene.cs" />
     <Compile Include="KxlolGame.cs" />
     <Compile Include="Kxlol\Scene\WelcomeSceneLayer.cs" />
