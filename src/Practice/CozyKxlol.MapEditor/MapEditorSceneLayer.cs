@@ -14,13 +14,18 @@ using Starbound.UI.XNA.Renderers;
 
 namespace CozyKxlol.MapEditor
 {
-    class MapEditorSceneLayer : CozyLayer
+    public class MapEditorSceneLayer : CozyLayer
     {
         KeyboardEvents keyboard;
         MouseEvents mouse;
 
         public MapEditorSceneLayer()
         {
+            var display = new MapEditorSceneTiledLayer();
+            this.AddChind(display);
+            var operat = new MapEditorSceneOperateLayer();
+            this.AddChind(operat);
+
             keyboard = new KeyboardEvents();
             keyboard.KeyPressed += (sender, e) =>
             {
