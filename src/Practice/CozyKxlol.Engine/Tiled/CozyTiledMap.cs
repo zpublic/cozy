@@ -30,16 +30,10 @@ namespace CozyKxlol.Engine.Tiled
                 for (int j = 0; j < TiledMapSize.Y; ++j)
                 {
                     var node = CozyTiledFactory.GetInstance(TiledData[i, j]);
-                    // node.ContentSize = NodeContentSize;
-                    node.DrawAt(gameTime, spriteBatch, ConvertTiledPosToPosition(i, j));
+                    var drawPos = CozyTiledPositionHelper.ConvertTiledPositionToPosition(new Point(i, j), NodeContentSize);
+                    node.DrawAt(gameTime, spriteBatch, drawPos);
                 }
             }
-        }
-
-        // 锚点为(0, 0)
-        public Vector2 ConvertTiledPosToPosition(int x, int y)
-        {
-            return new Vector2(NodeContentSize.X * x, NodeContentSize.Y * y);
         }
 
         public void LoadData(ICozyLoader loader)

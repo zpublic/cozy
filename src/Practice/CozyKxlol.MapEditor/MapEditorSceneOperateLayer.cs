@@ -53,7 +53,8 @@ namespace CozyKxlol.MapEditor
                     if (Status == S_Add)
                     {
                         // noity tiled modify to Container
-                        Point p = ConvertPositionToTiledPosition(CurrentPosition.ToVector2());
+
+                        Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
                         var command = new ContainerModifyOne(p.X, p.Y, CurrentTiledId);
                         TiledCommandMessages(this, new TiledCommandArgs(command));
                     }
@@ -96,13 +97,6 @@ namespace CozyKxlol.MapEditor
             {
                 CozyTiledFactory.GetInstance(CurrentTiledId).DrawAt(gameTime, spriteBatch, CurrentPosition.ToVector2());
             }
-        }
-
-        public Point ConvertPositionToTiledPosition(Vector2 pos)
-        {
-            float x = pos.X / NodeContentSize.X;
-            float y = pos.Y / NodeContentSize.Y;
-            return new Point((int)x, (int)y);
         }
 
         public class TiledCommandArgs : EventArgs
