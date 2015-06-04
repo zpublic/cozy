@@ -24,7 +24,9 @@ namespace CozyKxlol.Engine.Tiled
 
         public void Change(int x, int y, uint data)
         {
-            Data[x, y] = data;
+            if(x >= 0 && x < Data.GetLength(0)
+                && y >= 0 && y < Data.GetLength(1))
+                Data[x, y] = data;
         }
 
         public void Remove(int x, int y)
