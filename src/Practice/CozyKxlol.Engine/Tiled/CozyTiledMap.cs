@@ -16,9 +16,11 @@ namespace CozyKxlol.Engine.Tiled
 
         public CozyTiledMap(Point MapSize)
         {
+            // NodeContentSize写死为32*32
+            NodeContentSize = Vector2.One * 32;
+
             TiledMapSize    = MapSize;
             TiledData       = new CozyTiledData(MapSize.X, MapSize.Y);
-            NodeContentSize = Vector2.One * 32;
             ContentSize     = new Vector2(NodeContentSize.X * MapSize.X, 
                 NodeContentSize.Y * MapSize.Y);
         }

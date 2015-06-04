@@ -42,6 +42,7 @@ namespace CozyKxlol.MapEditor
             Mouse               = new MouseEvents();
             Keyboard            = new KeyboardEvents();
 
+            // 写死为32*32
             NodeContentSize     = Vector2.One * 32;
 
             #region Event Bind

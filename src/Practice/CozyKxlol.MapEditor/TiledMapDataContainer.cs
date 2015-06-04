@@ -30,8 +30,8 @@ namespace CozyKxlol.MapEditor
 
         public TiledMapDataContainer(int x, int y)
         {
-            TiledData = new CozyTiledData(x, y);
-            MapSize = new Point(x, y);
+            TiledData   = new CozyTiledData(x, y);
+            MapSize     = new Point(x, y);
         }
 
 
@@ -49,9 +49,9 @@ namespace CozyKxlol.MapEditor
 
             public DataChangedMessageArgs(int x, int y, uint data)
             {
-                X = x;
-                Y = y;
-                Data = data;
+                X       = x;
+                Y       = y;
+                Data    = data;
             }
         }
         public event EventHandler<DataChangedMessageArgs> DataChangedMessage;

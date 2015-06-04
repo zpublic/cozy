@@ -15,6 +15,7 @@ namespace CozyKxlol.Engine.Tiled
 
         public CozyTiledNode()
         {
+            // 写死为32*32
             ContentSize = Vector2.One * 32.0f;
         }
 
