@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CozyKxlol.Engine.Tiled;
+using Microsoft.Xna.Framework;
 
 namespace CozyKxlol.MapEditor
 {
-    class TiledMapDataContainer
+    public class TiledMapDataContainer
     {
         // get set
         // LoadMap
         // SaveMap
 
         public CozyTiledData TiledData { get; set; }
+        public Point MapSize { get; set; }
 
         public void Write(int x, int y, uint data)
         {
@@ -34,6 +36,12 @@ namespace CozyKxlol.MapEditor
         public void SaveMap()
         {
 
+        }
+
+        public TiledMapDataContainer(int x, int y)
+        {
+            TiledData = new CozyTiledData(x, y);
+            MapSize = new Point(x, y);
         }
 
         public class DataChangedMessageArgs : EventArgs

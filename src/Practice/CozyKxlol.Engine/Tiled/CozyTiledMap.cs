@@ -48,5 +48,10 @@ namespace CozyKxlol.Engine.Tiled
         {
             loader.Load(TiledData);
         }
+
+        public void Change(int x, int y, uint data)
+        {
+            TiledData.Change(x, y, data);
+        }
     }
 }

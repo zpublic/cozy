@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define EnableMouse
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +18,15 @@ namespace CozyKxlol.MapEditor
 {
     public class MapEditorSceneLayer : CozyLayer
     {
+        public static TiledMapDataContainer Container { get; set; }
+
         KeyboardEvents keyboard;
         MouseEvents mouse;
 
         public MapEditorSceneLayer()
         {
+            Container = new TiledMapDataContainer(15, 20);
+
             var display = new MapEditorSceneTiledLayer();
             this.AddChind(display);
             var operat = new MapEditorSceneOperateLayer();
@@ -47,6 +53,12 @@ namespace CozyKxlol.MapEditor
             mouse = new MouseEvents();
             mouse.MouseMoved += (sender, msg) =>
             {
+
+            };
+
+            mouse.ButtonClicked += (sender, msg) =>
+            {
+                MapEditorSceneLayer.Container.Write(1, 2, 1);
             };
         }
 
