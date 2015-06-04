@@ -8,8 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CozyKxlol.Engine.Tiled
 {
-    public class CozyTiledNode : CozyNode
+    public abstract class CozyTiledNode : CozyNode
     {
+        public abstract uint Id { get; }
         public Point TiledPosition { get; set; }
 
         public CozyTiledNode()
@@ -17,10 +18,6 @@ namespace CozyKxlol.Engine.Tiled
             AnchorPoint = Vector2.One / 2;
         }
 
-        public virtual void DrawAt(GameTime gameTime, SpriteBatch spriteBatch, Vector2 pos)
-        {
-            Position    = pos;
-            DrawSelf(gameTime, spriteBatch);
-        }
+        public abstract void DrawAt(GameTime gameTime, SpriteBatch spriteBatch, Vector2 pos);
     }
 }
