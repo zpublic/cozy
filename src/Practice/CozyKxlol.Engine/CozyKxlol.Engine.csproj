@@ -54,7 +54,6 @@
     <Compile Include="CozyCallFunc.cs" />
     <Compile Include="CozyDelayTime.cs" />
     <Compile Include="CozyDirector.cs" />
-    <Compile Include="Tiled\CozyTiledDrawNode.cs" />
     <Compile Include="CozyExtraAction.cs" />
     <Compile Include="CozyFiniteTimeAction.cs" />
     <Compile Include="CozyGame.cs" />
@@ -70,13 +69,14 @@
     <Compile Include="CozySprite.cs" />
     <Compile Include="CozyTexture.cs" />
     <Compile Include="CozyTextureCache.cs" />
+    <Compile Include="Tiled\CozyTiledData.cs" />
+    <Compile Include="Tiled\CozyTiledDataLoader.cs" />
     <Compile Include="Tiled\CozyTiledFactory.cs" />
-    <Compile Include="Tiled\CozyTiledId.cs" />
-    <Compile Include="Tiled\CozyTiledLayer.cs" />
+    <Compile Include="Tiled\CozyTiledMap.cs" />
     <Compile Include="Primitives2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tiled\CozyTiledNode.cs" />
-    <Compile Include="Tiled\ITiledNodeBase.cs" />
+    <Compile Include="Tiled\Impl\ICozyLoader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

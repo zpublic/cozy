@@ -46,6 +46,10 @@
     <Compile Include="Kxlol\Object\CozyCircle.cs" />
     <Compile Include="Kxlol\Object\DefaultFoodCircle.cs" />
     <Compile Include="Kxlol\Object\DefaultUserCircle.cs" />
+    <Compile Include="Kxlol\Object\Tiled\CozyGreenTiled.cs" />
+    <Compile Include="Kxlol\Object\Tiled\CozyRedTiled.cs" />
+    <Compile Include="Kxlol\Object\Tiled\CozyNoneTiled.cs" />
+    <Compile Include="Kxlol\Object\Tiled\CozyTiledId.cs" />
     <Compile Include="Kxlol\Object\UserCircle.cs" />
     <Compile Include="Kxlol\Scene\BallGameScene.cs" />
     <Compile Include="Kxlol\Scene\BallGameSceneLayer.cs" />

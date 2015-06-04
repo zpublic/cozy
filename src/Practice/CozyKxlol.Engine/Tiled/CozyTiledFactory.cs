@@ -5,33 +5,33 @@ using System.Text;
 
 namespace CozyKxlol.Engine.Tiled
 {
-    public static class CozyTiledFactory
+    public class CozyTiledFactory
     {
-        private static Dictionary<uint, CozyTiledNode> NodeDictionary 
-            = new Dictionary<uint,CozyTiledNode>();
+        private Dictionary<uint, CozyTiledNode> NodeDictionary
+            = new Dictionary<uint, CozyTiledNode>();
 
-        public static CozyTiledNode GetInstance(uint id)
+        private object _objLock = new object();
+
+        public delegate CozyTiledNode CreateFunc(uint id);
+
+        public CreateFunc Create;
+
+        // 0保留为无方块
+        public CozyTiledNode GetInstance(uint id)
         {
-            CozyTiledNode node = null;
-
-            if (NodeDictionary.ContainsKey(id))
+            if (!NodeDictionary.ContainsKey(id))
             {
-                node = NodeDictionary[id];
-            }
-            else
-            {
-                switch(id)
+                lock(_objLock)
                 {
-                    case CozyTiledId.DrawNode:
-                        node                = new CozyTiledDrawNode();
-                        NodeDictionary[id]  = node;
-                        break;
-                    default:
-                        break;
+                    if(!NodeDictionary.ContainsKey(id))
+                    {
+                        if (Create != null)
+                            NodeDictionary[id] = Create(id);
+                    }
                 }
             }
 
-            return node;
+            return NodeDictionary[id];
         }
     }
 }
