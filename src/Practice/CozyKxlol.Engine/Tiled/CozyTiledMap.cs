@@ -13,11 +13,9 @@ namespace CozyKxlol.Engine.Tiled
         public Point TiledMapSize { get; private set; }
         private CozyTiledData TiledData { get; set; }
         public Vector2 NodeContentSize { get; set; }
-        public CozyTiledFactory Factory { get; private set; }
 
         public CozyTiledMap(Point MapSize)
         {
-            Factory         = new CozyTiledFactory();
             TiledMapSize    = MapSize;
             TiledData       = new CozyTiledData(MapSize.X, MapSize.Y);
             NodeContentSize = Vector2.One * 32;
@@ -31,8 +29,8 @@ namespace CozyKxlol.Engine.Tiled
             {
                 for (int j = 0; j < TiledMapSize.Y; ++j)
                 {
-                    var node = Factory.GetInstance(TiledData[i, j]);
-                    node.ContentSize = NodeContentSize;
+                    var node = CozyTiledFactory.GetInstance(TiledData[i, j]);
+                    // node.ContentSize = NodeContentSize;
                     node.DrawAt(gameTime, spriteBatch, ConvertTiledPosToPosition(i, j));
                 }
             }

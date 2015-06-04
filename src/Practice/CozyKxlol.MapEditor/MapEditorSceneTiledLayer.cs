@@ -16,7 +16,6 @@ namespace CozyKxlol.MapEditor
         {
             var size = MapEditorSceneLayer.Container.MapSize;
             TiledMap = new CozyTiledMap(size);
-            TiledMap.Factory.Create = OnCreate;
 
             MapEditorSceneLayer.Container.DataChangedMessage += OnDataChanged;
             this.AddChind(TiledMap);
@@ -26,22 +25,6 @@ namespace CozyKxlol.MapEditor
             TiledMapDataContainer.DataChangedMessageArgs msg)
         {
             TiledMap.Change(msg.X, msg.Y, msg.Data);
-        }
-
-        public CozyTiledNode OnCreate(uint id)
-        {
-            CozyTiledNode node = null;
-            switch(id)
-            {
-                case 1:
-                    node = new CozyGreenTiled();
-                    break;
-
-                default:
-                    node = new CozyDefaultTiled();
-                    break;
-            }
-            return node;
         }
     }
 }

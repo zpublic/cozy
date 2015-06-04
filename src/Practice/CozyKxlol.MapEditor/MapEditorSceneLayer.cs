@@ -11,6 +11,7 @@ using Starbound.UI.Resources;
 using Starbound.UI.Controls;
 using Starbound.UI.XNA.Resources;
 using Starbound.UI.XNA.Renderers;
+using CozyKxlol.Engine.Tiled;
 
 namespace CozyKxlol.MapEditor
 {
@@ -21,14 +22,30 @@ namespace CozyKxlol.MapEditor
         KeyboardEvents keyboard;
         MouseEvents mouse;
 
+        public MapEditorSceneTiledLayer Display { get; set; }
+        public MapEditorSceneOperateLayer Operat { get; set; }
+
+        public const int MapSize_X = 30;
+        public const int MapSize_Y = 20;
+
         public MapEditorSceneLayer()
         {
-            Container = new TiledMapDataContainer(15, 20);
+            CozyTiledFactory.Create = OnCreate;
 
-            var display = new MapEditorSceneTiledLayer();
-            this.AddChind(display);
-            var operat = new MapEditorSceneOperateLayer();
-            this.AddChind(operat);
+            Container   = new TiledMapDataContainer(MapSize_X, MapSize_Y);
+
+            Display     = new MapEditorSceneTiledLayer();
+            this.AddChind(Display, 1);
+            Operat      = new MapEditorSceneOperateLayer();
+            this.AddChind(Operat, 2);
+
+            Operat.TiledCommandMessages += (sender, msg) =>
+            {
+                msg.Command.Execute(Container);
+            };
+
+
+            #region Keyboard Event
 
             keyboard = new KeyboardEvents();
             keyboard.KeyPressed += (sender, e) =>
@@ -48,6 +65,10 @@ namespace CozyKxlol.MapEditor
                 }
             };
 
+            #endregion
+
+            #region Mouse Event
+
             mouse = new MouseEvents();
             mouse.MouseMoved += (sender, msg) =>
             {
@@ -58,6 +79,9 @@ namespace CozyKxlol.MapEditor
             {
                 MapEditorSceneLayer.Container.Write(1, 2, 1);
             };
+
+            #endregion 
+
         }
 
         public override void Update(GameTime gameTime)
@@ -69,6 +93,21 @@ namespace CozyKxlol.MapEditor
 #if EnableMouse
             mouse.Update(gameTime);
 #endif
+        }
+
+        public CozyTiledNode OnCreate(uint id)
+        {
+            CozyTiledNode node = null;
+            switch (id)
+            {
+                case 1:
+                    node = new CozyGreenTiled();
+                    break;
+                default:
+                    node = new CozyDefaultTiled();
+                    break;
+            }
+            return node;
         }
     }
 }
