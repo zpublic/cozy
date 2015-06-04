@@ -38,6 +38,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Command\ContainerModifyOne.cs" />
+    <Compile Include="Command\ICommand.cs" />
     <Compile Include="CozyGreenTiled.cs" />
     <Compile Include="CozyDefaultTiled.cs" />
     <Compile Include="MapEditorScene.cs" />

@@ -1,6 +1,4 @@
-﻿#define EnableMouse
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -64,6 +62,8 @@ namespace CozyKxlol.MapEditor
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             keyboard.Update(gameTime);
 
 #if EnableMouse
