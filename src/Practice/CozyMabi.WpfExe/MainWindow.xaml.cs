@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CozyMobi.Core.Request;
 
 namespace CozyMabi.WpfExe
 {
@@ -28,9 +29,15 @@ namespace CozyMabi.WpfExe
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            TestLogin t = new TestLogin();
-            var json = t.test();
-            json.ToString();
+//             TestLogin t = new TestLogin();
+//             var json = t.test();
+//             json.ToString();
+
+            AccountRequest account = new AccountRequest();
+            account.Login("zapline", "000000");
+
+            SocialRequest social = new SocialRequest();
+            social.Maopao("hehe", "iPhone233");
         }
     }
 }

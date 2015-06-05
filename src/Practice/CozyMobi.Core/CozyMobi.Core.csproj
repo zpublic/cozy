@@ -44,12 +44,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\AccountInfo.cs" />
+    <Compile Include="Model\UserObject.cs" />
+    <Compile Include="Network\HttpPost.cs" />
+    <Compile Include="RequestBuilder\AccountRequestBuilder.cs" />
+    <Compile Include="RequestBuilder\RequestBuilderCommon.cs" />
+    <Compile Include="RequestBuilder\SocialRequestBuilder.cs" />
+    <Compile Include="Request\AccountRequest.cs" />
+    <Compile Include="Request\SocialRequest.cs" />
+    <Compile Include="ResponseParser\AccountResponseParser.cs" />
+    <Compile Include="ResponseParser\ResponseParserCommon.cs" />
+    <Compile Include="ResponseParser\SocialResponseParser.cs" />
     <Compile Include="TestLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
