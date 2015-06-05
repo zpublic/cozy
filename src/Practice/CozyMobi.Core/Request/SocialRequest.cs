@@ -22,7 +22,17 @@ namespace CozyMobi.Core.Request
             HttpContent http_content = mBuild.Maopao(content, device);
             HttpResponseMessage rsp = HttpPost.Post(RequestBuilderCommon.SocialMaopao, http_content);
             JObject jo = null;
-            if (ResponseParserCommon.AreYouOk(rsp, jo))
+            if (ResponseParserCommon.AreYouOk(rsp, ref jo))
+            {
+            }
+        }
+
+        public void SendMessage(string name, string content)
+        {
+            HttpContent http_content = mBuild.SendMessage(name, content);
+            HttpResponseMessage rsp = HttpPost.Post(RequestBuilderCommon.SocialMessageSend, http_content);
+            JObject jo = null;
+            if (ResponseParserCommon.AreYouOk(rsp, ref jo))
             {
             }
         }

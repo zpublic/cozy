@@ -17,7 +17,10 @@ namespace CozyMobi.Core.RequestBuilder
         public static string AccountLogout = Account + "/logout";
 
         public static string Social = ApiUrl + "/social";
-        public static string SocialMaopao = Social + "/tweet";
+        public static string SocialMaopao = ApiUrl + "/tweet";
+        //public static string SocialMaopao = Social + "/tweet";
+        public static string SocialMessage = Social + "/message";
+        public static string SocialMessageSend = SocialMessage + "/send";
 
         public static string ToHexString(byte[] bytes)
         {

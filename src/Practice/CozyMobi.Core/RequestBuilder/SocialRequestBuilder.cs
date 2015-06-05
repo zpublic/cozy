@@ -17,5 +17,14 @@ namespace CozyMobi.Core.RequestBuilder
             HttpContent http_content = new FormUrlEncodedContent(v);
             return http_content;
         }
+
+        public HttpContent SendMessage(string name, string content)
+        {
+            var v = new Dictionary<string, string>();
+            v.Add("receiver_global_key", name);
+            v.Add("content", content);
+            HttpContent http_content = new FormUrlEncodedContent(v);
+            return http_content;
+        }
     }
 }

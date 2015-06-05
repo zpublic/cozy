@@ -10,7 +10,7 @@ namespace CozyMobi.Core.ResponseParser
 {
     class ResponseParserCommon
     {
-        public static bool AreYouOk(HttpResponseMessage rsp, JObject jo)
+        public static bool AreYouOk(HttpResponseMessage rsp, ref JObject jo)
         {
             if (rsp.IsSuccessStatusCode)
             {

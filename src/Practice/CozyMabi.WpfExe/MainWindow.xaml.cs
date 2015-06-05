@@ -37,7 +37,8 @@ namespace CozyMabi.WpfExe
             account.Login("zapline", "000000");
 
             SocialRequest social = new SocialRequest();
-            social.Maopao("hehe", "iPhone233");
+            social.Maopao("hehe @kingwl @MaxTan", "iPhone233");
+            social.SendMessage("MaxTan", "hehe");
         }
     }
 }
