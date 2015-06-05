@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4DDB536E-CD04-44D5-8A82-4F5266D23132}</ProjectGuid>
+    <ProjectGuid>{9177B0D0-5848-40FD-89C1-2AA299A46F1E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyKxlol</RootNamespace>
-    <AssemblyName>CozyKxlol</AssemblyName>
+    <RootNamespace>CozyKxlol.MapEditor</RootNamespace>
+    <AssemblyName>CozyKxlol.MapEditor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>WindowsGL</MonoGamePlatform>
     <MonoGameContentBuilderExe>
@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\bin\kxlol\c\</OutputPath>
+    <OutputPath>bin\WindowsGL\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -38,36 +38,25 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Kxlol\Extends\RandomExtension.cs" />
-    <Compile Include="Kxlol\Extends\UnsignedExtension.cs" />
-    <Compile Include="Kxlol\Extends\VectorExtension.cs" />
-    <Compile Include="Kxlol\Impl\IControlAble.cs" />
-    <Compile Include="Kxlol\Impl\IMoveAble.cs" />
-    <Compile Include="Kxlol\Object\CozyCircle.cs" />
-    <Compile Include="Kxlol\Object\DefaultFoodCircle.cs" />
-    <Compile Include="Kxlol\Object\DefaultUserCircle.cs" />
-    <Compile Include="Kxlol\Object\Tiled\CozyGreenTiled.cs" />
-    <Compile Include="Kxlol\Object\Tiled\CozyRedTiled.cs" />
-    <Compile Include="Kxlol\Object\Tiled\CozyNoneTiled.cs" />
-    <Compile Include="Kxlol\Object\Tiled\CozyTiledId.cs" />
-    <Compile Include="Kxlol\Object\UserCircle.cs" />
-    <Compile Include="Kxlol\Scene\BallGameScene.cs" />
-    <Compile Include="Kxlol\Scene\BallGameSceneLayer.cs" />
-    <Compile Include="Kxlol\Scene\HappinessGameLayer.cs" />
-    <Compile Include="Kxlol\Scene\HappinessGameScene.cs" />
-    <Compile Include="Kxlol\Scene\WelcomeScene.cs" />
-    <Compile Include="KxlolGame.cs" />
-    <Compile Include="Kxlol\Scene\WelcomeSceneLayer.cs" />
+    <Compile Include="Command\ContainerModifyOne.cs" />
+    <Compile Include="Command\ICommand.cs" />
+    <Compile Include="CozyGreenTiled.cs" />
+    <Compile Include="CozyDefaultTiled.cs" />
+    <Compile Include="MapEditorScene.cs" />
+    <Compile Include="MapEditorSceneLayer.cs" />
+    <Compile Include="KxlolMapEditor.cs" />
+    <Compile Include="MapEditorSceneOperateLayer.cs" />
+    <Compile Include="MapEditorSceneTiledLayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TiledMapDataContainer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework, Version=3.4.0.456, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>c:\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsGL\MonoGame.Framework.dll</HintPath>
-    </Reference>
     <Reference Include="OpenTK">
-      <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows\OpenTK.dll</HintPath>
+      <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\WindowsGL\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\WindowsGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -79,17 +68,9 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CozyDebugHelper\CozyDebugHelper.csproj">
-      <Project>{c39f668c-59c2-4fe1-922e-5c7544e70d1f}</Project>
-      <Name>CozyDebugHelper</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CozyKxlol.Engine\CozyKxlol.Engine.csproj">
       <Project>{d07c7246-89df-4b33-873a-01fd64d78ba1}</Project>
       <Name>CozyKxlol.Engine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyKxlol.Network\CozyKxlol.Network.csproj">
-      <Project>{6cf49aac-6451-4d25-9baa-a4693c3fe564}</Project>
-      <Name>CozyKxlol.Network</Name>
     </ProjectReference>
     <ProjectReference Include="..\Starbound.Input\Starbound.Input.csproj">
       <Project>{69679010-74a0-4052-99fd-18389f883295}</Project>
@@ -104,7 +85,6 @@
       <Name>Starbound.UI</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">
     <CreateProperty Value="$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows;$(AssemblySearchPaths)">

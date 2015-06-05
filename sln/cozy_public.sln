@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPublic", "..\src\Public\CozyPublic\CozyPublic.csproj", "{78A922FA-21BD-4577-9AC5-281425B3265C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPublic.WinApi", "..\src\Public\CozyPublic.WinApi\CozyPublic.WinApi.csproj", "{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Release|ARM.ActiveCfg = Release|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Release|x64.ActiveCfg = Release|Any CPU
+		{78A922FA-21BD-4577-9AC5-281425B3265C}.Release|x86.ActiveCfg = Release|Any CPU
+		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Release|ARM.ActiveCfg = Release|Any CPU
+		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Release|x64.ActiveCfg = Release|Any CPU
+		{73CA6505-6C9C-4F19-B9D7-1535EEF45E23}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

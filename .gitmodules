@@ -4,3 +4,6 @@
 [submodule "src/Practice/CozyKxlol/Content"]
 	path = src/Practice/CozyKxlol/Content
 	url = https://git.oschina.net/zapline/cozy_res_cozykxlolcontent.git
+[submodule "src/Practice/CozyKxlol.MapEditor/Content"]
+	path = src/Practice/CozyKxlol.MapEditor/Content
+	url = https://git.oschina.net/zapline/cozy_res_cozykxlolcontent.git
