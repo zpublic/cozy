@@ -22,8 +22,11 @@ namespace CozyMobi.Core.Request
             HttpContent content = mBuild.Login(email, password, j_captcha);
             HttpResponseMessage rsp = HttpPost.Post(RequestBuilderCommon.AccountLogin, content);
             JObject jo = null;
-            if (ResponseParserCommon.AreYouOk(rsp, jo))
+            if (ResponseParserCommon.AreYouOk(rsp, ref jo))
             {
+//                 String key = jo["data"]["global_key"].ToString();
+//                 String url = RequestBuilderCommon.Host + "/api/user/key/" + key;
+//                 HttpGet.Get(url);
             }
         }
     }

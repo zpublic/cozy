@@ -19,6 +19,6 @@ namespace CozyMobi.Core.Model
             }
         }
 
-        public CookieCollection Cookies { set; get; }
+        public String Cookie { set; get; }
     }
 }
