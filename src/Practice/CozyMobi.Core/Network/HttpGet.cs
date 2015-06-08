@@ -16,10 +16,6 @@ namespace CozyMobi.Core.Network
             HttpClientHandler handler = new HttpClientHandler { UseCookies = false };
             HttpClient client = new HttpClient(handler);
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
-            if (AccountInfo.Instance.Cookie != null)
-            {
-                request.Headers.Add("Cookie", AccountInfo.Instance.Cookie);
-            }
             HttpResponseMessage response = client.SendAsync(request).Result;
             return response;
         }

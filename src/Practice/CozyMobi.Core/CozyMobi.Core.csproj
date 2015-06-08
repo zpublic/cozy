@@ -44,8 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\AccountInfo.cs" />
     <Compile Include="Model\UserObject.cs" />
+    <Compile Include="Network\HttpCookie.cs" />
     <Compile Include="Network\HttpGet.cs" />
     <Compile Include="Network\HttpPost.cs" />
     <Compile Include="RequestBuilder\AccountRequestBuilder.cs" />
