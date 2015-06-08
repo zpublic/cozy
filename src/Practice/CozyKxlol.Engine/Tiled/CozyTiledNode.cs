@@ -15,10 +15,10 @@ namespace CozyKxlol.Engine.Tiled
 
         public CozyTiledNode()
         {
-            // 写死为32*32
-            ContentSize = Vector2.One * 32.0f;
+            AnchorPoint = Vector2.One * 0.5f;
         }
 
-        public abstract void DrawAt(GameTime gameTime, SpriteBatch spriteBatch, Vector2 pos);
+        public abstract void DrawAt(GameTime gameTime, SpriteBatch spriteBatch, 
+            Vector2 pos, Vector2 size);
     }
 }

@@ -16,9 +16,6 @@ namespace CozyKxlol.Engine.Tiled
 
         public CozyTiledMap(Point MapSize)
         {
-            // NodeContentSize写死为32*32
-            NodeContentSize = Vector2.One * 32;
-
             TiledMapSize    = MapSize;
             TiledData       = new CozyTiledData(MapSize.X, MapSize.Y);
             ContentSize     = new Vector2(NodeContentSize.X * MapSize.X, 
@@ -32,8 +29,8 @@ namespace CozyKxlol.Engine.Tiled
                 for (int j = 0; j < TiledMapSize.Y; ++j)
                 {
                     var node = CozyTiledFactory.GetInstance(TiledData[i, j]);
-                    var drawPos = CozyTiledPositionHelper.ConvertTiledPositionToPosition(new Point(i, j), NodeContentSize);
-                    node.DrawAt(gameTime, spriteBatch, drawPos);
+                    var drawPos = CozyTiledPositionHelper.ConvertTiledPositionToPosition(new Point(i, j), NodeContentSize) + GlobalPosition;
+                    node.DrawAt(gameTime, spriteBatch, drawPos, NodeContentSize);
                 }
             }
         }

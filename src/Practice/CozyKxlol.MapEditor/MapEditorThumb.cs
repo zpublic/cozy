@@ -8,22 +8,18 @@ using Microsoft.Xna.Framework;
 
 namespace CozyKxlol.MapEditor
 {
-    public class MapEditorSceneTiledLayer : CozyLayer
+    public class MapEditorThumb : CozyNode
     {
-        // update and show current map from TiledMapDataContainer`s data
         public CozyTiledMap TiledMap { get; set; }
 
-        public MapEditorSceneTiledLayer(Point mapSize, Vector2 nodeSize)
+        public MapEditorThumb(Vector2 nodeSize)
         {
-            var size                    = mapSize;
-            TiledMap                    = new CozyTiledMap(size);
-            TiledMap.NodeContentSize    = nodeSize;
+            var size = MapEditorSceneLayer.Container.MapSize;
+            TiledMap = new CozyTiledMap(size);
+            TiledMap.NodeContentSize = nodeSize;
 
             MapEditorSceneLayer.Container.DataChangedMessage += OnDataChanged;
             this.AddChind(TiledMap);
-
-            var thumb                   = new MapEditorThumb(TiledMap.NodeContentSize / 4);
-            this.AddChind(thumb);
         }
 
         private void OnDataChanged(object sender, 

@@ -37,13 +37,12 @@ namespace CozyKxlol.MapEditor
 
         public Vector2 NodeContentSize { get; set; }
 
-        public MapEditorSceneOperateLayer()
+        public MapEditorSceneOperateLayer(Vector2 nodeSize)
         {
             Mouse               = new MouseEvents();
             Keyboard            = new KeyboardEvents();
 
-            // 写死为32*32
-            NodeContentSize     = Vector2.One * 32;
+            NodeContentSize     = nodeSize;
 
             #region Event Bind
 
@@ -96,7 +95,7 @@ namespace CozyKxlol.MapEditor
         {
             if(Status == S_Add)
             {
-                CozyTiledFactory.GetInstance(CurrentTiledId).DrawAt(gameTime, spriteBatch, CurrentPosition.ToVector2());
+                CozyTiledFactory.GetInstance(CurrentTiledId).DrawAt(gameTime, spriteBatch, CurrentPosition.ToVector2(), NodeContentSize);
             }
         }
 
