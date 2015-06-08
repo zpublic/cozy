@@ -22,8 +22,8 @@ namespace CozyKxlol.MapEditor
             MapEditorSceneLayer.Container.DataChangedMessage += OnDataChanged;
             this.AddChind(TiledMap);
 
-            var thumb                   = new MapEditorThumb(TiledMap.NodeContentSize / 4);
-            this.AddChind(thumb);
+            var thumb   = new MapEditorThumb(mapSize, TiledMap.NodeContentSize / 4);
+            this.AddChind(thumb, 1);
         }
 
         private void OnDataChanged(object sender, 
