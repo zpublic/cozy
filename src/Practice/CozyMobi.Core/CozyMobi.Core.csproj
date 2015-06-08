@@ -56,7 +56,6 @@
     <Compile Include="ResponseParser\AccountResponseParser.cs" />
     <Compile Include="ResponseParser\ResponseParserCommon.cs" />
     <Compile Include="ResponseParser\SocialResponseParser.cs" />
-    <Compile Include="TestLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
