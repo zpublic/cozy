@@ -54,8 +54,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\DelegateCommand.cs" />
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Page Include="LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
