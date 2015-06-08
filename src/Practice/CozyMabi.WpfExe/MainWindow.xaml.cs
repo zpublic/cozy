@@ -29,12 +29,8 @@ namespace CozyMabi.WpfExe
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-//             TestLogin t = new TestLogin();
-//             var json = t.test();
-//             json.ToString();
-
             AccountRequest account = new AccountRequest();
-            account.Login("zapline", "000000");
+            account.Login("zapline", "fuckjava");
 
             SocialRequest social = new SocialRequest();
             social.Maopao("hehe @kingwl @MaxTan", "iPhone233");

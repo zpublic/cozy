@@ -14,20 +14,26 @@ namespace CozyMobi.Core.Network
     {
         public static HttpResponseMessage Post(string url, HttpContent content)
         {
-            HttpClientHandler handler = new HttpClientHandler { UseCookies = false };
-            HttpClient client = new HttpClient(handler);
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url) { Content = content };
-            if (AccountInfo.Instance.Cookie != null)
+            Uri uri = new Uri(RequestBuilderCommon.Host);
+            HttpClientHandler handler = new HttpClientHandler { UseCookies = true };
+            CookieContainer CookieContainer = HttpCookie.GetUriCookieContainer(uri);
+            if (CookieContainer != null)
             {
-                request.Headers.Add("Cookie", AccountInfo.Instance.Cookie);
+                handler.CookieContainer = CookieContainer;
             }
+            else
+            {
+                handler.CookieContainer = new CookieContainer();
+            }
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url) { Content = content };
+            HttpClient client = new HttpClient(handler);
             HttpResponseMessage response = client.SendAsync(request).Result;
             if (RequestBuilderCommon.AccountLogin == url)
             {
-                var v = response.Headers.GetValues("Set-Cookie").ToArray();
-                if (v.Count() > 0)
+                var c = handler.CookieContainer.GetCookies(uri);
+                foreach (Cookie e in c)
                 {
-                    AccountInfo.Instance.Cookie = v[0];
+                    HttpCookie.InternetSetCookie(RequestBuilderCommon.Host, e.Name, e.Value + ";path=/;expires=Sun,22-Feb-2099 00:00:00 GMT");
                 }
             }
             return response;
