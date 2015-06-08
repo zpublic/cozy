@@ -17,7 +17,10 @@ namespace CozyKxlol.MapEditor
         // then modify TiledMapDataContainer`s data
 
         public MouseEvents Mouse { get; set; }
+
         public KeyboardEvents Keyboard { get; set; }
+
+        public bool IsLeftMouseButtonPress { get; set; }
 
         #region Status
 
@@ -37,6 +40,13 @@ namespace CozyKxlol.MapEditor
 
         public Vector2 NodeContentSize { get; set; }
 
+        private void AddTiled(Point p)
+        {
+            // noity tiled modify to Container
+            var command = new ContainerModifyOne(p.X, p.Y, CurrentTiledId);
+            TiledCommandMessages(this, new TiledCommandArgs(command));
+        }
+
         public MapEditorSceneOperateLayer(Vector2 nodeSize)
         {
             Mouse               = new MouseEvents();
@@ -46,17 +56,31 @@ namespace CozyKxlol.MapEditor
 
             #region Event Bind
 
+            Mouse.ButtonPressed += (sender, msg) =>
+            {
+                if(msg.Button == MouseButton.Left)
+                {
+                    IsLeftMouseButtonPress = true;
+                }
+            };
+
+            Mouse.ButtonReleased+= (sender, msg) =>
+            {
+                if (msg.Button == MouseButton.Left)
+                {
+                    IsLeftMouseButtonPress = false;
+                }
+            };
+
+
             Mouse.ButtonClicked += (sender, msg) =>
             {
                 if(msg.Button == MouseButton.Left)
                 {
                     if (Status == S_Add)
                     {
-                        // noity tiled modify to Container
-
                         Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
-                        var command = new ContainerModifyOne(p.X, p.Y, CurrentTiledId);
-                        TiledCommandMessages(this, new TiledCommandArgs(command));
+                        AddTiled(p);
                     }
                 }
             };
@@ -65,6 +89,11 @@ namespace CozyKxlol.MapEditor
             {
                 // update position of mouse
                 CurrentPosition = msg.Current.Position;
+                if (IsLeftMouseButtonPress && Status == S_Add)
+                {
+                    Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
+                    AddTiled(p);
+                }
             };
 
             Keyboard.KeyPressed += (sender, msg) =>
