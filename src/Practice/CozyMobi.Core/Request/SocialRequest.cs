@@ -36,5 +36,51 @@ namespace CozyMobi.Core.Request
             {
             }
         }
+
+        public async void GetFriends(int pageId, int pageSize)
+        {
+            HttpContent http_content = mBuild.GetFriends(pageId, pageSize);
+            HttpResponseMessage rsp = HttpGet.Get(
+                RequestBuilderCommon.SocialFriends + await http_content.ReadAsStringAsync());
+            JObject jo = null;
+            if (ResponseParserCommon.AreYouOk(rsp, ref jo))
+            {
+            }
+        }
+
+        public async void GetFollowers(int pageId, int pageSize)
+        {
+            HttpContent http_content = mBuild.GetFollowers(pageId, pageSize);
+            HttpResponseMessage rsp = HttpGet.Get(
+                RequestBuilderCommon.SocialFollowers + await http_content.ReadAsStringAsync());
+            JObject jo = null;
+            if (ResponseParserCommon.AreYouOk(rsp, ref jo))
+            {
+            }
+        }
+
+        public bool Follow(string user)
+        {
+            HttpContent http_content = mBuild.Follow(user);
+            HttpResponseMessage rsp = HttpPost.Post(RequestBuilderCommon.SocialFollow, http_content);
+            JObject jo = null;
+            if (ResponseParserCommon.AreYouOk(rsp, ref jo))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool UnFollow(string user)
+        {
+            HttpContent http_content = mBuild.UnFollow(user);
+            HttpResponseMessage rsp = HttpPost.Post(RequestBuilderCommon.SocialUnFollow, http_content);
+            JObject jo = null;
+            if (ResponseParserCommon.AreYouOk(rsp, ref jo))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

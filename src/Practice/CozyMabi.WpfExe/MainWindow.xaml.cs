@@ -36,5 +36,17 @@ namespace CozyMabi.WpfExe
             social.Maopao("hehe @kingwl @MaxTan", "iPhone233");
             social.SendMessage("MaxTan", "hehe");
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            AccountRequest account = new AccountRequest();
+            account.Login("zapline", "000000");
+
+            SocialRequest social = new SocialRequest();
+            social.GetFollowers(1, 500);
+            social.GetFriends(1, 500);
+            social.UnFollow("kingwl");
+            social.Follow("kingwl");
+        }
     }
 }

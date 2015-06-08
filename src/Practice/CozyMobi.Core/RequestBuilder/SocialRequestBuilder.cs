@@ -26,5 +26,39 @@ namespace CozyMobi.Core.RequestBuilder
             HttpContent http_content = new FormUrlEncodedContent(v);
             return http_content;
         }
+
+        public HttpContent GetFriends(int pageId, int pageSize)
+        {
+            var v = new Dictionary<string, string>();
+            v.Add("page", pageId.ToString());
+            v.Add("pageSize", pageSize.ToString());
+            HttpContent http_content = new FormUrlEncodedContent(v);
+            return http_content;
+        }
+
+        public HttpContent GetFollowers(int pageId, int pageSize)
+        {
+            var v = new Dictionary<string, string>();
+            v.Add("page", pageId.ToString());
+            v.Add("pageSize", pageSize.ToString());
+            HttpContent http_content = new FormUrlEncodedContent(v);
+            return http_content;
+        }
+
+        public HttpContent Follow(string user)
+        {
+            var v = new Dictionary<string, string>();
+            v.Add("users", user);
+            HttpContent http_content = new FormUrlEncodedContent(v);
+            return http_content;
+        }
+
+        public HttpContent UnFollow(string user)
+        {
+            var v = new Dictionary<string, string>();
+            v.Add("users", user);
+            HttpContent http_content = new FormUrlEncodedContent(v);
+            return http_content;
+        }
     }
 }
