@@ -34,7 +34,7 @@ namespace CozyMabi.WpfExe
 //             json.ToString();
 
             AccountRequest account = new AccountRequest();
-            account.Login("zapline", "000000");
+            account.Login("zapline", "fuckjava");
 
             SocialRequest social = new SocialRequest();
             social.Maopao("hehe @kingwl @MaxTan", "iPhone233");
