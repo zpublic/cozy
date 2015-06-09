@@ -10,6 +10,7 @@ namespace CozyBili.ConsoleExe
     {
         static void Main(string[] args)
         {
+            
         }
     }
 }
