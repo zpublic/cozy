@@ -40,9 +40,11 @@ namespace CozyKxlol.MapEditor
 
         public Vector2 NodeContentSize { get; set; }
 
+        private Dictionary<UIElement, Action> ClickEvent { get; set; } 
 
         public MapEditorSceneOperateLayer(Vector2 nodeSize)
         {
+            ClickEvent = new Dictionary<UIElement, Action>();
             renderer = new XNARenderer();
             controls = new List<Control>();
             panel = new StackPanel() { Orientation = Orientation.Horizontal, ActualWidth = 1280, ActualHeight = 800 };
@@ -116,6 +118,30 @@ namespace CozyKxlol.MapEditor
             }
         }
 
+        protected void RegisterButtonAction(UIElement elemt, Action act)
+        {
+            if(elemt != null && act != null)
+            {
+                ClickEvent[elemt] = act;
+            }
+        }
+
+        protected void DispatchClick(Point clickPoint)
+        {
+            foreach (var obj in panel.Children)
+            {
+                if (clickPoint.X > obj.X && clickPoint.X < obj.X + obj.ActualWidth && 
+                    clickPoint.Y > obj.Y && clickPoint.Y < obj.Y + obj.ActualHeight)
+                {
+                    var click = ClickEvent[obj];
+                    if (click != null)
+                    {
+                        click();
+                    }
+                }
+            }
+        }
+
         protected void OnButtonClicked(object sender, MouseButtonEventArgs msg)
         {
             if (msg.Button == MouseButton.Left)
@@ -125,10 +151,11 @@ namespace CozyKxlol.MapEditor
                     Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
                     AddTiled(p);
                 }
+                DispatchClick(msg.Current.Position);
             }
             else if (msg.Button == MouseButton.Right)
             {
-                panel.AddChild(new Starbound.UI.Controls.Button()
+                var button = new Starbound.UI.Controls.Button()
                 {
                     PreferredHeight = random.Next(50) + 50,
                     PreferredWidth = random.Next(50) + 50,
@@ -136,8 +163,10 @@ namespace CozyKxlol.MapEditor
                     Font = Starbound.UI.Application.ResourceManager.GetResource<IFontResource>("Font"),
                     Content = "hehe",
                     Background = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble()),
-                    Foreground = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble())
-                });
+                    Foreground = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble()),
+                };
+                RegisterButtonAction(button, () => { button.Content = "Click"; });
+                panel.AddChild(button);
             }
         }
 
