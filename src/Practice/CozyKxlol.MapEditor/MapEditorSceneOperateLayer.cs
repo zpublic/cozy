@@ -17,26 +17,17 @@ namespace CozyKxlol.MapEditor
         // then modify TiledMapDataContainer`s data
 
         public MouseEvents Mouse { get; set; }
-
         public KeyboardEvents Keyboard { get; set; }
 
         public bool IsLeftMouseButtonPress { get; set; }
-
-        #region Status
 
         public const uint S_Add     = 0000;
         public const uint S_Remove  = 0001;
 
         public uint Status { get; set; }
 
-        #endregion
-
-        #region Current
-
         public uint CurrentTiledId { get; set; }
         public Point CurrentPosition { get; set; }
-
-        #endregion
 
         public Vector2 NodeContentSize { get; set; }
 
@@ -53,8 +44,6 @@ namespace CozyKxlol.MapEditor
             Keyboard            = new KeyboardEvents();
 
             NodeContentSize     = nodeSize;
-
-            #region Event Bind
 
             Mouse.ButtonPressed += (sender, msg) =>
             {
@@ -105,8 +94,6 @@ namespace CozyKxlol.MapEditor
             {
                 // doSomething
             };
-
-            #endregion
 
             Status          = S_Add;
             CurrentTiledId  = 1;

@@ -24,13 +24,7 @@ namespace CozyKxlol.Kxlol.Scene
         Dictionary<uint, CozyCircle> FoodList       = new Dictionary<uint, CozyCircle>();
         Dictionary<uint, UserCircle> CircleList     = new Dictionary<uint, UserCircle>();
         List<KeyValuePair<string, int>> MarkList    = new List<KeyValuePair<string, int>>();
-
         KeyboardEvents keyboard;
-
-#if EnableMouse
-        MouseEvents mouse;
-#endif
-
         NetClientHelper client                  = new NetClientHelper();
         public UserCircle Player                = null;
         public CozyLabel ScoreShow              = null;
@@ -82,12 +76,7 @@ namespace CozyKxlol.Kxlol.Scene
                         break;
                 }
             };
-#if EnableMouse
-            mouse       = new MouseEvents();
-            mouse.MouseMoved += (sender, msg) =>
-            {
-            };
-#endif
+
             client.StatusMessage += (sender, msg) =>
             {
                 if(msg.Status == ConnectionStatus.Connected)
