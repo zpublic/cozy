@@ -22,9 +22,10 @@ namespace CozyKxlol.Kxlol.Scene
 
         public virtual bool Init()
         {
+            RegisterTiled();
+
             Tileds                  = new CozyTiledMap(new Point(15, 20));
             Tileds.NodeContentSize  = Vector2.One * 32;
-            CozyTiledFactory.Create += Create;
             this.AddChind(Tileds);
 
             var loader = new CozyTiledDataLoader();
@@ -32,24 +33,11 @@ namespace CozyKxlol.Kxlol.Scene
             return true;
         }
 
-        public CozyTiledNode Create(uint id)
+        private void RegisterTiled()
         {
-            CozyTiledNode node = null;
-            switch(id)
-            {
-                case CozyTiledId.NoneTiled:
-                    node = new CozyNoneTiled();
-                    break;
-                case CozyTiledId.RedTiled:
-                    node = new CozyRedTiled();
-                    break;
-                case CozyTiledId.GreenTiled:
-                    node = new CozyGreenTiled();
-                    break;
-                default:
-                    break;
-            }
-            return node;
+            CozyTiledFactory.RegisterTiled(CozyTiledId.RedTiled, new CozyRedTiled());
+            CozyTiledFactory.RegisterTiled(CozyTiledId.GreenTiled, new CozyGreenTiled());
+
         }
     }
 }
