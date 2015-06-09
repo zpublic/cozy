@@ -9,15 +9,22 @@ namespace CozyMobi.Core.RequestBuilder
 {
     class RequestBuilderCommon
     {
-        public static string Host = "https://coding.net";
-        public static string ApiUrl = Host + "/api";
+        public static string Host              =                 "https://coding.net";
+        public static string ApiUrl            = Host +          "/api";
 
-        public static string Account = ApiUrl + "/account";
-        public static string AccountLogin = Account + "/login";
-        public static string AccountLogout = Account + "/logout";
+        public static string Account           = ApiUrl +        "/account";
+        public static string AccountLogin      = Account +       "/login";
+        public static string AccountLogout     = Account +       "/logout";
 
-        public static string Social = ApiUrl + "/social";
-        public static string SocialMaopao = Social + "/tweet";
+        public static string Social            = ApiUrl +        "/social";
+        public static string SocialFriends     = Social +        "/friends?";
+        public static string SocialFollowers   = Social +        "/followers?";
+        public static string SocialFollow      = Social +        "/follow";
+        public static string SocialUnFollow    = Social +        "/unfollow";
+        public static string SocialMaopao      = ApiUrl +        "/tweet";
+        //public static string SocialMaopao    = Social +        "/tweet";
+        public static string SocialMessage     = Social +        "/message";
+        public static string SocialMessageSend = SocialMessage + "/send";
 
         public static string ToHexString(byte[] bytes)
         {

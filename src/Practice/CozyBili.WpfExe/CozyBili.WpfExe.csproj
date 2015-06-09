@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{16DB6B76-07BB-40FD-9697-DC09B15D809C}</ProjectGuid>
+    <ProjectGuid>{9C250C75-33FA-4239-BD05-7108964CABFD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyMabi.WpfExe</RootNamespace>
-    <AssemblyName>CozyMabi.WpfExe</AssemblyName>
+    <RootNamespace>CozyBili.WpfExe</RootNamespace>
+    <AssemblyName>CozyBili.WpfExe</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -53,9 +53,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Command\DelegateCommand.cs" />
-    <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -97,9 +94,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CozyMobi.Core\CozyMobi.Core.csproj">
-      <Project>{0ca3833e-74ac-459e-bb7c-a76c592b6b71}</Project>
-      <Name>CozyMobi.Core</Name>
+    <ProjectReference Include="..\CozyBili.Core\CozyBili.Core.csproj">
+      <Project>{c7db81f5-d98f-48d6-9d51-19dde0d95d06}</Project>
+      <Name>CozyBili.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -29,15 +29,24 @@ namespace CozyMabi.WpfExe
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-//             TestLogin t = new TestLogin();
-//             var json = t.test();
-//             json.ToString();
+            AccountRequest account = new AccountRequest();
+            account.Login("zapline", "fuckjava");
 
+            SocialRequest social = new SocialRequest();
+            social.Maopao("hehe @kingwl @MaxTan", "iPhone233");
+            social.SendMessage("MaxTan", "hehe");
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
             AccountRequest account = new AccountRequest();
             account.Login("zapline", "000000");
 
             SocialRequest social = new SocialRequest();
-            social.Maopao("hehe", "iPhone233");
+            social.GetFollowers(1, 500);
+            social.GetFriends(1, 500);
+            social.UnFollow("kingwl");
+            social.Follow("kingwl");
         }
     }
 }
