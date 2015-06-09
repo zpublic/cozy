@@ -40,12 +40,6 @@ namespace CozyKxlol.MapEditor
 
         public Vector2 NodeContentSize { get; set; }
 
-        private void AddTiled(Point p)
-        {
-            // noity tiled modify to Container
-            var command = new ContainerModifyOne(p.X, p.Y, CurrentTiledId);
-            TiledCommandMessages(this, new TiledCommandArgs(command));
-        }
 
         public MapEditorSceneOperateLayer(Vector2 nodeSize)
         {
@@ -56,55 +50,17 @@ namespace CozyKxlol.MapEditor
 
             #region Event Bind
 
-            Mouse.ButtonPressed += (sender, msg) =>
-            {
-                if(msg.Button == MouseButton.Left)
-                {
-                    IsLeftMouseButtonPress = true;
-                }
-            };
+            Mouse.ButtonPressed     += new EventHandler<MouseButtonEventArgs>(OnButtonPressed);
 
-            Mouse.ButtonReleased+= (sender, msg) =>
-            {
-                if (msg.Button == MouseButton.Left)
-                {
-                    IsLeftMouseButtonPress = false;
-                }
-            };
+            Mouse.ButtonClicked     += new EventHandler<MouseButtonEventArgs>(OnButtonClicked);
 
+            Mouse.ButtonReleased    += new EventHandler<MouseButtonEventArgs>(OnButtonReleased);
 
-            Mouse.ButtonClicked += (sender, msg) =>
-            {
-                if(msg.Button == MouseButton.Left)
-                {
-                    if (Status == S_Add)
-                    {
-                        Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
-                        AddTiled(p);
-                    }
-                }
-            };
+            Mouse.MouseMoved        += new EventHandler<MouseEventArgs>(OnMouseMoved);
 
-            Mouse.MouseMoved += (sender, msg) =>
-            {
-                // update position of mouse
-                CurrentPosition = msg.Current.Position;
-                if (IsLeftMouseButtonPress && Status == S_Add)
-                {
-                    Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
-                    AddTiled(p);
-                }
-            };
+            Keyboard.KeyPressed     += new EventHandler<KeyboardEventArgs>(OnKeyPressed);
 
-            Keyboard.KeyPressed += (sender, msg) =>
-            {
-                // doSomething
-            };
-
-            Keyboard.KeyReleased += (sender, msg) =>
-            {
-                // doSomething
-            };
+            Keyboard.KeyReleased    += new EventHandler<KeyboardEventArgs>(OnKeyReleased);
 
             #endregion
 
@@ -138,5 +94,60 @@ namespace CozyKxlol.MapEditor
             }
         }
         public event EventHandler<TiledCommandArgs> TiledCommandMessages;
+
+        protected void OnButtonPressed(object sender, MouseButtonEventArgs msg)
+        {
+            if (msg.Button == MouseButton.Left)
+            {
+                IsLeftMouseButtonPress = true;
+            }
+        }
+
+        protected void OnButtonClicked(object sender, MouseButtonEventArgs msg)
+        {
+            if (msg.Button == MouseButton.Left)
+            {
+                if (Status == S_Add)
+                {
+                    Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
+                    AddTiled(p);
+                }
+            }
+        }
+
+        protected void OnButtonReleased(object sender, MouseButtonEventArgs msg)
+        {
+            if (msg.Button == MouseButton.Left)
+            {
+                IsLeftMouseButtonPress = false;
+            }
+        }
+
+        protected void OnKeyPressed(object sender, KeyboardEventArgs msg)
+        {
+
+        }
+
+        protected void OnKeyReleased(object sender, KeyboardEventArgs msg)
+        {
+
+        }
+
+        private void AddTiled(Point p)
+        {
+            // noity tiled modify to Container
+            var command = new ContainerModifyOne(p.X, p.Y, CurrentTiledId);
+            TiledCommandMessages(this, new TiledCommandArgs(command));
+        }
+
+        protected void OnMouseMoved(object sender, MouseEventArgs msg)
+        {
+            CurrentPosition = msg.Current.Position;
+            if (IsLeftMouseButtonPress && Status == S_Add)
+            {
+                Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
+                AddTiled(p);
+            }
+        }
     }
 }
