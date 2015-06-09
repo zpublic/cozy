@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CozyKxlol.Engine;
 using CozyKxlol.Engine.Tiled;
+using Microsoft.Xna.Framework;
 
 namespace CozyKxlol.MapEditor
 {
@@ -12,13 +13,17 @@ namespace CozyKxlol.MapEditor
         // update and show current map from TiledMapDataContainer`s data
         public CozyTiledMap TiledMap { get; set; }
 
-        public MapEditorSceneTiledLayer()
+        public MapEditorSceneTiledLayer(Point mapSize, Vector2 nodeSize)
         {
-            var size = MapEditorSceneLayer.Container.MapSize;
-            TiledMap = new CozyTiledMap(size);
+            var size                    = mapSize;
+            TiledMap                    = new CozyTiledMap(size);
+            TiledMap.NodeContentSize    = nodeSize;
 
             MapEditorSceneLayer.Container.DataChangedMessage += OnDataChanged;
             this.AddChind(TiledMap);
+
+            var thumb   = new MapEditorThumb(mapSize, TiledMap.NodeContentSize / 4);
+            this.AddChind(thumb, 1);
         }
 
         private void OnDataChanged(object sender, 

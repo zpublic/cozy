@@ -15,7 +15,7 @@ namespace CozyKxlol.MapEditor
             get { return 0; }
         }
 
-        public override void DrawAt(GameTime gameTime, SpriteBatch spriteBatch, Vector2 pos)
+        public override void DrawAt(GameTime gameTime, SpriteBatch spriteBatch, Vector2 pos, Vector2 size)
         {
 
         }

@@ -25,8 +25,9 @@ namespace CozyKxlol.MapEditor
         public MapEditorSceneTiledLayer Display { get; set; }
         public MapEditorSceneOperateLayer Operat { get; set; }
 
-        public const int MapSize_X = 30;
-        public const int MapSize_Y = 20;
+        public const int MapSize_X  = 30;
+        public const int MapSize_Y  = 20;
+        public const int NodeSize   = 32;
 
         public MapEditorSceneLayer()
         {
@@ -34,9 +35,12 @@ namespace CozyKxlol.MapEditor
 
             Container   = new TiledMapDataContainer(MapSize_X, MapSize_Y);
 
-            Display     = new MapEditorSceneTiledLayer();
+            Display     = new MapEditorSceneTiledLayer(
+                Container.MapSize, 
+                Vector2.One * NodeSize);
             this.AddChind(Display, 1);
-            Operat      = new MapEditorSceneOperateLayer();
+
+            Operat      = new MapEditorSceneOperateLayer(Vector2.One * NodeSize);
             this.AddChind(Operat, 2);
 
             Operat.TiledCommandMessages += (sender, msg) =>

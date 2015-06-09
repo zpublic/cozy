@@ -7,6 +7,9 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using CozyMabi.WpfExe.Command;
+using System.Collections.ObjectModel;
+using CozyMabi.WpfExe.Model;
+using CozyMabi.WpfExe.UserControls;
 
 namespace CozyMabi.WpfExe.ViewModel
 {
@@ -15,58 +18,16 @@ namespace CozyMabi.WpfExe.ViewModel
 
         #region Property
 
-        private string _AccountEmail = String.Empty;
-        public string AccountEmail
+        private ObservableCollection<UIControlInfo> _MainTabItems;
+        public ObservableCollection<UIControlInfo> MainTabItems
         {
             get
             {
-                return _AccountEmail;
+                return _MainTabItems;
             }
             set
             {
-                Set(ref _AccountEmail, value.Trim(), "AccountEmail");
-            }
-        }
-
-        private string _AccountPassword = String.Empty;
-        public string AccountPassword
-        {
-            get
-            {
-                return _AccountPassword;
-            }
-            set
-            {
-                Set(ref _AccountPassword, value.Trim(), "AccountPassword");
-            }
-        }
-
-        private bool _RememberAccount = false;
-        public bool RememberAccount
-        {
-            get
-            {
-                return _RememberAccount;
-            }
-            set
-            {
-                Set(ref _RememberAccount, value, "RememberAccount");
-            }
-        }
-
-        #endregion
-
-        #region Command
-
-        private ICommand _LoginCommand;
-        public ICommand LoginCommand
-        {
-            get
-            {
-                return _LoginCommand = _LoginCommand ?? new DelegateCommand(x =>
-                {
-                    MessageBox.Show(String.Format("Email : {0} Password : {1} Remember : {2}", AccountEmail, AccountPassword, RememberAccount));
-                });
+                Set(ref _MainTabItems, value, "MainTabItems");
             }
         }
 
@@ -75,11 +36,21 @@ namespace CozyMabi.WpfExe.ViewModel
         public MainWindowViewModel()
         {
             this.PropertyChanged += PropertyChangedEvent;
+
+            InitTabItems();
+        }
+
+        void InitTabItems()
+        {
+            MainTabItems = new ObservableCollection<UIControlInfo>(new[]
+            {
+                new UIControlInfo{ Title = "Bubble", Content= new BubbleView() },
+            });
         }
 
         private void PropertyChangedEvent(object sender, PropertyChangedEventArgs e)
         {
-
+            
         }
     }
 }

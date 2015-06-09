@@ -160,7 +160,7 @@ namespace CozyKxlol.Engine
         }
 
         private Vector2 _ContentSize;
-        public Vector2 ContentSize
+        public virtual Vector2 ContentSize
         {
             get
             {
