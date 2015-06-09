@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using CozyBili.Core.Models;
 
 namespace CozyBili.Core {
 
@@ -36,19 +37,22 @@ namespace CozyBili.Core {
         /// </summary>
         public event Action<DanMuModel> ReceiveDanMu;
 
+        /// <summary>
+        /// 连接上弹幕服务器后触发该事件
+        /// </summary>
+        public event Action ConnectionSuccess;
+
+        public event Action DisconnectConnection;
+
         #endregion
 
+        /// <summary>
+        /// 必须给一个房间号
+        /// </summary>
+        /// <param name="roomId">房间号</param>
         public LiveDanMu(int roomId) {
             this.RoomId = roomId;
             Init();
-        }
-
-        private void Init() {
-            //暂时写死一些数据，后面用配置文件加载
-            Coonetced = false;
-            OffLineReCoonetced = true;
-            Port = 88;
-            ChatServe = "livecmt.bilibili.com";
         }
 
         /// <summary>
@@ -67,7 +71,15 @@ namespace CozyBili.Core {
         /// </summary>
         public void Stop() {
             OffLineReCoonetced = false;
-            Disconnect();
+            Coonetced = false;
+        }
+
+        private void Init() {
+            //暂时写死一些数据，后面用配置文件加载
+            Coonetced = false;
+            OffLineReCoonetced = true;
+            Port = 88;
+            ChatServe = "livecmt.bilibili.com";
         }
 
         private bool ListenLoop() {
@@ -76,11 +88,12 @@ namespace CozyBili.Core {
             NetStream = Client.GetStream();
             if (SendJoinChannel(RoomId)) {
                 Coonetced = true;
+                TirggerCoonected();
                 try {
                     byte[] array = new byte[Client.ReceiveBufferSize];
-                    var num = BitConverter.ToInt16(array, 0);
                     while (Coonetced) {
                         NetStream.Read(array, 0, 2);
+                        var num = BitConverter.ToInt16(array, 0);
                         num = IPAddress.NetworkToHostOrder(num);
                         switch (num) {
                             case 1: {
@@ -96,7 +109,7 @@ namespace CozyBili.Core {
                                     var array2 = new byte[size];
                                     NetStream.Read(array2, 0, size);
                                     var danMuMsg = Encoding.UTF8.GetString(array2, 0, size);
-                                    TirdderReceiveDanMu(DanMuModel.CreateModel(danMuMsg));
+                                    TirggerReceiveDanMu(DanMuModel.CreateModel(danMuMsg));
                                     break;
                                 }
                             case 8:
@@ -108,15 +121,13 @@ namespace CozyBili.Core {
                     }
                 }
                 catch (Exception) {
-                    Console.WriteLine("断线重连中..........");
                     return true;
 
                 }
                 finally {
-                    this.Disconnect();
+                    Disconnect();
                 }
             }
-            Console.WriteLine("断线重连中..........");
             return true;
         }
 
@@ -136,14 +147,15 @@ namespace CozyBili.Core {
         }
 
         private void Disconnect() {
-            this.Coonetced = false;
+            Coonetced = false;
             try {
-                this.Client.Close();
+                Client.Close();
             }
             catch (Exception ex) {
                 throw ex;
             }
-            this.NetStream = null;
+            NetStream = null;
+            TirggerDisconnectConnection();
         }
 
         private void TirggerOnLineNum(int onLineNum) {
@@ -152,9 +164,21 @@ namespace CozyBili.Core {
             }
         }
 
-        private void TirdderReceiveDanMu(DanMuModel danMuModel) {
+        private void TirggerReceiveDanMu(DanMuModel danMuModel) {
             if (ReceiveDanMu != null) {
                 ReceiveDanMu(danMuModel);
+            }
+        }
+
+        private void TirggerCoonected() {
+            if (ConnectionSuccess != null) {
+                ConnectionSuccess();
+            }
+        }
+
+        private void TirggerDisconnectConnection() {
+            if (DisconnectConnection != null) {
+                DisconnectConnection();
             }
         }
     }
