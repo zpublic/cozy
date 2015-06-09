@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CozyKxlol.Engine.Tiled;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CozyKxlol.MapEditor
+namespace CozyKxlol.Engine.Tiled
 {
     public class CozyDefaultTiled : CozyTiledNode
     {

@@ -11,9 +11,10 @@ namespace CozyKxlol.MapEditor
     {
         public static TiledMapDataContainer Container { get; set; }
 
-        public const int MapSize_X = 30;
-        public const int MapSize_Y = 20;
-        public const int NodeSize = 32;
+        public const int MapSize_X  = 30;
+        public const int MapSize_Y  = 20;
+        public const int NodeSize   = 32;
+
         public MapEditorSceneTiledLayer Display { get; set; }
         public MapEditorSceneOperateLayer Operat { get; set; }
 
@@ -23,7 +24,7 @@ namespace CozyKxlol.MapEditor
             // 下层为Engine里的tile绘制层
             // 上层为编辑功能层，支持鼠标和键盘操作
 
-            CozyTiledFactory.Create = OnCreate;
+            RegisterTiled();
 
             Container               = new TiledMapDataContainer(MapSize_X, MapSize_Y);
 
@@ -39,19 +40,9 @@ namespace CozyKxlol.MapEditor
             };
         }
 
-        public CozyTiledNode OnCreate(uint id)
+        public void RegisterTiled()
         {
-            CozyTiledNode node      = null;
-            switch (id)
-            {
-                case 1:
-                    node = new CozyGreenTiled();
-                    break;
-                default:
-                    node = new CozyDefaultTiled();
-                    break;
-            }
-            return node;
+            CozyTiledFactory.RegisterTiled(1, new CozyGreenTiled());
         }
     }
 }
