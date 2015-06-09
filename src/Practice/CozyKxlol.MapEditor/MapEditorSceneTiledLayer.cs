@@ -19,7 +19,7 @@ namespace CozyKxlol.MapEditor
             TiledMap                    = new CozyTiledMap(size);
             TiledMap.NodeContentSize    = nodeSize;
 
-            MapEditorSceneLayer.Container.DataChangedMessage += OnDataChanged;
+            MapEditorScene.Container.DataChangedMessage += OnDataChanged;
             this.AddChind(TiledMap);
 
             var thumb   = new MapEditorThumb(mapSize, TiledMap.NodeContentSize / 4);
