@@ -22,7 +22,8 @@ namespace CozyKxlol.Kxlol.Scene
 
         public virtual bool Init()
         {
-            Tileds = new CozyTiledMap(new Point(15, 20));
+            Tileds                  = new CozyTiledMap(new Point(15, 20));
+            Tileds.NodeContentSize  = Vector2.One * 32;
             CozyTiledFactory.Create += Create;
             this.AddChind(Tileds);
 

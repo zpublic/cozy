@@ -15,7 +15,7 @@ namespace CozyKxlol.Kxlol.Object.Tiled
             get { return CozyTiledId.NoneTiled; }
         }
         
-        public override void DrawAt(GameTime gameTime, SpriteBatch spriteBatch, Vector2 pos)
+        public override void DrawAt(GameTime gameTime, SpriteBatch spriteBatch, Vector2 pos, Vector2 size)
         {
 
         }
