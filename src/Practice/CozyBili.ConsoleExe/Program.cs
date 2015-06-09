@@ -8,7 +8,7 @@ namespace CozyBili.ConsoleExe {
 
         static void Main(string[] args) {
             
-            args = args.Length > 0 ? args : new[] { "1017" };
+            args = args.Length > 0 ? args : new[] { "1029" };
 
             const string title = "CozyBili";
             int roomId;
@@ -22,12 +22,13 @@ namespace CozyBili.ConsoleExe {
         }
 
         static void ShowDanMu(DanMuModel danMuModel) {
-            Console.ForegroundColor = ConsoleColor.White;
             Console.Write(danMuModel.Time.ToString("HH:mm:ss"));
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write(danMuModel.UserName + ":");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(danMuModel.Content);
+            Console.ForegroundColor = ConsoleColor.Gray;
+
         }
     }
 }
