@@ -53,8 +53,6 @@ namespace CozyKxlol.MapEditor
 
             NodeContentSize     = nodeSize;
 
-            #region Event Bind
-
             Mouse.ButtonPressed     += new EventHandler<MouseButtonEventArgs>(OnButtonPressed);
 
             Mouse.ButtonClicked     += new EventHandler<MouseButtonEventArgs>(OnButtonClicked);
@@ -66,8 +64,6 @@ namespace CozyKxlol.MapEditor
             Keyboard.KeyPressed     += new EventHandler<KeyboardEventArgs>(OnKeyPressed);
 
             Keyboard.KeyReleased    += new EventHandler<KeyboardEventArgs>(OnKeyReleased);
-
-            #endregion
 
             Status          = S_Add;
             CurrentTiledId  = 1;
