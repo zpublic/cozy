@@ -27,14 +27,22 @@ namespace Starbound.UI.XNA.Resources
 
         private IImageResource GetImageResource(string id)
         {
-            Texture2D texture = contentManager.Load<Texture2D>(id);
-            return new XNAImageResource(texture);
+            if (id != "")
+            {
+                Texture2D texture = contentManager.Load<Texture2D>(id);
+                return new XNAImageResource(texture);
+            }
+            return null;
         }
 
         private IFontResource GetFontResource(string id)
         {
-            SpriteFont font = contentManager.Load<SpriteFont>(id);
-            return new XNAFontResource(font);
+            if (id != "")
+            {
+                SpriteFont font = contentManager.Load<SpriteFont>(id);
+                return new XNAFontResource(font);
+            }
+            return null;
         }
     }
 }

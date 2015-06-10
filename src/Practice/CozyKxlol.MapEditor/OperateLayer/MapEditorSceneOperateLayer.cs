@@ -30,8 +30,8 @@ namespace CozyKxlol.MapEditor.OperateLayer
 
         public bool IsLeftMouseButtonPress { get; set; }
 
-        public const uint S_Add     = 0000;
-        public const uint S_Remove  = 0001;
+        public const uint S_Add = 0000;
+        public const uint S_Remove = 0001;
 
         public uint Status { get; set; }
 
@@ -57,6 +57,18 @@ namespace CozyKxlol.MapEditor.OperateLayer
             panel.AddChild(button, () => { button.Content = "Click1"; });
             var button2 = new SampleButton(10, 350);
             panel.AddChild(button2, () => { button2.Content = "Click2"; });
+            var imgBtn = new ImageButton()
+            {
+                Content = "map/1",
+                ActualWidth = 240,
+                ActualHeight = 440,
+                X = 10,
+                Y = 480,
+                PreferredHeight = 300,
+                PreferredWidth = 150,
+                Margin = new Starbound.UI.Thickness(3, 3, 0, 0)
+            };
+            panel.AddChild(imgBtn, () => { imgBtn.Content = ""; });
 
             Mouse               = new MouseEvents();
             Keyboard            = new KeyboardEvents();
@@ -101,7 +113,7 @@ namespace CozyKxlol.MapEditor.OperateLayer
             }
             spriteBatch.Begin();
 
-            if(Status == S_Add)
+            if (Status == S_Add)
             {
                 CozyTiledFactory.GetInstance(CurrentTiledId).DrawAt(gameTime, spriteBatch, CurrentPosition.ToVector2(), NodeContentSize);
             }
