@@ -40,15 +40,11 @@ namespace CozyKxlol.MapEditor
 
         public Vector2 NodeContentSize { get; set; }
 
-        private void AddTiled(Point p)
-        {
-            // noity tiled modify to Container
-            var command = new ContainerModifyOne(p.X, p.Y, CurrentTiledId);
-            TiledCommandMessages(this, new TiledCommandArgs(command));
-        }
+        private Dictionary<UIElement, Action> ClickEvent { get; set; } 
 
         public MapEditorSceneOperateLayer(Vector2 nodeSize)
         {
+            ClickEvent = new Dictionary<UIElement, Action>();
             renderer = new XNARenderer();
             controls = new List<Control>();
             panel = new StackPanel() { Orientation = Orientation.Horizontal, ActualWidth = 1280, ActualHeight = 800 };
@@ -59,67 +55,17 @@ namespace CozyKxlol.MapEditor
 
             NodeContentSize     = nodeSize;
 
-            Mouse.ButtonPressed += (sender, msg) =>
-            {
-                if(msg.Button == MouseButton.Left)
-                {
-                    IsLeftMouseButtonPress = true;
-                }
-            };
+            Mouse.ButtonPressed     += new EventHandler<MouseButtonEventArgs>(OnButtonPressed);
 
-            Mouse.ButtonReleased+= (sender, msg) =>
-            {
-                if (msg.Button == MouseButton.Left)
-                {
-                    IsLeftMouseButtonPress = false;
-                }
-            };
+            Mouse.ButtonClicked     += new EventHandler<MouseButtonEventArgs>(OnButtonClicked);
 
-            Mouse.ButtonClicked += (sender, msg) =>
-            {
-                if(msg.Button == MouseButton.Left)
-                {
-                    if (Status == S_Add)
-                    {
-                        Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
-                        AddTiled(p);
-                    }
-                }
-                else if (msg.Button == MouseButton.Right)
-                {
-                    panel.AddChild(new Starbound.UI.Controls.Button()
-                    {
-                        PreferredHeight = random.Next(50) + 50,
-                        PreferredWidth = random.Next(50) + 50,
-                        Margin = new Starbound.UI.Thickness(3, 3, 0, 0),
-                        Font = Starbound.UI.Application.ResourceManager.GetResource<IFontResource>("Font"),
-                        Content = "hehe",
-                        Background = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble()),
-                        Foreground = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble())
-                    });
-                }
-            };
+            Mouse.ButtonReleased    += new EventHandler<MouseButtonEventArgs>(OnButtonReleased);
 
-            Mouse.MouseMoved += (sender, msg) =>
-            {
-                // update position of mouse
-                CurrentPosition = msg.Current.Position;
-                if (IsLeftMouseButtonPress && Status == S_Add)
-                {
-                    Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
-                    AddTiled(p);
-                }
-            };
+            Mouse.MouseMoved        += new EventHandler<MouseEventArgs>(OnMouseMoved);
 
-            Keyboard.KeyPressed += (sender, msg) =>
-            {
-                // doSomething
-            };
+            Keyboard.KeyPressed     += new EventHandler<KeyboardEventArgs>(OnKeyPressed);
 
-            Keyboard.KeyReleased += (sender, msg) =>
-            {
-                // doSomething
-            };
+            Keyboard.KeyReleased    += new EventHandler<KeyboardEventArgs>(OnKeyReleased);
 
             Status          = S_Add;
             CurrentTiledId  = 1;
@@ -163,5 +109,100 @@ namespace CozyKxlol.MapEditor
             }
         }
         public event EventHandler<TiledCommandArgs> TiledCommandMessages;
+
+        protected void OnButtonPressed(object sender, MouseButtonEventArgs msg)
+        {
+            if (msg.Button == MouseButton.Left)
+            {
+                IsLeftMouseButtonPress = true;
+            }
+        }
+
+        protected void RegisterButtonAction(UIElement elemt, Action act)
+        {
+            if(elemt != null && act != null)
+            {
+                ClickEvent[elemt] = act;
+            }
+        }
+
+        protected void DispatchClick(Point clickPoint)
+        {
+            foreach (var obj in panel.Children)
+            {
+                if (clickPoint.X > obj.X && clickPoint.X < obj.X + obj.ActualWidth && 
+                    clickPoint.Y > obj.Y && clickPoint.Y < obj.Y + obj.ActualHeight)
+                {
+                    var click = ClickEvent[obj];
+                    if (click != null)
+                    {
+                        click();
+                    }
+                }
+            }
+        }
+
+        protected void OnButtonClicked(object sender, MouseButtonEventArgs msg)
+        {
+            if (msg.Button == MouseButton.Left)
+            {
+                if (Status == S_Add)
+                {
+                    Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
+                    AddTiled(p);
+                }
+                DispatchClick(msg.Current.Position);
+            }
+            else if (msg.Button == MouseButton.Right)
+            {
+                var button = new Starbound.UI.Controls.Button()
+                {
+                    PreferredHeight = random.Next(50) + 50,
+                    PreferredWidth = random.Next(50) + 50,
+                    Margin = new Starbound.UI.Thickness(3, 3, 0, 0),
+                    Font = Starbound.UI.Application.ResourceManager.GetResource<IFontResource>("Font"),
+                    Content = "hehe",
+                    Background = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble()),
+                    Foreground = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble()),
+                };
+                RegisterButtonAction(button, () => { button.Content = "Click"; });
+                panel.AddChild(button);
+            }
+        }
+
+        protected void OnButtonReleased(object sender, MouseButtonEventArgs msg)
+        {
+            if (msg.Button == MouseButton.Left)
+            {
+                IsLeftMouseButtonPress = false;
+            }
+        }
+
+        protected void OnKeyPressed(object sender, KeyboardEventArgs msg)
+        {
+
+        }
+
+        protected void OnKeyReleased(object sender, KeyboardEventArgs msg)
+        {
+
+        }
+
+        private void AddTiled(Point p)
+        {
+            // noity tiled modify to Container
+            var command = new ContainerModifyOne(p.X, p.Y, CurrentTiledId);
+            TiledCommandMessages(this, new TiledCommandArgs(command));
+        }
+
+        protected void OnMouseMoved(object sender, MouseEventArgs msg)
+        {
+            CurrentPosition = msg.Current.Position;
+            if (IsLeftMouseButtonPress && Status == S_Add)
+            {
+                Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
+                AddTiled(p);
+            }
+        }
     }
 }
