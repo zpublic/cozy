@@ -14,7 +14,7 @@ namespace Starbound.UI.Controls
 
         public Button()
         {
-            Template = new DefaultButtonControlTemplate();
+            Template = new ButtonControlTemplate();
             Template.Control = this;
         }
     }
