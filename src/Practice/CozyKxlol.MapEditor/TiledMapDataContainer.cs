@@ -5,6 +5,7 @@ using System.Text;
 using CozyKxlol.Engine.Tiled;
 using Microsoft.Xna.Framework;
 using CozyKxlol.MapEditor.Command;
+using CozyKxlol.MapEditor.Event;
 
 namespace CozyKxlol.MapEditor
 {
@@ -20,7 +21,7 @@ namespace CozyKxlol.MapEditor
         public void Write(int x, int y, uint data)
         {
             TiledData.Change(x, y, data);
-            DataChangedMessage(TiledData, new DataChangedMessageArgs(x, y, data));
+            DataMessage(TiledData, new TiledDataMessageArgs(x, y, data));
         }
 
         public uint Read(int x, int y)
@@ -40,23 +41,8 @@ namespace CozyKxlol.MapEditor
             command.Execute(this);
         }
 
-        #region DataMessage to TiledLayer
-        public class DataChangedMessageArgs : EventArgs
-        {
-            public int X { get; set; }
-            public int Y { get; set; }
-            public uint Data { get; set; }
-
-            public DataChangedMessageArgs(int x, int y, uint data)
-            {
-                X       = x;
-                Y       = y;
-                Data    = data;
-            }
-        }
-        public event EventHandler<DataChangedMessageArgs> DataChangedMessage;
-        #endregion
-
+        public event EventHandler<TiledDataMessageArgs> DataMessage;
+        public event EventHandler<TiledClearMessageArgs> ClearMessage;
 
         public void LoadMap()
         {
@@ -66,6 +52,11 @@ namespace CozyKxlol.MapEditor
         public void SaveMap()
         {
 
+        }
+
+        public void Clear()
+        {
+            ClearMessage(TiledData, new TiledClearMessageArgs());
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CozyKxlol.Engine;
 using CozyKxlol.Engine.Tiled;
+using CozyKxlol.MapEditor.Event;
 using Microsoft.Xna.Framework;
 
 namespace CozyKxlol.MapEditor.TiledLayer
@@ -30,14 +31,18 @@ namespace CozyKxlol.MapEditor.TiledLayer
             TiledMap = new CozyTiledMap(size);
             TiledMap.NodeContentSize = nodeSize;
 
-            MapEditorScene.Container.DataChangedMessage += OnDataChanged;
+            MapEditorScene.Container.DataMessage    += OnDataChanged;
+            MapEditorScene.Container.ClearMessage   += OnClear;
             this.AddChind(TiledMap);
         }
 
-        private void OnDataChanged(object sender, 
-            TiledMapDataContainer.DataChangedMessageArgs msg)
+        private void OnDataChanged(object sender, TiledDataMessageArgs msg)
         {
             TiledMap.Change(msg.X, msg.Y, msg.Data);
+        }
+        private void OnClear(object sender, TiledClearMessageArgs msg)
+        {
+            TiledMap.Clear();
         }
 
         protected override void DrawSelf(GameTime gameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)

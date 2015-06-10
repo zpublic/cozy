@@ -23,7 +23,7 @@ namespace Starbound.UI.Controls
                         Application.ResourceManager.GetResource<IImageResource>(button.Content as string), 
                         new Vector2(button.X, button.Y), 
                         new Vector2(button.ActualWidth, button.ActualHeight), 
-                        new SBColor(0, 170, 222))};
+                        new SBColor(255, 255, 255))};
             }
         }
 

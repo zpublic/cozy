@@ -15,7 +15,6 @@ namespace CozyKxlol.MapEditor.OperateLayer
             PreferredWidth = 150;
             Margin = new Starbound.UI.Thickness(3, 3, 0, 0);
             Font = Starbound.UI.Application.ResourceManager.GetResource<Starbound.UI.Resources.IFontResource>("Font");
-            Content = "SampleButton";
             Background = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble());
             Foreground = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble());
             X = x;
