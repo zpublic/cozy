@@ -20,7 +20,8 @@ namespace CozyKxlol.MapEditor.TiledLayer
             TiledMap                    = new CozyTiledMap(size);
             TiledMap.NodeContentSize    = nodeSize;
 
-            MapEditorScene.Container.DataMessage += OnDataChanged;
+            MapEditorScene.Container.DataMessage    += OnDataChanged;
+            MapEditorScene.Container.ClearMessage   += OnClear;
             this.AddChind(TiledMap);
 
             var thumb   = new MapEditorThumb(mapSize, TiledMap.NodeContentSize / 4);
@@ -31,6 +32,11 @@ namespace CozyKxlol.MapEditor.TiledLayer
         private void OnDataChanged(object sender, TiledDataMessageArgs msg)
         {
             TiledMap.Change(msg.X, msg.Y, msg.Data);
+        }
+
+        private void OnClear(object sender, TiledClearMessageArgs msg)
+        {
+            TiledMap.Clear();
         }
     }
 }

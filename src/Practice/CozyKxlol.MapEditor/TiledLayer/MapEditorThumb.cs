@@ -31,13 +31,18 @@ namespace CozyKxlol.MapEditor.TiledLayer
             TiledMap = new CozyTiledMap(size);
             TiledMap.NodeContentSize = nodeSize;
 
-            MapEditorScene.Container.DataMessage += OnDataChanged;
+            MapEditorScene.Container.DataMessage    += OnDataChanged;
+            MapEditorScene.Container.ClearMessage   += OnClear;
             this.AddChind(TiledMap);
         }
 
         private void OnDataChanged(object sender, TiledDataMessageArgs msg)
         {
             TiledMap.Change(msg.X, msg.Y, msg.Data);
+        }
+        private void OnClear(object sender, TiledClearMessageArgs msg)
+        {
+            TiledMap.Clear();
         }
 
         protected override void DrawSelf(GameTime gameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)

@@ -44,5 +44,10 @@ namespace CozyKxlol.Engine.Tiled
         {
             TiledData.Change(x, y, data);
         }
+
+        public void Clear()
+        {
+            TiledData.Clear();
+        }
     }
 }

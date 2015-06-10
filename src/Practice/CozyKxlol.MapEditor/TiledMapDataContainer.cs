@@ -42,6 +42,7 @@ namespace CozyKxlol.MapEditor
         }
 
         public event EventHandler<TiledDataMessageArgs> DataMessage;
+        public event EventHandler<TiledClearMessageArgs> ClearMessage;
 
         public void LoadMap()
         {
@@ -55,14 +56,7 @@ namespace CozyKxlol.MapEditor
 
         public void Clear()
         {
-            for(int i = 0; i < MapSize.X; ++i)
-            {
-                for (int j = 0; j < MapSize.Y; ++j)
-                {
-                    TiledData.Remove(i, j);
-                    DataMessage(TiledData, new TiledDataMessageArgs(i, j, 0));
-                }
-            }
+            ClearMessage(TiledData, new TiledClearMessageArgs());
         }
     }
 }
