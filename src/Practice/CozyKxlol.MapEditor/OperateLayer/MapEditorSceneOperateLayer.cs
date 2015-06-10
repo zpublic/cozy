@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using Starbound.UI.XNA.Renderers;
 using Starbound.UI.Controls;
 using Starbound.UI.Resources;
+using CozyKxlol.MapEditor.Event;
 
 namespace CozyKxlol.MapEditor.OperateLayer
 {
@@ -111,15 +112,6 @@ namespace CozyKxlol.MapEditor.OperateLayer
             }
         }
 
-        public class TiledCommandArgs : EventArgs
-        {
-            public ICommand Command { get; set; }
-
-            public TiledCommandArgs(ICommand command)
-            {
-                Command = command;
-            }
-        }
         public event EventHandler<TiledCommandArgs> TiledCommandMessages;
 
         protected void OnButtonPressed(object sender, MouseButtonEventArgs msg)

@@ -41,6 +41,7 @@
     <Compile Include="Command\ContainerModifyOne.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="CozyGreenTiled.cs" />
+    <Compile Include="Event\TiledCommandArgs.cs" />
     <Compile Include="Event\TiledDataMessageArgs.cs" />
     <Compile Include="MapEditorScene.cs" />
     <Compile Include="KxlolMapEditor.cs" />
