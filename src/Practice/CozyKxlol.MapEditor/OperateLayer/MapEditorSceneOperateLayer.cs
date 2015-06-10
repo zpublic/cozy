@@ -54,10 +54,16 @@ namespace CozyKxlol.MapEditor.OperateLayer
                 Y = 200
             };
             panel.UpdateLayout();
-            var button = new SampleButton(10, 220);
-            panel.AddChild(button, () => { button.Content = "Click1"; });
-            var button2 = new SampleButton(10, 350);
-            panel.AddChild(button2, () => { button2.Content = "Click2"; });
+            var button = new SampleButton(10, 220) 
+            { 
+                Content = "Add",
+            };
+            panel.AddChild(button, () => { Status = S_Add; });
+            var button2 = new SampleButton(10, 350) 
+            {
+                Content = "Remove",
+            };
+            panel.AddChild(button2, () => { Status = S_Remove; });
             var imgBtn = new ImageButton()
             {
                 Content = "map/1",
@@ -134,15 +140,20 @@ namespace CozyKxlol.MapEditor.OperateLayer
         {
             if (msg.Button == MouseButton.Left)
             {
+                Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
                 if (Status == S_Add)
                 {
-                    Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
                     AddTiled(p);
+                }
+                else if(Status == S_Remove)
+                {
+                    RemoveTiled(p);
                 }
                 panel.DispatchClick(msg.Current.Position.X, msg.Current.Position.Y);
             }
             else if (msg.Button == MouseButton.Right)
             {
+
             }
         }
 
@@ -171,13 +182,25 @@ namespace CozyKxlol.MapEditor.OperateLayer
             TiledCommandMessages(this, new TiledCommandArgs(command));
         }
 
+        private void RemoveTiled(Point p)
+        {
+            var command = new ContainerModifyOne(p.X, p.Y, 0);
+            TiledCommandMessages(this, new TiledCommandArgs(command));
+        }
+
         protected void OnMouseMoved(object sender, MouseEventArgs msg)
         {
             CurrentPosition = msg.Current.Position;
-            if (IsLeftMouseButtonPress && Status == S_Add)
+            if(IsLeftMouseButtonPress)
             {
                 Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
-                AddTiled(p);
+                if (Status == S_Add)
+                {
+                    AddTiled(p);
+                }else if(Status == S_Remove)
+                {
+                    RemoveTiled(p);
+                }
             }
         }
     }
