@@ -42,7 +42,6 @@
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="CozyGreenTiled.cs" />
     <Compile Include="MapEditorScene.cs" />
-    <Compile Include="MapEditorSceneLayer.cs" />
     <Compile Include="KxlolMapEditor.cs" />
     <Compile Include="MapEditorSceneOperateLayer.cs" />
     <Compile Include="MapEditorSceneTiledLayer.cs" />
