@@ -55,7 +55,7 @@ namespace Starbound.UI.Controls
                 if (remainingSize < 0) { sizes[index] -= remainingSize; }
             }
 
-            double x = 0;
+            double x = X;
             // Give each child their allocated space.
             for(int index = 0; index < Children.Count; index++)
             {
@@ -94,7 +94,7 @@ namespace Starbound.UI.Controls
                 if (remainingSize < 0) { sizes[index] -= remainingSize; }
             }
 
-            double y = 0;
+            double y = Y;
             // Give each child their allocated space.
             for (int index = 0; index < Children.Count; index++)
             {
