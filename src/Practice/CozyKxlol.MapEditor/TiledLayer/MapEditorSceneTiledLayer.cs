@@ -23,6 +23,7 @@ namespace CozyKxlol.MapEditor.TiledLayer
             this.AddChind(TiledMap);
 
             var thumb   = new MapEditorThumb(mapSize, TiledMap.NodeContentSize / 4);
+            thumb.Position = new Vector2(thumb.Position.X + 960, thumb.Position.Y);
             this.AddChind(thumb, 1);
         }
 

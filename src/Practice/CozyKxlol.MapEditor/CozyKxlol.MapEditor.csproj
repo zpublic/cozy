@@ -44,6 +44,7 @@
     <Compile Include="MapEditorScene.cs" />
     <Compile Include="KxlolMapEditor.cs" />
     <Compile Include="OperateLayer\MapEditorSceneOperateLayer.cs" />
+    <Compile Include="OperateLayer\SampleButton.cs" />
     <Compile Include="TiledLayer\MapEditorSceneTiledLayer.cs" />
     <Compile Include="TiledLayer\MapEditorThumb.cs" />
     <Compile Include="Program.cs" />

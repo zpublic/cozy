@@ -47,8 +47,20 @@ namespace CozyKxlol.MapEditor.OperateLayer
             ClickEvent = new Dictionary<UIElement, Action>();
             renderer = new XNARenderer();
             controls = new List<Control>();
-            panel = new StackPanel() { Orientation = Orientation.Horizontal, ActualWidth = 1280, ActualHeight = 800 };
+            panel = new StackPanel()
+            {
+                Orientation = Orientation.Veritical,
+                ActualWidth = 1280,
+                ActualHeight = 800,
+                X = 990
+            };
             panel.UpdateLayout();
+            var button = new SampleButton(10, 220);
+            RegisterButtonAction(button, () => { button.Content = "Click1"; });
+            panel.AddChild(button);
+            var button2 = new SampleButton(10, 350);
+            RegisterButtonAction(button2, () => { button2.Content = "Click2"; });
+            panel.AddChild(button2);
 
             Mouse               = new MouseEvents();
             Keyboard            = new KeyboardEvents();
@@ -155,18 +167,6 @@ namespace CozyKxlol.MapEditor.OperateLayer
             }
             else if (msg.Button == MouseButton.Right)
             {
-                var button = new Starbound.UI.Controls.Button()
-                {
-                    PreferredHeight = random.Next(50) + 50,
-                    PreferredWidth = random.Next(50) + 50,
-                    Margin = new Starbound.UI.Thickness(3, 3, 0, 0),
-                    Font = Starbound.UI.Application.ResourceManager.GetResource<IFontResource>("Font"),
-                    Content = "hehe",
-                    Background = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble()),
-                    Foreground = new Starbound.UI.SBColor(random.NextDouble(), random.NextDouble(), random.NextDouble()),
-                };
-                RegisterButtonAction(button, () => { button.Content = "Click"; });
-                panel.AddChild(button);
             }
         }
 

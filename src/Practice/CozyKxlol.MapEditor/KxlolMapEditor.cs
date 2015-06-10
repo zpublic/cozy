@@ -13,7 +13,7 @@ namespace CozyKxlol.MapEditor
 
         public KxlolMapEditor()
         {
-            WindowSize              = new Point(960, 640);
+            WindowSize              = new Point(1200, 640);
             Content.RootDirectory   = "Content";
             IsMouseVisible          = true;
 
