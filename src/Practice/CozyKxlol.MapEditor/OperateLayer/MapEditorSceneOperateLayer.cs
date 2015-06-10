@@ -11,6 +11,7 @@ using Starbound.UI.XNA.Renderers;
 using Starbound.UI.Controls;
 using Starbound.UI.Resources;
 using CozyKxlol.MapEditor.Event;
+using CozyKxlol.MapEditor.Tileds;
 
 namespace CozyKxlol.MapEditor.OperateLayer
 {
@@ -108,7 +109,7 @@ namespace CozyKxlol.MapEditor.OperateLayer
             Keyboard.KeyReleased    += new EventHandler<KeyboardEventArgs>(OnKeyReleased);
 
             Status          = S_Add;
-            CurrentTiledId  = 1;
+            CurrentTiledId  = CozyGreenTiled.TiledId;
         }
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)

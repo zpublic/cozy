@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework;
 using CozyKxlol.Engine.Tiled;
 using CozyKxlol.MapEditor.TiledLayer;
 using CozyKxlol.MapEditor.OperateLayer;
+using CozyKxlol.MapEditor.Tileds;
+
 namespace CozyKxlol.MapEditor
 {
     class MapEditorScene : CozyScene
@@ -44,8 +46,8 @@ namespace CozyKxlol.MapEditor
 
         public void RegisterTiled()
         {
-            CozyTiledFactory.RegisterTiled(1, new CozyGreenTiled());
-            CozyTiledFactory.RegisterTiled(2, new CozyRedTiled());
+            CozyTiledFactory.RegisterTiled(CozyGreenTiled.TiledId, new CozyGreenTiled());
+            CozyTiledFactory.RegisterTiled(CozyRedTiled.TiledId, new CozyRedTiled());
         }
     }
 }
