@@ -75,7 +75,11 @@ namespace CozyKxlol.MapEditor.OperateLayer
                 PreferredWidth = 150,
                 Margin = new Starbound.UI.Thickness(3, 3, 0, 0)
             };
-            panel.AddChild(imgBtn, () => { imgBtn.Content = ""; });
+            panel.AddChild(imgBtn, () => 
+            { 
+                var command = new ContainerClearCommand();
+                TiledCommandMessages(this, new TiledCommandArgs(command)); 
+            });
 
             Mouse               = new MouseEvents();
             Keyboard            = new KeyboardEvents();
