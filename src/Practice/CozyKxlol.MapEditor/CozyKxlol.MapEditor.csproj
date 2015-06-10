@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\tiles.json" />
+    <None Include="packages.config" />
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">
