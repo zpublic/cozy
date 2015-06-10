@@ -21,7 +21,7 @@ namespace CozyKxlol.MapEditor
         public void Write(int x, int y, uint data)
         {
             TiledData.Change(x, y, data);
-            DataMessage(TiledData, new DataMessageArgs(x, y, data));
+            DataMessage(TiledData, new TiledDataMessageArgs(x, y, data));
         }
 
         public uint Read(int x, int y)
@@ -41,7 +41,7 @@ namespace CozyKxlol.MapEditor
             command.Execute(this);
         }
 
-        public event EventHandler<DataMessageArgs> DataMessage;
+        public event EventHandler<TiledDataMessageArgs> DataMessage;
 
         public void LoadMap()
         {
@@ -60,7 +60,7 @@ namespace CozyKxlol.MapEditor
                 for (int j = 0; j < MapSize.Y; ++j)
                 {
                     TiledData.Remove(i, j);
-                    DataMessage(TiledData, new DataMessageArgs(i, j, 0));
+                    DataMessage(TiledData, new TiledDataMessageArgs(i, j, 0));
                 }
             }
         }

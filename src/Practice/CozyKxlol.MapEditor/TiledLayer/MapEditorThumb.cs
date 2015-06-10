@@ -35,7 +35,7 @@ namespace CozyKxlol.MapEditor.TiledLayer
             this.AddChind(TiledMap);
         }
 
-        private void OnDataChanged(object sender, DataMessageArgs msg)
+        private void OnDataChanged(object sender, TiledDataMessageArgs msg)
         {
             TiledMap.Change(msg.X, msg.Y, msg.Data);
         }
