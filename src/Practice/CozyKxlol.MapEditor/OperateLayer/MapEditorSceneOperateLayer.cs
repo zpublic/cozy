@@ -132,7 +132,7 @@ namespace CozyKxlol.MapEditor.OperateLayer
 
         public event EventHandler<TiledCommandArgs> TiledCommandMessages;
 
-        protected void OnButtonPressed(object sender, MouseButtonEventArgs msg)
+        private void OnButtonPressed(object sender, MouseButtonEventArgs msg)
         {
             if (msg.Button == MouseButton.Left)
             {
@@ -140,7 +140,7 @@ namespace CozyKxlol.MapEditor.OperateLayer
             }
         }
 
-        protected void OnButtonClicked(object sender, MouseButtonEventArgs msg)
+        private void OnButtonClicked(object sender, MouseButtonEventArgs msg)
         {
             if (msg.Button == MouseButton.Left)
             {
@@ -161,7 +161,7 @@ namespace CozyKxlol.MapEditor.OperateLayer
             }
         }
 
-        protected void OnButtonReleased(object sender, MouseButtonEventArgs msg)
+        private void OnButtonReleased(object sender, MouseButtonEventArgs msg)
         {
             if (msg.Button == MouseButton.Left)
             {
@@ -169,12 +169,12 @@ namespace CozyKxlol.MapEditor.OperateLayer
             }
         }
 
-        protected void OnKeyPressed(object sender, KeyboardEventArgs msg)
+        private void OnKeyPressed(object sender, KeyboardEventArgs msg)
         {
 
         }
 
-        protected void OnKeyReleased(object sender, KeyboardEventArgs msg)
+        private void OnKeyReleased(object sender, KeyboardEventArgs msg)
         {
 
         }
@@ -192,7 +192,7 @@ namespace CozyKxlol.MapEditor.OperateLayer
             TiledCommandMessages(this, new TiledCommandArgs(command));
         }
 
-        protected void OnMouseMoved(object sender, MouseEventArgs msg)
+        private void OnMouseMoved(object sender, MouseEventArgs msg)
         {
             CurrentPosition = msg.Current.Position;
             if(IsLeftMouseButtonPress)
