@@ -13,8 +13,8 @@ namespace Starbound.UI.Controls
         {
             get
             {
-                if (!(Control is Button)) return Enumerable.Empty<Primitive>();
-                Button button = Control as Button;
+                if (!(Control is DefaultButton)) return Enumerable.Empty<Primitive>();
+                DefaultButton button = Control as DefaultButton;
                 return new List<Primitive>()
                 {
                     new BorderSprite(Application.ResourceManager.GetResource<IImageResource>("BorderFill1"), new Vector2(button.X, button.Y), new Vector2(button.ActualWidth, button.ActualHeight), new Thickness(3), button.Background),

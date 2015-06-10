@@ -46,6 +46,7 @@
     <Compile Include="Bindings\IPropertyChanged.cs" />
     <Compile Include="Bindings\IValueConverter.cs" />
     <Compile Include="Controls\ButtonControlTemplate.cs" />
+    <Compile Include="Controls\DefaultButton.cs" />
     <Compile Include="Controls\DefaultImageButtonControlTemplate.cs" />
     <Compile Include="Controls\ImageButton.cs" />
     <Compile Include="Controls\Button.cs" />
