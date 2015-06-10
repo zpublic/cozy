@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CozyKxlol.Engine;
 using CozyKxlol.Engine.Tiled;
+using CozyKxlol.MapEditor.Event;
 using Microsoft.Xna.Framework;
 
 namespace CozyKxlol.MapEditor.TiledLayer
@@ -19,7 +20,7 @@ namespace CozyKxlol.MapEditor.TiledLayer
             TiledMap                    = new CozyTiledMap(size);
             TiledMap.NodeContentSize    = nodeSize;
 
-            MapEditorScene.Container.DataChangedMessage += OnDataChanged;
+            MapEditorScene.Container.DataMessage += OnDataChanged;
             this.AddChind(TiledMap);
 
             var thumb   = new MapEditorThumb(mapSize, TiledMap.NodeContentSize / 4);
@@ -27,8 +28,7 @@ namespace CozyKxlol.MapEditor.TiledLayer
             this.AddChind(thumb, 1);
         }
 
-        private void OnDataChanged(object sender, 
-            TiledMapDataContainer.DataChangedMessageArgs msg)
+        private void OnDataChanged(object sender, DataMessageArgs msg)
         {
             TiledMap.Change(msg.X, msg.Y, msg.Data);
         }
