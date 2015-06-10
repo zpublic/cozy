@@ -43,9 +43,9 @@
     <Compile Include="CozyGreenTiled.cs" />
     <Compile Include="MapEditorScene.cs" />
     <Compile Include="KxlolMapEditor.cs" />
-    <Compile Include="MapEditorSceneOperateLayer.cs" />
-    <Compile Include="MapEditorSceneTiledLayer.cs" />
-    <Compile Include="MapEditorThumb.cs" />
+    <Compile Include="OperateLayer\MapEditorSceneOperateLayer.cs" />
+    <Compile Include="TiledLayer\MapEditorSceneTiledLayer.cs" />
+    <Compile Include="TiledLayer\MapEditorThumb.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TiledMapDataContainer.cs" />

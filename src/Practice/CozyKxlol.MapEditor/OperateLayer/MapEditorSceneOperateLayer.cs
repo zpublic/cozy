@@ -11,7 +11,7 @@ using Starbound.UI.XNA.Renderers;
 using Starbound.UI.Controls;
 using Starbound.UI.Resources;
 
-namespace CozyKxlol.MapEditor
+namespace CozyKxlol.MapEditor.OperateLayer
 {
     public class MapEditorSceneOperateLayer : CozyLayer
     {

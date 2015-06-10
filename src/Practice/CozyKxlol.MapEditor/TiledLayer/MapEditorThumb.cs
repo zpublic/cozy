@@ -6,7 +6,7 @@ using CozyKxlol.Engine;
 using CozyKxlol.Engine.Tiled;
 using Microsoft.Xna.Framework;
 
-namespace CozyKxlol.MapEditor
+namespace CozyKxlol.MapEditor.TiledLayer
 {
     public class MapEditorThumb : CozyNode
     {

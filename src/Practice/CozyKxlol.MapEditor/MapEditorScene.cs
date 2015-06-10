@@ -5,6 +5,8 @@ using System.Text;
 using CozyKxlol.Engine;
 using Microsoft.Xna.Framework;
 using CozyKxlol.Engine.Tiled;
+using CozyKxlol.MapEditor.TiledLayer;
+using CozyKxlol.MapEditor.OperateLayer;
 namespace CozyKxlol.MapEditor
 {
     class MapEditorScene : CozyScene
