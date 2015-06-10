@@ -40,27 +40,23 @@ namespace CozyKxlol.MapEditor.OperateLayer
 
         public Vector2 NodeContentSize { get; set; }
 
-        private Dictionary<UIElement, Action> ClickEvent { get; set; } 
-
         public MapEditorSceneOperateLayer(Vector2 nodeSize)
         {
-            ClickEvent = new Dictionary<UIElement, Action>();
             renderer = new XNARenderer();
             controls = new List<Control>();
             panel = new StackPanel()
             {
                 Orientation = Orientation.Veritical,
-                ActualWidth = 1280,
-                ActualHeight = 800,
-                X = 990
+                ActualWidth = 240,
+                ActualHeight = 440,
+                X = 990,
+                Y = 200
             };
             panel.UpdateLayout();
             var button = new SampleButton(10, 220);
-            RegisterButtonAction(button, () => { button.Content = "Click1"; });
-            panel.AddChild(button);
+            panel.AddChild(button, () => { button.Content = "Click1"; });
             var button2 = new SampleButton(10, 350);
-            RegisterButtonAction(button2, () => { button2.Content = "Click2"; });
-            panel.AddChild(button2);
+            panel.AddChild(button2, () => { button2.Content = "Click2"; });
 
             Mouse               = new MouseEvents();
             Keyboard            = new KeyboardEvents();
@@ -130,30 +126,6 @@ namespace CozyKxlol.MapEditor.OperateLayer
             }
         }
 
-        protected void RegisterButtonAction(UIElement elemt, Action act)
-        {
-            if(elemt != null && act != null)
-            {
-                ClickEvent[elemt] = act;
-            }
-        }
-
-        protected void DispatchClick(Point clickPoint)
-        {
-            foreach (var obj in panel.Children)
-            {
-                if (clickPoint.X > obj.X && clickPoint.X < obj.X + obj.ActualWidth && 
-                    clickPoint.Y > obj.Y && clickPoint.Y < obj.Y + obj.ActualHeight)
-                {
-                    var click = ClickEvent[obj];
-                    if (click != null)
-                    {
-                        click();
-                    }
-                }
-            }
-        }
-
         protected void OnButtonClicked(object sender, MouseButtonEventArgs msg)
         {
             if (msg.Button == MouseButton.Left)
@@ -163,7 +135,7 @@ namespace CozyKxlol.MapEditor.OperateLayer
                     Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
                     AddTiled(p);
                 }
-                DispatchClick(msg.Current.Position);
+                panel.DispatchClick(msg.Current.Position.X, msg.Current.Position.Y);
             }
             else if (msg.Button == MouseButton.Right)
             {
