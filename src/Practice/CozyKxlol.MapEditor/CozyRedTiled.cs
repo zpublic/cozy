@@ -9,18 +9,18 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CozyKxlol.MapEditor
 {
-    public class CozyGreenTiled : CozyTiledNode
+    public class CozyRedTiled : CozyTiledNode
     {
-        public CozyGreenTiled()
+        public CozyRedTiled()
         {
-            Color = Color.Green;
+            Color = Color.Red;
         }
 
         public override uint Id
         {
             get 
             {
-                return 1;
+                return 2;
             }
         }
 

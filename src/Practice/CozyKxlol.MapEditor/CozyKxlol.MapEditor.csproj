@@ -42,6 +42,7 @@
     <Compile Include="Command\ContainerModifyOne.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="CozyGreenTiled.cs" />
+    <Compile Include="CozyRedTiled.cs" />
     <Compile Include="Event\TiledClearMessageArgs.cs" />
     <Compile Include="Event\TiledCommandArgs.cs" />
     <Compile Include="Event\TiledDataMessageArgs.cs" />

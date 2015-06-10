@@ -77,10 +77,18 @@ namespace CozyKxlol.MapEditor.OperateLayer
             var blockGreen = new SampleButton(10, 550) 
             {
                 Content = "Green",
-                Foreground = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),//
+                Foreground = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
                 Background = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
             };
-            panel.AddChild(blockGreen);
+            panel.AddChild(blockGreen, () => { CurrentTiledId = 1; });
+
+            var blockRed = new SampleButton(50, 550)
+            {
+                Content = "Red",
+                Foreground = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
+                Background = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
+            };
+            panel.AddChild(blockRed, () => { CurrentTiledId = 2; });
 
             Mouse               = new MouseEvents();
             Keyboard            = new KeyboardEvents();

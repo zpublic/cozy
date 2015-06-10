@@ -45,6 +45,7 @@ namespace CozyKxlol.MapEditor
         public void RegisterTiled()
         {
             CozyTiledFactory.RegisterTiled(1, new CozyGreenTiled());
+            CozyTiledFactory.RegisterTiled(2, new CozyRedTiled());
         }
     }
 }
