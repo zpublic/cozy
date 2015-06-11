@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace CozyKxlol.Engine.Tiled.Impl
+namespace CozyKxlol.Engine.Tiled
 {
-    public interface ICozyWriter
+    public interface ICozyLoader
     {
-        void Write(Stream WriteStream);
+        void Load(Stream LoadStream);
     }
 }

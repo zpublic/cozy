@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CozyKxlol.Engine.Tiled;
-using CozyKxlol.Engine.Tiled.Impl;
 using Microsoft.Xna.Framework;
 using CozyKxlol.MapEditor.Command;
 using CozyKxlol.MapEditor.Event;
@@ -57,12 +56,15 @@ namespace CozyKxlol.MapEditor
 
         public void Clear()
         {
+            TiledData.Clear();
             ClearMessage(TiledData, new TiledClearMessageArgs());
         }
 
         public object Clone()
         {
-            return this.MemberwiseClone(); 
+            var obj         = (this.MemberwiseClone() as TiledMapDataContainer);
+            obj.TiledData   = (TiledData.Clone() as CozyTiledData);
+            return obj;
         }
 
         public void Refresh()

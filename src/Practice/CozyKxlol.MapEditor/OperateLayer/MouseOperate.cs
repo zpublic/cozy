@@ -77,7 +77,7 @@ namespace CozyKxlol.MapEditor.OperateLayer
 
         private bool Judge(Point p)
         {
-            return (p.X < MapSize_X && p.Y < MapSize_Y && p.X > 0 && p.Y > 0);
+            return (p.X < MapSize_X && p.Y < MapSize_Y && p.X >= 0 && p.Y >= 0);
         }
 
         private void AddTiled(Point p)

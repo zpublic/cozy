@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using CozyKxlol.Engine.Tiled.Impl;
 
 namespace CozyKxlol.Engine.Tiled
 {
@@ -20,9 +19,12 @@ namespace CozyKxlol.Engine.Tiled
         {
             if(Path != null)
             {
-                using (Stream stream = new FileStream(Path, FileMode.Open, FileAccess.Read))
+                if(File.Exists(Path))
                 {
-                    loader.Load(stream);
+                    using (Stream stream = new FileStream(Path, FileMode.Open, FileAccess.Read))
+                    {
+                        loader.Load(stream);
+                    }
                 }
             }
 

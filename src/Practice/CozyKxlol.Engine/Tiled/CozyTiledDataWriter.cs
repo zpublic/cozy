@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using CozyKxlol.Engine.Tiled.Impl;
 
 namespace CozyKxlol.Engine.Tiled
 {
