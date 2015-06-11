@@ -19,9 +19,9 @@ namespace CozyKxlol.Engine.Tiled
 
         private void TestData(CozyTiledData Data)
         {
-            Data.Change(0, 0, 1);
-            Data.Change(1, 1, 2);
-            Data.Change(2, 2, 1);
+            Data.Modify(0, 0, 1);
+            Data.Modify(1, 1, 2);
+            Data.Modify(2, 2, 1);
         }
     }
 }

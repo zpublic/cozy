@@ -20,7 +20,7 @@ namespace CozyKxlol.MapEditor
 
         public void Write(int x, int y, uint data)
         {
-            TiledData.Change(x, y, data);
+            TiledData.Modify(x, y, data);
             DataMessage(TiledData, new TiledDataMessageArgs(x, y, data));
         }
 

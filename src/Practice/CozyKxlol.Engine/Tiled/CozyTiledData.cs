@@ -22,7 +22,11 @@ namespace CozyKxlol.Engine.Tiled
         {
             get
             {
-                return Data[x, y];
+                if(Judge(x, y))
+                {
+                    return Data[x, y];
+                }
+                return 0;
             }
         }
 
@@ -31,7 +35,7 @@ namespace CozyKxlol.Engine.Tiled
             return (x >= 0 && x < DataSize.X && y >= 0 && y < DataSize.Y);
         }
 
-        public void Change(int x, int y, uint data)
+        public void Modify(int x, int y, uint data)
         {
             if (Judge(x, y))
             {

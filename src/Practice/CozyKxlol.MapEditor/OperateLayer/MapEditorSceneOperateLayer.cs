@@ -196,9 +196,14 @@ namespace CozyKxlol.MapEditor.OperateLayer
         public const int MapSize_X = 30;
         public const int MapSize_Y = 20;
 
+        private bool Judge(Point p)
+        {
+            return (p.X < MapSize_X && p.Y < MapSize_Y && p.X >= 0 && p.Y >= 0);
+        }
+
         private void AddTiled(Point p)
         {
-            if (p.X < MapSize_X && p.Y < MapSize_Y)
+            if (Judge(p))
             {
                 var command = new ContainerModifyOne(p.X, p.Y, CurrentTiledId);
                 TiledCommandMessages(this, new TiledCommandArgs(command));
@@ -207,7 +212,7 @@ namespace CozyKxlol.MapEditor.OperateLayer
 
         private void RemoveTiled(Point p)
         {
-            if (p.X < MapSize_X && p.Y < MapSize_Y)
+            if (Judge(p))
             {
                 var command = new ContainerModifyOne(p.X, p.Y, 0);
                 TiledCommandMessages(this, new TiledCommandArgs(command));

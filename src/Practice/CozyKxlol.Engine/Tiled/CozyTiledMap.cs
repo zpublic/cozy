@@ -42,7 +42,7 @@ namespace CozyKxlol.Engine.Tiled
 
         public void Change(int x, int y, uint data)
         {
-            TiledData.Change(x, y, data);
+            TiledData.Modify(x, y, data);
         }
 
         public void Clear()
