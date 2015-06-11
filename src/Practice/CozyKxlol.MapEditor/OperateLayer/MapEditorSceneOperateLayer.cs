@@ -11,6 +11,7 @@ using Starbound.UI.XNA.Renderers;
 using Starbound.UI.Controls;
 using Starbound.UI.Resources;
 using CozyKxlol.MapEditor.Event;
+using CozyKxlol.MapEditor.Tileds;
 
 namespace CozyKxlol.MapEditor.OperateLayer
 {
@@ -64,22 +65,31 @@ namespace CozyKxlol.MapEditor.OperateLayer
                 Content = "Remove",
             };
             panel.AddChild(button2, () => { Status = S_Remove; });
-            var imgBtn = new ImageButton()
+            var button3 = new SampleButton(10, 450) 
             {
-                Content = "map/1",
-                ActualWidth = 240,
-                ActualHeight = 440,
-                X = 10,
-                Y = 480,
-                PreferredHeight = 300,
-                PreferredWidth = 150,
-                Margin = new Starbound.UI.Thickness(3, 3, 0, 0)
+                Content = "Clear",
             };
-            panel.AddChild(imgBtn, () => 
+            panel.AddChild(button3, () => 
             { 
                 var command = new ContainerClearCommand();
                 TiledCommandMessages(this, new TiledCommandArgs(command)); 
             });
+
+            var blockGreen = new SampleButton(10, 550) 
+            {
+                Content = "Green",
+                Foreground = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
+                Background = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
+            };
+            panel.AddChild(blockGreen, () => { CurrentTiledId = 1; });
+
+            var blockRed = new SampleButton(50, 550)
+            {
+                Content = "Red",
+                Foreground = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
+                Background = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
+            };
+            panel.AddChild(blockRed, () => { CurrentTiledId = 2; });
 
             Mouse               = new MouseEvents();
             Keyboard            = new KeyboardEvents();
@@ -99,7 +109,7 @@ namespace CozyKxlol.MapEditor.OperateLayer
             Keyboard.KeyReleased    += new EventHandler<KeyboardEventArgs>(OnKeyReleased);
 
             Status          = S_Add;
-            CurrentTiledId  = 1;
+            CurrentTiledId  = CozyGreenTiled.TiledId;
         }
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)

@@ -7,21 +7,23 @@ using CozyKxlol.Engine.Tiled;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CozyKxlol.MapEditor
+namespace CozyKxlol.MapEditor.Tileds
 {
-    public class CozyGreenTiled : CozyTiledNode
+    public class CozyGreenTiled : CozyColorTiled
     {
+        public static uint TiledId { get { return CozyTiledId.Green; } }
+
         public override uint Id
         {
             get 
             {
-                return 1;
+                return TiledId;
             }
         }
 
-        public override void DrawAt(GameTime gameTime, SpriteBatch spriteBatch, Vector2 pos, Vector2 size)
+        public CozyGreenTiled()
         {
-            spriteBatch.FillRectangle(pos, size, Color.Green);
+            ColorProperty = Color.Green;
         }
     }
 }

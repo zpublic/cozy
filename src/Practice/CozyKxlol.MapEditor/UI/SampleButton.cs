@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CozyKxlol.MapEditor.OperateLayer
 {
-    class SampleButton : Starbound.UI.Controls.Button
+    class SampleButton : Starbound.UI.Controls.DefaultButton
     {
         private Random random = new Random();
 

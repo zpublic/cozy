@@ -41,13 +41,16 @@
     <Compile Include="Command\ContainerClearCommand.cs" />
     <Compile Include="Command\ContainerModifyOne.cs" />
     <Compile Include="Command\ICommand.cs" />
-    <Compile Include="CozyGreenTiled.cs" />
+    <Compile Include="Tileds\CozyColorTiled.cs" />
+    <Compile Include="Tileds\CozyGreenTiled.cs" />
+    <Compile Include="Tileds\CozyRedTiled.cs" />
     <Compile Include="Event\TiledClearMessageArgs.cs" />
     <Compile Include="Event\TiledCommandArgs.cs" />
     <Compile Include="Event\TiledDataMessageArgs.cs" />
     <Compile Include="MapEditorScene.cs" />
     <Compile Include="KxlolMapEditor.cs" />
     <Compile Include="OperateLayer\MapEditorSceneOperateLayer.cs" />
+    <Compile Include="Tileds\CozyTiledId.cs" />
     <Compile Include="UI\SampleButton.cs" />
     <Compile Include="TiledLayer\MapEditorSceneTiledLayer.cs" />
     <Compile Include="TiledLayer\MapEditorThumb.cs" />
