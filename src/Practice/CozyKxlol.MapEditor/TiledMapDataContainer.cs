@@ -56,12 +56,15 @@ namespace CozyKxlol.MapEditor
 
         public void Clear()
         {
+            TiledData.Clear();
             ClearMessage(TiledData, new TiledClearMessageArgs());
         }
 
         public object Clone()
         {
-            return this.MemberwiseClone(); 
+            var obj         = (this.MemberwiseClone() as TiledMapDataContainer);
+            obj.TiledData   = (TiledData.Clone() as CozyTiledData);
+            return obj;
         }
 
         public void Refresh()

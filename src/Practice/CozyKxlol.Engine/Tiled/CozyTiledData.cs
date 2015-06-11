@@ -9,7 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CozyKxlol.Engine.Tiled
 {
-    public class CozyTiledData : ICozyLoader, ICozyWriter
+    public class CozyTiledData : ICozyLoader, ICozyWriter, ICloneable
     {
         private uint[,] Data { get; set; }
 
@@ -81,6 +81,13 @@ namespace CozyKxlol.Engine.Tiled
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(WriteStream, Data);
             }
+        }
+
+        public object Clone()
+        {
+            var obj = new CozyTiledData(DataSize.X, DataSize.Y);
+            Array.Copy(this.Data, obj.Data, Data.Length);
+            return obj;
         }
     }
 }
