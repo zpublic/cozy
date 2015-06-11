@@ -40,11 +40,13 @@ namespace CozyKxlol.MapEditor
 
         public event EventHandler<TiledDataMessageArgs> DataMessage;
         public event EventHandler<TiledClearMessageArgs> ClearMessage;
+        public event EventHandler<TiledRefreshMessageArgs> RefreshMessage;
 
         public void LoadMap()
         {
             var loader = new CozyTiledDataLoader(DataPath);
             loader.Load(TiledData);
+            Refresh();
         }
 
         public void SaveMap()
@@ -61,6 +63,25 @@ namespace CozyKxlol.MapEditor
         public object Clone()
         {
             return this.MemberwiseClone(); 
+        }
+
+        public void Refresh()
+        {
+            if(RefreshMessage != null)
+            {
+                int x = TiledData.DataSize.X;
+                int y = TiledData.DataSize.Y;
+                uint[,] data = new uint[x, y];
+
+                for (int i = 0; i < x; ++i)
+                {
+                    for (int j = 0; j < y; ++j)
+                    {
+                        data[i, j] = TiledData[i, j];
+                    }
+                }
+                RefreshMessage(TiledData, new TiledRefreshMessageArgs(data));
+            }
         }
     }
 }
