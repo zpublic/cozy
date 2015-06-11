@@ -109,31 +109,19 @@ namespace CozyKxlol.MapEditor.OperateLayer
             {
                 Content     = "Clear",
             };
-            panel.AddChild(button3, () =>
-            {
-                var command = new ContainerClearCommand();
-                TiledCommandMessages(this, new TiledCommandArgs(command));
-            });
+            panel.AddChild(button3, new Action(OnClear));
 
             var button4 = new SampleButton(10, 10)
             {
                 Content     = "Load",
             };
-            panel.AddChild(button4, () => 
-            {
-                var command = new ContainerLoadCommand();
-                TiledCommandMessages(this, new TiledCommandArgs(command));
-            });
+            panel.AddChild(button4, new Action(OnLoad));
 
             var button5 = new SampleButton(10, 10)
             {
-                Content = "Save",
+                Content     = "Save",
             };
-            panel.AddChild(button5, () =>
-            {
-                var command = new ContainerSaveCommand();
-                TiledCommandMessages(this, new TiledCommandArgs(command));
-            });
+            panel.AddChild(button5, new Action(OnSave));
 
             var blockGreen = new SampleButton(10, 550)
             {

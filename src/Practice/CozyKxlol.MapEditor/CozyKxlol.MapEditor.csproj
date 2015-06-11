@@ -45,6 +45,7 @@
     <Compile Include="Command\ContainerSaveCommand.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Event\TiledRefreshMessageArgs.cs" />
+    <Compile Include="OperateLayer\CommandOperate.cs" />
     <Compile Include="OperateLayer\KeyboardOperate.cs" />
     <Compile Include="OperateLayer\MouseOperate.cs" />
     <Compile Include="Tileds\CozyColorTiled.cs" />
