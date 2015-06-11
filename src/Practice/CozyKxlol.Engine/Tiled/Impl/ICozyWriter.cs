@@ -6,8 +6,8 @@ using System.IO;
 
 namespace CozyKxlol.Engine.Tiled.Impl
 {
-    public interface ICozyLoader
+    public interface ICozyWriter
     {
-        void Load(Stream LoadStream);
+        void Write(Stream WriteStream);
     }
 }

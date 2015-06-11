@@ -28,8 +28,6 @@ namespace CozyKxlol.Kxlol.Scene
             Tileds.NodeContentSize  = Vector2.One * 32;
             this.AddChind(Tileds);
 
-            var loader = new CozyTiledDataLoader();
-            Tileds.LoadData(loader);
             return true;
         }
 
