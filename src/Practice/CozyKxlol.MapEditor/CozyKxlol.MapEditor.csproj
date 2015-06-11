@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Command\CommandHistory.cs" />
     <Compile Include="Command\ContainerClearCommand.cs" />
     <Compile Include="Command\ContainerModifyOne.cs" />
     <Compile Include="Command\ICommand.cs" />

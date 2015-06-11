@@ -141,6 +141,7 @@ namespace CozyKxlol.MapEditor.OperateLayer
         }
 
         public event EventHandler<TiledCommandArgs> TiledCommandMessages;
+        public event EventHandler<TiledCommandArgs> TiledCommandUndo;
 
         private void OnButtonPressed(object sender, MouseButtonEventArgs msg)
         {
@@ -167,7 +168,10 @@ namespace CozyKxlol.MapEditor.OperateLayer
             }
             else if (msg.Button == MouseButton.Right)
             {
-
+                if (CommandHistory.Instance.CanUndo())
+                {
+                    TiledCommandUndo(this, null);
+                }
             }
         }
 
@@ -189,17 +193,25 @@ namespace CozyKxlol.MapEditor.OperateLayer
 
         }
 
+        public const int MapSize_X = 30;
+        public const int MapSize_Y = 20;
+
         private void AddTiled(Point p)
         {
-            // noity tiled modify to Container
-            var command = new ContainerModifyOne(p.X, p.Y, CurrentTiledId);
-            TiledCommandMessages(this, new TiledCommandArgs(command));
+            if (p.X < MapSize_X && p.Y < MapSize_Y)
+            {
+                var command = new ContainerModifyOne(p.X, p.Y, CurrentTiledId);
+                TiledCommandMessages(this, new TiledCommandArgs(command));
+            }
         }
 
         private void RemoveTiled(Point p)
         {
-            var command = new ContainerModifyOne(p.X, p.Y, 0);
-            TiledCommandMessages(this, new TiledCommandArgs(command));
+            if (p.X < MapSize_X && p.Y < MapSize_Y)
+            {
+                var command = new ContainerModifyOne(p.X, p.Y, 0);
+                TiledCommandMessages(this, new TiledCommandArgs(command));
+            }
         }
 
         private void OnMouseMoved(object sender, MouseEventArgs msg)

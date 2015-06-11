@@ -9,7 +9,7 @@ using CozyKxlol.MapEditor.Event;
 
 namespace CozyKxlol.MapEditor
 {
-    public class TiledMapDataContainer
+    public class TiledMapDataContainer : ICloneable
     {
         // get set
         // LoadMap
@@ -35,12 +35,6 @@ namespace CozyKxlol.MapEditor
             MapSize     = new Point(x, y);
         }
 
-
-        public void InvokeCommand(ICommand command)
-        {
-            command.Execute(this);
-        }
-
         public event EventHandler<TiledDataMessageArgs> DataMessage;
         public event EventHandler<TiledClearMessageArgs> ClearMessage;
 
@@ -57,6 +51,11 @@ namespace CozyKxlol.MapEditor
         public void Clear()
         {
             ClearMessage(TiledData, new TiledClearMessageArgs());
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone(); 
         }
     }
 }

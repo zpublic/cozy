@@ -8,6 +8,7 @@ using CozyKxlol.Engine.Tiled;
 using CozyKxlol.MapEditor.TiledLayer;
 using CozyKxlol.MapEditor.OperateLayer;
 using CozyKxlol.MapEditor.Tileds;
+using CozyKxlol.MapEditor.Command;
 
 namespace CozyKxlol.MapEditor
 {
@@ -40,7 +41,12 @@ namespace CozyKxlol.MapEditor
 
             Operat.TiledCommandMessages += (sender, msg) =>
             {
-                msg.Command.Execute(Container);
+                CommandHistory.Instance.Do(msg.Command, Container);
+            };
+
+            Operat.TiledCommandUndo += (sender, msg) =>
+            {
+                CommandHistory.Instance.Undo(Container);
             };
         }
 
