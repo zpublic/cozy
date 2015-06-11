@@ -115,6 +115,18 @@ namespace CozyKxlol.MapEditor.OperateLayer
                 TiledCommandMessages(this, new TiledCommandArgs(command));
             });
 
+            var button4 = new SampleButton(10, 10)
+            {
+                Content     = "Load",
+            };
+            panel.AddChild(button4, () => { MapEditorScene.Container.LoadMap(); });
+
+            var button5 = new SampleButton(10, 10)
+            {
+                Content = "Save",
+            };
+            panel.AddChild(button5, () => { MapEditorScene.Container.SaveMap(); });
+
             var blockGreen = new SampleButton(10, 550)
             {
                 Content     = "Green",
