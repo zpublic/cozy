@@ -42,6 +42,8 @@
     <Compile Include="Command\ContainerClearCommand.cs" />
     <Compile Include="Command\ContainerModifyOne.cs" />
     <Compile Include="Command\ICommand.cs" />
+    <Compile Include="OperateLayer\KeyboardOperate.cs" />
+    <Compile Include="OperateLayer\MouseOperate.cs" />
     <Compile Include="Tileds\CozyColorTiled.cs" />
     <Compile Include="Tileds\CozyGreenTiled.cs" />
     <Compile Include="Tileds\CozyRedTiled.cs" />

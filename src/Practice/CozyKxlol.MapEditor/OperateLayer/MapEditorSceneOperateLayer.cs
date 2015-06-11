@@ -15,22 +15,14 @@ using CozyKxlol.MapEditor.Tileds;
 
 namespace CozyKxlol.MapEditor.OperateLayer
 {
-    public class MapEditorSceneOperateLayer : CozyLayer
+    public partial class MapEditorSceneOperateLayer : CozyLayer
     {
-        // accept keyboard shortcuts
-        // and accept mouse click
-        // then modify TiledMapDataContainer`s data
-
-        private Random random = new Random();
-
         List<Control> controls;
         StackPanel panel;
         XNARenderer renderer;
 
         public MouseEvents Mouse { get; set; }
         public KeyboardEvents Keyboard { get; set; }
-
-        public bool IsLeftMouseButtonPress { get; set; }
 
         public const uint S_Add = 0000;
         public const uint S_Remove = 0001;
@@ -44,78 +36,26 @@ namespace CozyKxlol.MapEditor.OperateLayer
 
         public MapEditorSceneOperateLayer(Vector2 nodeSize)
         {
-            renderer = new XNARenderer();
-            controls = new List<Control>();
-            panel = new StackPanel()
-            {
-                Orientation = Orientation.Veritical,
-                ActualWidth = 240,
-                ActualHeight = 440,
-                X = 990,
-                Y = 200
-            };
-            panel.UpdateLayout();
-            var button = new SampleButton(10, 220) 
-            { 
-                Content = "Add",
-            };
-            panel.AddChild(button, () => { Status = S_Add; });
-            var button2 = new SampleButton(10, 350) 
-            {
-                Content = "Remove",
-            };
-            panel.AddChild(button2, () => { Status = S_Remove; });
-            var button3 = new SampleButton(10, 450) 
-            {
-                Content = "Clear",
-            };
-            panel.AddChild(button3, () => 
-            { 
-                var command = new ContainerClearCommand();
-                TiledCommandMessages(this, new TiledCommandArgs(command)); 
-            });
+            initGui();
 
-            var blockGreen = new SampleButton(10, 550) 
-            {
-                Content = "Green",
-                Foreground = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
-                Background = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
-            };
-            panel.AddChild(blockGreen, () => { CurrentTiledId = 1; });
-
-            var blockRed = new SampleButton(50, 550)
-            {
-                Content = "Red",
-                Foreground = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
-                Background = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
-            };
-            panel.AddChild(blockRed, () => { CurrentTiledId = 2; });
+            NodeContentSize = nodeSize;
+            Status = S_Add;
+            CurrentTiledId = CozyGreenTiled.TiledId;
 
             Mouse               = new MouseEvents();
-            Keyboard            = new KeyboardEvents();
-
-            NodeContentSize     = nodeSize;
-
             Mouse.ButtonPressed     += new EventHandler<MouseButtonEventArgs>(OnButtonPressed);
-
             Mouse.ButtonClicked     += new EventHandler<MouseButtonEventArgs>(OnButtonClicked);
-
             Mouse.ButtonReleased    += new EventHandler<MouseButtonEventArgs>(OnButtonReleased);
-
             Mouse.MouseMoved        += new EventHandler<MouseEventArgs>(OnMouseMoved);
 
+            Keyboard = new KeyboardEvents();
             Keyboard.KeyPressed     += new EventHandler<KeyboardEventArgs>(OnKeyPressed);
-
             Keyboard.KeyReleased    += new EventHandler<KeyboardEventArgs>(OnKeyReleased);
-
-            Status          = S_Add;
-            CurrentTiledId  = CozyGreenTiled.TiledId;
         }
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             base.Update(gameTime);
-
             Mouse.Update(gameTime);
             Keyboard.Update(gameTime);
         }
@@ -140,94 +80,54 @@ namespace CozyKxlol.MapEditor.OperateLayer
             }
         }
 
-        public event EventHandler<TiledCommandArgs> TiledCommandMessages;
-        public event EventHandler<TiledCommandArgs> TiledCommandUndo;
-
-        private void OnButtonPressed(object sender, MouseButtonEventArgs msg)
+        private void initGui()
         {
-            if (msg.Button == MouseButton.Left)
+            renderer = new XNARenderer();
+            controls = new List<Control>();
+            panel = new StackPanel()
             {
-                IsLeftMouseButtonPress = true;
-            }
-        }
-
-        private void OnButtonClicked(object sender, MouseButtonEventArgs msg)
-        {
-            if (msg.Button == MouseButton.Left)
+                Orientation = Orientation.Veritical,
+                ActualWidth = 240,
+                ActualHeight = 440,
+                X = 990,
+                Y = 200
+            };
+            panel.UpdateLayout();
+            var button = new SampleButton(10, 220)
             {
-                Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
-                if (Status == S_Add)
-                {
-                    AddTiled(p);
-                }
-                else if(Status == S_Remove)
-                {
-                    RemoveTiled(p);
-                }
-                panel.DispatchClick(msg.Current.Position.X, msg.Current.Position.Y);
-            }
-            else if (msg.Button == MouseButton.Right)
+                Content = "Add",
+            };
+            panel.AddChild(button, () => { Status = S_Add; });
+            var button2 = new SampleButton(10, 350)
             {
-                if (CommandHistory.Instance.CanUndo())
-                {
-                    TiledCommandUndo(this, null);
-                }
-            }
-        }
-
-        private void OnButtonReleased(object sender, MouseButtonEventArgs msg)
-        {
-            if (msg.Button == MouseButton.Left)
+                Content = "Remove",
+            };
+            panel.AddChild(button2, () => { Status = S_Remove; });
+            var button3 = new SampleButton(10, 450)
             {
-                IsLeftMouseButtonPress = false;
-            }
-        }
-
-        private void OnKeyPressed(object sender, KeyboardEventArgs msg)
-        {
-
-        }
-
-        private void OnKeyReleased(object sender, KeyboardEventArgs msg)
-        {
-
-        }
-
-        public const int MapSize_X = 30;
-        public const int MapSize_Y = 20;
-
-        private void AddTiled(Point p)
-        {
-            if (p.X < MapSize_X && p.Y < MapSize_Y)
+                Content = "Clear",
+            };
+            panel.AddChild(button3, () =>
             {
-                var command = new ContainerModifyOne(p.X, p.Y, CurrentTiledId);
+                var command = new ContainerClearCommand();
                 TiledCommandMessages(this, new TiledCommandArgs(command));
-            }
-        }
+            });
 
-        private void RemoveTiled(Point p)
-        {
-            if (p.X < MapSize_X && p.Y < MapSize_Y)
+            var blockGreen = new SampleButton(10, 550)
             {
-                var command = new ContainerModifyOne(p.X, p.Y, 0);
-                TiledCommandMessages(this, new TiledCommandArgs(command));
-            }
-        }
+                Content = "Green",
+                Foreground = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
+                Background = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
+            };
+            panel.AddChild(blockGreen, () => { CurrentTiledId = 1; });
 
-        private void OnMouseMoved(object sender, MouseEventArgs msg)
-        {
-            CurrentPosition = msg.Current.Position;
-            if(IsLeftMouseButtonPress)
+            var blockRed = new SampleButton(50, 550)
             {
-                Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
-                if (Status == S_Add)
-                {
-                    AddTiled(p);
-                }else if(Status == S_Remove)
-                {
-                    RemoveTiled(p);
-                }
-            }
+                Content = "Red",
+                Foreground = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
+                Background = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
+            };
+            panel.AddChild(blockRed, () => { CurrentTiledId = 2; });
         }
     }
 }
