@@ -19,9 +19,12 @@ namespace CozyKxlol.Engine.Tiled
         {
             if(Path != null)
             {
-                using (Stream stream = new FileStream(Path, FileMode.Open, FileAccess.Read))
+                if(File.Exists(Path))
                 {
-                    loader.Load(stream);
+                    using (Stream stream = new FileStream(Path, FileMode.Open, FileAccess.Read))
+                    {
+                        loader.Load(stream);
+                    }
                 }
             }
 
