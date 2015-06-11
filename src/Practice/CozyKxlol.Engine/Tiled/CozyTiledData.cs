@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
-using CozyKxlol.Engine.Tiled.Impl;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 

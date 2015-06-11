@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CozyKxlol.Engine.Tiled;
-using CozyKxlol.Engine.Tiled.Impl;
 using Microsoft.Xna.Framework;
 using CozyKxlol.MapEditor.Command;
 using CozyKxlol.MapEditor.Event;
