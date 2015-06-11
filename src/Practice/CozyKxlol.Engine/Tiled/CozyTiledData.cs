@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using CozyKxlol.Engine.Tiled.Impl;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
 
 namespace CozyKxlol.Engine.Tiled
 {
-    public class CozyTiledData
+    public class CozyTiledData : ICozyLoader, ICozyWriter
     {
         private uint[,] Data { get; set; }
 
@@ -22,7 +26,11 @@ namespace CozyKxlol.Engine.Tiled
         {
             get
             {
-                return Data[x, y];
+                if(Judge(x, y))
+                {
+                    return Data[x, y];
+                }
+                return 0;
             }
         }
 
@@ -31,7 +39,7 @@ namespace CozyKxlol.Engine.Tiled
             return (x >= 0 && x < DataSize.X && y >= 0 && y < DataSize.Y);
         }
 
-        public void Change(int x, int y, uint data)
+        public void Modify(int x, int y, uint data)
         {
             if (Judge(x, y))
             {
@@ -55,6 +63,24 @@ namespace CozyKxlol.Engine.Tiled
                 {
                     Data[i, j] = 0;
                 }
+            }
+        }
+
+        public void Load(Stream LoadStream)
+        {
+            if (LoadStream != null && Data != null)
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                Data = (uint[,])formatter.Deserialize(LoadStream);
+            }
+        }
+
+        public void Write(Stream WriteStream)
+        {
+            if (WriteStream != null && Data != null)
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(WriteStream, Data);
             }
         }
     }

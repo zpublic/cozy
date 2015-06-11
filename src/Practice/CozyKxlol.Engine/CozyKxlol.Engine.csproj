@@ -76,6 +76,7 @@
     <Compile Include="Tiled\CozyDefaultTiled.cs" />
     <Compile Include="Tiled\CozyTiledData.cs" />
     <Compile Include="Tiled\CozyTiledDataLoader.cs" />
+    <Compile Include="Tiled\CozyTiledDataWriter.cs" />
     <Compile Include="Tiled\CozyTiledFactory.cs" />
     <Compile Include="Tiled\CozyTiledJsonParser.cs" />
     <Compile Include="Tiled\CozyTiledMap.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Tiled\CozyTiledNode.cs" />
     <Compile Include="Tiled\Impl\ICozyLoader.cs" />
     <Compile Include="Tiled\CozyTiledPositionHelper.cs" />
+    <Compile Include="Tiled\Impl\ICozyWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

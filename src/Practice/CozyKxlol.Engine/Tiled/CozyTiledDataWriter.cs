@@ -7,25 +7,24 @@ using CozyKxlol.Engine.Tiled.Impl;
 
 namespace CozyKxlol.Engine.Tiled
 {
-    public class CozyTiledDataLoader 
+    public class CozyTiledDataWriter
     {
         public string Path { get; set; }
 
-        public CozyTiledDataLoader(string path)
+        public CozyTiledDataWriter(string path)
         {
             Path = path;
         }
 
-        public void Load(ICozyLoader loader)
+        public void Write(ICozyWriter writer)
         {
             if(Path != null)
             {
-                using (Stream stream = new FileStream(Path, FileMode.Open, FileAccess.Read))
+                using (Stream stream = new FileStream(Path, FileMode.Create, FileAccess.Write))
                 {
-                    loader.Load(stream);
+                    writer.Write(stream);
                 }
             }
-
         }
     }
 }

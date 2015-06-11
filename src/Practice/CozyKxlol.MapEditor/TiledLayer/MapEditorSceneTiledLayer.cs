@@ -22,6 +22,7 @@ namespace CozyKxlol.MapEditor.TiledLayer
 
             MapEditorScene.Container.DataMessage    += OnDataChanged;
             MapEditorScene.Container.ClearMessage   += OnClear;
+            MapEditorScene.Container.RefreshMessage += OnRefersh;
             this.AddChind(TiledMap);
 
             var thumb   = new MapEditorThumb(mapSize, TiledMap.NodeContentSize / 4);
@@ -37,6 +38,19 @@ namespace CozyKxlol.MapEditor.TiledLayer
         private void OnClear(object sender, TiledClearMessageArgs msg)
         {
             TiledMap.Clear();
+        }
+
+        private void OnRefersh(object sender, TiledRefreshMessageArgs msg)
+        {
+            int x = msg.Data.GetLength(0);
+            int y = msg.Data.GetLength(1);
+            for(int i = 0; i < x; ++i)
+            {
+                for(int j = 0; j < y; ++j)
+                {
+                    TiledMap.Change(i, j, msg.Data[i, j]);
+                }
+            }
         }
     }
 }

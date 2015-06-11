@@ -24,8 +24,8 @@ namespace CozyKxlol.MapEditor.OperateLayer
         public MouseEvents Mouse { get; set; }
         public KeyboardEvents Keyboard { get; set; }
 
-        public const uint S_Add = 0000;
-        public const uint S_Remove = 0001;
+        public const uint S_Add     = 0000;
+        public const uint S_Remove  = 0001;
 
         public uint Status { get; set; }
 
@@ -39,8 +39,8 @@ namespace CozyKxlol.MapEditor.OperateLayer
             initGui();
 
             NodeContentSize = nodeSize;
-            Status = S_Add;
-            CurrentTiledId = CozyGreenTiled.TiledId;
+            Status          = S_Add;
+            CurrentTiledId  = CozyGreenTiled.TiledId;
 
             Mouse               = new MouseEvents();
             Mouse.ButtonPressed     += new EventHandler<MouseButtonEventArgs>(OnButtonPressed);
@@ -82,30 +82,32 @@ namespace CozyKxlol.MapEditor.OperateLayer
 
         private void initGui()
         {
-            renderer = new XNARenderer();
-            controls = new List<Control>();
-            panel = new StackPanel()
+            renderer    = new XNARenderer();
+            controls    = new List<Control>();
+            panel       = new StackPanel()
             {
-                Orientation = Orientation.Veritical,
-                ActualWidth = 240,
-                ActualHeight = 440,
-                X = 990,
-                Y = 200
+                Orientation     = Orientation.Veritical,
+                ActualWidth     = 240,
+                ActualHeight    = 440,
+                X               = 990,
+                Y               = 200
             };
             panel.UpdateLayout();
             var button = new SampleButton(10, 220)
             {
-                Content = "Add",
+                Content     = "Add",
             };
             panel.AddChild(button, () => { Status = S_Add; });
+
             var button2 = new SampleButton(10, 350)
             {
-                Content = "Remove",
+                Content     = "Remove",
             };
             panel.AddChild(button2, () => { Status = S_Remove; });
+
             var button3 = new SampleButton(10, 450)
             {
-                Content = "Clear",
+                Content     = "Clear",
             };
             panel.AddChild(button3, () =>
             {
@@ -115,19 +117,19 @@ namespace CozyKxlol.MapEditor.OperateLayer
 
             var blockGreen = new SampleButton(10, 550)
             {
-                Content = "Green",
-                Foreground = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
-                Background = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
+                Content     = "Green",
+                Foreground  = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
+                Background  = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
             };
-            panel.AddChild(blockGreen, () => { CurrentTiledId = 1; });
+            panel.AddChild(blockGreen, () => { CurrentTiledId = CozyGreenTiled.TiledId; });
 
             var blockRed = new SampleButton(50, 550)
             {
-                Content = "Red",
-                Foreground = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
-                Background = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
+                Content     = "Red",
+                Foreground  = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
+                Background  = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
             };
-            panel.AddChild(blockRed, () => { CurrentTiledId = 2; });
+            panel.AddChild(blockRed, () => { CurrentTiledId = CozyRedTiled.TiledId; });
         }
     }
 }

@@ -35,14 +35,19 @@ namespace CozyKxlol.Engine.Tiled
             }
         }
 
-        public void LoadData(ICozyLoader loader)
+        public void LoadData(string path)
         {
+            CozyTiledDataLoader loader = new CozyTiledDataLoader("path");
             loader.Load(TiledData);
+        }
+        public void SaveData(string path)
+        {
+
         }
 
         public void Change(int x, int y, uint data)
         {
-            TiledData.Change(x, y, data);
+            TiledData.Modify(x, y, data);
         }
 
         public void Clear()
