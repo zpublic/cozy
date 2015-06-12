@@ -18,17 +18,20 @@ namespace CozyKxlol.Engine.Tiled.Json
                 json = fs.ReadToEnd();
             }
 
-            CozyTileJsonResult node = new CozyTileJsonResult();
+            CozyTileJsonResult node     = new CozyTileJsonResult();
+            JObject jo                  = JObject.Parse(json);
+            var iobj                    = jo["tiles"];
 
-            JObject jo = JObject.Parse(json);
-            var iobj = jo["tiles"];
             if( iobj != null && iobj.HasValues)
             {
                 var tiles = JObject.Parse(iobj.ToString());
                 if(tiles != null && tiles.HasValues)
                 {
-                    var i = tiles["i"].ToString();
-                    node.tiles = JsonConvert.DeserializeObject<CozyJsonTilesData>(i);
+                    var i = tiles["i"];
+                    if (i != null)
+                    {
+                        node.tiles = JsonConvert.DeserializeObject<CozyJsonTilesData>(i.ToString());
+                    }
                 }
             }
 
@@ -38,8 +41,11 @@ namespace CozyKxlol.Engine.Tiled.Json
                 var blocks = JObject.Parse(bobj.ToString());
                 if (blocks != null && blocks.HasValues)
                 {
-                    var i = blocks["i"].ToString();
-                    node.blocks = JsonConvert.DeserializeObject<CozyJsonBlockData>(i);
+                    var i = blocks["i"];
+                    if(i != null)
+                    {
+                        node.blocks = JsonConvert.DeserializeObject<CozyJsonBlockData>(i.ToString());
+                    }
                 }
             }
             return node;
