@@ -97,7 +97,6 @@ namespace CozyKxlol.MapEditor
             if (data.blocks != null)
             {
                 // TODO 用于编辑器块绘制
-
                 var blocks      = data.blocks;
                 uint[,] rect    = null;
                 
@@ -123,60 +122,75 @@ namespace CozyKxlol.MapEditor
             uint[] result       = new uint[rect.Length];
             if(str.Contains('-'))
             {
-                int offset      = 0;
-                foreach(var obj in dataSplit)
-                {
-                    if(obj.Contains('-'))
-                    {
-                        int pos     = obj.IndexOf('-');
-                        uint first  = uint.Parse(obj.Substring(0, obj.Length - pos - 1));
-                        uint last   = uint.Parse(obj.Substring(pos + 1, obj.Length - pos - 1));
-                        for(uint i  = first; i <= last; ++i)
-                        {
-                            result[offset++] = i;
-                        }
-                    }
-                    else
-                    {
-                        result[offset++] = uint.Parse(obj);
-                    }
-                }
+                ParseWithRange(dataSplit, result);
             }
             else if(str.Contains('*'))
             {
-                if(str.StartsWith("*"))
+                ParseWithFill(str, result);
+            }
+            else
+            {
+                ParseWithNothing(dataSplit, result);
+            }
+            FillDyadicArray(result, rect);
+        }
+
+        private void ParseWithRange(string[] dataSplit, uint[] result)
+        {
+            int offset = 0;
+            foreach (var obj in dataSplit)
+            {
+                if (obj.Contains('-'))
                 {
-                    uint value = uint.Parse(str.Substring(1, str.Length - 1));
-                    for(int i = 0; i < result.Length; ++i)
+                    int pos = obj.IndexOf('-');
+                    uint first = uint.Parse(obj.Substring(0, obj.Length - pos - 1));
+                    uint last = uint.Parse(obj.Substring(pos + 1, obj.Length - pos - 1));
+                    for (uint i = first; i <= last; ++i)
                     {
-                        result[i] = value;
+                        result[offset++] = i;
                     }
                 }
                 else
                 {
-                    // TODO
+                    result[offset++] = uint.Parse(obj);
                 }
-                
+            }
+        }
+
+        private void ParseWithFill(string data, uint[] result)
+        {
+            if (data.StartsWith("*"))
+            {
+                uint value = uint.Parse(data.Substring(1, data.Length - 1));
+                for (int i = 0; i < result.Length; ++i)
+                {
+                    result[i] = value;
+                }
             }
             else
             {
-                if(rect.Length == dataSplit.Length)
-                {
-                    for(int i = 0; i < result.Length; ++i)
-                    {
-                        result[i] = uint.Parse(dataSplit[i]);
-                    }
-                }
+                // TODO
             }
+        }
 
-            int count   = 0;
-            int x       = rect.GetLength(0);
-            int y       = rect.GetLength(1);
+        private void ParseWithNothing(string[] dataSplit, uint[] result)
+        {
+            for (int i = 0; i < result.Length; ++i)
+            {
+                result[i] = uint.Parse(dataSplit[i]);
+            }
+        }
+
+        private void FillDyadicArray(uint[] source, uint[,] target)
+        {
+            int offset = 0;
+            int x = target.GetLength(0);
+            int y = target.GetLength(1);
             for (int i = 0; i < x; ++i)
             {
                 for (int j = 0; j < y; ++j)
                 {
-                    rect[i, j] = result[count++];
+                    target[i, j] = source[offset++];
                 }
             }
         }
