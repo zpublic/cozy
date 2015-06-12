@@ -7,6 +7,7 @@ using CozyKxlol.Engine.Tiled;
 using CozyKxlol.Kxlol.Object.Tiled;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 
 namespace CozyKxlol.Kxlol.Scene
 {
@@ -28,6 +29,7 @@ namespace CozyKxlol.Kxlol.Scene
             Tileds.NodeContentSize  = Vector2.One * 32;
             this.AddChind(Tileds);
 
+            TestCase();
             return true;
         }
 
@@ -35,7 +37,45 @@ namespace CozyKxlol.Kxlol.Scene
         {
             CozyTiledFactory.RegisterTiled(CozyTiledId.RedTiled, new CozyRedTiled());
             CozyTiledFactory.RegisterTiled(CozyTiledId.GreenTiled, new CozyGreenTiled());
+        }
 
+        public void TestCase()
+        {
+            var json = new CozyTiledJsonParser();
+            
+            var fs = new StreamReader(new FileStream("d:\\tiles.json", FileMode.Open, FileAccess.Read));
+
+            var result = json.parser(fs.ReadToEnd());
+            var data = result as CozyTileJsonData;
+            if(data.tiles != null)
+            {
+                var tiles = data.tiles;
+                if(tiles.type.Equals("tiles"))
+                {
+                    // TODO 分割图片
+                }
+                else if(tiles.type.Equals("tile"))
+                {
+                    // TODO 取图片里的一块
+                }
+            }
+            if(data.blocks != null)
+            {
+                // TODO 用于编辑器块绘制
+
+                var blocks = data.blocks;
+                switch(blocks.type)
+                {
+                    case "rect":
+
+                        break;
+                    case "square":
+
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
