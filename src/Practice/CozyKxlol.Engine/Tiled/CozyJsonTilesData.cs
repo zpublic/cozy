@@ -13,7 +13,7 @@ namespace CozyKxlol.Engine.Tiled
         public int y { get; set; }
         public int w { get; set; }
         public int h { get; set; }
-        public int id { get; set; }
+        public uint id { get; set; }
         public string annotate { get; set; }
     }
 }
