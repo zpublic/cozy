@@ -6,7 +6,6 @@ using CozyKxlol.Engine;
 using Microsoft.Xna.Framework;
 using CozyKxlol.Engine.Tiled;
 using CozyKxlol.Engine.Tiled.Json;
-using System.IO;
 using CozyKxlol.MapEditor.TiledLayer;
 using CozyKxlol.MapEditor.OperateLayer;
 using CozyKxlol.MapEditor.Tileds;
@@ -63,11 +62,8 @@ namespace CozyKxlol.MapEditor
         public void TestCase()
         {
             var json = new CozyTiledJsonParser();
+            var data = json.parser(@"d:\tiles.json") as CozyTileJsonResult;
 
-            var fs = new StreamReader(new FileStream("d:\\tiles.json", FileMode.Open, FileAccess.Read));
-
-            var result = json.parser(fs.ReadToEnd());
-            var data = result as CozyTileJsonResult;
             if (data.tiles != null)
             {
                 var tiles = data.tiles;
@@ -94,6 +90,8 @@ namespace CozyKxlol.MapEditor
                     Rectangle rect = new Rectangle(32 * tiles.x, 32 * tiles.y, 32, 32);
                     var tiled = CozySpriteTiled.Create(texture, rect);
                     CozyTiledFactory.RegisterTiled(tiles.id, tiled);
+
+                    Operat.CurrentTiledId = tiles.id;
                 }
             }
             if (data.blocks != null)

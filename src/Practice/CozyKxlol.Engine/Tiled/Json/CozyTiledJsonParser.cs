@@ -12,7 +12,12 @@ namespace CozyKxlol.Engine.Tiled.Json
     {
         public object parser(string filename)
         {
-            string json = filename;
+            string json = null;
+            using (var fs = new StreamReader(new FileStream(filename, FileMode.Open, FileAccess.Read)))
+            {
+                json = fs.ReadToEnd();
+            }
+
             CozyTileJsonResult node = new CozyTileJsonResult();
 
             JObject jo = JObject.Parse(json);
