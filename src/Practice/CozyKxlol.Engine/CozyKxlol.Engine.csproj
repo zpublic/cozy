@@ -76,6 +76,7 @@
     <Compile Include="Tiled\CozyDefaultTiled.cs" />
     <Compile Include="Tiled\CozyJsonBlockData.cs" />
     <Compile Include="Tiled\CozyJsonTilesData.cs" />
+    <Compile Include="Tiled\CozySpriteTiled.cs" />
     <Compile Include="Tiled\CozyTiledData.cs" />
     <Compile Include="Tiled\CozyTiledDataLoader.cs" />
     <Compile Include="Tiled\CozyTiledDataWriter.cs" />

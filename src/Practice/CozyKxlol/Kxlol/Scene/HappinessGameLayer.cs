@@ -35,8 +35,8 @@ namespace CozyKxlol.Kxlol.Scene
 
         private void RegisterTiled()
         {
-            CozyTiledFactory.RegisterTiled(CozyTiledId.RedTiled, new CozyRedTiled());
-            CozyTiledFactory.RegisterTiled(CozyTiledId.GreenTiled, new CozyGreenTiled());
+            //CozyTiledFactory.RegisterTiled(CozyTiledId.RedTiled, new CozyRedTiled());
+            //CozyTiledFactory.RegisterTiled(CozyTiledId.GreenTiled, new CozyGreenTiled());
         }
 
         public void TestCase()
@@ -52,7 +52,19 @@ namespace CozyKxlol.Kxlol.Scene
                 var tiles = data.tiles;
                 if(tiles.type.Equals("tiles"))
                 {
+                    var CurrId = tiles.id;
                     // TODO 分割图片
+                    var texture = CozyDirector.Instance.TextureCacheInstance.AddImage(tiles.path);
+                    for(int i = 0; i < tiles.w; ++i)
+                    {
+                        for(int j = 0; j < tiles.h; ++j)
+                        {
+                            Rectangle rect = new Rectangle(32 * i, 32 * j, 32, 32);
+                            var tiled = CozySpriteTiled.Create(texture, rect);
+                            CozyTiledFactory.RegisterTiled(CurrId++, tiled);
+                        }
+                    }
+
                 }
                 else if(tiles.type.Equals("tile"))
                 {
