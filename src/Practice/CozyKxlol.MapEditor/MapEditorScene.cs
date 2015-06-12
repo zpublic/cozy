@@ -61,8 +61,8 @@ namespace CozyKxlol.MapEditor
 
         private void RegisterTiledBySprite(CozyTexture texture, int x, int y, uint id)
         {
-            Rectangle rect = new Rectangle(32 * x, 32 * y, 32, 32);
-            var tiled = CozySpriteTiled.Create(texture, rect);
+            Rectangle rect  = new Rectangle(32 * x, 32 * y, 32, 32);
+            var tiled       = CozySpriteTiled.Create(texture, rect);
             CozyTiledFactory.RegisterTiled(id, tiled);
         }
 
@@ -73,7 +73,7 @@ namespace CozyKxlol.MapEditor
 
             if (data.tiles != null)
             {
-                var tiles = data.tiles;
+                var tiles   = data.tiles;
                 var texture = CozyDirector.Instance.TextureCacheInstance.AddImage(tiles.path);
                 if (tiles.type.Equals("tiles"))
                 {
@@ -98,17 +98,85 @@ namespace CozyKxlol.MapEditor
             {
                 // TODO 用于编辑器块绘制
 
-                var blocks = data.blocks;
+                var blocks      = data.blocks;
+                uint[,] rect    = null;
+                
                 switch (blocks.type)
                 {
                     case "rect":
-
+                        rect = new uint[blocks.w, blocks.h];
+                        FillRect(blocks.data, rect);
                         break;
                     case "square":
-
+                        rect = new uint[blocks.w, blocks.w];
+                        FillRect(blocks.data, rect);
                         break;
                     default:
                         break;
+                }
+            }
+        }
+
+        private void FillRect(string str, uint[,] rect)
+        {
+            string[] dataSplit  = str.Split(',');
+            uint[] result       = new uint[rect.Length];
+            if(str.Contains('-'))
+            {
+                int offset      = 0;
+                foreach(var obj in dataSplit)
+                {
+                    if(obj.Contains('-'))
+                    {
+                        int pos     = obj.IndexOf('-');
+                        uint first  = uint.Parse(obj.Substring(0, obj.Length - pos - 1));
+                        uint last   = uint.Parse(obj.Substring(pos + 1, obj.Length - pos - 1));
+                        for(uint i  = first; i <= last; ++i)
+                        {
+                            result[offset++] = i;
+                        }
+                    }
+                    else
+                    {
+                        result[offset++] = uint.Parse(obj);
+                    }
+                }
+            }
+            else if(str.Contains('*'))
+            {
+                if(str.StartsWith("*"))
+                {
+                    uint value = uint.Parse(str.Substring(1, str.Length - 1));
+                    for(int i = 0; i < result.Length; ++i)
+                    {
+                        result[i] = value;
+                    }
+                }
+                else
+                {
+                    // TODO
+                }
+                
+            }
+            else
+            {
+                if(rect.Length == dataSplit.Length)
+                {
+                    for(int i = 0; i < result.Length; ++i)
+                    {
+                        result[i] = uint.Parse(dataSplit[i]);
+                    }
+                }
+            }
+
+            int count   = 0;
+            int x       = rect.GetLength(0);
+            int y       = rect.GetLength(1);
+            for (int i = 0; i < x; ++i)
+            {
+                for (int j = 0; j < y; ++j)
+                {
+                    rect[i, j] = result[count++];
                 }
             }
         }
