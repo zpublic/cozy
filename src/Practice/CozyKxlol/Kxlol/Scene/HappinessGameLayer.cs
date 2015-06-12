@@ -35,7 +35,6 @@ namespace CozyKxlol.Kxlol.Scene
         {
             CozyTiledFactory.RegisterTiled(CozyTiledId.RedTiled, new CozyRedTiled());
             CozyTiledFactory.RegisterTiled(CozyTiledId.GreenTiled, new CozyGreenTiled());
-
         }
     }
 }
