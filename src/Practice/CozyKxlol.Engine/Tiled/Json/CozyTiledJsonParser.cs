@@ -6,14 +6,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace CozyKxlol.Engine.Tiled
+namespace CozyKxlol.Engine.Tiled.Json
 {
     public class CozyTiledJsonParser
     {
         public object parser(string filename)
         {
             string json = filename;
-            CozyTileJsonData node = new CozyTileJsonData();
+            CozyTileJsonResult node = new CozyTileJsonResult();
 
             JObject jo = JObject.Parse(json);
             var iobj = jo["tiles"];
