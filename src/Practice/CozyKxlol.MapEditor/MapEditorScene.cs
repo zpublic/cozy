@@ -59,6 +59,13 @@ namespace CozyKxlol.MapEditor
             //CozyTiledFactory.RegisterTiled(CozyRedTiled.TiledId, new CozyRedTiled());
         }
 
+        private void RegisterTiledBySprite(CozyTexture texture, int x, int y, uint id)
+        {
+            Rectangle rect = new Rectangle(32 * x, 32 * y, 32, 32);
+            var tiled = CozySpriteTiled.Create(texture, rect);
+            CozyTiledFactory.RegisterTiled(id, tiled);
+        }
+
         public void TestCase()
         {
             var json = new CozyTiledJsonParser();
@@ -67,18 +74,16 @@ namespace CozyKxlol.MapEditor
             if (data.tiles != null)
             {
                 var tiles = data.tiles;
+                var texture = CozyDirector.Instance.TextureCacheInstance.AddImage(tiles.path);
                 if (tiles.type.Equals("tiles"))
                 {
-                    var CurrId = tiles.id;
                     // TODO 分割图片
-                    var texture = CozyDirector.Instance.TextureCacheInstance.AddImage(tiles.path);
+                    var CurrId = tiles.id;
                     for (int i = 0; i < tiles.w; ++i)
                     {
                         for (int j = 0; j < tiles.h; ++j)
                         {
-                            Rectangle rect = new Rectangle(32 * i, 32 * j, 32, 32);
-                            var tiled = CozySpriteTiled.Create(texture, rect);
-                            CozyTiledFactory.RegisterTiled(CurrId++, tiled);
+                            RegisterTiledBySprite(texture, i, j, CurrId++);
                         }
                     }
 
@@ -86,12 +91,7 @@ namespace CozyKxlol.MapEditor
                 else if (tiles.type.Equals("tile"))
                 {
                     // TODO 取图片里的一块
-                    var texture = CozyDirector.Instance.TextureCacheInstance.AddImage(tiles.path);
-                    Rectangle rect = new Rectangle(32 * tiles.x, 32 * tiles.y, 32, 32);
-                    var tiled = CozySpriteTiled.Create(texture, rect);
-                    CozyTiledFactory.RegisterTiled(tiles.id, tiled);
-
-                    Operat.CurrentTiledId = tiles.id;
+                    RegisterTiledBySprite(texture, tiles.x, tiles.y, tiles.id);
                 }
             }
             if (data.blocks != null)
