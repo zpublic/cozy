@@ -7,7 +7,6 @@ using CozyKxlol.Engine.Tiled;
 using CozyKxlol.Kxlol.Object.Tiled;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.IO;
 
 namespace CozyKxlol.Kxlol.Scene
 {
@@ -29,65 +28,13 @@ namespace CozyKxlol.Kxlol.Scene
             Tileds.NodeContentSize  = Vector2.One * 32;
             this.AddChind(Tileds);
 
-            TestCase();
             return true;
         }
 
         private void RegisterTiled()
         {
-            //CozyTiledFactory.RegisterTiled(CozyTiledId.RedTiled, new CozyRedTiled());
-            //CozyTiledFactory.RegisterTiled(CozyTiledId.GreenTiled, new CozyGreenTiled());
-        }
-
-        public void TestCase()
-        {
-            var json = new CozyTiledJsonParser();
-            
-            var fs = new StreamReader(new FileStream("d:\\tiles.json", FileMode.Open, FileAccess.Read));
-
-            var result = json.parser(fs.ReadToEnd());
-            var data = result as CozyTileJsonData;
-            if(data.tiles != null)
-            {
-                var tiles = data.tiles;
-                if(tiles.type.Equals("tiles"))
-                {
-                    var CurrId = tiles.id;
-                    // TODO 分割图片
-                    var texture = CozyDirector.Instance.TextureCacheInstance.AddImage(tiles.path);
-                    for(int i = 0; i < tiles.w; ++i)
-                    {
-                        for(int j = 0; j < tiles.h; ++j)
-                        {
-                            Rectangle rect = new Rectangle(32 * i, 32 * j, 32, 32);
-                            var tiled = CozySpriteTiled.Create(texture, rect);
-                            CozyTiledFactory.RegisterTiled(CurrId++, tiled);
-                        }
-                    }
-
-                }
-                else if(tiles.type.Equals("tile"))
-                {
-                    // TODO 取图片里的一块
-                }
-            }
-            if(data.blocks != null)
-            {
-                // TODO 用于编辑器块绘制
-
-                var blocks = data.blocks;
-                switch(blocks.type)
-                {
-                    case "rect":
-
-                        break;
-                    case "square":
-
-                        break;
-                    default:
-                        break;
-                }
-            }
+            CozyTiledFactory.RegisterTiled(CozyTiledId.RedTiled, new CozyRedTiled());
+            CozyTiledFactory.RegisterTiled(CozyTiledId.GreenTiled, new CozyGreenTiled());
         }
     }
 }
