@@ -74,45 +74,49 @@ namespace CozyKxlol.MapEditor
             if (data.tiles != null)
             {
                 var tiles   = data.tiles;
-                var texture = CozyDirector.Instance.TextureCacheInstance.AddImage(tiles.path);
-                if (tiles.type.Equals("tiles"))
+                foreach(var tile in tiles)
                 {
-                    // TODO 分割图片
-                    var CurrId = tiles.id;
-                    for (int i = 0; i < tiles.w; ++i)
+                    var texture = CozyDirector.Instance.TextureCacheInstance.AddImage(tile.path);
+                    if (tile.type.Equals("tiles"))
                     {
-                        for (int j = 0; j < tiles.h; ++j)
+                        // TODO 分割图片
+                        var CurrId = tile.id;
+                        for (int i = 0; i < tile.w; ++i)
                         {
-                            RegisterTiledBySprite(texture, i, j, CurrId++);
+                            for (int j = 0; j < tile.h; ++j)
+                            {
+                                RegisterTiledBySprite(texture, i, j, CurrId++);
+                            }
                         }
                     }
-
+                    else if (tile.type.Equals("tile"))
+                    {
+                        // TODO 取图片里的一块
+                        RegisterTiledBySprite(texture, tile.x, tile.y, tile.id);
+                    }
                 }
-                else if (tiles.type.Equals("tile"))
+               
+            }
+
+            // TODO 用于编辑器块绘制
+            if(data.square != null)
+            {
+                foreach(var square in data.square)
                 {
-                    // TODO 取图片里的一块
-                    RegisterTiledBySprite(texture, tiles.x, tiles.y, tiles.id);
+                    uint[,] rect = null;
+                    rect = new uint[square.w, square.w];
+                    FillRect(square.data, rect);
                 }
             }
-            if (data.blocks != null)
+            if(data.rect != null)
             {
-                // TODO 用于编辑器块绘制
-                var blocks      = data.blocks;
-                uint[,] rect    = null;
-                
-                switch (blocks.type)
+                foreach (var rectangle in data.rect)
                 {
-                    case "rect":
-                        rect = new uint[blocks.w, blocks.h];
-                        FillRect(blocks.data, rect);
-                        break;
-                    case "square":
-                        rect = new uint[blocks.w, blocks.w];
-                        FillRect(blocks.data, rect);
-                        break;
-                    default:
-                        break;
+                    uint[,] rect = null;
+                    rect = new uint[rectangle.w, rectangle.h];
+                    FillRect(rectangle.data, rect);
                 }
+                
             }
         }
 
