@@ -7,6 +7,7 @@ namespace CozyKxlol.Engine.Tiled.Json.Strategy
 {
     public class TiledDataParseWithFill : ITiledDataParseStrategy
     {
+        // TODO Parse "value*" or "value * loop" 
         public void ParseData(string subData, List<uint> result, int length)
         {
             if (subData.EndsWith("*"))
@@ -19,11 +20,10 @@ namespace CozyKxlol.Engine.Tiled.Json.Strategy
             }
             else
             {
-                // TODO 
-                int pos = subData.IndexOf('*');
-                uint value = uint.Parse(subData.Substring(0, subData.Length - pos - 1));
-                int loop = int.Parse(subData.Substring(pos + 1, subData.Length - pos - 1));
-                for (int i = 0; i < loop; ++i)
+                int pos     = subData.IndexOf('*');
+                uint value  = uint.Parse(subData.Substring(0, subData.Length - pos - 1));
+                int loop    = int.Parse(subData.Substring(pos + 1, subData.Length - pos - 1));
+                for (int i  = 0; i < loop; ++i)
                 {
                     result.Add(value);
                 }
