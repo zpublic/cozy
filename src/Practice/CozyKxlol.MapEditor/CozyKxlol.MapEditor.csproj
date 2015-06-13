@@ -48,6 +48,10 @@
     <Compile Include="OperateLayer\CommandOperate.cs" />
     <Compile Include="OperateLayer\KeyboardOperate.cs" />
     <Compile Include="OperateLayer\MouseOperate.cs" />
+    <Compile Include="Plugin\TiledMapPlugin\ITiledMapPlugin.cs" />
+    <Compile Include="Plugin\TiledMapPlugin\TiledMapPluginFillMap.cs" />
+    <Compile Include="Plugin\TiledMapPlugin\TiledMapPluginMgr.cs" />
+    <Compile Include="Plugin\TilesPlugin\ITilesPlugin.cs" />
     <Compile Include="Tileds\CozyColorTiled.cs" />
     <Compile Include="Tileds\CozyGreenTiled.cs" />
     <Compile Include="Tileds\CozyRedTiled.cs" />

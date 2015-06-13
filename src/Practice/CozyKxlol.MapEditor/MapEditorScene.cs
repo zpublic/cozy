@@ -69,7 +69,7 @@ namespace CozyKxlol.MapEditor
         public void TestCase()
         {
             var json = new CozyTiledJsonParser();
-            var data = json.parser(@"d:\tiles.json") as CozyTileJsonResult;
+            var data = json.parser(@".\Content\tiles.json") as CozyTileJsonResult;
 
             if (data.tiles != null)
             {
