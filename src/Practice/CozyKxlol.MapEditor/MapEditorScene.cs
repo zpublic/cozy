@@ -123,69 +123,67 @@ namespace CozyKxlol.MapEditor
         private void FillRect(string str, uint[,] rect)
         {
             string[] dataSplit  = str.Split(',');
-            uint[] result       = new uint[rect.Length];
-            if(str.Contains('-'))
+            List<uint> result   = new List<uint>();
+            int length = rect.Length;
+
+            foreach (var subData in dataSplit)
             {
-                ParseWithRange(dataSplit, result);
-            }
-            else if(str.Contains('*'))
-            {
-                ParseWithFill(str, result);
-            }
-            else
-            {
-                ParseWithNothing(dataSplit, result);
+                if (subData.Contains('-'))
+                {
+                    ParseWithRange(subData, result, length);
+                }
+                else if (subData.Contains('*'))
+                {
+                    ParseWithFill(subData, result, length);
+                }
+                else
+                {
+                    ParseWithNothing(subData, result, length);
+                }
             }
             FillDyadicArray(result, rect);
         }
 
-        private void ParseWithRange(string[] dataSplit, uint[] result)
+        private void ParseWithRange(string subData, List<uint> result, int length)
         {
-            int offset = 0;
-            foreach (var obj in dataSplit)
+            int pos     = subData.IndexOf('-');
+            uint first  = uint.Parse(subData.Substring(0, subData.Length - pos - 1));
+            uint last   = uint.Parse(subData.Substring(pos + 1, subData.Length - pos - 1));
+            for (uint i = first; i <= last; ++i)
             {
-                if (obj.Contains('-'))
-                {
-                    int pos = obj.IndexOf('-');
-                    uint first = uint.Parse(obj.Substring(0, obj.Length - pos - 1));
-                    uint last = uint.Parse(obj.Substring(pos + 1, obj.Length - pos - 1));
-                    for (uint i = first; i <= last; ++i)
-                    {
-                        result[offset++] = i;
-                    }
-                }
-                else
-                {
-                    result[offset++] = uint.Parse(obj);
-                }
+                result.Add(i);
             }
         }
 
-        private void ParseWithFill(string data, uint[] result)
+        private void ParseWithFill(string subData, List<uint> result, int length)
         {
-            if (data.StartsWith("*"))
+            if (subData.EndsWith("*"))
             {
-                uint value = uint.Parse(data.Substring(1, data.Length - 1));
-                for (int i = 0; i < result.Length; ++i)
+                uint value = uint.Parse(subData.Substring(0, subData.Length - 1));
+                for(int i = 0; i < length; ++i)
                 {
-                    result[i] = value;
+                    result.Add(value);
                 }
             }
             else
             {
-                // TODO
+                // TODO 
+                int pos     = subData.IndexOf('*');
+                uint value  =  uint.Parse(subData.Substring(0, subData.Length - pos - 1));
+                int loop    = int.Parse(subData.Substring(pos + 1, subData.Length - pos - 1));
+                for(int i = 0; i < loop; ++i)
+                {
+                    result.Add(value);
+                }
             }
         }
 
-        private void ParseWithNothing(string[] dataSplit, uint[] result)
+        private void ParseWithNothing(string subData, List<uint> result, int length)
         {
-            for (int i = 0; i < result.Length; ++i)
-            {
-                result[i] = uint.Parse(dataSplit[i]);
-            }
+            result.Add(uint.Parse(subData));
         }
 
-        private void FillDyadicArray(uint[] source, uint[,] target)
+        private void FillDyadicArray(List<uint> source, uint[,] target)
         {
             int offset = 0;
             int x = target.GetLength(0);
@@ -194,7 +192,7 @@ namespace CozyKxlol.MapEditor
             {
                 for (int j = 0; j < y; ++j)
                 {
-                    target[i, j] = source[offset++];
+                    target[i, j] = (offset < source.Count ? source[offset++] : 0);
                 }
             }
         }
