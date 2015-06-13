@@ -117,7 +117,6 @@ namespace CozyKxlol.MapEditor
                     rect = new uint[rectangle.w, rectangle.h];
                     FillRect(rectangle.data, rect);
                 }
-                
             }
         }
 
