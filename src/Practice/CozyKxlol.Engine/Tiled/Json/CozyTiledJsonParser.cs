@@ -20,32 +20,25 @@ namespace CozyKxlol.Engine.Tiled.Json
 
             CozyTileJsonResult node     = new CozyTileJsonResult();
             JObject jo                  = JObject.Parse(json);
-            var iobj                    = jo["tiles"];
+            var tiles = jo["tiles"];
 
-            if( iobj != null && iobj.HasValues)
+            if(tiles != null && tiles.HasValues)
             {
-                var tiles = JObject.Parse(iobj.ToString());
-                if(tiles != null && tiles.HasValues)
-                {
-                    var i = tiles["i"];
-                    if (i != null)
-                    {
-                        node.tiles = JsonConvert.DeserializeObject<CozyJsonTilesData>(i.ToString());
-                    }
-                }
+                node.tiles = JsonConvert.DeserializeObject<List<CozyJsonTilesData>>(tiles.ToString());
             }
 
-            var bobj = jo["blocks"];
-            if(bobj != null && bobj.HasValues)
+            var blocks = jo["blocks"];
+            if (blocks != null && blocks.HasValues)
             {
-                var blocks = JObject.Parse(bobj.ToString());
-                if (blocks != null && blocks.HasValues)
+                var square = blocks["square"];
+                if(square != null && square.HasValues)
                 {
-                    var i = blocks["i"];
-                    if(i != null)
-                    {
-                        node.blocks = JsonConvert.DeserializeObject<CozyJsonBlockData>(i.ToString());
-                    }
+                    node.square = JsonConvert.DeserializeObject<List<CozyJsonBlockData>>(square.ToString());
+                }
+                var rect = blocks["rect"];
+                if(rect != null && rect.HasValues)
+                {
+                    node.rect = JsonConvert.DeserializeObject<List<CozyJsonBlockData>>(rect.ToString());
                 }
             }
             return node;

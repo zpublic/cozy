@@ -90,6 +90,11 @@
     <Compile Include="Tiled\ICozyLoader.cs" />
     <Compile Include="Tiled\CozyTiledPositionHelper.cs" />
     <Compile Include="Tiled\ICozyWriter.cs" />
+    <Compile Include="Tiled\Json\Strategy\ITiledDataParseStrategy.cs" />
+    <Compile Include="Tiled\Json\Strategy\TiledDataParseContext.cs" />
+    <Compile Include="Tiled\Json\Strategy\TiledDataParseWithFill.cs" />
+    <Compile Include="Tiled\Json\Strategy\TiledDataParseWithNothing.cs" />
+    <Compile Include="Tiled\Json\Strategy\TiledDataParseWithRange.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

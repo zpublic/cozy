@@ -6,6 +6,7 @@ using CozyKxlol.Engine;
 using Microsoft.Xna.Framework;
 using CozyKxlol.Engine.Tiled;
 using CozyKxlol.Engine.Tiled.Json;
+using CozyKxlol.Engine.Tiled.Json.Strategy;
 using CozyKxlol.MapEditor.Gui.TiledLayer;
 using CozyKxlol.MapEditor.Gui.OperateLayer;
 using CozyKxlol.MapEditor.Command;
@@ -68,114 +69,83 @@ namespace CozyKxlol.MapEditor.Gui
             if (data.tiles != null)
             {
                 var tiles   = data.tiles;
-                var texture = CozyDirector.Instance.TextureCacheInstance.AddImage(tiles.path);
-                if (tiles.type.Equals("tiles"))
+                foreach(var tile in tiles)
                 {
-                    // TODO 分割图片
-                    var CurrId = tiles.id;
-                    for (int i = 0; i < tiles.w; ++i)
+                    var texture = CozyDirector.Instance.TextureCacheInstance.AddImage(tile.path);
+                    if (tile.type.Equals("tiles"))
                     {
-                        for (int j = 0; j < tiles.h; ++j)
+                        // TODO 分割图片
+                        var CurrId = tile.id;
+                        for (int i = 0; i < tile.w; ++i)
                         {
-                            RegisterTiledBySprite(texture, i, j, CurrId++);
+                            for (int j = 0; j < tile.h; ++j)
+                            {
+                                RegisterTiledBySprite(texture, i, j, CurrId++);
+                            }
                         }
                     }
-
+                    else if (tile.type.Equals("tile"))
+                    {
+                        // TODO 取图片里的一块
+                        RegisterTiledBySprite(texture, tile.x, tile.y, tile.id);
+                    }
                 }
-                else if (tiles.type.Equals("tile"))
+               
+            }
+
+            // TODO 用于编辑器块绘制
+            if(data.square != null)
+            {
+                foreach(var square in data.square)
                 {
-                    // TODO 取图片里的一块
-                    RegisterTiledBySprite(texture, tiles.x, tiles.y, tiles.id);
+                    uint[,] rect = null;
+                    rect = new uint[square.w, square.w];
+                    FillRect(square.data, rect);
                 }
             }
-            if (data.blocks != null)
+            if(data.rect != null)
             {
-                // TODO 用于编辑器块绘制
-                var blocks      = data.blocks;
-                uint[,] rect    = null;
-                
-                switch (blocks.type)
+                foreach (var rectangle in data.rect)
                 {
-                    case "rect":
-                        rect = new uint[blocks.w, blocks.h];
-                        FillRect(blocks.data, rect);
-                        break;
-                    case "square":
-                        rect = new uint[blocks.w, blocks.w];
-                        FillRect(blocks.data, rect);
-                        break;
-                    default:
-                        break;
+                    uint[,] rect = null;
+                    rect = new uint[rectangle.w, rectangle.h];
+                    FillRect(rectangle.data, rect);
                 }
             }
         }
 
         private void FillRect(string str, uint[,] rect)
         {
-            string[] dataSplit  = str.Split(',');
-            uint[] result       = new uint[rect.Length];
-            if(str.Contains('-'))
+            string[] dataSplit              = str.Split(',');
+            List<uint> result               = new List<uint>();
+            int length                      = rect.Length;
+            TiledDataParseContext context   = new TiledDataParseContext();
+
+            foreach (var subData in dataSplit)
             {
-                ParseWithRange(dataSplit, result);
-            }
-            else if(str.Contains('*'))
-            {
-                ParseWithFill(str, result);
-            }
-            else
-            {
-                ParseWithNothing(dataSplit, result);
+                MatchContextStrategy(subData, context);
+                context.Parse(subData, result, length);
             }
             FillDyadicArray(result, rect);
         }
 
-        private void ParseWithRange(string[] dataSplit, uint[] result)
+        private void MatchContextStrategy(string subData, TiledDataParseContext context)
         {
-            int offset = 0;
-            foreach (var obj in dataSplit)
+            if (subData.Contains('-'))
             {
-                if (obj.Contains('-'))
-                {
-                    int pos = obj.IndexOf('-');
-                    uint first = uint.Parse(obj.Substring(0, obj.Length - pos - 1));
-                    uint last = uint.Parse(obj.Substring(pos + 1, obj.Length - pos - 1));
-                    for (uint i = first; i <= last; ++i)
-                    {
-                        result[offset++] = i;
-                    }
-                }
-                else
-                {
-                    result[offset++] = uint.Parse(obj);
-                }
+                context.Strategy = new TiledDataParseWithRange();
             }
-        }
-
-        private void ParseWithFill(string data, uint[] result)
-        {
-            if (data.StartsWith("*"))
+            else if (subData.Contains('*'))
             {
-                uint value = uint.Parse(data.Substring(1, data.Length - 1));
-                for (int i = 0; i < result.Length; ++i)
-                {
-                    result[i] = value;
-                }
+                context.Strategy = new TiledDataParseWithFill();
             }
             else
             {
-                // TODO
+                context.Strategy = new TiledDataParseWithNothing();
             }
         }
 
-        private void ParseWithNothing(string[] dataSplit, uint[] result)
-        {
-            for (int i = 0; i < result.Length; ++i)
-            {
-                result[i] = uint.Parse(dataSplit[i]);
-            }
-        }
-
-        private void FillDyadicArray(uint[] source, uint[,] target)
+        private void FillDyadicArray(List<uint> source, uint[,] target)
         {
             int offset = 0;
             int x = target.GetLength(0);
@@ -185,6 +155,10 @@ namespace CozyKxlol.MapEditor.Gui
                 for (int j = 0; j < y; ++j)
                 {
                     target[i, j] = source[offset++];
+                    if(offset >= target.Length)
+                    {
+                        return;
+                    }
                 }
             }
         }

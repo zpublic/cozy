@@ -7,7 +7,8 @@ namespace CozyKxlol.Engine.Tiled.Json
 {
     public class CozyTileJsonResult
     {
-        public CozyJsonTilesData tiles { get; set; }
-        public CozyJsonBlockData blocks { get; set; }
+        public List<CozyJsonTilesData> tiles { get; set; }
+        public List<CozyJsonBlockData> square { get; set; }
+        public List<CozyJsonBlockData> rect { get; set; }
     }
 }
