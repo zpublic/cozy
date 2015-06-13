@@ -6,6 +6,7 @@ using CozyKxlol.Engine;
 using Microsoft.Xna.Framework;
 using CozyKxlol.Engine.Tiled;
 using CozyKxlol.Engine.Tiled.Json;
+using CozyKxlol.Engine.Tiled.Json.Strategy;
 using CozyKxlol.MapEditor.TiledLayer;
 using CozyKxlol.MapEditor.OperateLayer;
 using CozyKxlol.MapEditor.Tileds;
@@ -122,65 +123,33 @@ namespace CozyKxlol.MapEditor
 
         private void FillRect(string str, uint[,] rect)
         {
-            string[] dataSplit  = str.Split(',');
-            List<uint> result   = new List<uint>();
-            int length = rect.Length;
+            string[] dataSplit              = str.Split(',');
+            List<uint> result               = new List<uint>();
+            int length                      = rect.Length;
+            TiledDataParseContext context   = new TiledDataParseContext();
 
             foreach (var subData in dataSplit)
             {
-                if (subData.Contains('-'))
-                {
-                    ParseWithRange(subData, result, length);
-                }
-                else if (subData.Contains('*'))
-                {
-                    ParseWithFill(subData, result, length);
-                }
-                else
-                {
-                    ParseWithNothing(subData, result, length);
-                }
+                MathContextStrategy(subData, context);
+                context.Parse(subData, result, length);
             }
             FillDyadicArray(result, rect);
         }
 
-        private void ParseWithRange(string subData, List<uint> result, int length)
+        private void MathContextStrategy(string subData, TiledDataParseContext context)
         {
-            int pos     = subData.IndexOf('-');
-            uint first  = uint.Parse(subData.Substring(0, subData.Length - pos - 1));
-            uint last   = uint.Parse(subData.Substring(pos + 1, subData.Length - pos - 1));
-            for (uint i = first; i <= last; ++i)
+            if (subData.Contains('-'))
             {
-                result.Add(i);
+                context.Strategy = new TiledDataParseWithRange();
             }
-        }
-
-        private void ParseWithFill(string subData, List<uint> result, int length)
-        {
-            if (subData.EndsWith("*"))
+            else if (subData.Contains('*'))
             {
-                uint value = uint.Parse(subData.Substring(0, subData.Length - 1));
-                for(int i = 0; i < length; ++i)
-                {
-                    result.Add(value);
-                }
+                context.Strategy = new TiledDataParseWithFill();
             }
             else
             {
-                // TODO 
-                int pos     = subData.IndexOf('*');
-                uint value  =  uint.Parse(subData.Substring(0, subData.Length - pos - 1));
-                int loop    = int.Parse(subData.Substring(pos + 1, subData.Length - pos - 1));
-                for(int i = 0; i < loop; ++i)
-                {
-                    result.Add(value);
-                }
+                context.Strategy = new TiledDataParseWithNothing();
             }
-        }
-
-        private void ParseWithNothing(string subData, List<uint> result, int length)
-        {
-            result.Add(uint.Parse(subData));
         }
 
         private void FillDyadicArray(List<uint> source, uint[,] target)
@@ -192,7 +161,11 @@ namespace CozyKxlol.MapEditor
             {
                 for (int j = 0; j < y; ++j)
                 {
-                    target[i, j] = (offset < source.Count ? source[offset++] : 0);
+                    target[i, j] = source[offset++];
+                    if(offset >= target.Length)
+                    {
+                        return;
+                    }
                 }
             }
         }
