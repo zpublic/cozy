@@ -8,8 +8,8 @@ using CozyKxlol.Engine.Tiled;
 using CozyKxlol.Engine.Tiled.Json;
 using CozyKxlol.MapEditor.TiledLayer;
 using CozyKxlol.MapEditor.OperateLayer;
-using CozyKxlol.MapEditor.Tileds;
 using CozyKxlol.MapEditor.Command;
+using CozyKxlol.MapEditor.Plugin.TilesPlugin;
 
 namespace CozyKxlol.MapEditor
 {
@@ -30,7 +30,7 @@ namespace CozyKxlol.MapEditor
             // 下层为Engine里的tile绘制层
             // 上层为编辑功能层，支持鼠标和键盘操作
 
-            RegisterTiled();
+            TilesPluginMgr.RegistAllTiles();
 
             Container               = new TiledMapDataContainer(MapSize_X, MapSize_Y);
 
@@ -51,12 +51,6 @@ namespace CozyKxlol.MapEditor
             };
 
             TestCase();
-        }
-
-        public void RegisterTiled()
-        {
-            //CozyTiledFactory.RegisterTiled(CozyGreenTiled.TiledId, new CozyGreenTiled());
-            //CozyTiledFactory.RegisterTiled(CozyRedTiled.TiledId, new CozyRedTiled());
         }
 
         private void RegisterTiledBySprite(CozyTexture texture, int x, int y, uint id)

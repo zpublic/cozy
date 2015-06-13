@@ -7,11 +7,11 @@ using CozyKxlol.Engine.Tiled;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CozyKxlol.MapEditor.Tileds
+namespace CozyKxlol.MapEditor.TilesPlugin.ColorTiles
 {
-    public class CozyGreenTiled : CozyColorTiled
+    public class CozyGreenTile : CozyColorTile
     {
-        public static uint TiledId { get { return CozyTiledId.Green; } }
+        public static uint TiledId { get { return CozyTileId.Green; } }
 
         public override uint Id
         {
@@ -21,7 +21,7 @@ namespace CozyKxlol.MapEditor.Tileds
             }
         }
 
-        public CozyGreenTiled()
+        public CozyGreenTile()
         {
             ColorProperty = Color.Green;
         }

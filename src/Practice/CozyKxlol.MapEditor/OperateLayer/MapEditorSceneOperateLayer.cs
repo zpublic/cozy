@@ -11,7 +11,7 @@ using Starbound.UI.XNA.Renderers;
 using Starbound.UI.Controls;
 using Starbound.UI.Resources;
 using CozyKxlol.MapEditor.Event;
-using CozyKxlol.MapEditor.Tileds;
+using CozyKxlol.MapEditor.TilesPlugin;
 
 namespace CozyKxlol.MapEditor.OperateLayer
 {
@@ -40,7 +40,7 @@ namespace CozyKxlol.MapEditor.OperateLayer
 
             NodeContentSize = nodeSize;
             Status          = S_Add;
-            CurrentTiledId  = CozyGreenTiled.TiledId;
+            CurrentTiledId = CozyTileId.Green;
 
             Mouse               = new MouseEvents();
             Mouse.ButtonPressed     += new EventHandler<MouseButtonEventArgs>(OnButtonPressed);
@@ -129,7 +129,7 @@ namespace CozyKxlol.MapEditor.OperateLayer
                 Foreground  = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
                 Background  = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
             };
-            panel.AddChild(blockGreen, () => { CurrentTiledId = CozyGreenTiled.TiledId; });
+            panel.AddChild(blockGreen, () => { CurrentTiledId = CozyTileId.Green; });
 
             var blockRed = new SampleButton(50, 550)
             {
@@ -137,7 +137,7 @@ namespace CozyKxlol.MapEditor.OperateLayer
                 Foreground  = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
                 Background  = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
             };
-            panel.AddChild(blockRed, () => { CurrentTiledId = CozyRedTiled.TiledId; });
+            panel.AddChild(blockRed, () => { CurrentTiledId = CozyTileId.Red; });
         }
     }
 }

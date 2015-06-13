@@ -1,8 +1,8 @@
-﻿using System;
+﻿using CozyKxlol.MapEditor.TilesPlugin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CozyKxlol.MapEditor.Tileds;
 
 namespace CozyKxlol.MapEditor.Plugin.TiledMapPlugin
 {
@@ -19,7 +19,7 @@ namespace CozyKxlol.MapEditor.Plugin.TiledMapPlugin
             {
                 for (int y = 0; y < container.MapSize.Y; ++y)
                 {
-                    container.Write(x, y, CozyRedTiled.TiledId);
+                    container.Write(x, y, CozyTileId.Red);
                 }
             }
         }
