@@ -5,7 +5,7 @@ using System.Text;
 using CozyKxlol.MapEditor.Command;
 using CozyKxlol.MapEditor.Event;
 
-namespace CozyKxlol.MapEditor.OperateLayer
+namespace CozyKxlol.MapEditor.Gui.OperateLayer
 {
     public partial class MapEditorSceneOperateLayer
     {

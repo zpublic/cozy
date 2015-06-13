@@ -12,8 +12,9 @@ using Starbound.UI.Controls;
 using Starbound.UI.Resources;
 using CozyKxlol.MapEditor.Event;
 using CozyKxlol.MapEditor.TilesPlugin;
+using CozyKxlol.MapEditor.Gui.Controls;
 
-namespace CozyKxlol.MapEditor.OperateLayer
+namespace CozyKxlol.MapEditor.Gui.OperateLayer
 {
     public partial class MapEditorSceneOperateLayer : CozyLayer
     {

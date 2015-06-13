@@ -6,12 +6,12 @@ using CozyKxlol.Engine;
 using Microsoft.Xna.Framework;
 using CozyKxlol.Engine.Tiled;
 using CozyKxlol.Engine.Tiled.Json;
-using CozyKxlol.MapEditor.TiledLayer;
-using CozyKxlol.MapEditor.OperateLayer;
+using CozyKxlol.MapEditor.Gui.TiledLayer;
+using CozyKxlol.MapEditor.Gui.OperateLayer;
 using CozyKxlol.MapEditor.Command;
 using CozyKxlol.MapEditor.Plugin.TilesPlugin;
 
-namespace CozyKxlol.MapEditor
+namespace CozyKxlol.MapEditor.Gui
 {
     class MapEditorScene : CozyScene
     {
