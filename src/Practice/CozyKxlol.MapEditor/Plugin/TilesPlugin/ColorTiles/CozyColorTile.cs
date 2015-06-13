@@ -7,9 +7,9 @@ using CozyKxlol.Engine.Tiled;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CozyKxlol.MapEditor.Tileds
+namespace CozyKxlol.MapEditor.TilesPlugin.ColorTiles
 {
-    public abstract class CozyColorTiled : CozyTiledNode
+    public abstract class CozyColorTile : CozyTiledNode
     {
         public Color ColorProperty { get; set; }
 
