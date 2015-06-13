@@ -123,13 +123,13 @@ namespace CozyKxlol.MapEditor.Gui
 
             foreach (var subData in dataSplit)
             {
-                MathContextStrategy(subData, context);
+                MatchContextStrategy(subData, context);
                 context.Parse(subData, result, length);
             }
             FillDyadicArray(result, rect);
         }
 
-        private void MathContextStrategy(string subData, TiledDataParseContext context)
+        private void MatchContextStrategy(string subData, TiledDataParseContext context)
         {
             if (subData.Contains('-'))
             {
