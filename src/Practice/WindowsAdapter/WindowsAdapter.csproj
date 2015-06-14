@@ -61,7 +61,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Gui4UFrameWork\Gui4UFrameWork.csproj">
       <Project>{434cce00-44f5-4c47-8219-113e20fdb33f}</Project>
-      <Name>GUI4UFramework</Name>
+      <Name>Gui4UFrameWork</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
