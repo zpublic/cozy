@@ -30,6 +30,14 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
         {
             if (msg.Button == MouseButton.Left)
             {
+                if(panel.DispatchClick(msg.Current.Position.X, msg.Current.Position.Y))
+                {
+                    return;
+                }
+                if(tilesPanel.DispatchClick(msg.Current.Position.X, msg.Current.Position.Y))
+                {
+                    return;
+                }
                 Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
                 if (Status == S_Add)
                 {
@@ -39,8 +47,7 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 {
                     RemoveTiled(p);
                 }
-                panel.DispatchClick(msg.Current.Position.X, msg.Current.Position.Y);
-                tilesPanel.DispatchClick(msg.Current.Position.X, msg.Current.Position.Y);
+                
             }
             else if (msg.Button == MouseButton.Right)
             {
