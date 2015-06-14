@@ -54,44 +54,9 @@ namespace CozyKxlol.MapEditor.Gui
             TestCase();
         }
 
-        private void RegisterTiledBySprite(CozyTexture texture, int x, int y, uint id)
-        {
-            Rectangle rect  = new Rectangle(32 * x, 32 * y, 32, 32);
-            var tiled       = CozySpriteTiled.Create(texture, rect);
-            CozyTiledFactory.RegisterTiled(id, tiled);
-        }
-
         public void TestCase()
         {
-            var json = new CozyTiledJsonParser();
-            var data = json.parser(@".\Content\tiles.json") as CozyTileJsonResult;
-
-            if (data.tiles != null)
-            {
-                var tiles   = data.tiles;
-                foreach(var tile in tiles)
-                {
-                    var texture = CozyDirector.Instance.TextureCacheInstance.AddImage(tile.path);
-                    if (tile.type.Equals("tiles"))
-                    {
-                        // TODO 分割图片
-                        var CurrId = tile.id;
-                        for (int i = 0; i < tile.w; ++i)
-                        {
-                            for (int j = 0; j < tile.h; ++j)
-                            {
-                                RegisterTiledBySprite(texture, i, j, CurrId++);
-                            }
-                        }
-                    }
-                    else if (tile.type.Equals("tile"))
-                    {
-                        // TODO 取图片里的一块
-                        RegisterTiledBySprite(texture, tile.x, tile.y, tile.id);
-                    }
-                }
-               
-            }
+            var data = CozyDirector.Instance.JsonManagerInstance.Parse(@".\Content\tiles.json");
 
             // TODO 用于编辑器块绘制
             if(data.square != null)

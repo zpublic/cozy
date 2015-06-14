@@ -13,6 +13,7 @@ namespace CozyKxlol.MapEditor.Plugin.TilesPlugin
         public static void RegistAllTiles()
         {
             mPluginList.Add(new TilesPluginColorTiles());
+            mPluginList.Add(new TilesPluginSpriteTiles());
 
             foreach (var i in mPluginList)
             {
