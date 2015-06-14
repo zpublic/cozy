@@ -20,6 +20,7 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
     {
         List<Control> controls;
         StackPanel panel;
+        StackPanel tilesPanel;
         XNARenderer renderer;
 
         public MouseEvents Mouse { get; set; }
@@ -73,6 +74,11 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             {
                 renderer.Render(control, spriteBatch);
             }
+
+            foreach(Control control in tilesPanel.Children)
+            {
+                renderer.Render(control, spriteBatch);
+            }
             spriteBatch.Begin();
 
             if (Status == S_Add)
@@ -94,6 +100,16 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 Y               = 200
             };
             panel.UpdateLayout();
+
+            tilesPanel = new StackPanel()
+            {
+                ActualWidth     = 960,
+                ActualHeight    = 32,
+                X               = 0,
+                Y               = 0,
+            };
+            tilesPanel.UpdateLayout();
+
             var button = new SampleButton(10, 220)
             {
                 Content     = "Add",
