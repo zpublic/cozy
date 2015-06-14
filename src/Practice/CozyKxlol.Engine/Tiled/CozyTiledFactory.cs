@@ -45,5 +45,10 @@ namespace CozyKxlol.Engine.Tiled
                 }
             }
         }
+
+        public static IEnumerable<KeyValuePair<uint, CozyTiledNode>> GetTiles()
+        {
+            return NodeDictionary.ToList();
+        }
     }
 }

@@ -13,6 +13,7 @@ using Starbound.UI.Resources;
 using CozyKxlol.MapEditor.Event;
 using CozyKxlol.MapEditor.TilesPlugin;
 using CozyKxlol.MapEditor.Gui.Controls;
+using CozyKxlol.MapEditor.TilesPlugin.ColorTiles;
 
 namespace CozyKxlol.MapEditor.Gui.OperateLayer
 {
@@ -155,6 +156,37 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 Background  = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
             };
             panel.AddChild(blockRed, () => { CurrentTiledId = CozyTileId.Red; });
+
+            ShowAllTiles();
+        }
+
+        private void ShowAllTiles()
+        {
+            foreach(var obj in CozyTiledFactory.GetTiles())
+            {
+                ContentControl control = null;
+                if(obj.Value is CozyColorTile)
+                {
+                    var ColorTile = obj.Value as CozyColorTile;
+                    var color = ColorTile.ColorProperty;
+                    control = new SampleButton(0, 0)
+                    {
+                        PreferredHeight = 32,
+                        PreferredWidth = 32,
+                        Background = new Starbound.UI.SBColor(color.R, color.G, color.B),
+                        Foreground = new Starbound.UI.SBColor(color.R, color.G, color.B),
+                    };
+                }
+                else if(obj.Value is CozySpriteTiled)
+                {
+                    var SpriteTile = obj.Value as CozySpriteTiled;
+                    control = new TileButton(SpriteTile.Texture, SpriteTile.Rect);
+                }
+                if(control != null)
+                {
+                    tilesPanel.AddChild(control, () => { CurrentTiledId = obj.Key; });
+                }
+            }
         }
     }
 }
