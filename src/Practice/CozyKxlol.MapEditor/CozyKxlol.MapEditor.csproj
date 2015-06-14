@@ -54,6 +54,7 @@
     <Compile Include="Plugin\TiledMapPlugin\TiledMapPluginMgr.cs" />
     <Compile Include="Plugin\TilesPlugin\ITilesPlugin.cs" />
     <Compile Include="Plugin\TilesPlugin\TilesPluginColorTiles.cs" />
+    <Compile Include="Plugin\TilesPlugin\TilesPluginSpriteTiles.cs" />
     <Compile Include="Plugin\TilesPlugin\TilesPluginMgr.cs" />
     <Compile Include="Plugin\TilesPlugin\ColorTiles\CozyColorTile.cs" />
     <Compile Include="Plugin\TilesPlugin\ColorTiles\CozyGreenTile.cs" />
