@@ -63,8 +63,7 @@ namespace CozyKxlol.MapEditor.Gui
 
         public void TestCase()
         {
-            var json = new CozyTiledJsonParser();
-            var data = json.parser(@".\Content\tiles.json") as CozyTileJsonResult;
+            var data = CozyDirector.Instance.JsonManagerInstance.Parse(@".\Content\tiles.json");
 
             if (data.tiles != null)
             {

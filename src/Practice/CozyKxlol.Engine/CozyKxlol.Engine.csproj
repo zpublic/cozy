@@ -74,6 +74,7 @@
     <Compile Include="CozyTexture.cs" />
     <Compile Include="CozyTextureCache.cs" />
     <Compile Include="Tiled\CozyDefaultTiled.cs" />
+    <Compile Include="Tiled\CozyTiledJsonManager.cs" />
     <Compile Include="Tiled\Json\CozyJsonBlockData.cs" />
     <Compile Include="Tiled\Json\CozyJsonTilesData.cs" />
     <Compile Include="Tiled\CozySpriteTiled.cs" />
