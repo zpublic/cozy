@@ -42,6 +42,7 @@
     <Compile Include="Command\ContainerClearCommand.cs" />
     <Compile Include="Command\ContainerLoadCommand.cs" />
     <Compile Include="Command\ContainerModifyOne.cs" />
+    <Compile Include="Command\ContainerMultiModifyCommand.cs" />
     <Compile Include="Command\ContainerSaveCommand.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Event\TiledRefreshMessageArgs.cs" />

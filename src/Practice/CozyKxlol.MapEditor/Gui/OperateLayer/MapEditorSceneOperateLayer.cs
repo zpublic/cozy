@@ -19,10 +19,11 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
 {
     public partial class MapEditorSceneOperateLayer : CozyLayer
     {
-        List<Control> controls;
+        List<IEnumDrawableUIElemt> DrawableUIElemts;
         StackPanel panel;
-        StackPanel tilesPanel;
+        ScrollStackPanel tilesPanel;
         XNARenderer renderer;
+        Dictionary<Point, uint> TempTiles = new Dictionary<Point,uint>();
 
         public MouseEvents Mouse { get; set; }
         public KeyboardEvents Keyboard { get; set; }
@@ -42,12 +43,11 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             initGui();
 
             NodeContentSize = nodeSize;
-            Status          = S_Add;
-            CurrentTiledId = CozyTileId.Green;
+            Status          = S_Remove;
+            CurrentTiledId  = 0;
 
             Mouse               = new MouseEvents();
             Mouse.ButtonPressed     += new EventHandler<MouseButtonEventArgs>(OnButtonPressed);
-            Mouse.ButtonClicked     += new EventHandler<MouseButtonEventArgs>(OnButtonClicked);
             Mouse.ButtonReleased    += new EventHandler<MouseButtonEventArgs>(OnButtonReleased);
             Mouse.MouseMoved        += new EventHandler<MouseEventArgs>(OnMouseMoved);
 
@@ -66,32 +66,33 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
         protected override void DrawSelf(Microsoft.Xna.Framework.GameTime gameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
         {
             spriteBatch.End();
-            foreach (Control control in controls)
+
+            foreach (var obj in DrawableUIElemts)
             {
-                renderer.Render(control, spriteBatch);
+                foreach (Control elemt in obj.GetDrawableElemt())
+                {
+                    renderer.Render(elemt, spriteBatch);
+                }
             }
 
-            foreach (Control control in panel.Children)
-            {
-                renderer.Render(control, spriteBatch);
-            }
-
-            foreach(Control control in tilesPanel.Children)
-            {
-                renderer.Render(control, spriteBatch);
-            }
             spriteBatch.Begin();
 
             if (Status == S_Add)
             {
                 CozyTiledFactory.GetInstance(CurrentTiledId).DrawAt(gameTime, spriteBatch, CurrentPosition.ToVector2(), NodeContentSize);
             }
+            foreach(var obj in TempTiles)
+            {
+                var ActualPosition = CozyTiledPositionHelper.ConvertTiledPositionToPosition(obj.Key, NodeContentSize);
+                CozyTiledFactory.GetInstance(obj.Value).DrawAt(gameTime, spriteBatch, ActualPosition, NodeContentSize);
+            }
         }
 
         private void initGui()
         {
+            DrawableUIElemts = new List<IEnumDrawableUIElemt>();
+
             renderer    = new XNARenderer();
-            controls    = new List<Control>();
             panel       = new StackPanel()
             {
                 Orientation     = Orientation.Veritical,
@@ -100,15 +101,17 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 X               = 990,
                 Y               = 200
             };
+            DrawableUIElemts.Add(panel);
             panel.UpdateLayout();
 
-            tilesPanel = new StackPanel()
+            tilesPanel = new ScrollStackPanel()
             {
                 ActualWidth     = 960,
                 ActualHeight    = 32,
                 X               = 0,
                 Y               = 0,
             };
+            DrawableUIElemts.Add(tilesPanel);
             tilesPanel.UpdateLayout();
 
             var button = new SampleButton(10, 220)
@@ -167,20 +170,20 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 ContentControl control = null;
                 if(obj.Value is CozyColorTile)
                 {
-                    var ColorTile = obj.Value as CozyColorTile;
-                    var color = ColorTile.ColorProperty;
-                    control = new SampleButton(0, 0)
+                    var ColorTile   = obj.Value as CozyColorTile;
+                    var color       = ColorTile.ColorProperty;
+                    control         = new SampleButton(0, 0)
                     {
                         PreferredHeight = 32,
-                        PreferredWidth = 32,
-                        Background = new Starbound.UI.SBColor(color.R, color.G, color.B),
-                        Foreground = new Starbound.UI.SBColor(color.R, color.G, color.B),
+                        PreferredWidth  = 32,
+                        Background      = new Starbound.UI.SBColor(color.R, color.G, color.B),
+                        Foreground      = new Starbound.UI.SBColor(color.R, color.G, color.B),
                     };
                 }
                 else if(obj.Value is CozySpriteTiled)
                 {
-                    var SpriteTile = obj.Value as CozySpriteTiled;
-                    control = new TileButton(SpriteTile.Texture, SpriteTile.Rect);
+                    var SpriteTile  = obj.Value as CozySpriteTiled;
+                    control         = new TileButton(SpriteTile.Texture, SpriteTile.Rect);
                 }
                 if(control != null)
                 {
