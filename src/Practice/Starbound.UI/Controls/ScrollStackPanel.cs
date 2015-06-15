@@ -84,7 +84,8 @@ namespace Starbound.UI.Controls
                 Children[index].X -= Begin;
                 x += sizes[index];
 
-                if (Children[index].X > 0 && Children[index].X + Children[index].ActualWidth < this.ActualWidth)
+                if (Children[index].X + Children[index].ActualWidth > 0 
+                    && Children[index].X + Children[index].ActualWidth < this.ActualWidth)
                 {
                     showChildren.Add(Children[index]);
                 }
@@ -121,7 +122,7 @@ namespace Starbound.UI.Controls
                 Children[index].Y -= Begin;
                 y += sizes[index];
 
-                if (Children[index].Y > 0 && Children[index].Y + Children[index].ActualHeight < this.ActualHeight)
+                if (Children[index].Y + Children[index].ActualHeight > 0 && Children[index].Y + Children[index].ActualHeight < this.ActualHeight)
                 {
                     showChildren.Add(Children[index]);
                 }
