@@ -30,7 +30,18 @@ namespace Starbound.UI.Controls
             }
         }
 
-        public double Begin { get; set; }
+        private double _Begin;
+        public double Begin 
+        { 
+            get
+            {
+                return _Begin;
+            }
+            set
+            {
+                _Begin = value < 0.0 ? 0.0 : value;
+            }
+        }
 
         public ScrollStackPanel()
         {
@@ -70,9 +81,10 @@ namespace Starbound.UI.Controls
                 Children[index].ActualWidth = sizes[index] - Children[index].Margin.TotalHorizontal;
                 Children[index].X = x + Children[index].Margin.Left;
                 Children[index].Y = Y + Children[index].Margin.Top;
+                Children[index].X -= Begin;
                 x += sizes[index];
 
-                if (Children[index].X + Begin < this.ActualWidth)
+                if (Children[index].X > 0 && Children[index].X + Children[index].ActualWidth < this.ActualWidth)
                 {
                     showChildren.Add(Children[index]);
                 }
@@ -106,9 +118,10 @@ namespace Starbound.UI.Controls
                 Children[index].ActualHeight = sizes[index] - Children[index].Margin.TotalVertical;
                 Children[index].X = X + Children[index].Margin.Left;
                 Children[index].Y = y + Children[index].Margin.Top;
+                Children[index].Y -= Begin;
                 y += sizes[index];
 
-                if (Children[index].Y + Begin < this.ActualHeight)
+                if (Children[index].Y > 0 && Children[index].Y + Children[index].ActualHeight < this.ActualHeight)
                 {
                     showChildren.Add(Children[index]);
                 }

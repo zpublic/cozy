@@ -17,6 +17,7 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
         private const int MapSize_X = 30;
         private const int MapSize_Y = 20;
         private bool IsLeftMouseButtonPress;
+        private Point beginPos;
 
         private void OnButtonPressed(object sender, MouseButtonEventArgs msg)
         {
@@ -28,6 +29,7 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 {
                     TempTiles[p] = CurrentTiledId;
                 }
+                beginPos = msg.Current.Position;
             }
         }
 
@@ -60,6 +62,7 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 IsLeftMouseButtonPress = false;
                 AddMultiTiled();
                 TempTiles.Clear();
+                tilesPanel.Move(beginPos.X - msg.Current.Position.X);
             }
         }
 
