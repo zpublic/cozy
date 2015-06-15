@@ -49,6 +49,7 @@ namespace Starbound.UI.XNA.Renderers
         public override void Render(Primitive primitive)
         {
             if (primitive is BorderSprite) { DrawSpriteBorder((BorderSprite)primitive); }
+            else if (primitive is TextureSprite) { DrawBlockSprite((TextureSprite)primitive); }
             else if (primitive is Sprite) { DrawSprite((Sprite)primitive); }
             else if (primitive is TextSprite) { DrawTextBlock((TextSprite)primitive); }
             else if (primitive is Placeholder) { return; }
@@ -149,6 +150,33 @@ namespace Starbound.UI.XNA.Renderers
             spriteBatch.Draw(
                 resource, 
                 new Rectangle((int)sprite.Position.X, (int)sprite.Position.Y,(int)sprite.Size.X, (int)sprite.Size.Y),
+                color);
+        }
+
+        /// <summary>
+        /// Draws the given sprite within its own SpriteBatch.Begin/End block.
+        /// </summary>
+        /// <param name="sprite"></param>
+        private void DrawBlockSprite(TextureSprite sprite)
+        {
+            spriteBatch.Begin();
+            DrawBlockSpriteThin(sprite);
+            spriteBatch.End();
+        }
+
+        /// <summary>
+        /// Draws a Sprite primitive without starting a new SpriteBatch draw operation.
+        /// </summary>
+        /// <param name="sprite"></param>
+        private void DrawBlockSpriteThin(TextureSprite sprite)
+        {
+            Color color = sprite.TintColor.ToXNAColor();
+            color.A     = (byte)(color.A * sprite.Opacity);
+
+            XNAImageResource resource = sprite.Resource as XNAImageResource;
+            spriteBatch.Draw(resource,
+                new Rectangle((int)sprite.Position.X, (int)sprite.Position.Y,(int)sprite.Size.X, (int)sprite.Size.Y),
+                new Rectangle((int)sprite.SourcePosition.X, (int)sprite.SourcePosition.Y, (int)sprite.SourceSize.X, (int)sprite.SourceSize.Y),
                 color);
         }
 

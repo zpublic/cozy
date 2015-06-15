@@ -4,6 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CozyKxlol.Engine;
+using CozyKxlol.Engine.Tiled;
+using CozyKxlol.Engine.Tiled.Json.Strategy;
+using Microsoft.Xna.Framework;
 
 namespace CozyKxlol.MapEditor.Plugin.TilesPlugin
 {

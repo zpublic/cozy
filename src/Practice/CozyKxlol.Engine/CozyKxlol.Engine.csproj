@@ -74,6 +74,7 @@
     <Compile Include="CozyTexture.cs" />
     <Compile Include="CozyTextureCache.cs" />
     <Compile Include="Tiled\CozyDefaultTiled.cs" />
+    <Compile Include="Tiled\CozyTiledJsonManager.cs" />
     <Compile Include="Tiled\Json\CozyJsonBlockData.cs" />
     <Compile Include="Tiled\Json\CozyJsonTilesData.cs" />
     <Compile Include="Tiled\CozySpriteTiled.cs" />
@@ -90,6 +91,11 @@
     <Compile Include="Tiled\ICozyLoader.cs" />
     <Compile Include="Tiled\CozyTiledPositionHelper.cs" />
     <Compile Include="Tiled\ICozyWriter.cs" />
+    <Compile Include="Tiled\Json\Strategy\ITiledDataParseStrategy.cs" />
+    <Compile Include="Tiled\Json\Strategy\TiledDataParseContext.cs" />
+    <Compile Include="Tiled\Json\Strategy\TiledDataParseWithFill.cs" />
+    <Compile Include="Tiled\Json\Strategy\TiledDataParseWithNothing.cs" />
+    <Compile Include="Tiled\Json\Strategy\TiledDataParseWithRange.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

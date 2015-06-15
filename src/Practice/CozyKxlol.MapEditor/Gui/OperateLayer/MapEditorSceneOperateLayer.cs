@@ -13,6 +13,7 @@ using Starbound.UI.Resources;
 using CozyKxlol.MapEditor.Event;
 using CozyKxlol.MapEditor.TilesPlugin;
 using CozyKxlol.MapEditor.Gui.Controls;
+using CozyKxlol.MapEditor.TilesPlugin.ColorTiles;
 
 namespace CozyKxlol.MapEditor.Gui.OperateLayer
 {
@@ -20,6 +21,7 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
     {
         List<Control> controls;
         StackPanel panel;
+        StackPanel tilesPanel;
         XNARenderer renderer;
 
         public MouseEvents Mouse { get; set; }
@@ -73,6 +75,11 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             {
                 renderer.Render(control, spriteBatch);
             }
+
+            foreach(Control control in tilesPanel.Children)
+            {
+                renderer.Render(control, spriteBatch);
+            }
             spriteBatch.Begin();
 
             if (Status == S_Add)
@@ -94,6 +101,16 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 Y               = 200
             };
             panel.UpdateLayout();
+
+            tilesPanel = new StackPanel()
+            {
+                ActualWidth     = 960,
+                ActualHeight    = 32,
+                X               = 0,
+                Y               = 0,
+            };
+            tilesPanel.UpdateLayout();
+
             var button = new SampleButton(10, 220)
             {
                 Content     = "Add",
@@ -139,6 +156,37 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 Background  = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
             };
             panel.AddChild(blockRed, () => { CurrentTiledId = CozyTileId.Red; });
+
+            ShowAllTiles();
+        }
+
+        private void ShowAllTiles()
+        {
+            foreach(var obj in CozyTiledFactory.GetTiles())
+            {
+                ContentControl control = null;
+                if(obj.Value is CozyColorTile)
+                {
+                    var ColorTile = obj.Value as CozyColorTile;
+                    var color = ColorTile.ColorProperty;
+                    control = new SampleButton(0, 0)
+                    {
+                        PreferredHeight = 32,
+                        PreferredWidth = 32,
+                        Background = new Starbound.UI.SBColor(color.R, color.G, color.B),
+                        Foreground = new Starbound.UI.SBColor(color.R, color.G, color.B),
+                    };
+                }
+                else if(obj.Value is CozySpriteTiled)
+                {
+                    var SpriteTile = obj.Value as CozySpriteTiled;
+                    control = new TileButton(SpriteTile.Texture, SpriteTile.Rect);
+                }
+                if(control != null)
+                {
+                    tilesPanel.AddChild(control, () => { CurrentTiledId = obj.Key; });
+                }
+            }
         }
     }
 }

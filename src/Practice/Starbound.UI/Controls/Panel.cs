@@ -39,7 +39,7 @@ namespace Starbound.UI.Controls
             }
         }
 
-        public void DispatchClick(Int32 x, Int32 y)
+        public bool DispatchClick(Int32 x, Int32 y)
         {
             foreach (var obj in children)
             {
@@ -51,8 +51,10 @@ namespace Starbound.UI.Controls
                     {
                         click();
                     }
+                    return true;
                 }
             }
+            return false;
         }
 
         public abstract void UpdateLayout();
