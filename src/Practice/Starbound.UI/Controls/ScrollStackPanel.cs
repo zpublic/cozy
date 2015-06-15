@@ -132,18 +132,21 @@ namespace Starbound.UI.Controls
 
         public override bool DispatchClick(int x, int y)
         {
-            foreach (var obj in ShowChildren)
+            if (x > X && x < X + ActualWidth && y > Y && y < Y + ActualHeight)
             {
-                if (x > obj.X && x < obj.X + obj.ActualWidth &&
-                    y > obj.Y && y < obj.Y + obj.ActualHeight)
+                foreach (var obj in ShowChildren)
                 {
-                    var click = clickActions[obj];
-                    if (click != null)
+                    if (x > obj.X && x < obj.X + obj.ActualWidth &&
+                        y > obj.Y && y < obj.Y + obj.ActualHeight)
                     {
-                        click();
+                        var click = clickActions[obj];
+                        if (click != null)
+                        {
+                            click();
+                        }
                     }
-                    return true;
                 }
+                return true;
             }
             return false;
         }

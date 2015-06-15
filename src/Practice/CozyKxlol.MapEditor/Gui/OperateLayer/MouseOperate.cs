@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Starbound.UI.Controls;
 
 namespace CozyKxlol.MapEditor.Gui.OperateLayer
 {
@@ -19,6 +20,7 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
         private bool IsLeftMouseButtonPress;
         private Point beginPos;
         private double beginBeginPos;
+        private UIElement CurrerentElement = null;
 
         private void OnButtonPressed(object sender, MouseButtonEventArgs msg)
         {
@@ -31,15 +33,19 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 }
                 if (tilesPanel.DispatchClick(msg.Current.Position.X, msg.Current.Position.Y))
                 {
+                    CurrerentElement    = panel;
+                    beginBeginPos       = tilesPanel.Begin;
+                    beginPos            = msg.Current.Position;
                     return;
                 }
-                Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
-                if(Judge(p))
+                if(Status == S_Add)
                 {
-                    TempTiles[p] = CurrentTiledId;
+                    Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
+                    if (Judge(p))
+                    {
+                        TempTiles[p] = CurrentTiledId;
+                    }
                 }
-                beginBeginPos   = tilesPanel.Begin;
-                beginPos        = msg.Current.Position;
             }
             else if (msg.Button == MouseButton.Right)
             {
@@ -55,8 +61,12 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             if (msg.Button == MouseButton.Left)
             {
                 IsLeftMouseButtonPress = false;
-                AddMultiTiled();
-                TempTiles.Clear();
+                if(CurrerentElement == null)
+                {
+                    AddMultiTiled();
+                    TempTiles.Clear();
+                }
+                CurrerentElement = null;
             }
         }
 
@@ -65,19 +75,25 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             CurrentPosition = msg.Current.Position;
             if (IsLeftMouseButtonPress)
             {
-                Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
-                if(Judge(p))
+                if(CurrerentElement == null)
                 {
-                    if (Status == S_Add)
+                    Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
+                    if (Judge(p))
                     {
-                        TempTiles[p] = CurrentTiledId;
-                    }
-                    else if (Status == S_Remove)
-                    {
-                        RemoveTiled(p);
+                        if (Status == S_Add)
+                        {
+                            TempTiles[p] = CurrentTiledId;
+                        }
+                        else if (Status == S_Remove)
+                        {
+                            RemoveTiled(p);
+                        }
                     }
                 }
-                tilesPanel.Begin = beginBeginPos + beginPos.X - msg.Current.Position.X;
+                else
+                {
+                    tilesPanel.Begin = beginBeginPos + beginPos.X - msg.Current.Position.X;
+                }
             }
         }
 
