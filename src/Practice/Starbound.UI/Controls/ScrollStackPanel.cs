@@ -40,6 +40,7 @@ namespace Starbound.UI.Controls
             set
             {
                 _Begin = value < 0.0 ? 0.0 : value;
+                UpdateLayout();
             }
         }
 
@@ -145,12 +146,6 @@ namespace Starbound.UI.Controls
                 }
             }
             return false;
-        }
-
-        public void Move(double offset)
-        {
-            Begin += offset;
-            UpdateLayout();
         }
 
         public IEnumerable<UIElement> GetDrawableElemt()
