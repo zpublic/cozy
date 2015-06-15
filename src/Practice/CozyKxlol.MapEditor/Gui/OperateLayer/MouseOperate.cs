@@ -23,6 +23,11 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             if (msg.Button == MouseButton.Left)
             {
                 IsLeftMouseButtonPress = true;
+                Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
+                if(Judge(p))
+                {
+                    TempTiles[p] = CurrentTiledId;
+                }
             }
         }
 
@@ -38,16 +43,6 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 {
                     return;
                 }
-                Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
-                if (Status == S_Add)
-                {
-                    AddTiled(p);
-                }
-                else if (Status == S_Remove)
-                {
-                    RemoveTiled(p);
-                }
-                
             }
             else if (msg.Button == MouseButton.Right)
             {
@@ -63,6 +58,8 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             if (msg.Button == MouseButton.Left)
             {
                 IsLeftMouseButtonPress = false;
+                AddMultiTiled();
+                TempTiles.Clear();
             }
         }
 
@@ -72,13 +69,16 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             if (IsLeftMouseButtonPress)
             {
                 Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
-                if (Status == S_Add)
+                if(Judge(p))
                 {
-                    AddTiled(p);
-                }
-                else if (Status == S_Remove)
-                {
-                    RemoveTiled(p);
+                    if (Status == S_Add)
+                    {
+                        TempTiles[p] = CurrentTiledId;
+                    }
+                    else if (Status == S_Remove)
+                    {
+                        RemoveTiled(p);
+                    }
                 }
             }
         }
@@ -90,20 +90,34 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
 
         private void AddTiled(Point p)
         {
-            if (Judge(p))
+            AddTiled(p, CurrentTiledId);
+        }
+
+        private void AddTiled(Point p, uint value)
+        {
+            var command = new ContainerModifyOne(p.X, p.Y, CurrentTiledId);
+            TiledCommandMessages(this, new TiledCommandArgs(command));
+        }
+
+        private void AddMultiTiled()
+        {
+            if(TempTiles.Count == 1)
             {
-                var command = new ContainerModifyOne(p.X, p.Y, CurrentTiledId);
+                var obj = TempTiles.First();
+                AddTiled(obj.Key, obj.Value);
+                ;
+            }
+            if(TempTiles.Count > 0)
+            {
+                var command = new ContainerMultiModifyCommand(TempTiles);
                 TiledCommandMessages(this, new TiledCommandArgs(command));
             }
         }
 
         private void RemoveTiled(Point p)
         {
-            if (Judge(p))
-            {
-                var command = new ContainerModifyOne(p.X, p.Y, 0);
-                TiledCommandMessages(this, new TiledCommandArgs(command));
-            }
+            var command = new ContainerModifyOne(p.X, p.Y, 0);
+            TiledCommandMessages(this, new TiledCommandArgs(command));
         }
     }
 }

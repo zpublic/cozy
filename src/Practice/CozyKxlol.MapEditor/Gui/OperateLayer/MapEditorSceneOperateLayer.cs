@@ -23,6 +23,7 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
         StackPanel panel;
         StackPanel tilesPanel;
         XNARenderer renderer;
+        Dictionary<Point, uint> TempTiles = new Dictionary<Point,uint>();
 
         public MouseEvents Mouse { get; set; }
         public KeyboardEvents Keyboard { get; set; }
@@ -42,8 +43,8 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             initGui();
 
             NodeContentSize = nodeSize;
-            Status          = S_Add;
-            CurrentTiledId = CozyTileId.Green;
+            Status          = S_Remove;
+            CurrentTiledId  = 0;
 
             Mouse               = new MouseEvents();
             Mouse.ButtonPressed     += new EventHandler<MouseButtonEventArgs>(OnButtonPressed);
@@ -85,6 +86,11 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             if (Status == S_Add)
             {
                 CozyTiledFactory.GetInstance(CurrentTiledId).DrawAt(gameTime, spriteBatch, CurrentPosition.ToVector2(), NodeContentSize);
+            }
+            foreach(var obj in TempTiles)
+            {
+                var ActualPosition = CozyTiledPositionHelper.ConvertTiledPositionToPosition(obj.Key, NodeContentSize);
+                CozyTiledFactory.GetInstance(obj.Value).DrawAt(gameTime, spriteBatch, ActualPosition, NodeContentSize);
             }
         }
 
@@ -167,20 +173,20 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 ContentControl control = null;
                 if(obj.Value is CozyColorTile)
                 {
-                    var ColorTile = obj.Value as CozyColorTile;
-                    var color = ColorTile.ColorProperty;
-                    control = new SampleButton(0, 0)
+                    var ColorTile   = obj.Value as CozyColorTile;
+                    var color       = ColorTile.ColorProperty;
+                    control         = new SampleButton(0, 0)
                     {
                         PreferredHeight = 32,
-                        PreferredWidth = 32,
-                        Background = new Starbound.UI.SBColor(color.R, color.G, color.B),
-                        Foreground = new Starbound.UI.SBColor(color.R, color.G, color.B),
+                        PreferredWidth  = 32,
+                        Background      = new Starbound.UI.SBColor(color.R, color.G, color.B),
+                        Foreground      = new Starbound.UI.SBColor(color.R, color.G, color.B),
                     };
                 }
                 else if(obj.Value is CozySpriteTiled)
                 {
-                    var SpriteTile = obj.Value as CozySpriteTiled;
-                    control = new TileButton(SpriteTile.Texture, SpriteTile.Rect);
+                    var SpriteTile  = obj.Value as CozySpriteTiled;
+                    control         = new TileButton(SpriteTile.Texture, SpriteTile.Rect);
                 }
                 if(control != null)
                 {
