@@ -12,7 +12,7 @@ namespace Starbound.UI.Controls
 
         public ReadOnlyCollection<UIElement> Children { get { return children.AsReadOnly(); } }
 
-        private Dictionary<UIElement, Action> clickActions = new Dictionary<UIElement, Action>();
+        protected Dictionary<UIElement, Action> clickActions = new Dictionary<UIElement, Action>();
 
 
         public Panel()
@@ -39,7 +39,7 @@ namespace Starbound.UI.Controls
             }
         }
 
-        public bool DispatchClick(Int32 x, Int32 y)
+        public virtual bool DispatchClick(Int32 x, Int32 y)
         {
             foreach (var obj in children)
             {
