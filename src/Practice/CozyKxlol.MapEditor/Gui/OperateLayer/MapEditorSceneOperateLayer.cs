@@ -19,7 +19,7 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
 {
     public partial class MapEditorSceneOperateLayer : CozyLayer
     {
-        List<Control> controls;
+        List<IEnumDrawableUIElemt> DrawableUIElemts;
         StackPanel panel;
         ScrollStackPanel tilesPanel;
         XNARenderer renderer;
@@ -67,19 +67,13 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
         protected override void DrawSelf(Microsoft.Xna.Framework.GameTime gameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
         {
             spriteBatch.End();
-            foreach (Control control in controls)
-            {
-                renderer.Render(control, spriteBatch);
-            }
 
-            foreach (Control control in panel.Children)
+            foreach (var obj in DrawableUIElemts)
             {
-                renderer.Render(control, spriteBatch);
-            }
-
-            foreach(Control control in tilesPanel.ShowChildren)
-            {
-                renderer.Render(control, spriteBatch);
+                foreach (Control elemt in obj.GetDrawableElemt())
+                {
+                    renderer.Render(elemt, spriteBatch);
+                }
             }
 
             spriteBatch.Begin();
@@ -97,8 +91,9 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
 
         private void initGui()
         {
+            DrawableUIElemts = new List<IEnumDrawableUIElemt>();
+
             renderer    = new XNARenderer();
-            controls    = new List<Control>();
             panel       = new StackPanel()
             {
                 Orientation     = Orientation.Veritical,
@@ -107,6 +102,7 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 X               = 990,
                 Y               = 200
             };
+            DrawableUIElemts.Add(panel);
             panel.UpdateLayout();
 
             tilesPanel = new ScrollStackPanel()
@@ -116,6 +112,7 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 X               = 0,
                 Y               = 0,
             };
+            DrawableUIElemts.Add(tilesPanel);
             tilesPanel.UpdateLayout();
 
             var button = new SampleButton(10, 220)

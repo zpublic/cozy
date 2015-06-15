@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace Starbound.UI.Controls
 {
-    public class ScrollStackPanel : Panel
+    public class ScrollStackPanel : Panel, IEnumDrawableUIElemt
     {
         private Orientation orientation;
 
@@ -150,6 +150,11 @@ namespace Starbound.UI.Controls
         {
             Begin += offset;
             UpdateLayout();
+        }
+
+        public IEnumerable<UIElement> GetDrawableElemt()
+        {
+            return ShowChildren;
         }
     }
 }

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.ObjectModel;
 
 namespace Starbound.UI.Controls
 {
     public enum Orientation { Horizontal, Veritical };
 
-    public class StackPanel : Panel
+    public class StackPanel : Panel, IEnumDrawableUIElemt
     {
         private Orientation orientation;
 
@@ -104,6 +105,10 @@ namespace Starbound.UI.Controls
                 Children[index].Y = y + Children[index].Margin.Top;
                 y += sizes[index];
             }
+        }
+        public IEnumerable<UIElement> GetDrawableElemt()
+        {
+            return Children;
         }
     }
 }
