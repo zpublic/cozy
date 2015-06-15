@@ -25,6 +25,14 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             if (msg.Button == MouseButton.Left)
             {
                 IsLeftMouseButtonPress = true;
+                if (panel.DispatchClick(msg.Current.Position.X, msg.Current.Position.Y))
+                {
+                    return;
+                }
+                if (tilesPanel.DispatchClick(msg.Current.Position.X, msg.Current.Position.Y))
+                {
+                    return;
+                }
                 Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
                 if(Judge(p))
                 {
@@ -32,21 +40,6 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 }
                 beginBeginPos   = tilesPanel.Begin;
                 beginPos        = msg.Current.Position;
-            }
-        }
-
-        private void OnButtonClicked(object sender, MouseButtonEventArgs msg)
-        {
-            if (msg.Button == MouseButton.Left)
-            {
-                if(panel.DispatchClick(msg.Current.Position.X, msg.Current.Position.Y))
-                {
-                    return;
-                }
-                if(tilesPanel.DispatchClick(msg.Current.Position.X, msg.Current.Position.Y))
-                {
-                    return;
-                }
             }
             else if (msg.Button == MouseButton.Right)
             {

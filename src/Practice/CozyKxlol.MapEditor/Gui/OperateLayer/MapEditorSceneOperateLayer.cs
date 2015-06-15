@@ -48,7 +48,6 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
 
             Mouse               = new MouseEvents();
             Mouse.ButtonPressed     += new EventHandler<MouseButtonEventArgs>(OnButtonPressed);
-            Mouse.ButtonClicked     += new EventHandler<MouseButtonEventArgs>(OnButtonClicked);
             Mouse.ButtonReleased    += new EventHandler<MouseButtonEventArgs>(OnButtonReleased);
             Mouse.MouseMoved        += new EventHandler<MouseEventArgs>(OnMouseMoved);
 
