@@ -15,36 +15,46 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
     {
         public event EventHandler<TiledCommandArgs> TiledCommandUndo;
         public event EventHandler<TiledCommandArgs> TiledCommandMessages;
-        private const int MapSize_X = 30;
-        private const int MapSize_Y = 20;
-        private bool IsLeftMouseButtonPress;
-        private Point beginPos;
-        private double beginBeginPos;
-        private UIElement CurrerentElement = null;
+        private const int MapSize_X         = 30;
+        private const int MapSize_Y         = 20;
+        private UIElement CurrerentElement  = null;
+        private bool IsLeftMouseButtonPress = false;
+
+
+        private bool DispatchPressed(int x, int y)
+        {
+            foreach (Panel obj in DrawableUIElemts)
+            {
+                if (obj.OnMousePressed(x, y))
+                {
+                    CurrerentElement = panel;
+                    return true;
+                }
+            }
+            return false;
+        }
 
         private void OnButtonPressed(object sender, MouseButtonEventArgs msg)
         {
             if (msg.Button == MouseButton.Left)
             {
                 IsLeftMouseButtonPress = true;
-                if (panel.DispatchClick(msg.Current.Position.X, msg.Current.Position.Y))
+                if(DispatchPressed(msg.Current.Position.X, msg.Current.Position.Y))
                 {
                     return;
                 }
-                if (tilesPanel.DispatchClick(msg.Current.Position.X, msg.Current.Position.Y))
-                {
-                    CurrerentElement    = panel;
-                    beginBeginPos       = tilesPanel.Begin;
-                    beginPos            = msg.Current.Position;
-                    return;
-                }
+
+                Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
                 if(Status == S_Add)
                 {
-                    Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
                     if (Judge(p))
                     {
                         TempTiles[p] = CurrentTiledId;
                     }
+                }
+                else if(Status == S_Remove)
+                {
+                    RemoveTiled(p);
                 }
             }
             else if (msg.Button == MouseButton.Right)
@@ -56,18 +66,51 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             }
         }
 
+        private bool DispatchReleased(int x, int y)
+        {
+            if (CurrerentElement != null)
+            {
+                foreach (Panel obj in DrawableUIElemts)
+                {
+                    if (obj.OnMouseReleased(x, y))
+                    {
+                        CurrerentElement = null;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         private void OnButtonReleased(object sender, MouseButtonEventArgs msg)
         {
             if (msg.Button == MouseButton.Left)
             {
                 IsLeftMouseButtonPress = false;
-                if(CurrerentElement == null)
+                if (DispatchReleased(msg.Current.Position.X, msg.Current.Position.Y))
                 {
-                    AddMultiTiled();
-                    TempTiles.Clear();
+                    return;
                 }
-                CurrerentElement = null;
+
+                AddMultiTiled();
+                TempTiles.Clear();
             }
+        }
+
+        private bool DispatchMoved(int x, int y)
+        {
+            if (CurrerentElement != null)
+            {
+                foreach (Panel obj in DrawableUIElemts)
+                {
+                    if (obj.OnMouseMoved(x, y))
+                    {
+                        CurrerentElement = panel;
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         private void OnMouseMoved(object sender, MouseEventArgs msg)
@@ -75,24 +118,22 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             CurrentPosition = msg.Current.Position;
             if (IsLeftMouseButtonPress)
             {
-                if(CurrerentElement == null)
+                if(DispatchMoved(msg.Current.Position.X, msg.Current.Position.Y))
                 {
-                    Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
-                    if (Judge(p))
-                    {
-                        if (Status == S_Add)
-                        {
-                            TempTiles[p] = CurrentTiledId;
-                        }
-                        else if (Status == S_Remove)
-                        {
-                            RemoveTiled(p);
-                        }
-                    }
+                    return;
                 }
-                else
+
+                Point p = CozyTiledPositionHelper.ConvertPositionToTiledPosition(CurrentPosition.ToVector2(), NodeContentSize);
+                if (Judge(p))
                 {
-                    tilesPanel.Begin = beginBeginPos + beginPos.X - msg.Current.Position.X;
+                    if (Status == S_Add)
+                    {
+                        TempTiles[p] = CurrentTiledId;
+                    }
+                    else if (Status == S_Remove)
+                    {
+                        RemoveTiled(p);
+                    }
                 }
             }
         }

@@ -43,6 +43,9 @@ namespace Starbound.UI.Controls
                 UpdateLayout();
             }
         }
+        public double FirstBeginPos { get; set; }
+        public Vector2 BeginPos { get; set; }
+        public bool IsScroll { get; set; }
 
         public ScrollStackPanel()
         {
@@ -130,9 +133,9 @@ namespace Starbound.UI.Controls
             }
         }
 
-        public override bool DispatchClick(int x, int y)
+        protected override void DispatchClick(int x, int y)
         {
-            if (x > X && x < X + ActualWidth && y > Y && y < Y + ActualHeight)
+            if(!IsScroll)
             {
                 foreach (var obj in ShowChildren)
                 {
@@ -146,14 +149,58 @@ namespace Starbound.UI.Controls
                         }
                     }
                 }
-                return true;
             }
-            return false;
         }
 
         public IEnumerable<UIElement> GetDrawableElemt()
         {
             return ShowChildren;
+        }
+
+        public override bool OnMousePressed(int x, int y)
+        {
+            base.OnMousePressed(x, y);
+            if(IsFocus)
+            {
+                FirstBeginPos   = Begin;
+                BeginPos        = new Vector2(x, y);
+            }
+            return IsFocus;
+        }
+
+        public override bool OnMouseMoved(int x, int y)
+        {
+            if(IsFocus)
+            {
+                IsScroll = true;
+                if(orientation == Controls.Orientation.Horizontal)
+                {
+                    MoveBeginHorizontal(x, y);
+                }
+                else
+                {
+                    MoveBeginVertical(x, y);
+                }
+            }
+            return IsFocus;
+        }
+
+        public override bool OnMouseReleased(int x, int y)
+        {
+
+            bool result = base.OnMouseReleased(x, y);
+            IsScroll    = false;
+            return result;
+        }
+
+        private void MoveBeginHorizontal(int x, int y)
+        {
+            Begin = FirstBeginPos + BeginPos.X - x;
+        }
+
+        private void MoveBeginVertical(int x, int y)
+        {
+            Begin = FirstBeginPos + BeginPos.Y - y;
         }
     }
 }
