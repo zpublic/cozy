@@ -45,6 +45,7 @@ namespace Starbound.UI.Controls
         }
         public double FirstBeginPos { get; set; }
         public Vector2 BeginPos { get; set; }
+        public bool IsScroll { get; set; }
 
         public ScrollStackPanel()
         {
@@ -134,15 +135,18 @@ namespace Starbound.UI.Controls
 
         protected override void DispatchClick(int x, int y)
         {
-            foreach (var obj in ShowChildren)
+            if(!IsScroll)
             {
-                if (x > obj.X && x < obj.X + obj.ActualWidth &&
-                    y > obj.Y && y < obj.Y + obj.ActualHeight)
+                foreach (var obj in ShowChildren)
                 {
-                    var click = clickActions[obj];
-                    if (click != null)
+                    if (x > obj.X && x < obj.X + obj.ActualWidth &&
+                        y > obj.Y && y < obj.Y + obj.ActualHeight)
                     {
-                        click();
+                        var click = clickActions[obj];
+                        if (click != null)
+                        {
+                            click();
+                        }
                     }
                 }
             }
@@ -168,6 +172,7 @@ namespace Starbound.UI.Controls
         {
             if(IsFocus)
             {
+                IsScroll = true;
                 if(orientation == Controls.Orientation.Horizontal)
                 {
                     MoveBeginHorizontal(x, y);
@@ -182,7 +187,10 @@ namespace Starbound.UI.Controls
 
         public override bool OnMouseReleased(int x, int y)
         {
-            return base.OnMouseReleased(x, y);
+
+            bool result = base.OnMouseReleased(x, y);
+            IsScroll    = false;
+            return result;
         }
 
         private void MoveBeginHorizontal(int x, int y)
