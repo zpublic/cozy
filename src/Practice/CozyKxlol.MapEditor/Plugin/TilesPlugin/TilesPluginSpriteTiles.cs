@@ -15,7 +15,7 @@ namespace CozyKxlol.MapEditor.Plugin.TilesPlugin
         {
             var arr = new List<Tuple<uint, CozyTiledNode>>();
 
-            var data = CozyDirector.Instance.JsonManagerInstance.Parse(@".\Content\tiles.json");
+            var data = CozyDirector.Instance.JsonManagerInstance.ParseWithFile(@".\Content\tiles.json");
 
             if (data.tiles != null)
             {

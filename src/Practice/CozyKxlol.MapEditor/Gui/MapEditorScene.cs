@@ -56,7 +56,7 @@ namespace CozyKxlol.MapEditor.Gui
 
         public void TestCase()
         {
-            var data = CozyDirector.Instance.JsonManagerInstance.Parse(@".\Content\tiles.json");
+            var data = CozyDirector.Instance.JsonManagerInstance.ParseWithFile(@".\Content\tiles.json");
 
             // TODO 用于编辑器块绘制
             if(data.square != null)
