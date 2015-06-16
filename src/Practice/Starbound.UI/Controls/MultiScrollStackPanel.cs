@@ -84,7 +84,7 @@ namespace Starbound.UI.Controls
             for (int index = 0; index < Children.Count; index++)
             {
                 int ActualRaw = index % Raw;
-                Children[index].ActualHeight = ActualHeight / Raw;
+                Children[index].ActualHeight = (ActualHeight - Children[index].Margin.TotalHorizontal) / Raw;
                 Children[index].ActualWidth = sizes[index] - Children[index].Margin.TotalVertical;
                 Children[index].X = x + Children[index].Margin.Left - Begin;
                 Children[index].Y = Y + Children[index].Margin.Top + ActualRaw * ActualHeight / Raw;
@@ -122,7 +122,7 @@ namespace Starbound.UI.Controls
             for (int index = 0; index < Children.Count; index++)
             {
                 int ActualRaw = index % Raw;
-                Children[index].ActualWidth = ActualHeight / Raw;
+                Children[index].ActualWidth = (ActualHeight - Children[index].Margin.TotalHorizontal) / Raw;
                 Children[index].ActualHeight = sizes[index] - Children[index].Margin.TotalVertical;
                 Children[index].X = X + Children[index].Margin.Left + +ActualRaw * ActualWidth / Raw;
                 Children[index].Y = y + Children[index].Margin.Top - Begin;
