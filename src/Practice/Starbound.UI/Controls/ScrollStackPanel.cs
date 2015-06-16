@@ -43,6 +43,8 @@ namespace Starbound.UI.Controls
                 UpdateLayout();
             }
         }
+        public double FirstBeginPos { get; set; }
+        public Vector2 BeginPos { get; set; }
 
         public ScrollStackPanel()
         {
@@ -130,30 +132,67 @@ namespace Starbound.UI.Controls
             }
         }
 
-        public override bool DispatchClick(int x, int y)
+        protected override void DispatchClick(int x, int y)
         {
-            if (x > X && x < X + ActualWidth && y > Y && y < Y + ActualHeight)
+            foreach (var obj in ShowChildren)
             {
-                foreach (var obj in ShowChildren)
+                if (x > obj.X && x < obj.X + obj.ActualWidth &&
+                    y > obj.Y && y < obj.Y + obj.ActualHeight)
                 {
-                    if (x > obj.X && x < obj.X + obj.ActualWidth &&
-                        y > obj.Y && y < obj.Y + obj.ActualHeight)
+                    var click = clickActions[obj];
+                    if (click != null)
                     {
-                        var click = clickActions[obj];
-                        if (click != null)
-                        {
-                            click();
-                        }
+                        click();
                     }
                 }
-                return true;
             }
-            return false;
         }
 
         public IEnumerable<UIElement> GetDrawableElemt()
         {
             return ShowChildren;
+        }
+
+        public override bool OnMousePressed(int x, int y)
+        {
+            base.OnMousePressed(x, y);
+            if(IsFocus)
+            {
+                FirstBeginPos   = Begin;
+                BeginPos        = new Vector2(x, y);
+            }
+            return IsFocus;
+        }
+
+        public override bool OnMouseMoved(int x, int y)
+        {
+            if(IsFocus)
+            {
+                if(orientation == Controls.Orientation.Horizontal)
+                {
+                    MoveBeginHorizontal(x, y);
+                }
+                else
+                {
+                    MoveBeginVertical(x, y);
+                }
+            }
+            return IsFocus;
+        }
+
+        public override bool OnMouseReleased(int x, int y)
+        {
+            return base.OnMouseReleased(x, y);
+        }
+
+        private void MoveBeginHorizontal(int x, int y)
+        {
+            Begin = FirstBeginPos + BeginPos.X - x;
+        }
+
+        private void MoveBeginVertical(int x, int y)
+        {
+            Begin = FirstBeginPos + BeginPos.Y - y;
         }
     }
 }
