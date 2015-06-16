@@ -145,22 +145,6 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             };
             panel.AddChild(button5, new Action(OnSave));
 
-            var blockGreen = new SampleButton(10, 550)
-            {
-                Content     = "Green",
-                Foreground  = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
-                Background  = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
-            };
-            panel.AddChild(blockGreen, () => { CurrentTiledId = CozyTileId.Green; });
-
-            var blockRed = new SampleButton(50, 550)
-            {
-                Content     = "Red",
-                Foreground  = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
-                Background  = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
-            };
-            panel.AddChild(blockRed, () => { CurrentTiledId = CozyTileId.Red; });
-
             ShowAllTiles();
         }
 
