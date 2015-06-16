@@ -43,11 +43,19 @@ namespace CozyKxlol.Engine.Tiled.Json
                 if (square != null && square.HasValues)
                 {
                     node.square = JsonConvert.DeserializeObject<List<CozyJsonBlockData>>(square.ToString());
+                    foreach(var obj in node.square)
+                    {
+                        obj.type = "square";
+                    }
                 }
                 var rect = blocks["rect"];
                 if (rect != null && rect.HasValues)
                 {
                     node.rect = JsonConvert.DeserializeObject<List<CozyJsonBlockData>>(rect.ToString());
+                    foreach (var obj in node.rect)
+                    {
+                        obj.type = "rect";
+                    }
                 }
             }
             return node;
