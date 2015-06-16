@@ -21,7 +21,7 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
     {
         List<IEnumDrawableUIElemt> DrawableUIElemts;
         StackPanel panel;
-        ScrollStackPanel tilesPanel;
+        MultiScrollStackPanel tilesPanel;
         XNARenderer renderer;
         Dictionary<Point, uint> TempTiles = new Dictionary<Point,uint>();
 
@@ -104,10 +104,11 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             DrawableUIElemts.Add(panel);
             panel.UpdateLayout();
 
-            tilesPanel = new ScrollStackPanel()
+            const int PanelRaw  = 2;
+            tilesPanel = new MultiScrollStackPanel(PanelRaw)
             {
                 ActualWidth     = 960,
-                ActualHeight    = 32,
+                ActualHeight    = PanelRaw * 32,
                 X               = 0,
                 Y               = 0,
             };

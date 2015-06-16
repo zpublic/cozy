@@ -46,6 +46,7 @@
     <Compile Include="Bindings\IPropertyChanged.cs" />
     <Compile Include="Bindings\IValueConverter.cs" />
     <Compile Include="Controls\IEnumDrawableUIElemt.cs" />
+    <Compile Include="Controls\MultiScrollStackPanel.cs" />
     <Compile Include="Controls\ScrollStackPanel.cs" />
     <Compile Include="Controls\TextureButton.cs" />
     <Compile Include="Controls\ButtonControlTemplate.cs" />
