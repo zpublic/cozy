@@ -21,7 +21,7 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
     {
         List<IEnumDrawableUIElemt> DrawableUIElemts;
         StackPanel panel;
-        ScrollStackPanel tilesPanel;
+        MultiScrollStackPanel tilesPanel;
         XNARenderer renderer;
         Dictionary<Point, uint> TempTiles = new Dictionary<Point,uint>();
 
@@ -104,10 +104,11 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
             DrawableUIElemts.Add(panel);
             panel.UpdateLayout();
 
-            tilesPanel = new ScrollStackPanel()
+            const int PanelRaw  = 2;
+            tilesPanel = new MultiScrollStackPanel(PanelRaw)
             {
                 ActualWidth     = 960,
-                ActualHeight    = 32,
+                ActualHeight    = PanelRaw * 32,
                 X               = 0,
                 Y               = 0,
             };
@@ -143,22 +144,6 @@ namespace CozyKxlol.MapEditor.Gui.OperateLayer
                 Content     = "Save",
             };
             panel.AddChild(button5, new Action(OnSave));
-
-            var blockGreen = new SampleButton(10, 550)
-            {
-                Content     = "Green",
-                Foreground  = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
-                Background  = new Starbound.UI.SBColor(Color.Green.R, Color.Green.G, Color.Green.B),
-            };
-            panel.AddChild(blockGreen, () => { CurrentTiledId = CozyTileId.Green; });
-
-            var blockRed = new SampleButton(50, 550)
-            {
-                Content     = "Red",
-                Foreground  = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
-                Background  = new Starbound.UI.SBColor(Color.Red.R, Color.Red.G, Color.Red.B),
-            };
-            panel.AddChild(blockRed, () => { CurrentTiledId = CozyTileId.Red; });
 
             ShowAllTiles();
         }

@@ -17,13 +17,18 @@ namespace CozyKxlol.Engine.Tiled
             Parser = new CozyTiledJsonParser();
         }
 
-        public CozyTileJsonResult Parse(string filename)
+        public CozyTileJsonResult ParseWithFile(string filename)
         {
             if(!TilesDictionary.ContainsKey(filename))
             {
-                TilesDictionary[filename] = Parser.parser(filename) as CozyTileJsonResult;
+                TilesDictionary[filename] = Parser.ParseWithFile(filename) as CozyTileJsonResult;
             }
             return TilesDictionary[filename];
+        }
+
+        public CozyTileJsonResult Parse(string json)
+        {
+            return Parser.Parse(json) as CozyTileJsonResult;
         }
     }
 }
