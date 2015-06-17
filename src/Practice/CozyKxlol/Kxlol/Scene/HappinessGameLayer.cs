@@ -13,6 +13,8 @@ namespace CozyKxlol.Kxlol.Scene
     public class HappinessGameLayer : CozyLayer
     {
         public CozyTiledMap Tileds { get; set; }
+        private string DataPath = @".\Content\Data.db";
+
         public static HappinessGameLayer Create()
         {
             var layer = new HappinessGameLayer();
@@ -22,19 +24,18 @@ namespace CozyKxlol.Kxlol.Scene
 
         public virtual bool Init()
         {
-            RegisterTiled();
-
-            Tileds                  = new CozyTiledMap(new Point(15, 20));
+            Tileds                  = new CozyTiledMap(new Point(20, 15));
             Tileds.NodeContentSize  = Vector2.One * 32;
             this.AddChind(Tileds);
 
+            LoadMap();
             return true;
         }
 
-        private void RegisterTiled()
+        private void LoadMap()
         {
-            CozyTiledFactory.RegisterTiled(CozyTiledId.RedTiled, new CozyRedTiled());
-            CozyTiledFactory.RegisterTiled(CozyTiledId.GreenTiled, new CozyGreenTiled());
+            var loader = new CozyTiledDataLoader(DataPath);
+            loader.Load(Tileds);
         }
     }
 }
