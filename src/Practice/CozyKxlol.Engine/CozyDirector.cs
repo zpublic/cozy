@@ -20,11 +20,14 @@ namespace CozyKxlol.Engine
 
         public CozyTileJsonManager JsonManagerInstance { get; set; }
 
+        public Random RandomMaker { get; set; }
+
         private CozyDirector()
         {
             TextureCacheInstance    = new CozyTextureCache();
             ActionManagerInstance   = new CozyActionManager();
             JsonManagerInstance     = new CozyTileJsonManager();
+            RandomMaker             = new Random();
         }
 
         public void RunWithScene(CozyScene scene)
