@@ -63,8 +63,7 @@ namespace CozyKxlol.MapEditor.Gui
             {
                 foreach(var square in data.square)
                 {
-                    var command = new ContainerModifyBlockCommand(square);
-                    command.Origion = new Point(rd.Next() % 20, rd.Next() % 20);
+                    var command = new ContainerModifyBlockCommand(square, new Point(rd.Next() % 20, rd.Next() % 20));
                     CommandHistory.Instance.Do(command, Container);
                 }
             }
@@ -72,8 +71,7 @@ namespace CozyKxlol.MapEditor.Gui
             {
                 foreach (var rectangle in data.rect)
                 {
-                    var command = new ContainerModifyBlockCommand(rectangle);
-                    command.Origion = new Point(rd.Next() % 20, rd.Next() % 20);
+                    var command = new ContainerModifyBlockCommand(rectangle, new Point(rd.Next() % 20, rd.Next() % 20));
                     CommandHistory.Instance.Do(command, Container);
                 }
             }

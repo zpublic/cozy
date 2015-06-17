@@ -14,9 +14,10 @@ namespace CozyKxlol.MapEditor.Command
         public Point Origion { get; set; }
         private List<KeyValuePair<Point, uint>> OriModifyList { get; set; }
 
-        public ContainerModifyBlockCommand(CozyJsonBlockData data)
+        public ContainerModifyBlockCommand(CozyJsonBlockData data, Point origion)
         {
             Data            = data;
+            Origion         = origion;
             OriModifyList   = new List<KeyValuePair<Point, uint>>();
         }
 
