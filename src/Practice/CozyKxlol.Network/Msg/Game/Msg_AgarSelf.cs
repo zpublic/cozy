@@ -8,7 +8,7 @@ namespace CozyKxlol.Network.Msg
 {
     public struct Msg_AgarSelf : MsgBase
     {
-        public const byte Born = 0;
+        public const byte Born      = 0;
         public const byte GroupUp   = 1;
         public const byte Dead      = 2;
         public int Id { get { return MsgId.AgarSelf; } }
