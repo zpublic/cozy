@@ -11,6 +11,10 @@ namespace CozyKxlol.Kxlol.Scene
 {
     public partial class BallGameSceneLayer
     {
+        NetClientHelper client  = new NetClientHelper();
+        public bool IsConnect   = false;
+        public uint Uid         = 0;
+
         private void OnStatusMessage(object sender, NetClientHelper.StatusMessageArgs msg)
         {
             if (msg.Status == ConnectionStatus.Connected)

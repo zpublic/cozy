@@ -23,12 +23,8 @@ namespace CozyKxlol.Kxlol.Scene
         Dictionary<uint, CozyCircle> FoodList       = new Dictionary<uint, CozyCircle>();
         Dictionary<uint, UserCircle> CircleList     = new Dictionary<uint, UserCircle>();
         List<KeyValuePair<string, int>> MarkList    = new List<KeyValuePair<string, int>>();
-        KeyboardEvents keyboard;
-        NetClientHelper client                  = new NetClientHelper();
         public UserCircle Player                = null;
         public CozyLabel ScoreShow              = null;
-        public uint Uid                         = 0;
-        public bool IsConnect                   = false;
         private static Random RandomMaker       = new Random();
         private string Name                     = null;
         private int DefaultRadius               = 0;
@@ -40,12 +36,8 @@ namespace CozyKxlol.Kxlol.Scene
 
         public BallGameSceneLayer()
         {
-            keyboard = new KeyboardEvents();
-            keyboard.KeyPressed += new EventHandler<KeyboardEventArgs>(OnKeyPressed);
-            keyboard.KeyReleased += new EventHandler<KeyboardEventArgs>(OnKeyReleased);
-            client.StatusMessage += new EventHandler<NetClientHelper.StatusMessageArgs>(OnStatusMessage);
-
-            client.DataMessage += new EventHandler<NetClientHelper.DataMessageArgs>(OnDataMessage);
+            InitKeyboard();
+            RegisterEvent();
 
             ScoreShow = new CozyLabel("Score : 0", Color.Red);
             ScoreShow.AnchorPoint = Vector2.Zero;
@@ -54,14 +46,19 @@ namespace CozyKxlol.Kxlol.Scene
             client.Connect("127.0.0.1", 48360);
         }
 
+        private void RegisterEvent()
+        {
+            keyboard.KeyPressed     += new EventHandler<KeyboardEventArgs>(OnKeyPressed);
+            keyboard.KeyReleased    += new EventHandler<KeyboardEventArgs>(OnKeyReleased);
+            client.DataMessage      += new EventHandler<NetClientHelper.DataMessageArgs>(OnDataMessage);
+            client.StatusMessage    += new EventHandler<NetClientHelper.StatusMessageArgs>(OnStatusMessage);
+        }
+
         public override void Update(GameTime gameTime)
         {
             client.Update();
             keyboard.Update(gameTime);
 
-#if EnableMouse
-            mouse.Update(gameTime);
-#endif
             foreach (var obj in CircleList)
             {
                 obj.Value.Update(gameTime);
@@ -70,28 +67,7 @@ namespace CozyKxlol.Kxlol.Scene
             {
                 Player.Update(gameTime);
 
-                #region MapSize
-
-                var pos = Player.Position;
-                if(pos.X < 0.0f && Player.Speed.X < 0.0f)
-                {
-                    pos.X = 0.0f;
-                }
-                else if(pos.X > MapSize.X && Player.Speed.X > 0.0f)
-                {
-                    pos.X = MapSize.X;
-                }
-                if(pos.Y < 0.0f && Player.Speed.Y < 0.0f)
-                {
-                    pos.Y = 0.0f;
-                }
-                else if(pos.Y > MapSize.Y && Player.Speed.Y > 0.0f)
-                {
-                    pos.Y = MapSize.Y;
-                }
-                Player.Position = pos;
-
-                #endregion
+                Player.Position = ClampPlayerPosition(Player.Position);
 
                 if (IsConnect && Player.Changed)
                 {
@@ -105,6 +81,27 @@ namespace CozyKxlol.Kxlol.Scene
                     client.SendMessage(msg);
                 }
             }
+        }
+
+        private Vector2 ClampPlayerPosition(Vector2 pos)
+        {
+            if (pos.X < 0.0f && Player.Speed.X < 0.0f)
+            {
+                pos.X = 0.0f;
+            }
+            else if (pos.X > MapSize.X && Player.Speed.X > 0.0f)
+            {
+                pos.X = MapSize.X;
+            }
+            if (pos.Y < 0.0f && Player.Speed.Y < 0.0f)
+            {
+                pos.Y = 0.0f;
+            }
+            else if (pos.Y > MapSize.Y && Player.Speed.Y > 0.0f)
+            {
+                pos.Y = MapSize.Y;
+            }
+            return pos;
         }
     }
 }

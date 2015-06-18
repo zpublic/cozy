@@ -10,6 +10,8 @@ namespace CozyKxlol.Kxlol.Scene
 {
     public partial class BallGameSceneLayer
     {
+        KeyboardEvents keyboard;
+
         private void OnKeyPressed(object sender, KeyboardEventArgs e)
         {
             switch (e.Key)
@@ -44,6 +46,11 @@ namespace CozyKxlol.Kxlol.Scene
                 default:
                     break;
             }
+        }
+
+        public void InitKeyboard()
+        {
+            keyboard = new KeyboardEvents();
         }
     }
 }
