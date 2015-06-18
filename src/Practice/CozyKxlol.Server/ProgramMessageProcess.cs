@@ -18,10 +18,7 @@ namespace CozyKxlol.Server
             Msg_AccountRegRsp rr    = new Msg_AccountRegRsp();
             rr.suc                  = true;
             rr.detail               = r.name + r.pass;
-            NetOutgoingMessage om = server.CreateMessage();
-            om.Write(rr.Id);
-            rr.W(om);
-            server.SendMessage(om, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
+            SendMessage(rr, msg.SenderConnection);
             return true;
         }
 
@@ -36,11 +33,7 @@ namespace CozyKxlol.Server
             rr.Uid                  = uid;
             rr.Width                = GameWidth;
             rr.Height               = GameHeight;
-
-            NetOutgoingMessage rom  = server.CreateMessage();
-            rom.Write(rr.Id);
-            rr.W(rom);
-            server.SendMessage(rom, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
+            SendMessage(rr, msg.SenderConnection);
 
             // 推送之前加入的玩家数据到新玩家
             var PlayerList = PlayerBallMgr.ToList();
@@ -52,10 +45,7 @@ namespace CozyKxlol.Server
 
             var PlayerPack          = new Msg_AgarPlayInfoPack();
             PlayerPack.PLayerList   = PlayerPackList.ToList();
-            NetOutgoingMessage pom  = server.CreateMessage();
-            pom.Write(PlayerPack.Id);
-            PlayerPack.W(pom);
-            server.SendMessage(pom, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
+            SendMessage(PlayerPack, msg.SenderConnection);
 
             // 为新加入的玩家推送FixedBall
             var FixedList       = FixedBallMgr.ToList();
@@ -67,10 +57,7 @@ namespace CozyKxlol.Server
 
             var FixedPack           = new Msg_AgarFixBallPack();
             FixedPack.FixedList     = FixedPackList.ToList();
-            NetOutgoingMessage bom  = server.CreateMessage();
-            bom.Write(FixedPack.Id);
-            FixedPack.W(bom);
-            server.SendMessage(bom, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
+            SendMessage(FixedPack, msg.SenderConnection);
             return true;
         }
 
@@ -124,11 +111,7 @@ namespace CozyKxlol.Server
                     self.Operat     = Msg_AgarSelf.GroupUp;
                     self.Radius     = newBall.Radius;
                     RaduisChanged   = true;
-
-                    NetOutgoingMessage som = server.CreateMessage();
-                    som.Write(self.Id);
-                    self.W(som);
-                    server.SendMessage(som, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
+                    SendMessage(self, msg.SenderConnection);
                 }
                 PlayerBallMgr.Change(uid, newBall);
 
@@ -150,21 +133,13 @@ namespace CozyKxlol.Server
                         eatMsg.Tag              = GameMessageHelper.RADIUS_TAG;
                         eatMsg.Radius           = EatBall.Radius;
                         RaduisChanged           = true;
-
-                        NetOutgoingMessage eom = server.CreateMessage();
-                        eom.Write(eatMsg.Id);
-                        eatMsg.W(eom);
-                        SendToAllExceptOne(server, eatMsg.Id, eom, conn);
+                        SendMessageExceptOne(eatMsg, conn);
 
                         // 向自身发送
                         var selfEatMsg          = new Msg_AgarSelf();
                         selfEatMsg.Operat       = Msg_AgarSelf.GroupUp;
                         selfEatMsg.Radius       = EatBall.Radius;
-
-                        NetOutgoingMessage seom = server.CreateMessage();
-                        seom.Write(selfEatMsg.Id);
-                        selfEatMsg.W(seom);
-                        server.SendMessage(seom, conn, NetDeliveryMethod.Unreliable, 0);
+                        SendMessage(selfEatMsg, conn);
                     }
                 }
 
@@ -173,11 +148,7 @@ namespace CozyKxlol.Server
                     MarkMgr.Update(uid, newBall.Radius);
                 }
             }
-
-            NetOutgoingMessage com = server.CreateMessage();
-            com.Write(r.Id);
-            r.W(com);
-            SendToAllExceptOne(server, id, com, msg.SenderConnection);
+            SendMessageExceptOne(r, msg.SenderConnection);
             return true;
         }
 
@@ -215,11 +186,7 @@ namespace CozyKxlol.Server
             selfMsg.Y           = y;
             selfMsg.Radius      = radius;
             selfMsg.Color       = c;
-
-            NetOutgoingMessage som = server.CreateMessage();
-            som.Write(selfMsg.Id);
-            selfMsg.W(som);
-            server.SendMessage(som, msg.SenderConnection, NetDeliveryMethod.Unreliable, 0);
+            SendMessage(selfMsg, msg.SenderConnection);
 
             // 向之前加入的玩家推送新用户出生信息
             var oMsg        = new Msg_AgarPlayInfo();
@@ -231,11 +198,7 @@ namespace CozyKxlol.Server
             oMsg.Radius     = radius;
             oMsg.Color      = c;
             oMsg.Name       = name;
-
-            NetOutgoingMessage oom = server.CreateMessage();
-            oom.Write(oMsg.Id);
-            oMsg.W(oom);
-            SendToAllExceptOne(server, oMsg.Id, oom, msg.SenderConnection);
+            SendMessageExceptOne(oMsg, msg.SenderConnection);
             return true;
         }
     }

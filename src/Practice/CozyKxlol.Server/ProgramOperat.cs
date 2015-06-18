@@ -19,11 +19,7 @@ namespace CozyKxlol.Server
             r.Y                 = msg.Ball.Y;
             r.Radius            = msg.Ball.Radius;
             r.Color             = msg.Ball.Color;
-
-            NetOutgoingMessage om = server.CreateMessage();
-            om.Write(r.Id);
-            r.W(om);
-            server.SendToAll(om, NetDeliveryMethod.Unreliable);
+            SendMessage(r);
         }
 
         private static void OnFixedRemove(object sender, FixedBallManager.FixedRemoveArgs msg)
@@ -31,11 +27,7 @@ namespace CozyKxlol.Server
             Msg_AgarFixedBall r = new Msg_AgarFixedBall();
             r.Operat            = Msg_AgarFixedBall.Remove;
             r.BallId            = msg.BallId;
-
-            NetOutgoingMessage om = server.CreateMessage();
-            om.Write(r.Id);
-            r.W(om);
-            server.SendToAll(om, NetDeliveryMethod.Unreliable);
+            SendMessage(r);
         }
 
         private static void OnPlayerExit(object sender, PlayerBallManager.PlayerExitArgs msg)
@@ -45,11 +37,7 @@ namespace CozyKxlol.Server
             removeMsg.UserId    = msg.UserId;
 
             MarkMgr.Remove(msg.UserId);
-
-            NetOutgoingMessage om = server.CreateMessage();
-            om.Write(removeMsg.Id);
-            removeMsg.W(om);
-            server.SendToAll(om, NetDeliveryMethod.Unreliable);
+            SendMessage(removeMsg);
         }
 
         private static void OnPlayerDead(object sender, PlayerBallManager.PlayerDeadArgs msg)
@@ -61,21 +49,13 @@ namespace CozyKxlol.Server
             // 为自己发送死亡信息
             var selfMsg     = new Msg_AgarSelf();
             selfMsg.Operat  = Msg_AgarSelf.Dead;
-
-            NetOutgoingMessage som = server.CreateMessage();
-            som.Write(selfMsg.Id);
-            selfMsg.W(som);
-            server.SendMessage(som, conn, NetDeliveryMethod.Unreliable, 0);
+            SendMessage(selfMsg, conn);
 
             // 为其他玩家推送玩家死亡信息
             var pubMsg      = new Msg_AgarPlayInfo();
             pubMsg.Operat   = Msg_AgarPlayInfo.Remove;
             pubMsg.UserId   = msg.UserId;
-
-            NetOutgoingMessage pom = server.CreateMessage();
-            pom.Write(pubMsg.Id);
-            pubMsg.W(pom);
-            SendToAllExceptOne(server, pubMsg.Id, pom, conn);
+            SendMessageExceptOne(pubMsg, conn);
         }
 
         private static void OnMarkChange(object sender, MarkManager.MarkChangedArgs msg)
@@ -89,11 +69,7 @@ namespace CozyKxlol.Server
             var markMsg         = new Msg_AgarMarkListPack();
             var sendList        = markList.Take(5).ToList();
             markMsg.MarkList    = sendList;
-
-            NetOutgoingMessage mom = server.CreateMessage();
-            mom.Write(markMsg.Id);
-            markMsg.W(mom);
-            server.SendToAll(mom, NetDeliveryMethod.Unreliable);
+            SendMessage(markMsg);
 
             Console.WriteLine("-----------------------------------------------------------");
             foreach (var obj in sendList)

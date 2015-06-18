@@ -22,16 +22,6 @@ namespace CozyKxlol.Server
             }
         }
 
-        private static void SendToAllExceptOne(NetServer server, int id, NetOutgoingMessage msg, NetConnection except)
-        {
-            List<NetConnection> all = server.Connections;
-            all.Remove(except);
-            if (all.Count > 0)
-            {
-                server.SendMessage(msg, all, NetDeliveryMethod.Unreliable, 0);
-            }
-        }
-
         private static bool ProcessPacket(NetServer server, int id, NetIncomingMessage msg)
         {
             if (id == MsgId.AccountReg)
@@ -54,6 +44,39 @@ namespace CozyKxlol.Server
                 return true;
             }
             return false;
+        }
+
+        private static void SendMessage(MsgBase msg)
+        {
+            NetOutgoingMessage om = server.CreateMessage();
+            om.Write(msg.Id);
+            msg.W(om);
+            server.SendToAll(om, NetDeliveryMethod.Unreliable);
+        }
+
+        private static void SendMessage(MsgBase msg, NetConnection conn)
+        {
+            NetOutgoingMessage om = server.CreateMessage();
+            om.Write(msg.Id);
+            msg.W(om);
+            server.SendMessage(om, conn, NetDeliveryMethod.Unreliable, 0);
+        }
+
+        private static void SendMessageExceptOne(MsgBase msg, NetConnection except)
+        {
+            NetOutgoingMessage oom = server.CreateMessage();
+            oom.Write(msg.Id);
+            msg.W(oom);
+
+            List<NetConnection> all = server.Connections;
+            if(all.Contains(except))
+            {
+                all.Remove(except);
+            }
+            if (all.Count > 0)
+            {
+                server.SendMessage(oom, all, NetDeliveryMethod.Unreliable, 0);
+            }
         }
     }
 }
