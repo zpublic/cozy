@@ -50,6 +50,9 @@
     <Compile Include="Kxlol\Object\Tiled\CozyRedTiled.cs" />
     <Compile Include="Kxlol\Object\Tiled\CozyTiledId.cs" />
     <Compile Include="Kxlol\Object\UserCircle.cs" />
+    <Compile Include="Kxlol\Scene\BallGame\BallGameClientEvent.cs" />
+    <Compile Include="Kxlol\Scene\BallGame\BallGameDataEvent.cs" />
+    <Compile Include="Kxlol\Scene\BallGame\BallGameKeyboardEvent.cs" />
     <Compile Include="Kxlol\Scene\BallGame\BallGameScene.cs" />
     <Compile Include="Kxlol\Scene\BallGame\BallGameSceneLayer.cs" />
     <Compile Include="Kxlol\Scene\HappinessGame\HappinessGameLayer.cs" />
