@@ -29,23 +29,61 @@ namespace CozyKxlol.Kxlol.Object
 
         public static new CozyTileSprite Create()
         {
-            return new CozyTileSprite();
+            var sp = new CozyTileSprite();
+            if (!sp.Init())
+            {
+                return null;
+            }
+            return sp;
         }
 
         public static new CozyTileSprite Create(string path)
         {
             var sp = new CozyTileSprite();
-            sp.Texture = CozyDirector.Instance.TextureCacheInstance.AddImage(path);
+            if (!sp.InitWithFile(path))
+            {
+                return null;
+            }
             return sp;
         }
 
         public static new CozyTileSprite Create(string path, Rectangle rect)
         {
             var sp = new CozyTileSprite();
-            sp.Texture = CozyDirector.Instance.TextureCacheInstance.AddImage(path);
-            sp.Rect = rect;
+            if (!sp.InitWithRect(path, rect))
+            {
+                return null;
+            }
             return sp;
         }
+
+        public override bool Init()
+        {
+            if(!base.Init())
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool InitWithFile(string path)
+        {
+            if(!base.InitWithFile(path))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool InitWithRect(string path, Rectangle rect)
+        {
+            if(!base.InitWithRect(path, rect))
+            {
+                return false;
+            }
+            return true;
+        }
+
         #endregion
 
         public void Move(MoveDirection dire)
