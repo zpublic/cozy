@@ -20,11 +20,10 @@ namespace CozyKxlol.Kxlol.Object
             set
             {
                 _TilePosition = value;
-                Position = new Vector2(value.X * TiledContentSize.X, value.Y * ContentSize.Y);
+                Position = new Vector2(value.X * ContentSize.X, value.Y * ContentSize.Y);
             }
         }
 
-        public Vector2 TiledContentSize { get; set; }
 
         #region Create
 
@@ -51,7 +50,35 @@ namespace CozyKxlol.Kxlol.Object
 
         public void Move(MoveDirection dire)
         {
-
+            switch(dire)
+            {
+                case MoveDirection.Left:
+                    TilePosition = new Point(TilePosition.X - 1, TilePosition.Y);
+                    break;
+                case MoveDirection.Right:
+                    TilePosition = new Point(TilePosition.X + 1, TilePosition.Y);
+                    break;
+                case MoveDirection.Up:
+                    TilePosition = new Point(TilePosition.X, TilePosition.Y - 1);
+                    break;
+                case MoveDirection.Down:
+                    TilePosition = new Point(TilePosition.X, TilePosition.Y + 1);
+                    break;
+                case MoveDirection.LeftUp:
+                    TilePosition = new Point(TilePosition.X - 1, TilePosition.Y - 1);
+                    break;
+                case MoveDirection.LeftDown:
+                    TilePosition = new Point(TilePosition.X - 1, TilePosition.Y + 1);
+                    break;
+                case MoveDirection.RightUp:
+                    TilePosition = new Point(TilePosition.X + 1, TilePosition.Y - 1);
+                    break;
+                case MoveDirection.RightDown:
+                    TilePosition = new Point(TilePosition.X + 1, TilePosition.Y + 1);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
