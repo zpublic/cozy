@@ -7,7 +7,8 @@ namespace CozyKxlol.Kxlol.Interface
 {
     public enum MoveDirection : int 
     {
-        Left,
+        Unknow  = -1,
+        Left    = 0,
         Right,
         Up,
         Down,

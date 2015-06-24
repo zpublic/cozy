@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CozyKxlol.Kxlol.Scene
 {
-    public class HappinessGameLayer : CozyLayer
+    public partial  class HappinessGameLayer : CozyLayer
     {
         public CozyTiledMap Tileds { get; set; }
         private string DataPath = @".\Content\Data.db";
@@ -35,6 +35,8 @@ namespace CozyKxlol.Kxlol.Scene
 
             LoadMap();
 
+            InitKeyboard();
+
             Player = CozyTileSprite.Create(@"player.png");
             Player.Position = Player.ContentSize / 2;
             this.AddChind(Player, 1);
@@ -45,6 +47,20 @@ namespace CozyKxlol.Kxlol.Scene
         {
             var loader = new CozyTiledDataLoader(DataPath);
             loader.Load(Tileds);
+        }
+
+
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            keyboard.Update(gameTime);
+
+            var dire = DirectionNow();
+            if (dire != Interface.MoveDirection.Unknow)
+            {
+                Player.Move(dire);
+            }
         }
     }
 }
