@@ -35,8 +35,9 @@ namespace CozyKxlol.Kxlol.Scene
 
             LoadMap();
 
-            Player = CozyTiledSprite.Create();
-            this.AddChind(Player);
+            Player = CozyTiledSprite.Create(@"player.png");
+            Player.Position = Player.ContentSize / 2;
+            this.AddChind(Player, 1);
             return true;
         }
 
