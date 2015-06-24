@@ -37,7 +37,7 @@ namespace CozyKxlol.Kxlol.Scene
 
             InitKeyboard();
 
-            Player = CozyTileSprite.Create(@"player.png");
+            Player = CozyTileSprite.Create(@"player");
             Player.Position = Player.ContentSize / 2;
             this.AddChind(Player, 1);
             return true;
