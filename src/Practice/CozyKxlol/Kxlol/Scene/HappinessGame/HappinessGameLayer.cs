@@ -16,7 +16,7 @@ namespace CozyKxlol.Kxlol.Scene
         public CozyTiledMap Tileds { get; set; }
         private string DataPath = @".\Content\Data.db";
 
-        public CozyTiledSprite Player { get; set; }
+        public CozyTileSprite Player { get; set; }
 
         public static HappinessGameLayer Create()
         {
@@ -35,7 +35,7 @@ namespace CozyKxlol.Kxlol.Scene
 
             LoadMap();
 
-            Player = CozyTiledSprite.Create(@"player.png");
+            Player = CozyTileSprite.Create(@"player.png");
             Player.Position = Player.ContentSize / 2;
             this.AddChind(Player, 1);
             return true;
