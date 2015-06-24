@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Starbound.Input;
 
-namespace CozyKxlol.Kxlol.Impl
+namespace CozyKxlol.Kxlol.Interface
 {
     interface IControlAble
     {

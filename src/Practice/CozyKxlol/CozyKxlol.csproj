@@ -41,8 +41,8 @@
     <Compile Include="Kxlol\Extends\RandomExtension.cs" />
     <Compile Include="Kxlol\Extends\UnsignedExtension.cs" />
     <Compile Include="Kxlol\Extends\VectorExtension.cs" />
-    <Compile Include="Kxlol\Impl\IControlAble.cs" />
-    <Compile Include="Kxlol\Impl\IMoveAble.cs" />
+    <Compile Include="Kxlol\Interface\IControlAble.cs" />
+    <Compile Include="Kxlol\Interface\IMoveAble.cs" />
     <Compile Include="Kxlol\Object\CozyCircle.cs" />
     <Compile Include="Kxlol\Object\CozyTiledSprite.cs" />
     <Compile Include="Kxlol\Object\DefaultFoodCircle.cs" />

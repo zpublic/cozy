@@ -13,7 +13,7 @@ using Starbound.UI.Controls;
 using Starbound.UI.XNA.Resources;
 using Starbound.UI.XNA.Renderers;
 using CozyKxlol.Network;
-using CozyKxlol.Kxlol.Impl;
+using CozyKxlol.Kxlol.Interface;
 using CozyKxlol.Network.Msg;
 
 namespace CozyKxlol.Kxlol.Scene
