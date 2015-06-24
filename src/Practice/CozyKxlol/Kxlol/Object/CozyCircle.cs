@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CozyKxlol.Engine;
-using CozyKxlol.Kxlol.Impl;
+using CozyKxlol.Kxlol.Interface;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;

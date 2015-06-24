@@ -56,22 +56,50 @@ namespace CozyKxlol.Engine
 
         public static CozySprite Create()
         {
-            return new CozySprite();
+            var sp = new CozySprite();
+            if(!sp.Init())
+            {
+                return null;
+            }
+            return sp;
         }
 
         public static CozySprite Create(string path)
         {
-            var sp      = new CozySprite();
-            sp.Texture  = CozyDirector.Instance.TextureCacheInstance.AddImage(path);
+            var sp = new CozySprite();
+            if(!sp.InitWithFile(path))
+            {
+                return null;
+            }
             return sp;
         }
 
         public static CozySprite Create(string path, Rectangle rect)
         {
-            var sp              = new CozySprite();
-            sp.Texture          = CozyDirector.Instance.TextureCacheInstance.AddImage(path);
-            sp.Rect             = rect;
+            var sp = new CozySprite();
+            if (!sp.InitWithRect(path, rect))
+            {
+                return null;
+            }
             return sp;
+        }
+
+        public virtual bool Init()
+        {
+            return true;
+        }
+
+        public virtual bool InitWithFile(string path)
+        {
+            Texture = CozyDirector.Instance.TextureCacheInstance.AddImage(path);
+            return true;
+        }
+
+        public virtual bool InitWithRect(string path, Rectangle rect)
+        {
+            Texture = CozyDirector.Instance.TextureCacheInstance.AddImage(path);
+            Rect = rect;
+            return true;
         }
 
         #endregion
