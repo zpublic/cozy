@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CozyKxlol.Engine;
 using CozyKxlol.Engine.Tiled;
+using CozyKxlol.Kxlol.Object;
 using CozyKxlol.Kxlol.Object.Tiled;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,12 +16,16 @@ namespace CozyKxlol.Kxlol.Scene
         public CozyTiledMap Tileds { get; set; }
         private string DataPath = @".\Content\Data.db";
 
+        public CozyTiledSprite Player { get; set; }
+
         public static HappinessGameLayer Create()
         {
             var layer = new HappinessGameLayer();
             layer.Init();
             return layer;
         }
+
+        public Point MapSize { get { return Tileds.TiledMapSize; } }
 
         public virtual bool Init()
         {
@@ -29,6 +34,9 @@ namespace CozyKxlol.Kxlol.Scene
             this.AddChind(Tileds);
 
             LoadMap();
+
+            Player = CozyTiledSprite.Create();
+            this.AddChind(Player);
             return true;
         }
 
