@@ -43,6 +43,16 @@ namespace CozyKxlol.Server
                 OnProcessBorn(server, id, msg);
                 return true;
             }
+            else if (id == MsgId.HappyPlayerLogin)
+            {
+                OnProcessHappyLogin(server, id, msg);
+                return true;
+            }
+            else if(id == MsgId.HappyPlayerMove)
+            {
+                return OnProgressHappyPlayerMove(server, id, msg);
+            }
+
             return false;
         }
 

@@ -202,5 +202,15 @@ namespace CozyKxlol.Server
             SendMessageExceptOne(oMsg, msg.SenderConnection);
             return true;
         }
+
+        private static bool OnProcessHappyLogin(NetServer server, int id, NetIncomingMessage msg)
+        {
+            return true;
+        }
+
+        private static bool OnProgressHappyPlayerMove(NetServer server, int id, NetIncomingMessage msg)
+        {
+            return true;
+        }
     }
 }
