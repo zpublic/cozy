@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgarProgress.cs" />
     <Compile Include="GameCalculate.cs" />
     <Compile Include="Manager\MarkManager.cs" />
     <Compile Include="Manager\PlayerBallManager.cs" />

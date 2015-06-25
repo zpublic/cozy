@@ -48,34 +48,34 @@ namespace CozyKxlol.Server
 
         private static void SendMessage(MsgBase msg)
         {
-            NetOutgoingMessage om = server.CreateMessage();
+            NetOutgoingMessage om = AgarServer.CreateMessage();
             om.Write(msg.Id);
             msg.W(om);
-            server.SendToAll(om, NetDeliveryMethod.Unreliable);
+            AgarServer.SendToAll(om, NetDeliveryMethod.Unreliable);
         }
 
         private static void SendMessage(MsgBase msg, NetConnection conn)
         {
-            NetOutgoingMessage om = server.CreateMessage();
+            NetOutgoingMessage om = AgarServer.CreateMessage();
             om.Write(msg.Id);
             msg.W(om);
-            server.SendMessage(om, conn, NetDeliveryMethod.Unreliable, 0);
+            AgarServer.SendMessage(om, conn, NetDeliveryMethod.Unreliable, 0);
         }
 
         private static void SendMessageExceptOne(MsgBase msg, NetConnection except)
         {
-            NetOutgoingMessage oom = server.CreateMessage();
+            NetOutgoingMessage oom = AgarServer.CreateMessage();
             oom.Write(msg.Id);
             msg.W(oom);
 
-            List<NetConnection> all = server.Connections;
+            List<NetConnection> all = AgarServer.Connections;
             if(all.Contains(except))
             {
                 all.Remove(except);
             }
             if (all.Count > 0)
             {
-                server.SendMessage(oom, all, NetDeliveryMethod.Unreliable, 0);
+                AgarServer.SendMessage(oom, all, NetDeliveryMethod.Unreliable, 0);
             }
         }
     }

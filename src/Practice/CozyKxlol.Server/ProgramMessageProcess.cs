@@ -25,7 +25,7 @@ namespace CozyKxlol.Server
 
         private static bool OnProcessLogin(NetServer server, int id, NetIncomingMessage msg)
         {
-            uint uid                = GameId;
+            uint uid                = AgarGameId;
 
             Msg_AgarLogin r         = new Msg_AgarLogin();
             r.R(msg);
