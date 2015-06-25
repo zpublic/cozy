@@ -36,6 +36,7 @@ namespace CozyKxlol.Kxlol.Scene
             LoadMap();
 
             InitKeyboard();
+            RegisterClientEvent();
 
             Player = CozyTileSprite.Create(@"player");
             this.AddChind(Player, 1);
