@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CozyKxlol.Server.Model.Impl
+namespace CozyKxlol.Server.Model.Interface
 {
     public interface ICircle
     {
