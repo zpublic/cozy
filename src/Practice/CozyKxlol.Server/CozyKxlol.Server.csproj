@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="AgarProgress.cs" />
     <Compile Include="GameCalculate.cs" />
+    <Compile Include="HappyProgress.cs" />
     <Compile Include="Manager\MarkManager.cs" />
     <Compile Include="Manager\PlayerBallManager.cs" />
     <Compile Include="Model\CustomColors.cs" />

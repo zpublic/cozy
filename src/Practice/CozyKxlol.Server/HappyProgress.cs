@@ -19,7 +19,7 @@ namespace CozyKxlol.Server
 
         public static NetServer HappyServer { get; set; }
 
-        private static void OnAgarServerProgerss()
+        private static void OnHappyServerProgerss()
         {
             NetPeerConfiguration config = new NetPeerConfiguration("CozyKxlol");
             config.MaximumConnections = 10000;

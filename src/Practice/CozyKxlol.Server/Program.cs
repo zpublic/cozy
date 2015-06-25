@@ -23,6 +23,7 @@ namespace CozyKxlol.Server
         static void Main(string[] args)
         {
             OnAgarServerProgerss();
+            OnHappyServerProgerss();
 
             while (!Console.KeyAvailable || Console.ReadKey().Key != ConsoleKey.Escape)
             {
