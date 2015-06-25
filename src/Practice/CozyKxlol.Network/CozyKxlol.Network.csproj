@@ -50,7 +50,7 @@
   <ItemGroup>
     <Compile Include="ConnectionStatus.cs" />
     <Compile Include="Msg\GameMessageHelper.cs" />
-    <Compile Include="Msg\Game\Msg_AgarMarkListPack.cs" />
+    <Compile Include="Msg\Game\Agar\Msg_AgarMarkListPack.cs" />
     <Compile Include="Msg\MsgBase.cs" />
     <Compile Include="Msg\MsgId.cs" />
     <Compile Include="Msg\Account\Msg_AccountLoginRsp.cs" />
@@ -59,14 +59,14 @@
     <Compile Include="Msg\Account\Msg_AccountReg.cs" />
     <Compile Include="Msg\Account\Msg_AccountLogin.cs" />
     <Compile Include="Msg\Account\Msg_AccountModifyPassword.cs" />
-    <Compile Include="Msg\Game\Msg_AgarBorn.cs" />
-    <Compile Include="Msg\Game\Msg_AgarFixBallPack.cs" />
-    <Compile Include="Msg\Game\Msg_AgarFixedBall.cs" />
-    <Compile Include="Msg\Game\Msg_AgarLogin.cs" />
-    <Compile Include="Msg\Game\Msg_AgarLoginRsp.cs" />
-    <Compile Include="Msg\Game\Msg_AgarPlayInfo.cs" />
-    <Compile Include="Msg\Game\Msg_AgarPlayInfoPack.cs" />
-    <Compile Include="Msg\Game\Msg_AgarSelf.cs" />
+    <Compile Include="Msg\Game\Agar\Msg_AgarBorn.cs" />
+    <Compile Include="Msg\Game\Agar\Msg_AgarFixBallPack.cs" />
+    <Compile Include="Msg\Game\Agar\Msg_AgarFixedBall.cs" />
+    <Compile Include="Msg\Game\Agar\Msg_AgarLogin.cs" />
+    <Compile Include="Msg\Game\Agar\Msg_AgarLoginRsp.cs" />
+    <Compile Include="Msg\Game\Agar\Msg_AgarPlayInfo.cs" />
+    <Compile Include="Msg\Game\Agar\Msg_AgarPlayInfoPack.cs" />
+    <Compile Include="Msg\Game\Agar\Msg_AgarSelf.cs" />
     <Compile Include="Msg\Chat\Msg_ChatToAll.cs" />
     <Compile Include="NetClientHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

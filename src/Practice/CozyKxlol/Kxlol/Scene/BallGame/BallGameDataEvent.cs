@@ -5,6 +5,7 @@ using System.Text;
 using CozyKxlol.Kxlol.Extends;
 using CozyKxlol.Kxlol.Object;
 using CozyKxlol.Network.Msg;
+using CozyKxlol.Network.Msg.Agar;
 using Microsoft.Xna.Framework;
 
 namespace CozyKxlol.Kxlol.Scene

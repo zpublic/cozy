@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CozyKxlol.Network;
 using CozyKxlol.Network.Msg;
+using CozyKxlol.Network.Msg.Agar;
 using Microsoft.Xna.Framework;
 using CozyKxlol.Kxlol.Object;
 

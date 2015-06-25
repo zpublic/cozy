@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Lidgren.Network;
 
-namespace CozyKxlol.Network.Msg
+namespace CozyKxlol.Network.Msg.Agar
 {
     public struct Msg_AgarSelf : MsgBase
     {
