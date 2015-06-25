@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Lidgren.Network;
 
-namespace CozyKxlol.Network.Msg.Game.Happy
+namespace CozyKxlol.Network.Msg.Happy
 {
     public struct Msg_HappyPLayerQuit : MsgBase
     {
