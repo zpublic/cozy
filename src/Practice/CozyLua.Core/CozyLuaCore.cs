@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -60,6 +61,26 @@ namespace CozyLua.Core
         public CozyLuaFunction GetFunction(string fullPath)
         {
             NLua.LuaFunction func = mLua.GetFunction(fullPath);
+            if (func != null)
+            {
+                return new CozyLuaFunction(func);
+            }
+            return null;
+        }
+
+        public CozyLuaFunction RegisterFunction(string path, MethodBase function)
+        {
+            NLua.LuaFunction func = mLua.RegisterFunction(path, function);
+            if (func != null)
+            {
+                return new CozyLuaFunction(func);
+            }
+            return null;
+        }
+
+        public CozyLuaFunction RegisterFunction(string path, object target, MethodBase function)
+        {
+            NLua.LuaFunction func = mLua.RegisterFunction(path, target, function);
             if (func != null)
             {
                 return new CozyLuaFunction(func);

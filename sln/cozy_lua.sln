@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{4ED56B98-9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLua.Core.Tester", "..\src\Practice\CozyLua.Core.Tester\CozyLua.Core.Tester.csproj", "{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLua.Plugin.Tester", "..\src\Practice\CozyLua.Plugin.Tester\CozyLua.Plugin.Tester.csproj", "{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +135,20 @@ Global
 		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}.Release|x64.ActiveCfg = Release|Any CPU
 		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}.Release|x86.ActiveCfg = Release|Any CPU
+		{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}.Release|x64.ActiveCfg = Release|Any CPU
+		{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,5 +157,6 @@ Global
 		{C4C41D84-F9DE-4842-8F91-DCC62863A002} = {08DF5C41-90E7-443A-A892-3C42D015608F}
 		{AC56443E-9070-4957-8EBE-61BFF343FCEC} = {08DF5C41-90E7-443A-A892-3C42D015608F}
 		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
+		{A27BE89C-A0DE-464B-AF78-C3F261EED8CA} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 	EndGlobalSection
 EndGlobal

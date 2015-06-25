@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C4C41D84-F9DE-4842-8F91-DCC62863A002}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{A27BE89C-A0DE-464B-AF78-C3F261EED8CA}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyLua.Plugin.WinFile</RootNamespace>
-    <AssemblyName>CozyLua.Plugin.WinFile</AssemblyName>
+    <RootNamespace>CozyLua.Plugin.Tester</RootNamespace>
+    <AssemblyName>CozyLua.Plugin.Tester</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\..\bin\Release\</OutputPath>
@@ -39,14 +41,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WinFilePlugin.cs" />
-    <Compile Include="WinFilePluginImpl.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyLua.Plugin.WinFile\CozyLua.Plugin.WinFile.csproj">
+      <Project>{c4c41d84-f9de-4842-8f91-dcc62863a002}</Project>
+      <Name>CozyLua.Plugin.WinFile</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyLua.Plugin\CozyLua.Plugin.csproj">
       <Project>{69f9878e-3491-4d23-a77b-bc659190a638}</Project>
       <Name>CozyLua.Plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyLua.Runner\CozyLua.Runner.csproj">
+      <Project>{9dd7e5b2-fcea-4049-a027-e4441ed516da}</Project>
+      <Name>CozyLua.Runner</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

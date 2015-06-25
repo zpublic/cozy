@@ -10,6 +10,9 @@ namespace CozyLua.Runner.Console
     {
         static void Main(string[] args)
         {
+            // 自动枚举 . 目录 和 ./plugin 下的dll，来加载插件
+            // 自动执行 ./cozy.lua
+            // cozy.lua 需包含一个main函数，返回int
         }
     }
 }

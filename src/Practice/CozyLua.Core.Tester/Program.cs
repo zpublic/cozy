@@ -9,6 +9,11 @@ namespace CozyLua.Core.Tester
 {
     class Program
     {
+        public int TestFunc(int a, int b)
+        {
+            return a + b;
+        }
+
         static void Main(string[] args)
         {
             CozyLuaCore lua = new CozyLuaCore();
@@ -50,6 +55,19 @@ namespace CozyLua.Core.Tester
             {
                 Console.WriteLine(i2.Value);
             }
+
+            Program p = new Program();
+            lua.RegisterFunction("tf", p, typeof(Program).GetMethod("TestFunc"));
+            var r4 = (int)(double)lua.DoString("return tf(1,2)")[0];
+            Console.WriteLine(r4);
+
+            lua.RegisterFunction(
+                "p",
+                typeof(System.Console).GetMethod(
+                    "WriteLine",
+                    new Type[]{ typeof(String) })
+                    );
+            lua.DoString("p('hello')");
         }
     }
 }
