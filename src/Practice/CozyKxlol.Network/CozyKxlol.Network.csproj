@@ -51,6 +51,11 @@
     <Compile Include="ConnectionStatus.cs" />
     <Compile Include="Msg\GameMessageHelper.cs" />
     <Compile Include="Msg\Game\Agar\Msg_AgarMarkListPack.cs" />
+    <Compile Include="Msg\Game\Happy\Msg_HappyOtherPlayerLogin.cs" />
+    <Compile Include="Msg\Game\Happy\Msg_HappyPlayerLogin.cs" />
+    <Compile Include="Msg\Game\Happy\Msg_HappyPlayerLoginRsp.cs" />
+    <Compile Include="Msg\Game\Happy\Msg_HappyPlayerMove.cs" />
+    <Compile Include="Msg\Game\Happy\Msg_HappyPLayerQuit.cs" />
     <Compile Include="Msg\MsgBase.cs" />
     <Compile Include="Msg\MsgId.cs" />
     <Compile Include="Msg\Account\Msg_AccountLoginRsp.cs" />
