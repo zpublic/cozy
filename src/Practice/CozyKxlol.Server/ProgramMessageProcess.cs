@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using Lidgren.Network;
 using CozyKxlol.Network.Msg;
+using CozyKxlol.Network.Msg.Agar;
 using CozyKxlol.Server.Model;
-using CozyKxlol.Server.Model.Impl;
+using CozyKxlol.Server.Model.Interface;
 
 namespace CozyKxlol.Server
 {
@@ -24,7 +25,7 @@ namespace CozyKxlol.Server
 
         private static bool OnProcessLogin(NetServer server, int id, NetIncomingMessage msg)
         {
-            uint uid                = GameId;
+            uint uid                = AgarGameId;
 
             Msg_AgarLogin r         = new Msg_AgarLogin();
             r.R(msg);
@@ -199,6 +200,16 @@ namespace CozyKxlol.Server
             oMsg.Color      = c;
             oMsg.Name       = name;
             SendMessageExceptOne(oMsg, msg.SenderConnection);
+            return true;
+        }
+
+        private static bool OnProcessHappyLogin(NetServer server, int id, NetIncomingMessage msg)
+        {
+            return true;
+        }
+
+        private static bool OnProgressHappyPlayerMove(NetServer server, int id, NetIncomingMessage msg)
+        {
             return true;
         }
     }

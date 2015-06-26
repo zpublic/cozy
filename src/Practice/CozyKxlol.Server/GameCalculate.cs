@@ -5,7 +5,7 @@ using System.Text;
 using Lidgren.Network;
 using CozyKxlol.Network.Msg;
 using CozyKxlol.Server.Model;
-using CozyKxlol.Server.Model.Impl;
+using CozyKxlol.Server.Model.Interface;
 
 namespace CozyKxlol.Server
 {

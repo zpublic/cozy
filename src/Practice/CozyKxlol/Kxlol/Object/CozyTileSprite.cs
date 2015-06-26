@@ -24,6 +24,7 @@ namespace CozyKxlol.Kxlol.Object
             }
         }
 
+        public bool Moving { get; set; }
 
         #region Create
 
@@ -86,36 +87,50 @@ namespace CozyKxlol.Kxlol.Object
 
         #endregion
 
+        public CozyTileSprite()
+        {
+            AnchorPoint = Vector2.Zero;
+        }
+
         public void Move(MoveDirection dire)
         {
-            switch(dire)
+            if(!Moving)
             {
-                case MoveDirection.Left:
-                    TilePosition = new Point(TilePosition.X - 1, TilePosition.Y);
-                    break;
-                case MoveDirection.Right:
-                    TilePosition = new Point(TilePosition.X + 1, TilePosition.Y);
-                    break;
-                case MoveDirection.Up:
-                    TilePosition = new Point(TilePosition.X, TilePosition.Y - 1);
-                    break;
-                case MoveDirection.Down:
-                    TilePosition = new Point(TilePosition.X, TilePosition.Y + 1);
-                    break;
-                case MoveDirection.LeftUp:
-                    TilePosition = new Point(TilePosition.X - 1, TilePosition.Y - 1);
-                    break;
-                case MoveDirection.LeftDown:
-                    TilePosition = new Point(TilePosition.X - 1, TilePosition.Y + 1);
-                    break;
-                case MoveDirection.RightUp:
-                    TilePosition = new Point(TilePosition.X + 1, TilePosition.Y - 1);
-                    break;
-                case MoveDirection.RightDown:
-                    TilePosition = new Point(TilePosition.X + 1, TilePosition.Y + 1);
-                    break;
-                default:
-                    break;
+                Point offsetPos = new Point();
+                switch (dire)
+                {
+                    case MoveDirection.Left:
+                        offsetPos = new Point(-1, 0);
+                        break;
+                    case MoveDirection.Right:
+                        offsetPos = new Point(1, 0);
+                        break;
+                    case MoveDirection.Up:
+                        offsetPos = new Point(0, -1);
+                        break;
+                    case MoveDirection.Down:
+                        offsetPos = new Point(0, 1);
+                        break;
+                    case MoveDirection.LeftUp:
+                        offsetPos = new Point(-1, -1);
+                        break;
+                    case MoveDirection.LeftDown:
+                        offsetPos = new Point(-1, 1);
+                        break;
+                    case MoveDirection.RightUp:
+                        offsetPos = new Point(1, -1);
+                        break;
+                    case MoveDirection.RightDown:
+                        offsetPos = new Point(1, 1);
+                        break;
+                    default:
+                        break;
+                }
+                var TileMove = CozyMoveBy.Create(0.5f, offsetPos.ToVector2() * ContentSize);
+                var SetPosAction = CozyCallFunc.Create(() => { this.TilePosition += offsetPos; Moving = false; });
+                var ActSeq = CozySequence.Create(TileMove, SetPosAction);
+                Moving = true;
+                this.RunAction(ActSeq);
             }
         }
     }

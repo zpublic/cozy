@@ -5,7 +5,7 @@ using System.Text;
 using Lidgren.Network;
 using CozyKxlol.Network.Msg;
 
-namespace CozyKxlol.Network.Msg
+namespace CozyKxlol.Network.Msg.Agar
 {
     public struct Msg_AgarPlayInfo : MsgBase
     {

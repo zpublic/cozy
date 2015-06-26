@@ -15,6 +15,7 @@ using Starbound.UI.XNA.Renderers;
 using CozyKxlol.Network;
 using CozyKxlol.Kxlol.Interface;
 using CozyKxlol.Network.Msg;
+using CozyKxlol.Network.Msg.Agar;
 
 namespace CozyKxlol.Kxlol.Scene
 {

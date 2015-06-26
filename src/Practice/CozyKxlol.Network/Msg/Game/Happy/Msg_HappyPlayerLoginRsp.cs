@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using Lidgren.Network;
 
-namespace CozyKxlol.Network.Msg
+namespace CozyKxlol.Network.Msg.Happy
 {
-    public struct Msg_AgarLogin : MsgBase
+    public struct Msg_HappyPlayerLoginRsp : MsgBase
     {
-        public int Id { get { return MsgId.AgarLogin; } }
+        public int Id { get { return MsgId.HappyPlayerLoginRsp; } }
 
         public void W(NetOutgoingMessage om)
         {

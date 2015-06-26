@@ -36,9 +36,9 @@ namespace CozyKxlol.Kxlol.Scene
             LoadMap();
 
             InitKeyboard();
+            RegisterClientEvent();
 
             Player = CozyTileSprite.Create(@"player");
-            Player.Position = Player.ContentSize / 2;
             this.AddChind(Player, 1);
             return true;
         }
@@ -48,8 +48,6 @@ namespace CozyKxlol.Kxlol.Scene
             var loader = new CozyTiledDataLoader(DataPath);
             loader.Load(Tileds);
         }
-
-
 
         public override void Update(GameTime gameTime)
         {

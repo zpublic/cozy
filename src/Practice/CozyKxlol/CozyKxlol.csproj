@@ -57,6 +57,7 @@
     <Compile Include="Kxlol\Scene\BallGame\BallGameKeyboardEvent.cs" />
     <Compile Include="Kxlol\Scene\BallGame\BallGameScene.cs" />
     <Compile Include="Kxlol\Scene\BallGame\BallGameSceneLayer.cs" />
+    <Compile Include="Kxlol\Scene\HappinessGame\HappinessGameClientEvent.cs" />
     <Compile Include="Kxlol\Scene\HappinessGame\HappinessGameKeyboardEvent.cs" />
     <Compile Include="Kxlol\Scene\HappinessGame\HappinessGameLayer.cs" />
     <Compile Include="Kxlol\Scene\HappinessGame\HappinessGameScene.cs" />

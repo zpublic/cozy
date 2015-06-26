@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CozyKxlol.Server.Manager;
 using CozyKxlol.Network.Msg;
+using CozyKxlol.Network.Msg.Agar;
 using Lidgren.Network;
 
 namespace CozyKxlol.Server
