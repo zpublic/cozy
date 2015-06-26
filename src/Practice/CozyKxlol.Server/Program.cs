@@ -67,6 +67,41 @@ namespace CozyKxlol.Server
                             break;
                     }
                 }
+                while ((msg = HappyServer.ReadMessage()) != null)
+                {
+                    switch (msg.MessageType)
+                    {
+                        case NetIncomingMessageType.DiscoveryRequest:
+                            HappyServer.SendDiscoveryResponse(null, msg.SenderEndPoint);
+                            break;
+                        case NetIncomingMessageType.VerboseDebugMessage:
+                        case NetIncomingMessageType.DebugMessage:
+                        case NetIncomingMessageType.WarningMessage:
+                        case NetIncomingMessageType.ErrorMessage:
+                            Console.WriteLine(msg.ReadString());
+                            break;
+                        case NetIncomingMessageType.StatusChanged:
+                            NetConnectionStatus status = (NetConnectionStatus)msg.ReadByte();
+                            if (status == NetConnectionStatus.Connected)
+                            {
+                                Console.WriteLine(NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier) + " connected!");
+                                Console.WriteLine(HappyServer.Connections.Count);
+                            }
+                            else if (status == NetConnectionStatus.Disconnected)
+                            {
+                                Console.WriteLine(NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier) + " disconnect!");
+                                Console.WriteLine(HappyServer.Connections.Count);
+                            }
+                            break;
+                        case NetIncomingMessageType.Data:
+                            int id = msg.ReadInt32();
+                            if (!ProcessPacket(HappyServer, id, msg))
+                            {
+                                DispatchPacket(HappyServer, id, msg);
+                            }
+                            break;
+                    }
+                }
                 Thread.Sleep(1);
             }
             AgarServer.Shutdown("app exiting");

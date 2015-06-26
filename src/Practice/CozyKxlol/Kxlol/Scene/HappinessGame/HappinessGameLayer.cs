@@ -38,8 +38,7 @@ namespace CozyKxlol.Kxlol.Scene
             InitKeyboard();
             RegisterClientEvent();
 
-            Player = CozyTileSprite.Create(@"player");
-            this.AddChind(Player, 1);
+            client.Connect("127.0.0.1", 36048);
             return true;
         }
 
@@ -53,6 +52,7 @@ namespace CozyKxlol.Kxlol.Scene
         {
             base.Update(gameTime);
             keyboard.Update(gameTime);
+            client.Update();
 
             var dire = DirectionNow();
             if (dire != Interface.MoveDirection.Unknow)
