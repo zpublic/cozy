@@ -44,6 +44,7 @@
     <Compile Include="Kxlol\Interface\IControlAble.cs" />
     <Compile Include="Kxlol\Interface\IMoveAble.cs" />
     <Compile Include="Kxlol\Interface\ITileMoveable.cs" />
+    <Compile Include="Kxlol\Converter\MoveDirectionToPointConverter.cs" />
     <Compile Include="Kxlol\Object\CozyCircle.cs" />
     <Compile Include="Kxlol\Object\CozyTileSprite.cs" />
     <Compile Include="Kxlol\Object\DefaultFoodCircle.cs" />

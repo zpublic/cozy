@@ -5,6 +5,7 @@ using System.Text;
 using CozyKxlol.Engine;
 using CozyKxlol.Engine.Tiled;
 using CozyKxlol.Kxlol.Object;
+using CozyKxlol.Kxlol.Converter;
 using CozyKxlol.Kxlol.Object.Tiled;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -59,7 +60,12 @@ namespace CozyKxlol.Kxlol.Scene
             var dire = DirectionNow();
             if (dire != Interface.MoveDirection.Unknow)
             {
-                Player.Move(dire);
+                if(!Player.Moving)
+                {
+                    Player.Move(dire);
+                    var offsetPos = MoveDirectionToPointConverter.MoveDirectionConvertToPoint(dire);
+
+                }
             }
         }
     }

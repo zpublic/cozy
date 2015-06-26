@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CozyKxlol.Engine;
 using CozyKxlol.Kxlol.Interface;
+using CozyKxlol.Kxlol.Converter;
 using Microsoft.Xna.Framework;
 
 namespace CozyKxlol.Kxlol.Object
@@ -96,36 +97,8 @@ namespace CozyKxlol.Kxlol.Object
         {
             if(!Moving)
             {
-                Point offsetPos = new Point();
-                switch (dire)
-                {
-                    case MoveDirection.Left:
-                        offsetPos = new Point(-1, 0);
-                        break;
-                    case MoveDirection.Right:
-                        offsetPos = new Point(1, 0);
-                        break;
-                    case MoveDirection.Up:
-                        offsetPos = new Point(0, -1);
-                        break;
-                    case MoveDirection.Down:
-                        offsetPos = new Point(0, 1);
-                        break;
-                    case MoveDirection.LeftUp:
-                        offsetPos = new Point(-1, -1);
-                        break;
-                    case MoveDirection.LeftDown:
-                        offsetPos = new Point(-1, 1);
-                        break;
-                    case MoveDirection.RightUp:
-                        offsetPos = new Point(1, -1);
-                        break;
-                    case MoveDirection.RightDown:
-                        offsetPos = new Point(1, 1);
-                        break;
-                    default:
-                        break;
-                }
+                Point offsetPos = MoveDirectionToPointConverter.MoveDirectionConvertToPoint(dire);
+                
                 var TileMove = CozyMoveBy.Create(0.5f, offsetPos.ToVector2() * ContentSize);
                 var SetPosAction = CozyCallFunc.Create(() => { this.TilePosition += offsetPos; Moving = false; });
                 var ActSeq = CozySequence.Create(TileMove, SetPosAction);
