@@ -24,16 +24,16 @@ namespace CozyKxlol.Kxlol.Scene
         Dictionary<uint, CozyCircle> FoodList       = new Dictionary<uint, CozyCircle>();
         Dictionary<uint, UserCircle> CircleList     = new Dictionary<uint, UserCircle>();
         List<KeyValuePair<string, int>> MarkList    = new List<KeyValuePair<string, int>>();
-        public UserCircle Player                = null;
-        public CozyLabel ScoreShow              = null;
-        private static Random RandomMaker       = new Random();
-        private string Name                     = null;
-        private int DefaultRadius               = 0;
-        private Point MapSize                   = Point.Zero;
+        public UserCircle Player                    = null;
+        public CozyLabel ScoreShow                  = null;
+        private static Random RandomMaker           = new Random();
+        private string Name                         = null;
+        private int DefaultRadius                   = 0;
+        private Point MapSize                       = Point.Zero;
 
-        public const int PlayerZOrder           = 2;
-        public const int OtherPlayerZOrder      = 1;
-        public const int FoodZOrder             = 0;
+        public const int PlayerZOrder               = 2;
+        public const int OtherPlayerZOrder          = 1;
+        public const int FoodZOrder                 = 0;
 
         public BallGameSceneLayer()
         {

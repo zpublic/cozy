@@ -47,14 +47,14 @@ namespace CozyKxlol.Server
                             {
                                 Console.WriteLine(NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier) + " connected!");
                                 Console.WriteLine(AgarServer.Connections.Count);
-                                ConnectionMgr[msg.SenderConnection] = 0;
+                                AgarConnMgr.Add(msg.SenderConnection);
                             }
                             else if (status == NetConnectionStatus.Disconnected)
                             {
                                 Console.WriteLine(NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier) + " disconnect!");
-                                uint removeId = ConnectionMgr[msg.SenderConnection];
+                                uint removeId = AgarConnMgr.Get(msg.SenderConnection);
                                 PlayerBallMgr.Remove(removeId);
-                                ConnectionMgr.Remove(msg.SenderConnection);
+                                AgarConnMgr.Remove(msg.SenderConnection);
                                 Console.WriteLine(AgarServer.Connections.Count);
                             }
                             break;
@@ -63,6 +63,45 @@ namespace CozyKxlol.Server
                             if (!ProcessPacket(AgarServer, id, msg))
                             {
                                 DispatchPacket(AgarServer, id, msg);
+                            }
+                            break;
+                    }
+                }
+                while ((msg = HappyServer.ReadMessage()) != null)
+                {
+                    switch (msg.MessageType)
+                    {
+                        case NetIncomingMessageType.DiscoveryRequest:
+                            HappyServer.SendDiscoveryResponse(null, msg.SenderEndPoint);
+                            break;
+                        case NetIncomingMessageType.VerboseDebugMessage:
+                        case NetIncomingMessageType.DebugMessage:
+                        case NetIncomingMessageType.WarningMessage:
+                        case NetIncomingMessageType.ErrorMessage:
+                            Console.WriteLine(msg.ReadString());
+                            break;
+                        case NetIncomingMessageType.StatusChanged:
+                            NetConnectionStatus status = (NetConnectionStatus)msg.ReadByte();
+                            if (status == NetConnectionStatus.Connected)
+                            {
+                                Console.WriteLine(NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier) + " connected!");
+                                Console.WriteLine(HappyServer.Connections.Count);
+                                HappyConnMgr.Add(msg.SenderConnection);
+                            }
+                            else if (status == NetConnectionStatus.Disconnected)
+                            {
+                                Console.WriteLine(NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier) + " disconnect!");
+                                uint removeId = HappyConnMgr.Get(msg.SenderConnection);
+                                HappyPlayerMgr.Remove(removeId);
+                                HappyConnMgr.Remove(msg.SenderConnection);
+                                Console.WriteLine(HappyServer.Connections.Count);
+                            }
+                            break;
+                        case NetIncomingMessageType.Data:
+                            int id = msg.ReadInt32();
+                            if (!ProcessPacket(HappyServer, id, msg))
+                            {
+                                DispatchPacket(HappyServer, id, msg);
                             }
                             break;
                     }

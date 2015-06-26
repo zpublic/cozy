@@ -44,6 +44,7 @@
     <Compile Include="Kxlol\Interface\IControlAble.cs" />
     <Compile Include="Kxlol\Interface\IMoveAble.cs" />
     <Compile Include="Kxlol\Interface\ITileMoveable.cs" />
+    <Compile Include="Kxlol\Converter\MoveDirectionToPointConverter.cs" />
     <Compile Include="Kxlol\Object\CozyCircle.cs" />
     <Compile Include="Kxlol\Object\CozyTileSprite.cs" />
     <Compile Include="Kxlol\Object\DefaultFoodCircle.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Kxlol\Scene\BallGame\BallGameScene.cs" />
     <Compile Include="Kxlol\Scene\BallGame\BallGameSceneLayer.cs" />
     <Compile Include="Kxlol\Scene\HappinessGame\HappinessGameClientEvent.cs" />
+    <Compile Include="Kxlol\Scene\HappinessGame\HappinessGameDataEvent.cs" />
     <Compile Include="Kxlol\Scene\HappinessGame\HappinessGameKeyboardEvent.cs" />
     <Compile Include="Kxlol\Scene\HappinessGame\HappinessGameLayer.cs" />
     <Compile Include="Kxlol\Scene\HappinessGame\HappinessGameScene.cs" />

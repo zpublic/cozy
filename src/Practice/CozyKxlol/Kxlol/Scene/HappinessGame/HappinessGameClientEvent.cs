@@ -19,6 +19,9 @@ namespace CozyKxlol.Kxlol.Scene
             if (msg.Status == ConnectionStatus.Connected)
             {
                 IsConnect = true;
+                var LoginMsg = new Msg_HappyPlayerLogin();
+
+                client.SendMessage(LoginMsg);
             }
             else if (msg.Status == ConnectionStatus.Disconnected)
             {
@@ -33,6 +36,21 @@ namespace CozyKxlol.Kxlol.Scene
             MsgBase b = msg.Msg;
             switch (b.Id)
             {
+                case MsgId.HappyPlayerLoginRsp:
+                    OnHappyPlayerLoginRsp(b);
+                    break;
+                case MsgId.HappyOtherPlayerLogin:
+                    OnHappyOtherPlayerLogin(b);
+                    break;
+                case MsgId.HappyPlayerPack:
+                    OnHappyPlayerPack(b);
+                    break;
+                case MsgId.HappyPlayerMove:
+                    OnHappyPlayerMove(b);
+                    break;
+                case MsgId.HappyPlayerQuit:
+                    OnHappyPlayerQuit(b);
+                    break;
                 default:
                     break;
             }

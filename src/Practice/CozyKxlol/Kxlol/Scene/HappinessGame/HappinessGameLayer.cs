@@ -5,6 +5,8 @@ using System.Text;
 using CozyKxlol.Engine;
 using CozyKxlol.Engine.Tiled;
 using CozyKxlol.Kxlol.Object;
+using CozyKxlol.Network.Msg.Happy;
+using CozyKxlol.Kxlol.Converter;
 using CozyKxlol.Kxlol.Object.Tiled;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,6 +19,8 @@ namespace CozyKxlol.Kxlol.Scene
         private string DataPath = @".\Content\Data.db";
 
         public CozyTileSprite Player { get; set; }
+
+        Dictionary<uint, CozyTileSprite> OtherPlayerList = new Dictionary<uint, CozyTileSprite>();
 
         public static HappinessGameLayer Create()
         {
@@ -38,8 +42,7 @@ namespace CozyKxlol.Kxlol.Scene
             InitKeyboard();
             RegisterClientEvent();
 
-            Player = CozyTileSprite.Create(@"player");
-            this.AddChind(Player, 1);
+            client.Connect("127.0.0.1", 36048);
             return true;
         }
 
@@ -53,11 +56,22 @@ namespace CozyKxlol.Kxlol.Scene
         {
             base.Update(gameTime);
             keyboard.Update(gameTime);
+            client.Update();
 
             var dire = DirectionNow();
             if (dire != Interface.MoveDirection.Unknow)
             {
-                Player.Move(dire);
+                if(!Player.Moving)
+                {
+                    Player.Move(dire);
+                    var offsetPos = MoveDirectionToPointConverter.MoveDirectionConvertToPoint(dire);
+
+                    var MoveMsg = new Msg_HappyPlayerMove();
+                    MoveMsg.Uid = Uid;
+                    MoveMsg.X   = offsetPos.X;
+                    MoveMsg.Y   = offsetPos.Y;
+                    client.SendMessage(MoveMsg);
+                }
             }
         }
     }
