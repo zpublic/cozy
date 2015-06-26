@@ -33,6 +33,16 @@ namespace CozyKxlol.Server.Manager
             return new HappyPlayer();
         }
 
+        public bool Modify(uint id, HappyPlayer data)
+        {
+            if(PlayerDictionary.ContainsKey(id))
+            {
+                PlayerDictionary[id] = data;
+                return true;
+            }
+            return false;
+        }
+
         public List<KeyValuePair<uint, HappyPlayer>> ToList()
         {
             return PlayerDictionary.ToList();

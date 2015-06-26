@@ -5,6 +5,7 @@ using System.Text;
 using CozyKxlol.Engine;
 using CozyKxlol.Engine.Tiled;
 using CozyKxlol.Kxlol.Object;
+using CozyKxlol.Network.Msg.Happy;
 using CozyKxlol.Kxlol.Converter;
 using CozyKxlol.Kxlol.Object.Tiled;
 using Microsoft.Xna.Framework;
@@ -65,6 +66,11 @@ namespace CozyKxlol.Kxlol.Scene
                     Player.Move(dire);
                     var offsetPos = MoveDirectionToPointConverter.MoveDirectionConvertToPoint(dire);
 
+                    var MoveMsg = new Msg_HappyPlayerMove();
+                    MoveMsg.Uid = Uid;
+                    MoveMsg.X = offsetPos.X;
+                    MoveMsg.Y = offsetPos.Y;
+                    client.SendMessage(MoveMsg);
                 }
             }
         }

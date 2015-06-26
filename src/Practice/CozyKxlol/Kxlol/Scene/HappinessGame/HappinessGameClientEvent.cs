@@ -7,6 +7,7 @@ using CozyKxlol.Network.Msg;
 using CozyKxlol.Kxlol.Object;
 using CozyKxlol.Network.Msg.Happy;
 using Microsoft.Xna.Framework;
+using CozyKxlol.Kxlol.Converter;
 
 namespace CozyKxlol.Kxlol.Scene
 {
@@ -62,6 +63,19 @@ namespace CozyKxlol.Kxlol.Scene
                             osp.TilePosition = new Point(obj.Item2, obj.Item3);
                             OtherPlayerList[obj.Item1] = osp;
                             this.AddChind(osp, 1);
+                        }
+                    }
+                    break;
+                case MsgId.HappyPlayerMove:
+                    var moveMsg = (Msg_HappyPlayerMove)b;
+                    uint uid = moveMsg.Uid;
+                    if(OtherPlayerList.ContainsKey(uid))
+                    {
+                        var player = OtherPlayerList[uid];
+                        if(player != null)
+                        {
+                            var dire = MoveDirectionToPointConverter.PointConvertToMoveDirection(new Point(moveMsg.X, moveMsg.Y));
+                            player.Move(dire);
                         }
                     }
                     break;

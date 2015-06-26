@@ -95,16 +95,13 @@ namespace CozyKxlol.Kxlol.Object
 
         public void Move(MoveDirection dire)
         {
-            if(!Moving)
-            {
-                Point offsetPos = MoveDirectionToPointConverter.MoveDirectionConvertToPoint(dire);
-                
-                var TileMove = CozyMoveBy.Create(0.5f, offsetPos.ToVector2() * ContentSize);
-                var SetPosAction = CozyCallFunc.Create(() => { this.TilePosition += offsetPos; Moving = false; });
-                var ActSeq = CozySequence.Create(TileMove, SetPosAction);
-                Moving = true;
-                this.RunAction(ActSeq);
-            }
+            Point offsetPos = MoveDirectionToPointConverter.MoveDirectionConvertToPoint(dire);
+
+            var TileMove = CozyMoveBy.Create(0.5f, offsetPos.ToVector2() * ContentSize);
+            var SetPosAction = CozyCallFunc.Create(() => { this.TilePosition += offsetPos; Moving = false; });
+            var ActSeq = CozySequence.Create(TileMove, SetPosAction);
+            Moving = true;
+            this.RunAction(ActSeq);
         }
     }
 }
