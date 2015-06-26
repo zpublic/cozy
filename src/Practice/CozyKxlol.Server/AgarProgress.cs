@@ -23,7 +23,7 @@ namespace CozyKxlol.Server
 
         public static FixedBallManager FixedBallMgr = new FixedBallManager();
         public static PlayerBallManager PlayerBallMgr = new PlayerBallManager();
-        public static Dictionary<NetConnection, uint> ConnectionMgr = new Dictionary<NetConnection, uint>();
+        public static ConnectionManager AgarConnMgr = new ConnectionManager();
         public static MarkManager MarkMgr = new MarkManager();
         public const int GameWidth = 800;
         public const int GameHeight = 610;

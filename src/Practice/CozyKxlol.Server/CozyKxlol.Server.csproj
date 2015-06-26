@@ -46,9 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgarMessageProcess.cs" />
     <Compile Include="AgarProgress.cs" />
     <Compile Include="GameCalculate.cs" />
     <Compile Include="HappyProgress.cs" />
+    <Compile Include="Manager\ConnectionManager.cs" />
     <Compile Include="Manager\HappyPlayerManager.cs" />
     <Compile Include="Manager\MarkManager.cs" />
     <Compile Include="Manager\PlayerBallManager.cs" />
@@ -59,7 +61,7 @@
     <Compile Include="Model\Interface\ICircle.cs" />
     <Compile Include="Model\PlayerBall.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ProgramMessageProcess.cs" />
+    <Compile Include="HappyMessageProcess.cs" />
     <Compile Include="ProgramOperat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerOperat.cs" />

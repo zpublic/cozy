@@ -43,7 +43,7 @@ namespace CozyKxlol.Server
 
         private static void OnPlayerDead(object sender, PlayerBallManager.PlayerDeadArgs msg)
         {
-            var conn = ConnectionMgr.First(obj => obj.Value == msg.UserId).Key;
+            var conn = AgarConnMgr.Get(msg.UserId);
 
             MarkMgr.Remove(msg.UserId);
 

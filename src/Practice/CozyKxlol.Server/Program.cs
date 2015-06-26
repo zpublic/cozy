@@ -47,14 +47,14 @@ namespace CozyKxlol.Server
                             {
                                 Console.WriteLine(NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier) + " connected!");
                                 Console.WriteLine(AgarServer.Connections.Count);
-                                ConnectionMgr[msg.SenderConnection] = 0;
+                                AgarConnMgr.Add(msg.SenderConnection);
                             }
                             else if (status == NetConnectionStatus.Disconnected)
                             {
                                 Console.WriteLine(NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier) + " disconnect!");
-                                uint removeId = ConnectionMgr[msg.SenderConnection];
+                                uint removeId = AgarConnMgr.Get(msg.SenderConnection);
                                 PlayerBallMgr.Remove(removeId);
-                                ConnectionMgr.Remove(msg.SenderConnection);
+                                AgarConnMgr.Remove(msg.SenderConnection);
                                 Console.WriteLine(AgarServer.Connections.Count);
                             }
                             break;
