@@ -18,6 +18,8 @@ namespace CozyKxlol.Kxlol.Scene
 
         public CozyTileSprite Player { get; set; }
 
+        Dictionary<uint, CozyTileSprite> OtherPlayerList = new Dictionary<uint, CozyTileSprite>();
+
         public static HappinessGameLayer Create()
         {
             var layer = new HappinessGameLayer();

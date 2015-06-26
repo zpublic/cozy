@@ -49,6 +49,7 @@ namespace CozyKxlol.Kxlol.Scene
                     var otherMsg = (Msg_HappyOtherPlayerLogin)b;
                     var sp = CozyTileSprite.Create("player");
                     sp.TilePosition = new Point(otherMsg.X, otherMsg.Y);
+                    OtherPlayerList[otherMsg.Uid] = sp;
                     this.AddChind(sp, 1);
                     break;
                 case MsgId.HappyPlayerPack:
@@ -59,6 +60,7 @@ namespace CozyKxlol.Kxlol.Scene
                         {
                             var osp = CozyTileSprite.Create("player");
                             osp.TilePosition = new Point(obj.Item2, obj.Item3);
+                            OtherPlayerList[obj.Item1] = osp;
                             this.AddChind(osp, 1);
                         }
                     }
