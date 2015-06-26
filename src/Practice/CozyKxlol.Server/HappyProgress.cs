@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Lidgren.Network;
+using CozyKxlol.Server.Manager;
 
 namespace CozyKxlol.Server
 {
@@ -18,6 +19,8 @@ namespace CozyKxlol.Server
         }
 
         public static NetServer HappyServer { get; set; }
+
+        public static HappyPlayerManager HappyPlayerMgr = new HappyPlayerManager();
 
         private static void OnHappyServerProgerss()
         {

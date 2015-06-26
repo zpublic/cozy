@@ -69,7 +69,9 @@ namespace CozyKxlol.Network.Msg
 
         public const int HappyPlayerMove = 11116;
 
-        public const int HappyPLayerQuit = 11117;
+        public const int HappyPlayerQuit = 11117;
+
+        public const int HappyPlayerPack = 11118;
 
         ////// 20001 - 40000 游戏扩展
 

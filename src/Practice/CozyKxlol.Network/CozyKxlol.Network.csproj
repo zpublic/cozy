@@ -55,7 +55,8 @@
     <Compile Include="Msg\Game\Happy\Msg_HappyPlayerLogin.cs" />
     <Compile Include="Msg\Game\Happy\Msg_HappyPlayerLoginRsp.cs" />
     <Compile Include="Msg\Game\Happy\Msg_HappyPlayerMove.cs" />
-    <Compile Include="Msg\Game\Happy\Msg_HappyPLayerQuit.cs" />
+    <Compile Include="Msg\Game\Happy\Msg_HappyPlayerPack.cs" />
+    <Compile Include="Msg\Game\Happy\Msg_HappyPlayerQuit.cs" />
     <Compile Include="Msg\MsgBase.cs" />
     <Compile Include="Msg\MsgId.cs" />
     <Compile Include="Msg\Account\Msg_AccountLoginRsp.cs" />

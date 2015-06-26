@@ -238,9 +238,15 @@ namespace CozyKxlol.Network
                     msg.R(im);
                     DataMessage(sender, new DataMessageArgs(msg));
                 }
-                else if(id == MsgId.HappyPLayerQuit)
+                else if(id == MsgId.HappyPlayerQuit)
                 {
-                    MsgBase msg = new Msg_HappyPLayerQuit();
+                    MsgBase msg = new Msg_HappyPlayerQuit();
+                    msg.R(im);
+                    DataMessage(sender, new DataMessageArgs(msg));
+                }
+                else if(id == MsgId.HappyPlayerPack)
+                {
+                    MsgBase msg = new Msg_HappyPlayerPack();
                     msg.R(im);
                     DataMessage(sender, new DataMessageArgs(msg));
                 }

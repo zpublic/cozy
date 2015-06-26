@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using CozyKxlol.Network;
 using CozyKxlol.Network.Msg;
+using CozyKxlol.Kxlol.Object;
 using CozyKxlol.Network.Msg.Happy;
+using Microsoft.Xna.Framework;
 
 namespace CozyKxlol.Kxlol.Scene
 {
@@ -19,6 +21,9 @@ namespace CozyKxlol.Kxlol.Scene
             if (msg.Status == ConnectionStatus.Connected)
             {
                 IsConnect = true;
+                var LoginMsg = new Msg_HappyPlayerLogin();
+
+                client.SendMessage(LoginMsg);
             }
             else if (msg.Status == ConnectionStatus.Disconnected)
             {
@@ -33,6 +38,31 @@ namespace CozyKxlol.Kxlol.Scene
             MsgBase b = msg.Msg;
             switch (b.Id)
             {
+                case MsgId.HappyPlayerLoginRsp:
+                    var rspMsg = (Msg_HappyPlayerLoginRsp)b;
+                    Uid = rspMsg.Uid;
+                    Player = CozyTileSprite.Create("player");
+                    Player.TilePosition = new Point(rspMsg.X, rspMsg.Y);
+                    this.AddChind(Player, 2);
+                    break;
+                case MsgId.HappyOtherPlayerLogin:
+                    var otherMsg = (Msg_HappyOtherPlayerLogin)b;
+                    var sp = CozyTileSprite.Create("player");
+                    sp.TilePosition = new Point(otherMsg.X, otherMsg.Y);
+                    this.AddChind(sp, 1);
+                    break;
+                case MsgId.HappyPlayerPack:
+                    var packMsg = (Msg_HappyPlayerPack)b;
+                    foreach(var obj in packMsg.PlayerPack)
+                    {
+                        if(obj.Item4)
+                        {
+                            var osp = CozyTileSprite.Create("player");
+                            osp.TilePosition = new Point(obj.Item2, obj.Item3);
+                            this.AddChind(osp, 1);
+                        }
+                    }
+                    break;
                 default:
                     break;
             }
