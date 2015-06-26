@@ -28,8 +28,8 @@ namespace CozyKxlol.Kxlol.Scene
 
         private void RegisterTiles()
         {
-            var arr = new List<Tuple<uint, CozyTiledNode>>();
-            var data = CozyDirector.Instance.JsonManagerInstance.ParseWithFile(@".\Content\tiles.json");
+            var arr     = new List<Tuple<uint, CozyTiledNode>>();
+            var data    = CozyDirector.Instance.JsonManagerInstance.ParseWithFile(@".\Content\tiles.json");
 
             if (data.tiles != null)
             {

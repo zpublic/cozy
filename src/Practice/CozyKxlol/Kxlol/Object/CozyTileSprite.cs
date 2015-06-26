@@ -20,8 +20,8 @@ namespace CozyKxlol.Kxlol.Object
             }
             set
             {
-                _TilePosition = value;
-                Position = new Vector2(value.X * ContentSize.X, value.Y * ContentSize.Y);
+                _TilePosition   = value;
+                Position        = new Vector2(value.X * ContentSize.X, value.Y * ContentSize.Y);
             }
         }
 
@@ -95,12 +95,12 @@ namespace CozyKxlol.Kxlol.Object
 
         public void Move(MoveDirection dire)
         {
-            Point offsetPos = MoveDirectionToPointConverter.MoveDirectionConvertToPoint(dire);
+            Point offsetPos     = MoveDirectionToPointConverter.MoveDirectionConvertToPoint(dire);
 
-            var TileMove = CozyMoveBy.Create(0.5f, offsetPos.ToVector2() * ContentSize);
-            var SetPosAction = CozyCallFunc.Create(() => { this.TilePosition += offsetPos; Moving = false; });
-            var ActSeq = CozySequence.Create(TileMove, SetPosAction);
-            Moving = true;
+            var TileMove        = CozyMoveBy.Create(0.5f, offsetPos.ToVector2() * ContentSize);
+            var SetPosAction    = CozyCallFunc.Create(() => { this.TilePosition += offsetPos; Moving = false; });
+            var ActSeq          = CozySequence.Create(TileMove, SetPosAction);
+            Moving              = true;
             this.RunAction(ActSeq);
         }
     }

@@ -14,19 +14,19 @@ namespace CozyKxlol.Kxlol.Scene
     {
         private void OnHappyPlayerLoginRsp(MsgBase b)
         {
-            var rspMsg = (Msg_HappyPlayerLoginRsp)b;
-            Uid = rspMsg.Uid;
-            Player = CozyTileSprite.Create("player");
+            var rspMsg          = (Msg_HappyPlayerLoginRsp)b;
+            Uid                 = rspMsg.Uid;
+            Player              = CozyTileSprite.Create("player");
             Player.TilePosition = new Point(rspMsg.X, rspMsg.Y);
             this.AddChind(Player, 2);
         }
 
         private void OnHappyOtherPlayerLogin(MsgBase b)
         {
-            var otherMsg = (Msg_HappyOtherPlayerLogin)b;
-            var sp = CozyTileSprite.Create("player");
-            sp.TilePosition = new Point(otherMsg.X, otherMsg.Y);
-            OtherPlayerList[otherMsg.Uid] = sp;
+            var otherMsg                    = (Msg_HappyOtherPlayerLogin)b;
+            var sp                          = CozyTileSprite.Create("player");
+            sp.TilePosition                 = new Point(otherMsg.X, otherMsg.Y);
+            OtherPlayerList[otherMsg.Uid]   = sp;
             this.AddChind(sp, 1);
         }
 
@@ -37,9 +37,9 @@ namespace CozyKxlol.Kxlol.Scene
             {
                 if (obj.Item4)
                 {
-                    var osp = CozyTileSprite.Create("player");
-                    osp.TilePosition = new Point(obj.Item2, obj.Item3);
-                    OtherPlayerList[obj.Item1] = osp;
+                    var osp                     = CozyTileSprite.Create("player");
+                    osp.TilePosition            = new Point(obj.Item2, obj.Item3);
+                    OtherPlayerList[obj.Item1]  = osp;
                     this.AddChind(osp, 1);
                 }
             }
@@ -48,7 +48,7 @@ namespace CozyKxlol.Kxlol.Scene
         private void OnHappyPlayerMove(MsgBase b)
         {
             var moveMsg = (Msg_HappyPlayerMove)b;
-            uint uid = moveMsg.Uid;
+            uint uid    = moveMsg.Uid;
             if (OtherPlayerList.ContainsKey(uid))
             {
                 var player = OtherPlayerList[uid];
@@ -63,7 +63,7 @@ namespace CozyKxlol.Kxlol.Scene
         private void OnHappyPlayerQuit(MsgBase b)
         {
             var quitMsg = (Msg_HappyPlayerQuit)b;
-            uint quid = quitMsg.Uid;
+            uint quid   = quitMsg.Uid;
             if (OtherPlayerList.ContainsKey(quid))
             {
                 var player = OtherPlayerList[quid];

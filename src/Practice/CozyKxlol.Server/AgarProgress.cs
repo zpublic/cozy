@@ -21,12 +21,12 @@ namespace CozyKxlol.Server
 
         public static NetServer AgarServer { get; set; }
 
-        public static FixedBallManager FixedBallMgr = new FixedBallManager();
-        public static PlayerBallManager PlayerBallMgr = new PlayerBallManager();
-        public static ConnectionManager AgarConnMgr = new ConnectionManager();
-        public static MarkManager MarkMgr = new MarkManager();
-        public const int GameWidth = 800;
-        public const int GameHeight = 610;
+        public static FixedBallManager FixedBallMgr     = new FixedBallManager();
+        public static PlayerBallManager PlayerBallMgr   = new PlayerBallManager();
+        public static ConnectionManager AgarConnMgr     = new ConnectionManager();
+        public static MarkManager MarkMgr               = new MarkManager();
+        public const int GameWidth                      = 800;
+        public const int GameHeight                     = 610;
 
         private static void RegisterAgarMessage()
         {
@@ -39,16 +39,16 @@ namespace CozyKxlol.Server
 
             PlayerBallMgr.PlayerDeadMessage += new EventHandler<PlayerBallManager.PlayerDeadArgs>(OnPlayerDead);
 
-            MarkMgr.MarkChangedMessage += new EventHandler<MarkManager.MarkChangedArgs>(OnMarkChange);
+            MarkMgr.MarkChangedMessage      += new EventHandler<MarkManager.MarkChangedArgs>(OnMarkChange);
         }
 
         private static void OnAgarServerProgerss()
         {
             NetPeerConfiguration config = new NetPeerConfiguration("CozyKxlol");
-            config.MaximumConnections = 10000;
-            config.Port = 48360;
+            config.MaximumConnections   = 10000;
+            config.Port                 = 48360;
 
-            AgarServer = new NetServer(config);
+            AgarServer                  = new NetServer(config);
             AgarServer.Start();
 
             RegisterAgarMessage();

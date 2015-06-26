@@ -16,16 +16,16 @@ namespace CozyKxlol.Server
     {
         private static bool OnProcessHappyLogin(NetServer server, int id, NetIncomingMessage msg)
         {
-            var r = new Msg_HappyPlayerLogin();
+            var r       = new Msg_HappyPlayerLogin();
             r.R(msg);
 
             uint uid    = HappyGameId;
-            int x = RandomMaker.Next(10);
-            int y = RandomMaker.Next(10);
+            int x       = RandomMaker.Next(10);
+            int y       = RandomMaker.Next(10);
             var selfMsg = new Msg_HappyPlayerLoginRsp();
             selfMsg.Uid = uid;
-            selfMsg.X = x;
-            selfMsg.Y = y;
+            selfMsg.X   = x;
+            selfMsg.Y   = y;
             SendMessage(server, selfMsg, msg.SenderConnection);
 
             // 更新链接对应的ID
@@ -43,17 +43,17 @@ namespace CozyKxlol.Server
             SendMessage(server, playerPackMsg, msg.SenderConnection);
 
             // 为旧玩家推送新玩家信息
-            var otherMsg = new Msg_HappyOtherPlayerLogin();
-            otherMsg.Uid = uid;
-            otherMsg.X = x;
-            otherMsg.Y = y;
+            var otherMsg    = new Msg_HappyOtherPlayerLogin();
+            otherMsg.Uid    = uid;
+            otherMsg.X      = x;
+            otherMsg.Y      = y;
             SendMessageExceptOne(server, otherMsg, msg.SenderConnection);
 
             // 添加新玩家到玩家管理中
-            var player = new HappyPlayer();
-            player.X = x;
-            player.Y = y;
-            player.IsAlive = true;
+            var player      = new HappyPlayer();
+            player.X        = x;
+            player.Y        = y;
+            player.IsAlive  = true;
             HappyPlayerMgr.Add(uid, player);
 
             return true;
@@ -61,16 +61,16 @@ namespace CozyKxlol.Server
 
         private static bool OnProgressHappyPlayerMove(NetServer server, int id, NetIncomingMessage msg)
         {
-            var r = new Msg_HappyPlayerMove();
+            var r           = new Msg_HappyPlayerMove();
             r.R(msg);
 
-            uint uid = r.Uid;
-            int x = r.X;
-            int y = r.Y;
+            uint uid        = r.Uid;
+            int x           = r.X;
+            int y           = r.Y;
 
-            var newPlayer = HappyPlayerMgr.Get(uid);
-            newPlayer.X = x;
-            newPlayer.Y = y;
+            var newPlayer   = HappyPlayerMgr.Get(uid);
+            newPlayer.X     = x;
+            newPlayer.Y     = y;
             HappyPlayerMgr.Modify(uid, newPlayer);
 
             SendMessageExceptOne(server, r, msg.SenderConnection);

@@ -10,7 +10,6 @@ namespace CozyKxlol.Server.Manager
     {
         Dictionary<uint, HappyPlayer> PlayerDictionary = new Dictionary<uint, HappyPlayer>();
 
-
         public void Add(uint id, HappyPlayer player)
         {
             PlayerDictionary[id] = player;

@@ -21,15 +21,15 @@ namespace CozyKxlol.Server
         public static NetServer HappyServer { get; set; }
 
         public static HappyPlayerManager HappyPlayerMgr = new HappyPlayerManager();
-        public static ConnectionManager HappyConnMgr = new ConnectionManager();
+        public static ConnectionManager HappyConnMgr    = new ConnectionManager();
 
         private static void OnHappyServerProgerss()
         {
             NetPeerConfiguration config = new NetPeerConfiguration("CozyKxlol");
-            config.MaximumConnections = 10000;
-            config.Port = 36048;
+            config.MaximumConnections   = 10000;
+            config.Port                 = 36048;
 
-            HappyServer = new NetServer(config);
+            HappyServer                 = new NetServer(config);
             HappyServer.Start();
 
             RegisterHappyMessage();

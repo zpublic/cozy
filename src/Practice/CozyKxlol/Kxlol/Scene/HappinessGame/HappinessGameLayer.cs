@@ -68,8 +68,8 @@ namespace CozyKxlol.Kxlol.Scene
 
                     var MoveMsg = new Msg_HappyPlayerMove();
                     MoveMsg.Uid = Uid;
-                    MoveMsg.X = offsetPos.X;
-                    MoveMsg.Y = offsetPos.Y;
+                    MoveMsg.X   = offsetPos.X;
+                    MoveMsg.Y   = offsetPos.Y;
                     client.SendMessage(MoveMsg);
                 }
             }
