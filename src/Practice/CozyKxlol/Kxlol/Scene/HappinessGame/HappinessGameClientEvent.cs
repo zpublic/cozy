@@ -4,10 +4,7 @@ using System.Linq;
 using System.Text;
 using CozyKxlol.Network;
 using CozyKxlol.Network.Msg;
-using CozyKxlol.Kxlol.Object;
 using CozyKxlol.Network.Msg.Happy;
-using Microsoft.Xna.Framework;
-using CozyKxlol.Kxlol.Converter;
 
 namespace CozyKxlol.Kxlol.Scene
 {
@@ -40,55 +37,19 @@ namespace CozyKxlol.Kxlol.Scene
             switch (b.Id)
             {
                 case MsgId.HappyPlayerLoginRsp:
-                    var rspMsg = (Msg_HappyPlayerLoginRsp)b;
-                    Uid = rspMsg.Uid;
-                    Player = CozyTileSprite.Create("player");
-                    Player.TilePosition = new Point(rspMsg.X, rspMsg.Y);
-                    this.AddChind(Player, 2);
+                    OnHappyPlayerLoginRsp(b);
                     break;
                 case MsgId.HappyOtherPlayerLogin:
-                    var otherMsg = (Msg_HappyOtherPlayerLogin)b;
-                    var sp = CozyTileSprite.Create("player");
-                    sp.TilePosition = new Point(otherMsg.X, otherMsg.Y);
-                    OtherPlayerList[otherMsg.Uid] = sp;
-                    this.AddChind(sp, 1);
+                    OnHappyOtherPlayerLogin(b);
                     break;
                 case MsgId.HappyPlayerPack:
-                    var packMsg = (Msg_HappyPlayerPack)b;
-                    foreach(var obj in packMsg.PlayerPack)
-                    {
-                        if(obj.Item4)
-                        {
-                            var osp = CozyTileSprite.Create("player");
-                            osp.TilePosition = new Point(obj.Item2, obj.Item3);
-                            OtherPlayerList[obj.Item1] = osp;
-                            this.AddChind(osp, 1);
-                        }
-                    }
+                    OnHappyPlayerPack(b);
                     break;
                 case MsgId.HappyPlayerMove:
-                    var moveMsg = (Msg_HappyPlayerMove)b;
-                    uint uid = moveMsg.Uid;
-                    if(OtherPlayerList.ContainsKey(uid))
-                    {
-                        var player = OtherPlayerList[uid];
-                        if(player != null)
-                        {
-                            var dire = MoveDirectionToPointConverter.PointConvertToMoveDirection(new Point(moveMsg.X, moveMsg.Y));
-                            player.Move(dire);
-                        }
-                    }
+                    OnHappyPlayerMove(b);
                     break;
                 case MsgId.HappyPlayerQuit:
-                    var quitMsg = (Msg_HappyPlayerQuit)b;
-                    uint quid = quitMsg.Uid;
-                    if(OtherPlayerList.ContainsKey(quid))
-                    {
-                        var player = OtherPlayerList[quid];
-                        player.StopAllActions();
-                        this.RemoveChild(player);
-                        OtherPlayerList.Remove(quid);
-                    }
+                    OnHappyPlayerQuit(b);
                     break;
                 default:
                     break;
