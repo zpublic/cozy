@@ -79,6 +79,17 @@ namespace CozyKxlol.Kxlol.Scene
                         }
                     }
                     break;
+                case MsgId.HappyPlayerQuit:
+                    var quitMsg = (Msg_HappyPlayerQuit)b;
+                    uint quid = quitMsg.Uid;
+                    if(OtherPlayerList.ContainsKey(quid))
+                    {
+                        var player = OtherPlayerList[quid];
+                        player.StopAllActions();
+                        this.RemoveChild(player);
+                        OtherPlayerList.Remove(quid);
+                    }
+                    break;
                 default:
                     break;
             }

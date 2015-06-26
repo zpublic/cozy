@@ -28,8 +28,12 @@ namespace CozyKxlol.Server
             selfMsg.Y = y;
             SendMessage(server, selfMsg, msg.SenderConnection);
 
+            // 更新链接对应的ID
+            HappyConnMgr.Modify(msg.SenderConnection, uid);
+
             var playerPackMsg = new Msg_HappyPlayerPack();
 
+            // 为新玩家推送旧玩家信息
             var playerList = HappyPlayerMgr.ToList();
             var playerPackList =
                 from f
@@ -38,12 +42,14 @@ namespace CozyKxlol.Server
             playerPackMsg.PlayerPack = playerPackList.ToList();
             SendMessage(server, playerPackMsg, msg.SenderConnection);
 
+            // 为旧玩家推送新玩家信息
             var otherMsg = new Msg_HappyOtherPlayerLogin();
             otherMsg.Uid = uid;
             otherMsg.X = x;
             otherMsg.Y = y;
             SendMessageExceptOne(server, otherMsg, msg.SenderConnection);
 
+            // 添加新玩家到玩家管理中
             var player = new HappyPlayer();
             player.X = x;
             player.Y = y;

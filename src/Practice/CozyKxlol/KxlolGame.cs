@@ -22,7 +22,7 @@ namespace CozyKxlol
         protected override void Initialize()
         {
             base.Initialize();
-            CozyDirector.Instance.RunWithScene(new BallGameScene());
+            CozyDirector.Instance.RunWithScene(HappinessGameScene.Create());
         }
 
         protected override void LoadContent()

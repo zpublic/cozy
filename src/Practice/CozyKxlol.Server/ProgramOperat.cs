@@ -5,6 +5,7 @@ using System.Text;
 using CozyKxlol.Server.Manager;
 using CozyKxlol.Network.Msg;
 using CozyKxlol.Network.Msg.Agar;
+using CozyKxlol.Network.Msg.Happy;
 using Lidgren.Network;
 
 namespace CozyKxlol.Server
@@ -81,6 +82,13 @@ namespace CozyKxlol.Server
                     Console.WriteLine(name + " " + obj.Value);
                 }
             }
+        }
+
+        private static void OnHappyPlayerQuit(object sender, HappyPlayerManager.HappyPlayerQuitArgs msg)
+        {
+            var QuitMsg = new Msg_HappyPlayerQuit();
+            QuitMsg.Uid = msg.UserId;
+            SendMessage(HappyServer,QuitMsg);
         }
     }
 }

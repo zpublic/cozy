@@ -21,6 +21,10 @@ namespace CozyKxlol.Server.Manager
             if(PlayerDictionary.ContainsKey(id))
             {
                 PlayerDictionary.Remove(id);
+                if(HappyPlayerQuitMessage != null)
+                {
+                    HappyPlayerQuitMessage(this, new HappyPlayerQuitArgs(id));
+                }
             }
         }
 
@@ -47,5 +51,15 @@ namespace CozyKxlol.Server.Manager
         {
             return PlayerDictionary.ToList();
         }
+
+        public class HappyPlayerQuitArgs : EventArgs
+        {
+            public uint UserId { get; set; }
+            public HappyPlayerQuitArgs(uint id)
+            {
+                UserId = id;
+            }
+        }
+        public event EventHandler<HappyPlayerQuitArgs> HappyPlayerQuitMessage;
     }
 }

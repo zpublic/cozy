@@ -21,6 +21,7 @@ namespace CozyKxlol.Server
         public static NetServer HappyServer { get; set; }
 
         public static HappyPlayerManager HappyPlayerMgr = new HappyPlayerManager();
+        public static ConnectionManager HappyConnMgr = new ConnectionManager();
 
         private static void OnHappyServerProgerss()
         {
@@ -30,6 +31,13 @@ namespace CozyKxlol.Server
 
             HappyServer = new NetServer(config);
             HappyServer.Start();
+
+            RegisterHappyMessage();
+        }
+
+        private static void RegisterHappyMessage()
+        {
+            HappyPlayerMgr.HappyPlayerQuitMessage += new EventHandler<HappyPlayerManager.HappyPlayerQuitArgs>(OnHappyPlayerQuit);
         }
     }
 }
