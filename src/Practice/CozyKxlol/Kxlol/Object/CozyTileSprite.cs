@@ -59,6 +59,16 @@ namespace CozyKxlol.Kxlol.Object
             return sp;
         }
 
+        public static new CozyTileSprite Create(CozyTexture texture)
+        {
+            var sp = new CozyTileSprite();
+            if(!sp.InitWithTexture(texture))
+            {
+                return null;
+            }
+            return sp;
+        }
+
         public override bool Init()
         {
             if(!base.Init())
@@ -80,6 +90,15 @@ namespace CozyKxlol.Kxlol.Object
         public override bool InitWithRect(string path, Rectangle rect)
         {
             if(!base.InitWithRect(path, rect))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool InitWithTexture(CozyTexture texture)
+        {
+            if(!base.InitWithTexture(texture))
             {
                 return false;
             }
