@@ -66,6 +66,7 @@
     <Compile Include="Kxlol\Scene\Welcome\WelcomeScene.cs" />
     <Compile Include="KxlolGame.cs" />
     <Compile Include="Kxlol\Scene\Welcome\WelcomeSceneLayer.cs" />
+    <Compile Include="Kxlol\Manager\HappinessPlayerTextureManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -8,6 +8,7 @@ using CozyKxlol.Kxlol.Object;
 using CozyKxlol.Network.Msg.Happy;
 using CozyKxlol.Kxlol.Converter;
 using CozyKxlol.Kxlol.Object.Tiled;
+using CozyKxlol.Kxlol.Manager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -21,6 +22,8 @@ namespace CozyKxlol.Kxlol.Scene
         public CozyTileSprite Player { get; set; }
 
         Dictionary<uint, CozyTileSprite> OtherPlayerList = new Dictionary<uint, CozyTileSprite>();
+
+        HappinessPlayerTextureManager PlayerTextureMgr = new HappinessPlayerTextureManager();
 
         public static HappinessGameLayer Create()
         {
@@ -37,7 +40,7 @@ namespace CozyKxlol.Kxlol.Scene
             Tileds.NodeContentSize  = Vector2.One * 32;
             this.AddChind(Tileds);
 
-            LoadMap();
+            LoadContent();
 
             InitKeyboard();
             RegisterClientEvent();
@@ -46,10 +49,25 @@ namespace CozyKxlol.Kxlol.Scene
             return true;
         }
 
+        private void LoadContent()
+        {
+            LoadMap();
+            LoadPlayerResource();
+        }
+
         private void LoadMap()
         {
             var loader = new CozyTiledDataLoader(DataPath);
             loader.Load(Tileds);
+        }
+
+        private void LoadPlayerResource()
+        {
+            for(uint i = 0; i < 83; ++i)
+            {
+                var texture = CozyDirector.Instance.TextureCacheInstance.AddImage(@"Pokemon\Pokemon_" + i.ToString("D3"));
+                PlayerTextureMgr.Add(i, texture);
+            }
         }
 
         public override void Update(GameTime gameTime)
