@@ -10,7 +10,7 @@ namespace CozyKxlol.Network.Msg.Happy
     {
         public int Id { get { return MsgId.HappyPlayerPack; } }
 
-        public List<Tuple<uint, int, int, bool>> PlayerPack;
+        public List<Tuple<uint, int, int, bool, uint>> PlayerPack;
 
         public void W(NetOutgoingMessage om)
         {
@@ -23,6 +23,7 @@ namespace CozyKxlol.Network.Msg.Happy
                     om.Write(obj.Item2);
                     om.Write(obj.Item3);
                     om.Write(obj.Item4);
+                    om.Write(obj.Item5);
                 }
             }
         }
@@ -31,16 +32,17 @@ namespace CozyKxlol.Network.Msg.Happy
         {
             if(PlayerPack == null)
             {
-                PlayerPack = new List<Tuple<uint, int, int, bool>>();
+                PlayerPack = new List<Tuple<uint, int, int, bool, uint>>();
             }
             int l = im.ReadInt32();
             for(int i = 0; i < l; ++i)
             {
-                var id = im.ReadUInt32();
-                var x = im.ReadInt32();
-                var y = im.ReadInt32();
-                var alive = im.ReadBoolean();
-                PlayerPack.Add(Tuple.Create<uint, int, int, bool>(id, x, y, alive));
+                var id      = im.ReadUInt32();
+                var x       = im.ReadInt32();
+                var y       = im.ReadInt32();
+                var alive   = im.ReadBoolean();
+                var sid     = im.ReadUInt32();
+                PlayerPack.Add(Tuple.Create<uint, int, int, bool, uint>(id, x, y, alive, sid));
             }
         }
     }

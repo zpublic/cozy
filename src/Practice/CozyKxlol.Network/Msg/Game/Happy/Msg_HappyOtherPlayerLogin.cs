@@ -12,11 +12,13 @@ namespace CozyKxlol.Network.Msg.Happy
         public uint Uid { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
+        public uint SpriteId { get; set; }
         public void W(NetOutgoingMessage om)
         {
             om.Write(Uid);
             om.Write(X);
             om.Write(Y);
+            om.Write(SpriteId);
         }
 
         public void R(NetIncomingMessage im)
@@ -24,6 +26,7 @@ namespace CozyKxlol.Network.Msg.Happy
             Uid = im.ReadUInt32();
             X = im.ReadInt32();
             Y = im.ReadInt32();
+            SpriteId = im.ReadUInt32();
         }
     }
 }

@@ -16,16 +16,18 @@ namespace CozyKxlol.Server
     {
         private static bool OnProcessHappyLogin(NetServer server, int id, NetIncomingMessage msg)
         {
-            var r       = new Msg_HappyPlayerLogin();
+            var r               = new Msg_HappyPlayerLogin();
             r.R(msg);
 
-            uint uid    = HappyGameId;
-            int x       = RandomMaker.Next(10);
-            int y       = RandomMaker.Next(10);
-            var selfMsg = new Msg_HappyPlayerLoginRsp();
-            selfMsg.Uid = uid;
-            selfMsg.X   = x;
-            selfMsg.Y   = y;
+            uint uid            = HappyGameId;
+            int x               = RandomMaker.Next(10);
+            int y               = RandomMaker.Next(10);
+            uint sid            = (uint)RandomMaker.Next(83);
+            var selfMsg         = new Msg_HappyPlayerLoginRsp();
+            selfMsg.Uid         = uid;
+            selfMsg.X           = x;
+            selfMsg.Y           = y;
+            selfMsg.SpriteId    = sid;
             SendMessage(server, selfMsg, msg.SenderConnection);
 
             // 更新链接对应的ID
@@ -38,15 +40,16 @@ namespace CozyKxlol.Server
             var playerPackList =
                 from f
                 in playerList
-                select Tuple.Create<uint, int, int, bool>(f.Key, f.Value.X, f.Value.Y, f.Value.IsAlive);
+                select Tuple.Create<uint, int, int, bool, uint>(f.Key, f.Value.X, f.Value.Y, f.Value.IsAlive, f.Value.SpriteId);
             playerPackMsg.PlayerPack = playerPackList.ToList();
             SendMessage(server, playerPackMsg, msg.SenderConnection);
 
             // 为旧玩家推送新玩家信息
-            var otherMsg    = new Msg_HappyOtherPlayerLogin();
-            otherMsg.Uid    = uid;
-            otherMsg.X      = x;
-            otherMsg.Y      = y;
+            var otherMsg        = new Msg_HappyOtherPlayerLogin();
+            otherMsg.Uid        = uid;
+            otherMsg.X          = x;
+            otherMsg.Y          = y;
+            otherMsg.SpriteId   = sid;
             SendMessageExceptOne(server, otherMsg, msg.SenderConnection);
 
             // 添加新玩家到玩家管理中
@@ -54,6 +57,7 @@ namespace CozyKxlol.Server
             player.X        = x;
             player.Y        = y;
             player.IsAlive  = true;
+            player.SpriteId = sid;
             HappyPlayerMgr.Add(uid, player);
 
             return true;

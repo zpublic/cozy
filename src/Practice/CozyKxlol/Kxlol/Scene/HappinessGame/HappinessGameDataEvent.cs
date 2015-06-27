@@ -16,7 +16,8 @@ namespace CozyKxlol.Kxlol.Scene
         {
             var rspMsg          = (Msg_HappyPlayerLoginRsp)b;
             Uid                 = rspMsg.Uid;
-            Player              = CozyTileSprite.Create("player");
+            var sid             = rspMsg.SpriteId;
+            Player              = CozyTileSprite.Create(@"Pokemon\Pokemon_" + sid.ToString("D3"));
             Player.TilePosition = new Point(rspMsg.X, rspMsg.Y);
             this.AddChind(Player, 2);
         }
@@ -24,7 +25,8 @@ namespace CozyKxlol.Kxlol.Scene
         private void OnHappyOtherPlayerLogin(MsgBase b)
         {
             var otherMsg                    = (Msg_HappyOtherPlayerLogin)b;
-            var sp                          = CozyTileSprite.Create("player");
+            var sid                         = otherMsg.SpriteId;
+            var sp                          = CozyTileSprite.Create(@"Pokemon\Pokemon_" + sid.ToString("D3"));
             sp.TilePosition                 = new Point(otherMsg.X, otherMsg.Y);
             OtherPlayerList[otherMsg.Uid]   = sp;
             this.AddChind(sp, 1);
@@ -37,7 +39,8 @@ namespace CozyKxlol.Kxlol.Scene
             {
                 if (obj.Item4)
                 {
-                    var osp                     = CozyTileSprite.Create("player");
+                    var sid                     = obj.Item5;
+                    var osp                     = CozyTileSprite.Create(@"Pokemon\Pokemon_" + sid.ToString("D3"));
                     osp.TilePosition            = new Point(obj.Item2, obj.Item3);
                     OtherPlayerList[obj.Item1]  = osp;
                     this.AddChind(osp, 1);
