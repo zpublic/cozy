@@ -84,6 +84,16 @@ namespace CozyKxlol.Engine
             return sp;
         }
 
+        public static CozySprite Create(CozyTexture texture)
+        {
+            var sp = new CozySprite();
+            if(!sp.InitWithTexture(texture))
+            {
+                return null;
+            }
+            return sp;
+        }
+
         public virtual bool Init()
         {
             return true;
@@ -92,6 +102,13 @@ namespace CozyKxlol.Engine
         public virtual bool InitWithFile(string path)
         {
             Texture = CozyDirector.Instance.TextureCacheInstance.AddImage(path);
+            return true;
+        }
+
+        public virtual bool InitWithTexture(CozyTexture texture)
+        {
+            if (texture == null) return false;
+            Texture = texture;
             return true;
         }
 
