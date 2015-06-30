@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CB32504A-3647-4388-9B8D-9B6E35686763}</ProjectGuid>
+    <ProjectGuid>{93C3F45C-EB94-45DC-B622-3479D5CFEBED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NetwrokClient</RootNamespace>
-    <AssemblyName>NetwrokClient</AssemblyName>
+    <RootNamespace>NetworkHelper</RootNamespace>
+    <AssemblyName>NetworkHelper</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,9 +33,6 @@
     <Reference Include="Lidgren.Network">
       <HintPath>..\..\..\sln\packages\Lidgren.Network.Portable.1.0.1\lib\portable-net45+sl50+win+wpa81+wp80\Lidgren.Network.dll</HintPath>
     </Reference>
-    <Reference Include="NetworkHelper">
-      <HintPath>..\NetworkHelper\bin\Debug\NetworkHelper.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,11 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientMain.cs" />
-    <Compile Include="Event\DataMessageArgs.cs" />
-    <Compile Include="Event\InternalMessageArgs.cs" />
-    <Compile Include="Event\StatusMessageArgs.cs" />
-    <Compile Include="NetClientMsg.cs" />
+    <Compile Include="Messages\IMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
