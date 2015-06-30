@@ -36,6 +36,7 @@ public:
     bool GetFileTime(LPCTSTR lpPath, FILETIME* lpCreationTime, FILETIME* lpLastAccessTime, FILETIME* lpLastWriteTime);
 
     bool FillFileData(LPCTSTR lpPath, WIN32_FIND_DATA* lpData);
+
 };
 
 extern FILEUTILCPP_API int nFileUtilCpp;
