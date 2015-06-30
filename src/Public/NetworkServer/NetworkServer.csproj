@@ -33,6 +33,9 @@
     <Reference Include="Lidgren.Network">
       <HintPath>..\..\..\sln\packages\Lidgren.Network.Portable.1.0.1\lib\portable-net45+sl50+win+wpa81+wp80\Lidgren.Network.dll</HintPath>
     </Reference>
+    <Reference Include="NetworkHelper">
+      <HintPath>..\NetworkHelper\bin\Debug\NetworkHelper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NetServerMsg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerMain.cs" />
   </ItemGroup>
