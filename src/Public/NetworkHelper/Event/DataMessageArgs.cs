@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NetworkHelper.Messages;
 
-namespace NetwrokClient.Event
+namespace NetworkHelper.Event
 {
     public class DataMessageArgs : EventArgs
     {

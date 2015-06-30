@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NetwrokClient.Event
+namespace NetworkHelper.Event
 {
     public class InternalMessageArgs : EventArgs
     {

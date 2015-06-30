@@ -46,9 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientMain.cs" />
-    <Compile Include="Event\DataMessageArgs.cs" />
-    <Compile Include="Event\InternalMessageArgs.cs" />
-    <Compile Include="Event\StatusMessageArgs.cs" />
     <Compile Include="NetClientMsg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

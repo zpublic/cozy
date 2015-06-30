@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lidgren.Network;
-using NetwrokClient.Event;
+using NetworkHelper.Event;
 using NetworkHelper.Messages;
 
 namespace NetwrokClient

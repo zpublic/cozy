@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Lidgren.Network;
 
-namespace NetwrokClient.Event
+namespace NetworkHelper.Event
 {
     public class StatusMessageArgs : EventArgs
     {

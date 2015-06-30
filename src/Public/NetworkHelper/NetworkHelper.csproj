@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Event\DataMessageArgs.cs" />
+    <Compile Include="Event\InternalMessageArgs.cs" />
+    <Compile Include="Event\StatusMessageArgs.cs" />
     <Compile Include="Messages\IMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
