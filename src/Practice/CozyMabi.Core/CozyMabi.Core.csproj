@@ -7,8 +7,8 @@
     <ProjectGuid>{0CA3833E-74AC-459E-BB7C-A76C592B6B71}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyMobi.Core</RootNamespace>
-    <AssemblyName>CozyMobi.Core</AssemblyName>
+    <RootNamespace>CozyMabi.Core</RootNamespace>
+    <AssemblyName>CozyMabi.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyMobi.Core.ResponseParser
+namespace CozyMabi.Core.ResponseParser
 {
     class ResponseParserCommon
     {

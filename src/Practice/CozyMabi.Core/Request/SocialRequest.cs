@@ -1,16 +1,16 @@
-﻿using CozyMobi.Core.RequestBuilder;
+﻿using CozyMabi.Core.RequestBuilder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CozyMobi.Core.Network;
+using CozyMabi.Core.Network;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
-using CozyMobi.Core.ResponseParser;
-using CozyMobi.Core.Model;
+using CozyMabi.Core.ResponseParser;
+using CozyMabi.Core.Model;
 
-namespace CozyMobi.Core.Request
+namespace CozyMabi.Core.Request
 {
     public class SocialRequest
     {

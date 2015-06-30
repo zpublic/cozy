@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 
-namespace CozyMobi.Core.RequestBuilder
+namespace CozyMabi.Core.RequestBuilder
 {
     class AccountRequestBuilder
     {

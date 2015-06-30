@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyMobi.Core.RequestBuilder
+namespace CozyMabi.Core.RequestBuilder
 {
     class RequestBuilderCommon
     {

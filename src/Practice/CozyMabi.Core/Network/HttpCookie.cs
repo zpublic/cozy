@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyMobi.Core.Network
+namespace CozyMabi.Core.Network
 {
     class HttpCookie
     {

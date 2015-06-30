@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyMobi.Core.Model
+namespace CozyMabi.Core.Model
 {
     public class UserObject
     {
