@@ -96,6 +96,7 @@ Cozy
 > Public - 公共代码目录  
 >> CozyPublic - 暂未整理的公共代码  
 >> CozyPublic.WinApi - 调用windows api的包装  
+>> FileUtilCpp - 文件操作util（c++）  
 >
 >
 > Practice - 实践工程目录  
@@ -142,6 +143,33 @@ Cozy
 >>> CozyKxlol.Server - 游戏的服务端程序  
 >>> CozyKxlol.ClientRobot - 游戏的客户端网络测试程序  
 >>> CozyKxlol.MapEditor - tiled地图编辑器  
+>>
+>> CozyAnywhere - 远程控制工具  
+>>
+>> CozyBili - 获取B站生放送直播弹幕的工具  
+>>> CozyBili.Core - B站弹幕获取  
+>>> CozyBili.ConsoleExe - 命令行exe  
+>>> CozyBili.WpfExe - wpf版exe  
+>>
+>> CozyLua - Lua相关的实践  
+>>> CozyLua.Core - 封装执行lua的核心  
+>>> CozyLua.Core.Tester - 核心测试  
+>>> CozyLua.Runner - lua脚本执行器核心  
+>>> CozyLua.Plugin - lua脚本执行器的插件接口  
+>>> CozyLua.Plugin.WinFile - windows下文件操作插件  
+>>> CozyLua.Plugin.WinReg - windows下注册表操作插件  
+>>> CozyLua.Plugin.Tester - 插件测试  
+>>> CozyLua.Runner.Console - 执行器的命令行exe  
+>>
+>> CozyMabi - Coding.Net的客户端（玩api，刷码币）  
+>>> CozyMabi.Core - 核心api功能封装  
+>>> CozyMabi.WpfExe - wpf版gui  
+>>
+>> CozyWallpaper - 换桌面壁纸的工具  
+>>> CozyWallpaper.Core - 换壁纸核心功能  
+>>> CozyWallpaper.Gui - wpf版gui  
+>>
+>> CozyWifi - 无线网卡放出wifi的工具  
 >>
   
 交流QQ群
