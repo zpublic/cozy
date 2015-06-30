@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyWallpaper.Core", "..\src\Practice\CozyWallpaper.Core\CozyWallpaper.Core.csproj", "{E76123BF-57A8-4906-B9DB-E31328B2133F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyWallpaper.Gui", "..\src\Practice\CozyWallpaper.Gui\CozyWallpaper.Gui.csproj", "{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E76123BF-57A8-4906-B9DB-E31328B2133F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E76123BF-57A8-4906-B9DB-E31328B2133F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E76123BF-57A8-4906-B9DB-E31328B2133F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E76123BF-57A8-4906-B9DB-E31328B2133F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E76123BF-57A8-4906-B9DB-E31328B2133F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E76123BF-57A8-4906-B9DB-E31328B2133F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E76123BF-57A8-4906-B9DB-E31328B2133F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E76123BF-57A8-4906-B9DB-E31328B2133F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E76123BF-57A8-4906-B9DB-E31328B2133F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E76123BF-57A8-4906-B9DB-E31328B2133F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E76123BF-57A8-4906-B9DB-E31328B2133F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E76123BF-57A8-4906-B9DB-E31328B2133F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E76123BF-57A8-4906-B9DB-E31328B2133F}.Release|x64.ActiveCfg = Release|Any CPU
+		{E76123BF-57A8-4906-B9DB-E31328B2133F}.Release|x86.ActiveCfg = Release|Any CPU
+		{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}.Release|ARM.ActiveCfg = Release|Any CPU
+		{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}.Release|x64.ActiveCfg = Release|Any CPU
+		{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
