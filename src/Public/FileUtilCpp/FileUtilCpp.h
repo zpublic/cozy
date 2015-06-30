@@ -10,11 +10,32 @@
 #define FILEUTILCPP_API __declspec(dllimport)
 #endif
 
+#include "windows.h"
+#include <vector>
+
 // This class is exported from the FileUtilCpp.dll
 class FILEUTILCPP_API CFileUtilCpp {
 public:
 	CFileUtilCpp(void);
 	// TODO: add your methods here.
+
+    bool FileCopy(LPCTSTR lpSourcePath, LPCTSTR lpDestPath, bool bFailIfExists);
+
+    bool FileMove(LPCTSTR lpSourcePath, LPCTSTR lpDestPath);
+
+    bool FileDelete(LPCTSTR lpPath);
+
+    bool PathFileExist(LPCTSTR lpPath);
+
+    void FileEnum(LPCTSTR lpPath, std::vector<LPCTSTR>& result);
+
+    bool IsDirectory(LPCTSTR lpPath);
+
+    DWORD64 GetFileSize(LPCTSTR lpPath);
+
+    bool GetFileTime(LPCTSTR lpPath, FILETIME* lpCreationTime, FILETIME* lpLastAccessTime, FILETIME* lpLastWriteTime);
+
+    bool FillFileData(LPCTSTR lpPath, WIN32_FIND_DATA* lpData);
 };
 
 extern FILEUTILCPP_API int nFileUtilCpp;
