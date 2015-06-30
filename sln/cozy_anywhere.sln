@@ -45,6 +45,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetwrokClient", "..\src\Pub
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkHelper", "..\src\Public\NetworkHelper\NetworkHelper.csproj", "{93C3F45C-EB94-45DC-B622-3479D5CFEBED}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CaptureCpp", "..\src\Public\CaptureCpp\CaptureCpp.vcxproj", "{5C7EC5AA-688A-4081-99A1-99810404FD7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capture", "..\src\Public\Capture\Capture.csproj", "{6924955A-1D90-4CCA-9E6C-6BF97D6CE233}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptureTester", "..\src\Public\CaptureTester\CaptureTester.csproj", "{07D295B2-FAB9-43D1-B540-F1AB1811C6E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -185,6 +191,36 @@ Global
 		{93C3F45C-EB94-45DC-B622-3479D5CFEBED}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{93C3F45C-EB94-45DC-B622-3479D5CFEBED}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{93C3F45C-EB94-45DC-B622-3479D5CFEBED}.Release|Win32.ActiveCfg = Release|Any CPU
+		{5C7EC5AA-688A-4081-99A1-99810404FD7A}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{5C7EC5AA-688A-4081-99A1-99810404FD7A}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{5C7EC5AA-688A-4081-99A1-99810404FD7A}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{5C7EC5AA-688A-4081-99A1-99810404FD7A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5C7EC5AA-688A-4081-99A1-99810404FD7A}.Debug|Win32.Build.0 = Debug|Win32
+		{5C7EC5AA-688A-4081-99A1-99810404FD7A}.Release|Any CPU.ActiveCfg = Release|Win32
+		{5C7EC5AA-688A-4081-99A1-99810404FD7A}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{5C7EC5AA-688A-4081-99A1-99810404FD7A}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{5C7EC5AA-688A-4081-99A1-99810404FD7A}.Release|Win32.ActiveCfg = Release|Win32
+		{5C7EC5AA-688A-4081-99A1-99810404FD7A}.Release|Win32.Build.0 = Release|Win32
+		{6924955A-1D90-4CCA-9E6C-6BF97D6CE233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6924955A-1D90-4CCA-9E6C-6BF97D6CE233}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6924955A-1D90-4CCA-9E6C-6BF97D6CE233}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6924955A-1D90-4CCA-9E6C-6BF97D6CE233}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6924955A-1D90-4CCA-9E6C-6BF97D6CE233}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{6924955A-1D90-4CCA-9E6C-6BF97D6CE233}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6924955A-1D90-4CCA-9E6C-6BF97D6CE233}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6924955A-1D90-4CCA-9E6C-6BF97D6CE233}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6924955A-1D90-4CCA-9E6C-6BF97D6CE233}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6924955A-1D90-4CCA-9E6C-6BF97D6CE233}.Release|Win32.ActiveCfg = Release|Any CPU
+		{07D295B2-FAB9-43D1-B540-F1AB1811C6E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07D295B2-FAB9-43D1-B540-F1AB1811C6E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07D295B2-FAB9-43D1-B540-F1AB1811C6E7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{07D295B2-FAB9-43D1-B540-F1AB1811C6E7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{07D295B2-FAB9-43D1-B540-F1AB1811C6E7}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{07D295B2-FAB9-43D1-B540-F1AB1811C6E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07D295B2-FAB9-43D1-B540-F1AB1811C6E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07D295B2-FAB9-43D1-B540-F1AB1811C6E7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{07D295B2-FAB9-43D1-B540-F1AB1811C6E7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{07D295B2-FAB9-43D1-B540-F1AB1811C6E7}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -206,5 +242,8 @@ Global
 		{3827BBCF-B396-4536-96C0-EEA82D51CBE6} = {78CC2301-23F1-41C9-8336-37C59B47DAE6}
 		{CB32504A-3647-4388-9B8D-9B6E35686763} = {78CC2301-23F1-41C9-8336-37C59B47DAE6}
 		{93C3F45C-EB94-45DC-B622-3479D5CFEBED} = {78CC2301-23F1-41C9-8336-37C59B47DAE6}
+		{5C7EC5AA-688A-4081-99A1-99810404FD7A} = {8072D6B3-04F8-486F-AC8D-48B79133830C}
+		{6924955A-1D90-4CCA-9E6C-6BF97D6CE233} = {8072D6B3-04F8-486F-AC8D-48B79133830C}
+		{07D295B2-FAB9-43D1-B540-F1AB1811C6E7} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 	EndGlobalSection
 EndGlobal
