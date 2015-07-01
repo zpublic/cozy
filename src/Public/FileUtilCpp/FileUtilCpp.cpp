@@ -75,32 +75,6 @@ DWORD64 CFileUtilCpp::GetFileLength(LPCTSTR lpPath)
     return result;
 }
 
-void CFileUtilCpp::FileEnum(LPCTSTR lpPath, std::vector<LPCTSTR>* result)
-{
-    WIN32_FIND_DATA FindFileData;
-    if (result != nullptr)
-    {
-        HANDLE hFile = ::FindFirstFile(lpPath, &FindFileData);
-        if (hFile == INVALID_HANDLE_VALUE)
-        {
-            CloseHandle(hFile);
-            return;
-        }
-
-        do
-        {
-            if (!(FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
-            {
-                if (FindFileData.cFileName[0] != '.')
-                {
-                    result->push_back(FindFileData.cFileName);
-                }
-            }
-        } while (FindNextFile(hFile, &FindFileData));
-        FindClose(hFile);
-    }
-}
-
 bool CFileUtilCpp::GetFileTimes(LPCTSTR lpPath, FILETIME* lpCreationTime, FILETIME* lpLastAccessTime, FILETIME* lpLastWriteTime)
 {
     if (lpCreationTime == nullptr && lpLastAccessTime == nullptr && lpLastWriteTime == nullptr) return false;
@@ -128,6 +102,38 @@ bool CFileUtilCpp::GetFileTimes(LPCTSTR lpPath, FILETIME* lpCreationTime, FILETI
     return true;
 }
 
+void CFileUtilCpp::FileEnum(LPCTSTR lpPath, FILEENUMPROC lpEnumFunc)
+{
+    if (lpPath != nullptr)
+    {
+        WIN32_FIND_DATA FindFileData;
+        HANDLE hFile = ::FindFirstFile(lpPath, &FindFileData);
+        if (hFile == INVALID_HANDLE_VALUE)
+        {
+            CloseHandle(hFile);
+            return;
+        }
+
+        do
+        {
+            if (!(FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+            {
+                if (FindFileData.cFileName[0] != '.')
+                {
+                    if (lpEnumFunc != nullptr)
+                    {
+                        if (!lpEnumFunc(FindFileData.cFileName))
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+        } while (FindNextFile(hFile, &FindFileData));
+        FindClose(hFile);
+    }
+}
+
 FILEUTILCPP_API bool FileCopy(LPCTSTR lpSourcePath, LPCTSTR lpDestPath, bool bFailIfExists)
 {
     return CFileUtilCppInstance.FileCopy(lpSourcePath, lpDestPath, bFailIfExists);
@@ -148,11 +154,6 @@ FILEUTILCPP_API bool PathFileExist(LPCTSTR lpPath)
     return CFileUtilCppInstance.PathFileExist(lpPath);
 }
 
-FILEUTILCPP_API void FileEnum(LPCTSTR lpPath, std::vector<LPCTSTR>* result)
-{
-    return CFileUtilCppInstance.FileEnum(lpPath, result);
-}
-
 FILEUTILCPP_API bool IsDirectory(LPCTSTR lpPath)
 {
     return CFileUtilCppInstance.IsDirectory(lpPath);
@@ -171,4 +172,9 @@ FILEUTILCPP_API bool GetFileTimes(LPCTSTR lpPath, FILETIME* lpCreationTime, FILE
 FILEUTILCPP_API bool FillFileData(LPCTSTR lpPath, WIN32_FIND_DATA* lpData)
 {
     return CFileUtilCppInstance.FillFileData(lpPath, lpData);
+}
+
+FILEUTILCPP_API void FileEnum(LPCTSTR lpPath, FILEENUMPROC lpEnumFunc)
+{
+    CFileUtilCppInstance.FileEnum(lpPath, lpEnumFunc);
 }
