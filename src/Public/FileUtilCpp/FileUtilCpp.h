@@ -14,7 +14,7 @@
 #include <vector>
 
 // This class is exported from the FileUtilCpp.dll
-class FILEUTILCPP_API CFileUtilCpp {
+class CFileUtilCpp {
 public:
 	CFileUtilCpp(void);
 	// TODO: add your methods here.
@@ -27,18 +27,33 @@ public:
 
     bool PathFileExist(LPCTSTR lpPath);
 
-    void FileEnum(LPCTSTR lpPath, std::vector<LPCTSTR>& result);
+    void FileEnum(LPCTSTR lpPath, std::vector<LPCTSTR>* result);
 
     bool IsDirectory(LPCTSTR lpPath);
 
-    DWORD64 GetFileSize(LPCTSTR lpPath);
+    DWORD64 GetFileLength(LPCTSTR lpPath);
 
-    bool GetFileTime(LPCTSTR lpPath, FILETIME* lpCreationTime, FILETIME* lpLastAccessTime, FILETIME* lpLastWriteTime);
+    bool GetFileTimes(LPCTSTR lpPath, FILETIME* lpCreationTime, FILETIME* lpLastAccessTime, FILETIME* lpLastWriteTime);
 
     bool FillFileData(LPCTSTR lpPath, WIN32_FIND_DATA* lpData);
-
 };
+ 
+extern FILEUTILCPP_API CFileUtilCpp CFileUtilCppInstance;
 
-extern FILEUTILCPP_API int nFileUtilCpp;
+extern "C" FILEUTILCPP_API bool FileCopy(LPCTSTR lpSourcePath, LPCTSTR lpDestPath, bool bFailIfExists);
 
-FILEUTILCPP_API int fnFileUtilCpp(void);
+extern "C" FILEUTILCPP_API bool FileMove(LPCTSTR lpSourcePath, LPCTSTR lpDestPath);
+
+extern "C" FILEUTILCPP_API bool FileDelete(LPCTSTR lpPath);
+
+extern "C" FILEUTILCPP_API bool PathFileExist(LPCTSTR lpPath);
+
+extern "C" FILEUTILCPP_API void FileEnum(LPCTSTR lpPath, std::vector<LPCTSTR>& result);
+
+extern "C" FILEUTILCPP_API bool IsDirectory(LPCTSTR lpPath);
+
+extern "C" FILEUTILCPP_API DWORD64 GetFileLength(LPCTSTR lpPath);
+
+extern "C" FILEUTILCPP_API bool GetFileTimes(LPCTSTR lpPath, FILETIME* lpCreationTime, FILETIME* lpLastAccessTime, FILETIME* lpLastWriteTime);
+
+extern "C"  FILEUTILCPP_API bool FillFileData(LPCTSTR lpPath, WIN32_FIND_DATA* lpData);
