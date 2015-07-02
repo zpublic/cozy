@@ -26,7 +26,7 @@ namespace NetwrokClient
 
         public void Connect(String ip, int port)
         {
-            NetOutgoingMessage hail = client.CreateMessage("This is the kxlol hail message");
+            NetOutgoingMessage hail = client.CreateMessage("This is the anywhere hail message");
             client.Connect(ip, port, hail);
         }
 
@@ -116,7 +116,7 @@ namespace NetwrokClient
         {
             if (StatusMessage != null)
             {
-                StatusMessage(sender, new StatusMessageArgs(status, reason));
+                StatusMessage(sender, new StatusMessageArgs((NetworkHelper.NetConnectionStatus)status, reason));
             }
         }
 

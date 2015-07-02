@@ -11,7 +11,8 @@
 #endif
 
 #include "windows.h"
-#include <vector>
+
+using FILEENUMPROC = bool (CALLBACK*)(LPTSTR str);
 
 // This class is exported from the FileUtilCpp.dll
 class CFileUtilCpp {
@@ -27,7 +28,7 @@ public:
 
     bool PathFileExist(LPCTSTR lpPath);
 
-    void FileEnum(LPCTSTR lpPath, std::vector<LPCTSTR>* result);
+    void FileEnum(LPCTSTR lpPath, FILEENUMPROC lpEnumFunc);
 
     bool IsDirectory(LPCTSTR lpPath);
 
@@ -48,12 +49,12 @@ extern "C" FILEUTILCPP_API bool FileDelete(LPCTSTR lpPath);
 
 extern "C" FILEUTILCPP_API bool PathFileExist(LPCTSTR lpPath);
 
-extern "C" FILEUTILCPP_API void FileEnum(LPCTSTR lpPath, std::vector<LPCTSTR>& result);
-
 extern "C" FILEUTILCPP_API bool IsDirectory(LPCTSTR lpPath);
 
 extern "C" FILEUTILCPP_API DWORD64 GetFileLength(LPCTSTR lpPath);
 
 extern "C" FILEUTILCPP_API bool GetFileTimes(LPCTSTR lpPath, FILETIME* lpCreationTime, FILETIME* lpLastAccessTime, FILETIME* lpLastWriteTime);
 
-extern "C"  FILEUTILCPP_API bool FillFileData(LPCTSTR lpPath, WIN32_FIND_DATA* lpData);
+extern "C" FILEUTILCPP_API bool FillFileData(LPCTSTR lpPath, WIN32_FIND_DATA* lpData);
+
+extern "C" FILEUTILCPP_API void FileEnum(LPCTSTR lpPath, FILEENUMPROC lpEnumFunc);
