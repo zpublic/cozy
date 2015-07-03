@@ -59,6 +59,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientTester", "..\src\Publ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerTester", "..\src\Public\ServerTester\ServerTester.csproj", "{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkProtocol", "..\src\Public\NetworkProtocol\NetworkProtocol.csproj", "{CAC595D7-C876-4C7A-A33A-C3F30B9E012E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -269,6 +271,16 @@ Global
 		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41}.Release|Win32.ActiveCfg = Release|Any CPU
+		{CAC595D7-C876-4C7A-A33A-C3F30B9E012E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAC595D7-C876-4C7A-A33A-C3F30B9E012E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAC595D7-C876-4C7A-A33A-C3F30B9E012E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CAC595D7-C876-4C7A-A33A-C3F30B9E012E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CAC595D7-C876-4C7A-A33A-C3F30B9E012E}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{CAC595D7-C876-4C7A-A33A-C3F30B9E012E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAC595D7-C876-4C7A-A33A-C3F30B9E012E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAC595D7-C876-4C7A-A33A-C3F30B9E012E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CAC595D7-C876-4C7A-A33A-C3F30B9E012E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CAC595D7-C876-4C7A-A33A-C3F30B9E012E}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -297,5 +309,6 @@ Global
 		{A7170508-D633-46BA-9B9F-497DA5CB6F8C} = {EB0A8C74-EA43-43DF-8597-0F9F57EFA103}
 		{7FC10189-1FDB-4DE4-ABF6-A005FDF829BC} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
+		{CAC595D7-C876-4C7A-A33A-C3F30B9E012E} = {78CC2301-23F1-41C9-8336-37C59B47DAE6}
 	EndGlobalSection
 EndGlobal
