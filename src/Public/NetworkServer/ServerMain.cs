@@ -23,8 +23,18 @@ namespace NetworkServer
             config.MaximumConnections   = MaxConnections;
             config.Port                 = Port;
             server                      = new NetServer(config);
+        }
+
+        public void Listen()
+        {
             server.Start();
-            IsRunning                   = true;
+            IsRunning = true;
+        }
+
+        public void Shutdown()
+        {
+            IsRunning = false;
+            server.Shutdown("shutdown");
         }
 
         private void RecivePacket()
