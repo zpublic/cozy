@@ -24,6 +24,7 @@ namespace NetworkServer
             config.Port                 = Port;
             server                      = new NetServer(config);
             server.Start();
+            IsRunning                   = true;
         }
 
         private void RecivePacket()

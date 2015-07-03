@@ -41,7 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAnywhere.Config", "..\s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkServer", "..\src\Public\NetworkServer\NetworkServer.csproj", "{3827BBCF-B396-4536-96C0-EEA82D51CBE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetwrokClient", "..\src\Public\NetwrokClient\NetwrokClient.csproj", "{CB32504A-3647-4388-9B8D-9B6E35686763}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkClient", "..\src\Public\NetwrokClient\NetworkClient.csproj", "{CB32504A-3647-4388-9B8D-9B6E35686763}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkHelper", "..\src\Public\NetworkHelper\NetworkHelper.csproj", "{93C3F45C-EB94-45DC-B622-3479D5CFEBED}"
 EndProject
@@ -54,6 +54,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileTester", "..\src\Public\FileTester\FileTester.csproj", "{F8663A3F-AD45-4394-BFAD-B23C3ADBC4F2}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProcessUtilCpp", "..\src\Public\ProcessUtilCpp\ProcessUtilCpp.vcxproj", "{A7170508-D633-46BA-9B9F-497DA5CB6F8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientTester", "..\src\Public\ClientTester\ClientTester.csproj", "{7FC10189-1FDB-4DE4-ABF6-A005FDF829BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerTester", "..\src\Public\ServerTester\ServerTester.csproj", "{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -245,6 +249,26 @@ Global
 		{A7170508-D633-46BA-9B9F-497DA5CB6F8C}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{A7170508-D633-46BA-9B9F-497DA5CB6F8C}.Release|Win32.ActiveCfg = Release|Win32
 		{A7170508-D633-46BA-9B9F-497DA5CB6F8C}.Release|Win32.Build.0 = Release|Win32
+		{7FC10189-1FDB-4DE4-ABF6-A005FDF829BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FC10189-1FDB-4DE4-ABF6-A005FDF829BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FC10189-1FDB-4DE4-ABF6-A005FDF829BC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7FC10189-1FDB-4DE4-ABF6-A005FDF829BC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7FC10189-1FDB-4DE4-ABF6-A005FDF829BC}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{7FC10189-1FDB-4DE4-ABF6-A005FDF829BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FC10189-1FDB-4DE4-ABF6-A005FDF829BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FC10189-1FDB-4DE4-ABF6-A005FDF829BC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7FC10189-1FDB-4DE4-ABF6-A005FDF829BC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7FC10189-1FDB-4DE4-ABF6-A005FDF829BC}.Release|Win32.ActiveCfg = Release|Any CPU
+		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -271,5 +295,7 @@ Global
 		{07D295B2-FAB9-43D1-B540-F1AB1811C6E7} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 		{F8663A3F-AD45-4394-BFAD-B23C3ADBC4F2} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 		{A7170508-D633-46BA-9B9F-497DA5CB6F8C} = {EB0A8C74-EA43-43DF-8597-0F9F57EFA103}
+		{7FC10189-1FDB-4DE4-ABF6-A005FDF829BC} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
+		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 	EndGlobalSection
 EndGlobal

@@ -21,11 +21,12 @@ namespace NetwrokClient
             NetPeerConfiguration config = new NetPeerConfiguration("CozyAnywhere");
             config.EnableMessageType(NetIncomingMessageType.DiscoveryResponse);
             client = new NetClient(config);
-            client.Start();
+            client.RegisterReceivedCallback(RecivePacket);
         }
 
         public void Connect(String ip, int port)
         {
+            client.Start();
             NetOutgoingMessage hail = client.CreateMessage("This is the anywhere hail message");
             client.Connect(ip, port, hail);
         }
@@ -50,7 +51,6 @@ namespace NetwrokClient
         public void Update()
         {
             SendPacket();
-            RecivePacket();
         }
 
         private void SendPacket()
@@ -73,12 +73,12 @@ namespace NetwrokClient
             }
         }
 
-        private void RecivePacket()
+        private void RecivePacket(object peer)
         {
             NetIncomingMessage msg;
             while ((msg = client.ReadMessage()) != null)
             {
-                switch (msg.MessageType)
+                   switch (msg.MessageType)
                 {
                     case NetIncomingMessageType.DebugMessage:
                     case NetIncomingMessageType.ErrorMessage:
