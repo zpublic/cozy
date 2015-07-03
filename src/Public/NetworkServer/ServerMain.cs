@@ -81,7 +81,7 @@ namespace NetworkServer
         {
             if (StatusMessage != null)
             {
-                StatusMessage(sender, new StatusMessageArgs(status, reason));
+                StatusMessage(sender, new StatusMessageArgs((NetworkHelper.NetConnectionStatus)status, reason));
             }
         }
 

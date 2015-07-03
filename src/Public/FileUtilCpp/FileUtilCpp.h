@@ -12,7 +12,7 @@
 
 #include "windows.h"
 
-using FILEENUMPROC = bool (CALLBACK*)(LPTSTR str);
+using FILEENUMPROC = bool (CALLBACK*)(LPTSTR str, bool IsFolder);
 
 // This class is exported from the FileUtilCpp.dll
 class CFileUtilCpp {
