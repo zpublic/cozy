@@ -37,7 +37,7 @@ namespace NetworkServer
             server.Shutdown("shutdown");
         }
 
-        private void RecivePacket()
+        public void RecivePacket()
         {
             NetIncomingMessage msg;
             while ((msg = server.ReadMessage()) != null)

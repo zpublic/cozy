@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using NetwrokClient;
 
 namespace ClientTester
 {
@@ -21,19 +20,9 @@ namespace ClientTester
     /// </summary>
     public partial class MainWindow : Window
     {
-        Client client;
         public MainWindow()
         {
             InitializeComponent();
-            client = new Client();
-            client.Connect("127.0.0.1", 36048);
-
-            System.Threading.ThreadStart s = () =>
-            {
-                while(true)
-                client.Update();
-            };
-            new System.Threading.Thread(s).Start();
         }
     }
 }

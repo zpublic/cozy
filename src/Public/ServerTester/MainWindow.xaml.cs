@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using NetworkServer;
 using System.Windows.Threading;
 
 namespace ServerTester
@@ -22,22 +21,9 @@ namespace ServerTester
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Server server { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            server = new Server(1000, 36048);
-            server.StatusMessage += (sender, msg) =>
-                {
-                    MessageBox.Show("fuck");
-                };
-
-            System.Threading.ThreadStart s = () =>
-                {
-                    server.EnterMainLoop();
-                };
-            new System.Threading.Thread(s).Start();
-            
         }
     }
 }
