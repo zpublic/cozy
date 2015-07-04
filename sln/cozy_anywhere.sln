@@ -61,6 +61,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerTester", "..\src\Publ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkProtocol", "..\src\Public\NetworkProtocol\NetworkProtocol.csproj", "{CAC595D7-C876-4C7A-A33A-C3F30B9E012E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessTester", "..\src\Public\ProcessTester\ProcessTester.csproj", "{F00D6E80-02C2-4970-9782-6BB42973D2E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -281,6 +283,16 @@ Global
 		{CAC595D7-C876-4C7A-A33A-C3F30B9E012E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{CAC595D7-C876-4C7A-A33A-C3F30B9E012E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{CAC595D7-C876-4C7A-A33A-C3F30B9E012E}.Release|Win32.ActiveCfg = Release|Any CPU
+		{F00D6E80-02C2-4970-9782-6BB42973D2E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F00D6E80-02C2-4970-9782-6BB42973D2E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F00D6E80-02C2-4970-9782-6BB42973D2E1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F00D6E80-02C2-4970-9782-6BB42973D2E1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F00D6E80-02C2-4970-9782-6BB42973D2E1}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{F00D6E80-02C2-4970-9782-6BB42973D2E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F00D6E80-02C2-4970-9782-6BB42973D2E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F00D6E80-02C2-4970-9782-6BB42973D2E1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F00D6E80-02C2-4970-9782-6BB42973D2E1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F00D6E80-02C2-4970-9782-6BB42973D2E1}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -310,5 +322,6 @@ Global
 		{7FC10189-1FDB-4DE4-ABF6-A005FDF829BC} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 		{EE12FC8D-8DD8-4BB5-9F6C-AF42052C9C41} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 		{CAC595D7-C876-4C7A-A33A-C3F30B9E012E} = {78CC2301-23F1-41C9-8336-37C59B47DAE6}
+		{F00D6E80-02C2-4970-9782-6BB42973D2E1} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 	EndGlobalSection
 EndGlobal
