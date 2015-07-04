@@ -80,6 +80,7 @@ namespace ClientTester.ViewModel
             {
                 var filename = Marshal.PtrToStringAuto(file);
                 fileList.Add(Tuple.Create<string, uint, bool>(filename, 0, b));
+                return false;
             });
 
             var msg             = new FileEnumMessageRsp();

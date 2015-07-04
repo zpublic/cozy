@@ -114,6 +114,7 @@ namespace FileTester.ViewModel
                         Name        = CurrPath + str,
                         IsFolder    = b,
                     });
+                return false;
             });
             FileList = newList;
         }
