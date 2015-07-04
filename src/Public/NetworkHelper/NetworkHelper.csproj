@@ -47,11 +47,18 @@
     <Compile Include="Event\DataMessageArgs.cs" />
     <Compile Include="Event\InternalMessageArgs.cs" />
     <Compile Include="Event\StatusMessageArgs.cs" />
+    <Compile Include="MessageReader.cs" />
     <Compile Include="NetConnectionStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NetworkProtocol\NetworkProtocol.csproj">
+      <Project>{cac595d7-c876-4c7a-a33a-c3f30b9e012e}</Project>
+      <Name>NetworkProtocol</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

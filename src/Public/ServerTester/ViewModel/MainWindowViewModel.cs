@@ -10,6 +10,8 @@ using NetworkHelper.Event;
 using ServerTester.Command;
 using System.Windows.Threading;
 using System.Windows.Input;
+using NetworkProtocol;
+using NetworkHelper;
 using CozyAnywhere.Protocol;
 using CozyAnywhere.Protocol.Messages;
 using Lidgren.Network;
@@ -85,26 +87,18 @@ namespace ServerTester.ViewModel
             server.StatusMessage += new EventHandler<StatusMessageArgs>(OnStatusMessage);
             server.DataMessage += new EventHandler<DataMessageArgs>(OnDataMessage);
 
+            RegisterMessageType();
             RegisterTimer();
-        }
-
-        private void RegisterTimer()
-        {
-            timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 200);
-            timer.Tick += new EventHandler((sender, msg) => { server.RecivePacket(); });
-            timer.Start();
         }
 
         private void OnDataMessage(object sender, DataMessageArgs msg)
         {
-            uint id = msg.Input.ReadUInt32();
-            switch(id)
+            IMessage baseMsg = MessageReader.GetTypeInstanceByStream(msg.Input);
+            switch (baseMsg.Id)
             {
                 case MessageId.FileEnumMessageRsp:
-                    FileEnumMessageRsp enumMsg = new FileEnumMessageRsp();
-                    enumMsg.Read(msg.Input);
-                    foreach(var obj in enumMsg.FileInfoList)
+                    var enumMsg = (FileEnumMessageRsp)baseMsg;
+                    foreach (var obj in enumMsg.FileInfoList)
                     {
                         FileInfoList.Add(
                             new FileInfo
@@ -129,6 +123,19 @@ namespace ServerTester.ViewModel
                 enumMsg.Path = @"E:\*";
                 server.SendMessage(enumMsg);
             }
+        }
+
+        private void RegisterTimer()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 200);
+            timer.Tick += new EventHandler((sender, msg) => { server.RecivePacket(); });
+            timer.Start();
+        }
+
+        private void RegisterMessageType()
+        {
+            MessageReader.RegisterType<FileEnumMessageRsp>(MessageId.FileEnumMessageRsp);
         }
     }
 }

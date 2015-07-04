@@ -11,6 +11,7 @@ using ClientTester.Ext;
 using NetworkHelper.Event;
 using Lidgren.Network;
 using NetworkProtocol;
+using NetworkHelper;
 using CozyAnywhere.Protocol;
 using CozyAnywhere.Protocol.Messages;
 using System.Runtime.InteropServices;
@@ -43,15 +44,10 @@ namespace ClientTester.ViewModel
         public MainWindowViewModel()
         {
             client = new Client();
-            
+
+            RegisterType();
             RegisterTimer();
             RegisterEvent();
-        }
-
-        private void RegisterEvent()
-        {
-            client.DataMessage += new EventHandler<DataMessageArgs>(OnDataMessage);
-            client.StatusMessage += new EventHandler<StatusMessageArgs>(OnStatusMessage);
         }
 
         private void OnStatusMessage(object sender, StatusMessageArgs msg)
@@ -59,6 +55,20 @@ namespace ClientTester.ViewModel
             switch(msg.Status)
             {
                 case NetworkHelper.NetConnectionStatus.Connected:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void OnDataMessage(object sender, DataMessageArgs msg)
+        {
+            IMessage baseMsg = MessageReader.GetTypeInstanceByStream(msg.Input);
+            switch (baseMsg.Id)
+            {
+                case MessageId.FileEnumMessage:
+                    var enumMsg = (FileEnumMessage)baseMsg;
+                    SendPathEnumData(enumMsg.Path);
                     break;
                 default:
                     break;
@@ -79,19 +89,15 @@ namespace ClientTester.ViewModel
             client.SendMessage(msg);
         }
 
-        private void OnDataMessage(object sender, DataMessageArgs msg)
+        private void RegisterEvent()
         {
-            uint id = msg.Input.ReadUInt32();
-            switch(id)
-            {
-                case MessageId.FileEnumMessage:
-                    var enumMsg = new FileEnumMessage();
-                    enumMsg.Read(msg.Input);
-                    SendPathEnumData(enumMsg.Path);
-                    break;
-                default:
-                    break;
-            }
+            client.DataMessage += new EventHandler<DataMessageArgs>(OnDataMessage);
+            client.StatusMessage += new EventHandler<StatusMessageArgs>(OnStatusMessage);
+        }
+
+        private void RegisterType()
+        {
+            MessageReader.RegisterType<FileEnumMessage>(MessageId.FileEnumMessage);
         }
 
         private void RegisterTimer()
