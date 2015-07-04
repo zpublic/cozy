@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Lidgren.Network;
 using NetworkHelper.Event;
+using NetworkHelper.Messages;
 
 namespace NetworkServer
 {
@@ -35,6 +36,39 @@ namespace NetworkServer
         {
             IsRunning = false;
             server.Shutdown("shutdown");
+        }
+
+        public void SendMessage(IMessage msg, NetConnection conn)
+        {
+            NetOutgoingMessage om = server.CreateMessage();
+            om.Write(msg.Id);
+            msg.Write(om);
+            server.SendMessage(om, conn, NetDeliveryMethod.Unreliable);
+        }
+
+        public void SendMessage(IMessage msg)
+        {
+            NetOutgoingMessage om = server.CreateMessage();
+            om.Write(msg.Id);
+            msg.Write(om);
+            server.SendToAll(om, NetDeliveryMethod.Unreliable);
+        }
+
+        public static void SendMessageExceptOne(NetServer server, IMessage msg, NetConnection except)
+        {
+            NetOutgoingMessage om = server.CreateMessage();
+            om.Write(msg.Id);
+            msg.Write(om);
+
+            List<NetConnection> all = server.Connections;
+            if (all.Contains(except))
+            {
+                all.Remove(except);
+            }
+            if (all.Count > 0)
+            {
+                server.SendMessage(om, all, NetDeliveryMethod.Unreliable, 0);
+            }
         }
 
         public void RecivePacket()

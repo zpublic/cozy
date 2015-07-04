@@ -21,9 +21,13 @@ namespace ClientTester.ViewModel
 {
     public class MainWindowViewModel : BaseViewModel
     {
+        #region Network
+
         Client client { get; set; }
 
         private DispatcherTimer timer { get; set; }
+
+        #endregion
 
         public ICommand _TestCommand;
         public ICommand TestCommand
@@ -33,7 +37,6 @@ namespace ClientTester.ViewModel
                 return _TestCommand = _TestCommand ?? new DelegateCommand((x) => 
                 {
                     client.Connect("127.0.0.1", 36048);
-                    //SendTestData();
                 });
             }
         }
@@ -63,7 +66,7 @@ namespace ClientTester.ViewModel
             }
         }
 
-        private void SendTestData(string path)
+        private void SendPathEnumData(string path)
         {
             var fileList = new List<Tuple<string, uint, bool>>();
             FileUtil.FileEnum(path, (file, b) =>
@@ -80,13 +83,12 @@ namespace ClientTester.ViewModel
         private void OnDataMessage(object sender, DataMessageArgs msg)
         {
             uint id = msg.Input.ReadUInt32();
-
             switch(id)
             {
                 case MessageId.FileEnumMessage:
                     var enumMsg = new FileEnumMessage();
                     enumMsg.Read(msg.Input);
-                    SendTestData(enumMsg.Path);
+                    SendPathEnumData(enumMsg.Path);
                     break;
                 default:
                     break;

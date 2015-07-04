@@ -127,12 +127,7 @@ namespace ServerTester.ViewModel
             {
                 var enumMsg = new FileEnumMessage();
                 enumMsg.Path = @"E:\*";
-
-                NetOutgoingMessage om = server.server.CreateMessage();
-                om.Write(enumMsg.Id);
-                enumMsg.Write(om);
-
-                server.server.SendToAll(om, NetDeliveryMethod.Unreliable);
+                server.SendMessage(enumMsg);
             }
         }
     }
