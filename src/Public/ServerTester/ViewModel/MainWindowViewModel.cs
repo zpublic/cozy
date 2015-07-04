@@ -12,6 +12,7 @@ using System.Windows.Threading;
 using System.Windows.Input;
 using CozyAnywhere.Protocol;
 using CozyAnywhere.Protocol.Messages;
+using Lidgren.Network;
 
 namespace ServerTester.ViewModel
 {
@@ -100,8 +101,8 @@ namespace ServerTester.ViewModel
             uint id = msg.Input.ReadUInt32();
             switch(id)
             {
-                case MessageId.FileEnumMessage:
-                    FileEnumMessage enumMsg = new FileEnumMessage();
+                case MessageId.FileEnumMessageRsp:
+                    FileEnumMessageRsp enumMsg = new FileEnumMessageRsp();
                     enumMsg.Read(msg.Input);
                     foreach(var obj in enumMsg.FileInfoList)
                     {
@@ -124,14 +125,14 @@ namespace ServerTester.ViewModel
         {
             if (msg.Status == NetworkHelper.NetConnectionStatus.Connected)
             {
-                FileInfoList.Add(
-                    new FileInfo
-                    {
-                        Name = "TestName",
-                        Size = 233,
-                        IsFolder = true,
-                    }
-                    );
+                var enumMsg = new FileEnumMessage();
+                enumMsg.Path = @"E:\*";
+
+                NetOutgoingMessage om = server.server.CreateMessage();
+                om.Write(enumMsg.Id);
+                enumMsg.Write(om);
+
+                server.server.SendToAll(om, NetDeliveryMethod.Unreliable);
             }
         }
     }

@@ -8,6 +8,5 @@ namespace CozyAnywhere.Protocol
 {
     public static class CommandId
     {
-        public const uint FileEnumCommand = 1001;
     }
 }

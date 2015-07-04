@@ -32,7 +32,8 @@ namespace ClientTester.ViewModel
             {
                 return _TestCommand = _TestCommand ?? new DelegateCommand((x) => 
                 {
-                    SendTestData();
+                    client.Connect("127.0.0.1", 36048);
+                    //SendTestData();
                 });
             }
         }
@@ -40,8 +41,9 @@ namespace ClientTester.ViewModel
         public MainWindowViewModel()
         {
             client = new Client();
-            client.Connect("127.0.0.1", 36048);
+            
             RegisterTimer();
+            RegisterEvent();
         }
 
         private void RegisterEvent()
@@ -61,16 +63,16 @@ namespace ClientTester.ViewModel
             }
         }
 
-        private void SendTestData()
+        private void SendTestData(string path)
         {
             var fileList = new List<Tuple<string, uint, bool>>();
-            FileUtil.FileEnum(@"D:\*", (file, b) =>
+            FileUtil.FileEnum(path, (file, b) =>
             {
                 var filename = Marshal.PtrToStringAuto(file);
                 fileList.Add(Tuple.Create<string, uint, bool>(filename, 0, b));
             });
 
-            var msg = new FileEnumMessage();
+            var msg = new FileEnumMessageRsp();
             msg.FileInfoList = fileList;
             client.SendMessage(msg);
         }
@@ -81,19 +83,10 @@ namespace ClientTester.ViewModel
 
             switch(id)
             {
-                case DefaultMessageId.CommandMessage:
-                    var commandMsg = new CommandMessage();
-                    commandMsg.Read(msg.Input);
-
-                    uint commandId = commandMsg.CommandId;
-                    switch(commandId)
-                    {
-                        case CommandId.FileEnumCommand:
-                            SendTestData();
-                            break;
-                        default:
-                            break;
-                    }
+                case MessageId.FileEnumMessage:
+                    var enumMsg = new FileEnumMessage();
+                    enumMsg.Read(msg.Input);
+                    SendTestData(enumMsg.Path);
                     break;
                 default:
                     break;
