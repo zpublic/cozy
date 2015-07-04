@@ -125,12 +125,7 @@ namespace NetwrokClient
         {
             if(DataMessage != null)
             {
-                uint id = im.ReadUInt32();
-                switch(id)
-                {
-                    default:
-                        break;
-                }
+                DataMessage(sender, new DataMessageArgs(im));
             }
         }
     }

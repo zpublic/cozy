@@ -105,9 +105,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Practice\CozyAnywhere.Protocol\CozyAnywhere.Protocol.csproj">
+      <Project>{7f35c165-b442-4176-a189-dcf409865f81}</Project>
+      <Name>CozyAnywhere.Protocol</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NetworkHelper\NetworkHelper.csproj">
       <Project>{93c3f45c-eb94-45dc-b622-3479d5cfebed}</Project>
       <Name>NetworkHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetworkProtocol\NetworkProtocol.csproj">
+      <Project>{cac595d7-c876-4c7a-a33a-c3f30b9e012e}</Project>
+      <Name>NetworkProtocol</Name>
     </ProjectReference>
     <ProjectReference Include="..\NetworkServer\NetworkServer.csproj">
       <Project>{3827bbcf-b396-4536-96c0-eea82d51cbe6}</Project>

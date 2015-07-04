@@ -7,6 +7,8 @@
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
     </Window.DataContext>
     <Grid>
-        
+        <StackPanel>
+            <Button Content="Connect and Send" Command="{Binding TestCommand}"></Button>
+        </StackPanel>
     </Grid>
 </Window>

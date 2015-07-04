@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NetworkHelper.Messages;
 using Lidgren.Network;
 
-namespace NetworkProtocol.Protocol
+namespace NetworkProtocol
 {
     public class CommandMessage : IMessage
     {

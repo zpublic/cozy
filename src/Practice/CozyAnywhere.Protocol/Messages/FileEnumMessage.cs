@@ -12,7 +12,7 @@ namespace CozyAnywhere.Protocol.Messages
     {
         public uint Id { get { return MessageId.FileEnumMessage; } }
 
-        List<Tuple<string, uint, bool>> FileInfoList { get; set; }
+        public List<Tuple<string, uint, bool>> FileInfoList { get; set; }
 
         public void Write(NetOutgoingMessage om)
         {

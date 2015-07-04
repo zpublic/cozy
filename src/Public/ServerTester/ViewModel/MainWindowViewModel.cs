@@ -10,6 +10,8 @@ using NetworkHelper.Event;
 using ServerTester.Command;
 using System.Windows.Threading;
 using System.Windows.Input;
+using CozyAnywhere.Protocol;
+using CozyAnywhere.Protocol.Messages;
 
 namespace ServerTester.ViewModel
 {
@@ -95,7 +97,27 @@ namespace ServerTester.ViewModel
 
         private void OnDataMessage(object sender, DataMessageArgs msg)
         {
-
+            uint id = msg.Input.ReadUInt32();
+            switch(id)
+            {
+                case MessageId.FileEnumMessage:
+                    FileEnumMessage enumMsg = new FileEnumMessage();
+                    enumMsg.Read(msg.Input);
+                    foreach(var obj in enumMsg.FileInfoList)
+                    {
+                        FileInfoList.Add(
+                            new FileInfo
+                            {
+                                Name = obj.Item1,
+                                Size = obj.Item2,
+                                IsFolder = obj.Item3,
+                            }
+                            );
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void OnStatusMessage(object sender, StatusMessageArgs msg)
