@@ -8,6 +8,6 @@ namespace CozyAnywhere.Protocol
 {
     public static class MessageId
     {
-        public const uint FileEnumMessageRsp = 1001;
+        public const uint FileEnumMessage = 1001;
     }
 }

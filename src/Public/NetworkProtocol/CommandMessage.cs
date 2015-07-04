@@ -8,7 +8,7 @@ using Lidgren.Network;
 
 namespace NetworkProtocol.Protocol
 {
-    public class CommandMsg : IMessage
+    public class CommandMessage : IMessage
     {
         public uint Id { get { return DefaultMessageId.CommandMessage; } }
 

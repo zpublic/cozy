@@ -8,9 +8,9 @@ using Lidgren.Network;
 
 namespace CozyAnywhere.Protocol.Messages
 {
-    public struct FileEnumMessageRsp : IMessage
+    public struct FileEnumMessage : IMessage
     {
-        public uint Id { get { return MessageId.FileEnumMessageRsp; } }
+        public uint Id { get { return MessageId.FileEnumMessage; } }
 
         List<Tuple<string, uint, bool>> FileInfoList { get; set; }
 

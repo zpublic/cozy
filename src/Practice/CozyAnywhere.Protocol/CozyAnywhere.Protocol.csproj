@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="MessageId.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Messages\FileEnumMessageRsp.cs" />
+    <Compile Include="Messages\FileEnumMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Public\NetworkHelper\NetworkHelper.csproj">
