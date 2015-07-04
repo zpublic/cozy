@@ -5,13 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using NetworkHelper.Messages;
 using Lidgren.Network;
-using NetworkProtocol;
 
 namespace NetworkProtocol.Protocol
 {
     public class CommandMsg : IMessage
     {
-        public uint Id { get { return MessageId.CommandMessage; } }
+        public uint Id { get { return DefaultMessageId.CommandMessage; } }
 
         public uint CommandId { get; set; }
 

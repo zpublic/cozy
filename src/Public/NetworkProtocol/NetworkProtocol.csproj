@@ -46,10 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MessageId.cs" />
+    <Compile Include="DefaultMessageId.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Protocol\CommandMsg.cs" />
-    <Compile Include="Protocol\FileEnumMessageRsp.cs" />
+    <Compile Include="CommandMsg.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

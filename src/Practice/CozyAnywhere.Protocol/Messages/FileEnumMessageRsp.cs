@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using NetworkHelper.Messages;
 using Lidgren.Network;
-using NetworkProtocol;
 
-namespace NetworkProtocol.Protocol
+namespace CozyAnywhere.Protocol.Messages
 {
     public struct FileEnumMessageRsp : IMessage
     {
