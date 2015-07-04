@@ -18,9 +18,26 @@ class CProcessUtilCpp
 {
 public:
     CProcessUtilCpp(void);
-    DWORD EnumProcess(PROCESSENUMPROC lpEnumFunc);
+
+    DWORD ProcessEnum(PROCESSENUMPROC lpEnumFunc);
+
+    bool ProcessTerminate(DWORD dwProcessId);
+
+    bool ProcessTerminateWithTimeOut(DWORD dwProcessId, DWORD dwTimeOut);
+
+    bool ProcessCreate(LPTSTR lpPath);
+
+    bool GetProcessName(DWORD dwProcessId);
 };
 
 extern PROCESSUTILCPP_API CProcessUtilCpp CProcessUtilCppInstance;
 
-extern "C" PROCESSUTILCPP_API DWORD EnumProcess(PROCESSENUMPROC lpEnumFunc);
+extern "C" PROCESSUTILCPP_API DWORD ProcessEnum(PROCESSENUMPROC lpEnumFunc);
+
+extern "C" PROCESSUTILCPP_API bool ProcessTerminate(DWORD dwProcessId);
+
+extern "C" PROCESSUTILCPP_API bool ProcessTerminateWithTimeOut(DWORD dwProcessId, DWORD dwTimeOut);
+
+extern "C" PROCESSUTILCPP_API bool ProcessCreate(LPTSTR lpPath);
+
+extern "C" PROCESSUTILCPP_API bool GetProcessName(DWORD dwProcessId);

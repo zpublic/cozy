@@ -12,7 +12,7 @@ CProcessUtilCpp::CProcessUtilCpp(void)
     return;
 }
 
-DWORD CProcessUtilCpp::EnumProcess(PROCESSENUMPROC lpEnumFunc)
+DWORD CProcessUtilCpp::ProcessEnum(PROCESSENUMPROC lpEnumFunc)
 {
     PROCESSENTRY32 pe32;
     pe32.dwSize = sizeof(pe32);
@@ -35,7 +35,84 @@ DWORD CProcessUtilCpp::EnumProcess(PROCESSENUMPROC lpEnumFunc)
     return dwCount;
 }
 
-PROCESSUTILCPP_API DWORD EnumProcess(PROCESSENUMPROC lpEnumFunc)
+bool CProcessUtilCpp::ProcessTerminate(DWORD dwProcessId)
 {
-    return CProcessUtilCppInstance.EnumProcess(lpEnumFunc);
+    HANDLE hProcess = ::OpenProcess(PROCESS_TERMINATE, false, dwProcessId);
+    if (hProcess == nullptr)
+    {
+        ::CloseHandle(hProcess);
+        return false;
+    }
+    if (!TerminateProcess(hProcess, 0))
+    {
+        ::CloseHandle(hProcess);
+        return false;
+    }
+    ::CloseHandle(hProcess);
+    return true;
+}
+
+bool CProcessUtilCpp::ProcessTerminateWithTimeOut(DWORD dwProcessId, DWORD dwTimeOut)
+{
+    HANDLE hProcess = ::OpenProcess(PROCESS_TERMINATE, false, dwProcessId);
+    if (hProcess == nullptr)
+    {
+        ::CloseHandle(hProcess);
+        return false;
+    }
+    if (!TerminateProcess(hProcess, 0))
+    {
+        ::CloseHandle(hProcess);
+        return false;
+    }
+    DWORD dwResult = ::WaitForSingleObject(hProcess, dwTimeOut);
+    ::CloseHandle(hProcess);
+    return (dwResult == WAIT_OBJECT_0);
+}
+
+bool CProcessUtilCpp::ProcessCreate(LPTSTR lpPath)
+{
+    STARTUPINFO si = { sizeof(STARTUPINFO) };
+    PROCESS_INFORMATION piProcess;
+    bool bResult = (::CreateProcess(nullptr, lpPath, nullptr, nullptr, false, 0, nullptr, nullptr, &si, &piProcess) == TRUE);
+    ::CloseHandle(piProcess.hProcess);
+    ::CloseHandle(piProcess.hThread);
+    return bResult;
+}
+
+bool CProcessUtilCpp::GetProcessName(DWORD dwProcessId)
+{
+    // TODO get process name by processid
+    /*HANDLE hProcess = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, false, dwProcessId);
+    if (hProcess == nullptr)
+    {
+        ::CloseHandle(hProcess);
+        return false;
+    }
+*/
+}
+
+PROCESSUTILCPP_API DWORD ProcessEnum(PROCESSENUMPROC lpEnumFunc)
+{
+    return CProcessUtilCppInstance.ProcessEnum(lpEnumFunc);
+}
+
+PROCESSUTILCPP_API bool ProcessTerminate(DWORD dwProcessId)
+{
+    return CProcessUtilCppInstance.ProcessTerminate(dwProcessId);
+}
+
+PROCESSUTILCPP_API bool ProcessTerminateWithTimeOut(DWORD dwProcessId, DWORD dwTimeOut)
+{
+    return CProcessUtilCppInstance.ProcessTerminateWithTimeOut(dwProcessId, dwTimeOut);
+}
+
+PROCESSUTILCPP_API bool ProcessCreate(LPTSTR lpPath)
+{
+    return CProcessUtilCppInstance.ProcessCreate(lpPath);
+}
+
+PROCESSUTILCPP_API bool GetProcessName(DWORD dwProcessId)
+{
+    return CProcessUtilCppInstance.GetProcessName(dwProcessId);
 }
