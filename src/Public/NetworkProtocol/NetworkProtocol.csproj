@@ -46,8 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MessageId.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Protocol\FileEnumMsg.cs" />
+    <Compile Include="Protocol\CommandMsg.cs" />
+    <Compile Include="Protocol\FileEnumMessageRsp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using NetworkHelper.Messages;
 using Lidgren.Network;
+using NetworkProtocol;
 
 namespace NetworkProtocol.Protocol
 {
-    public struct FileEnumMsg : IMessage
+    public struct FileEnumMessageRsp : IMessage
     {
-        public uint Id { get { return 0; } }
+        public uint Id { get { return MessageId.FileEnumMessageRsp; } }
 
         List<Tuple<string, uint, bool>> FileInfoList { get; set; }
 

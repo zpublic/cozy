@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ServerTester.Model;
 using NetworkServer;
+using NetworkHelper.Event;
 using ServerTester.Command;
 using System.Windows.Threading;
 using System.Windows.Input;
@@ -78,21 +79,8 @@ namespace ServerTester.ViewModel
         public MainWindowViewModel()
         {
             server = new Server(1000, 36048);
-            server.StatusMessage += (sender, msg) =>
-            {
-                if(msg.Status == NetworkHelper.NetConnectionStatus.Connected)
-                {
-                    FileInfoList.Add(
-                        new FileInfo
-                        {
-                            Name = "TestName",
-                            Size = 233,
-                            IsFolder = true,
-                        }
-                        );
-                }
-                
-            };
+            server.StatusMessage += new EventHandler<StatusMessageArgs>(OnStatusMessage);
+            server.DataMessage += new EventHandler<DataMessageArgs>(OnDataMessage);
 
             RegisterTimer();
         }
@@ -103,6 +91,26 @@ namespace ServerTester.ViewModel
             timer.Interval = new TimeSpan(0, 0, 0, 0, 200);
             timer.Tick += new EventHandler((sender, msg) => { server.RecivePacket(); });
             timer.Start();
+        }
+
+        private void OnDataMessage(object sender, DataMessageArgs msg)
+        {
+
+        }
+
+        private void OnStatusMessage(object sender, StatusMessageArgs msg)
+        {
+            if (msg.Status == NetworkHelper.NetConnectionStatus.Connected)
+            {
+                FileInfoList.Add(
+                    new FileInfo
+                    {
+                        Name = "TestName",
+                        Size = 233,
+                        IsFolder = true,
+                    }
+                    );
+            }
         }
     }
 }
