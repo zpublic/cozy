@@ -9,9 +9,14 @@ namespace ProcessTester.Ext
 {
     public static class ProcessUtil
     {
-        public delegate void ProcessEnumFunc(uint pid);
+        public delegate bool ProcessEnumFunc(uint pid);
+
+        public delegate void GetProcessNameFunc(IntPtr ptr);
 
         [DllImport(@"../../ProcessUtilCpp/Debug/ProcessUtilCpp.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ProcessEnum(ProcessEnumFunc func);
+        public static extern uint ProcessEnum(ProcessEnumFunc func);
+
+        [DllImport(@"../../ProcessUtilCpp/Debug/ProcessUtilCpp.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool GetProcessName(uint Pid, GetProcessNameFunc func);
     }
 }

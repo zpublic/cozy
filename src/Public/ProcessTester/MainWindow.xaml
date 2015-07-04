@@ -11,8 +11,8 @@
             <ListView ItemsSource="{Binding ProcessInfoList}" Height="305" ScrollViewer.CanContentScroll="True">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
                         <GridViewColumn Header="Pid" DisplayMemberBinding="{Binding Path=Pid}"></GridViewColumn>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

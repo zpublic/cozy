@@ -1,6 +1,8 @@
-﻿using ProcessTester.Ext;
+﻿using System.Text;
+using ProcessTester.Ext;
 using ProcessTester.Model;
 using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
 
 namespace ProcessTester.ViewModel
 {
@@ -29,13 +31,22 @@ namespace ProcessTester.ViewModel
         {
             ProcessUtil.ProcessEnum((pid) =>
             {
-                ProcessInfoList.Add(
-                new ProcessInfo
+                string result = null;
+                ProcessUtil.GetProcessName(pid, (x) => 
                 {
-                    Name    = "",
-                    Pid     = pid,
+                    result = Marshal.PtrToStringAuto(x);
+                });
+                if(result != null)
+                {
+                    ProcessInfoList.Add(
+                    new ProcessInfo
+                    {
+                        Name = result,
+                        Pid = pid,
+                    }
+                    );
                 }
-                );
+                return false;
             });
         }
     }

@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "ProcessUtilCpp.h"
 #include "tlhelp32.h"
+#include "Psapi.h"
 
 PROCESSUTILCPP_API CProcessUtilCpp CProcessUtilCppInstance;
 
@@ -12,7 +13,7 @@ CProcessUtilCpp::CProcessUtilCpp(void)
     return;
 }
 
-DWORD CProcessUtilCpp::ProcessEnum(PROCESSENUMPROC lpEnumFunc)
+bool CProcessUtilCpp::ProcessEnum(PROCESSENUMPROC lpEnumFunc)
 {
     PROCESSENTRY32 pe32;
     pe32.dwSize = sizeof(pe32);
@@ -20,7 +21,7 @@ DWORD CProcessUtilCpp::ProcessEnum(PROCESSENUMPROC lpEnumFunc)
     if (hProcessSnap == INVALID_HANDLE_VALUE)
     {
         ::CloseHandle(hProcessSnap);
-        return 0;
+        return false;
     }
 
     DWORD dwCount = 0;
@@ -28,11 +29,14 @@ DWORD CProcessUtilCpp::ProcessEnum(PROCESSENUMPROC lpEnumFunc)
     while (bMore)
     {
         ++dwCount;
-        lpEnumFunc(pe32.th32ProcessID);
+        if (lpEnumFunc(pe32.th32ProcessID))
+        {
+            break;
+        }
         bMore = (::Process32Next(hProcessSnap, &pe32) == TRUE);
     }
     ::CloseHandle(hProcessSnap);
-    return dwCount;
+    return true;
 }
 
 bool CProcessUtilCpp::ProcessTerminate(DWORD dwProcessId)
@@ -43,13 +47,9 @@ bool CProcessUtilCpp::ProcessTerminate(DWORD dwProcessId)
         ::CloseHandle(hProcess);
         return false;
     }
-    if (!TerminateProcess(hProcess, 0))
-    {
-        ::CloseHandle(hProcess);
-        return false;
-    }
+    bool bResult = (::TerminateProcess(hProcess, 0) != FALSE);
     ::CloseHandle(hProcess);
-    return true;
+    return bResult;
 }
 
 bool CProcessUtilCpp::ProcessTerminateWithTimeOut(DWORD dwProcessId, DWORD dwTimeOut)
@@ -80,19 +80,25 @@ bool CProcessUtilCpp::ProcessCreate(LPTSTR lpPath)
     return bResult;
 }
 
-bool CProcessUtilCpp::GetProcessName(DWORD dwProcessId)
+bool CProcessUtilCpp::GetProcessName(DWORD dwProcessId, PROCESSNAMEPROC lpNameFunc)
 {
-    // TODO get process name by processid
-    /*HANDLE hProcess = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, false, dwProcessId);
+    if (lpNameFunc == nullptr) return false;
+    HANDLE hProcess = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, false, dwProcessId);
     if (hProcess == nullptr)
     {
         ::CloseHandle(hProcess);
         return false;
     }
-*/
+
+    LPTSTR lpResult = new TCHAR[260];
+    DWORD dwCount = ::GetModuleFileNameEx(hProcess, nullptr, lpResult, 260);
+    lpNameFunc(lpResult);
+    delete[] lpResult;
+    ::CloseHandle(hProcess);
+    return (dwCount != 0);
 }
 
-PROCESSUTILCPP_API DWORD ProcessEnum(PROCESSENUMPROC lpEnumFunc)
+PROCESSUTILCPP_API bool ProcessEnum(PROCESSENUMPROC lpEnumFunc)
 {
     return CProcessUtilCppInstance.ProcessEnum(lpEnumFunc);
 }
@@ -112,7 +118,7 @@ PROCESSUTILCPP_API bool ProcessCreate(LPTSTR lpPath)
     return CProcessUtilCppInstance.ProcessCreate(lpPath);
 }
 
-PROCESSUTILCPP_API bool GetProcessName(DWORD dwProcessId)
+PROCESSUTILCPP_API bool GetProcessName(DWORD dwProcessId, PROCESSNAMEPROC lpNameFunc)
 {
-    return CProcessUtilCppInstance.GetProcessName(dwProcessId);
+    return CProcessUtilCppInstance.GetProcessName(dwProcessId, lpNameFunc);
 }

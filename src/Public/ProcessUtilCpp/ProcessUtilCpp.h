@@ -13,13 +13,14 @@
 #include "windows.h"
 
 using PROCESSENUMPROC = bool(CALLBACK*)(DWORD dwProcessId);
+using PROCESSNAMEPROC = void(CALLBACK*)(LPTSTR lpProcName);
 
 class CProcessUtilCpp
 {
 public:
     CProcessUtilCpp(void);
 
-    DWORD ProcessEnum(PROCESSENUMPROC lpEnumFunc);
+    bool ProcessEnum(PROCESSENUMPROC lpEnumFunc);
 
     bool ProcessTerminate(DWORD dwProcessId);
 
@@ -27,12 +28,12 @@ public:
 
     bool ProcessCreate(LPTSTR lpPath);
 
-    bool GetProcessName(DWORD dwProcessId);
+    bool GetProcessName(DWORD dwProcessId, PROCESSNAMEPROC lpNameFunc);
 };
 
 extern PROCESSUTILCPP_API CProcessUtilCpp CProcessUtilCppInstance;
 
-extern "C" PROCESSUTILCPP_API DWORD ProcessEnum(PROCESSENUMPROC lpEnumFunc);
+extern "C" PROCESSUTILCPP_API bool ProcessEnum(PROCESSENUMPROC lpEnumFunc);
 
 extern "C" PROCESSUTILCPP_API bool ProcessTerminate(DWORD dwProcessId);
 
@@ -40,4 +41,4 @@ extern "C" PROCESSUTILCPP_API bool ProcessTerminateWithTimeOut(DWORD dwProcessId
 
 extern "C" PROCESSUTILCPP_API bool ProcessCreate(LPTSTR lpPath);
 
-extern "C" PROCESSUTILCPP_API bool GetProcessName(DWORD dwProcessId);
+extern "C" PROCESSUTILCPP_API bool GetProcessName(DWORD dwProcessId, PROCESSNAMEPROC lpNameFunc);
