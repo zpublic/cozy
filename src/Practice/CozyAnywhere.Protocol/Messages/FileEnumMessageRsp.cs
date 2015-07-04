@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NetworkHelper.Messages;
 using Lidgren.Network;
+using NetworkProtocol;
 
 namespace CozyAnywhere.Protocol.Messages
 {

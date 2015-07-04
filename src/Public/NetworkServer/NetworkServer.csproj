@@ -54,6 +54,10 @@
       <Project>{93c3f45c-eb94-45dc-b622-3479d5cfebed}</Project>
       <Name>NetworkHelper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NetworkProtocol\NetworkProtocol.csproj">
+      <Project>{cac595d7-c876-4c7a-a33a-c3f30b9e012e}</Project>
+      <Name>NetworkProtocol</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

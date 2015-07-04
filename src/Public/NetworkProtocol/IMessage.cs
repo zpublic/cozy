@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Lidgren.Network;
 
-namespace NetworkHelper.Messages
+namespace NetworkProtocol
 {
     public interface IMessage
     {

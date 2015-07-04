@@ -51,13 +51,13 @@
     <Compile Include="Messages\FileEnumMessageRsp.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Public\NetworkHelper\NetworkHelper.csproj">
-      <Project>{93c3f45c-eb94-45dc-b622-3479d5cfebed}</Project>
-      <Name>NetworkHelper</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\..\Public\NetworkProtocol\NetworkProtocol.csproj">
+      <Project>{cac595d7-c876-4c7a-a33a-c3f30b9e012e}</Project>
+      <Name>NetworkProtocol</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

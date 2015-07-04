@@ -10,7 +10,6 @@ using ClientTester.Command;
 using ClientTester.Ext;
 using NetworkHelper.Event;
 using Lidgren.Network;
-using NetworkHelper.Messages;
 using NetworkProtocol;
 using CozyAnywhere.Protocol;
 using CozyAnywhere.Protocol.Messages;
