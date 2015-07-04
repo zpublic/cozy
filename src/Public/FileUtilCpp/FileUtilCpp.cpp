@@ -120,7 +120,8 @@ void CFileUtilCpp::FileEnum(LPCTSTR lpPath, FILEENUMPROC lpEnumFunc)
             {
                 if (lpEnumFunc != nullptr)
                 {
-                    if (!lpEnumFunc(FindFileData.cFileName, (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY != FALSE)))
+                    bool bIsDire = ((FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != FALSE);
+                    if (!lpEnumFunc(FindFileData.cFileName, bIsDire))
                     {
                         break;
                     }
