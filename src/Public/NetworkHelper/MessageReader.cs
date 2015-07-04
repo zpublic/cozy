@@ -1,33 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lidgren.Network;
+﻿using Lidgren.Network;
 using NetworkProtocol;
+using System;
+using System.Collections.Generic;
 
 namespace NetworkHelper
 {
     public static class MessageReader
     {
-        private static Dictionary<uint, Type> IdToTypeDictionary = new Dictionary<uint, Type>();
-        private static object ObjLocker = new object();
+        private static Dictionary<uint, Type> IdToTypeDictionary    = new Dictionary<uint, Type>();
+        private static object ObjLocker                             = new object();
 
-        public static void RegisterType<T>(uint id) 
+        public static void RegisterType<T>(uint id)
             where T : IMessage
         {
             Type t = typeof(T);
-            lock(ObjLocker)
+            lock (ObjLocker)
             {
                 IdToTypeDictionary[id] = t;
             }
         }
+
         public static IMessage GetTypeInstanceByStream(NetIncomingMessage stream)
         {
             var id = stream.ReadUInt32();
-            lock(ObjLocker)
+            lock (ObjLocker)
             {
-                if(IdToTypeDictionary.ContainsKey(id))
+                if (IdToTypeDictionary.ContainsKey(id))
                 {
                     var instance = (IMessage)Activator.CreateInstance(IdToTypeDictionary[id]);
                     instance.Read(stream);

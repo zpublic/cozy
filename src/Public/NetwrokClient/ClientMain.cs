@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lidgren.Network;
+﻿using Lidgren.Network;
 using NetworkHelper.Event;
 using NetworkProtocol;
+using System;
+using System.Collections.Generic;
 
 namespace NetwrokClient
 {
@@ -20,7 +17,7 @@ namespace NetwrokClient
         {
             NetPeerConfiguration config = new NetPeerConfiguration("CozyAnywhere");
             config.EnableMessageType(NetIncomingMessageType.DiscoveryResponse);
-            client = new NetClient(config);
+            client                      = new NetClient(config);
             client.RegisterReceivedCallback(RecivePacket);
         }
 
@@ -78,7 +75,7 @@ namespace NetwrokClient
             NetIncomingMessage msg;
             while ((msg = client.ReadMessage()) != null)
             {
-                   switch (msg.MessageType)
+                switch (msg.MessageType)
                 {
                     case NetIncomingMessageType.DebugMessage:
                     case NetIncomingMessageType.ErrorMessage:
@@ -87,14 +84,17 @@ namespace NetwrokClient
                         string text = msg.ReadString();
                         OnInternalMessage(this, text);
                         break;
+
                     case NetIncomingMessageType.DiscoveryResponse:
                         client.Connect(msg.SenderEndPoint);
                         break;
+
                     case NetIncomingMessageType.StatusChanged:
                         NetConnectionStatus status = (NetConnectionStatus)msg.ReadByte();
                         string reason = msg.ReadString();
                         OnStatusMessage(this, status, reason);
                         break;
+
                     case NetIncomingMessageType.Data:
                         OnDataMessage(this, msg);
                         break;
@@ -103,6 +103,7 @@ namespace NetwrokClient
         }
 
         public event EventHandler<InternalMessageArgs> InternalMessage;
+
         public void OnInternalMessage(object sender, String msg)
         {
             if (InternalMessage != null)
@@ -112,6 +113,7 @@ namespace NetwrokClient
         }
 
         public event EventHandler<StatusMessageArgs> StatusMessage;
+
         public void OnStatusMessage(object sender, NetConnectionStatus status, String reason)
         {
             if (StatusMessage != null)
@@ -121,9 +123,10 @@ namespace NetwrokClient
         }
 
         public event EventHandler<DataMessageArgs> DataMessage;
+
         public void OnDataMessage(object sender, NetIncomingMessage im)
         {
-            if(DataMessage != null)
+            if (DataMessage != null)
             {
                 DataMessage(sender, new DataMessageArgs(im));
             }

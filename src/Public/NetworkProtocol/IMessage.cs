@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lidgren.Network;
+﻿using Lidgren.Network;
 
 namespace NetworkProtocol
 {
@@ -12,6 +7,7 @@ namespace NetworkProtocol
         uint Id { get; }
 
         void Write(NetOutgoingMessage om);
+
         void Read(NetIncomingMessage im);
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NetworkHelper.Messages;
-using Lidgren.Network;
+﻿using Lidgren.Network;
 
 namespace NetworkProtocol
 {

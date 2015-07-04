@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace ServerTester.ViewModel
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChangedEventHandler handler = this.PropertyChanged;
@@ -18,6 +14,7 @@ namespace ServerTester.ViewModel
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
         protected bool Set<T>(ref T field, T value, string propertyName)
         {
             if (Equals(field, value))

@@ -1,7 +1,7 @@
-// The following ifdef block is the standard way of creating macros which make exporting 
+// The following ifdef block is the standard way of creating macros which make exporting
 // from a DLL simpler. All files within this DLL are compiled with the FILEUTILCPP_EXPORTS
 // symbol defined on the command line. This symbol should not be defined on any project
-// that uses this DLL. This way any other project whose source files include this file see 
+// that uses this DLL. This way any other project whose source files include this file see
 // FILEUTILCPP_API functions as being imported from a DLL, whereas this DLL sees symbols
 // defined with this macro as being exported.
 #ifdef FILEUTILCPP_EXPORTS
@@ -17,8 +17,8 @@ using FILEENUMPROC = bool (CALLBACK*)(LPTSTR str, bool IsFolder);
 // This class is exported from the FileUtilCpp.dll
 class CFileUtilCpp {
 public:
-	CFileUtilCpp(void);
-	// TODO: add your methods here.
+    CFileUtilCpp(void);
+    // TODO: add your methods here.
 
     bool FileCopy(LPCTSTR lpSourcePath, LPCTSTR lpDestPath, bool bFailIfExists);
 
@@ -38,7 +38,7 @@ public:
 
     bool FillFileData(LPCTSTR lpPath, WIN32_FIND_DATA* lpData);
 };
- 
+
 extern FILEUTILCPP_API CFileUtilCpp CFileUtilCppInstance;
 
 extern "C" FILEUTILCPP_API bool FileCopy(LPCTSTR lpSourcePath, LPCTSTR lpDestPath, bool bFailIfExists);

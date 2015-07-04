@@ -14,7 +14,7 @@ FILEUTILCPP_API CFileUtilCpp CFileUtilCppInstance;
 // see FileUtilCpp.h for the class definition
 CFileUtilCpp::CFileUtilCpp()
 {
-	return;
+    return;
 }
 
 bool CFileUtilCpp::PathFileExist(LPCTSTR lpPath)

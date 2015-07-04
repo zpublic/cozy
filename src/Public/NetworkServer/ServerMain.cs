@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Lidgren.Network;
+﻿using Lidgren.Network;
 using NetworkHelper.Event;
 using NetworkProtocol;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace NetworkServer
 {
     public class Server
     {
         public NetServer server { get; set; }
-        private readonly Queue<NetServerMsg> MessageQueue = new Queue<NetServerMsg>();
-        private readonly object MessageQueueLocker = new object();
+
+        private readonly Queue<NetServerMsg> MessageQueue   = new Queue<NetServerMsg>();
+        private readonly object MessageQueueLocker          = new object();
 
         public bool IsRunning { get; set; }
 
-        public Server(int MaxConnections ,int Port)
+        public Server(int MaxConnections, int Port)
         {
             NetPeerConfiguration config = new NetPeerConfiguration("CozyAnywhere");
             config.MaximumConnections   = MaxConnections;
@@ -81,6 +79,7 @@ namespace NetworkServer
                     case NetIncomingMessageType.DiscoveryRequest:
                         server.SendDiscoveryResponse(null, msg.SenderEndPoint);
                         break;
+
                     case NetIncomingMessageType.VerboseDebugMessage:
                     case NetIncomingMessageType.DebugMessage:
                     case NetIncomingMessageType.WarningMessage:
@@ -88,14 +87,17 @@ namespace NetworkServer
                         string text = msg.ReadString();
                         OnInternalMessage(this, text);
                         break;
+
                     case NetIncomingMessageType.StatusChanged:
                         NetConnectionStatus status = (NetConnectionStatus)msg.ReadByte();
                         string reason = msg.ReadString();
                         OnStatusMessage(this, status, reason);
                         break;
+
                     case NetIncomingMessageType.Data:
                         OnDataMessage(this, msg);
                         break;
+
                     default:
                         break;
                 }
@@ -113,6 +115,7 @@ namespace NetworkServer
         }
 
         public event EventHandler<InternalMessageArgs> InternalMessage;
+
         public void OnInternalMessage(object sender, String msg)
         {
             if (InternalMessage != null)
@@ -122,6 +125,7 @@ namespace NetworkServer
         }
 
         public event EventHandler<StatusMessageArgs> StatusMessage;
+
         public void OnStatusMessage(object sender, NetConnectionStatus status, String reason)
         {
             if (StatusMessage != null)
@@ -131,6 +135,7 @@ namespace NetworkServer
         }
 
         public event EventHandler<DataMessageArgs> DataMessage;
+
         public void OnDataMessage(object sender, NetIncomingMessage im)
         {
             if (DataMessage != null)

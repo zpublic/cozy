@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lidgren.Network;
+﻿using Lidgren.Network;
 using NetworkProtocol;
+using System;
+using System.Collections.Generic;
 
 namespace CozyAnywhere.Protocol.Messages
 {
@@ -16,10 +13,10 @@ namespace CozyAnywhere.Protocol.Messages
 
         public void Write(NetOutgoingMessage om)
         {
-            if(FileInfoList != null)
+            if (FileInfoList != null)
             {
                 om.Write(FileInfoList.Count);
-                foreach(var obj in FileInfoList)
+                foreach (var obj in FileInfoList)
                 {
                     om.Write(obj.Item1);
                     om.Write(obj.Item2);
@@ -30,16 +27,16 @@ namespace CozyAnywhere.Protocol.Messages
 
         public void Read(NetIncomingMessage im)
         {
-            if(FileInfoList == null)
+            if (FileInfoList == null)
             {
                 FileInfoList = new List<Tuple<string, uint, bool>>();
             }
             int ListCount = im.ReadInt32();
-            for(int i = 0; i < ListCount; ++i)
+            for (int i = 0; i < ListCount; ++i)
             {
-                string Name = im.ReadString();
-                uint Size   = im.ReadUInt32();
-                bool IsDire = im.ReadBoolean();
+                string Name     = im.ReadString();
+                uint Size       = im.ReadUInt32();
+                bool IsDire     = im.ReadBoolean();
                 FileInfoList.Add(Tuple.Create<string, uint, bool>(Name, Size, IsDire));
             }
         }

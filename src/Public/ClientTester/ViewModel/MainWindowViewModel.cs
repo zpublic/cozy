@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Threading;
-using NetwrokClient;
-using System.Windows.Input;
-using ClientTester.Command;
+﻿using ClientTester.Command;
 using ClientTester.Ext;
-using NetworkHelper.Event;
-using Lidgren.Network;
-using NetworkProtocol;
-using NetworkHelper;
 using CozyAnywhere.Protocol;
 using CozyAnywhere.Protocol.Messages;
+using NetworkHelper;
+using NetworkHelper.Event;
+using NetworkProtocol;
+using NetwrokClient;
+using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using ClientTester.Model;
+using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace ClientTester.ViewModel
 {
@@ -23,18 +18,19 @@ namespace ClientTester.ViewModel
     {
         #region Network
 
-        Client client { get; set; }
+        private Client client { get; set; }
 
         private DispatcherTimer timer { get; set; }
 
-        #endregion
+        #endregion Network
 
         public ICommand _TestCommand;
+
         public ICommand TestCommand
         {
             get
             {
-                return _TestCommand = _TestCommand ?? new DelegateCommand((x) => 
+                return _TestCommand = _TestCommand ?? new DelegateCommand((x) =>
                 {
                     client.Connect("127.0.0.1", 36048);
                 });
@@ -45,17 +41,18 @@ namespace ClientTester.ViewModel
         {
             client = new Client();
 
-            RegisterType();
+            RegisterMessageType();
             RegisterTimer();
             RegisterEvent();
         }
 
         private void OnStatusMessage(object sender, StatusMessageArgs msg)
         {
-            switch(msg.Status)
+            switch (msg.Status)
             {
                 case NetworkHelper.NetConnectionStatus.Connected:
                     break;
+
                 default:
                     break;
             }
@@ -70,6 +67,7 @@ namespace ClientTester.ViewModel
                     var enumMsg = (FileEnumMessage)baseMsg;
                     SendPathEnumData(enumMsg.Path);
                     break;
+
                 default:
                     break;
             }
@@ -84,27 +82,27 @@ namespace ClientTester.ViewModel
                 fileList.Add(Tuple.Create<string, uint, bool>(filename, 0, b));
             });
 
-            var msg = new FileEnumMessageRsp();
-            msg.FileInfoList = fileList;
+            var msg             = new FileEnumMessageRsp();
+            msg.FileInfoList    = fileList;
             client.SendMessage(msg);
         }
 
         private void RegisterEvent()
         {
-            client.DataMessage += new EventHandler<DataMessageArgs>(OnDataMessage);
-            client.StatusMessage += new EventHandler<StatusMessageArgs>(OnStatusMessage);
+            client.DataMessage      += new EventHandler<DataMessageArgs>(OnDataMessage);
+            client.StatusMessage    += new EventHandler<StatusMessageArgs>(OnStatusMessage);
         }
 
-        private void RegisterType()
+        private void RegisterMessageType()
         {
             MessageReader.RegisterType<FileEnumMessage>(MessageId.FileEnumMessage);
         }
 
         private void RegisterTimer()
         {
-            timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 200);
-            timer.Tick += new EventHandler((sender, msg) => { client.Update(); });
+            timer           = new DispatcherTimer();
+            timer.Interval  = new TimeSpan(0, 0, 0, 0, 200);
+            timer.Tick      += new EventHandler((sender, msg) => { client.Update(); });
             timer.Start();
         }
     }

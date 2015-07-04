@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Lidgren.Network;
 using NetworkProtocol;
-using Lidgren.Network;
 
 namespace CozyAnywhere.Protocol.Messages
 {

@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerTester.Model;
-using NetworkServer;
-using NetworkHelper.Event;
-using ServerTester.Command;
-using System.Windows.Threading;
-using System.Windows.Input;
-using NetworkProtocol;
-using NetworkHelper;
-using CozyAnywhere.Protocol;
+﻿using CozyAnywhere.Protocol;
 using CozyAnywhere.Protocol.Messages;
-using Lidgren.Network;
+using NetworkHelper;
+using NetworkHelper.Event;
+using NetworkProtocol;
+using NetworkServer;
+using ServerTester.Command;
+using ServerTester.Model;
+using System;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace ServerTester.ViewModel
 {
     public class MainWindowViewModel : BaseViewModel
     {
         private ObservableCollection<FileInfo> _FileInfoList = new ObservableCollection<FileInfo>();
+
         public ObservableCollection<FileInfo> FileInfoList
         {
             get
@@ -36,6 +32,7 @@ namespace ServerTester.ViewModel
         private bool IsListing { get; set; }
 
         private string _ListenButton = "Listen";
+
         public string ListenButton
         {
             get
@@ -54,10 +51,12 @@ namespace ServerTester.ViewModel
 
         private DispatcherTimer timer { get; set; }
 
-        #endregion
+        #endregion Network
 
         #region Command
+
         private ICommand _ListenCommand;
+
         public ICommand ListenCommand
         {
             get
@@ -79,14 +78,13 @@ namespace ServerTester.ViewModel
             }
         }
 
-        #endregion
+        #endregion Command
 
         public MainWindowViewModel()
         {
             server = new Server(1000, 36048);
-            server.StatusMessage += new EventHandler<StatusMessageArgs>(OnStatusMessage);
-            server.DataMessage += new EventHandler<DataMessageArgs>(OnDataMessage);
-
+           
+            RegisterEvent();
             RegisterMessageType();
             RegisterTimer();
         }
@@ -103,13 +101,14 @@ namespace ServerTester.ViewModel
                         FileInfoList.Add(
                             new FileInfo
                             {
-                                Name = obj.Item1,
-                                Size = obj.Item2,
-                                IsFolder = obj.Item3,
+                                Name        = obj.Item1,
+                                Size        = obj.Item2,
+                                IsFolder    = obj.Item3,
                             }
                             );
                     }
                     break;
+
                 default:
                     break;
             }
@@ -119,23 +118,31 @@ namespace ServerTester.ViewModel
         {
             if (msg.Status == NetworkHelper.NetConnectionStatus.Connected)
             {
-                var enumMsg = new FileEnumMessage();
-                enumMsg.Path = @"E:\*";
+                const string TestPath = @"E:\*";
+
+                var enumMsg     = new FileEnumMessage();
+                enumMsg.Path    = TestPath;
                 server.SendMessage(enumMsg);
             }
         }
 
         private void RegisterTimer()
         {
-            timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 200);
-            timer.Tick += new EventHandler((sender, msg) => { server.RecivePacket(); });
+            timer           = new DispatcherTimer();
+            timer.Interval  = new TimeSpan(0, 0, 0, 0, 200);
+            timer.Tick      += new EventHandler((sender, msg) => { server.RecivePacket(); });
             timer.Start();
         }
 
         private void RegisterMessageType()
         {
             MessageReader.RegisterType<FileEnumMessageRsp>(MessageId.FileEnumMessageRsp);
+        }
+
+        private void RegisterEvent()
+        {
+            server.StatusMessage    += new EventHandler<StatusMessageArgs>(OnStatusMessage);
+            server.DataMessage      += new EventHandler<DataMessageArgs>(OnDataMessage);
         }
     }
 }
