@@ -90,10 +90,9 @@ bool CProcessUtilCpp::GetProcessName(DWORD dwProcessId, PROCESSNAMEPROC lpNameFu
         return false;
     }
 
-    LPTSTR lpResult = new TCHAR[260];
-    DWORD dwCount = ::GetModuleFileNameEx(hProcess, nullptr, lpResult, 260);
-    lpNameFunc(lpResult);
-    delete[] lpResult;
+    TCHAR tResult[260];
+    DWORD dwCount = ::GetModuleFileNameEx(hProcess, nullptr, tResult, 260);
+    lpNameFunc(tResult);
     ::CloseHandle(hProcess);
     return (dwCount != 0);
 }
