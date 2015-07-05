@@ -7,8 +7,8 @@
     <ProjectGuid>{CB32504A-3647-4388-9B8D-9B6E35686763}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NetwrokClient</RootNamespace>
-    <AssemblyName>NetwrokClient</AssemblyName>
+    <RootNamespace>NetworkClient</RootNamespace>
+    <AssemblyName>NetworkClient</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

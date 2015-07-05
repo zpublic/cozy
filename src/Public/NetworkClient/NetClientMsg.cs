@@ -1,6 +1,6 @@
 ﻿using Lidgren.Network;
 
-namespace NetwrokClient
+namespace NetworkClient
 {
     internal class NetClientMsg
     {

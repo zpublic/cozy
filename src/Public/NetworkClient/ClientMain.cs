@@ -4,7 +4,7 @@ using NetworkProtocol;
 using System;
 using System.Collections.Generic;
 
-namespace NetwrokClient
+namespace NetworkClient
 {
     public class Client
     {

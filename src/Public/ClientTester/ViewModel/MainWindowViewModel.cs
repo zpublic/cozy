@@ -5,7 +5,7 @@ using CozyAnywhere.Protocol.Messages;
 using NetworkHelper;
 using NetworkHelper.Event;
 using NetworkProtocol;
-using NetwrokClient;
+using NetworkClient;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
