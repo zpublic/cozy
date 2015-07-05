@@ -130,6 +130,18 @@ namespace ServerTester.ViewModel
             }
         }
 
+        private ICommand _RefreshCommand;
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return _RefreshCommand = _RefreshCommand ?? new DelegateCommand((x) => 
+                {
+                    GetRomateData();
+                });
+            }
+        }
+
         #endregion Command
 
         public MainWindowViewModel()
@@ -161,7 +173,10 @@ namespace ServerTester.ViewModel
                     }
                     break;
                 case MessageId.ProcessEnumMessageRsp:
-                    var ProcEnumMsg = (ProcessEnumMessageRsp)baseMsg;
+                    var ProcEnumMsg             = (ProcessEnumMessageRsp)baseMsg;
+                    ProcessInfoListSelectedItem = null;
+                    ProcessInfoList.Clear();
+
                     foreach(var obj in ProcEnumMsg.ProcessList)
                     {
                         ProcessInfoList.Add(new ProcessInfo
@@ -177,18 +192,23 @@ namespace ServerTester.ViewModel
             }
         }
 
+        private void GetRomateData()
+        {
+            const string TestPath = @"E:\";
+
+            var enumMsg = new FileEnumMessage();
+            enumMsg.Path = TestPath;
+            server.SendMessage(enumMsg);
+
+            var procMsg = new ProcessEnumMessage();
+            server.SendMessage(procMsg);
+        }
+
         private void OnStatusMessage(object sender, StatusMessageArgs msg)
         {
             if (msg.Status == NetworkHelper.NetConnectionStatus.Connected)
             {
-                const string TestPath = @"E:\";
-
-                var enumMsg     = new FileEnumMessage();
-                enumMsg.Path    = TestPath;
-                server.SendMessage(enumMsg);
-
-                var procMsg = new ProcessEnumMessage();
-                server.SendMessage(procMsg);
+                GetRomateData();
             }
         }
 

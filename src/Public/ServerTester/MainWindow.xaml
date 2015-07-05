@@ -9,8 +9,9 @@
     <Grid>
         <StackPanel Margin="3">
             <StackPanel Orientation="Horizontal" Margin="3">
-                <TextBox Text="36048" Width="120"></TextBox>
-                <Button Content="{Binding ListenButton}" Command="{Binding ListenCommand}"></Button>
+                <TextBox Text="36048" Width="120" Margin="3"></TextBox>
+                <Button Content="{Binding ListenButton}" Width="60" Margin="3" Command="{Binding ListenCommand}"></Button>
+                <Button Content="Refresh" Width="60" Margin="3" Command="{Binding RefreshCommand}"></Button>
             </StackPanel>
             <ListView ItemsSource="{Binding FileInfoList, Mode=TwoWay}" Height="285" Margin="3"
                       SelectedItem="{Binding FileInfoListSelectedItem, Mode=TwoWay}" ScrollViewer.CanContentScroll="True">
