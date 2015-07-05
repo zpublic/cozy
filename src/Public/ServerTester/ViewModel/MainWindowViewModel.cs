@@ -160,6 +160,9 @@ namespace ServerTester.ViewModel
             {
                 case MessageId.FileEnumMessageRsp:
                     var enumMsg = (FileEnumMessageRsp)baseMsg;
+                    FileInfoListSelectedItem = null;
+                    FileInfoList.Clear();
+
                     foreach (var obj in enumMsg.FileInfoList)
                     {
                         FileInfoList.Add(
