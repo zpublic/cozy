@@ -4,7 +4,6 @@
 #include "stdafx.h"
 #include "CaptureCpp.h"
 
-
 CAPTURECPP_API int GetDesktopNum(void)
 {
     int dspNum = ::GetSystemMetrics(SM_CMONITORS);

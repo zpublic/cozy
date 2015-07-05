@@ -9,14 +9,15 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NetworkHelper</RootNamespace>
     <AssemblyName>NetworkHelper</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\bin\Anywhere\NetworkHelper\</OutputPath>
+    <OutputPath>..\..\..\bin\Anywhere\NetworkHelper\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,14 +25,15 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\bin\Anywhere\NetworkHelper\</OutputPath>
+    <OutputPath>..\..\..\bin\Anywhere\NetworkHelper\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Lidgren.Network">
-      <HintPath>..\..\..\sln\packages\Lidgren.Network.Portable.1.0.1\lib\portable-net45+sl50+win+wpa81+wp80\Lidgren.Network.dll</HintPath>
+    <Reference Include="Lidgren.Network, Version=2012.1.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\Lidgren.Network.1.0.0-CI00005\lib\net451\Lidgren.Network.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,12 +47,18 @@
     <Compile Include="Event\DataMessageArgs.cs" />
     <Compile Include="Event\InternalMessageArgs.cs" />
     <Compile Include="Event\StatusMessageArgs.cs" />
-    <Compile Include="Messages\IMessage.cs" />
+    <Compile Include="MessageReader.cs" />
     <Compile Include="NetConnectionStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NetworkProtocol\NetworkProtocol.csproj">
+      <Project>{cac595d7-c876-4c7a-a33a-c3f30b9e012e}</Project>
+      <Name>NetworkProtocol</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

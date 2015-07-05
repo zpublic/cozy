@@ -14,7 +14,7 @@ FILEUTILCPP_API CFileUtilCpp CFileUtilCppInstance;
 // see FileUtilCpp.h for the class definition
 CFileUtilCpp::CFileUtilCpp()
 {
-	return;
+    return;
 }
 
 bool CFileUtilCpp::PathFileExist(LPCTSTR lpPath)
@@ -120,7 +120,8 @@ void CFileUtilCpp::FileEnum(LPCTSTR lpPath, FILEENUMPROC lpEnumFunc)
             {
                 if (lpEnumFunc != nullptr)
                 {
-                    if (!lpEnumFunc(FindFileData.cFileName, (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY != FALSE)))
+                    bool bIsDire = ((FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != FALSE);
+                    if (lpEnumFunc(FindFileData.cFileName, bIsDire))
                     {
                         break;
                     }

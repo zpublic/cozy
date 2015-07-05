@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NetworkHelper.Messages;
+﻿using Lidgren.Network;
+using System;
 
 namespace NetworkHelper.Event
 {
     public class DataMessageArgs : EventArgs
     {
-        IMessage Message { get; set; }
-        public DataMessageArgs(IMessage msg)
+        public NetIncomingMessage Input { get; set; }
+
+        public DataMessageArgs(NetIncomingMessage input)
         {
-            Message = msg;
+            Input = input;
         }
     }
 }
