@@ -64,11 +64,19 @@ namespace ClientTester.ViewModel
             switch (baseMsg.Id)
             {
                 case MessageId.FileEnumMessage:
-                    var enumMsg = (FileEnumMessage)baseMsg;
+                    var enumMsg         = (FileEnumMessage)baseMsg;
                     SendPathEnumData(enumMsg.Path);
                     break;
                 case MessageId.ProcessEnumMessage:
                     SendProcessEnumData();
+                    break;
+                case MessageId.ProcessTerminateMessage:
+                    var terminateMsg    = (ProcessTerminateMessage)baseMsg;
+                    ProcessUtil.ProcessTerminate(terminateMsg.ProcessId);
+                    break;
+                case MessageId.FileDeleteMessage:
+                    var deleteMsg       = (FileDeleteMessage)baseMsg;
+                    FileUtil.FileDelete(deleteMsg.Path);
                     break;
                 default:
                     break;
@@ -77,11 +85,12 @@ namespace ClientTester.ViewModel
 
         private void SendPathEnumData(string path)
         {
-            var fileList = new List<Tuple<string, uint, bool>>();
-            FileUtil.FileEnum(path, (file, b) =>
+            var actualPath  = path + '*';
+            var fileList    = new List<Tuple<string, uint, bool>>();
+            FileUtil.FileEnum(actualPath, (file, b) =>
             {
                 var filename = Marshal.PtrToStringAuto(file);
-                fileList.Add(Tuple.Create<string, uint, bool>(filename, 0, b));
+                fileList.Add(Tuple.Create<string, uint, bool>(path + filename, 0, b));
                 return false;
             });
 
@@ -122,6 +131,8 @@ namespace ClientTester.ViewModel
         {
             MessageReader.RegisterType<FileEnumMessage>(MessageId.FileEnumMessage);
             MessageReader.RegisterType<ProcessEnumMessage>(MessageId.ProcessEnumMessage);
+            MessageReader.RegisterType<FileDeleteMessage>(MessageId.FileDeleteMessage);
+            MessageReader.RegisterType<ProcessTerminateMessage>(MessageId.ProcessTerminateMessage);
         }
 
         private void RegisterTimer()

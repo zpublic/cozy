@@ -13,7 +13,7 @@
                 <Button Content="{Binding ListenButton}" Command="{Binding ListenCommand}"></Button>
             </StackPanel>
             <ListView ItemsSource="{Binding FileInfoList, Mode=TwoWay}" Height="285" Margin="3"
-                      ScrollViewer.CanContentScroll="True">
+                      SelectedItem="{Binding FileInfoListSelectedItem, Mode=TwoWay}" ScrollViewer.CanContentScroll="True">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="FileName" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
@@ -21,15 +21,25 @@
                         <GridViewColumn Header="Size" DisplayMemberBinding="{Binding Path=Size}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Delete" Command="{Binding FileDeleteCommand}"></MenuItem>
+                    </ContextMenu>
+                </ListView.ContextMenu>
             </ListView>
             <ListView ItemsSource="{Binding ProcessInfoList, Mode=TwoWay}" Height="285" Margin="3"
-                      ScrollViewer.CanContentScroll="True">
+                      SelectedItem="{Binding ProcessInfoListSelectedItem, Mode=TwoWay}" ScrollViewer.CanContentScroll="True">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ProcessId" DisplayMemberBinding="{Binding Path=Pid}"></GridViewColumn>
                         <GridViewColumn Header="ProcessName" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Terminate" Command="{Binding ProcessTerminateCommand}"></MenuItem>
+                    </ContextMenu>
+                </ListView.ContextMenu>
             </ListView>
         </StackPanel>
     </Grid>

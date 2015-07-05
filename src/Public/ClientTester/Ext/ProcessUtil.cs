@@ -14,5 +14,8 @@ namespace ClientTester.Ext
 
         [DllImport(@"../../ProcessUtilCpp/Debug/ProcessUtilCpp.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
         public static extern bool GetProcessName(uint Pid, GetProcessNameFunc func);
+
+        [DllImport(@"../../ProcessUtilCpp/Debug/ProcessUtilCpp.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool ProcessTerminate(uint Pid);
     }
 }

@@ -29,6 +29,8 @@ namespace ServerTester.ViewModel
             }
         }
 
+        public FileInfo FileInfoListSelectedItem { get; set; }
+
         private ObservableCollection<ProcessInfo> _ProcessInfoList = new ObservableCollection<ProcessInfo>();
 
         public ObservableCollection<ProcessInfo> ProcessInfoList
@@ -42,6 +44,8 @@ namespace ServerTester.ViewModel
                 Set(ref _ProcessInfoList, value, "ProcessInfoList");
             }
         }
+
+        public ProcessInfo ProcessInfoListSelectedItem { get; set; }
 
         private bool IsListing { get; set; }
 
@@ -89,6 +93,40 @@ namespace ServerTester.ViewModel
                         }
                         IsListing = !IsListing;
                     });
+            }
+        }
+
+        private ICommand _FileDeleteCommand;
+        public ICommand FileDeleteCommand
+        {
+            get
+            {
+                return _FileDeleteCommand = _FileDeleteCommand ?? new DelegateCommand((x) =>
+                {
+                    if(FileInfoListSelectedItem != null)
+                    {
+                        var deleteMsg   = new FileDeleteMessage();
+                        deleteMsg.Path  = FileInfoListSelectedItem.Name;
+                        server.SendMessage(deleteMsg);
+                    }
+                });
+            }
+        }
+
+        private ICommand _ProcessTerminateCommand;
+        public ICommand ProcessTerminateCommand
+        {
+            get
+            {
+                return _ProcessTerminateCommand = _ProcessTerminateCommand ?? new DelegateCommand((x) =>
+                {
+                    if(ProcessInfoListSelectedItem != null)
+                    {
+                        var TerminateMsg        = new ProcessTerminateMessage();
+                        TerminateMsg.ProcessId  = ProcessInfoListSelectedItem.Pid;
+                        server.SendMessage(TerminateMsg);
+                    }
+                });
             }
         }
 
@@ -143,7 +181,7 @@ namespace ServerTester.ViewModel
         {
             if (msg.Status == NetworkHelper.NetConnectionStatus.Connected)
             {
-                const string TestPath = @"E:\*";
+                const string TestPath = @"E:\";
 
                 var enumMsg     = new FileEnumMessage();
                 enumMsg.Path    = TestPath;
