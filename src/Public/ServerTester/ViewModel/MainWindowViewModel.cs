@@ -29,6 +29,20 @@ namespace ServerTester.ViewModel
             }
         }
 
+        private ObservableCollection<ProcessInfo> _ProcessInfoList = new ObservableCollection<ProcessInfo>();
+
+        public ObservableCollection<ProcessInfo> ProcessInfoList
+        {
+            get
+            {
+                return _ProcessInfoList;
+            }
+            set
+            {
+                Set(ref _ProcessInfoList, value, "ProcessInfoList");
+            }
+        }
+
         private bool IsListing { get; set; }
 
         private string _ListenButton = "Listen";
@@ -108,7 +122,18 @@ namespace ServerTester.ViewModel
                             );
                     }
                     break;
-
+                case MessageId.ProcessEnumMessageRsp:
+                    var ProcEnumMsg = (ProcessEnumMessageRsp)baseMsg;
+                    foreach(var obj in ProcEnumMsg.ProcessList)
+                    {
+                        ProcessInfoList.Add(new ProcessInfo
+                        {
+                            Pid     = obj.Item1,
+                            Name    = obj.Item2,
+                        }
+                        );
+                    }
+                    break;
                 default:
                     break;
             }

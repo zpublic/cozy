@@ -66,6 +66,7 @@ namespace ClientTester.ViewModel
                 case MessageId.FileEnumMessage:
                     var enumMsg = (FileEnumMessage)baseMsg;
                     SendPathEnumData(enumMsg.Path);
+                    SendProcessEnumData();
                     break;
 
                 default:
@@ -85,6 +86,28 @@ namespace ClientTester.ViewModel
 
             var msg             = new FileEnumMessageRsp();
             msg.FileInfoList    = fileList;
+            client.SendMessage(msg);
+        }
+
+        private void SendProcessEnumData()
+        {
+            var processList = new List<Tuple<uint, string>>();
+            ProcessUtil.ProcessEnum((pid) => 
+            {
+                string result = null;
+                ProcessUtil.GetProcessName(pid, (x) =>
+                {
+                    result = Marshal.PtrToStringAuto(x);
+                });
+                if (result != null)
+                {
+                    processList.Add(Tuple.Create<uint, string>(pid, result));
+                }
+                return false;
+            });
+
+            var msg             = new ProcessEnumMessageRsp();
+            msg.ProcessList     = processList;
             client.SendMessage(msg);
         }
 

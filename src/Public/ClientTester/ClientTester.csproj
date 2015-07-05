@@ -61,7 +61,9 @@
     </ApplicationDefinition>
     <Compile Include="Command\DelegateCommand.cs" />
     <Compile Include="Ext\FileUtil.cs" />
+    <Compile Include="Ext\ProcessUtil.cs" />
     <Compile Include="Model\FileInfo.cs" />
+    <Compile Include="Model\ProcessInfo.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">

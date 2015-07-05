@@ -2,13 +2,18 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:viewmodel="clr-namespace:ServerTester.ViewModel"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="650" Width="525">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
     </Window.DataContext>
     <Grid>
-        <StackPanel>
-            <ListView ItemsSource="{Binding FileInfoList, Mode=TwoWay}" Height="285" ScrollViewer.CanContentScroll="True">
+        <StackPanel Margin="3">
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <TextBox Text="36048" Width="120"></TextBox>
+                <Button Content="{Binding ListenButton}" Command="{Binding ListenCommand}"></Button>
+            </StackPanel>
+            <ListView ItemsSource="{Binding FileInfoList, Mode=TwoWay}" Height="285" Margin="3"
+                      ScrollViewer.CanContentScroll="True">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="FileName" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
@@ -16,16 +21,16 @@
                         <GridViewColumn Header="Size" DisplayMemberBinding="{Binding Path=Size}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}"></TextBlock>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
             </ListView>
-            <StackPanel Orientation="Horizontal" Margin="3">
-                <TextBox Text="36048" Width="120"></TextBox>
-                <Button Content="{Binding ListenButton}" Command="{Binding ListenCommand}"></Button>
-            </StackPanel>
+            <ListView ItemsSource="{Binding ProcessInfoList, Mode=TwoWay}" Height="285" Margin="3"
+                      ScrollViewer.CanContentScroll="True">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ProcessId" DisplayMemberBinding="{Binding Path=Pid}"></GridViewColumn>
+                        <GridViewColumn Header="ProcessName" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </StackPanel>
     </Grid>
 </Window>
