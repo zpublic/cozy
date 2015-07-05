@@ -137,6 +137,7 @@ namespace ServerTester.ViewModel
         private void RegisterMessageType()
         {
             MessageReader.RegisterType<FileEnumMessageRsp>(MessageId.FileEnumMessageRsp);
+            MessageReader.RegisterType<ProcessEnumMessageRsp>(MessageId.ProcessEnumMessageRsp);
         }
 
         private void RegisterEvent()

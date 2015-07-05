@@ -97,6 +97,7 @@ namespace ClientTester.ViewModel
         private void RegisterMessageType()
         {
             MessageReader.RegisterType<FileEnumMessage>(MessageId.FileEnumMessage);
+            MessageReader.RegisterType<ProcessEnumMessage>(MessageId.ProcessEnumMessage);
         }
 
         private void RegisterTimer()
