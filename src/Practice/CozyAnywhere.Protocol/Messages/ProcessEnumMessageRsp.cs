@@ -22,6 +22,10 @@ namespace CozyAnywhere.Protocol.Messages
                     om.Write(obj.Item2);
                 }
             }
+            else
+            {
+                om.Write(0);
+            }
         }
 
         public void Read(NetIncomingMessage im)
