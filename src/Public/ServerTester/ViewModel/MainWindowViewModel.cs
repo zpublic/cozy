@@ -148,6 +148,9 @@ namespace ServerTester.ViewModel
                 var enumMsg     = new FileEnumMessage();
                 enumMsg.Path    = TestPath;
                 server.SendMessage(enumMsg);
+
+                var procMsg = new ProcessEnumMessage();
+                server.SendMessage(procMsg);
             }
         }
 

@@ -66,9 +66,10 @@ namespace ClientTester.ViewModel
                 case MessageId.FileEnumMessage:
                     var enumMsg = (FileEnumMessage)baseMsg;
                     SendPathEnumData(enumMsg.Path);
+                    break;
+                case MessageId.ProcessEnumMessage:
                     SendProcessEnumData();
                     break;
-
                 default:
                     break;
             }
