@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
 using System.Windows.Threading;
+using CozyAnywhere.Plugin.WinFile;
 
 namespace ClientTester.ViewModel
 {
