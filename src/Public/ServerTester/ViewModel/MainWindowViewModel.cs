@@ -10,14 +10,15 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows.Threading;
+using CozyAnywhere.Plugin.WinFile.Model;
 
 namespace ServerTester.ViewModel
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        private ObservableCollection<FileInfo> _FileInfoList = new ObservableCollection<FileInfo>();
+        private ObservableCollection<WinFile> _FileInfoList = new ObservableCollection<WinFile>();
 
-        public ObservableCollection<FileInfo> FileInfoList
+        public ObservableCollection<WinFile> FileInfoList
         {
             get
             {
@@ -29,7 +30,7 @@ namespace ServerTester.ViewModel
             }
         }
 
-        public FileInfo FileInfoListSelectedItem { get; set; }
+        public WinFile FileInfoListSelectedItem { get; set; }
 
         private ObservableCollection<ProcessInfo> _ProcessInfoList = new ObservableCollection<ProcessInfo>();
 
@@ -166,7 +167,7 @@ namespace ServerTester.ViewModel
                     foreach (var obj in enumMsg.FileInfoList)
                     {
                         FileInfoList.Add(
-                            new FileInfo
+                            new WinFile
                             {
                                 Name        = obj.Item1,
                                 Size        = obj.Item2,

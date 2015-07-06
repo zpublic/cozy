@@ -1,18 +1,18 @@
 ﻿using FileTester.Command;
-using FileTester.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
 using CozyAnywhere.Plugin.WinFile;
+using CozyAnywhere.Plugin.WinFile.Model;
 
 namespace FileTester.ViewModel
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        private ObservableCollection<FileModel> _FileList = new ObservableCollection<FileModel>();
+        private ObservableCollection<WinFile> _FileList = new ObservableCollection<WinFile>();
 
-        public ObservableCollection<FileModel> FileList
+        public ObservableCollection<WinFile> FileList
         {
             get
             {
@@ -24,9 +24,9 @@ namespace FileTester.ViewModel
             }
         }
 
-        private FileModel _SelectedItem = null;
+        private WinFile _SelectedItem = null;
 
-        public FileModel SelectedItem
+        public WinFile SelectedItem
         {
             get
             {
@@ -92,7 +92,7 @@ namespace FileTester.ViewModel
 
         private void UpdateFileList()
         {
-            ObservableCollection<FileModel> newList = new ObservableCollection<FileModel>();
+            ObservableCollection<WinFile> newList = new ObservableCollection<WinFile>();
             var path = CurrPath.Trim();
             if (path.EndsWith(@"\"))
             {
@@ -109,7 +109,7 @@ namespace FileTester.ViewModel
             {
                 var str = Marshal.PtrToStringAuto(x);
                 newList.Add(
-                    new FileModel
+                    new WinFile
                     {
                         Name        = CurrPath + str,
                         IsFolder    = b,
