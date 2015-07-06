@@ -12,8 +12,8 @@ namespace CozyAnywhere.Plugin.WinFile.Model
 
         public bool IsFolder { get; set; }
 
-        public uint Size { get; set; }
+        public ulong Size { get; set; }
 
-        public WinFileTime Tiles { get; set; }
+        public WinFileTime Times { get; set; }
     }
 }
