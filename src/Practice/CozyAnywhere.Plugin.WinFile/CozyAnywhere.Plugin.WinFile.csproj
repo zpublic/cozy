@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ext\UnsignedLongConvertToDateTimeExt.cs" />
     <Compile Include="FileUtil.cs" />
     <Compile Include="Model\WinFileTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

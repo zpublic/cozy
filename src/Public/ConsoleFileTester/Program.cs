@@ -1,4 +1,5 @@
 ﻿using CozyAnywhere.Plugin.WinFile;
+using CozyAnywhere.Plugin.WinFile.Ext;
 using CozyAnywhere.Plugin.WinFile.Model;
 using System;
 using System.Collections.Generic;
@@ -46,8 +47,8 @@ namespace ConsoleFileTester
             {
                 if (obj.IsFolder)
                 {
-                    Console.WriteLine("Name: {0} CreationTime: {1} LastAccessTime: {2} LastWriteTime: {3}",
-                    obj.Name, obj.Times.CreationTime, obj.Times.LastAccessTime, obj.Times.LastWriteTime);
+                    Console.WriteLine("Name: {0}\tCreationTime: {1}\tLastAccessTime: {2}\tLastWriteTime: {3}",
+                    obj.Name, obj.Times.CreationTime.ToDateTime(), obj.Times.LastAccessTime.ToDateTime(), obj.Times.LastWriteTime.ToDateTime());
                 }
             }
 
@@ -56,8 +57,8 @@ namespace ConsoleFileTester
             {
                 if (!obj.IsFolder)
                 {
-                    Console.WriteLine("Name: {0} Size: {1} CreationTime: {2} LastAccessTime: {3} LastWriteTime: {4}",
-                    obj.Name, obj.Size, obj.Times.CreationTime, obj.Times.LastAccessTime, obj.Times.LastWriteTime);
+                    Console.WriteLine("Name: {0}\tSize: {1}\tCreationTime: {2}\tLastAccessTime: {3}\tLastWriteTime: {4}",
+                    obj.Name, obj.Size, obj.Times.CreationTime.ToDateTime(), obj.Times.LastAccessTime.ToDateTime(), obj.Times.LastWriteTime.ToDateTime());
                 }
             }
             Console.WriteLine("---------------------------------End:---------------------------------");
