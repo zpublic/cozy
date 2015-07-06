@@ -32,7 +32,7 @@
                       SelectedItem="{Binding ProcessInfoListSelectedItem, Mode=TwoWay}" ScrollViewer.CanContentScroll="True">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="ProcessId" DisplayMemberBinding="{Binding Path=Pid}"></GridViewColumn>
+                        <GridViewColumn Header="ProcessId" DisplayMemberBinding="{Binding Path=ProcessId}"></GridViewColumn>
                         <GridViewColumn Header="ProcessName" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
                     </GridView>
                 </ListView.View>

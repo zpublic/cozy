@@ -5,12 +5,12 @@ using NetworkHelper.Event;
 using NetworkProtocol;
 using NetworkServer;
 using ServerTester.Command;
-using ServerTester.Model;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows.Threading;
 using CozyAnywhere.Plugin.WinFile.Model;
+using CozyAnywhere.Plugin.WinProcess.Model;
 
 namespace ServerTester.ViewModel
 {
@@ -32,9 +32,9 @@ namespace ServerTester.ViewModel
 
         public WinFile FileInfoListSelectedItem { get; set; }
 
-        private ObservableCollection<ProcessInfo> _ProcessInfoList = new ObservableCollection<ProcessInfo>();
+        private ObservableCollection<WinProcess> _ProcessInfoList = new ObservableCollection<WinProcess>();
 
-        public ObservableCollection<ProcessInfo> ProcessInfoList
+        public ObservableCollection<WinProcess> ProcessInfoList
         {
             get
             {
@@ -46,7 +46,7 @@ namespace ServerTester.ViewModel
             }
         }
 
-        public ProcessInfo ProcessInfoListSelectedItem { get; set; }
+        public WinProcess ProcessInfoListSelectedItem { get; set; }
 
         private bool IsListing { get; set; }
 
@@ -124,7 +124,7 @@ namespace ServerTester.ViewModel
                     if(ProcessInfoListSelectedItem != null)
                     {
                         var TerminateMsg        = new ProcessTerminateMessage();
-                        TerminateMsg.ProcessId  = ProcessInfoListSelectedItem.Pid;
+                        TerminateMsg.ProcessId  = ProcessInfoListSelectedItem.ProcessId;
                         server.SendMessage(TerminateMsg);
                     }
                 });
@@ -183,10 +183,10 @@ namespace ServerTester.ViewModel
 
                     foreach(var obj in ProcEnumMsg.ProcessList)
                     {
-                        ProcessInfoList.Add(new ProcessInfo
+                        ProcessInfoList.Add(new WinProcess
                         {
-                            Pid     = obj.Item1,
-                            Name    = obj.Item2,
+                            ProcessId   = obj.Item1,
+                            Name        = obj.Item2,
                         }
                         );
                     }
