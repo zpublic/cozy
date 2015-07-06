@@ -1,5 +1,4 @@
 ﻿using ClientTester.Command;
-using ClientTester.Ext;
 using CozyAnywhere.Protocol;
 using CozyAnywhere.Protocol.Messages;
 using NetworkHelper;
@@ -12,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Input;
 using System.Windows.Threading;
 using CozyAnywhere.Plugin.WinFile;
+using CozyAnywhere.Plugin.WinProcess;
 
 namespace ClientTester.ViewModel
 {

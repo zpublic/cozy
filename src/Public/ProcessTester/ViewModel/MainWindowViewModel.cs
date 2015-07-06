@@ -1,7 +1,7 @@
-﻿using ProcessTester.Ext;
-using ProcessTester.Model;
+﻿using ProcessTester.Model;
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
+using CozyAnywhere.Plugin.WinProcess;
 
 namespace ProcessTester.ViewModel
 {

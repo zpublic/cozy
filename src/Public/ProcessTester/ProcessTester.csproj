@@ -54,7 +54,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Ext\ProcessUtil.cs" />
     <Compile Include="Model\ProcessInfo.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -97,6 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Practice\CozyAnywhere.Plugin.WinProcess\CozyAnywhere.Plugin.WinProcess.csproj">
+      <Project>{803ab2f5-c93d-4262-a942-9bf533e58cc6}</Project>
+      <Name>CozyAnywhere.Plugin.WinProcess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -60,7 +60,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\DelegateCommand.cs" />
-    <Compile Include="Ext\ProcessUtil.cs" />
     <Compile Include="Model\FileInfo.cs" />
     <Compile Include="Model\ProcessInfo.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -110,6 +109,10 @@
     <ProjectReference Include="..\..\Practice\CozyAnywhere.Plugin.WinFile\CozyAnywhere.Plugin.WinFile.csproj">
       <Project>{865c7166-f6dc-43ec-b3e2-f6b999123a60}</Project>
       <Name>CozyAnywhere.Plugin.WinFile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Practice\CozyAnywhere.Plugin.WinProcess\CozyAnywhere.Plugin.WinProcess.csproj">
+      <Project>{803ab2f5-c93d-4262-a942-9bf533e58cc6}</Project>
+      <Name>CozyAnywhere.Plugin.WinProcess</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Practice\CozyAnywhere.Protocol\CozyAnywhere.Protocol.csproj">
       <Project>{7f35c165-b442-4176-a189-dcf409865f81}</Project>
