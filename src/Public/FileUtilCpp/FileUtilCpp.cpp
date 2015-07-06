@@ -71,7 +71,7 @@ DWORD64 CFileUtilCpp::GetFileLength(LPCTSTR lpPath)
     DWORD64 result  = 0;
     result          = FindFileData.nFileSizeHigh;
     result          <<= 32;
-    result          &= FindFileData.nFileSizeLow;
+    result          |= FindFileData.nFileSizeLow;
     return result;
 }
 
