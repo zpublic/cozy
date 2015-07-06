@@ -4,28 +4,30 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{865C7166-F6DC-43EC-B3E2-F6B999123A60}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{7F4286E7-8448-4D98-B61C-C4E051ADDB76}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyAnywhere.Plugin.WinFile</RootNamespace>
-    <AssemblyName>CozyAnywhere.Plugin.WinFile</AssemblyName>
+    <RootNamespace>ConsoleProcessTester</RootNamespace>
+    <AssemblyName>ConsoleProcessTester</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\bin\Anywhere\PluginWinFile\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\Anywhere\ConsoleProcessTester\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\bin\Anywhere\PluginWinFile\Release\</OutputPath>
+    <OutputPath>..\..\..\bin\Anywhere\ConsoleProcessTester\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,11 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ext\UnsignedLongConvertToDateTimeExt.cs" />
-    <Compile Include="FileUtil.cs" />
-    <Compile Include="Model\WinFileTime.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\WinFile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Practice\CozyAnywhere.Plugin.WinProcess\CozyAnywhere.Plugin.WinProcess.csproj">
+      <Project>{803ab2f5-c93d-4262-a942-9bf533e58cc6}</Project>
+      <Name>CozyAnywhere.Plugin.WinProcess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

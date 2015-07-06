@@ -71,6 +71,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAnywhere.Plugin.WinProc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleFileTester", "..\src\Public\ConsoleFileTester\ConsoleFileTester.csproj", "{BFFE0C0D-4745-4A0E-BF58-92C0B03B57EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleProcessTester", "..\src\Public\ConsoleProcessTester\ConsoleProcessTester.csproj", "{7F4286E7-8448-4D98-B61C-C4E051ADDB76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -341,6 +343,16 @@ Global
 		{BFFE0C0D-4745-4A0E-BF58-92C0B03B57EF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{BFFE0C0D-4745-4A0E-BF58-92C0B03B57EF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{BFFE0C0D-4745-4A0E-BF58-92C0B03B57EF}.Release|Win32.ActiveCfg = Release|Any CPU
+		{7F4286E7-8448-4D98-B61C-C4E051ADDB76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F4286E7-8448-4D98-B61C-C4E051ADDB76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F4286E7-8448-4D98-B61C-C4E051ADDB76}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7F4286E7-8448-4D98-B61C-C4E051ADDB76}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7F4286E7-8448-4D98-B61C-C4E051ADDB76}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{7F4286E7-8448-4D98-B61C-C4E051ADDB76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F4286E7-8448-4D98-B61C-C4E051ADDB76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F4286E7-8448-4D98-B61C-C4E051ADDB76}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7F4286E7-8448-4D98-B61C-C4E051ADDB76}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7F4286E7-8448-4D98-B61C-C4E051ADDB76}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -375,5 +387,6 @@ Global
 		{9FC5B51D-14BD-4A5E-BBB0-F388E34B213D} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 		{803AB2F5-C93D-4262-A942-9BF533E58CC6} = {08DF5C41-90E7-443A-A892-3C42D015608F}
 		{BFFE0C0D-4745-4A0E-BF58-92C0B03B57EF} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
+		{7F4286E7-8448-4D98-B61C-C4E051ADDB76} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 	EndGlobalSection
 EndGlobal
