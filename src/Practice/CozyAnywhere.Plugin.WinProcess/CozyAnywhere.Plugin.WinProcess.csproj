@@ -4,20 +4,19 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{865C7166-F6DC-43EC-B3E2-F6B999123A60}</ProjectGuid>
+    <ProjectGuid>{803AB2F5-C93D-4262-A942-9BF533E58CC6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyAnywhere.Plugin.WinFile</RootNamespace>
-    <AssemblyName>CozyAnywhere.Plugin.WinFile</AssemblyName>
+    <RootNamespace>CozyAnywhere.Plugin.WinProcess</RootNamespace>
+    <AssemblyName>CozyAnywhere.Plugin.WinProcess</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\bin\Anywhere\PluginWinFile\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\Anywhere\PluginWinProcess\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\bin\Anywhere\PluginWinFile\Release\</OutputPath>
+    <OutputPath>..\..\..\bin\Anywhere\PluginWinProcess\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,10 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileUtil.cs" />
-    <Compile Include="Model\WinFileTime.cs" />
+    <Compile Include="Model\WinProcess.cs" />
+    <Compile Include="ProcessUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\WinFile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

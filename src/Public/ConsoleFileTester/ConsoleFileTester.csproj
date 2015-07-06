@@ -4,28 +4,30 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{865C7166-F6DC-43EC-B3E2-F6B999123A60}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{BFFE0C0D-4745-4A0E-BF58-92C0B03B57EF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyAnywhere.Plugin.WinFile</RootNamespace>
-    <AssemblyName>CozyAnywhere.Plugin.WinFile</AssemblyName>
+    <RootNamespace>ConsoleFileTester</RootNamespace>
+    <AssemblyName>ConsoleFileTester</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\bin\Anywhere\PluginWinFile\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\Anywhere\ConsoleFileTester\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\bin\Anywhere\PluginWinFile\Release\</OutputPath>
+    <OutputPath>..\..\..\bin\Anywhere\ConsoleFileTester\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,10 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileUtil.cs" />
-    <Compile Include="Model\WinFileTime.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\WinFile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Practice\CozyAnywhere.Plugin.WinFile\CozyAnywhere.Plugin.WinFile.csproj">
+      <Project>{865c7166-f6dc-43ec-b3e2-f6b999123a60}</Project>
+      <Name>CozyAnywhere.Plugin.WinFile</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

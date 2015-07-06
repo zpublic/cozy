@@ -20,7 +20,7 @@ public:
     CFileUtilCpp(void);
     // TODO: add your methods here.
 
-    bool FileCopy(LPCTSTR lpSourcePath, LPCTSTR lpDestPath, bool bFailIfExists);
+    bool FileCopy(LPCTSTR lpSourcePath, LPCTSTR lpDestPath, bool b);
 
     bool FileMove(LPCTSTR lpSourcePath, LPCTSTR lpDestPath);
 

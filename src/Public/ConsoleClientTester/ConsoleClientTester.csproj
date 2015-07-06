@@ -4,33 +4,39 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{865C7166-F6DC-43EC-B3E2-F6B999123A60}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{BB349041-3081-4551-9401-3825023E97B0}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyAnywhere.Plugin.WinFile</RootNamespace>
-    <AssemblyName>CozyAnywhere.Plugin.WinFile</AssemblyName>
+    <RootNamespace>ConsoleClientTester</RootNamespace>
+    <AssemblyName>ConsoleClientTester</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\bin\Anywhere\PluginWinFile\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\Anywhere\ConsoleClientTester\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\bin\Anywhere\PluginWinFile\Release\</OutputPath>
+    <OutputPath>..\..\..\bin\Anywhere\ConsoleClientTester\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Lidgren.Network, Version=2012.1.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\Lidgren.Network.1.0.0-CI00005\lib\net451\Lidgren.Network.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,10 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileUtil.cs" />
-    <Compile Include="Model\WinFileTime.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\WinFile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NetworkClient\NetworkClient.csproj">
+      <Project>{cb32504a-3647-4388-9b8d-9b6e35686763}</Project>
+      <Name>NetworkClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetworkHelper\NetworkHelper.csproj">
+      <Project>{93c3f45c-eb94-45dc-b622-3479d5cfebed}</Project>
+      <Name>NetworkHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
