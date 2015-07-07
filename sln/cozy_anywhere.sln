@@ -77,6 +77,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lidgren.Network", "..\src\P
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MouseUtilCpp", "..\src\Public\MouseUtilCpp\MouseUtilCpp.vcxproj", "{688D0C1F-8315-421F-8CB2-972C4BBB2FA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAnywhere.Plugin.WinMouse", "..\src\Practice\CozyAnywhere.Plugin.WinMouse\CozyAnywhere.Plugin.WinMouse.csproj", "{69209483-14FC-4F2B-B4AD-4B87778E3235}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -377,6 +379,16 @@ Global
 		{688D0C1F-8315-421F-8CB2-972C4BBB2FA9}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{688D0C1F-8315-421F-8CB2-972C4BBB2FA9}.Release|Win32.ActiveCfg = Release|Win32
 		{688D0C1F-8315-421F-8CB2-972C4BBB2FA9}.Release|Win32.Build.0 = Release|Win32
+		{69209483-14FC-4F2B-B4AD-4B87778E3235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69209483-14FC-4F2B-B4AD-4B87778E3235}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69209483-14FC-4F2B-B4AD-4B87778E3235}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{69209483-14FC-4F2B-B4AD-4B87778E3235}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{69209483-14FC-4F2B-B4AD-4B87778E3235}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{69209483-14FC-4F2B-B4AD-4B87778E3235}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69209483-14FC-4F2B-B4AD-4B87778E3235}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69209483-14FC-4F2B-B4AD-4B87778E3235}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{69209483-14FC-4F2B-B4AD-4B87778E3235}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{69209483-14FC-4F2B-B4AD-4B87778E3235}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -414,5 +426,6 @@ Global
 		{7F4286E7-8448-4D98-B61C-C4E051ADDB76} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8} = {78CC2301-23F1-41C9-8336-37C59B47DAE6}
 		{688D0C1F-8315-421F-8CB2-972C4BBB2FA9} = {EB0A8C74-EA43-43DF-8597-0F9F57EFA103}
+		{69209483-14FC-4F2B-B4AD-4B87778E3235} = {08DF5C41-90E7-443A-A892-3C42D015608F}
 	EndGlobalSection
 EndGlobal
