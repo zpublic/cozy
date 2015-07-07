@@ -73,6 +73,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleFileTester", "..\src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleProcessTester", "..\src\Public\ConsoleProcessTester\ConsoleProcessTester.csproj", "{7F4286E7-8448-4D98-B61C-C4E051ADDB76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lidgren.Network", "..\src\Public\Lidgren.Network\Lidgren.Network.csproj", "{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -353,6 +355,16 @@ Global
 		{7F4286E7-8448-4D98-B61C-C4E051ADDB76}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7F4286E7-8448-4D98-B61C-C4E051ADDB76}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7F4286E7-8448-4D98-B61C-C4E051ADDB76}.Release|Win32.ActiveCfg = Release|Any CPU
+		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -388,5 +400,6 @@ Global
 		{803AB2F5-C93D-4262-A942-9BF533E58CC6} = {08DF5C41-90E7-443A-A892-3C42D015608F}
 		{BFFE0C0D-4745-4A0E-BF58-92C0B03B57EF} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 		{7F4286E7-8448-4D98-B61C-C4E051ADDB76} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
+		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8} = {78CC2301-23F1-41C9-8336-37C59B47DAE6}
 	EndGlobalSection
 EndGlobal
