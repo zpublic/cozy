@@ -49,6 +49,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Practice\CozyAnywhere.Plugin.WinMouse\CozyAnywhere.Plugin.WinMouse.csproj">
+      <Project>{69209483-14fc-4f2b-b4ad-4b87778e3235}</Project>
+      <Name>CozyAnywhere.Plugin.WinMouse</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
