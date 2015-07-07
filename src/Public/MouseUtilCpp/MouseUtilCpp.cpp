@@ -36,7 +36,15 @@ void CMouseUtilCpp::MouseEvent(
     DWORD dwFlags, DWORD dx, DWORD dy, 
     DWORD dwData, ULONG_PTR dwExtraInfo)
 {
-    ::mouse_event(dwFlags, dx, dy, dwData, dwExtraInfo);
+    INPUT input;
+    input.type              = INPUT_MOUSE;
+    input.mi.dwFlags        = dwFlags;
+    input.mi.dx             = dx;
+    input.mi.dy             = dy;
+    input.mi.mouseData      = dwData;
+    input.mi.dwExtraInfo    = dwExtraInfo;
+    input.mi.time           = ::GetTickCount();
+    ::SendInput(1, &input, sizeof(INPUT));
 }
 
 void CMouseUtilCpp::MouseClick(BUTTON key, DWORD dx, DWORD dy)
