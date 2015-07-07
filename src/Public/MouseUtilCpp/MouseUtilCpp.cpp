@@ -55,8 +55,8 @@ void CMouseUtilCpp::MouseClick(BUTTON key, DWORD dx, DWORD dy)
         dwKeyUpTag      = MOUSEEVENTF_RIGHTUP;
         break;
     case MIDDLE:
-        dwKeyDownTag    = MOUSEEVENTF_XDOWN;
-        dwKeyUpTag      = MOUSEEVENTF_XUP;
+        dwKeyDownTag    = MOUSEEVENTF_MIDDLEDOWN;
+        dwKeyUpTag      = MOUSEEVENTF_MIDDLEUP;
         break;
     default:
         break;
