@@ -45,7 +45,7 @@ extern "C" MOUSEUTILCPP_API bool CursorClip(long lLeft, long lTop, long lRight, 
 
 extern "C" MOUSEUTILCPP_API bool CursorUnClip();
 
-extern "C" MOUSEUTILCPP_API void MouseEventMouseEvent(DWORD dwFlags, DWORD dx, DWORD dy, DWORD dwData, ULONG_PTR dwExtraInfo);
+extern "C" MOUSEUTILCPP_API void MouseEvent(DWORD dwFlags, DWORD dx, DWORD dy, DWORD dwData, ULONG_PTR dwExtraInfo);
 
 extern "C" MOUSEUTILCPP_API void MouseClick(BUTTON key, DWORD dx, DWORD dy);
 

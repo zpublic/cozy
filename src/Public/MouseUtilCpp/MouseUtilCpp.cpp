@@ -86,7 +86,7 @@ MOUSEUTILCPP_API bool CursorUnClip()
     return CMouseUtilCppInstance.CursorClip(nullptr);
 }
 
-MOUSEUTILCPP_API void MouseEventMouseEvent(DWORD dwFlags, DWORD dx, DWORD dy, DWORD dwData, ULONG_PTR dwExtraInfo)
+MOUSEUTILCPP_API void MouseEvent(DWORD dwFlags, DWORD dx, DWORD dy, DWORD dwData, ULONG_PTR dwExtraInfo)
 {
     CMouseUtilCppInstance.MouseEvent(dwFlags, dx, dy, dwData, dwExtraInfo);
 }
