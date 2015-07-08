@@ -4,14 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9FC5B51D-14BD-4A5E-BBB0-F388E34B213D}</ProjectGuid>
+    <ProjectGuid>{0B1BDC9F-1ADE-44BF-8B44-08C68283D75B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleServerTester</RootNamespace>
-    <AssemblyName>ConsoleServerTester</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>ConsoleMouseTester</RootNamespace>
+    <AssemblyName>ConsoleMouseTester</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,17 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lidgren.Network\Lidgren.Network.csproj">
-      <Project>{49ba1c69-6104-41ac-a5d8-b54fa9f696e8}</Project>
-      <Name>Lidgren.Network</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NetworkHelper\NetworkHelper.csproj">
-      <Project>{93c3f45c-eb94-45dc-b622-3479d5cfebed}</Project>
-      <Name>NetworkHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NetworkServer\NetworkServer.csproj">
-      <Project>{3827bbcf-b396-4536-96c0-eea82d51cbe6}</Project>
-      <Name>NetworkServer</Name>
+    <ProjectReference Include="..\..\Practice\CozyAnywhere.Plugin.WinMouse\CozyAnywhere.Plugin.WinMouse.csproj">
+      <Project>{69209483-14fc-4f2b-b4ad-4b87778e3235}</Project>
+      <Name>CozyAnywhere.Plugin.WinMouse</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
