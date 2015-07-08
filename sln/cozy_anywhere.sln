@@ -85,6 +85,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KeyboardUtilCpp", "..\src\P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleKeyboardTester", "..\src\Public\ConsoleKeyboardTester\ConsoleKeyboardTester.csproj", "{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAnywhere.Plugin.WinKeyboard", "..\src\Practice\CozyAnywhere.Plugin.WinKeyboard\CozyAnywhere.Plugin.WinKeyboard.csproj", "{3B278019-1B61-4C1F-80D3-35D72615BFBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -425,6 +427,16 @@ Global
 		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C}.Release|Win32.ActiveCfg = Release|Any CPU
+		{3B278019-1B61-4C1F-80D3-35D72615BFBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B278019-1B61-4C1F-80D3-35D72615BFBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B278019-1B61-4C1F-80D3-35D72615BFBD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3B278019-1B61-4C1F-80D3-35D72615BFBD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3B278019-1B61-4C1F-80D3-35D72615BFBD}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{3B278019-1B61-4C1F-80D3-35D72615BFBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B278019-1B61-4C1F-80D3-35D72615BFBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B278019-1B61-4C1F-80D3-35D72615BFBD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3B278019-1B61-4C1F-80D3-35D72615BFBD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3B278019-1B61-4C1F-80D3-35D72615BFBD}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -466,5 +478,6 @@ Global
 		{69209483-14FC-4F2B-B4AD-4B87778E3235} = {08DF5C41-90E7-443A-A892-3C42D015608F}
 		{57D02178-B02F-47D8-AF7C-8DDEB29C8D58} = {EB0A8C74-EA43-43DF-8597-0F9F57EFA103}
 		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
+		{3B278019-1B61-4C1F-80D3-35D72615BFBD} = {08DF5C41-90E7-443A-A892-3C42D015608F}
 	EndGlobalSection
 EndGlobal
