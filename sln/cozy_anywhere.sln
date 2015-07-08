@@ -83,6 +83,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAnywhere.Plugin.WinMous
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KeyboardUtilCpp", "..\src\Public\KeyboardUtilCpp\KeyboardUtilCpp.vcxproj", "{57D02178-B02F-47D8-AF7C-8DDEB29C8D58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleKeyboardTester", "..\src\Public\ConsoleKeyboardTester\ConsoleKeyboardTester.csproj", "{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -413,6 +415,16 @@ Global
 		{57D02178-B02F-47D8-AF7C-8DDEB29C8D58}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{57D02178-B02F-47D8-AF7C-8DDEB29C8D58}.Release|Win32.ActiveCfg = Release|Win32
 		{57D02178-B02F-47D8-AF7C-8DDEB29C8D58}.Release|Win32.Build.0 = Release|Win32
+		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -453,5 +465,6 @@ Global
 		{0B1BDC9F-1ADE-44BF-8B44-08C68283D75B} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 		{69209483-14FC-4F2B-B4AD-4B87778E3235} = {08DF5C41-90E7-443A-A892-3C42D015608F}
 		{57D02178-B02F-47D8-AF7C-8DDEB29C8D58} = {EB0A8C74-EA43-43DF-8597-0F9F57EFA103}
+		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 	EndGlobalSection
 EndGlobal
