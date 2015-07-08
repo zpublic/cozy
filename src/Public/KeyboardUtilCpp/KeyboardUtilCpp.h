@@ -17,4 +17,18 @@ class CKeyboardUtilCpp
 {
 public:
     CKeyboardUtilCpp(void);
+
+    void KeyboardEvent(WORD wKey, WORD wScanKey, DWORD dwFlag, DWORD dwExtraInfo);
+
+    bool QueryKeyState(WORD wKey);
+
+    void SendKeyEvent(WORD wKey);
 };
+
+extern KEYBOARDUTILCPP_API CKeyboardUtilCpp CKeyboardUtilCppInstance;
+
+extern "C" KEYBOARDUTILCPP_API void KeyboardEvent(WORD wKey, WORD wScanKey, DWORD dwFlag, DWORD dwExtraInfo);
+
+extern "C" KEYBOARDUTILCPP_API bool QueryKeyState(WORD wKey);
+
+extern "C" KEYBOARDUTILCPP_API void SendKeyEvent(WORD wKey);
