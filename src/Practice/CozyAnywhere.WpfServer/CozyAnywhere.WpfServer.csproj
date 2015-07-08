@@ -93,6 +93,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyAnywhere.ServerCore\CozyAnywhere.ServerCore.csproj">
+      <Project>{9f1d11b8-8ace-435b-a873-d2acd9fc22d0}</Project>
+      <Name>CozyAnywhere.ServerCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
