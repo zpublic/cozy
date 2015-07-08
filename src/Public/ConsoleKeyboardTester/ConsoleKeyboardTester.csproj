@@ -49,6 +49,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Practice\CozyAnywhere.Plugin.WinKeyboard\CozyAnywhere.Plugin.WinKeyboard.csproj">
+      <Project>{3b278019-1b61-4c1f-80d3-35d72615bfbd}</Project>
+      <Name>CozyAnywhere.Plugin.WinKeyboard</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

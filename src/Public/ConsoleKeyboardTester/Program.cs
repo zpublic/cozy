@@ -1,16 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CozyAnywhere.Plugin.WinKeyboard;
+using System;
 
 namespace ConsoleKeyboardTester
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-
+            while(true)
+            {
+                if(KeyboardUtil.QueryKeyState(VirtualKey.VK_SPACE))
+                {
+                    KeyboardUtil.SendKeyEvent(VirtualKey.K_H);
+                    KeyboardUtil.SendKeyEvent(VirtualKey.K_E);
+                    KeyboardUtil.SendKeyEvent(VirtualKey.K_L);
+                    KeyboardUtil.SendKeyEvent(VirtualKey.K_L);
+                    KeyboardUtil.SendKeyEvent(VirtualKey.K_O);
+                    KeyboardUtil.SendKeyEvent(VirtualKey.VK_SPACE);
+                    KeyboardUtil.SendKeyEvent(VirtualKey.K_W);
+                    KeyboardUtil.SendKeyEvent(VirtualKey.K_O);
+                    KeyboardUtil.SendKeyEvent(VirtualKey.K_R);
+                    KeyboardUtil.SendKeyEvent(VirtualKey.K_L);
+                    KeyboardUtil.SendKeyEvent(VirtualKey.K_D);
+                    break;
+                }
+            }
+            Console.ReadLine();
         }
     }
 }
