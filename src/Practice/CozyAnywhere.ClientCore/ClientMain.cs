@@ -8,6 +8,11 @@ namespace CozyAnywhere.ClientCore
 
         public bool IsListing { get; set; }
 
+        public AnywhereClient(int MaxConn, int Port)
+        {
+            InitNetwork(MaxConn, Port);
+        }
+
         public void InitNetwork(int MaxConn, int Port)
         {
             server = new Server(MaxConn, Port);

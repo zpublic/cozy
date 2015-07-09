@@ -21,6 +21,7 @@ namespace CozyAnywhere.ServerCore
         public void OnFileEnumMessage(IMessage msg)
         {
             var enumMsg = (FileEnumMessage)msg;
+            
 
             // TODO
         }
