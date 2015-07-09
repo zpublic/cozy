@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace CozyAnywhere.Plugin.WinMouse
 {
-    public class MouseUtil
+    public static class MouseUtil
     {
         // bool GetCursorPosition(long* lpXPosition, long* lpYPosition);
         [DllImport(@"MouseUtilCpp.dll",

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CozyAnywhere.Protocol</RootNamespace>
     <AssemblyName>CozyAnywhere.Protocol</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -41,6 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandId.cs" />
+    <Compile Include="Commands\FileCopyCommand.cs" />
+    <Compile Include="Commands\FileDeleteCommand.cs" />
+    <Compile Include="Commands\FileEnumCommand.cs" />
+    <Compile Include="Commands\FileGetLengthCommand.cs" />
+    <Compile Include="Commands\FileGetTimesCommand.cs" />
+    <Compile Include="Commands\FileIsDirectoryCommand.cs" />
+    <Compile Include="Commands\FileMoveCommand.cs" />
+    <Compile Include="Commands\FilePathExistCommand.cs" />
     <Compile Include="MessageId.cs" />
     <Compile Include="Messages\FileDeleteMessage.cs" />
     <Compile Include="Messages\FileEnumMessage.cs" />
@@ -59,7 +67,12 @@
       <Project>{cac595d7-c876-4c7a-a33a-c3f30b9e012e}</Project>
       <Name>NetworkProtocol</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyAnywhere.PluginBase\CozyAnywhere.PluginBase.csproj">
+      <Project>{3073b255-8934-4898-af1f-00f149c5f00e}</Project>
+      <Name>CozyAnywhere.PluginBase</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

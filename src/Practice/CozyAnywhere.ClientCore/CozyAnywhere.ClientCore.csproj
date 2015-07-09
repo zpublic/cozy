@@ -39,7 +39,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientEvent.cs" />
+    <Compile Include="ClientMain.cs" />
+    <Compile Include="ClientMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Public\Lidgren.Network\Lidgren.Network.csproj">
+      <Project>{49ba1c69-6104-41ac-a5d8-b54fa9f696e8}</Project>
+      <Name>Lidgren.Network</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Public\NetworkHelper\NetworkHelper.csproj">
+      <Project>{93c3f45c-eb94-45dc-b622-3479d5cfebed}</Project>
+      <Name>NetworkHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Public\NetworkProtocol\NetworkProtocol.csproj">
+      <Project>{cac595d7-c876-4c7a-a33a-c3f30b9e012e}</Project>
+      <Name>NetworkProtocol</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Public\NetworkServer\NetworkServer.csproj">
+      <Project>{3827bbcf-b396-4536-96c0-eea82d51cbe6}</Project>
+      <Name>NetworkServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyAnywhere.Protocol\CozyAnywhere.Protocol.csproj">
+      <Project>{7f35c165-b442-4176-a189-dcf409865f81}</Project>
+      <Name>CozyAnywhere.Protocol</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
