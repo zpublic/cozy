@@ -40,8 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArgsFactory\FileCopyArgsFactory.cs" />
+    <Compile Include="ArgsFactory\FileDeleteArgsFactory.cs" />
+    <Compile Include="ArgsFactory\FileEnumArgsFactory.cs" />
+    <Compile Include="ArgsFactory\FileGetLengthArgsFactory.cs" />
+    <Compile Include="ArgsFactory\FileGetTimesArgsFactory.cs" />
+    <Compile Include="ArgsFactory\FileIsDirectoryArgsFactory.cs" />
+    <Compile Include="ArgsFactory\FileMoveArgsFactory.cs" />
+    <Compile Include="ArgsFactory\FilePathExistArgsFactory.cs" />
+    <Compile Include="Args\FileCopyArgs.cs" />
+    <Compile Include="Args\FileIsDirectoryArgs.cs" />
+    <Compile Include="Args\FileDeleteArgs.cs" />
+    <Compile Include="Args\FileEnumArgs.cs" />
+    <Compile Include="Args\FileGetLengthArgs.cs" />
+    <Compile Include="Args\FileGetTimesArgs.cs" />
+    <Compile Include="Args\FileMoveArgs.cs" />
+    <Compile Include="Args\FilePathExistArgs.cs" />
     <Compile Include="Ext\UnsignedLongConvertToDateTimeExt.cs" />
     <Compile Include="FilePlugin.cs" />
+    <Compile Include="FilePluginMethods.cs" />
     <Compile Include="FileUtil.cs" />
     <Compile Include="Model\WinFileTimeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,6 +74,7 @@
       <Name>CozyAnywhere.Protocol</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
