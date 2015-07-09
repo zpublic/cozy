@@ -10,25 +10,7 @@ namespace ConsoleProcessTester
     {
         private static void Main(string[] args)
         {
-            var processList = new List<WinProcess>();
-            ProcessUtil.ProcessEnum((pid) =>
-            {
-                string name = null;
-                ProcessUtil.GetProcessName(pid, (ptr) =>
-                {
-                    name = Marshal.PtrToStringAuto(ptr);
-                });
-                if (name != null)
-                {
-                    var process = new WinProcess()
-                    {
-                        ProcessId   = pid,
-                        Name        = name,
-                    };
-                    processList.Add(process);
-                }
-                return false;
-            });
+            var processList = ProcessUtil.DefProcessEnum();
 
             Console.WriteLine("---------------------------------Process:---------------------------------");
             foreach (var obj in processList)
