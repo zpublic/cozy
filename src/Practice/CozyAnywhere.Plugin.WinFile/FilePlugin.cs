@@ -4,61 +4,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyAnywhere.PluginBase;
-using CozyAnywhere.Protocol.Commands;
+using CozyAnywhere.Protocol;
+using CozyAnywhere.Plugin.WinFile.ArgsFactory;
 
 namespace CozyAnywhere.Plugin.WinFile
 {
-    public class FilePlugin : BasePlugin
+    public partial class FilePlugin : BasePlugin
     {
+        private Dictionary<string, PluginCommandMethodPacket> MethodDictionary
+            = new Dictionary<string, PluginCommandMethodPacket>();
+
         public override string PluginName { get { return "FilePlugin"; } }
 
-        public void Shell(FileDeleteCommand command)
+        public override object Shell(string commandContent)
         {
-            FileUtil.FileDelete(command.Path);
-            // TODO On FileDeleteCommand
+            var context     = PluginCommandMethod.Create(commandContent);
+            var methodName  = context.MethodName;
+            var methodArgs  = context.MethodArgs;
+            if(MethodDictionary.ContainsKey(methodName))
+            {
+                var packet  = MethodDictionary[methodName];
+                var func    = packet.Function;
+                var args    = packet.ArgsFactory.Create(methodArgs);
+                return func(args);
+            }
+            return PluginCommand.NullReturnValue;
         }
 
-        public void Shell(FileCopyCommand command)
+        public FilePlugin()
         {
-            FileUtil.FileCopy(command.SourcePath, command.DestPath, command.FailIfExists);
+            RegisterMethod();
         }
 
-        public void Shell(FileMoveCommand command)
+        private void RegisterMethod()
         {
-            FileUtil.FileMove(command.SourcePath, command.DestPath);
-        }
+            var CopyPacket      = PluginCommandMethodPacket.Create(OnFileCopy, new FileCopyArgsFactory());
+            var DeletePacket    = PluginCommandMethodPacket.Create(OnFileDelete, new FileDeleteArgsFactory());
+            var EnumPacket      = PluginCommandMethodPacket.Create(OnFileEnum, new FileEnumArgsFactory());
+            var GetLengthPacket = PluginCommandMethodPacket.Create(OnFileGetLength, new FileGetLengthArgsFactory());
+            var GetTimesPacket  = PluginCommandMethodPacket.Create(OnFileGetTimes, new FileGetTimesArgsFactory());
+            var IsDirePacket    = PluginCommandMethodPacket.Create(OnFileIsDire, new FileIsDirectoryArgsFactory());
+            var MovePacket      = PluginCommandMethodPacket.Create(OnFileMove, new FileMoveArgsFactory());
+            var PathExistPacket = PluginCommandMethodPacket.Create(OnFilePathExist, new FilePathExistArgsFactory());
 
-        public void Shell(FilePathExistCommand command)
-        {
-            FileUtil.PathFileExist(command.Path);
-        }
-
-        public void Shell(FileIsDirectoryCommand command)
-        {
-            FileUtil.IsDirectory(command.Path);
-        }
-
-        public void Shell(FileGetLengthCommand command)
-        {
-            FileUtil.GetFileLength(command.Path);
-        }
-
-        public void Shell(FileGetTimesCommand command)
-        {
-            ulong CreationTime      = 0;
-            ulong LastAccessTime    = 0;
-            ulong LastWriteTime     = 0;
-
-            FileUtil.GetFileTimes(command.Path, ref CreationTime, ref LastAccessTime, ref LastWriteTime);
-
-            command.CreationTime    = CreationTime;
-            command.LastAccessTime  = LastAccessTime;
-            command.LastWriteTime   = LastWriteTime;
-        }
-
-        public void Shell(FileEnumCommand command)
-        {
-            FileUtil.FileEnum(command.Path, (x, b) => { return command.EnumFunc(x, b); });
+            MethodDictionary["FileCopy"]            = CopyPacket;
+            MethodDictionary["FileDelete"]          = DeletePacket;
+            MethodDictionary["FileEnum"]            = EnumPacket;
+            MethodDictionary["FileGetLength"]       = GetLengthPacket;
+            MethodDictionary["FileGetTimes"]        = GetTimesPacket;
+            MethodDictionary["FileIsDirectory"]     = IsDirePacket;
+            MethodDictionary["FileMove"]            = MovePacket;
+            MethodDictionary["FilePathExist"]       = PathExistPacket;
         }
     }
 }

@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using CozyAnywhere.Plugin.WinFile.Model;
+using CozyAnywhere.Plugin.WinFile.Ext;
 using System.Runtime.InteropServices;
 
 namespace CozyAnywhere.Plugin.WinFile
@@ -55,5 +59,56 @@ namespace CozyAnywhere.Plugin.WinFile
             CharSet             = CharSet.Auto,
             CallingConvention   = CallingConvention.Cdecl)]
         public static extern void FileEnum(string Path, FileEnumFunc func);
+
+        #region DefaultMethod
+        public static WinFileTimeModel DefGetFileTimes(string path)
+        {
+            ulong creationTime      = 0;
+            ulong lastAccessTime    = 0;
+            ulong lastWriteTime     = 0;
+
+            GetFileTimes(path, ref creationTime, ref lastAccessTime, ref lastWriteTime);
+
+            var times = new WinFileTimeModel()
+            {
+                CreationTime    = creationTime.ToDateTime(),
+                LastAccessTime  = lastAccessTime.ToDateTime(),
+                LastWriteTime   = lastWriteTime.ToDateTime(),
+            };
+            return times;
+        }
+
+        public static List<WinFileModel> DefFileEnum(string path, bool EnumSize = true, bool EnumTime = true)
+        {
+            List<WinFileModel> Result   = new List<WinFileModel>();
+            string enumPath             = path + '*';
+
+            FileEnum(enumPath, (x, b) => 
+            {
+                string name     = Marshal.PtrToStringAuto(x);
+                bool isFolder   = b;
+                var file = new WinFileModel()
+                {
+                    Name        = name,
+                    IsFolder    = isFolder,
+                };
+
+                if(EnumSize)
+                {
+                    file.Size   = GetFileLength(enumPath + name);
+                }
+
+                if(EnumTime)
+                {
+                    file.Times  = DefGetFileTimes(enumPath + name);
+                }
+
+                Result.Add(file);
+                return false; 
+            });
+
+            return Result;
+        }
+        #endregion
     }
 }

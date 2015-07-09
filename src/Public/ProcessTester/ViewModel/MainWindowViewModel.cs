@@ -7,9 +7,9 @@ namespace ProcessTester.ViewModel
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        private ObservableCollection<WinProcess> _ProcessInfoList = new ObservableCollection<WinProcess>();
+        private ObservableCollection<WinProcessModel> _ProcessInfoList = new ObservableCollection<WinProcessModel>();
 
-        public ObservableCollection<WinProcess> ProcessInfoList
+        public ObservableCollection<WinProcessModel> ProcessInfoList
         {
             get
             {
@@ -38,7 +38,7 @@ namespace ProcessTester.ViewModel
                 if (result != null)
                 {
                     ProcessInfoList.Add(
-                    new WinProcess
+                    new WinProcessModel
                     {
                         Name        = result,
                         ProcessId   = pid,

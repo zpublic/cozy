@@ -40,21 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandId.cs" />
-    <Compile Include="Commands\FileCopyCommand.cs" />
-    <Compile Include="Commands\FileDeleteCommand.cs" />
-    <Compile Include="Commands\FileEnumCommand.cs" />
-    <Compile Include="Commands\FileGetLengthCommand.cs" />
-    <Compile Include="Commands\FileGetTimesCommand.cs" />
-    <Compile Include="Commands\FileIsDirectoryCommand.cs" />
-    <Compile Include="Commands\FileMoveCommand.cs" />
-    <Compile Include="Commands\FilePathExistCommand.cs" />
     <Compile Include="MessageId.cs" />
     <Compile Include="Messages\FileDeleteMessage.cs" />
     <Compile Include="Messages\FileEnumMessage.cs" />
     <Compile Include="Messages\ProcessEnumMessage.cs" />
     <Compile Include="Messages\ProcessEnumMessageRsp.cs" />
     <Compile Include="Messages\ProcessTerminateMessage.cs" />
+    <Compile Include="PluginCommand.cs" />
+    <Compile Include="PluginCommandMethod.cs" />
+    <Compile Include="PluginCommandMethodArgs.cs" />
+    <Compile Include="PluginCommandMethodArgsFactory.cs" />
+    <Compile Include="PluginCommandMethodPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Messages\FileEnumMessageRsp.cs" />
   </ItemGroup>

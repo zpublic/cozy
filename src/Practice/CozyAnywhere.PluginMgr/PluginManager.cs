@@ -1,27 +1,34 @@
 ﻿using CozyAnywhere.PluginBase;
 using System.Collections.Generic;
+using CozyAnywhere.Protocol;
 
 namespace CozyAnywhere.PluginMgr
 {
     public class PluginManager
     {
         private Dictionary<string, BasePlugin> PluginDictionary = new Dictionary<string, BasePlugin>();
-        private object objLocker = new object();
+        private object objLocker                                = new object();
 
-        public void ShellPluginCommand(string pluginName, IPluginCommand command)
+        public void ShellPluginCommand(string pluginName, string commandContent)
         {
-            if (!PluginDictionary.ContainsKey(pluginName))
+            BasePlugin plugin = null;
+            lock (objLocker)
             {
-                lock (objLocker)
+                if (PluginDictionary.ContainsKey(pluginName))
                 {
-                    if (!PluginDictionary.ContainsKey(pluginName))
-                    {
-                        // TODO Try Add Plugin
-                    }
+                    plugin = PluginDictionary[pluginName];
                 }
             }
-            var plugin = PluginDictionary[pluginName];
-            plugin.Dispatch(command);
+            if(plugin != null)
+            {
+                plugin.Shell(commandContent);
+            }
+        }
+
+        public void ParsePluginCommand(string command)
+        {
+            var pluginCommand = PluginCommand.CreateWithParse(command);
+            ShellPluginCommand(pluginCommand.PluginName, pluginCommand.PluginCommandContent);
         }
     }
 }

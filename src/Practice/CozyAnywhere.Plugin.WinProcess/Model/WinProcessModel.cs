@@ -1,6 +1,6 @@
 ﻿namespace CozyAnywhere.Plugin.WinProcess.Model
 {
-    public class WinProcess
+    public class WinProcessModel
     {
         public uint ProcessId { get; set; }
 
