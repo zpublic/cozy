@@ -1,0 +1,17 @@
+﻿<Window x:Class="CozyMind.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
+        Title="CozyMind" Height="900" Width="1200">
+    <Grid>
+        <avalonEdit:TextEditor
+            xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+            Name="mindEditor"
+            FontFamily="Consolas"
+            SyntaxHighlighting="JavaScript"
+            FontSize="12pt" Margin="10,10,800,10" Background="#FFC7C7D1"/>
+        <Grid Margin="400,10,10,10" >
+            <oxy:PlotView x:Name="mindPlot" Model="{Binding myPlotModel}" Controller="{Binding Controller}"/>
+        </Grid>
+    </Grid>
+</Window>
