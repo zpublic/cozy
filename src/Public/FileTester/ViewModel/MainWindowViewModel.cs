@@ -10,9 +10,9 @@ namespace FileTester.ViewModel
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        private ObservableCollection<WinFile> _FileList = new ObservableCollection<WinFile>();
+        private ObservableCollection<WinFileModel> _FileList = new ObservableCollection<WinFileModel>();
 
-        public ObservableCollection<WinFile> FileList
+        public ObservableCollection<WinFileModel> FileList
         {
             get
             {
@@ -24,9 +24,9 @@ namespace FileTester.ViewModel
             }
         }
 
-        private WinFile _SelectedItem = null;
+        private WinFileModel _SelectedItem = null;
 
-        public WinFile SelectedItem
+        public WinFileModel SelectedItem
         {
             get
             {
@@ -92,7 +92,7 @@ namespace FileTester.ViewModel
 
         private void UpdateFileList()
         {
-            ObservableCollection<WinFile> newList = new ObservableCollection<WinFile>();
+            ObservableCollection<WinFileModel> newList = new ObservableCollection<WinFileModel>();
             var path = CurrPath.Trim();
             if (path.EndsWith(@"\"))
             {
@@ -109,7 +109,7 @@ namespace FileTester.ViewModel
             {
                 var str = Marshal.PtrToStringAuto(x);
                 newList.Add(
-                    new WinFile
+                    new WinFileModel
                     {
                         Name        = CurrPath + str,
                         IsFolder    = b,

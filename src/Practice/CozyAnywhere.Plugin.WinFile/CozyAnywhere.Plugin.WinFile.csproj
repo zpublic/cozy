@@ -43,9 +43,9 @@
     <Compile Include="Ext\UnsignedLongConvertToDateTimeExt.cs" />
     <Compile Include="FilePlugin.cs" />
     <Compile Include="FileUtil.cs" />
-    <Compile Include="Model\WinFileTime.cs" />
+    <Compile Include="Model\WinFileTimeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\WinFile.cs" />
+    <Compile Include="Model\WinFileModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CozyAnywhere.PluginBase\CozyAnywhere.PluginBase.csproj">

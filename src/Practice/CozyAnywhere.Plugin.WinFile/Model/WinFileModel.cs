@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CozyAnywhere.Plugin.WinFile.Model
 {
-    public class WinFile
+    public class WinFileModel
     {
         public string Name { get; set; }
 
@@ -14,6 +14,6 @@ namespace CozyAnywhere.Plugin.WinFile.Model
 
         public ulong Size { get; set; }
 
-        public WinFileTime Times { get; set; }
+        public WinFileTimeModel Times { get; set; }
     }
 }
