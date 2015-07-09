@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace CozyAnywhere.Plugin.WinFile
 {
-    public class FileUtil
+    public static class FileUtil
     {
         // bool (CALLBACK*)(LPTSTR str, bool IsFolder);
         public delegate bool FileEnumFunc(IntPtr ptr, bool IsFolder);
