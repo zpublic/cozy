@@ -1,93 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CozyAnywhere.Plugin.WinFile.Args;
 using CozyAnywhere.Protocol;
-using CozyAnywhere.Plugin.WinFile.Args;
+using System;
 
 namespace CozyAnywhere.Plugin.WinFile
 {
     public partial class FilePlugin
     {
-        private object OnFileCopy(IPluginCommandMethodArgs args)
+        public object Dispatch(PluginCommandMethodArgs args)
         {
-            var CopyArgs = args as FileCopyArgs;
-            if(CopyArgs != null)
-            {
-                return FileUtil.FileCopy(CopyArgs.SourcePath, CopyArgs.DestPath, CopyArgs.FailIfExists);
-            }
-            return PluginCommand.NullReturnValue;
+            return args.Execute(this);
         }
 
-        private object OnFileDelete(IPluginCommandMethodArgs args)
+        public object Shell(PluginCommandMethodArgs args)
         {
-            var DeleteArgs = args as FileDeleteArgs;
-            if (DeleteArgs != null)
-            {
-                return FileUtil.FileDelete(DeleteArgs.Path);
-            }
-            return PluginCommand.NullReturnValue;
+            throw new Exception("Unknow Command Args");
         }
 
-        private object OnFileEnum(IPluginCommandMethodArgs args)
+        public object Shell(FileCopyArgs CopyArgs)
         {
-            var EnumArgs = args as FileEnumArgs;
-            if(EnumArgs != null)
-            {
-                return FileUtil.DefFileEnum(EnumArgs.Path, EnumArgs.EnumSize, EnumArgs.EnumTime);
-            }
-            return PluginCommand.NullReturnValue;
+            return FileUtil.FileCopy(CopyArgs.SourcePath, CopyArgs.DestPath, CopyArgs.FailIfExists);
         }
 
-        private object OnFileGetLength(IPluginCommandMethodArgs args)
+        public object Shell(FileDeleteArgs DeleteArgs)
         {
-            var LengthArgs = args as FileGetLengthArgs;
-            if(LengthArgs != null)
-            {
-                return FileUtil.GetFileLength(LengthArgs.Path);
-            }
-            return PluginCommand.NullReturnValue;
+            return FileUtil.FileDelete(DeleteArgs.Path);
         }
 
-        private object OnFileGetTimes(IPluginCommandMethodArgs args)
+        public object Shell(FileEnumArgs EnumArgs)
         {
-            var TimesArgs = args as FileGetTimesArgs;
-            if(TimesArgs != null)
-            {
-                return FileUtil.DefGetFileTimes(TimesArgs.Path);
-            }
-            return PluginCommand.NullReturnValue;
+            return FileUtil.DefFileEnum(EnumArgs.Path, EnumArgs.EnumSize, EnumArgs.EnumTime);
         }
 
-        private object OnFileIsDire(IPluginCommandMethodArgs args)
+        public object Shell(FileGetLengthArgs LengthArgs)
         {
-            var DireArgs = args as FileIsDirectoryArgs;
-            if(DireArgs != null)
-            {
-                return FileUtil.IsDirectory(DireArgs.Path);
-            }
-            return PluginCommand.NullReturnValue; 
+            return FileUtil.GetFileLength(LengthArgs.Path);
         }
 
-        private object OnFileMove(IPluginCommandMethodArgs args)
+        public object Shell(FileGetTimesArgs TimesArgs)
         {
-            var MoveArgs = args as FileMoveArgs;
-            if(MoveArgs != null)
-            {
-                return FileUtil.FileMove(MoveArgs.SourcePath, MoveArgs.DestPath);
-            }
-            return PluginCommand.NullReturnValue; 
+            return FileUtil.DefGetFileTimes(TimesArgs.Path);
         }
 
-        private object OnFilePathExist(IPluginCommandMethodArgs args)
+        public object Shell(FileIsDirectoryArgs DireArgs)
         {
-            var ExistArgs = args as FilePathExistArgs;
-            if(ExistArgs != null)
-            {
-                return FileUtil.PathFileExist(ExistArgs.Path);
-            }
-            return PluginCommand.NullReturnValue; 
+            return FileUtil.IsDirectory(DireArgs.Path);
+        }
+
+        public object Shell(FileMoveArgs MoveArgs)
+        {
+            return FileUtil.FileMove(MoveArgs.SourcePath, MoveArgs.DestPath);
+        }
+
+        public object Shell(FilePathExistArgs ExistArgs)
+        {
+            return FileUtil.PathFileExist(ExistArgs.Path);
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using NetworkServer;
+using CozyAnywhere.Plugin.WinFile;
+using CozyAnywhere.Protocol.Messages;
 
 namespace CozyAnywhere.ClientCore
 {
@@ -7,6 +9,11 @@ namespace CozyAnywhere.ClientCore
         private Server server { get; set; }
 
         public bool IsListing { get; set; }
+
+        public AnywhereClient(int MaxConn, int Port)
+        {
+            InitNetwork(MaxConn, Port);
+        }
 
         public void InitNetwork(int MaxConn, int Port)
         {
@@ -35,7 +42,31 @@ namespace CozyAnywhere.ClientCore
 
         public void EnterMainLoop()
         {
-            server.EnterMainLoop();
+            if (server != null)
+            {
+                server.EnterMainLoop();
+            }
+        }
+
+        public void Update()
+        {
+            if(server != null)
+            {
+                server.RecivePacket();
+            }
+        }
+
+        public void SendTestMessage()
+        {
+            if (server != null)
+            {
+                var command     = FilePlugin.MakeFileDeleteCommand("TestFile.txt");
+                var commandMsg  = new CommandMessage()
+                {
+                    Command = command,
+                };
+                server.SendMessage(commandMsg);
+            }
         }
     }
 }

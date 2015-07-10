@@ -5,10 +5,10 @@ namespace CozyAnywhere.Plugin.WinFile.ArgsFactory
 {
     public class FileDeleteArgsFactory : IPluginCommandMethodArgsFactory
     {
-        public IPluginCommandMethodArgs Create(string argsContent)
+        public PluginCommandMethodArgs Create(string argsContent)
         {
-            var result = new FileDeleteArgs();
-
+            var result  = new FileDeleteArgs();
+            result.Path = argsContent;
             return result;
         }
     }

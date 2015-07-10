@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CozyAnywhere.Protocol;
+using CozyAnywhere.Protocol.Messages;
 using NetworkHelper;
 using NetworkProtocol;
-using CozyAnywhere.Protocol;
-using CozyAnywhere.Protocol.Messages;
 
 namespace CozyAnywhere.ServerCore
 {
@@ -16,6 +11,7 @@ namespace CozyAnywhere.ServerCore
         {
             MessageReader.RegisterType<FileEnumMessage>(MessageId.FileEnumMessage);
             MessageReader.RegisterType<FileDeleteMessage>(MessageId.FileDeleteMessage);
+            MessageReader.RegisterType<CozyAnywhere.Protocol.Messages.CommandMessage>(MessageId.CommandMessage);
         }
 
         public void OnFileEnumMessage(IMessage msg)
@@ -30,6 +26,16 @@ namespace CozyAnywhere.ServerCore
             var enumMsg = (FileDeleteMessage)msg;
 
             // TODO
+        }
+
+        public void OnCommandMessage(IMessage msg)
+        {
+            var comm = (CozyAnywhere.Protocol.Messages.CommandMessage)msg;
+
+            if (comm.Command != null)
+            {
+                ServerPluginMgr.ParsePluginCommand(comm.Command);
+            }
         }
     }
 }

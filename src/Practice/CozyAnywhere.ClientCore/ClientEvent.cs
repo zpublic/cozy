@@ -19,6 +19,10 @@ namespace CozyAnywhere.ClientCore
 
         private void OnStatusMessage(object sender, StatusMessageArgs msg)
         {
+            if (msg.Status == NetConnectionStatus.Connected)
+            {
+                SendTestMessage();
+            }
         }
 
         private void OnDataMessage(object sender, DataMessageArgs msg)
@@ -29,7 +33,6 @@ namespace CozyAnywhere.ClientCore
                 case MessageId.FileEnumMessageRsp:
                     OnFileEnumMessageRsp(baseMsg);
                     break;
-
                 default:
                     break;
             }

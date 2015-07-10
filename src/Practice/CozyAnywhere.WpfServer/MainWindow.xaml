@@ -1,8 +1,14 @@
 ﻿<Window x:Class="CozyAnywhere.WpfServer.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewmodel="clr-namespace:CozyAnywhere.WpfServer.ViewModel"
         Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
+    </Window.DataContext>
     <Grid>
-        
+        <StackPanel>
+            <Button Content="Connect" Command="{Binding ConnectCommand}"></Button>
+        </StackPanel>
     </Grid>
 </Window>

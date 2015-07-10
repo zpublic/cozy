@@ -5,7 +5,7 @@ namespace CozyAnywhere.Plugin.WinFile.ArgsFactory
 {
     public class FileEnumArgsFactory : IPluginCommandMethodArgsFactory
     {
-        public IPluginCommandMethodArgs Create(string argsContent)
+        public PluginCommandMethodArgs Create(string argsContent)
         {
             var result = new FileEnumArgs();
 

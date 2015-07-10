@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandMake.cs" />
+    <Compile Include="IPluginCommandArgsDispatch.cs" />
     <Compile Include="MessageId.cs" />
+    <Compile Include="Messages\CommandMessage.cs" />
     <Compile Include="Messages\FileDeleteMessage.cs" />
     <Compile Include="Messages\FileEnumMessage.cs" />
     <Compile Include="Messages\ProcessEnumMessage.cs" />
@@ -48,9 +51,8 @@
     <Compile Include="Messages\ProcessTerminateMessage.cs" />
     <Compile Include="PluginCommand.cs" />
     <Compile Include="PluginCommandMethod.cs" />
-    <Compile Include="PluginCommandMethodArgs.cs" />
-    <Compile Include="PluginCommandMethodArgsFactory.cs" />
-    <Compile Include="PluginCommandMethodPacket.cs" />
+    <Compile Include="IPluginCommandMethodArgs.cs" />
+    <Compile Include="IPluginCommandMethodArgsFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Messages\FileEnumMessageRsp.cs" />
   </ItemGroup>

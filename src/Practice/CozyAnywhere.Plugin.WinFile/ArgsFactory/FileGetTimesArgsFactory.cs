@@ -5,7 +5,7 @@ namespace CozyAnywhere.Plugin.WinFile.ArgsFactory
 {
     public class FileGetTimesArgsFactory : IPluginCommandMethodArgsFactory
     {
-        public IPluginCommandMethodArgs Create(string argsContent)
+        public PluginCommandMethodArgs Create(string argsContent)
         {
             var result = new FileGetTimesArgs();
 

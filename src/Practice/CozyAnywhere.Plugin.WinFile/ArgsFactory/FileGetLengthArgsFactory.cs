@@ -5,7 +5,7 @@ namespace CozyAnywhere.Plugin.WinFile.ArgsFactory
 {
     public class FileGetLengthArgsFactory : IPluginCommandMethodArgsFactory
     {
-        public IPluginCommandMethodArgs Create(string argsContent)
+        public PluginCommandMethodArgs Create(string argsContent)
         {
             var result = new FileGetLengthArgs();
 
