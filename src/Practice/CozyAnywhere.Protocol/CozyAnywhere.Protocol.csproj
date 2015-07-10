@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandMake.cs" />
     <Compile Include="MessageId.cs" />
+    <Compile Include="Messages\CommandMessage.cs" />
     <Compile Include="Messages\FileDeleteMessage.cs" />
     <Compile Include="Messages\FileEnumMessage.cs" />
     <Compile Include="Messages\ProcessEnumMessage.cs" />

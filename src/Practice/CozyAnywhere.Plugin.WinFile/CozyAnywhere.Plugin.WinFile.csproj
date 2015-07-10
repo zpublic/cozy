@@ -58,6 +58,7 @@
     <Compile Include="Args\FilePathExistArgs.cs" />
     <Compile Include="Ext\UnsignedLongConvertToDateTimeExt.cs" />
     <Compile Include="FilePlugin.cs" />
+    <Compile Include="FilePluginCommand.cs" />
     <Compile Include="FilePluginMethods.cs" />
     <Compile Include="FileUtil.cs" />
     <Compile Include="Model\WinFileTimeModel.cs" />

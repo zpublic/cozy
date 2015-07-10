@@ -16,7 +16,6 @@ namespace CozyAnywhere.ServerCore
         {
             InitNetwork();
             InitPlugin();
-            Test();
         }
 
         public void InitNetwork()
@@ -48,11 +47,6 @@ namespace CozyAnywhere.ServerCore
         public void Update()
         {
             client.Update();
-        }
-
-        public void Test()
-        {
-            ServerPluginMgr.ParsePluginCommand(@"FilePlugin:FileDelete:XX.txt");
         }
     }
 }
