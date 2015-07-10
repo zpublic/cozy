@@ -9,7 +9,7 @@ namespace CozyAnywhere.Plugin.WinFile
 
         public override string PluginName { get { return InnerPluginName; } }
 
-        public override object Shell(string commandContent)
+        public override string Shell(string commandContent)
         {
             var context     = PluginCommandMethod.Create(commandContent);
             var methodName  = context.MethodName;

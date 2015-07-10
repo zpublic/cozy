@@ -10,7 +10,7 @@ namespace CozyAnywhere.Plugin.WinFile.Args
 
         public bool FailIfExists { get; set; }
 
-        public override object Execute(IPluginCommandArgsDispatch dispatch)
+        public override string Execute(IPluginCommandArgsDispatch dispatch)
         {
             var plugin = (FilePlugin)dispatch;
             return plugin.Shell(this);

@@ -1,59 +1,68 @@
 ﻿using CozyAnywhere.Plugin.WinFile.Args;
 using CozyAnywhere.Protocol;
 using System;
+using Newtonsoft.Json;
 
 namespace CozyAnywhere.Plugin.WinFile
 {
     public partial class FilePlugin
     {
-        public object Dispatch(PluginCommandMethodArgs args)
+        public string Dispatch(PluginCommandMethodArgs args)
         {
             return args.Execute(this);
         }
 
-        public object Shell(PluginCommandMethodArgs args)
+        public string Shell(PluginCommandMethodArgs args)
         {
             throw new Exception("Unknow Command Args");
         }
 
-        public object Shell(FileCopyArgs CopyArgs)
+        public string Shell(FileCopyArgs CopyArgs)
         {
-            return FileUtil.FileCopy(CopyArgs.SourcePath, CopyArgs.DestPath, CopyArgs.FailIfExists);
+            var result = FileUtil.FileCopy(CopyArgs.SourcePath, CopyArgs.DestPath, CopyArgs.FailIfExists);
+            return JsonConvert.SerializeObject(result);
         }
 
-        public object Shell(FileDeleteArgs DeleteArgs)
+        public string Shell(FileDeleteArgs DeleteArgs)
         {
-            return FileUtil.FileDelete(DeleteArgs.Path);
+            var result = FileUtil.FileDelete(DeleteArgs.Path);
+            return JsonConvert.SerializeObject(result);
         }
 
-        public object Shell(FileEnumArgs EnumArgs)
+        public string Shell(FileEnumArgs EnumArgs)
         {
-            return FileUtil.DefFileEnum(EnumArgs.Path, EnumArgs.EnumSize, EnumArgs.EnumTime);
+            var result = FileUtil.DefFileEnum(EnumArgs.Path, EnumArgs.EnumSize, EnumArgs.EnumTime);
+            return JsonConvert.SerializeObject(result);
         }
 
-        public object Shell(FileGetLengthArgs LengthArgs)
+        public string Shell(FileGetLengthArgs LengthArgs)
         {
-            return FileUtil.GetFileLength(LengthArgs.Path);
+            var result = FileUtil.GetFileLength(LengthArgs.Path);
+            return JsonConvert.SerializeObject(result);
         }
 
-        public object Shell(FileGetTimesArgs TimesArgs)
+        public string Shell(FileGetTimesArgs TimesArgs)
         {
-            return FileUtil.DefGetFileTimes(TimesArgs.Path);
+            var result = FileUtil.DefGetFileTimes(TimesArgs.Path);
+            return JsonConvert.SerializeObject(result);
         }
 
-        public object Shell(FileIsDirectoryArgs DireArgs)
+        public string Shell(FileIsDirectoryArgs DireArgs)
         {
-            return FileUtil.IsDirectory(DireArgs.Path);
+            var result = FileUtil.IsDirectory(DireArgs.Path);
+            return JsonConvert.SerializeObject(result);
         }
 
-        public object Shell(FileMoveArgs MoveArgs)
+        public string Shell(FileMoveArgs MoveArgs)
         {
-            return FileUtil.FileMove(MoveArgs.SourcePath, MoveArgs.DestPath);
+            var result = FileUtil.FileMove(MoveArgs.SourcePath, MoveArgs.DestPath);
+            return JsonConvert.SerializeObject(result);
         }
 
-        public object Shell(FilePathExistArgs ExistArgs)
+        public string Shell(FilePathExistArgs ExistArgs)
         {
-            return FileUtil.PathFileExist(ExistArgs.Path);
+            var result = FileUtil.PathFileExist(ExistArgs.Path);
+            return JsonConvert.SerializeObject(result);
         }
     }
 }

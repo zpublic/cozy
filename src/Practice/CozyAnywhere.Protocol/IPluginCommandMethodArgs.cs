@@ -2,7 +2,7 @@
 {
     public abstract class PluginCommandMethodArgs
     {
-        public virtual object Execute(IPluginCommandArgsDispatch dispatch)
+        public virtual string Execute(IPluginCommandArgsDispatch dispatch)
         {
             return dispatch.Shell(this);
         }
