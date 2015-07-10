@@ -7,8 +7,8 @@ namespace CozyAnywhere.Plugin.WinFile.ArgsFactory
     {
         public IPluginCommandMethodArgs Create(string argsContent)
         {
-            var result = new FileDeleteArgs();
-
+            var result  = new FileDeleteArgs();
+            result.Path = argsContent;
             return result;
         }
     }

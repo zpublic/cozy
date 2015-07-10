@@ -1,4 +1,6 @@
 ﻿using NetworkClient;
+using CozyAnywhere.PluginMgr;
+using CozyAnywhere.Plugin.WinFile;
 
 namespace CozyAnywhere.ServerCore
 {
@@ -6,13 +8,29 @@ namespace CozyAnywhere.ServerCore
     {
         private Client client { get; set; }
 
+        public PluginManager ServerPluginMgr { get; set; }
+
         public bool IsConnected { get; set; }
+
+        public AnywhereServer()
+        {
+            InitNetwork();
+            InitPlugin();
+            Test();
+        }
 
         public void InitNetwork()
         {
-            client = new Client();
+            client          = new Client();
             InitServerEvent();
             InitServerMessage();
+        }
+
+        private void InitPlugin()
+        {
+            ServerPluginMgr = new PluginManager();
+            var fileplugin  = new FilePlugin();
+            ServerPluginMgr.AddPlugin("FilePlugin", fileplugin);
         }
 
         public void Connect(string ip, int port)
@@ -30,6 +48,11 @@ namespace CozyAnywhere.ServerCore
         public void Update()
         {
             client.Update();
+        }
+
+        public void Test()
+        {
+            ServerPluginMgr.ParsePluginCommand(@"FilePlugin:FileDelete:XX.txt");
         }
     }
 }

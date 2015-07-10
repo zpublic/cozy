@@ -30,5 +30,13 @@ namespace CozyAnywhere.PluginMgr
             var pluginCommand = PluginCommand.CreateWithParse(command);
             ShellPluginCommand(pluginCommand.PluginName, pluginCommand.PluginCommandContent);
         }
+
+        public void AddPlugin(string pluginName, BasePlugin plugin)
+        {
+            lock(objLocker)
+            {
+                PluginDictionary[pluginName] = plugin;
+            }
+        }
     }
 }

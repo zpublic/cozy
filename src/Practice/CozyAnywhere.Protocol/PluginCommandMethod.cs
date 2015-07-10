@@ -11,7 +11,9 @@
             var result = new PluginCommandMethod();
 
             // TODO deserialization Method
-
+            int pos             = CommandContent.IndexOf(':');
+            result.MethodName   = CommandContent.Substring(0, pos);
+            result.MethodArgs   = CommandContent.Substring(pos + 1, CommandContent.Length - pos - 1);
             return result;
         }
     }

@@ -23,7 +23,9 @@
             var result = new PluginCommand();
 
             // TODO deserialization command
-
+            int pos                     = command.IndexOf(':');
+            result.PluginName           = command.Substring(0, pos);
+            result.PluginCommandContent = command.Substring(pos + 1, command.Length - pos - 1);
             return result;
         }
     }
