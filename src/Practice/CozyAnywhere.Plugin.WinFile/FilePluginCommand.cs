@@ -7,28 +7,19 @@ namespace CozyAnywhere.Plugin.WinFile
 {
     public partial class FilePlugin
     {
-        private Dictionary<string, PluginCommandMethodPacket> MethodDictionary
-                = new Dictionary<string, PluginCommandMethodPacket>();
+        private Dictionary<string, IPluginCommandMethodArgsFactory> MethodDictionary
+                = new Dictionary<string, IPluginCommandMethodArgsFactory>();
 
         private void RegisterMethod()
         {
-            var CopyPacket      = PluginCommandMethodPacket.Create(OnFileCopy, new FileCopyArgsFactory());
-            var DeletePacket    = PluginCommandMethodPacket.Create(OnFileDelete, new FileDeleteArgsFactory());
-            var EnumPacket      = PluginCommandMethodPacket.Create(OnFileEnum, new FileEnumArgsFactory());
-            var GetLengthPacket = PluginCommandMethodPacket.Create(OnFileGetLength, new FileGetLengthArgsFactory());
-            var GetTimesPacket  = PluginCommandMethodPacket.Create(OnFileGetTimes, new FileGetTimesArgsFactory());
-            var IsDirePacket    = PluginCommandMethodPacket.Create(OnFileIsDire, new FileIsDirectoryArgsFactory());
-            var MovePacket      = PluginCommandMethodPacket.Create(OnFileMove, new FileMoveArgsFactory());
-            var PathExistPacket = PluginCommandMethodPacket.Create(OnFilePathExist, new FilePathExistArgsFactory());
-
-            MethodDictionary["FileCopy"] = CopyPacket;
-            MethodDictionary["FileDelete"] = DeletePacket;
-            MethodDictionary["FileEnum"] = EnumPacket;
-            MethodDictionary["FileGetLength"] = GetLengthPacket;
-            MethodDictionary["FileGetTimes"] = GetTimesPacket;
-            MethodDictionary["FileIsDirectory"] = IsDirePacket;
-            MethodDictionary["FileMove"] = MovePacket;
-            MethodDictionary["FilePathExist"] = PathExistPacket;
+            MethodDictionary["FileCopy"] = new FileCopyArgsFactory(); ;
+            MethodDictionary["FileDelete"] = new FileDeleteArgsFactory(); ;
+            MethodDictionary["FileEnum"] = new FileEnumArgsFactory(); ;
+            MethodDictionary["FileGetLength"] = new FileGetLengthArgsFactory(); ;
+            MethodDictionary["FileGetTimes"] = new FileGetTimesArgsFactory(); ;
+            MethodDictionary["FileIsDirectory"] = new FileIsDirectoryArgsFactory(); ;
+            MethodDictionary["FileMove"] = new FileMoveArgsFactory(); ;
+            MethodDictionary["FilePathExist"] = new FilePathExistArgsFactory(); ;
         }
 
         public static string MakeFileCopyCommand(string SourcePath, string DestPath, bool FailIfExists)

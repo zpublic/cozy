@@ -3,7 +3,7 @@ using CozyAnywhere.Protocol;
 
 namespace CozyAnywhere.Plugin.WinFile
 {
-    public partial class FilePlugin : BasePlugin
+    public partial class FilePlugin : BasePlugin, IPluginCommandArgsDispatch
     {
         private static string InnerPluginName = "FilePlugin";
         public override string PluginName { get { return InnerPluginName; } }
@@ -15,10 +15,9 @@ namespace CozyAnywhere.Plugin.WinFile
             var methodArgs  = context.MethodArgs;
             if (MethodDictionary.ContainsKey(methodName))
             {
-                var packet  = MethodDictionary[methodName];
-                var func    = packet.Function;
-                var args    = packet.ArgsFactory.Create(methodArgs);
-                return func(args);
+                var factory     = MethodDictionary[methodName];
+                var args        = factory.Create(methodArgs);
+                return Dispatch(args);
             }
             return PluginCommand.NullReturnValue;
         }
