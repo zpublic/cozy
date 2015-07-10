@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CozyAnywhere.ServerCore;
 
 namespace CozyAnywhere.WpfServer
 {
@@ -21,7 +20,6 @@ namespace CozyAnywhere.WpfServer
     /// </summary>
     public partial class MainWindow : Window
     {
-        public AnywhereServer server = new AnywhereServer();
         public MainWindow()
         {
             InitializeComponent();

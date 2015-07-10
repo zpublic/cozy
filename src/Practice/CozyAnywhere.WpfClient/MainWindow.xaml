@@ -8,8 +8,11 @@
     </Window.DataContext>
     <Grid>
         <StackPanel>
-            <StackPanel></StackPanel>
-            <ListView ItemsSource="{Binding Path=FileList, Mode=TwoWay}" Height="300">
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Port, Mode=TwoWay}" Width="60"></TextBox>
+                <Button Content="{Binding ListenButtonText, Mode=TwoWay}" Command="{Binding ListenCommand}"></Button>
+            </StackPanel>
+            <ListView ItemsSource="{Binding Path=FileList, Mode=TwoWay}" Height="290">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Item1}"></GridViewColumn>
