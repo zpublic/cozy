@@ -1,5 +1,6 @@
 ﻿using CozyAnywhere.Plugin.WinFile.Args;
 using CozyAnywhere.Protocol;
+using Newtonsoft.Json;
 
 namespace CozyAnywhere.Plugin.WinFile.ArgsFactory
 {
@@ -7,8 +8,7 @@ namespace CozyAnywhere.Plugin.WinFile.ArgsFactory
     {
         public PluginCommandMethodArgs Create(string argsContent)
         {
-            var result = new FileMoveArgs();
-
+            var result = JsonConvert.DeserializeObject<FileMoveArgs>(argsContent);
             return result;
         }
     }
