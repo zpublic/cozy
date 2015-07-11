@@ -8,8 +8,8 @@ namespace CozyAnywhere.Protocol
 {
     public interface IPluginCommandArgsDispatch
     {
-        object Dispatch(PluginCommandMethodArgs args);
+        string Dispatch(PluginCommandMethodArgs args);
 
-        object Shell(PluginCommandMethodArgs args);
+        string Shell(PluginCommandMethodArgs args);
     }
 }

@@ -9,7 +9,7 @@ namespace CozyAnywhere.PluginMgr
         private Dictionary<string, BasePlugin> PluginDictionary = new Dictionary<string, BasePlugin>();
         private object objLocker                                = new object();
 
-        public void ShellPluginCommand(string pluginName, string commandContent)
+        public string ShellPluginCommand(string pluginName, string commandContent)
         {
             BasePlugin plugin = null;
             lock (objLocker)
@@ -21,14 +21,15 @@ namespace CozyAnywhere.PluginMgr
             }
             if(plugin != null)
             {
-                plugin.Shell(commandContent);
+                return plugin.Shell(commandContent);
             }
+            return null;
         }
 
-        public void ParsePluginCommand(string command)
+        public string ParsePluginCommand(string command)
         {
             var pluginCommand = PluginCommand.CreateWithParse(command);
-            ShellPluginCommand(pluginCommand.PluginName, pluginCommand.PluginCommandContent);
+            return ShellPluginCommand(pluginCommand.PluginName, pluginCommand.PluginCommandContent);
         }
 
         public void AddPlugin(string pluginName, BasePlugin plugin)

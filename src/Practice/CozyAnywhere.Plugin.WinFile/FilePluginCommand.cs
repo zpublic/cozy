@@ -1,7 +1,8 @@
-﻿using CozyAnywhere.Plugin.WinFile.ArgsFactory;
+﻿using CozyAnywhere.Plugin.WinFile.Args;
+using CozyAnywhere.Plugin.WinFile.ArgsFactory;
 using CozyAnywhere.Protocol;
+using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CozyAnywhere.Plugin.WinFile
 {
@@ -12,94 +13,99 @@ namespace CozyAnywhere.Plugin.WinFile
 
         private void RegisterMethod()
         {
-            MethodDictionary["FileCopy"] = new FileCopyArgsFactory(); ;
-            MethodDictionary["FileDelete"] = new FileDeleteArgsFactory(); ;
-            MethodDictionary["FileEnum"] = new FileEnumArgsFactory(); ;
-            MethodDictionary["FileGetLength"] = new FileGetLengthArgsFactory(); ;
-            MethodDictionary["FileGetTimes"] = new FileGetTimesArgsFactory(); ;
+            MethodDictionary["FileCopy"]        = new FileCopyArgsFactory(); ;
+            MethodDictionary["FileDelete"]      = new FileDeleteArgsFactory(); ;
+            MethodDictionary["FileEnum"]        = new FileEnumArgsFactory(); ;
+            MethodDictionary["FileGetLength"]   = new FileGetLengthArgsFactory(); ;
+            MethodDictionary["FileGetTimes"]    = new FileGetTimesArgsFactory(); ;
             MethodDictionary["FileIsDirectory"] = new FileIsDirectoryArgsFactory(); ;
-            MethodDictionary["FileMove"] = new FileMoveArgsFactory(); ;
-            MethodDictionary["FilePathExist"] = new FilePathExistArgsFactory(); ;
+            MethodDictionary["FileMove"]        = new FileMoveArgsFactory(); ;
+            MethodDictionary["FilePathExist"]   = new FilePathExistArgsFactory(); ;
         }
 
-        public static string MakeFileCopyCommand(string SourcePath, string DestPath, bool FailIfExists)
+        public static string MakeFileCopyCommand(string sourcePath, string destPath, bool failIfExists)
         {
-            var result = new StringBuilder();
-            CommandMake.AppendHeader(result, InnerPluginName);
-            CommandMake.AppendMethodName(result, "FileCopy");
-            CommandMake.AppendArguments(result, SourcePath, DestPath, FailIfExists);
-            CommandMake.AppendFooter(result);
-            return result.ToString();
+            var args = new FileCopyArgs()
+            {
+                SourcePath      = sourcePath,
+                DestPath        = destPath,
+                FailIfExists    = failIfExists,
+            };
+            var argsSerialize = JsonConvert.SerializeObject(args);
+            return PluginCommandSerializeMaker.MakeCommand(InnerPluginName, "FileCopy", argsSerialize);
         }
 
-        public static string MakeFileDeleteCommand(string Path)
+        public static string MakeFileDeleteCommand(string path)
         {
-            var result = new StringBuilder();
-            CommandMake.AppendHeader(result, InnerPluginName);
-            CommandMake.AppendMethodName(result, "FileDelete");
-            CommandMake.AppendArguments(result, Path);
-            CommandMake.AppendFooter(result);
-            return result.ToString();
+            var args = new FileDeleteArgs()
+            {
+                Path            = path,
+            };
+            var argsSerialize = JsonConvert.SerializeObject(args);
+            return PluginCommandSerializeMaker.MakeCommand(InnerPluginName, "FileDelete", argsSerialize);
         }
 
-        public static string MakeFileEnumCommand(string Path, bool EnumSize, bool EnumTime)
+        public static string MakeFileEnumCommand(string path, bool enumSize, bool enumTime)
         {
-            var result = new StringBuilder();
-            CommandMake.AppendHeader(result, InnerPluginName);
-            CommandMake.AppendMethodName(result, "FileEnum");
-            CommandMake.AppendArguments(result, Path, EnumSize, EnumTime);
-            CommandMake.AppendFooter(result);
-            return result.ToString();
+            var args = new FileEnumArgs()
+            {
+                Path            = path,
+                EnumSize        = enumSize,
+                EnumTime        = enumTime,
+            };
+            var argsSerialize = JsonConvert.SerializeObject(args);
+            return PluginCommandSerializeMaker.MakeCommand(InnerPluginName, "FileEnum", argsSerialize);
         }
 
-        public static string MakeFileGetLengthCommand(string Path)
+        public static string MakeFileGetLengthCommand(string path)
         {
-            var result = new StringBuilder();
-            CommandMake.AppendHeader(result, InnerPluginName);
-            CommandMake.AppendMethodName(result, "FileGetLength");
-            CommandMake.AppendArguments(result, Path);
-            CommandMake.AppendFooter(result);
-            return result.ToString();
+            var args = new FileGetLengthArgs()
+            {
+                Path            = path,
+            };
+            var argsSerialize = JsonConvert.SerializeObject(args);
+            return PluginCommandSerializeMaker.MakeCommand(InnerPluginName, "FileGetLength", argsSerialize);
         }
 
-        public static string MakeFileGetTimesCommand(string Path)
+        public static string MakeFileGetTimesCommand(string path)
         {
-            var result = new StringBuilder();
-            CommandMake.AppendHeader(result, InnerPluginName);
-            CommandMake.AppendMethodName(result, "FileGetTimes");
-            CommandMake.AppendArguments(result, Path);
-            CommandMake.AppendFooter(result);
-            return result.ToString();
+            var args = new FileGetTimesArgs()
+            {
+                Path            = path,
+            };
+            var argsSerialize = JsonConvert.SerializeObject(args);
+            return PluginCommandSerializeMaker.MakeCommand(InnerPluginName, "FileGetTimes", argsSerialize);
         }
 
-        public static string MakeFileIsDirectoryCommand(string Path)
+        public static string MakeFileIsDirectoryCommand(string path)
         {
-            var result = new StringBuilder();
-            CommandMake.AppendHeader(result, InnerPluginName);
-            CommandMake.AppendMethodName(result, "FileIsDirectory");
-            CommandMake.AppendArguments(result, Path);
-            CommandMake.AppendFooter(result);
-            return result.ToString();
+            var args = new FileIsDirectoryArgs()
+            {
+                Path            = path,
+            };
+            var argsSerialize = JsonConvert.SerializeObject(args);
+            return PluginCommandSerializeMaker.MakeCommand(InnerPluginName, "FileIsDirectory", argsSerialize);
         }
 
-        public static string MakeFileMoveCommand(string SourcePath, string DestPath)
+        public static string MakeFileMoveCommand(string sourcePath, string destPath)
         {
-            var result = new StringBuilder();
-            CommandMake.AppendHeader(result, InnerPluginName);
-            CommandMake.AppendMethodName(result, "FileMove");
-            CommandMake.AppendArguments(result, SourcePath, DestPath);
-            CommandMake.AppendFooter(result);
-            return result.ToString();
+            var args = new FileMoveArgs()
+            {
+                SourcePath      = sourcePath,
+                DestPath        = destPath,
+            };
+            var argsSerialize = JsonConvert.SerializeObject(args);
+            return PluginCommandSerializeMaker.MakeCommand(InnerPluginName, "FileMove", argsSerialize);
         }
 
-        public static string MakeFilePathExistCommand(string Path)
+        public static string MakeFilePathExistCommand(string path)
         {
-            var result = new StringBuilder();
-            CommandMake.AppendHeader(result, InnerPluginName);
-            CommandMake.AppendMethodName(result, "FilePathExist");
-            CommandMake.AppendArguments(result, Path);
-            CommandMake.AppendFooter(result);
-            return result.ToString();
+            var args = new FilePathExistArgs()
+            {
+                Path            = path,
+            };
+            var argsSerialize = JsonConvert.SerializeObject(args);
+            return PluginCommandSerializeMaker.MakeCommand(InnerPluginName, "FilePathExist", argsSerialize);
         }
     }
 }
