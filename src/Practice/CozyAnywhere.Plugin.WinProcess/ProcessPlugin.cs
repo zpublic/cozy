@@ -1,15 +1,15 @@
 ﻿using CozyAnywhere.PluginBase;
 using CozyAnywhere.Protocol;
 
-namespace CozyAnywhere.Plugin.WinFile
+namespace CozyAnywhere.Plugin.WinProcess
 {
-    public partial class FilePlugin : BasePlugin, IPluginCommandArgsDispatch
+    public partial class ProcessPlugin : BasePlugin, IPluginCommandArgsDispatch
     {
-        private static string InnerPluginName = "FilePlugin";
+        private static string InnerPluginName = "ProcessPlugin";
 
         public override string PluginName { get { return InnerPluginName; } }
 
-        public FilePlugin()
+        public ProcessPlugin()
         {
             RegisterMethod();
         }
@@ -21,9 +21,9 @@ namespace CozyAnywhere.Plugin.WinFile
             var methodArgs  = context.MethodArgs;
             if (MethodDictionary.ContainsKey(methodName))
             {
-                var factory = MethodDictionary[methodName];
-                var args    = factory.Create(methodArgs);
-                var rtvalue =  Dispatch(args);
+                var factory     = MethodDictionary[methodName];
+                var args        = factory.Create(methodArgs);
+                var rtvalue     = Dispatch(args);
 
                 var result = new PluginCommandMethodReturnValue()
                 {

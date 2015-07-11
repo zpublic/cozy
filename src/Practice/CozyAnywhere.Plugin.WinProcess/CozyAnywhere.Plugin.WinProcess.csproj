@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,9 +44,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArgsFactory\ProcessCreateArgsFactory.cs" />
+    <Compile Include="ArgsFactory\ProcessEnumArgsFactory.cs" />
+    <Compile Include="ArgsFactory\ProcessGetNameArgsFactory.cs" />
+    <Compile Include="ArgsFactory\ProcessTerminateArgsFactory.cs" />
+    <Compile Include="ArgsFactory\ProcessTerminateWithTimeOutArgsFactory.cs" />
+    <Compile Include="Args\ProcessCreateArgs.cs" />
+    <Compile Include="Args\ProcessEnumArgs.cs" />
+    <Compile Include="Args\ProcessGetNameArgs.cs" />
+    <Compile Include="Args\ProcessTerminateArgs.cs" />
+    <Compile Include="Args\ProcessTerminateWithTimeOutArgs.cs" />
     <Compile Include="Model\WinProcessModel.cs" />
+    <Compile Include="ProcessPlugin.cs" />
+    <Compile Include="ProcessPluginCommand.cs" />
+    <Compile Include="ProcessPluginMethods.cs" />
     <Compile Include="ProcessUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyAnywhere.PluginBase\CozyAnywhere.PluginBase.csproj">
+      <Project>{3073b255-8934-4898-af1f-00f149c5f00e}</Project>
+      <Name>CozyAnywhere.PluginBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyAnywhere.Protocol\CozyAnywhere.Protocol.csproj">
+      <Project>{7f35c165-b442-4176-a189-dcf409865f81}</Project>
+      <Name>CozyAnywhere.Protocol</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

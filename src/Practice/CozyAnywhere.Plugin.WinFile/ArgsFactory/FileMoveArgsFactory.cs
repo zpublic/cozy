@@ -8,8 +8,7 @@ namespace CozyAnywhere.Plugin.WinFile.ArgsFactory
     {
         public PluginCommandMethodArgs Create(string argsContent)
         {
-            var result = JsonConvert.DeserializeObject<FileMoveArgs>(argsContent);
-            return result;
+            return JsonConvert.DeserializeObject<FileMoveArgs>(argsContent);
         }
     }
 }
