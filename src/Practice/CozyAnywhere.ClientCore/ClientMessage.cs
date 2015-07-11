@@ -41,9 +41,11 @@ namespace CozyAnywhere.ClientCore
             }
         }
 
+        #region ResponseActions
+
         private void OnFileCopyResponse(string rsp)
         {
-
+            var result = JsonConvert.DeserializeObject<bool>(rsp);
         }
 
         private void OnFileDeleteResponse(string rsp)
@@ -63,27 +65,27 @@ namespace CozyAnywhere.ClientCore
 
         private void OnFileGetLengthResponse(string rsp)
         {
-
+            var result = JsonConvert.DeserializeObject<ulong>(rsp);
         }
 
         private void OnFileGetTimesResponse(string rsp)
         {
-
+            var result = JsonConvert.DeserializeObject<WinFileTimeModel>(rsp);
         }
 
         private void OnFileIsDirectoryResponse(string rsp)
         {
-
+            var result = JsonConvert.DeserializeObject<bool>(rsp);
         }
 
         private void OnFileMoveResponse(string rsp)
         {
-
+            var result = JsonConvert.DeserializeObject<bool>(rsp);
         }
 
         private void OnFilePathExistResponse(string rsp)
         {
-
+            var result = JsonConvert.DeserializeObject<bool>(rsp);
         }
 
         private void OnFileEnumMessageRsp(IMessage msg)
@@ -98,5 +100,7 @@ namespace CozyAnywhere.ClientCore
                 }
             }
         }
+
+        #endregion
     }
 }
