@@ -3,18 +3,18 @@ using CozyAnywhere.Protocol;
 
 namespace CozyAnywhere.Plugin.WinFile
 {
-    public partial class FilePlugin : BasePlugin, IPluginCommandArgsDispatch
+    public partial class FilePlugin : IPlugin, IPluginCommandArgsDispatch
     {
         private static string InnerPluginName = "FilePlugin";
 
-        public override string PluginName { get { return InnerPluginName; } }
+        public string PluginName { get { return InnerPluginName; } }
 
         public FilePlugin()
         {
             RegisterMethod();
         }
 
-        public override PluginCommandMethodReturnValue Shell(string commandContent)
+        public PluginCommandMethodReturnValue Shell(string commandContent)
         {
             var context     = PluginCommandMethod.Create(commandContent);
             var methodName  = context.MethodName;
