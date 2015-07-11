@@ -1,6 +1,7 @@
 ﻿using NetworkClient;
 using CozyAnywhere.PluginMgr;
 using CozyAnywhere.Plugin.WinFile;
+using CozyAnywhere.Plugin.WinProcess;
 
 namespace CozyAnywhere.ServerCore
 {
@@ -27,9 +28,11 @@ namespace CozyAnywhere.ServerCore
 
         private void InitPlugin()
         {
-            ServerPluginMgr = new PluginManager();
-            var fileplugin  = new FilePlugin();
-            ServerPluginMgr.AddPlugin("FilePlugin", fileplugin);
+            ServerPluginMgr     = new PluginManager();
+            var fileplugin      = new FilePlugin();
+            var processplugin   = new ProcessPlugin();
+            ServerPluginMgr.AddPlugin(fileplugin);
+            ServerPluginMgr.AddPlugin(processplugin);
         }
 
         public void Connect(string ip, int port)

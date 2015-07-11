@@ -32,11 +32,11 @@ namespace CozyAnywhere.PluginMgr
             return ShellPluginCommand(pluginCommand.PluginName, pluginCommand.PluginCommandContent);
         }
 
-        public void AddPlugin(string pluginName, BasePlugin plugin)
+        public void AddPlugin(BasePlugin plugin)
         {
             lock(objLocker)
             {
-                PluginDictionary[pluginName] = plugin;
+                PluginDictionary[plugin.PluginName] = plugin;
             }
         }
     }

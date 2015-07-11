@@ -65,6 +65,10 @@
       <Project>{865c7166-f6dc-43ec-b3e2-f6b999123a60}</Project>
       <Name>CozyAnywhere.Plugin.WinFile</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyAnywhere.Plugin.WinProcess\CozyAnywhere.Plugin.WinProcess.csproj">
+      <Project>{803ab2f5-c93d-4262-a942-9bf533e58cc6}</Project>
+      <Name>CozyAnywhere.Plugin.WinProcess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyAnywhere.PluginBase\CozyAnywhere.PluginBase.csproj">
       <Project>{3073b255-8934-4898-af1f-00f149c5f00e}</Project>
       <Name>CozyAnywhere.PluginBase</Name>
