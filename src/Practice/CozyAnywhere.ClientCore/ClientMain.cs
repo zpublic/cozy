@@ -69,5 +69,18 @@ namespace CozyAnywhere.ClientCore
                 server.SendMessage(commandMsg);
             }
         }
+
+        public void SendDeleteMessage(string path)
+        {
+            if(server != null)
+            {
+                var command    = FilePlugin.MakeFileDeleteCommand(@"D:\" + path);
+                var commandMsg = new CommandMessage()
+                {
+                    Command = command,
+                };
+                server.SendMessage(commandMsg);
+            }
+        }
     }
 }

@@ -22,6 +22,19 @@ namespace CozyAnywhere.WpfClient.ViewModel
             }
         }
 
+        private Tuple<string, bool> _FileListSelectedItem;
+        public Tuple<string, bool> FileListSelectedItem 
+        { 
+            get
+            {
+                return _FileListSelectedItem;
+            }
+            set
+            {
+                Set(ref _FileListSelectedItem, value, "FileListSelectedItem");
+            }
+        }
+
         public int Port { get; set; }
 
         public AnywhereClient clientCore { get; set; }
@@ -57,6 +70,21 @@ namespace CozyAnywhere.WpfClient.ViewModel
                     {
                         clientCore.Listen();
                         ListenButtonText = "Shutdown";
+                    }
+                });
+            }
+        }
+
+        private ICommand _DeleteCommand;
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return _DeleteCommand = _DeleteCommand ?? new DelegateCommand((x) =>
+                {
+                    if (FileListSelectedItem != null)
+                    {
+                        clientCore.SendDeleteMessage(FileListSelectedItem.Item1);
                     }
                 });
             }

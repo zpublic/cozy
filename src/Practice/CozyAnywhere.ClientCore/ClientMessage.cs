@@ -48,7 +48,7 @@ namespace CozyAnywhere.ClientCore
 
         private void OnFileDeleteResponse(string rsp)
         {
-
+            var result = JsonConvert.DeserializeObject<bool>(rsp);
         }
 
         private void OnFileEnumResponse(string rsp)

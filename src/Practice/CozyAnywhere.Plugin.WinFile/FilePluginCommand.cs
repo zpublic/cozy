@@ -13,14 +13,14 @@ namespace CozyAnywhere.Plugin.WinFile
 
         private void RegisterMethod()
         {
-            MethodDictionary["FileCopy"]        = new FileCopyArgsFactory(); ;
-            MethodDictionary["FileDelete"]      = new FileDeleteArgsFactory(); ;
-            MethodDictionary["FileEnum"]        = new FileEnumArgsFactory(); ;
-            MethodDictionary["FileGetLength"]   = new FileGetLengthArgsFactory(); ;
-            MethodDictionary["FileGetTimes"]    = new FileGetTimesArgsFactory(); ;
-            MethodDictionary["FileIsDirectory"] = new FileIsDirectoryArgsFactory(); ;
-            MethodDictionary["FileMove"]        = new FileMoveArgsFactory(); ;
-            MethodDictionary["FilePathExist"]   = new FilePathExistArgsFactory(); ;
+            MethodDictionary["FileCopy"]        = new FileCopyArgsFactory();
+            MethodDictionary["FileDelete"]      = new FileDeleteArgsFactory();
+            MethodDictionary["FileEnum"]        = new FileEnumArgsFactory();
+            MethodDictionary["FileGetLength"]   = new FileGetLengthArgsFactory();
+            MethodDictionary["FileGetTimes"]    = new FileGetTimesArgsFactory();
+            MethodDictionary["FileIsDirectory"] = new FileIsDirectoryArgsFactory();
+            MethodDictionary["FileMove"]        = new FileMoveArgsFactory();
+            MethodDictionary["FilePathExist"]   = new FilePathExistArgsFactory();
         }
 
         public static string MakeFileCopyCommand(string sourcePath, string destPath, bool failIfExists)

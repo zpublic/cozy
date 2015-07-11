@@ -12,13 +12,18 @@
                 <TextBox Text="{Binding Port, Mode=TwoWay}" Width="60"></TextBox>
                 <Button Content="{Binding ListenButtonText, Mode=TwoWay}" Command="{Binding ListenCommand}"></Button>
             </StackPanel>
-            <ListView ItemsSource="{Binding Path=FileList, Mode=TwoWay}" Height="290">
+            <ListView ItemsSource="{Binding Path=FileList, Mode=TwoWay}" Height="290" SelectedItem="{Binding FileListSelectedItem, Mode=TwoWay}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Item1}"></GridViewColumn>
                         <GridViewColumn Header="IsFolder" DisplayMemberBinding="{Binding Item2}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Delete" Command="{Binding DeleteCommand}"></MenuItem>
+                    </ContextMenu>
+                </ListView.ContextMenu>
             </ListView>
         </StackPanel>
     </Grid>
