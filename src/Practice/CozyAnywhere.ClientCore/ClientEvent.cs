@@ -33,6 +33,9 @@ namespace CozyAnywhere.ClientCore
                 case MessageId.FileEnumMessageRsp:
                     OnFileEnumMessageRsp(baseMsg);
                     break;
+                case MessageId.CommandMessageRsp:
+                    OnCommandMessageRsp(baseMsg);
+                    break;
                 default:
                     break;
             }

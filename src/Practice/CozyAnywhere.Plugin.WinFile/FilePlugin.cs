@@ -9,7 +9,7 @@ namespace CozyAnywhere.Plugin.WinFile
 
         public override string PluginName { get { return InnerPluginName; } }
 
-        public override string Shell(string commandContent)
+        public override PluginCommandMethodReturnValue Shell(string commandContent)
         {
             var context     = PluginCommandMethod.Create(commandContent);
             var methodName  = context.MethodName;
@@ -18,7 +18,15 @@ namespace CozyAnywhere.Plugin.WinFile
             {
                 var factory = MethodDictionary[methodName];
                 var args    = factory.Create(methodArgs);
-                return Dispatch(args);
+                var rtvalue =  Dispatch(args);
+
+                var result = new PluginCommandMethodReturnValue()
+                {
+                    PluginName          = InnerPluginName,
+                    MethodName          = methodName,
+                    MethodReturnValue   = rtvalue,
+                };
+                return result;
             }
             return null;
         }

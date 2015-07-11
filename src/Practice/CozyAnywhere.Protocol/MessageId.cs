@@ -9,5 +9,6 @@
         public const uint ProcessEnumMessageRsp     = 1004;
         public const uint ProcessTerminateMessage   = 1005;
         public const uint FileDeleteMessage         = 1006;
+        public const uint CommandMessageRsp         = 1007;
     }
 }

@@ -12,6 +12,7 @@ namespace CozyAnywhere.ClientCore
 
         public AnywhereClient(int MaxConn, int Port)
         {
+            RegisterResponseActions();
             InitNetwork(MaxConn, Port);
         }
 
@@ -60,7 +61,7 @@ namespace CozyAnywhere.ClientCore
         {
             if (server != null)
             {
-                var command     = FilePlugin.MakeFileDeleteCommand("TestFile.txt");
+                var command     = FilePlugin.MakeFileEnumCommand(@"D:\", false, false);
                 var commandMsg  = new CommandMessage()
                 {
                     Command = command,

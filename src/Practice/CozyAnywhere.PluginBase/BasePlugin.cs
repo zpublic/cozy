@@ -5,6 +5,6 @@ namespace CozyAnywhere.PluginBase
     {
         public abstract string PluginName { get; }
 
-        public abstract string Shell(string commandContent);
+        public abstract PluginCommandMethodReturnValue Shell(string commandContent);
     }
 }

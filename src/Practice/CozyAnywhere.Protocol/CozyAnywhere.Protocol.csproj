@@ -47,6 +47,7 @@
     <Compile Include="IPluginCommandArgsDispatch.cs" />
     <Compile Include="MessageId.cs" />
     <Compile Include="Messages\CommandMessage.cs" />
+    <Compile Include="Messages\CommandMessageRsp.cs" />
     <Compile Include="Messages\FileDeleteMessage.cs" />
     <Compile Include="Messages\FileEnumMessage.cs" />
     <Compile Include="Messages\ProcessEnumMessage.cs" />
