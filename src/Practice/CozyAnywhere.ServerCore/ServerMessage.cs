@@ -36,13 +36,16 @@ namespace CozyAnywhere.ServerCore
             {
                 var result = ServerPluginMgr.ParsePluginCommand(comm.Command);
 
-                var rspMsg = new CommandMessageRsp()
+                if(result != null)
                 {
-                    PluginName = result.PluginName,
-                    MethodName = result.MethodName,
-                    CommandRsp = result.MethodReturnValue,
-                };
-                client.SendMessage(rspMsg);
+                    var rspMsg = new CommandMessageRsp()
+                    {
+                        PluginName = result.PluginName,
+                        MethodName = result.MethodName,
+                        CommandRsp = result.MethodReturnValue,
+                    };
+                    client.SendMessage(rspMsg);
+                }
             }
         }
     }
