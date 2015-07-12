@@ -2,6 +2,8 @@
 using CozyAnywhere.PluginMgr;
 using CozyAnywhere.Plugin.WinFile;
 using CozyAnywhere.Plugin.WinProcess;
+using CozyAnywhere.Plugin.WinMouse;
+using CozyAnywhere.Plugin.WinKeyboard;
 
 namespace CozyAnywhere.ServerCore
 {
@@ -31,8 +33,12 @@ namespace CozyAnywhere.ServerCore
             ServerPluginMgr     = new PluginManager();
             var fileplugin      = new FilePlugin();
             var processplugin   = new ProcessPlugin();
+            var mouseplugin     = new MousePlugin();
+            var keyboardplugin  = new KeyboardPlugin();
             ServerPluginMgr.AddPlugin(fileplugin);
             ServerPluginMgr.AddPlugin(processplugin);
+            ServerPluginMgr.AddPlugin(mouseplugin);
+            ServerPluginMgr.AddPlugin(keyboardplugin);
         }
 
         public void Connect(string ip, int port)
