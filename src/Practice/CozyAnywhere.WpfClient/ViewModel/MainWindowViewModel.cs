@@ -1,43 +1,32 @@
 ﻿using CozyAnywhere.ClientCore;
 using CozyAnywhere.WpfClient.Command;
 using System;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
+using System.Windows.Controls;
+using CozyAnywhere.WpfClient.UserControls;
+using CozyAnywhere.WpfClient.Model;
 
 namespace CozyAnywhere.WpfClient.ViewModel
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        private ObservableCollection<Tuple<string, bool>> _FileList = new ObservableCollection<Tuple<string, bool>>();
+        public int Port { get; set; }
 
-        public ObservableCollection<Tuple<string, bool>> FileList
+        public static AnywhereClient clientCore { get; set; }
+
+        private ObservableCollection<DefaultControlInfo> _ControlList = new ObservableCollection<DefaultControlInfo>();
+        public ObservableCollection<DefaultControlInfo> ControlList
         {
             get
             {
-                return _FileList;
+                return _ControlList;
             }
             set
             {
-                Set(ref _FileList, value, "FileList");
+                Set(ref _ControlList, value, "ControlList");
             }
         }
-
-        private Tuple<string, bool> _FileListSelectedItem;
-        public Tuple<string, bool> FileListSelectedItem 
-        { 
-            get
-            {
-                return _FileListSelectedItem;
-            }
-            set
-            {
-                Set(ref _FileListSelectedItem, value, "FileListSelectedItem");
-            }
-        }
-
-        public int Port { get; set; }
-
-        public AnywhereClient clientCore { get; set; }
 
         private string _ListenButtonText = "Listen";
 
@@ -75,35 +64,29 @@ namespace CozyAnywhere.WpfClient.ViewModel
             }
         }
 
-        private ICommand _DeleteCommand;
-        public ICommand DeleteCommand
-        {
-            get
-            {
-                return _DeleteCommand = _DeleteCommand ?? new DelegateCommand((x) =>
-                {
-                    if (FileListSelectedItem != null)
-                    {
-                        clientCore.SendDeleteMessage(FileListSelectedItem.Item1);
-                    }
-                });
-            }
-        }
-
         public MainWindowViewModel()
         {
-            Port = 48360;
-            clientCore = new AnywhereClient(1000, Port);
-            BindCoreCollections();
+            Port        = 48360;
+            clientCore  = new AnywhereClient(1000, Port);
             SetUpdateTimer();
+            LoadControls();
         }
 
-        private void BindCoreCollections()
+        private void LoadControls()
         {
-            if (clientCore != null)
+            var fileControl = new DefaultControlInfo()
             {
-                clientCore.FileCollection = FileList;
-            }
+                Name = "File",
+               Controls = new FilePluginPage(),
+            };
+            ControlList.Add(fileControl);
+
+            var processControl = new DefaultControlInfo()
+            {
+                Name = "Process",
+                Controls = new ProcessPluginPage(),
+            };
+            ControlList.Add(processControl);
         }
 
         private void SetUpdateTimer()

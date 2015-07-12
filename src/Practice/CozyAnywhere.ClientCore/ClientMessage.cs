@@ -6,6 +6,7 @@ using NetworkProtocol;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using CozyAnywhere.Plugin.WinFile.Model;
+using CozyAnywhere.Plugin.WinProcess.Model;
 
 namespace CozyAnywhere.ClientCore
 {
@@ -29,6 +30,7 @@ namespace CozyAnywhere.ClientCore
             ResponseActions["FileIsDirectory"]  = new Action<string>(OnFileIsDirectoryResponse);
             ResponseActions["FileMove"]         = new Action<string>(OnFileMoveResponse);
             ResponseActions["FilePathExist"]    = new Action<string>(OnFilePathExistResponse);
+            ResponseActions["ProcessEnum"]      = new Action<string>(OnProcessEnum);
         }
 
         private void OnCommandMessageRsp(IMessage msg)
@@ -55,11 +57,14 @@ namespace CozyAnywhere.ClientCore
 
         private void OnFileEnumResponse(string rsp)
         {
-            FileCollection.Clear();
-            var list = JsonConvert.DeserializeObject<List<WinFileModel>>(rsp);
-            foreach(var obj in list)
+            if(FileCollection != null)
             {
-                FileCollection.Add(Tuple.Create<string, bool>(obj.Name, obj.IsFolder));
+                FileCollection.Clear();
+                var list = JsonConvert.DeserializeObject<List<WinFileModel>>(rsp);
+                foreach (var obj in list)
+                {
+                    FileCollection.Add(Tuple.Create<string, bool>(obj.Name, obj.IsFolder));
+                }
             }
         }
 
@@ -97,6 +102,20 @@ namespace CozyAnywhere.ClientCore
                 {
                     var file = Tuple.Create<string, bool>(obj.Item1, obj.Item3);
                     FileCollection.Add(file);
+                }
+            }
+        }
+
+        private void OnProcessEnum(string rsp)
+        {
+            var list = JsonConvert.DeserializeObject<List<WinProcessModel>>(rsp);
+            if(ProcessCollection != null)
+            {
+                ProcessCollection.Clear();
+                foreach (var obj in list)
+                {
+                    var process = Tuple.Create<uint, string>(obj.ProcessId, obj.Name);
+                    ProcessCollection.Add(process);
                 }
             }
         }

@@ -1,5 +1,6 @@
 ﻿using NetworkServer;
 using CozyAnywhere.Plugin.WinFile;
+using CozyAnywhere.Plugin.WinProcess;
 using CozyAnywhere.Protocol.Messages;
 
 namespace CozyAnywhere.ClientCore
@@ -67,6 +68,13 @@ namespace CozyAnywhere.ClientCore
                     Command = command,
                 };
                 server.SendMessage(commandMsg);
+
+                var command1 = ProcessPlugin.MakeProcessEnumCommand();
+                var commandMsg1 = new CommandMessage()
+                {
+                    Command = command1,
+                };
+                server.SendMessage(commandMsg1);
             }
         }
 
