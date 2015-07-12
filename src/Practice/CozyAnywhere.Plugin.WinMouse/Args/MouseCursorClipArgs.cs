@@ -2,7 +2,7 @@
 
 namespace CozyAnywhere.Plugin.WinMouse.Args
 {
-    public class MouseCursorClipArgs : PluginCommandMethodArgs
+    public class MouseCursorClipArgs : IPluginCommandMethodArgs
     {
         public int Left { get; set; }
 
@@ -12,7 +12,7 @@ namespace CozyAnywhere.Plugin.WinMouse.Args
 
         public int Bottom { get; set; }
 
-        public override string Execute(IPluginCommandArgsDispatch dispatch)
+        public string Execute(IPluginCommandArgsDispatch dispatch)
         {
             var plugin = (MousePlugin)dispatch;
             return plugin.Shell(this);

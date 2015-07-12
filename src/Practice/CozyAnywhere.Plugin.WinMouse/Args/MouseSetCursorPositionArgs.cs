@@ -2,13 +2,13 @@
 
 namespace CozyAnywhere.Plugin.WinMouse.Args
 {
-    public class MouseSetCursorPositionArgs : PluginCommandMethodArgs
+    public class MouseSetCursorPositionArgs : IPluginCommandMethodArgs
     {
         public int X { get; set; }
 
         public int Y { get; set; }
 
-        public override string Execute(IPluginCommandArgsDispatch dispatch)
+        public string Execute(IPluginCommandArgsDispatch dispatch)
         {
             var plugin = (MousePlugin)dispatch;
             return plugin.Shell(this);

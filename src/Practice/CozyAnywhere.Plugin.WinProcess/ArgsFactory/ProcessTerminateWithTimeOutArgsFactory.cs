@@ -6,7 +6,7 @@ namespace CozyAnywhere.Plugin.WinProcess.ArgsFactory
 {
     public class ProcessTerminateWithTimeOutArgsFactory : IPluginCommandMethodArgsFactory
     {
-        public PluginCommandMethodArgs Create(string argsContent)
+        public IPluginCommandMethodArgs Create(string argsContent)
         {
             return JsonConvert.DeserializeObject<ProcessTerminateWithTimeOutArgs>(argsContent);
         }

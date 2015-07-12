@@ -7,12 +7,12 @@ namespace CozyAnywhere.Plugin.WinMouse
 {
     public partial class MousePlugin
     {
-        public string Dispatch(PluginCommandMethodArgs args)
+        public string Dispatch(IPluginCommandMethodArgs args)
         {
             return args.Execute(this);
         }
 
-        public string Shell(PluginCommandMethodArgs args)
+        public string Shell(IPluginCommandMethodArgs args)
         {
             throw new Exception("Unknow Command Args");
         }

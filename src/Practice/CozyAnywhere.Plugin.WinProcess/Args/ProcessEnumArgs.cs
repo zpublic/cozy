@@ -2,10 +2,10 @@
 
 namespace CozyAnywhere.Plugin.WinProcess.Args
 {
-    public class ProcessEnumArgs : PluginCommandMethodArgs
+    public class ProcessEnumArgs : IPluginCommandMethodArgs
     {
         // No Args
-        public override string Execute(IPluginCommandArgsDispatch dispatch)
+        public string Execute(IPluginCommandArgsDispatch dispatch)
         {
             var plugin = (ProcessPlugin)dispatch;
             return plugin.Shell(this);

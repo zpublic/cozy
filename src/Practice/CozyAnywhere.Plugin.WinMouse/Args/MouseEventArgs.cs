@@ -3,7 +3,7 @@ using CozyAnywhere.Protocol;
 
 namespace CozyAnywhere.Plugin.WinMouse.Args
 {
-    public class MouseEventArgs : PluginCommandMethodArgs
+    public class MouseEventArgs : IPluginCommandMethodArgs
     {
         public MouseEventTag Tag { get; set; }
 
@@ -15,7 +15,7 @@ namespace CozyAnywhere.Plugin.WinMouse.Args
 
         public uint ExtInfo { get; set; }
 
-        public override string Execute(IPluginCommandArgsDispatch dispatch)
+        public string Execute(IPluginCommandArgsDispatch dispatch)
         {
             var plugin = (MousePlugin)dispatch;
             return plugin.Shell(this);

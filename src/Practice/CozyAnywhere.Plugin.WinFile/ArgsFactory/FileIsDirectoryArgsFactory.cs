@@ -6,7 +6,7 @@ namespace CozyAnywhere.Plugin.WinFile.ArgsFactory
 {
     public class FileIsDirectoryArgsFactory : IPluginCommandMethodArgsFactory
     {
-        public PluginCommandMethodArgs Create(string argsContent)
+        public IPluginCommandMethodArgs Create(string argsContent)
         {
             return JsonConvert.DeserializeObject<FileIsDirectoryArgs>(argsContent);
         }

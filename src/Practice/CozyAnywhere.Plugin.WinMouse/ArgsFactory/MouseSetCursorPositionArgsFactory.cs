@@ -6,7 +6,7 @@ namespace CozyAnywhere.Plugin.WinMouse.ArgsFactory
 {
     public class MouseSetCursorPositionArgsFactory : IPluginCommandMethodArgsFactory
     {
-        public PluginCommandMethodArgs Create(string argsContent)
+        public IPluginCommandMethodArgs Create(string argsContent)
         {
             return JsonConvert.DeserializeObject<MouseSetCursorPositionArgs>(argsContent);
         }
