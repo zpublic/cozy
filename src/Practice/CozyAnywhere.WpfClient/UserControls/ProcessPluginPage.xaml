@@ -21,6 +21,7 @@
                 <ListView.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Terminate" Command="{Binding TerminateCommand}"></MenuItem>
+                        <MenuItem Header="Refresh" Command="{Binding RefreshCommand}"></MenuItem>
                     </ContextMenu>
                 </ListView.ContextMenu>
             </ListView>

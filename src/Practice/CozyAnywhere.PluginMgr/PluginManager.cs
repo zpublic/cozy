@@ -1,13 +1,14 @@
 ﻿using CozyAnywhere.PluginBase;
-using System.Collections.Generic;
 using CozyAnywhere.Protocol;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CozyAnywhere.PluginMgr
 {
     public class PluginManager
     {
         private Dictionary<string, IPlugin> PluginDictionary = new Dictionary<string, IPlugin>();
-        private object objLocker                                = new object();
+        private object objLocker = new object();
 
         public PluginCommandMethodReturnValue ShellPluginCommand(string pluginName, string commandContent)
         {
@@ -19,7 +20,7 @@ namespace CozyAnywhere.PluginMgr
                     plugin = PluginDictionary[pluginName];
                 }
             }
-            if(plugin != null)
+            if (plugin != null)
             {
                 return plugin.Shell(commandContent);
             }
@@ -34,10 +35,23 @@ namespace CozyAnywhere.PluginMgr
 
         public void AddPlugin(IPlugin plugin)
         {
-            lock(objLocker)
+            lock (objLocker)
             {
-                PluginDictionary[plugin.PluginName] = plugin;
+                if (!ContainsPlugin(plugin.PluginName))
+                {
+                    PluginDictionary[plugin.PluginName] = plugin;
+                }
             }
+        }
+
+        public bool ContainsPlugin(string name)
+        {
+            return PluginDictionary.ContainsKey(name);
+        }
+
+        public List<string> AllPluginName()
+        {
+            return PluginDictionary.Keys.ToList();
         }
     }
 }

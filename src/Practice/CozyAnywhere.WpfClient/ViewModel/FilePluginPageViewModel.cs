@@ -54,6 +54,18 @@ namespace CozyAnywhere.WpfClient.ViewModel
             }
         }
 
+        private ICommand _RefreshCommand;
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return _RefreshCommand = _RefreshCommand ?? new DelegateCommand((x) =>
+                {
+                    clientCore.SendEnumFileMessage(@"D:\");
+                });
+            }
+        }
+
         public FilePluginPageViewModel()
         {
             clientCore = MainWindowViewModel.clientCore;

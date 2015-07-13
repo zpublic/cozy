@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using CozyAnywhere.Plugin.WinFile.Model;
 using CozyAnywhere.Plugin.WinProcess.Model;
+using CozyAnywhere.ClientCore.EventArg;
 
 namespace CozyAnywhere.ClientCore
 {
@@ -17,6 +18,7 @@ namespace CozyAnywhere.ClientCore
         public void InitClientMessage()
         {
             MessageReader.RegisterType<CommandMessageRsp>(MessageId.CommandMessageRsp);
+            MessageReader.RegisterType<PluginQueryMessage>(MessageId.PluginQueryMessage);
         }
 
         public void RegisterResponseActions()
@@ -41,6 +43,20 @@ namespace CozyAnywhere.ClientCore
             if (ResponseActions.ContainsKey(name))
             {
                 ResponseActions[name](rspMsg.CommandRsp);
+            }
+        }
+
+        private void OnPluginQueryMessage(IMessage msg)
+        {
+            var rspMsg = (PluginQueryMessage)msg;
+            if(PluginNameCollection != null)
+            {
+                PluginNameCollection.Clear();
+                foreach(var obj in rspMsg.Plugins)
+                {
+                    PluginNameCollection.Add(obj);
+                }
+                PluginChangedHandler(this, new PluginChangedEvnetArgs());
             }
         }
 

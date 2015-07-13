@@ -58,17 +58,23 @@ namespace CozyAnywhere.ClientCore
             }
         }
 
-        public void SendTestMessage()
+        public void SendEnumFileMessage(string path)
         {
             if (server != null)
             {
-                var command     = FilePlugin.MakeFileEnumCommand(@"D:\", false, false);
-                var commandMsg  = new CommandMessage()
+                var command = FilePlugin.MakeFileEnumCommand(path, false, false);
+                var commandMsg = new CommandMessage()
                 {
                     Command = command,
                 };
                 server.SendMessage(commandMsg);
+            }
+        }
 
+        public void SendEnumProcessMessage()
+        {
+            if (server != null)
+            {
                 var command1 = ProcessPlugin.MakeProcessEnumCommand();
                 var commandMsg1 = new CommandMessage()
                 {
@@ -101,6 +107,18 @@ namespace CozyAnywhere.ClientCore
                     Command = command,
                 };
                 server.SendMessage(commandMsg);
+            }
+        }
+
+        public void SendPluginLoadMessage(string name)
+        {
+            if(server != null)
+            {
+                var loadMsg = new PluginLoadMessage()
+                {
+                    PluginName = name,
+                };
+                server.SendMessage(loadMsg);
             }
         }
     }

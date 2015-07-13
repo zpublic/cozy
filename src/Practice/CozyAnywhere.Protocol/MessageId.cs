@@ -10,5 +10,7 @@
         public const uint ProcessTerminateMessage   = 1005;
         public const uint FileDeleteMessage         = 1006;
         public const uint CommandMessageRsp         = 1007;
+        public const uint PluginLoadMessage         = 1008;
+        public const uint PluginQueryMessage        = 1009;
     }
 }

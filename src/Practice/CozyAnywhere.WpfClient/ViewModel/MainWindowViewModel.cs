@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using CozyAnywhere.WpfClient.UserControls;
 using CozyAnywhere.WpfClient.Model;
+using System.ComponentModel;
+using CozyAnywhere.ClientCore.EventArg;
 
 namespace CozyAnywhere.WpfClient.ViewModel
 {
@@ -28,6 +30,19 @@ namespace CozyAnywhere.WpfClient.ViewModel
             }
         }
 
+        private ObservableCollection<string> _PluginList = new ObservableCollection<string>();
+        public ObservableCollection<string> PluginList
+        {
+            get
+            {
+                return _PluginList;
+            }
+            set
+            {
+                Set(ref _PluginList, value, "PluginList");
+            }
+        }
+ 
         private string _ListenButtonText = "Listen";
 
         public string ListenButtonText
@@ -66,27 +81,42 @@ namespace CozyAnywhere.WpfClient.ViewModel
 
         public MainWindowViewModel()
         {
-            Port        = 48360;
-            clientCore  = new AnywhereClient(1000, Port);
+            Port                            = 48360;
+            clientCore                      = new AnywhereClient(1000, Port);
+            BindCoreCollections();
+            clientCore.PluginChangedHandler += new EventHandler<PluginChangedEvnetArgs>(OnPluginChanged);
             SetUpdateTimer();
-            LoadControls();
         }
 
-        private void LoadControls()
+        private void OnPluginChanged(object sender, PluginChangedEvnetArgs e)
         {
-            var fileControl = new DefaultControlInfo()
+            ControlList.Clear();
+            if (PluginList.Contains("FilePlugin"))
             {
-                Name = "File",
-               Controls = new FilePluginPage(),
-            };
-            ControlList.Add(fileControl);
+                var fileControl = new DefaultControlInfo()
+                {
+                    Name = "FilePlugin",
+                    Controls = new FilePluginPage(),
+                };
+                ControlList.Add(fileControl);
+            }
+            if (PluginList.Contains("ProcessPlugin"))
+            {
+                var processControl = new DefaultControlInfo()
+                {
+                    Name = "ProcessPlugin",
+                    Controls = new ProcessPluginPage(),
+                };
+                ControlList.Add(processControl);
+            }
+        }
 
-            var processControl = new DefaultControlInfo()
+        private void BindCoreCollections()
+        {
+            if (clientCore != null)
             {
-                Name = "Process",
-                Controls = new ProcessPluginPage(),
-            };
-            ControlList.Add(processControl);
+                clientCore.PluginNameCollection = PluginList;
+            }
         }
 
         private void SetUpdateTimer()
