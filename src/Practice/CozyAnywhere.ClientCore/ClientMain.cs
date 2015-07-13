@@ -1,5 +1,6 @@
 ﻿using NetworkServer;
 using CozyAnywhere.Plugin.WinFile;
+using CozyAnywhere.Plugin.WinProcess;
 using CozyAnywhere.Protocol.Messages;
 
 namespace CozyAnywhere.ClientCore
@@ -12,6 +13,7 @@ namespace CozyAnywhere.ClientCore
 
         public AnywhereClient(int MaxConn, int Port)
         {
+            RegisterResponseActions();
             InitNetwork(MaxConn, Port);
         }
 
@@ -60,8 +62,28 @@ namespace CozyAnywhere.ClientCore
         {
             if (server != null)
             {
-                var command     = FilePlugin.MakeFileDeleteCommand("TestFile.txt");
+                var command     = FilePlugin.MakeFileEnumCommand(@"D:\", false, false);
                 var commandMsg  = new CommandMessage()
+                {
+                    Command = command,
+                };
+                server.SendMessage(commandMsg);
+
+                var command1 = ProcessPlugin.MakeProcessEnumCommand();
+                var commandMsg1 = new CommandMessage()
+                {
+                    Command = command1,
+                };
+                server.SendMessage(commandMsg1);
+            }
+        }
+
+        public void SendDeleteMessage(string path)
+        {
+            if(server != null)
+            {
+                var command    = FilePlugin.MakeFileDeleteCommand(@"D:\" + path);
+                var commandMsg = new CommandMessage()
                 {
                     Command = command,
                 };

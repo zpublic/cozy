@@ -8,18 +8,24 @@
     </Window.DataContext>
     <Grid>
         <StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding Port, Mode=TwoWay}" Width="60"></TextBox>
+            <TabControl ItemsSource="{Binding ControlList, Mode=TwoWay}" Height="290">
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <ContentPresenter Content="{Binding Controls}" />
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0">
+                            <TextBlock Text="{Binding Name}" Margin="0" />
+                        </StackPanel>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+            </TabControl>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBox Text="{Binding Port, Mode=TwoWay}"></TextBox>
                 <Button Content="{Binding ListenButtonText, Mode=TwoWay}" Command="{Binding ListenCommand}"></Button>
             </StackPanel>
-            <ListView ItemsSource="{Binding Path=FileList, Mode=TwoWay}" Height="290">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Item1}"></GridViewColumn>
-                        <GridViewColumn Header="IsFolder" DisplayMemberBinding="{Binding Item2}"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
         </StackPanel>
     </Grid>
 </Window>

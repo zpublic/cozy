@@ -2,7 +2,7 @@
 
 namespace CozyAnywhere.Plugin.WinFile.Args
 {
-    public class FileEnumArgs : PluginCommandMethodArgs
+    public class FileEnumArgs : IPluginCommandMethodArgs
     {
         public string Path { get; set; }
 
@@ -10,7 +10,7 @@ namespace CozyAnywhere.Plugin.WinFile.Args
 
         public bool EnumTime { get; set; }
 
-        public override string Execute(IPluginCommandArgsDispatch dispatch)
+        public string Execute(IPluginCommandArgsDispatch dispatch)
         {
             var plugin = (FilePlugin)dispatch;
             return plugin.Shell(this);

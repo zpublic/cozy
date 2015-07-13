@@ -1,10 +1,7 @@
 ﻿namespace CozyAnywhere.Protocol
 {
-    public abstract class PluginCommandMethodArgs
+    public interface IPluginCommandMethodArgs
     {
-        public virtual string Execute(IPluginCommandArgsDispatch dispatch)
-        {
-            return dispatch.Shell(this);
-        }
+        string Execute(IPluginCommandArgsDispatch dispatch);
     }
 }

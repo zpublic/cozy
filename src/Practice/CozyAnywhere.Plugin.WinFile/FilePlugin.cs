@@ -3,13 +3,18 @@ using CozyAnywhere.Protocol;
 
 namespace CozyAnywhere.Plugin.WinFile
 {
-    public partial class FilePlugin : BasePlugin, IPluginCommandArgsDispatch
+    public partial class FilePlugin : IPlugin, IPluginCommandArgsDispatch
     {
         private static string InnerPluginName = "FilePlugin";
 
-        public override string PluginName { get { return InnerPluginName; } }
+        public string PluginName { get { return InnerPluginName; } }
 
-        public override string Shell(string commandContent)
+        public FilePlugin()
+        {
+            RegisterMethod();
+        }
+
+        public PluginCommandMethodReturnValue Shell(string commandContent)
         {
             var context     = PluginCommandMethod.Create(commandContent);
             var methodName  = context.MethodName;
@@ -18,14 +23,17 @@ namespace CozyAnywhere.Plugin.WinFile
             {
                 var factory = MethodDictionary[methodName];
                 var args    = factory.Create(methodArgs);
-                return Dispatch(args);
+                var rtvalue =  Dispatch(args);
+
+                var result = new PluginCommandMethodReturnValue()
+                {
+                    PluginName          = InnerPluginName,
+                    MethodName          = methodName,
+                    MethodReturnValue   = rtvalue,
+                };
+                return result;
             }
             return null;
-        }
-
-        public FilePlugin()
-        {
-            RegisterMethod();
         }
     }
 }

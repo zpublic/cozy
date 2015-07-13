@@ -1,4 +1,5 @@
 ﻿using CozyAnywhere.Plugin.WinMouse.Tag;
+using CozyAnywhere.Plugin.WinMouse.Model;
 using System.Runtime.InteropServices;
 
 namespace CozyAnywhere.Plugin.WinMouse
@@ -58,5 +59,19 @@ namespace CozyAnywhere.Plugin.WinMouse
             CharSet             = CharSet.Auto,
             CallingConvention   = CallingConvention.Cdecl)]
         public static extern void MiddleClick(uint x, uint y);
+
+        #region DefaultMethod
+        public static MousePosition DefGetCursorPosition()
+        {
+            int x = 0;
+            int y = 0;
+            GetCursorPosition(ref x, ref y);
+            return new MousePosition()
+            {
+                X = x,
+                Y = y,
+            };
+        }
+        #endregion
     }
 }

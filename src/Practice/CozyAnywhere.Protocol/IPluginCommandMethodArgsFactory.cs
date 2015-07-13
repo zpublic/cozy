@@ -3,6 +3,6 @@
     public interface IPluginCommandMethodArgsFactory
     {
         // TODO deserialization Args By argsContent
-        PluginCommandMethodArgs Create(string argsContent);
+        IPluginCommandMethodArgs Create(string argsContent);
     }
 }

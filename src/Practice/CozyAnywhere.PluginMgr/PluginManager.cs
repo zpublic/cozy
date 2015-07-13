@@ -6,12 +6,12 @@ namespace CozyAnywhere.PluginMgr
 {
     public class PluginManager
     {
-        private Dictionary<string, BasePlugin> PluginDictionary = new Dictionary<string, BasePlugin>();
+        private Dictionary<string, IPlugin> PluginDictionary = new Dictionary<string, IPlugin>();
         private object objLocker                                = new object();
 
-        public string ShellPluginCommand(string pluginName, string commandContent)
+        public PluginCommandMethodReturnValue ShellPluginCommand(string pluginName, string commandContent)
         {
-            BasePlugin plugin = null;
+            IPlugin plugin = null;
             lock (objLocker)
             {
                 if (PluginDictionary.ContainsKey(pluginName))
@@ -26,17 +26,17 @@ namespace CozyAnywhere.PluginMgr
             return null;
         }
 
-        public string ParsePluginCommand(string command)
+        public PluginCommandMethodReturnValue ParsePluginCommand(string command)
         {
             var pluginCommand = PluginCommand.CreateWithParse(command);
             return ShellPluginCommand(pluginCommand.PluginName, pluginCommand.PluginCommandContent);
         }
 
-        public void AddPlugin(string pluginName, BasePlugin plugin)
+        public void AddPlugin(IPlugin plugin)
         {
             lock(objLocker)
             {
-                PluginDictionary[pluginName] = plugin;
+                PluginDictionary[plugin.PluginName] = plugin;
             }
         }
     }

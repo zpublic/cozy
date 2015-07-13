@@ -6,10 +6,9 @@ namespace CozyAnywhere.Plugin.WinFile.ArgsFactory
 {
     public class FileDeleteArgsFactory : IPluginCommandMethodArgsFactory
     {
-        public PluginCommandMethodArgs Create(string argsContent)
+        public IPluginCommandMethodArgs Create(string argsContent)
         {
-            var result = JsonConvert.DeserializeObject<FileDeleteArgs>(argsContent);
-            return result;
+            return JsonConvert.DeserializeObject<FileDeleteArgs>(argsContent);;
         }
     }
 }

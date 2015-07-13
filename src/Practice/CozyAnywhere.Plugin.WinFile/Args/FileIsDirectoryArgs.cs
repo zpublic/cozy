@@ -2,11 +2,11 @@
 
 namespace CozyAnywhere.Plugin.WinFile.Args
 {
-    public class FileIsDirectoryArgs : PluginCommandMethodArgs
+    public class FileIsDirectoryArgs : IPluginCommandMethodArgs
     {
         public string Path { get; set; }
 
-        public override string Execute(IPluginCommandArgsDispatch dispatch)
+        public string Execute(IPluginCommandArgsDispatch dispatch)
         {
             var plugin = (FilePlugin)dispatch;
             return plugin.Shell(this);
