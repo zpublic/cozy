@@ -18,6 +18,11 @@
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Item2}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Terminate" Command="{Binding TerminateCommand}"></MenuItem>
+                    </ContextMenu>
+                </ListView.ContextMenu>
             </ListView>
         </StackPanel>
     </Grid>

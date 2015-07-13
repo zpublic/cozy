@@ -30,9 +30,6 @@ namespace CozyAnywhere.ClientCore
             var baseMsg = MessageReader.GetTypeInstanceByStream(msg.Input);
             switch (baseMsg.Id)
             {
-                case MessageId.FileEnumMessageRsp:
-                    OnFileEnumMessageRsp(baseMsg);
-                    break;
                 case MessageId.CommandMessageRsp:
                     OnCommandMessageRsp(baseMsg);
                     break;

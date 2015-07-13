@@ -30,7 +30,6 @@ namespace CozyAnywhere.ServerCore
                 case MessageId.CommandMessage:
                     OnCommandMessage(baseMsg);
                     break;
-
                 default:
                     break;
             }

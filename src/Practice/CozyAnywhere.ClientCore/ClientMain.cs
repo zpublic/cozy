@@ -90,5 +90,18 @@ namespace CozyAnywhere.ClientCore
                 server.SendMessage(commandMsg);
             }
         }
+
+        public void SendTerminateMessage(uint pid)
+        {
+            if(server != null)
+            {
+                var command     = ProcessPlugin.MakeProcessTerminateCommand(pid);
+                var commandMsg  = new CommandMessage()
+                {
+                    Command = command,
+                };
+                server.SendMessage(commandMsg);
+            }
+        }
     }
 }
