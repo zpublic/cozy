@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using CozyAnywhere.Plugin.WinFile.Model;
 using CozyAnywhere.Plugin.WinProcess.Model;
 using CozyAnywhere.ClientCore.EventArg;
+using System.Linq;
 
 namespace CozyAnywhere.ClientCore
 {
@@ -51,12 +52,9 @@ namespace CozyAnywhere.ClientCore
             var rspMsg = (PluginQueryMessage)msg;
             if(PluginNameCollection != null)
             {
-                PluginNameCollection.Clear();
-                foreach(var obj in rspMsg.Plugins)
-                {
-                    PluginNameCollection.Add(obj);
-                }
-                PluginChangedHandler(this, new PluginChangedEvnetArgs());
+                var except              = rspMsg.Plugins.Except<string>(PluginNameCollection).ToList();
+                PluginNameCollection    = rspMsg.Plugins;
+                PluginChangedHandler(this, new PluginChangedEvnetArgs(except));
             }
         }
 

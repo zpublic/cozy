@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace CozyAnywhere.ClientCore
 {
@@ -9,6 +10,6 @@ namespace CozyAnywhere.ClientCore
 
         public Collection<Tuple<uint, string>> ProcessCollection { get; set; }
 
-        public Collection<string> PluginNameCollection { get; set; }
+        public List<string> PluginNameCollection { get; set; }
     }
 }

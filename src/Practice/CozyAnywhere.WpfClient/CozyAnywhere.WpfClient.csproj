@@ -56,6 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\DelegateCommand.cs" />
+    <Compile Include="Factory\FilePluginPageFactory.cs" />
+    <Compile Include="Factory\IControlFactory.cs" />
+    <Compile Include="Factory\ProcessPluginPageFactory.cs" />
     <Compile Include="Model\DefaultControlInfo.cs" />
     <Compile Include="Model\WinFileInfo.cs" />
     <Compile Include="UserControls\FilePluginPage.xaml.cs">
