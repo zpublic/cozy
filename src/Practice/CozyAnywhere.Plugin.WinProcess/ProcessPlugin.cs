@@ -5,7 +5,7 @@ namespace CozyAnywhere.Plugin.WinProcess
 {
     public partial class ProcessPlugin : IPlugin, IPluginCommandArgsDispatch
     {
-        private static string InnerPluginName = "ProcessPlugin";
+        public readonly static string InnerPluginName = "ProcessPlugin";
 
         public string PluginName { get { return InnerPluginName; } }
 

@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\bin\</OutputPath>
+    <OutputPath>..\..\..\bin\Plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\bin\</OutputPath>
+    <OutputPath>..\..\..\bin\Plugins\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -62,6 +62,7 @@
     <Compile Include="Args\MouseEventArgs.cs" />
     <Compile Include="Args\MouseRightClickArgs.cs" />
     <Compile Include="Args\MouseSetCursorPositionArgs.cs" />
+    <Compile Include="LoadHelper.cs" />
     <Compile Include="Model\MousePosition.cs" />
     <Compile Include="MousePlugin.cs" />
     <Compile Include="MousePluginCommand.cs" />

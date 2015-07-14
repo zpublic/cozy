@@ -5,7 +5,7 @@ namespace CozyAnywhere.Plugin.WinFile
 {
     public partial class FilePlugin : IPlugin, IPluginCommandArgsDispatch
     {
-        private static string InnerPluginName = "FilePlugin";
+        public static readonly string InnerPluginName = "FilePlugin";
 
         public string PluginName { get { return InnerPluginName; } }
 

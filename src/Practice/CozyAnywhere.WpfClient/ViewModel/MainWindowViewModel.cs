@@ -1,13 +1,12 @@
 ﻿using CozyAnywhere.ClientCore;
-using CozyAnywhere.WpfClient.Command;
-using System;
-using System.Windows.Input;
-using System.Collections.ObjectModel;
-using System.Windows.Controls;
-using CozyAnywhere.WpfClient.UserControls;
-using CozyAnywhere.WpfClient.Model;
-using System.ComponentModel;
 using CozyAnywhere.ClientCore.EventArg;
+using CozyAnywhere.WpfClient.Command;
+using CozyAnywhere.WpfClient.Factory;
+using CozyAnywhere.WpfClient.Model;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace CozyAnywhere.WpfClient.ViewModel
 {
@@ -18,6 +17,7 @@ namespace CozyAnywhere.WpfClient.ViewModel
         public static AnywhereClient clientCore { get; set; }
 
         private ObservableCollection<DefaultControlInfo> _ControlList = new ObservableCollection<DefaultControlInfo>();
+
         public ObservableCollection<DefaultControlInfo> ControlList
         {
             get
@@ -30,8 +30,9 @@ namespace CozyAnywhere.WpfClient.ViewModel
             }
         }
 
-        private ObservableCollection<string> _PluginList = new ObservableCollection<string>();
-        public ObservableCollection<string> PluginList
+        private List<string> _PluginList = new List<string>();
+
+        public List<string> PluginList
         {
             get
             {
@@ -42,7 +43,7 @@ namespace CozyAnywhere.WpfClient.ViewModel
                 Set(ref _PluginList, value, "PluginList");
             }
         }
- 
+
         private string _ListenButtonText = "Listen";
 
         public string ListenButtonText
@@ -81,6 +82,7 @@ namespace CozyAnywhere.WpfClient.ViewModel
 
         public MainWindowViewModel()
         {
+            RegisterControls();
             Port                            = 48360;
             clientCore                      = new AnywhereClient(1000, Port);
             BindCoreCollections();
@@ -88,26 +90,29 @@ namespace CozyAnywhere.WpfClient.ViewModel
             SetUpdateTimer();
         }
 
+        private Dictionary<string, IControlFactory> ControlCreateDictionary = new Dictionary<string, IControlFactory>();
+
+        private void RegisterControl<T>()
+            where T : IControlFactory, new()
+        {
+            T t = new T();
+            ControlCreateDictionary[t.ProductName] = t;
+        }
+
+        private void RegisterControls()
+        {
+            RegisterControl<FilePluginPageFactory>();
+            RegisterControl<ProcessPluginPageFactory>();
+        }
+
         private void OnPluginChanged(object sender, PluginChangedEvnetArgs e)
         {
-            ControlList.Clear();
-            if (PluginList.Contains("FilePlugin"))
+            foreach (var obj in e.NewPlugins)
             {
-                var fileControl = new DefaultControlInfo()
+                if (ControlCreateDictionary.ContainsKey(obj))
                 {
-                    Name = "FilePlugin",
-                    Controls = new FilePluginPage(),
-                };
-                ControlList.Add(fileControl);
-            }
-            if (PluginList.Contains("ProcessPlugin"))
-            {
-                var processControl = new DefaultControlInfo()
-                {
-                    Name = "ProcessPlugin",
-                    Controls = new ProcessPluginPage(),
-                };
-                ControlList.Add(processControl);
+                    ControlList.Add(ControlCreateDictionary[obj].Create());
+                }
             }
         }
 

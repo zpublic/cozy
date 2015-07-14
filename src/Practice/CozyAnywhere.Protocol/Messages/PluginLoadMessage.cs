@@ -7,16 +7,12 @@ namespace CozyAnywhere.Protocol.Messages
     {
         public uint Id { get { return MessageId.PluginLoadMessage; } }
 
-        public string PluginName { get; set; }
-
         public void Write(NetOutgoingMessage om)
         {
-            om.Write(PluginName);
         }
 
         public void Read(NetIncomingMessage im)
         {
-            PluginName = im.ReadString();
         }
     }
 }

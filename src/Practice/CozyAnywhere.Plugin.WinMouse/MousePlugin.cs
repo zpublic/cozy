@@ -10,7 +10,7 @@ namespace CozyAnywhere.Plugin.WinMouse
 {
     public partial class MousePlugin : IPlugin, IPluginCommandArgsDispatch
     {
-        private static string InnerPluginName = "MousePlugin";
+        public readonly static string InnerPluginName = "MousePlugin";
 
         public string PluginName { get { return InnerPluginName; } }
 

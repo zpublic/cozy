@@ -8,7 +8,7 @@
     </Window.DataContext>
     <Grid>
         <StackPanel>
-            <TabControl ItemsSource="{Binding ControlList, Mode=TwoWay}" Height="290">
+            <TabControl ItemsSource="{Binding ControlList, Mode=TwoWay}" Height="285">
                 <TabControl.ContentTemplate>
                     <DataTemplate>
                         <ContentPresenter Content="{Binding Controls}" />
@@ -22,7 +22,7 @@
                     </DataTemplate>
                 </TabControl.ItemTemplate>
             </TabControl>
-            <StackPanel Orientation="Horizontal" Margin="5">
+            <StackPanel Orientation="Horizontal" Margin="3">
                 <TextBox Text="{Binding Port, Mode=TwoWay}"></TextBox>
                 <Button Content="{Binding ListenButtonText, Mode=TwoWay}" Command="{Binding ListenCommand}"></Button>
             </StackPanel>

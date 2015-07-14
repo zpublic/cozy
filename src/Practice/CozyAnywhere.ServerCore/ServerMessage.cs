@@ -2,11 +2,6 @@
 using CozyAnywhere.Protocol.Messages;
 using NetworkHelper;
 using NetworkProtocol;
-using CozyAnywhere.Plugin.WinFile;
-using CozyAnywhere.Plugin.WinProcess;
-using CozyAnywhere.Plugin.WinKeyboard;
-using CozyAnywhere.Plugin.WinMouse;
-using CozyAnywhere.PluginBase;
 
 namespace CozyAnywhere.ServerCore
 {
@@ -26,7 +21,7 @@ namespace CozyAnywhere.ServerCore
             {
                 var result = ServerPluginMgr.ParsePluginCommand(comm.Command);
 
-                if(result != null)
+                if (result != null)
                 {
                     var rspMsg = new CommandMessageRsp()
                     {
@@ -42,23 +37,10 @@ namespace CozyAnywhere.ServerCore
         public void OnPluginLoadMessage(IMessage msg)
         {
             var loadMsg = (PluginLoadMessage)msg;
-            switch(loadMsg.PluginName)
-            {
-                case "FilePlugin":
-                    ServerPluginMgr.AddPlugin(new FilePlugin());
-                    break;
-                case "ProcessPlugin":
-                    ServerPluginMgr.AddPlugin(new ProcessPlugin());
-                    break;
-                case "MousePlugin":
-                    ServerPluginMgr.AddPlugin(new MousePlugin());
-                    break;
-                case "KeyboardPlugin":
-                    ServerPluginMgr.AddPlugin(new KeyboardPlugin());
-                    break;
-                default:
-                    break;
-            }
+
+            var list = EnumPluginFolder();
+            ServerPluginMgr.AddPluginsWithFileNames(list);
+
             var rspMsg = new PluginQueryMessage()
             {
                 Plugins = ServerPluginMgr.AllPluginName(),

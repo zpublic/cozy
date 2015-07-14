@@ -2,6 +2,8 @@
 using CozyAnywhere.Protocol;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System;
 
 namespace CozyAnywhere.PluginMgr
 {
@@ -52,6 +54,34 @@ namespace CozyAnywhere.PluginMgr
         public List<string> AllPluginName()
         {
             return PluginDictionary.Keys.ToList();
+        }
+
+        public void AddPluginsWithFileNames(List<string> files)
+        {
+            if (files != null && files.Count > 0)
+            {
+                foreach (var file in files)
+                {
+                    AddPluginWithFileName(file);
+                }
+            }
+        }
+
+        public void AddPluginWithFileName(string filename)
+        {
+            if (filename.StartsWith("CozyAnywhere.Plugin.") && filename.EndsWith(".dll"))
+            {
+                string ns = filename.Substring(0, filename.Length - 4);
+                Assembly assembly = Assembly.LoadFrom(filename);
+
+                Type loadhelper = assembly.GetType(ns + ".LoadHelper");
+                IPluginLoadHelper helper = (IPluginLoadHelper)Activator.CreateInstance(loadhelper, null);
+
+                string pluginName = helper.PluginName;
+                Type pluginType = assembly.GetType(ns + "." + pluginName);
+                IPlugin plugin = (IPlugin)Activator.CreateInstance(pluginType, null);
+                AddPlugin(plugin);
+            }
         }
     }
 }

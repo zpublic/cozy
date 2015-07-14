@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerEvent.cs" />
+    <Compile Include="ServerIO.cs" />
     <Compile Include="ServerMain.cs" />
     <Compile Include="ServerMessage.cs" />
   </ItemGroup>
