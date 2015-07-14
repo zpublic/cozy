@@ -39,7 +39,7 @@ namespace CozyAnywhere.ServerCore
             var loadMsg = (PluginLoadMessage)msg;
 
             var list = EnumPluginFolder();
-            ServerPluginMgr.EnumPluginFolder(list);
+            ServerPluginMgr.AddPluginsWithFileNames(list);
 
             var rspMsg = new PluginQueryMessage()
             {
