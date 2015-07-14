@@ -21,8 +21,7 @@ namespace CozyAnywhere.ClientCore
         {
             if (msg.Status == NetConnectionStatus.Connected)
             {
-                SendPluginLoadMessage("FilePlugin");
-                SendPluginLoadMessage("ProcessPlugin");
+                SendPluginLoadMessage();
             }
         }
 

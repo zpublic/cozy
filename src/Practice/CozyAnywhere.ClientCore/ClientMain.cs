@@ -110,14 +110,11 @@ namespace CozyAnywhere.ClientCore
             }
         }
 
-        public void SendPluginLoadMessage(string name)
+        public void SendPluginLoadMessage()
         {
             if(server != null)
             {
-                var loadMsg = new PluginLoadMessage()
-                {
-                    PluginName = name,
-                };
+                var loadMsg = new PluginLoadMessage();
                 server.SendMessage(loadMsg);
             }
         }

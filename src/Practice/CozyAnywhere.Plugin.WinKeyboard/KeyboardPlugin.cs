@@ -5,7 +5,7 @@ namespace CozyAnywhere.Plugin.WinKeyboard
 {
     public partial class KeyboardPlugin : IPlugin, IPluginCommandArgsDispatch
     {
-        private static string InnerPluginName = "KeyboardPlugin";
+        public static readonly string InnerPluginName = "KeyboardPlugin";
 
         public string PluginName { get { return InnerPluginName; } }
 
