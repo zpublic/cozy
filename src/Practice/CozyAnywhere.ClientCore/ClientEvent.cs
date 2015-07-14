@@ -21,7 +21,8 @@ namespace CozyAnywhere.ClientCore
         {
             if (msg.Status == NetConnectionStatus.Connected)
             {
-                SendTestMessage();
+                SendPluginLoadMessage("FilePlugin");
+                SendPluginLoadMessage("ProcessPlugin");
             }
         }
 
@@ -30,11 +31,11 @@ namespace CozyAnywhere.ClientCore
             var baseMsg = MessageReader.GetTypeInstanceByStream(msg.Input);
             switch (baseMsg.Id)
             {
-                case MessageId.FileEnumMessageRsp:
-                    OnFileEnumMessageRsp(baseMsg);
-                    break;
                 case MessageId.CommandMessageRsp:
                     OnCommandMessageRsp(baseMsg);
+                    break;
+                case MessageId.PluginQueryMessage:
+                    OnPluginQueryMessage(baseMsg);
                     break;
                 default:
                     break;

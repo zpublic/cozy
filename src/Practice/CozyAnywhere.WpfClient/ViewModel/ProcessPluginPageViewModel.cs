@@ -1,6 +1,8 @@
 ﻿using CozyAnywhere.ClientCore;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using CozyAnywhere.WpfClient.Command;
 
 namespace CozyAnywhere.WpfClient.ViewModel
 {
@@ -22,9 +24,9 @@ namespace CozyAnywhere.WpfClient.ViewModel
             }
         }
 
-        private Tuple<string, bool> _ProcessListSelectedItem;
+        private Tuple<uint, string> _ProcessListSelectedItem;
 
-        public Tuple<string, bool> ProcessListSelectedItem
+        public Tuple<uint, string> ProcessListSelectedItem
         {
             get
             {
@@ -33,6 +35,35 @@ namespace CozyAnywhere.WpfClient.ViewModel
             set
             {
                 Set(ref _ProcessListSelectedItem, value, "ProcessListSelectedItem");
+            }
+        }
+
+        private ICommand _TerminateCommand;
+
+        public ICommand TerminateCommand
+        {
+            get
+            {
+                return _TerminateCommand = _TerminateCommand ?? new DelegateCommand((x) =>
+                {
+                    if (ProcessListSelectedItem != null)
+                    {
+                        clientCore.SendTerminateMessage(ProcessListSelectedItem.Item1);
+                    }
+                });
+            }
+        }
+
+        private ICommand _RefreshCommand;
+
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return _RefreshCommand = _RefreshCommand ?? new DelegateCommand((x) =>
+                {
+                    clientCore.SendEnumProcessMessage();
+                });
             }
         }
 

@@ -30,7 +30,9 @@ namespace CozyAnywhere.ServerCore
                 case MessageId.CommandMessage:
                     OnCommandMessage(baseMsg);
                     break;
-
+                case MessageId.PluginLoadMessage:
+                    OnPluginLoadMessage(baseMsg);
+                    break;
                 default:
                     break;
             }

@@ -2,6 +2,11 @@
 using CozyAnywhere.Protocol.Messages;
 using NetworkHelper;
 using NetworkProtocol;
+using CozyAnywhere.Plugin.WinFile;
+using CozyAnywhere.Plugin.WinProcess;
+using CozyAnywhere.Plugin.WinKeyboard;
+using CozyAnywhere.Plugin.WinMouse;
+using CozyAnywhere.PluginBase;
 
 namespace CozyAnywhere.ServerCore
 {
@@ -9,23 +14,8 @@ namespace CozyAnywhere.ServerCore
     {
         public void InitServerMessage()
         {
-            MessageReader.RegisterType<FileEnumMessage>(MessageId.FileEnumMessage);
-            MessageReader.RegisterType<FileDeleteMessage>(MessageId.FileDeleteMessage);
             MessageReader.RegisterType<CozyAnywhere.Protocol.Messages.CommandMessage>(MessageId.CommandMessage);
-        }
-
-        public void OnFileEnumMessage(IMessage msg)
-        {
-            var enumMsg = (FileEnumMessage)msg;
-
-            // TODO
-        }
-
-        public void OnFileDeleteMessage(IMessage msg)
-        {
-            var enumMsg = (FileDeleteMessage)msg;
-
-            // TODO
+            MessageReader.RegisterType<PluginLoadMessage>(MessageId.PluginLoadMessage);
         }
 
         public void OnCommandMessage(IMessage msg)
@@ -47,6 +37,33 @@ namespace CozyAnywhere.ServerCore
                     client.SendMessage(rspMsg);
                 }
             }
+        }
+
+        public void OnPluginLoadMessage(IMessage msg)
+        {
+            var loadMsg = (PluginLoadMessage)msg;
+            switch(loadMsg.PluginName)
+            {
+                case "FilePlugin":
+                    ServerPluginMgr.AddPlugin(new FilePlugin());
+                    break;
+                case "ProcessPlugin":
+                    ServerPluginMgr.AddPlugin(new ProcessPlugin());
+                    break;
+                case "MousePlugin":
+                    ServerPluginMgr.AddPlugin(new MousePlugin());
+                    break;
+                case "KeyboardPlugin":
+                    ServerPluginMgr.AddPlugin(new KeyboardPlugin());
+                    break;
+                default:
+                    break;
+            }
+            var rspMsg = new PluginQueryMessage()
+            {
+                Plugins = ServerPluginMgr.AllPluginName(),
+            };
+            client.SendMessage(rspMsg);
         }
     }
 }

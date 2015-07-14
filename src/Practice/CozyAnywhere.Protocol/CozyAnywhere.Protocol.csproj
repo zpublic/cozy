@@ -50,6 +50,8 @@
     <Compile Include="Messages\CommandMessageRsp.cs" />
     <Compile Include="Messages\FileDeleteMessage.cs" />
     <Compile Include="Messages\FileEnumMessage.cs" />
+    <Compile Include="Messages\PluginLoadMessage.cs" />
+    <Compile Include="Messages\PluginQueryMessage.cs" />
     <Compile Include="Messages\ProcessEnumMessage.cs" />
     <Compile Include="Messages\ProcessEnumMessageRsp.cs" />
     <Compile Include="Messages\ProcessTerminateMessage.cs" />

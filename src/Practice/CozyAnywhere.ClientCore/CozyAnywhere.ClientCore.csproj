@@ -45,8 +45,10 @@
   <ItemGroup>
     <Compile Include="ClientCollections.cs" />
     <Compile Include="ClientEvent.cs" />
+    <Compile Include="ClientEventHandler.cs" />
     <Compile Include="ClientMain.cs" />
     <Compile Include="ClientMessage.cs" />
+    <Compile Include="EventArg\PluginChangedEvnetArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

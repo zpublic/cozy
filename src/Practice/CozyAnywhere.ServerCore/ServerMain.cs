@@ -31,14 +31,6 @@ namespace CozyAnywhere.ServerCore
         private void InitPlugin()
         {
             ServerPluginMgr     = new PluginManager();
-            var fileplugin      = new FilePlugin();
-            var processplugin   = new ProcessPlugin();
-            var mouseplugin     = new MousePlugin();
-            var keyboardplugin  = new KeyboardPlugin();
-            ServerPluginMgr.AddPlugin(fileplugin);
-            ServerPluginMgr.AddPlugin(processplugin);
-            ServerPluginMgr.AddPlugin(mouseplugin);
-            ServerPluginMgr.AddPlugin(keyboardplugin);
         }
 
         public void Connect(string ip, int port)

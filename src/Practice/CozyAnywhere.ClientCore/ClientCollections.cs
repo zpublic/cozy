@@ -8,5 +8,7 @@ namespace CozyAnywhere.ClientCore
         public Collection<Tuple<string, bool>> FileCollection { get; set; }
 
         public Collection<Tuple<uint, string>> ProcessCollection { get; set; }
+
+        public Collection<string> PluginNameCollection { get; set; }
     }
 }

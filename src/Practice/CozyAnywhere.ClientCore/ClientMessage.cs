@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using CozyAnywhere.Plugin.WinFile.Model;
 using CozyAnywhere.Plugin.WinProcess.Model;
+using CozyAnywhere.ClientCore.EventArg;
 
 namespace CozyAnywhere.ClientCore
 {
@@ -16,8 +17,8 @@ namespace CozyAnywhere.ClientCore
 
         public void InitClientMessage()
         {
-            MessageReader.RegisterType<FileEnumMessageRsp>(MessageId.FileEnumMessageRsp);
             MessageReader.RegisterType<CommandMessageRsp>(MessageId.CommandMessageRsp);
+            MessageReader.RegisterType<PluginQueryMessage>(MessageId.PluginQueryMessage);
         }
 
         public void RegisterResponseActions()
@@ -30,7 +31,9 @@ namespace CozyAnywhere.ClientCore
             ResponseActions["FileIsDirectory"]  = new Action<string>(OnFileIsDirectoryResponse);
             ResponseActions["FileMove"]         = new Action<string>(OnFileMoveResponse);
             ResponseActions["FilePathExist"]    = new Action<string>(OnFilePathExistResponse);
+
             ResponseActions["ProcessEnum"]      = new Action<string>(OnProcessEnum);
+            ResponseActions["ProcessTerminate"] = new Action<string>(OnProcessTerminate);
         }
 
         private void OnCommandMessageRsp(IMessage msg)
@@ -40,6 +43,20 @@ namespace CozyAnywhere.ClientCore
             if (ResponseActions.ContainsKey(name))
             {
                 ResponseActions[name](rspMsg.CommandRsp);
+            }
+        }
+
+        private void OnPluginQueryMessage(IMessage msg)
+        {
+            var rspMsg = (PluginQueryMessage)msg;
+            if(PluginNameCollection != null)
+            {
+                PluginNameCollection.Clear();
+                foreach(var obj in rspMsg.Plugins)
+                {
+                    PluginNameCollection.Add(obj);
+                }
+                PluginChangedHandler(this, new PluginChangedEvnetArgs());
             }
         }
 
@@ -93,19 +110,6 @@ namespace CozyAnywhere.ClientCore
             var result = JsonConvert.DeserializeObject<bool>(rsp);
         }
 
-        private void OnFileEnumMessageRsp(IMessage msg)
-        {
-            var rspMsg = (FileEnumMessageRsp)msg;
-            if(FileCollection != null)
-            {
-                foreach(var obj in rspMsg.FileInfoList)
-                {
-                    var file = Tuple.Create<string, bool>(obj.Item1, obj.Item3);
-                    FileCollection.Add(file);
-                }
-            }
-        }
-
         private void OnProcessEnum(string rsp)
         {
             var list = JsonConvert.DeserializeObject<List<WinProcessModel>>(rsp);
@@ -118,6 +122,11 @@ namespace CozyAnywhere.ClientCore
                     ProcessCollection.Add(process);
                 }
             }
+        }
+
+        private void OnProcessTerminate(string rsp)
+        {
+            var result = JsonConvert.DeserializeObject<bool>(rsp);
         }
 
         #endregion
