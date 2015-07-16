@@ -44,7 +44,7 @@ Cozy
 >>
 >> [CozyKxlol - 用MonoGame做2drpg游戏](doc/CozyKxlol.md)
 >>
->> CozyAnywhere - 远程控制工具  
+>> [CozyAnywhere - 远程控制工具](doc/CozyAnywhere.md)  
 >>
 >> CozyBili - 获取B站生放送直播弹幕的工具  
 >>> CozyBili.Core - B站弹幕获取  
