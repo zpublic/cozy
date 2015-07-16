@@ -83,6 +83,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleKeyboardTester", "..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAnywhere.Plugin.WinKeyboard", "..\src\Practice\CozyAnywhere.Plugin.WinKeyboard\CozyAnywhere.Plugin.WinKeyboard.csproj", "{3B278019-1B61-4C1F-80D3-35D72615BFBD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleCaptureTester", "..\src\Public\ConsoleCaptureTester\ConsoleCaptureTester.csproj", "{F27AADDF-1F35-4180-A2DC-7EB951DEC3E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAnywhere.Plugin.WinCapture", "..\src\Practice\CozyAnywhere.Plugin.WinCapture\CozyAnywhere.Plugin.WinCapture.csproj", "{E9557031-3390-42AA-BB0A-36321F80899E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -413,6 +417,26 @@ Global
 		{3B278019-1B61-4C1F-80D3-35D72615BFBD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{3B278019-1B61-4C1F-80D3-35D72615BFBD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3B278019-1B61-4C1F-80D3-35D72615BFBD}.Release|Win32.ActiveCfg = Release|Any CPU
+		{F27AADDF-1F35-4180-A2DC-7EB951DEC3E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F27AADDF-1F35-4180-A2DC-7EB951DEC3E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F27AADDF-1F35-4180-A2DC-7EB951DEC3E8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F27AADDF-1F35-4180-A2DC-7EB951DEC3E8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F27AADDF-1F35-4180-A2DC-7EB951DEC3E8}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{F27AADDF-1F35-4180-A2DC-7EB951DEC3E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F27AADDF-1F35-4180-A2DC-7EB951DEC3E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F27AADDF-1F35-4180-A2DC-7EB951DEC3E8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F27AADDF-1F35-4180-A2DC-7EB951DEC3E8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F27AADDF-1F35-4180-A2DC-7EB951DEC3E8}.Release|Win32.ActiveCfg = Release|Any CPU
+		{E9557031-3390-42AA-BB0A-36321F80899E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9557031-3390-42AA-BB0A-36321F80899E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9557031-3390-42AA-BB0A-36321F80899E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E9557031-3390-42AA-BB0A-36321F80899E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E9557031-3390-42AA-BB0A-36321F80899E}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{E9557031-3390-42AA-BB0A-36321F80899E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9557031-3390-42AA-BB0A-36321F80899E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9557031-3390-42AA-BB0A-36321F80899E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E9557031-3390-42AA-BB0A-36321F80899E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E9557031-3390-42AA-BB0A-36321F80899E}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -453,5 +477,7 @@ Global
 		{57D02178-B02F-47D8-AF7C-8DDEB29C8D58} = {EB0A8C74-EA43-43DF-8597-0F9F57EFA103}
 		{2C9A11DD-EA3C-4D7B-A44B-3406F3489A5C} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
 		{3B278019-1B61-4C1F-80D3-35D72615BFBD} = {08DF5C41-90E7-443A-A892-3C42D015608F}
+		{F27AADDF-1F35-4180-A2DC-7EB951DEC3E8} = {4ED56B98-9FEE-4413-B931-6E2547EE61A0}
+		{E9557031-3390-42AA-BB0A-36321F80899E} = {08DF5C41-90E7-443A-A892-3C42D015608F}
 	EndGlobalSection
 EndGlobal
