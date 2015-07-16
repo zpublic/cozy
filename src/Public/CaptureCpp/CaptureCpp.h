@@ -10,6 +10,24 @@
 #define CAPTURECPP_API __declspec(dllimport)
 #endif
 
+class CCaptureCpp
+{
+public:
+    CCaptureCpp(void);
+    
+    bool GetCaptureData(LPBYTE lpResult);
+
+    DWORD GetWindowBitmapSize();
+
+    WORD GetClrBits(WORD wInput);
+};
+
+CAPTURECPP_API CCaptureCpp CCaptureCppCppInstance;
+
 CAPTURECPP_API int GetDesktopNum(void);
 
 CAPTURECPP_API bool GetDesktopSize(int nIndex, int* w, int* h);
+
+extern "C" CAPTURECPP_API bool GetCaptureData(LPBYTE lpResult);
+
+extern "C" CAPTURECPP_API DWORD GetWindowBitmapSize();
