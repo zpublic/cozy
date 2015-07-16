@@ -6,5 +6,7 @@ namespace CozyAnywhere.ClientCore
     public partial class AnywhereClient
     {
         public event EventHandler<PluginChangedEvnetArgs> PluginChangedHandler;
+
+        public event EventHandler<CaptureRefreshEventArgs> CaptureRefreshHandler;
     }
 }

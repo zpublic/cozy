@@ -26,8 +26,7 @@ namespace CozyAnywhere.Plugin.WinCapture
                 var jpedData = CaptureUtil.ConvertBmpToJpeg(bitmapData);
                 if(jpedData != null)
                 {
-                    var result = Convert.ToBase64String(jpedData);
-                    return JsonConvert.SerializeObject(result);
+                    return Convert.ToBase64String(jpedData);
                 }
             }
             return null;

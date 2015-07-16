@@ -35,6 +35,8 @@ namespace CozyAnywhere.ClientCore
 
             ResponseActions["ProcessEnum"]      = new Action<string>(OnProcessEnum);
             ResponseActions["ProcessTerminate"] = new Action<string>(OnProcessTerminate);
+
+            ResponseActions["GetCaptureData"] = new Action<string>(OnGetCaptureData);
         }
 
         private void OnCommandMessageRsp(IMessage msg)
@@ -54,7 +56,10 @@ namespace CozyAnywhere.ClientCore
             {
                 var except              = rspMsg.Plugins.Except<string>(PluginNameCollection).ToList();
                 PluginNameCollection    = rspMsg.Plugins;
-                PluginChangedHandler(this, new PluginChangedEvnetArgs(except));
+                if (PluginChangedHandler != null)
+                {
+                    PluginChangedHandler(this, new PluginChangedEvnetArgs(except));
+                }
             }
         }
 
@@ -125,6 +130,15 @@ namespace CozyAnywhere.ClientCore
         private void OnProcessTerminate(string rsp)
         {
             var result = JsonConvert.DeserializeObject<bool>(rsp);
+        }
+
+        private void OnGetCaptureData(string rsp)
+        {
+            var result = Convert.FromBase64String(rsp);
+            if (CaptureRefreshHandler != null)
+            {
+                CaptureRefreshHandler(this, new CaptureRefreshEventArgs(result));
+            }
         }
 
         #endregion
