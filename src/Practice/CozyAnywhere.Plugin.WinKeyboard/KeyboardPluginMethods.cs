@@ -21,10 +21,7 @@ namespace CozyAnywhere.Plugin.WinKeyboard
         public PluginMethodReturnValueType Shell(KeyboardEventArgs args)
         {
             KeyboardUtil.KeyboardEvent(args.Key, args.ScanKey, args.Flag, args.ExtraInfo);
-            return new PluginMethodReturnValueType()
-            {
-                DataType    = PluginMethodReturnValueType.NoDataType,
-            };
+            return PluginMethodReturnValueType.NoReturnValueType;
         }
 
         public PluginMethodReturnValueType Shell(KeyboardQueryKeyStateArgs args)

@@ -21,10 +21,7 @@ namespace CozyAnywhere.Plugin.WinMouse
         public PluginMethodReturnValueType Shell(MouseClickArgs args)
         {
             MouseUtil.MouseClick(args.Tag, args.X, args.Y);
-            return new PluginMethodReturnValueType()
-            {
-                DataType    = PluginMethodReturnValueType.NoDataType,
-            };
+            return PluginMethodReturnValueType.NoReturnValueType;
         }
 
         public PluginMethodReturnValueType Shell(MouseCursorClipArgs args)
@@ -60,37 +57,25 @@ namespace CozyAnywhere.Plugin.WinMouse
         public PluginMethodReturnValueType Shell(MouseLeftClickArgs args)
         {
             MouseUtil.LeftClick(args.X, args.Y);
-            return new PluginMethodReturnValueType()
-            {
-                DataType    = PluginMethodReturnValueType.NoDataType,
-            };
+            return PluginMethodReturnValueType.NoReturnValueType;
         }
 
         public PluginMethodReturnValueType Shell(MouseMiddleClickArgs args)
         {
             MouseUtil.MiddleClick(args.X, args.Y);
-            return new PluginMethodReturnValueType()
-            {
-                DataType    = PluginMethodReturnValueType.NoDataType,
-            };
+            return PluginMethodReturnValueType.NoReturnValueType;
         }
 
         public PluginMethodReturnValueType Shell(MouseEventArgs args)
         {
             MouseUtil.MouseEvent(args.Tag, args.X, args.Y, args.Data, args.ExtInfo);
-            return new PluginMethodReturnValueType()
-            {
-                DataType    = PluginMethodReturnValueType.NoDataType,
-            };
+            return PluginMethodReturnValueType.NoReturnValueType;
         }
 
         public PluginMethodReturnValueType Shell(MouseRightClickArgs args)
         {
             MouseUtil.RightClick(args.X, args.Y);
-            return new PluginMethodReturnValueType()
-            {
-                DataType    = PluginMethodReturnValueType.NoDataType,
-            };
+            return PluginMethodReturnValueType.NoReturnValueType;
         }
 
         public PluginMethodReturnValueType Shell(MouseSetCursorPositionArgs args)
