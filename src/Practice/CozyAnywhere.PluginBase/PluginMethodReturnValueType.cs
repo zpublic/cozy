@@ -7,9 +7,10 @@
             DataType = NoDataType,
         };
 
-        public const byte NoDataType        = 0;
-        public const byte StringDataType    = 1;
-        public const byte BinaryDataType    = 2;
+        public const byte NoDataType            = 0;    // null
+        public const byte StringDataType        = 1;    // "xxx" => string
+        public const byte BinaryDataType        = 2;    //  0xFF => byte[]
+        public const byte PacketBinaryDataType  = 3;    // PluginMehtodReturnValuePacket
 
         public byte DataType { get; set; }
 

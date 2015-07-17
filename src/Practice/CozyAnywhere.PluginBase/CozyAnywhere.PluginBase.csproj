@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="IPlugin.cs" />
     <Compile Include="PluginCommandMethodReturnValue.cs" />
+    <Compile Include="PluginMehtodReturnValuePacket.cs" />
     <Compile Include="PluginMethodReturnValueType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
