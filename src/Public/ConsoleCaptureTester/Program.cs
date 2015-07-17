@@ -22,7 +22,8 @@ namespace ConsoleCaptureTester
 
         private static void Main(string[] args)
         {
-            var result = CaptureUtil.ConvertBmpToJpeg(CaptureUtil.DefGetCaptureData());
+            uint offset = 0;
+            var result  = CaptureUtil.ConvertBmpToJpeg(CaptureUtil.DefGetCaptureData(out offset));
             using (FileStream fs = new FileStream(@"D:\test.jpg", FileMode.Create, FileAccess.Write))
             {
                 fs.Write(result, 0, result.Length);

@@ -15,7 +15,7 @@ class CCaptureCpp
 public:
     CCaptureCpp(void);
     
-    bool GetCaptureData(LPBYTE lpResult);
+    DWORD GetCaptureData(LPBYTE lpResult);
 
     DWORD GetWindowBitmapSize();
 
@@ -28,6 +28,6 @@ CAPTURECPP_API int GetDesktopNum(void);
 
 CAPTURECPP_API bool GetDesktopSize(int nIndex, int* w, int* h);
 
-extern "C" CAPTURECPP_API bool GetCaptureData(LPBYTE lpResult);
+extern "C" CAPTURECPP_API DWORD GetCaptureData(LPBYTE lpResult);
 
 extern "C" CAPTURECPP_API DWORD GetWindowBitmapSize();
