@@ -9,12 +9,13 @@ using CozyAnywhere.Plugin.WinFile.Model;
 using CozyAnywhere.Plugin.WinProcess.Model;
 using CozyAnywhere.ClientCore.EventArg;
 using System.Linq;
+using CozyAnywhere.PluginBase;
 
 namespace CozyAnywhere.ClientCore
 {
     public partial class AnywhereClient
     {
-        private Dictionary<string, Action<string>> ResponseActions = new Dictionary<string, Action<string>>();
+        private Dictionary<string, Action<CommandMessageRsp>> ResponseActions = new Dictionary<string, Action<CommandMessageRsp>>();
 
         public void InitClientMessage()
         {
@@ -24,38 +25,38 @@ namespace CozyAnywhere.ClientCore
 
         public void RegisterResponseActions()
         {
-            ResponseActions["FileCopy"]         = new Action<string>(OnFileCopyResponse);
-            ResponseActions["FileDelete"]       = new Action<string>(OnFileDeleteResponse);
-            ResponseActions["FileEnum"]         = new Action<string>(OnFileEnumResponse);
-            ResponseActions["FileGetLength"]    = new Action<string>(OnFileGetLengthResponse);
-            ResponseActions["FileGetTimes"]     = new Action<string>(OnFileGetTimesResponse);
-            ResponseActions["FileIsDirectory"]  = new Action<string>(OnFileIsDirectoryResponse);
-            ResponseActions["FileMove"]         = new Action<string>(OnFileMoveResponse);
-            ResponseActions["FilePathExist"]    = new Action<string>(OnFilePathExistResponse);
+            ResponseActions["FileCopy"]         = new Action<CommandMessageRsp>(OnFileCopyResponse);
+            ResponseActions["FileDelete"]       = new Action<CommandMessageRsp>(OnFileDeleteResponse);
+            ResponseActions["FileEnum"]         = new Action<CommandMessageRsp>(OnFileEnumResponse);
+            ResponseActions["FileGetLength"]    = new Action<CommandMessageRsp>(OnFileGetLengthResponse);
+            ResponseActions["FileGetTimes"]     = new Action<CommandMessageRsp>(OnFileGetTimesResponse);
+            ResponseActions["FileIsDirectory"]  = new Action<CommandMessageRsp>(OnFileIsDirectoryResponse);
+            ResponseActions["FileMove"]         = new Action<CommandMessageRsp>(OnFileMoveResponse);
+            ResponseActions["FilePathExist"]    = new Action<CommandMessageRsp>(OnFilePathExistResponse);
 
-            ResponseActions["ProcessEnum"]      = new Action<string>(OnProcessEnum);
-            ResponseActions["ProcessTerminate"] = new Action<string>(OnProcessTerminate);
+            ResponseActions["ProcessEnum"]      = new Action<CommandMessageRsp>(OnProcessEnum);
+            ResponseActions["ProcessTerminate"] = new Action<CommandMessageRsp>(OnProcessTerminate);
 
-            ResponseActions["GetCaptureData"] = new Action<string>(OnGetCaptureData);
+            ResponseActions["GetCaptureData"]   = new Action<CommandMessageRsp>(OnGetCaptureData);
         }
 
         private void OnCommandMessageRsp(IMessage msg)
         {
-            var rspMsg  = (CommandMessageRsp)msg;
-            var name    = rspMsg.MethodName;
+            var rspMsg = (CommandMessageRsp)msg;
+            var name = rspMsg.MethodName;
             if (ResponseActions.ContainsKey(name))
             {
-                ResponseActions[name](rspMsg.CommandRsp);
+                ResponseActions[name](rspMsg);
             }
         }
 
         private void OnPluginQueryMessage(IMessage msg)
         {
             var rspMsg = (PluginQueryMessage)msg;
-            if(PluginNameCollection != null)
+            if (PluginNameCollection != null)
             {
-                var except              = rspMsg.Plugins.Except<string>(PluginNameCollection).ToList();
-                PluginNameCollection    = rspMsg.Plugins;
+                var except = rspMsg.Plugins.Except<string>(PluginNameCollection).ToList();
+                PluginNameCollection = rspMsg.Plugins;
                 if (PluginChangedHandler != null)
                 {
                     PluginChangedHandler(this, new PluginChangedEvnetArgs(except));
@@ -65,82 +66,114 @@ namespace CozyAnywhere.ClientCore
 
         #region ResponseActions
 
-        private void OnFileCopyResponse(string rsp)
+        private void OnFileCopyResponse(CommandMessageRsp rsp)
         {
-            var result = JsonConvert.DeserializeObject<bool>(rsp);
-        }
-
-        private void OnFileDeleteResponse(string rsp)
-        {
-            var result = JsonConvert.DeserializeObject<bool>(rsp);
-        }
-
-        private void OnFileEnumResponse(string rsp)
-        {
-            if(FileCollection != null)
+            if (rsp.RspType == CommandMessageRsp.StringDataType)
             {
-                FileCollection.Clear();
-                var list = JsonConvert.DeserializeObject<List<WinFileModel>>(rsp);
-                foreach (var obj in list)
+                var result = JsonConvert.DeserializeObject<bool>(rsp.StringCommandRsp);
+            }
+        }
+
+        private void OnFileDeleteResponse(CommandMessageRsp rsp)
+        {
+            if (rsp.RspType == CommandMessageRsp.StringDataType)
+            {
+                var result = JsonConvert.DeserializeObject<bool>(rsp.StringCommandRsp);
+            }
+        }
+
+        private void OnFileEnumResponse(CommandMessageRsp rsp)
+        {
+            if (rsp.RspType == CommandMessageRsp.StringDataType)
+            {
+                if (FileCollection != null)
                 {
-                    FileCollection.Add(Tuple.Create<string, bool>(obj.Name, obj.IsFolder));
+                    FileCollection.Clear();
+                    var list = JsonConvert.DeserializeObject<List<WinFileModel>>(rsp.StringCommandRsp);
+                    foreach (var obj in list)
+                    {
+                        FileCollection.Add(Tuple.Create<string, bool>(obj.Name, obj.IsFolder));
+                    }
+                }
+            }
+
+        }
+
+        private void OnFileGetLengthResponse(CommandMessageRsp rsp)
+        {
+            if (rsp.RspType == CommandMessageRsp.StringDataType)
+            {
+                var result = JsonConvert.DeserializeObject<bool>(rsp.StringCommandRsp);
+            }
+        }
+
+        private void OnFileGetTimesResponse(CommandMessageRsp rsp)
+        {
+            if (rsp.RspType == CommandMessageRsp.StringDataType)
+            {
+                var result = JsonConvert.DeserializeObject<bool>(rsp.StringCommandRsp);
+            }
+        }
+
+        private void OnFileIsDirectoryResponse(CommandMessageRsp rsp)
+        {
+            if (rsp.RspType == CommandMessageRsp.StringDataType)
+            {
+                var result = JsonConvert.DeserializeObject<bool>(rsp.StringCommandRsp);
+            }
+        }
+
+        private void OnFileMoveResponse(CommandMessageRsp rsp)
+        {
+            if (rsp.RspType == CommandMessageRsp.StringDataType)
+            {
+                var result = JsonConvert.DeserializeObject<bool>(rsp.StringCommandRsp);
+            }
+        }
+
+        private void OnFilePathExistResponse(CommandMessageRsp rsp)
+        {
+            if (rsp.RspType == CommandMessageRsp.StringDataType)
+            {
+                var result = JsonConvert.DeserializeObject<bool>(rsp.StringCommandRsp);
+            }
+        }
+
+        private void OnProcessEnum(CommandMessageRsp rsp)
+        {
+            if (rsp.RspType == CommandMessageRsp.StringDataType)
+            {
+                var list = JsonConvert.DeserializeObject<List<WinProcessModel>>(rsp.StringCommandRsp);
+                if (ProcessCollection != null)
+                {
+                    ProcessCollection.Clear();
+                    foreach (var obj in list)
+                    {
+                        var process = Tuple.Create<uint, string>(obj.ProcessId, obj.Name);
+                        ProcessCollection.Add(process);
+                    }
                 }
             }
         }
 
-        private void OnFileGetLengthResponse(string rsp)
+        private void OnProcessTerminate(CommandMessageRsp rsp)
         {
-            var result = JsonConvert.DeserializeObject<ulong>(rsp);
-        }
-
-        private void OnFileGetTimesResponse(string rsp)
-        {
-            var result = JsonConvert.DeserializeObject<WinFileTimeModel>(rsp);
-        }
-
-        private void OnFileIsDirectoryResponse(string rsp)
-        {
-            var result = JsonConvert.DeserializeObject<bool>(rsp);
-        }
-
-        private void OnFileMoveResponse(string rsp)
-        {
-            var result = JsonConvert.DeserializeObject<bool>(rsp);
-        }
-
-        private void OnFilePathExistResponse(string rsp)
-        {
-            var result = JsonConvert.DeserializeObject<bool>(rsp);
-        }
-
-        private void OnProcessEnum(string rsp)
-        {
-            var list = JsonConvert.DeserializeObject<List<WinProcessModel>>(rsp);
-            if(ProcessCollection != null)
+            if (rsp.RspType == CommandMessageRsp.StringDataType)
             {
-                ProcessCollection.Clear();
-                foreach (var obj in list)
+                var result = JsonConvert.DeserializeObject<bool>(rsp.StringCommandRsp);
+            }
+        }
+
+        private void OnGetCaptureData(CommandMessageRsp rsp)
+        {
+            if (rsp.RspType == CommandMessageRsp.BinaryDataType)
+            {
+                if (CaptureRefreshHandler != null)
                 {
-                    var process = Tuple.Create<uint, string>(obj.ProcessId, obj.Name);
-                    ProcessCollection.Add(process);
+                    CaptureRefreshHandler(this, new CaptureRefreshEventArgs(rsp.BinaryCommandRsp));
                 }
             }
         }
-
-        private void OnProcessTerminate(string rsp)
-        {
-            var result = JsonConvert.DeserializeObject<bool>(rsp);
-        }
-
-        private void OnGetCaptureData(string rsp)
-        {
-            var result = Convert.FromBase64String(rsp);
-            if (CaptureRefreshHandler != null)
-            {
-                CaptureRefreshHandler(this, new CaptureRefreshEventArgs(result));
-            }
-        }
-
         #endregion
     }
 }

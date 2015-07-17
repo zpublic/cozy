@@ -1,6 +1,7 @@
 ﻿using CozyAnywhere.Protocol;
 using CozyAnywhere.Protocol.Messages;
 using NetworkHelper;
+using CozyAnywhere.PluginBase;
 using NetworkProtocol;
 
 namespace CozyAnywhere.ServerCore
@@ -25,10 +26,20 @@ namespace CozyAnywhere.ServerCore
                 {
                     var rspMsg = new CommandMessageRsp()
                     {
-                        PluginName = result.PluginName,
-                        MethodName = result.MethodName,
-                        CommandRsp = result.MethodReturnValue,
+                        PluginName  = result.PluginName,
+                        MethodName  = result.MethodName,
+                        RspType     = result.MethodReturnValue.DataType,
                     };
+
+                    if(rspMsg.RspType == PluginMethodReturnValueType.StringDataType)
+                    {
+                        rspMsg.StringCommandRsp = result.MethodReturnValue.Data as string;
+                    }
+                    else if(rspMsg.RspType == PluginMethodReturnValueType.BinaryDataType)
+                    {
+                        rspMsg.BinaryCommandRsp = result.MethodReturnValue.Data as byte[];
+                    }
+
                     client.SendMessage(rspMsg);
                 }
             }

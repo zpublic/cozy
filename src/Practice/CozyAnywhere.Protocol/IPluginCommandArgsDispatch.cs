@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CozyAnywhere.PluginBase;
 
 namespace CozyAnywhere.Protocol
 {
     public interface IPluginCommandArgsDispatch
     {
-        string Dispatch(IPluginCommandMethodArgs args);
+        PluginMethodReturnValueType Dispatch(IPluginCommandMethodArgs args);
 
-        string Shell(IPluginCommandMethodArgs args);
+        PluginMethodReturnValueType Shell(IPluginCommandMethodArgs args);
     }
 }

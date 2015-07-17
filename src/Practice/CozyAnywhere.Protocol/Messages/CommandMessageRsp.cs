@@ -5,33 +5,52 @@ namespace CozyAnywhere.Protocol.Messages
 {
     public class CommandMessageRsp : IMessage
     {
-        public static readonly string NoReturnValue = "NoReturnValue";
+        public const byte NoDataType        = 0;
+        public const byte StringDataType    = 1;
+        public const byte BinaryDataType    = 2;
 
         public uint Id { get { return MessageId.CommandMessageRsp; } }
 
         public string PluginName { get; set; }
+
         public string MethodName { get; set; }
-        public string CommandRsp { get; set; }
+
+        public byte RspType { get; set; }
+
+        public string StringCommandRsp { get; set; }
+
+        public byte[] BinaryCommandRsp { get; set; }
 
         public void Write(NetOutgoingMessage om)
         {
             om.Write(PluginName);
             om.Write(MethodName);
-            if (CommandRsp != null)
+            om.Write(RspType);
+            if (RspType == StringDataType)
             {
-                om.Write(CommandRsp);
+                om.Write(StringCommandRsp);
             }
-            else
+            else if (RspType == BinaryDataType)
             {
-                om.Write(NoReturnValue);
+                om.Write(BinaryCommandRsp.Length);
+                om.Write(BinaryCommandRsp);
             }
         }
 
         public void Read(NetIncomingMessage im)
         {
-            PluginName = im.ReadString();
-            MethodName = im.ReadString();
-            CommandRsp = im.ReadString();
+            PluginName  = im.ReadString();
+            MethodName  = im.ReadString();
+            RspType     = im.ReadByte();
+            if (RspType == StringDataType)
+            {
+                StringCommandRsp = im.ReadString();
+            }
+            else if (RspType == BinaryDataType)
+            {
+                int l = im.ReadInt32();
+                BinaryCommandRsp = im.ReadBytes(l);
+            }
         }
     }
 }

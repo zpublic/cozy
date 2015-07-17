@@ -1,5 +1,6 @@
 ﻿using CozyAnywhere.Plugin.WinMouse.Tag;
 using CozyAnywhere.Protocol;
+using CozyAnywhere.PluginBase;
 
 namespace CozyAnywhere.Plugin.WinMouse.Args
 {
@@ -15,7 +16,7 @@ namespace CozyAnywhere.Plugin.WinMouse.Args
 
         public uint ExtInfo { get; set; }
 
-        public string Execute(IPluginCommandArgsDispatch dispatch)
+        public PluginMethodReturnValueType Execute(IPluginCommandArgsDispatch dispatch)
         {
             var plugin = (MousePlugin)dispatch;
             return plugin.Shell(this);

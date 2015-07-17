@@ -2,49 +2,70 @@
 using CozyAnywhere.Protocol;
 using Newtonsoft.Json;
 using System;
+using CozyAnywhere.PluginBase;
 
 namespace CozyAnywhere.Plugin.WinProcess
 {
     public partial class ProcessPlugin
     {
-        public string Dispatch(IPluginCommandMethodArgs args)
+        public PluginMethodReturnValueType Dispatch(IPluginCommandMethodArgs args)
         {
             return args.Execute(this);
         }
 
-        public string Shell(IPluginCommandMethodArgs args)
+        public PluginMethodReturnValueType Shell(IPluginCommandMethodArgs args)
         {
             throw new Exception("Unknow Command Args");
         }
 
-        public string Shell(ProcessCreateArgs args)
+        public PluginMethodReturnValueType Shell(ProcessCreateArgs args)
         {
             var result = ProcessUtil.ProcessCreate(args.Path);
-            return JsonConvert.SerializeObject(result);
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.StringDataType,
+                Data        = JsonConvert.SerializeObject(result),
+            };
         }
 
-        public string Shell(ProcessEnumArgs args)
+        public PluginMethodReturnValueType Shell(ProcessEnumArgs args)
         {
             var result = ProcessUtil.DefProcessEnum();
-            return JsonConvert.SerializeObject(result);
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.StringDataType,
+                Data        = JsonConvert.SerializeObject(result),
+            };
         }
 
-        public string Shell(ProcessGetNameArgs args)
+        public PluginMethodReturnValueType Shell(ProcessGetNameArgs args)
         {
             var result = ProcessUtil.DefGetProcessName(args.Pid);
-            return JsonConvert.SerializeObject(result);
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.StringDataType,
+                Data        = JsonConvert.SerializeObject(result),
+            };
         }
 
-        public string Shell(ProcessTerminateArgs args)
+        public PluginMethodReturnValueType Shell(ProcessTerminateArgs args)
         {
             var result = ProcessUtil.ProcessTerminate(args.Pid);
-            return JsonConvert.SerializeObject(result);
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.StringDataType,
+                Data        = JsonConvert.SerializeObject(result),
+            };
         }
 
-        public string Shell(ProcessTerminateWithTimeOutArgs args)
+        public PluginMethodReturnValueType Shell(ProcessTerminateWithTimeOutArgs args)
         {
             var result = ProcessUtil.ProcessTerminateWithTimeOut(args.Pid, args.TimeOut);
-            return JsonConvert.SerializeObject(result);
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.StringDataType,
+                Data        = JsonConvert.SerializeObject(result),
+            };
         }
     }
 }

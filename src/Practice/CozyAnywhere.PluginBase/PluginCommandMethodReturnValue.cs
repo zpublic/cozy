@@ -6,6 +6,6 @@
 
         public string MethodName { get; set; }
 
-        public string MethodReturnValue { get; set; }
+        public PluginMethodReturnValueType MethodReturnValue { get; set; }
     }
 }

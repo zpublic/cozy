@@ -1,4 +1,5 @@
 ﻿using CozyAnywhere.Protocol;
+using CozyAnywhere.PluginBase;
 
 namespace CozyAnywhere.Plugin.WinKeyboard.Args
 {
@@ -6,7 +7,7 @@ namespace CozyAnywhere.Plugin.WinKeyboard.Args
     {
         public VirtualKey Key { get; set; }
 
-        public string Execute(IPluginCommandArgsDispatch dispatch)
+        public PluginMethodReturnValueType Execute(IPluginCommandArgsDispatch dispatch)
         {
             var plugin = (KeyboardPlugin)dispatch;
             return plugin.Shell(this);

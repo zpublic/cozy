@@ -1,74 +1,106 @@
 ﻿using CozyAnywhere.Plugin.WinMouse.Args;
 using CozyAnywhere.Protocol;
 using Newtonsoft.Json;
+using CozyAnywhere.PluginBase;
 using System;
 
 namespace CozyAnywhere.Plugin.WinMouse
 {
     public partial class MousePlugin
     {
-        public string Dispatch(IPluginCommandMethodArgs args)
+        public PluginMethodReturnValueType Dispatch(IPluginCommandMethodArgs args)
         {
             return args.Execute(this);
         }
 
-        public string Shell(IPluginCommandMethodArgs args)
+        public PluginMethodReturnValueType Shell(IPluginCommandMethodArgs args)
         {
             throw new Exception("Unknow Command Args");
         }
 
-        public string Shell(MouseClickArgs args)
+        public PluginMethodReturnValueType Shell(MouseClickArgs args)
         {
             MouseUtil.MouseClick(args.Tag, args.X, args.Y);
-            return null;
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.NoDataType,
+            };
         }
 
-        public string Shell(MouseCursorClipArgs args)
+        public PluginMethodReturnValueType Shell(MouseCursorClipArgs args)
         {
             var result = MouseUtil.CursorClip(args.Left, args.Top, args.Right, args.Bottom);
-            return JsonConvert.SerializeObject(result);
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.StringDataType,
+                Data        = JsonConvert.SerializeObject(result),
+            };
         }
 
-        public string Shell(MouseCursorUnClipArgs args)
+        public PluginMethodReturnValueType Shell(MouseCursorUnClipArgs args)
         {
             var result = MouseUtil.CursorUnClip();
-            return JsonConvert.SerializeObject(result);
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.StringDataType,
+                Data        = JsonConvert.SerializeObject(result),
+            };
         }
 
-        public string Shell(MouseGetCurrsorPositionArgs args)
+        public PluginMethodReturnValueType Shell(MouseGetCurrsorPositionArgs args)
         {
             var result = MouseUtil.DefGetCursorPosition();
-            return JsonConvert.SerializeObject(result);
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.StringDataType,
+                Data        = JsonConvert.SerializeObject(result),
+            };
         }
 
-        public string Shell(MouseLeftClickArgs args)
+        public PluginMethodReturnValueType Shell(MouseLeftClickArgs args)
         {
             MouseUtil.LeftClick(args.X, args.Y);
-            return null;
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.NoDataType,
+            };
         }
 
-        public string Shell(MouseMiddleClickArgs args)
+        public PluginMethodReturnValueType Shell(MouseMiddleClickArgs args)
         {
             MouseUtil.MiddleClick(args.X, args.Y);
-            return null;
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.NoDataType,
+            };
         }
 
-        public string Shell(MouseEventArgs args)
+        public PluginMethodReturnValueType Shell(MouseEventArgs args)
         {
             MouseUtil.MouseEvent(args.Tag, args.X, args.Y, args.Data, args.ExtInfo);
-            return null;
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.NoDataType,
+            };
         }
 
-        public string Shell(MouseRightClickArgs args)
+        public PluginMethodReturnValueType Shell(MouseRightClickArgs args)
         {
             MouseUtil.RightClick(args.X, args.Y);
-            return null;
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.NoDataType,
+            };
         }
 
-        public string Shell(MouseSetCursorPositionArgs args)
+        public PluginMethodReturnValueType Shell(MouseSetCursorPositionArgs args)
         {
             var result = MouseUtil.SetCursorPosition(args.X, args.Y);
-            return JsonConvert.SerializeObject(result);
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.StringDataType,
+                Data        = JsonConvert.SerializeObject(result),
+            };
         }
     }
 }

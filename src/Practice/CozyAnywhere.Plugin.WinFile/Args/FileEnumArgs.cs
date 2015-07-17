@@ -1,4 +1,5 @@
 ﻿using CozyAnywhere.Protocol;
+using CozyAnywhere.PluginBase;
 
 namespace CozyAnywhere.Plugin.WinFile.Args
 {
@@ -10,7 +11,7 @@ namespace CozyAnywhere.Plugin.WinFile.Args
 
         public bool EnumTime { get; set; }
 
-        public string Execute(IPluginCommandArgsDispatch dispatch)
+        public PluginMethodReturnValueType Execute(IPluginCommandArgsDispatch dispatch)
         {
             var plugin = (FilePlugin)dispatch;
             return plugin.Shell(this);
