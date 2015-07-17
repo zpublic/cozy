@@ -62,22 +62,6 @@
       <Project>{cac595d7-c876-4c7a-a33a-c3f30b9e012e}</Project>
       <Name>NetworkProtocol</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CozyAnywhere.Plugin.WinFile\CozyAnywhere.Plugin.WinFile.csproj">
-      <Project>{865c7166-f6dc-43ec-b3e2-f6b999123a60}</Project>
-      <Name>CozyAnywhere.Plugin.WinFile</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyAnywhere.Plugin.WinKeyboard\CozyAnywhere.Plugin.WinKeyboard.csproj">
-      <Project>{3b278019-1b61-4c1f-80d3-35d72615bfbd}</Project>
-      <Name>CozyAnywhere.Plugin.WinKeyboard</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyAnywhere.Plugin.WinMouse\CozyAnywhere.Plugin.WinMouse.csproj">
-      <Project>{69209483-14fc-4f2b-b4ad-4b87778e3235}</Project>
-      <Name>CozyAnywhere.Plugin.WinMouse</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyAnywhere.Plugin.WinProcess\CozyAnywhere.Plugin.WinProcess.csproj">
-      <Project>{803ab2f5-c93d-4262-a942-9bf533e58cc6}</Project>
-      <Name>CozyAnywhere.Plugin.WinProcess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CozyAnywhere.PluginBase\CozyAnywhere.PluginBase.csproj">
       <Project>{3073b255-8934-4898-af1f-00f149c5f00e}</Project>
       <Name>CozyAnywhere.PluginBase</Name>
