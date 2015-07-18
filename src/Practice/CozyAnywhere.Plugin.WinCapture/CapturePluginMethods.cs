@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using CozyAnywhere.Plugin.WinCapture.Args;
 using System.Text;
 using CozyAnywhere.PluginBase;
+using System.Collections.Generic;
+using CozyAnywhere.Plugin.WinCapture.Model;
 
 namespace CozyAnywhere.Plugin.WinCapture
 {
@@ -25,19 +27,30 @@ namespace CozyAnywhere.Plugin.WinCapture
             int width       = 0;
             int height      = 0;
             var bitmapData  = CaptureUtil.DefGetCaptureData(ref offset, ref width, ref height);
-            if (bitmapData != null)
+
+            var data = CaptureUtil.SplitBitmap(bitmapData, offset, 32, 32, width, height);
+
+            BITMAP bmp = new BITMAP();
+            CaptureUtil.GetWindowBitmapSize(ref bmp);
+            bmp.bmWidth = 32;
+            bmp.bmHeight = 32;
+            bmp.bmWidthBytes = 4 * 32;
+            foreach(var obj in data)
             {
-                var jpedData = CaptureUtil.ConvertBmpToJpeg(bitmapData);
-                if(jpedData != null)
-                {
-                    return new PluginMethodReturnValueType()
-                    {
-                        DataType    = PluginMethodReturnValueType.BinaryDataType,
-                        Data        = jpedData,
-                    };
-                }
+                var jpg = new byte[offset + obj.Data.Length];
+                CaptureUtil.AppendBitmapHeader(ref jpg[0], ref bmp);
+                Array.Copy(obj.Data, 0, jpg, offset, obj.Data.Length);
+                obj.Data = jpg;
             }
-            return null;
+
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.PacketBinaryDataType,
+                Data        = new PluginMehtodReturnValuePacket()
+                {
+                    Packet = data,
+                },
+            };
         }
     }
 }

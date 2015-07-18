@@ -3,6 +3,7 @@ using CozyAnywhere.Protocol.Messages;
 using NetworkHelper;
 using CozyAnywhere.PluginBase;
 using NetworkProtocol;
+using System.Collections.Generic;
 
 namespace CozyAnywhere.ServerCore
 {
@@ -39,6 +40,21 @@ namespace CozyAnywhere.ServerCore
                     {
                         rspMsg.BinaryCommandRsp = result.MethodReturnValue.Data as byte[];
                     }
+                    else if (rspMsg.RspType == PluginMethodReturnValueType.PacketBinaryDataType)
+                    {
+                        var data = result.MethodReturnValue.Data as List<ReturnValuePacket>;
+                        if(data != null)
+                        {
+                            foreach(var obj in data)
+                            {
+                                client.SendMessage(new BinaryPacketMessage() 
+                                { 
+                                    Data        = obj.Data,
+                                    MetaData    = obj.MetaData,
+                                });
+                            }
+                        }
+                    }
 
                     client.SendMessage(rspMsg);
                 }
@@ -49,7 +65,7 @@ namespace CozyAnywhere.ServerCore
         {
             var loadMsg = (PluginLoadMessage)msg;
 
-            var list = EnumPluginFolder();
+            var list    = EnumPluginFolder();
             ServerPluginMgr.AddPluginsWithFileNames(list);
 
             var rspMsg = new PluginQueryMessage()

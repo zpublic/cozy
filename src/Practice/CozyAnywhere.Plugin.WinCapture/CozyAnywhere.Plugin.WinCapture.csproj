@@ -49,6 +49,7 @@
     <Compile Include="CapturePlugin.cs" />
     <Compile Include="CapturePluginCommand.cs" />
     <Compile Include="CapturePluginMethods.cs" />
+    <Compile Include="CaptureSplitMetaData.cs" />
     <Compile Include="CaptureUtil.cs" />
     <Compile Include="LoadHelper.cs" />
     <Compile Include="Model\PacketDataInfo.cs" />

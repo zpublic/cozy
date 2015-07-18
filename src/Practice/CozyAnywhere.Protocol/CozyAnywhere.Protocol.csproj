@@ -47,6 +47,7 @@
     <Compile Include="IPluginCommandArgsDispatch.cs" />
     <Compile Include="IPluginLoadHelper.cs" />
     <Compile Include="MessageId.cs" />
+    <Compile Include="Messages\BinaryPacketMessage.cs" />
     <Compile Include="Messages\CommandMessage.cs" />
     <Compile Include="Messages\CommandMessageRsp.cs" />
     <Compile Include="Messages\FileDeleteMessage.cs" />

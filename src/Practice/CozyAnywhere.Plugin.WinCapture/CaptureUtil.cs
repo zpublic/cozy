@@ -5,6 +5,9 @@ using System.IO;
 using System.Text;
 using System;
 using CozyAnywhere.Plugin.WinCapture.Model;
+using System.Collections.Generic;
+using CozyAnywhere.PluginBase;
+using Newtonsoft.Json;
 
 namespace CozyAnywhere.Plugin.WinCapture
 {
@@ -50,7 +53,44 @@ namespace CozyAnywhere.Plugin.WinCapture
             {
                 return null;
             }
+            width = bitmap.bmWidth;
+            height = bitmap.bmHeight;
             return result; 
+        }
+
+        public static List<ReturnValuePacket> SplitBitmap(byte[] data, uint offset, int blockwidth, int blockheight, int width, int height)
+        {
+            var result = new List<ReturnValuePacket>();
+            for (int i = 0; i < width; i += blockwidth)
+            {
+                for (int j = 0; j < height; j += blockheight)
+                {
+                    int count = 0;
+                    byte[] d = new byte[offset + blockwidth * blockheight * 4];
+                    for (int k = 0; k < blockwidth; ++k)
+                    {
+                        for (int l = 0; l < blockheight; ++l)
+                        {
+                            d[count++] = data[offset + ((i + k) * width) + j + l + 0];
+                            d[count++] = data[offset + ((i + k) * width) + j + l + 1];
+                            d[count++] = data[offset + ((i + k) * width) + j + l + 2];
+                            d[count++] = data[offset + ((i + k) * width) + j + l + 3];
+                        }
+                    }
+                    result.Add(new ReturnValuePacket()
+                    {
+                        Data = d,
+                        MetaData = JsonConvert.SerializeObject(new CaptureSplitMetaData()
+                        {
+                            X = i,
+                            Y = j,
+                            Width = blockwidth,
+                            Height = blockheight,
+                        }),
+                    });
+                }
+            }
+            return result;
         }
 
         public static byte[] ConvertBmpToJpeg(byte[] input)
