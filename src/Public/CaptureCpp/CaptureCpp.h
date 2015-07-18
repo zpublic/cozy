@@ -15,11 +15,13 @@ class CCaptureCpp
 public:
     CCaptureCpp(void);
     
-    DWORD GetCaptureData(LPBYTE lpResult);
+    bool GetCaptureData(LPBYTE lpResult);
 
-    DWORD GetWindowBitmapSize();
+    DWORD GetWindowBitmapSize(LPBITMAP lpBitmap);
 
     WORD GetClrBits(WORD wInput);
+
+    DWORD AppendBitmapHeader(LPBYTE lpData, LPBITMAP lpBitmap);
 };
 
 CAPTURECPP_API CCaptureCpp CCaptureCppCppInstance;
@@ -28,6 +30,8 @@ CAPTURECPP_API int GetDesktopNum(void);
 
 CAPTURECPP_API bool GetDesktopSize(int nIndex, int* w, int* h);
 
-extern "C" CAPTURECPP_API DWORD GetCaptureData(LPBYTE lpResult);
+extern "C" CAPTURECPP_API bool GetCaptureData(LPBYTE lpResult);
 
-extern "C" CAPTURECPP_API DWORD GetWindowBitmapSize();
+extern "C" CAPTURECPP_API DWORD GetWindowBitmapSize(LPBITMAP bitmap);
+
+extern "C" CAPTURECPP_API DWORD AppendBitmapHeader(LPBYTE lpData, LPBITMAP lpBitmap);

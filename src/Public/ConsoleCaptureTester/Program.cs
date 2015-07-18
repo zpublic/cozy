@@ -11,19 +11,21 @@ namespace ConsoleCaptureTester
     internal class Program
     {
         [DllImport(@"CaptureCpp.dll",
-           CharSet = CharSet.Auto,
-           CallingConvention = CallingConvention.Cdecl)]
+           CharSet              = CharSet.Auto,
+           CallingConvention    = CallingConvention.Cdecl)]
         public static extern uint GetWindowBitmapSize();
 
         [DllImport(@"CaptureCpp.dll",
-           CharSet = CharSet.Auto,
-           CallingConvention = CallingConvention.Cdecl)]
+           CharSet              = CharSet.Auto,
+           CallingConvention    = CallingConvention.Cdecl)]
         public static extern bool GetCaptureData(ref byte result, uint size);
 
         private static void Main(string[] args)
         {
             uint offset = 0;
-            var result  = CaptureUtil.ConvertBmpToJpeg(CaptureUtil.DefGetCaptureData(out offset));
+            int width = 0;
+            int height = 0;
+            var result  = CaptureUtil.ConvertBmpToJpeg(CaptureUtil.DefGetCaptureData(ref offset, ref width, ref height));
             using (FileStream fs = new FileStream(@"D:\test.jpg", FileMode.Create, FileAccess.Write))
             {
                 fs.Write(result, 0, result.Length);

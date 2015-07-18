@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System;
+using CozyAnywhere.Plugin.WinCapture.Model;
 
 namespace CozyAnywhere.Plugin.WinCapture
 {
@@ -13,32 +14,43 @@ namespace CozyAnywhere.Plugin.WinCapture
         [DllImport(@"CaptureCpp.dll",
            CharSet              = CharSet.Auto,
            CallingConvention    = CallingConvention.Cdecl)]
-        public static extern uint GetWindowBitmapSize();
+        public static extern uint GetWindowBitmapSize(ref BITMAP bitmap);
 
         // bool GetCaptureData(LPBYTE lpResult);
         [DllImport(@"CaptureCpp.dll",
            CharSet              = CharSet.Auto,
            CallingConvention    = CallingConvention.Cdecl)]
-        public static extern uint GetCaptureData(ref byte result);
+        public static extern uint GetCaptureData(ref byte result, ref BITMAP bitmap);
+
+        // DWORD AppendBitmapHeader(LPBYTE lpData, LPBITMAP lpBitmap)
+        [DllImport(@"CaptureCpp.dll",
+           CharSet              = CharSet.Auto,
+           CallingConvention    = CallingConvention.Cdecl)]
+        public static extern uint AppendBitmapHeader(ref byte data, ref BITMAP bitmap);
 
         #region DefaultMethod
 
-        public static byte[] DefGetCaptureData(out uint offset)
+        public static byte[] DefGetCaptureData(ref uint offset, ref int width, ref int height)
         {
-            uint size       = GetWindowBitmapSize();
+            BITMAP bitmap = new BITMAP(); ;
+            uint size = GetWindowBitmapSize(ref bitmap);
             if (size == 0)
             {
                 offset = 0;
                 return null;
             }
-
             byte[] result   = new byte[size];
-            offset          = GetCaptureData(ref result[0]);
-            if(offset != 0)
+
+            offset = AppendBitmapHeader(ref result[0], ref bitmap);
+            if(offset == 0)
             {
-                return result;
+                return null;
             }
-            return null; 
+            if(GetCaptureData(ref result[offset], ref bitmap) == 0)
+            {
+                return null;
+            }
+            return result; 
         }
 
         public static byte[] ConvertBmpToJpeg(byte[] input)

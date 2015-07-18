@@ -51,6 +51,8 @@
     <Compile Include="CapturePluginMethods.cs" />
     <Compile Include="CaptureUtil.cs" />
     <Compile Include="LoadHelper.cs" />
+    <Compile Include="Model\PacketDataInfo.cs" />
+    <Compile Include="Model\BITMAP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
