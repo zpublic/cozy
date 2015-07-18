@@ -19,21 +19,26 @@ namespace CozyAnywhere.Plugin.WinCapture
         [DllImport(@"CaptureCpp.dll",
            CharSet              = CharSet.Auto,
            CallingConvention    = CallingConvention.Cdecl)]
-        public static extern bool GetCaptureData(ref byte result);
+        public static extern uint GetCaptureData(ref byte result);
 
         #region DefaultMethod
 
-        public static byte[] DefGetCaptureData()
+        public static byte[] DefGetCaptureData(out uint offset)
         {
             uint size       = GetWindowBitmapSize();
-            if (size == 0) return null;
-
-            byte[] result   = new byte[size];
-            if(!GetCaptureData(ref result[0]))
+            if (size == 0)
             {
+                offset = 0;
                 return null;
             }
-            return result;
+
+            byte[] result   = new byte[size];
+            offset          = GetCaptureData(ref result[0]);
+            if(offset != 0)
+            {
+                return result;
+            }
+            return null; 
         }
 
         public static byte[] ConvertBmpToJpeg(byte[] input)

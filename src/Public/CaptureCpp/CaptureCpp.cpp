@@ -63,7 +63,7 @@ DWORD CCaptureCpp::GetWindowBitmapSize()
     return (bmp.bmWidth + 7) / 8 * bmp.bmHeight * cClrBits + sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + (1 << cClrBits) *sizeof(RGBQUAD);
 }
 
-bool CCaptureCpp::GetCaptureData(LPBYTE lpResult)
+DWORD CCaptureCpp::GetCaptureData(LPBYTE lpResult)
 {
     if (lpResult == nullptr) return 0;
 
@@ -81,7 +81,7 @@ bool CCaptureCpp::GetCaptureData(LPBYTE lpResult)
     WORD cClrBits;
     if (!::GetObject(hBmp, sizeof(BITMAP), (LPVOID)&bmp))
     {
-        return false;
+        return 0;
     }
 
     cClrBits = GetClrBits((WORD)(bmp.bmPlanes * bmp.bmBitsPixel));
@@ -134,7 +134,7 @@ bool CCaptureCpp::GetCaptureData(LPBYTE lpResult)
     ::LocalFree(pbmi);
     ::GlobalFree((HGLOBAL)lpBits);
     ::ReleaseDC(hwnd, hdc);
-    return true;
+    return offset;
 }
 
 
@@ -173,7 +173,7 @@ CAPTURECPP_API bool GetDesktopSize(int nIndex, int* w, int* h)
     return false;
 }
 
-CAPTURECPP_API bool GetCaptureData(LPBYTE lpResult)
+CAPTURECPP_API DWORD GetCaptureData(LPBYTE lpResult)
 {
     return CCaptureCppCppInstance.GetCaptureData(lpResult);
 }

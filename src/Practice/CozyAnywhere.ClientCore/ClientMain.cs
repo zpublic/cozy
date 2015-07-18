@@ -1,6 +1,7 @@
 ﻿using NetworkServer;
 using CozyAnywhere.Plugin.WinFile;
 using CozyAnywhere.Plugin.WinProcess;
+using CozyAnywhere.Plugin.WinCapture;
 using CozyAnywhere.Protocol.Messages;
 
 namespace CozyAnywhere.ClientCore
@@ -116,6 +117,19 @@ namespace CozyAnywhere.ClientCore
             {
                 var loadMsg = new PluginLoadMessage();
                 server.SendMessage(loadMsg);
+            }
+        }
+
+        public void SendCaptureMessage()
+        {
+            if(server != null)
+            {
+                var command1 = CapturePlugin.MakeGetCaptureDataCommand();
+                var commandMsg1 = new CommandMessage()
+                {
+                    Command = command1,
+                };
+                server.SendMessage(commandMsg1);
             }
         }
     }

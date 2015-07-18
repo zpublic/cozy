@@ -103,6 +103,7 @@ namespace CozyAnywhere.WpfClient.ViewModel
         {
             RegisterControl<FilePluginPageFactory>();
             RegisterControl<ProcessPluginPageFactory>();
+            RegisterControl<CapturePluginPageFactory>();
         }
 
         private void OnPluginChanged(object sender, PluginChangedEvnetArgs e)

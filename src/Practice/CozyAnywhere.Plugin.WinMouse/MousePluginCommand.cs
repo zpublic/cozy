@@ -4,6 +4,7 @@ using CozyAnywhere.Plugin.WinMouse.Tag;
 using CozyAnywhere.Protocol;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using CozyAnywhere.PluginBase;
 
 namespace CozyAnywhere.Plugin.WinMouse
 {

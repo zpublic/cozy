@@ -50,6 +50,7 @@
     <Compile Include="CapturePluginCommand.cs" />
     <Compile Include="CapturePluginMethods.cs" />
     <Compile Include="CaptureUtil.cs" />
+    <Compile Include="LoadHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

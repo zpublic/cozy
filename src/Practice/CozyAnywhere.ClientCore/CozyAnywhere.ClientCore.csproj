@@ -48,6 +48,7 @@
     <Compile Include="ClientEventHandler.cs" />
     <Compile Include="ClientMain.cs" />
     <Compile Include="ClientMessage.cs" />
+    <Compile Include="EventArg\CaptureRefreshEventArgs.cs" />
     <Compile Include="EventArg\PluginChangedEvnetArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,6 +68,10 @@
     <ProjectReference Include="..\..\Public\NetworkServer\NetworkServer.csproj">
       <Project>{3827bbcf-b396-4536-96c0-eea82d51cbe6}</Project>
       <Name>NetworkServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyAnywhere.Plugin.WinCapture\CozyAnywhere.Plugin.WinCapture.csproj">
+      <Project>{e9557031-3390-42aa-bb0a-36321f80899e}</Project>
+      <Name>CozyAnywhere.Plugin.WinCapture</Name>
     </ProjectReference>
     <ProjectReference Include="..\CozyAnywhere.Plugin.WinFile\CozyAnywhere.Plugin.WinFile.csproj">
       <Project>{865c7166-f6dc-43ec-b3e2-f6b999123a60}</Project>

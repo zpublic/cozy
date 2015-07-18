@@ -1,4 +1,5 @@
 ﻿using CozyAnywhere.Protocol;
+using CozyAnywhere.PluginBase;
 
 namespace CozyAnywhere.Plugin.WinProcess.Args
 {
@@ -8,7 +9,7 @@ namespace CozyAnywhere.Plugin.WinProcess.Args
 
         public uint TimeOut { get; set; }
 
-        public string Execute(IPluginCommandArgsDispatch dispatch)
+        public PluginMethodReturnValueType Execute(IPluginCommandArgsDispatch dispatch)
         {
             var plugin = (ProcessPlugin)dispatch;
             return plugin.Shell(this);
