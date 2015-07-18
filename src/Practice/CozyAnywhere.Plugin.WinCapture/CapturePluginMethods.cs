@@ -22,7 +22,9 @@ namespace CozyAnywhere.Plugin.WinCapture
         public PluginMethodReturnValueType Shell(GetCaptureDataArgs CopyArgs)
         {
             uint offset     = 0;
-            var bitmapData  = CaptureUtil.DefGetCaptureData(out offset);
+            int width       = 0;
+            int height      = 0;
+            var bitmapData  = CaptureUtil.DefGetCaptureData(ref offset, ref width, ref height);
             if (bitmapData != null)
             {
                 var jpedData = CaptureUtil.ConvertBmpToJpeg(bitmapData);
