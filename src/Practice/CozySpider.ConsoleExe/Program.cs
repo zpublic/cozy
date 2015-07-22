@@ -14,8 +14,13 @@ namespace CozySpider.ConsoleExe
             SpiderSeeds seeds = new SpiderSeeds();
             seeds.AddSeed("http://www.javfee.com/cn/genre/w/currentPage/");
 
+            SpiderSetting setting = new SpiderSetting();
+            setting.Seeds = seeds;
+            setting.Depth = 2;
+
+
             SpiderMaster master = new SpiderMaster();
-            master.Init(seeds);
+            master.Init(setting);
             master.Crawl();
         }
     }

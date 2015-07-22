@@ -9,17 +9,23 @@ namespace CozySpider.Core
 {
     public class SpiderMaster
     {
-        private SpiderSeeds seeds = null;
+        private SpiderSetting setting = null;
+
         private UrlAddressQueue urlQueue = new UrlAddressQueue();
 
-        public void Init(SpiderSeeds seeds)
+        public void Init(SpiderSetting setting)
         {
-            this.seeds = seeds;
+            this.setting = setting;
         }
 
         public void Crawl()
         {
-            SpiderProcess.Seed2Queue(seeds, urlQueue);
+            SpiderProcess.Seed2Queue(urlQueue, setting);
+        }
+
+        public void Stop()
+        {
+
         }
     }
 }

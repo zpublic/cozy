@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozySpider.Core.Filter
+namespace CozySpider.Core.UrlFilter
 {
-    class HashFilter
+    interface IUrlFilter
     {
     }
 }

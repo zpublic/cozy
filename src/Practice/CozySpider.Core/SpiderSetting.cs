@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CozySpider.Core
 {
-    class SpiderSetting
+    public class SpiderSetting
     {
         private int depth = 3;
         public int Depth
@@ -20,5 +20,7 @@ namespace CozySpider.Core
                 depth = value;
             }
         }
+
+        public SpiderSeeds Seeds { get; set; }
     }
 }

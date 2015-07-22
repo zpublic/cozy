@@ -9,26 +9,28 @@ namespace CozySpider.Core
 {
     class SpiderProcess
     {
-        public static void Seed2Queue(SpiderSeeds seeds, UrlAddressQueue urlQueue)
+        public static void Seed2Queue(
+            UrlAddressQueue urlQueue,
+            SpiderSetting setting)
         {
-            if (seeds != null && urlQueue != null)
+            if (setting.Seeds != null && urlQueue != null)
             {
-                var c = seeds.GetSeeds();
+                var c = setting.Seeds.GetSeeds();
                 foreach (var i in c)
                 {
-                    
+                    urlQueue.EnQueue(new UrlInfo(i, setting.Depth));
                 }
             }
         }
 
-        public static void UrlFilter()
+        public static bool UrlFilter()
         {
-
+            return false;
         }
 
-        public static void UrlMatch()
+        public static bool UrlMatch()
         {
-
+            return true;
         }
     }
 }
