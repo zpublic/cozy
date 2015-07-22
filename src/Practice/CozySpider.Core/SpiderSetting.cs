@@ -22,6 +22,19 @@ namespace CozySpider.Core
             }
         }
 
+        private int workerCount = 3;
+        public int WorkerCount
+        {
+            get
+            {
+                return workerCount;
+            }
+            set
+            {
+                workerCount = value;
+            }
+        }
+
         public SpiderSeeds Seeds { get; set; }
         public IUrlMatch Match { get; set; }
     }

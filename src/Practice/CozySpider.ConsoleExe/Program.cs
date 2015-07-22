@@ -18,14 +18,15 @@ namespace CozySpider.ConsoleExe
 
             IUrlMatch match = new FindStringMatch()
             {
-                StringFind = "javfee.com",
-                NoCase = true
+                StringFind  = "javfee.com",
+                NoCase      = true
             };
 
             SpiderSetting setting = new SpiderSetting();
-            setting.Depth = 2;
-            setting.Seeds = seeds;
-            setting.Match = match;
+            setting.Depth           = 2;
+            setting.WorkerCount     = 2;
+            setting.Seeds           = seeds;
+            setting.Match           = match;
 
             SpiderMaster master = new SpiderMaster();
             master.Init(setting);

@@ -13,9 +13,15 @@ namespace CozySpider.Core
 
         private UrlAddressQueue urlQueue = new UrlAddressQueue();
 
+        private List<SpiderWorker> workers = new List<SpiderWorker>();
+
         public void Init(SpiderSetting setting)
         {
             this.setting = setting;
+            for (int i = 0; i < setting.WorkerCount; ++i)
+            {
+                workers.Add(new SpiderWorker());
+            }
         }
 
         public void Crawl()
