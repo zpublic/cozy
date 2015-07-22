@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozySpider.Core;
+using CozySpider.Core.UrlMatch;
+using System.Threading;
 
 namespace CozySpider.ConsoleExe
 {
@@ -14,14 +16,22 @@ namespace CozySpider.ConsoleExe
             SpiderSeeds seeds = new SpiderSeeds();
             seeds.AddSeed("http://www.javfee.com/cn/genre/w/currentPage/");
 
-            SpiderSetting setting = new SpiderSetting();
-            setting.Seeds = seeds;
-            setting.Depth = 2;
+            IUrlMatch match = new FindStringMatch()
+            {
+                StringFind = "javfee.com",
+                NoCase = true
+            };
 
+            SpiderSetting setting = new SpiderSetting();
+            setting.Depth = 2;
+            setting.Seeds = seeds;
+            setting.Match = match;
 
             SpiderMaster master = new SpiderMaster();
             master.Init(setting);
             master.Crawl();
+            Thread.Sleep(3000);
+            master.Stop();
         }
     }
 }

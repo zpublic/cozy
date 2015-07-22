@@ -63,6 +63,7 @@
     <Compile Include="SpiderSetting.cs" />
     <Compile Include="SpiderWorker.cs" />
     <Compile Include="UrlFilter\IUrlFilter.cs" />
+    <Compile Include="UrlMatch\FindStringMatch.cs" />
     <Compile Include="UrlMatch\IUrlMatch.cs" />
   </ItemGroup>
   <ItemGroup />

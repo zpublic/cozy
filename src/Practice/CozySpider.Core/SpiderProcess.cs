@@ -18,19 +18,26 @@ namespace CozySpider.Core
                 var c = setting.Seeds.GetSeeds();
                 foreach (var i in c)
                 {
-                    urlQueue.EnQueue(new UrlInfo(i, setting.Depth));
+                    if (UrlMatch(i, setting))
+                    {
+                        urlQueue.EnQueue(new UrlInfo(i, setting.Depth));
+                    }
                 }
             }
         }
 
-        public static bool UrlFilter()
+        public static bool UrlFilter(string url, SpiderSetting setting)
         {
             return false;
         }
 
-        public static bool UrlMatch()
+        public static bool UrlMatch(string url, SpiderSetting setting)
         {
-            return true;
+            if (url != null && setting.Match != null)
+            {
+                return setting.Match.Match(url);
+            }
+            return false;
         }
     }
 }

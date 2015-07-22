@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CozySpider.Core.UrlMatch
 {
-    interface IUrlMatch
+    public interface IUrlMatch
     {
+        bool Match(string url);
     }
 }

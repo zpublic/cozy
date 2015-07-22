@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CozySpider.Core.UrlMatch;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,5 +23,6 @@ namespace CozySpider.Core
         }
 
         public SpiderSeeds Seeds { get; set; }
+        public IUrlMatch Match { get; set; }
     }
 }
