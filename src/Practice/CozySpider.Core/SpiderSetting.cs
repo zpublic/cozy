@@ -8,5 +8,17 @@ namespace CozySpider.Core
 {
     class SpiderSetting
     {
+        private int depth = 3;
+        public int Depth
+        {
+            get
+            {
+                return depth;
+            }
+            set
+            {
+                depth = value;
+            }
+        }
     }
 }

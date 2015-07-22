@@ -46,6 +46,11 @@
     <Compile Include="Event\EventArgsBase.cs" />
     <Compile Include="Filter\BloomFilter.cs" />
     <Compile Include="Filter\HashFilter.cs" />
+    <Compile Include="Model\ResultStorage.cs" />
+    <Compile Include="Model\UrlAddressPool.cs" />
+    <Compile Include="Model\UrlAddressQueue.cs" />
+    <Compile Include="SpiderSeeds.cs" />
+    <Compile Include="Model\UrlInfo.cs" />
     <Compile Include="Output\OutputBase.cs" />
     <Compile Include="Output\OutputImg.cs" />
     <Compile Include="Output\OutputJson.cs" />
@@ -53,8 +58,11 @@
     <Compile Include="Output\OutputXml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpiderMaster.cs" />
+    <Compile Include="SpiderProcess.cs" />
     <Compile Include="SpiderSetting.cs" />
+    <Compile Include="SpiderWorker.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
