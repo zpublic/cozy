@@ -22,6 +22,13 @@ public:
     WORD GetClrBits(WORD wInput);
 
     DWORD AppendBitmapHeader(LPBYTE lpData, LPBITMAP lpBitmap);
+
+    void GetWindowSize(HWND hwnd, POINT *pResult);
+
+    bool GetWindowHDC(HWND *lpHwnd, HDC *lpHdc);
+
+    DWORD GetHdcCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBYTE lpResult, LPBITMAP lpBitmap);
+
 };
 
 CAPTURECPP_API CCaptureCpp CCaptureCppCppInstance;
@@ -35,3 +42,8 @@ extern "C" CAPTURECPP_API bool GetCaptureData(LPBYTE lpResult);
 extern "C" CAPTURECPP_API DWORD GetWindowBitmapSize(LPBITMAP bitmap);
 
 extern "C" CAPTURECPP_API DWORD AppendBitmapHeader(LPBYTE lpData, LPBITMAP lpBitmap);
+
+extern "C" CAPTURECPP_API bool GetWindowHDC(HWND *lpHwnd, HDC *lpHdc);
+
+extern "C" CAPTURECPP_API DWORD GetHdcCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBYTE lpResult, LPBITMAP lpBitmap);
+
