@@ -45,17 +45,26 @@ namespace Starbound.UI.XNA
 
         public void Draw(IImageResource texture, Rectangle rectangle, Color color)
         {
-            spriteBatch.Draw(((XNAImageResource)texture).Texture, rectangle, color);
+            if (texture != null)
+            {
+                spriteBatch.Draw(((XNAImageResource)texture).Texture, rectangle, color);
+            }
         }
 
         public void Draw(IImageResource texture, Rectangle destinationRectangle, Rectangle? sourceRectangle, Color color)
         {
-            spriteBatch.Draw(((XNAImageResource)texture).Texture, destinationRectangle, sourceRectangle, color);
+            if (texture != null)
+            {
+                spriteBatch.Draw(((XNAImageResource)texture).Texture, destinationRectangle, sourceRectangle, color);
+            }
         }
 
         public void DrawString(IFontResource font, string text, Microsoft.Xna.Framework.Vector2 position, Color color)
         {
-            spriteBatch.DrawString(((XNAFontResource)font).Font, text, position, color);
+            if (font != null)
+            {
+                spriteBatch.DrawString(((XNAFontResource)font).Font, text, position, color);
+            }
         }
     }
 }

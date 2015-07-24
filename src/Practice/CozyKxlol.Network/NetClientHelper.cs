@@ -1,4 +1,6 @@
 ﻿using CozyKxlol.Network.Msg;
+using CozyKxlol.Network.Msg.Agar;
+using CozyKxlol.Network.Msg.Happy;
 using Lidgren.Network;
 using System;
 using System.Collections.Generic;
@@ -215,6 +217,36 @@ namespace CozyKxlol.Network
                 else if(id == MsgId.AgarMarkListPark)
                 {
                     MsgBase msg = new Msg_AgarMarkListPack();
+                    msg.R(im);
+                    DataMessage(sender, new DataMessageArgs(msg));
+                }
+                else if(id == MsgId.HappyPlayerLoginRsp)
+                {
+                    MsgBase msg = new Msg_HappyPlayerLoginRsp();
+                    msg.R(im);
+                    DataMessage(sender, new DataMessageArgs(msg));
+                }
+                else if(id == MsgId.HappyOtherPlayerLogin)
+                {
+                    MsgBase msg = new Msg_HappyOtherPlayerLogin();
+                    msg.R(im);
+                    DataMessage(sender, new DataMessageArgs(msg));
+                }
+                else if(id == MsgId.HappyPlayerMove)
+                {
+                    MsgBase msg = new Msg_HappyPlayerMove();
+                    msg.R(im);
+                    DataMessage(sender, new DataMessageArgs(msg));
+                }
+                else if(id == MsgId.HappyPlayerQuit)
+                {
+                    MsgBase msg = new Msg_HappyPlayerQuit();
+                    msg.R(im);
+                    DataMessage(sender, new DataMessageArgs(msg));
+                }
+                else if(id == MsgId.HappyPlayerPack)
+                {
+                    MsgBase msg = new Msg_HappyPlayerPack();
                     msg.R(im);
                     DataMessage(sender, new DataMessageArgs(msg));
                 }

@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1DC85C30-5FB7-4BBB-B526-54ABCA26C605}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GUI4UControls</RootNamespace>
+    <AssemblyName>GUI4UControls</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile328</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Buttons\Button.cs" />
+    <Compile Include="Buttons\ButtonBase.cs" />
+    <Compile Include="Buttons\CheckBox.cs" />
+    <Compile Include="Buttons\ToggleButton.cs" />
+    <Compile Include="ClsCompliant.cs" />
+    <Compile Include="Color\ColorBoxGradient.cs" />
+    <Compile Include="Color\ColorBoxGradientIndicator.cs" />
+    <Compile Include="Color\ColorBoxSolid.cs" />
+    <Compile Include="Color\ColorPickerPhotoshop.cs" />
+    <Compile Include="Color\ColorPickerRGBA.cs" />
+    <Compile Include="Color\ColorSliderVertical.cs" />
+    <Compile Include="Color\ColorSliderVerticalIndicator.cs" />
+    <Compile Include="Buttons\ComboBox.cs" />
+    <Compile Include="Containers\CollapseControl.cs" />
+    <Compile Include="Containers\Tab.cs" />
+    <Compile Include="Containers\TabContainer.cs" />
+    <Compile Include="Containers\DGroup.cs" />
+    <Compile Include="Containers\TabButton.cs" />
+    <Compile Include="Containers\TabControl.cs" />
+    <Compile Include="Containers\TabMenu.cs" />
+    <Compile Include="Containers\Window.cs" />
+    <Compile Include="Containers\WindowSizingCorner.cs" />
+    <Compile Include="Containers\WindowTitleBar.cs" />
+    <Compile Include="Dialogs\DialogBase.cs" />
+    <Compile Include="Dialogs\DialogDisplayPicker.cs" />
+    <Compile Include="Dialogs\DialogError.cs" />
+    <Compile Include="Dialogs\DialogMessage.cs" />
+    <Compile Include="Dialogs\DialogOkCancel.cs" />
+    <Compile Include="Dialogs\DialogRGBA.cs" />
+    <Compile Include="Dialogs\DialogWarning.cs" />
+    <Compile Include="Dialogs\DialogYesNo.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Menu\MenuContainer.cs" />
+    <Compile Include="Menu\MenuBarHorizontal.cs" />
+    <Compile Include="Menu\MenuBarVertical.cs" />
+    <Compile Include="Menu\MenuItemBase.cs" />
+    <Compile Include="Menu\MenuItemButton.cs" />
+    <Compile Include="Menu\MenuItemSeparator.cs" />
+    <Compile Include="Menu\MenuItemText.cs" />
+    <Compile Include="ProgressBar\ProgressBarBase.cs" />
+    <Compile Include="Tests\TestWindowLog.cs" />
+    <Compile Include="Utility\Log.cs" />
+    <Compile Include="Images\ImageControl.cs" />
+    <Compile Include="Monitor\MonitorContainerControl.cs" />
+    <Compile Include="Monitor\MonitorControl.cs" />
+    <Compile Include="ProgressBar\ProgressBarVertical.cs" />
+    <Compile Include="ProgressBar\ProgressBarVerticalFill.cs" />
+    <Compile Include="ProgressBar\ProgressBarHorizontalFill.cs" />
+    <Compile Include="ProgressBar\ProgressBarHorizontal.cs" />
+    <Compile Include="Containers\Grid.cs" />
+    <Compile Include="Buttons\ListBox.cs" />
+    <Compile Include="Buttons\ListBoxItem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScrollBar\ScrollbarHorizontal.cs" />
+    <Compile Include="ScrollBar\ScrollbarBase.cs" />
+    <Compile Include="ScrollBar\ScrollBarVertical.cs" />
+    <Compile Include="Text\TextBoxCursor.cs" />
+    <Compile Include="Text\TextBoxSelectionBox.cs" />
+    <Compile Include="Text\TextBoxUtility.cs" />
+    <Compile Include="Text\MultilineTextBox.cs" />
+    <Compile Include="Text\Label.cs" />
+    <Compile Include="Text\TextBox.cs" />
+    <Compile Include="Tree\TreeView.cs" />
+    <Compile Include="Tree\TreeViewExpander.cs" />
+    <Compile Include="Tree\TreeViewIcon.cs" />
+    <Compile Include="Tree\TreeViewNode.cs" />
+    <Compile Include="Tree\TreeViewNodeFlat.cs" />
+    <Compile Include="Tree\TreeViewRootNode.cs" />
+    <Compile Include="Utility\BlankControl.cs" />
+    <Compile Include="Utility\MouseCursor.cs" />
+    <Compile Include="Utility\Tooltip.cs" />
+    <Compile Include="Tests\MenuBuilder.cs" />
+    <Compile Include="Tests\TestWindowButton.cs" />
+    <Compile Include="Tests\TestWindowBase.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Tests\TestWindowCheckBoxes.cs" />
+    <Compile Include="Tests\TestWindowColors.cs" />
+    <Compile Include="Tests\TestWindowComboBox.cs" />
+    <Compile Include="Tests\TestWindowContainers.cs" />
+    <Compile Include="Tests\TestWindowImages.cs" />
+    <Compile Include="Tests\TestWindowListBox.cs" />
+    <Compile Include="Tests\TestWindowProgressBar.cs" />
+    <Compile Include="Tests\TestWindowScrollBar.cs" />
+    <Compile Include="Tests\TestWindowText.cs" />
+    <Compile Include="Tests\TestWindowTreeview.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gui4UFrameWork\Gui4UFrameWork.csproj">
+      <Project>{434cce00-44f5-4c47-8219-113e20fdb33f}</Project>
+      <Name>Gui4UFrameWork</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Copyright.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

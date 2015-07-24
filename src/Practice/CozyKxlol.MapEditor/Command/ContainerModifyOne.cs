@@ -11,15 +11,24 @@ namespace CozyKxlol.MapEditor.Command
         public int Y { get; set; }
         public uint Data { get; set; }
 
+        private uint oriData = 0;
+
         public ContainerModifyOne(int x, int y, uint data)
         {
             X       = x;
             Y       = y;
             Data    = data;
         }
-        public void Execute(TiledMapDataContainer container)
+
+        public void Do(TiledMapDataContainer container)
         {
+            oriData = container.Read(X, Y);
             container.Write(X, Y, Data);
+        }
+
+        public void Undo(TiledMapDataContainer container)
+        {
+            container.Write(X, Y, oriData);
         }
     }
 }

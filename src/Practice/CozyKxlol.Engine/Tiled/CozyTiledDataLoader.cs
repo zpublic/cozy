@@ -2,26 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CozyKxlol.Engine.Tiled.Impl;
+using System.IO;
 
 namespace CozyKxlol.Engine.Tiled
 {
-    public class CozyTiledDataLoader : ICozyLoader
+    public class CozyTiledDataLoader 
     {
-        public void Load(CozyTiledData Data)
+        public string Path { get; set; }
+
+        public CozyTiledDataLoader(string path)
         {
-            if(Data != null)
-            {
-                // read tiled data;
-                TestData(Data);
-            }
+            Path = path;
         }
 
-        private void TestData(CozyTiledData Data)
+        public void Load(ICozyLoader loader)
         {
-            Data.Change(0, 0, 1);
-            Data.Change(1, 1, 2);
-            Data.Change(2, 2, 1);
+            if(Path != null)
+            {
+                if(File.Exists(Path))
+                {
+                    using (Stream stream = new FileStream(Path, FileMode.Open, FileAccess.Read))
+                    {
+                        loader.Load(stream);
+                    }
+                }
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CozyKxlol.Engine;
+using CozyKxlol.MapEditor.Gui;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -13,7 +14,7 @@ namespace CozyKxlol.MapEditor
 
         public KxlolMapEditor()
         {
-            WindowSize              = new Point(960, 640);
+            WindowSize              = new Point(1200, 640);
             Content.RootDirectory   = "Content";
             IsMouseVisible          = true;
 

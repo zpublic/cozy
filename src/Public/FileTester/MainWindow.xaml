@@ -1,0 +1,28 @@
+﻿<Window x:Class="FileTester.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewmodel="clr-namespace:FileTester.ViewModel"
+        xmlns:command="clr-namespace:FileTester.Command"
+        Title="FileTester" Height="350" Width="525">
+    <Window.DataContext>
+        <viewmodel:MainWindowViewModel x:Name="ViewModel"/>
+    </Window.DataContext>
+    <Grid>
+        <StackPanel>
+            <TextBox Text="{Binding CurrPath, Mode=TwoWay}"></TextBox>
+            <ListView ItemsSource="{Binding FileList}" ScrollViewer.CanContentScroll="True" Height="295" 
+                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Delete" Command="{Binding FileDeleteCommand}"></MenuItem>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Window>

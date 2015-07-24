@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3B278019-1B61-4C1F-80D3-35D72615BFBD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CozyAnywhere.Plugin.WinKeyboard</RootNamespace>
+    <AssemblyName>CozyAnywhere.Plugin.WinKeyboard</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin\Plugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\bin\Plugins\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArgsFactory\KeyboardEventArgsFactory.cs" />
+    <Compile Include="ArgsFactory\KeyboardQueryKeyStateArgsFactory.cs" />
+    <Compile Include="ArgsFactory\KeyboardSendKeyEventArgsFactory.cs" />
+    <Compile Include="Args\KeyboardEventArgs.cs" />
+    <Compile Include="Args\KeyboardQueryKeyStateArgs.cs" />
+    <Compile Include="Args\KeyboardSendKeyEventArgs.cs" />
+    <Compile Include="KeyboardPlugin.cs" />
+    <Compile Include="KeyboardPluginCommand.cs" />
+    <Compile Include="KeyboardPluginMethods.cs" />
+    <Compile Include="KeyboardUtil.cs" />
+    <Compile Include="LoadHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VirtualKeys.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyAnywhere.PluginBase\CozyAnywhere.PluginBase.csproj">
+      <Project>{3073b255-8934-4898-af1f-00f149c5f00e}</Project>
+      <Name>CozyAnywhere.PluginBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyAnywhere.Protocol\CozyAnywhere.Protocol.csproj">
+      <Project>{7f35c165-b442-4176-a189-dcf409865f81}</Project>
+      <Name>CozyAnywhere.Protocol</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

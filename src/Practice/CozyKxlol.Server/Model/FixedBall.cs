@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CozyKxlol.Server.Model.Impl;
+using CozyKxlol.Server.Model.Interface;
 
 namespace CozyKxlol.Server.Model
 {

@@ -7,6 +7,7 @@ namespace CozyKxlol.MapEditor.Command
 {
     public interface ICommand
     {
-        void Execute(TiledMapDataContainer container);
+        void Do(TiledMapDataContainer container);
+        void Undo(TiledMapDataContainer container);
     }
 }

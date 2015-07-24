@@ -114,9 +114,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CozyMobi.Core\CozyMobi.Core.csproj">
+    <ProjectReference Include="..\CozyMabi.Core\CozyMabi.Core.csproj">
       <Project>{0ca3833e-74ac-459e-bb7c-a76c592b6b71}</Project>
-      <Name>CozyMobi.Core</Name>
+      <Name>CozyMabi.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

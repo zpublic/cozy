@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{69209483-14FC-4F2B-B4AD-4B87778E3235}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CozyAnywhere.Plugin.WinMouse</RootNamespace>
+    <AssemblyName>CozyAnywhere.Plugin.WinMouse</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin\Plugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\bin\Plugins\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArgsFactory\MouseClickArgsFactory.cs" />
+    <Compile Include="ArgsFactory\MouseCursorClipArgsFactory.cs" />
+    <Compile Include="ArgsFactory\MouseCursorUnClipArgsFactory.cs" />
+    <Compile Include="ArgsFactory\MouseGetCurrsorPositionArgsFactory.cs" />
+    <Compile Include="ArgsFactory\MouseLeftClickArgsFactory.cs" />
+    <Compile Include="ArgsFactory\MouseMiddleClickArgsFactory.cs" />
+    <Compile Include="ArgsFactory\MouseEventArgsFactory.cs" />
+    <Compile Include="ArgsFactory\MouseRightClickArgsFactory.cs" />
+    <Compile Include="ArgsFactory\MouseSetCursorPositionArgsFactory.cs" />
+    <Compile Include="Args\MouseClickArgs.cs" />
+    <Compile Include="Args\MouseCursorClipArgs.cs" />
+    <Compile Include="Args\MouseCursorUnClipArgs.cs" />
+    <Compile Include="Args\MouseGetCurrsorPositionArgs.cs" />
+    <Compile Include="Args\MouseLeftClickArgs.cs" />
+    <Compile Include="Args\MouseMiddleClickArgs.cs" />
+    <Compile Include="Args\MouseEventArgs.cs" />
+    <Compile Include="Args\MouseRightClickArgs.cs" />
+    <Compile Include="Args\MouseSetCursorPositionArgs.cs" />
+    <Compile Include="LoadHelper.cs" />
+    <Compile Include="Model\MousePosition.cs" />
+    <Compile Include="MousePlugin.cs" />
+    <Compile Include="MousePluginCommand.cs" />
+    <Compile Include="MousePluginMethods.cs" />
+    <Compile Include="Tag\ButtonTag.cs" />
+    <Compile Include="Tag\MouseEventTag.cs" />
+    <Compile Include="MouseUtil.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyAnywhere.PluginBase\CozyAnywhere.PluginBase.csproj">
+      <Project>{3073b255-8934-4898-af1f-00f149c5f00e}</Project>
+      <Name>CozyAnywhere.PluginBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyAnywhere.Protocol\CozyAnywhere.Protocol.csproj">
+      <Project>{7f35c165-b442-4176-a189-dcf409865f81}</Project>
+      <Name>CozyAnywhere.Protocol</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>c:\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsGL\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -69,15 +73,32 @@
     <Compile Include="CozySprite.cs" />
     <Compile Include="CozyTexture.cs" />
     <Compile Include="CozyTextureCache.cs" />
+    <Compile Include="Tiled\CozyDefaultTiled.cs" />
+    <Compile Include="Tiled\CozyTiledJsonManager.cs" />
+    <Compile Include="Tiled\Json\CozyJsonBlockData.cs" />
+    <Compile Include="Tiled\Json\CozyJsonTilesData.cs" />
+    <Compile Include="Tiled\CozySpriteTiled.cs" />
     <Compile Include="Tiled\CozyTiledData.cs" />
     <Compile Include="Tiled\CozyTiledDataLoader.cs" />
+    <Compile Include="Tiled\CozyTiledDataWriter.cs" />
     <Compile Include="Tiled\CozyTiledFactory.cs" />
+    <Compile Include="Tiled\Json\CozyTiledJsonParser.cs" />
     <Compile Include="Tiled\CozyTiledMap.cs" />
     <Compile Include="Primitives2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tiled\CozyTiledNode.cs" />
-    <Compile Include="Tiled\Impl\ICozyLoader.cs" />
+    <Compile Include="Tiled\Json\CozyTileJsonResult.cs" />
+    <Compile Include="Tiled\ICozyLoader.cs" />
     <Compile Include="Tiled\CozyTiledPositionHelper.cs" />
+    <Compile Include="Tiled\ICozyWriter.cs" />
+    <Compile Include="Tiled\Json\Strategy\ITiledDataParseStrategy.cs" />
+    <Compile Include="Tiled\Json\Strategy\TiledDataParseContext.cs" />
+    <Compile Include="Tiled\Json\Strategy\TiledDataParseWithFill.cs" />
+    <Compile Include="Tiled\Json\Strategy\TiledDataParseWithNothing.cs" />
+    <Compile Include="Tiled\Json\Strategy\TiledDataParseWithRange.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

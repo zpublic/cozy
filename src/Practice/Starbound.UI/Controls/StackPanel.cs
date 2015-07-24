@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.ObjectModel;
 
 namespace Starbound.UI.Controls
 {
     public enum Orientation { Horizontal, Veritical };
 
-    public class StackPanel : Panel
+    public class StackPanel : Panel, IEnumDrawableUIElemt
     {
         private Orientation orientation;
 
@@ -55,7 +56,7 @@ namespace Starbound.UI.Controls
                 if (remainingSize < 0) { sizes[index] -= remainingSize; }
             }
 
-            double x = 0;
+            double x = X;
             // Give each child their allocated space.
             for(int index = 0; index < Children.Count; index++)
             {
@@ -94,7 +95,7 @@ namespace Starbound.UI.Controls
                 if (remainingSize < 0) { sizes[index] -= remainingSize; }
             }
 
-            double y = 0;
+            double y = Y;
             // Give each child their allocated space.
             for (int index = 0; index < Children.Count; index++)
             {
@@ -104,6 +105,10 @@ namespace Starbound.UI.Controls
                 Children[index].Y = y + Children[index].Margin.Top;
                 y += sizes[index];
             }
+        }
+        public IEnumerable<UIElement> GetDrawableElemt()
+        {
+            return Children;
         }
     }
 }

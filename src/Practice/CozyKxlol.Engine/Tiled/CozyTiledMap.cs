@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CozyKxlol.Engine.Tiled.Impl;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace CozyKxlol.Engine.Tiled
 {
-    public class CozyTiledMap : CozyNode
+    public class CozyTiledMap : CozyNode , ICozyLoader, ICozyWriter
     {
         public Point TiledMapSize { get; private set; }
         private CozyTiledData TiledData { get; set; }
@@ -35,14 +35,24 @@ namespace CozyKxlol.Engine.Tiled
             }
         }
 
-        public void LoadData(ICozyLoader loader)
-        {
-            loader.Load(TiledData);
-        }
-
         public void Change(int x, int y, uint data)
         {
-            TiledData.Change(x, y, data);
+            TiledData.Modify(x, y, data);
+        }
+
+        public void Clear()
+        {
+            TiledData.Clear();
+        }
+
+        public void Load(Stream LoadStream)
+        {
+            TiledData.Load(LoadStream);
+        }
+
+        public void Write(Stream WriteStream)
+        {
+            TiledData.Write(WriteStream);
         }
     }
 }

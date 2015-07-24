@@ -45,6 +45,15 @@
     <Compile Include="Bindings\InvalidBindingException.cs" />
     <Compile Include="Bindings\IPropertyChanged.cs" />
     <Compile Include="Bindings\IValueConverter.cs" />
+    <Compile Include="Controls\IEnumDrawableUIElemt.cs" />
+    <Compile Include="Controls\MultiScrollStackPanel.cs" />
+    <Compile Include="Controls\ScrollStackPanel.cs" />
+    <Compile Include="Controls\TextureButton.cs" />
+    <Compile Include="Controls\ButtonControlTemplate.cs" />
+    <Compile Include="Controls\DefaultTextureButtonTemplate.cs" />
+    <Compile Include="Controls\DefaultButton.cs" />
+    <Compile Include="Controls\DefaultImageButtonControlTemplate.cs" />
+    <Compile Include="Controls\ImageButton.cs" />
     <Compile Include="Controls\Button.cs" />
     <Compile Include="Controls\ContentControl.cs" />
     <Compile Include="Controls\Control.cs" />
@@ -57,6 +66,7 @@
     <Compile Include="Controls\StackPanel.cs" />
     <Compile Include="Controls\UIElement.cs" />
     <Compile Include="IRenderer.cs" />
+    <Compile Include="Primitives\TextureSprite.cs" />
     <Compile Include="Primitives\BorderSprite.cs" />
     <Compile Include="Primitives\Placeholder.cs" />
     <Compile Include="Primitives\Primitive.cs" />

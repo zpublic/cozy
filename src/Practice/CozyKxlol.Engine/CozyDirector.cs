@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using CozyKxlol.Engine.Tiled;
 
 namespace CozyKxlol.Engine
 {
@@ -17,10 +18,16 @@ namespace CozyKxlol.Engine
 
         public CozyActionManager ActionManagerInstance { get; set; }
 
+        public CozyTileJsonManager JsonManagerInstance { get; set; }
+
+        public Random RandomMaker { get; set; }
+
         private CozyDirector()
         {
             TextureCacheInstance    = new CozyTextureCache();
             ActionManagerInstance   = new CozyActionManager();
+            JsonManagerInstance     = new CozyTileJsonManager();
+            RandomMaker             = new Random();
         }
 
         public void RunWithScene(CozyScene scene)

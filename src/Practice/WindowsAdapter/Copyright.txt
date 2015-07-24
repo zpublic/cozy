@@ -1,0 +1,54 @@
+﻿// --------------------------------------------------------------------------------------------------------------------
+// Permission is hereby granted, free of charge, to any person obtaining a copy of
+// this software and associated documentation files (the "Software"), to deal in
+// the Software without restriction, including without limitation the rights to
+// use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+// of the Software, and to permit persons to whom the Software is furnished to do
+// so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+// I made use of code from other open source libraries.
+// If in one way i made mistakes with the licenses on those code. 
+// Then please feel free to talk to me about that. I don't mind changing it.
+// I use one copyright file.. This copyright in this txt is for all used files in this project/solution.
+// Some files have their own copyright / credits. They'll keep them of course.
+//
+// External copyrights : 
+// Danny Blanchard scrabcakes@gmail.com for the 'Adobe Color Picker Clone' code.
+// Open Toolkit library for the Vector2 code.
+//
+// The original project where this is changed into is found here :
+// https://simplegui.codeplex.com/
+//
+// The code repo for this current project is at :
+// https://gui4u.codeplex.com/
+//
+// The main authors for the Gui4U project are
+// - Jarno Burger (jarno@lichtjes.nl)
+//
+// The coding around this project is live-streamed at : livecoding.tv
+// 
+// Greetings to everybody that watched/supported/greeted me being a author of this code:
+// FredyJabe@livecoding.tv
+// Zoldar@livecoding.tv 
+// Coldzer0@livecoding.tv
+// alvin@livecoding.tv
+// GoodGuyJohn@livecoding.tv
+// netcat@livecoding.tv < 2 times !
+// faisalfazi@livecoding.tv < 3 times !
+// MrDaande@livecoding.tv 
+// Coldzer0@livecoding.tv
+// xmetrix@livecoding.tv
+// marinkoS@livecoding.tv
+// don@livecoding.tv 
+// --------------------------------------------------------------------------------------------------------------------

@@ -60,6 +60,19 @@ namespace CozyKxlol.Network.Msg
         // 分数排行
         public const int AgarMarkListPark = 11112;
 
+
+        public const int HappyPlayerLogin = 111113;
+
+        public const int HappyPlayerLoginRsp = 11114;
+
+        public const int HappyOtherPlayerLogin = 11115;
+
+        public const int HappyPlayerMove = 11116;
+
+        public const int HappyPlayerQuit = 11117;
+
+        public const int HappyPlayerPack = 11118;
+
         ////// 20001 - 40000 游戏扩展
 
         ////// 40001+ 保留
