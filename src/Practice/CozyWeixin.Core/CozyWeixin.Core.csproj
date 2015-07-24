@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D4DEB755-C09D-47C4-829F-1FD689432E45}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CozyWeixin.Core</RootNamespace>
+    <AssemblyName>CozyWeixin.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\Event\EventBase.cs" />
+    <Compile Include="Request\Event\LocationEvent.cs" />
+    <Compile Include="Request\Event\MenuClickEvent.cs" />
+    <Compile Include="Request\Event\MenuViewEvent.cs" />
+    <Compile Include="Request\Event\ScanEvent.cs" />
+    <Compile Include="Request\Event\ScanSubscribeEvent.cs" />
+    <Compile Include="Request\Event\SubscribeEvent.cs" />
+    <Compile Include="Request\Event\UnSubscribeEvent.cs" />
+    <Compile Include="Request\Message\ImageMessage.cs" />
+    <Compile Include="Request\Message\LinkMessage.cs" />
+    <Compile Include="Request\Message\LocationMessage.cs" />
+    <Compile Include="Request\Message\MessageBase.cs" />
+    <Compile Include="Request\Message\ShortVideoMessage.cs" />
+    <Compile Include="Request\Message\TextMessage.cs" />
+    <Compile Include="Request\Message\VideoMessage.cs" />
+    <Compile Include="Request\Message\VoiceMessage.cs" />
+    <Compile Include="Response\Reply\ImageReply.cs" />
+    <Compile Include="Response\Reply\LinkReply.cs" />
+    <Compile Include="Response\Reply\LocationReply.cs" />
+    <Compile Include="Response\Reply\ReplyBase.cs" />
+    <Compile Include="Response\Reply\ShortVideoReply.cs" />
+    <Compile Include="Response\Reply\TextReply.cs" />
+    <Compile Include="Response\Reply\VideoReply.cs" />
+    <Compile Include="Response\Reply\VoiceReply.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Function\CustomerService\" />
+    <Folder Include="Function\DataStatistics\" />
+    <Folder Include="Function\MassMessage\" />
+    <Folder Include="Function\MaterialManagement\" />
+    <Folder Include="Function\Menu\" />
+    <Folder Include="Function\MultiMedia\" />
+    <Folder Include="Function\Promote\" />
+    <Folder Include="Function\Semantic\" />
+    <Folder Include="Function\UserManagement\" />
+    <Folder Include="Util\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
