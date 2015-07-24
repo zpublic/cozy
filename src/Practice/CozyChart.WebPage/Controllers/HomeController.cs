@@ -31,5 +31,10 @@ namespace CozyChart.WebPage.Controllers
         {
             return View("~/Views/Shared/Error.cshtml");
         }
+
+        public IActionResult Chart()
+        {
+            return View();
+        }
     }
 }
