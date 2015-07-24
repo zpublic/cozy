@@ -23,12 +23,49 @@ namespace CozyAnywhere.Plugin.WinCapture
 
         public PluginMethodReturnValueType Shell(GetCaptureDataArgs CopyArgs)
         {
+            List<ReturnValuePacket> result = new List<ReturnValuePacket>();
+
+            IntPtr hwnd = IntPtr.Zero;
+            IntPtr hdc = IntPtr.Zero;
+
+            if (CaptureUtil.GetWindowHDC(ref hwnd, ref hdc))
+            {
+                int x = 0;
+                int y = 0;
+                CaptureUtil.GetWindowSize(hwnd, ref x, ref y);
+
+                const int blockSize = 128;
+                int blockSizeW = (x + blockSize - 1) / blockSize;
+                int blockSizeH = (y + blockSize - 1) / blockSize;
+
+                for (int i = 0; i < blockSizeW; ++i)
+                {
+                    for (int j = 0; j < blockSizeH; ++j)
+                    {
+                        var bmp = CaptureUtil.DefGetCaptureData(hwnd, hdc, i * blockSize, j * blockSize, blockSize + i * blockSize, blockSize + j * blockSize);
+                        var jpg = CaptureUtil.ConvertBmpToJpeg(bmp);
+                        var meta = new CaptureSplitMetaData()
+                        {
+                            X = i * blockSize,
+                            Y = j * blockSize,
+                            Width = blockSize,
+                            Height = blockSize,
+                        };
+                        result.Add(new ReturnValuePacket()
+                        {
+                            MetaData = JsonConvert.SerializeObject(meta),
+                            Data = jpg,
+                        });
+                    }
+                }
+            }
+
             return new PluginMethodReturnValueType()
             {
                 DataType    = PluginMethodReturnValueType.PacketBinaryDataType,
                 Data        = new PluginMehtodReturnValuePacket()
                 {
-                    Packet = null,
+                    Packet = result,
                 },
             };
         }

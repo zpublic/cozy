@@ -11,14 +11,12 @@ CCaptureCpp::CCaptureCpp(void)
 
 }
 
-void CCaptureCpp::GetWindowSize(HWND hwnd, POINT *pResult)
+void CCaptureCpp::GetWindowSize(HWND hwnd, LPLONG, LPLONG y)
 {
     RECT rect;
-    POINT point;
     ::GetWindowRect(hwnd, &rect);
-    point.x = rect.right - rect.left;;
-    point.y = rect.bottom - rect.top;
-    *pResult = point;
+    *x = rect.right - rect.left;;
+    *y = rect.bottom - rect.top;
 }
 
 WORD CCaptureCpp::GetClrBits(WORD wInput)
@@ -55,7 +53,7 @@ DWORD CCaptureCpp::GetCaptureDataSize(HWND hwnd, HDC hdc, int x, int y, int widt
 
     if (width == 0 && height == 0)
     {
-        GetWindowSize(hwnd, &size);
+        GetWindowSize(hwnd, &(size.x), &(size.y));
     }
     else
     {
@@ -85,7 +83,7 @@ DWORD CCaptureCpp::GetCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, i
     POINT size;
     if (width == 0 && height == 0)
     {
-        GetWindowSize(hwnd, &size);
+        GetWindowSize(hwnd, &(size.x), &(size.y));
     }
     else
     {
@@ -233,4 +231,9 @@ CAPTURECPP_API DWORD GetCaptureData(HWND hwnd, HDC hdc, int x, int y, int width,
 CAPTURECPP_API DWORD GetCaptureDataSize(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBITMAP lpBitmap)
 {
     return CCaptureCppCppInstance.GetCaptureDataSize(hwnd, hdc, x, y, width, height, lpBitmap);
+}
+
+CAPTURECPP_API void GetWindowSize(HWND hwnd, LONG *x, LONG *y)
+{
+    return CCaptureCppCppInstance.GetWindowSize(hwnd, x, y);
 }

@@ -19,7 +19,7 @@ public:
 
     DWORD AppendBitmapHeader(LPBYTE lpData, LPBITMAP lpBitmap);
 
-    void GetWindowSize(HWND hwnd, POINT *pResult);
+    void GetWindowSize(HWND hwnd, LPLONG x, LPLONG y);
 
     bool GetWindowHDC(HWND *lpHwnd, HDC *lpHdc);
 
@@ -42,4 +42,6 @@ extern "C" CAPTURECPP_API bool GetWindowHDC(HWND *lpHwnd, HDC *lpHdc);
 extern "C" CAPTURECPP_API DWORD GetCaptureDataSize(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBITMAP lpBitmap);
 
 extern "C" CAPTURECPP_API DWORD GetCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBYTE lpResult);
+
+extern "C" CAPTURECPP_API void GetWindowSize(HWND hwnd, LPLONG x, LPLONG y);
 
