@@ -12,10 +12,11 @@
     <Grid>
         <StackPanel>
             <Button Content="Refresh" Command="{Binding RefreshCommand}"></Button>
-            <WrapPanel ScrollViewer.CanContentScroll="True" Width="300" Height=" 300">
-                <Image Width="1366" Height="768" Source="{Binding CaptureImage}" Stretch="None"></Image>
-            </WrapPanel>
-                
+            <Grid Width="300" Height="240">
+                <ScrollViewer Grid.Column="1" Name="scrollViewer1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <Image Width="1366" Height="768" Source="{Binding CaptureImage}" Stretch="None"></Image>
+                </ScrollViewer>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>
