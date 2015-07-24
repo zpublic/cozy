@@ -49,8 +49,8 @@ namespace CozyAnywhere.ServerCore
                             {
                                 client.SendMessage(new BinaryPacketMessage()
                                 {
-                                    Data = obj.Data,
-                                    MetaData = obj.MetaData,
+                                    Data        = obj.Data,
+                                    MetaData    = obj.MetaData,
                                 });
                             }
                         }

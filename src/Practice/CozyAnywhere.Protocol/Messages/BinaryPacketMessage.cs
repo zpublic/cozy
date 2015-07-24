@@ -21,9 +21,9 @@ namespace CozyAnywhere.Protocol.Messages
 
         public void Read(NetIncomingMessage im)
         {
-            MetaData = im.ReadString();
-            int l = im.ReadInt32();
-            Data = im.ReadBytes(l);
+            MetaData    = im.ReadString();
+            int l       = im.ReadInt32();
+            Data        = im.ReadBytes(l);
         }
     }
 }

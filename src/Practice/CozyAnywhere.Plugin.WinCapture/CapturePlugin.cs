@@ -16,20 +16,20 @@ namespace CozyAnywhere.Plugin.WinCapture
 
         public PluginCommandMethodReturnValue Shell(string commandContent)
         {
-            var context = PluginCommandMethod.Create(commandContent);
-            var methodName = context.MethodName;
-            var methodArgs = context.MethodArgs;
+            var context     = PluginCommandMethod.Create(commandContent);
+            var methodName  = context.MethodName;
+            var methodArgs  = context.MethodArgs;
             if (MethodDictionary.ContainsKey(methodName))
             {
                 var factory = MethodDictionary[methodName];
-                var args = factory.Create(methodArgs);
+                var args    = factory.Create(methodArgs);
                 var rtvalue = Dispatch(args);
 
                 var result = new PluginCommandMethodReturnValue()
                 {
-                    PluginName = InnerPluginName,
-                    MethodName = methodName,
-                    MethodReturnValue = rtvalue,
+                    PluginName          = InnerPluginName,
+                    MethodName          = methodName,
+                    MethodReturnValue   = rtvalue,
                 };
                 return result;
             }

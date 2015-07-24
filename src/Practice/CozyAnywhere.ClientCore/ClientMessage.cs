@@ -72,8 +72,8 @@ namespace CozyAnywhere.ClientCore
             {
                 if (CaptureRefreshHandler != null)
                 {
-                    var meta = JsonConvert.DeserializeObject<CaptureSplitMetaData>(rspMsg.MetaData);
-                    var t = Tuple.Create(meta.X, meta.Y, meta.Width, meta.Height);
+                    var meta    = JsonConvert.DeserializeObject<CaptureSplitMetaData>(rspMsg.MetaData);
+                    var t       = Tuple.Create(meta.X, meta.Y, meta.Width, meta.Height);
                     CaptureRefreshHandler(this, new CaptureRefreshEventArgs(t, rspMsg.Data));
                 }
             }

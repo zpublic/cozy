@@ -42,21 +42,21 @@ namespace CozyAnywhere.Plugin.WinCapture
                 {
                     for (int j = 0; j < blockSizeH; ++j)
                     {
-                        var bmp = CaptureUtil.DefGetCaptureData(hwnd, hdc, i * blockSize, j * blockSize, blockSize, blockSize);
-                        var jpg = CaptureUtil.ConvertBmpToJpeg(bmp);
-                        var meta = new CaptureSplitMetaData()
+                        var bmp     = CaptureUtil.DefGetCaptureData(hwnd, hdc, i * blockSize, j * blockSize, blockSize, blockSize);
+                        var jpg     = CaptureUtil.ConvertBmpToJpeg(bmp);
+                        var meta    = new CaptureSplitMetaData()
                         {
-                            X = i * blockSize,
-                            Y = j * blockSize,
-                            Width = blockSize,
-                            Height = blockSize,
+                            X       = i * blockSize,
+                            Y       = j * blockSize,
+                            Width   = blockSize,
+                            Height  = blockSize,
                         };
 
                         var m = JsonConvert.SerializeObject(meta);
                         result.Add(new ReturnValuePacket()
                         {
-                            MetaData = m,
-                            Data = jpg,
+                            MetaData    = m,
+                            Data        = jpg,
                         });
                     }
                 }

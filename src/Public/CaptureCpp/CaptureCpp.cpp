@@ -41,7 +41,7 @@ bool CCaptureCpp::GetWindowHDC(HWND *lpHwnd, HDC *lpHdc)
     if (lpHwnd != nullptr && lpHdc != nullptr)
     {
         *lpHwnd = ::GetDesktopWindow();
-        *lpHdc = ::GetWindowDC(*lpHwnd);
+        *lpHdc  = ::GetWindowDC(*lpHwnd);
         return true;
     }
     return false;
@@ -61,8 +61,8 @@ DWORD CCaptureCpp::GetCaptureDataSize(HWND hwnd, HDC hdc, int x, int y, int widt
         size.y = height;
     }
 
-    HDC memHdc = ::CreateCompatibleDC(hdc);
-    HBITMAP hBmp = ::CreateCompatibleBitmap(hdc, size.x, size.y);
+    HDC memHdc      = ::CreateCompatibleDC(hdc);
+    HBITMAP hBmp    = ::CreateCompatibleBitmap(hdc, size.x, size.y);
     ::SelectObject(memHdc, hBmp);
 
     BITMAP bmp;
@@ -90,8 +90,8 @@ DWORD CCaptureCpp::GetCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, i
         size.x = width;
         size.y = height;
     }
-    HDC memHdc = ::CreateCompatibleDC(hdc);
-    HBITMAP hBmp = ::CreateCompatibleBitmap(hdc, size.x, size.y);
+    HDC memHdc      = ::CreateCompatibleDC(hdc);
+    HBITMAP hBmp    = ::CreateCompatibleBitmap(hdc, size.x, size.y);
     ::SelectObject(memHdc, hBmp);
     ::BitBlt(memHdc, 0, 0, size.x, size.y, hdc, x, y, SRCCOPY);
 
@@ -114,18 +114,18 @@ DWORD CCaptureCpp::GetCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, i
         pbmi = (PBITMAPINFO)::LocalAlloc(LPTR, sizeof(BITMAPINFOHEADER));
     }
 
-    pbmi->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-    pbmi->bmiHeader.biWidth = bmp.bmWidth;
-    pbmi->bmiHeader.biHeight = bmp.bmHeight;
-    pbmi->bmiHeader.biPlanes = bmp.bmPlanes;
-    pbmi->bmiHeader.biBitCount = bmp.bmBitsPixel;
+    pbmi->bmiHeader.biSize      = sizeof(BITMAPINFOHEADER);
+    pbmi->bmiHeader.biWidth     = bmp.bmWidth;
+    pbmi->bmiHeader.biHeight    = bmp.bmHeight;
+    pbmi->bmiHeader.biPlanes    = bmp.bmPlanes;
+    pbmi->bmiHeader.biBitCount  = bmp.bmBitsPixel;
 
     if (cClrBits < 24)
         pbmi->bmiHeader.biClrUsed = (1 << cClrBits);
 
-    pbmi->bmiHeader.biCompression = BI_RGB;
-    pbmi->bmiHeader.biSizeImage = (pbmi->bmiHeader.biWidth + 7) / 8 * pbmi->bmiHeader.biHeight * cClrBits;
-    pbmi->bmiHeader.biClrImportant = 0;
+    pbmi->bmiHeader.biCompression   = BI_RGB;
+    pbmi->bmiHeader.biSizeImage     = (pbmi->bmiHeader.biWidth + 7) / 8 * pbmi->bmiHeader.biHeight * cClrBits;
+    pbmi->bmiHeader.biClrImportant  = 0;
 
     ::GetDIBits(memHdc, hBmp, 0, (WORD)(WORD)pbmi->bmiHeader.biHeight, lpResult, pbmi, DIB_RGB_COLORS);
 

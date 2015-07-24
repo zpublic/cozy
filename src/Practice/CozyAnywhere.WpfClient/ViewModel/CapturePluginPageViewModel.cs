@@ -5,7 +5,6 @@ using System.Windows.Media.Imaging;
 using CozyAnywhere.WpfClient.Command;
 using System.Windows.Input;
 using System.Drawing;
-using System;
 using CozyAnywhere.WpfClient.Ext;
 using System.Drawing.Imaging;
 
@@ -49,11 +48,11 @@ namespace CozyAnywhere.WpfClient.ViewModel
 
         public CapturePluginPageViewModel()
         {
-            clientCore = MainWindowViewModel.clientCore;
+            clientCore      = MainWindowViewModel.clientCore;
             clientCore.CaptureRefreshHandler += OnCaptureRefresh;
 
-            GlobalBMP = new Bitmap(((1366 + 127) / 128 * 128), ((768 + 127) / 128) * 128);
-            GlobalLocker= new BitmapLocker(GlobalBMP);
+            GlobalBMP       = new Bitmap(((1366 + 127) / 128 * 128), ((768 + 127) / 128) * 128);
+            GlobalLocker    = new BitmapLocker(GlobalBMP);
         }
 
         private void OnCaptureRefresh(object sender, CaptureRefreshEventArgs msg)
@@ -62,11 +61,9 @@ namespace CozyAnywhere.WpfClient.ViewModel
             {
                 int x = msg.MetaData.Item1;
                 int y = msg.MetaData.Item2;
-                int w = msg.MetaData.Item3;
-                int h = msg.MetaData.Item4;
 
-                Bitmap recvbmp = (Bitmap)Image.FromStream(ms);
-                BitmapLocker recvdata = new BitmapLocker(recvbmp);
+                Bitmap recvbmp          = (Bitmap)Image.FromStream(ms);
+                BitmapLocker recvdata   = new BitmapLocker(recvbmp);
 
                 recvdata.LockBits();
                 GlobalLocker.LockBits();
@@ -82,17 +79,18 @@ namespace CozyAnywhere.WpfClient.ViewModel
 
                 GlobalLocker.UnlockBits();
                 recvdata.UnlockBits();
+
                 using (MemoryStream ims = new MemoryStream())
                 {
                     GlobalBMP.Save(ims, ImageFormat.Bmp);
                     ims.Seek(0, SeekOrigin.Begin);
 
-                    BitmapImage bm = new BitmapImage();
+                    BitmapImage bm  = new BitmapImage();
                     bm.BeginInit();
                     bm.StreamSource = ims;
-                    bm.CacheOption = BitmapCacheOption.OnLoad;
+                    bm.CacheOption  = BitmapCacheOption.OnLoad;
                     bm.EndInit();
-                    CaptureImage = bm;
+                    CaptureImage    = bm;
                 }
             }
         }
