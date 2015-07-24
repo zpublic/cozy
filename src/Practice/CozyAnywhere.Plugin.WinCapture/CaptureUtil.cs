@@ -2,95 +2,67 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Text;
 using System;
 using CozyAnywhere.Plugin.WinCapture.Model;
-using System.Collections.Generic;
-using CozyAnywhere.PluginBase;
-using Newtonsoft.Json;
 
 namespace CozyAnywhere.Plugin.WinCapture
 {
     public static class CaptureUtil
     {
-        // DWORD GetWindowBitmapSize();
-        [DllImport(@"CaptureCpp.dll",
-           CharSet              = CharSet.Auto,
-           CallingConvention    = CallingConvention.Cdecl)]
-        public static extern uint GetWindowBitmapSize(ref BITMAP bitmap);
-
-        // bool GetCaptureData(LPBYTE lpResult);
-        [DllImport(@"CaptureCpp.dll",
-           CharSet              = CharSet.Auto,
-           CallingConvention    = CallingConvention.Cdecl)]
-        public static extern uint GetCaptureData(ref byte result, ref BITMAP bitmap);
-
         // DWORD AppendBitmapHeader(LPBYTE lpData, LPBITMAP lpBitmap)
         [DllImport(@"CaptureCpp.dll",
            CharSet              = CharSet.Auto,
            CallingConvention    = CallingConvention.Cdecl)]
         public static extern uint AppendBitmapHeader(ref byte data, ref BITMAP bitmap);
 
+        // bool GetWindowHDC(HWND *lpHwnd, HDC *lpHdc);
+        [DllImport(@"CaptureCpp.dll",
+           CharSet = CharSet.Auto,
+           CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool GetWindowHDC(ref IntPtr hwnd, ref IntPtr hdc);
+
+        //DWORD GetHdcCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBYTE lpResult, LPBITMAP lpBitmap);
+        [DllImport(@"CaptureCpp.dll",
+           CharSet = CharSet.Auto,
+           CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint GetCaptureData(IntPtr hwnd, IntPtr hdc, int x, int y, int w, int h, ref byte result);
+
+        //DWORD GetHDCCaptureDataSize(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBITMAP lpBitmap)
+        [DllImport(@"CaptureCpp.dll",
+           CharSet = CharSet.Auto,
+           CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint GetCaptureDataSize(IntPtr hwnd, IntPtr hdc, int x, int y, int w, int h, ref BITMAP bmp);
+
         #region DefaultMethod
 
-        public static byte[] DefGetCaptureData(ref uint offset, ref int width, ref int height)
+        public static byte[] DefGetCaptureData(int x, int y, int w, int h)
         {
-            BITMAP bitmap = new BITMAP(); ;
-            uint size = GetWindowBitmapSize(ref bitmap);
-            if (size == 0)
+            BITMAP bmp = new BITMAP();
+            IntPtr hwnd = IntPtr.Zero;
+            IntPtr hdc = IntPtr.Zero;
+            uint offset = 0;
+            if (GetWindowHDC(ref hwnd, ref hdc))
             {
-                offset = 0;
-                return null;
-            }
-            byte[] result   = new byte[size];
-
-            offset = AppendBitmapHeader(ref result[0], ref bitmap);
-            if(offset == 0)
-            {
-                return null;
-            }
-            if(GetCaptureData(ref result[offset], ref bitmap) == 0)
-            {
-                return null;
-            }
-            width = bitmap.bmWidth;
-            height = bitmap.bmHeight;
-            return result; 
-        }
-
-        public static List<ReturnValuePacket> SplitBitmap(byte[] data, uint offset, int blockwidth, int blockheight, int width, int height)
-        {
-            var result = new List<ReturnValuePacket>();
-            for (int i = 0; i < width; i += blockwidth)
-            {
-                for (int j = 0; j < height; j += blockheight)
+                uint size = GetCaptureDataSize(hwnd, hdc, x, y, w, h, ref bmp);
+                if (size == 0)
                 {
-                    int count = 0;
-                    byte[] d = new byte[offset + blockwidth * blockheight * 4];
-                    for (int k = 0; k < blockwidth; ++k)
-                    {
-                        for (int l = 0; l < blockheight; ++l)
-                        {
-                            d[count++] = data[offset + ((i + k) * width) + j + l + 0];
-                            d[count++] = data[offset + ((i + k) * width) + j + l + 1];
-                            d[count++] = data[offset + ((i + k) * width) + j + l + 2];
-                            d[count++] = data[offset + ((i + k) * width) + j + l + 3];
-                        }
-                    }
-                    result.Add(new ReturnValuePacket()
-                    {
-                        Data = d,
-                        MetaData = JsonConvert.SerializeObject(new CaptureSplitMetaData()
-                        {
-                            X = i,
-                            Y = j,
-                            Width = blockwidth,
-                            Height = blockheight,
-                        }),
-                    });
+                    offset = 0;
+                    return null;
                 }
+
+                byte[] data = new byte[size];
+                offset = AppendBitmapHeader(ref data[0], ref bmp);
+                if (offset == 0)
+                {
+                    return null;
+                }
+                if (GetCaptureData(hwnd, hdc, x, y, w, h, ref data[offset]) == 0)
+                {
+                    return null;
+                }
+                return data;
             }
-            return result;
+            return null;
         }
 
         public static byte[] ConvertBmpToJpeg(byte[] input)

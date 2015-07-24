@@ -15,10 +15,6 @@ class CCaptureCpp
 public:
     CCaptureCpp(void);
     
-    bool GetCaptureData(LPBYTE lpResult);
-
-    DWORD GetWindowBitmapSize(LPBITMAP lpBitmap);
-
     WORD GetClrBits(WORD wInput);
 
     DWORD AppendBitmapHeader(LPBYTE lpData, LPBITMAP lpBitmap);
@@ -27,7 +23,9 @@ public:
 
     bool GetWindowHDC(HWND *lpHwnd, HDC *lpHdc);
 
-    DWORD GetHdcCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBYTE lpResult, LPBITMAP lpBitmap);
+    DWORD GetCaptureDataSize(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBITMAP lpBitmap);
+
+    DWORD GetCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBYTE lpResult);
 
 };
 
@@ -37,13 +35,11 @@ CAPTURECPP_API int GetDesktopNum(void);
 
 CAPTURECPP_API bool GetDesktopSize(int nIndex, int* w, int* h);
 
-extern "C" CAPTURECPP_API bool GetCaptureData(LPBYTE lpResult);
-
-extern "C" CAPTURECPP_API DWORD GetWindowBitmapSize(LPBITMAP bitmap);
-
 extern "C" CAPTURECPP_API DWORD AppendBitmapHeader(LPBYTE lpData, LPBITMAP lpBitmap);
 
 extern "C" CAPTURECPP_API bool GetWindowHDC(HWND *lpHwnd, HDC *lpHdc);
 
-extern "C" CAPTURECPP_API DWORD GetHdcCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBYTE lpResult, LPBITMAP lpBitmap);
+extern "C" CAPTURECPP_API DWORD GetCaptureDataSize(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBITMAP lpBitmap);
+
+extern "C" CAPTURECPP_API DWORD GetCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBYTE lpResult);
 

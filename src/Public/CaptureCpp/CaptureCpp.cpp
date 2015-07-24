@@ -38,31 +38,6 @@ WORD CCaptureCpp::GetClrBits(WORD wInput)
     return cClrBits;
 }
 
-DWORD CCaptureCpp::GetWindowBitmapSize(LPBITMAP lpBitmap)
-{
-    HWND hwnd       = ::GetDesktopWindow();
-    HDC hdc         = ::GetWindowDC(hwnd);
-    POINT size;
-    GetWindowSize(hwnd, &size);
-    HDC memHdc      = ::CreateCompatibleDC(hdc);
-    HBITMAP hBmp    = ::CreateCompatibleBitmap(hdc, size.x, size.y);
-    ::SelectObject(memHdc, hBmp);
-    ::BitBlt(memHdc, 0, 0, size.x, size.y, hdc, 0, 0, SRCCOPY);
-
-    BITMAP bmp;
-    WORD cClrBits;
-    if (!::GetObject(hBmp, sizeof(BITMAP), (LPVOID)&bmp))
-    {
-        return 0;
-    }
-
-    cClrBits = GetClrBits((WORD)(bmp.bmPlanes * bmp.bmBitsPixel));
-
-    *lpBitmap = bmp;
-    ::ReleaseDC(hwnd, hdc);
-    return (bmp.bmWidth + 7) / 8 * bmp.bmHeight * cClrBits + sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + (1 << cClrBits) *sizeof(RGBQUAD);
-}
-
 bool CCaptureCpp::GetWindowHDC(HWND *lpHwnd, HDC *lpHdc)
 {
     if (lpHwnd != nullptr && lpHdc != nullptr)
@@ -74,7 +49,38 @@ bool CCaptureCpp::GetWindowHDC(HWND *lpHwnd, HDC *lpHdc)
     return false;
 }
 
-DWORD CCaptureCpp::GetHdcCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBYTE lpResult, LPBITMAP lpBitmap)
+DWORD CCaptureCpp::GetCaptureDataSize(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBITMAP lpBitmap)
+{
+    POINT size;
+
+    if (width == 0 && height == 0)
+    {
+        GetWindowSize(hwnd, &size);
+    }
+    else
+    {
+        size.x = width;
+        size.y = height;
+    }
+
+    HDC memHdc = ::CreateCompatibleDC(hdc);
+    HBITMAP hBmp = ::CreateCompatibleBitmap(hdc, size.x, size.y);
+    ::SelectObject(memHdc, hBmp);
+
+    BITMAP bmp;
+    WORD cClrBits;
+    if (!::GetObject(hBmp, sizeof(BITMAP), (LPVOID)&bmp))
+    {
+        return 0;
+    }
+
+    cClrBits = GetClrBits((WORD)(bmp.bmPlanes * bmp.bmBitsPixel));
+
+    *lpBitmap = bmp;
+    return (bmp.bmWidth + 7) / 8 * bmp.bmHeight * cClrBits + sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + (1 << cClrBits) *sizeof(RGBQUAD);
+}
+
+DWORD CCaptureCpp::GetCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBYTE lpResult)
 {
     POINT size;
     if (width == 0 && height == 0)
@@ -83,34 +89,23 @@ DWORD CCaptureCpp::GetHdcCaptureData(HWND hwnd, HDC hdc, int x, int y, int width
     }
     else
     {
-        size.x = x;
-        size.y = y;
+        size.x = width;
+        size.y = height;
     }
     HDC memHdc = ::CreateCompatibleDC(hdc);
     HBITMAP hBmp = ::CreateCompatibleBitmap(hdc, size.x, size.y);
     ::SelectObject(memHdc, hBmp);
-    ::BitBlt(memHdc, 0, 0, size.x, size.y, hdc, 0, 0, SRCCOPY);
+    ::BitBlt(memHdc, x, y, size.x, size.y, hdc, 0, 0, SRCCOPY);
 
     BITMAP bmp;
     PBITMAPINFO pbmi;
-
+    WORD cClrBits;
     if (!::GetObject(hBmp, sizeof(BITMAP), (LPVOID)&bmp))
     {
         return 0;
     }
 
-    WORD cClrBits = GetClrBits((WORD)(bmp.bmPlanes * bmp.bmBitsPixel));
-    DWORD dwSize = (bmp.bmWidth + 7) / 8 * bmp.bmHeight * cClrBits + sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + (1 << cClrBits) *sizeof(RGBQUAD);
-
-    if (lpResult == nullptr)
-    {
-        if (lpBitmap != nullptr)
-        {
-            *lpBitmap = bmp;
-        }
-        ::CloseHandle(memHdc);
-        return dwSize;
-    }
+    cClrBits = GetClrBits((WORD)(bmp.bmPlanes * bmp.bmBitsPixel));
 
     if (cClrBits != 24)
     {
@@ -137,60 +132,7 @@ DWORD CCaptureCpp::GetHdcCaptureData(HWND hwnd, HDC hdc, int x, int y, int width
     ::GetDIBits(memHdc, hBmp, 0, (WORD)(WORD)pbmi->bmiHeader.biHeight, lpResult, pbmi, DIB_RGB_COLORS);
 
     ::LocalFree(pbmi);
-    ::ReleaseDC(hwnd, hdc);
-    return dwSize;
-}
-
-bool CCaptureCpp::GetCaptureData(LPBYTE lpResult)
-{
-    if (lpResult == nullptr) return false;
-
-    HWND hwnd       = ::GetDesktopWindow();
-    HDC hdc         = ::GetWindowDC(hwnd);
-    POINT size;
-    GetWindowSize(hwnd, &size);
-    HDC memHdc      = ::CreateCompatibleDC(hdc);
-    HBITMAP hBmp    = ::CreateCompatibleBitmap(hdc, size.x, size.y);
-    ::SelectObject(memHdc, hBmp);
-    ::BitBlt(memHdc, 0, 0, size.x, size.y, hdc, 0, 0, SRCCOPY);
-
-    BITMAP bmp;
-    PBITMAPINFO pbmi;
-    WORD cClrBits;
-    if (!::GetObject(hBmp, sizeof(BITMAP), (LPVOID)&bmp))
-    {
-        return false;
-    }
-
-    cClrBits = GetClrBits((WORD)(bmp.bmPlanes * bmp.bmBitsPixel));
-
-    if (cClrBits != 24)
-    {
-        pbmi = (PBITMAPINFO)::LocalAlloc(LPTR, sizeof(BITMAPINFOHEADER) + sizeof(RGBQUAD) * (1 << cClrBits));
-    }
-    else
-    {
-        pbmi = (PBITMAPINFO)::LocalAlloc(LPTR, sizeof(BITMAPINFOHEADER));
-    }
-
-    pbmi->bmiHeader.biSize          = sizeof(BITMAPINFOHEADER);
-    pbmi->bmiHeader.biWidth         = bmp.bmWidth;
-    pbmi->bmiHeader.biHeight        = bmp.bmHeight;
-    pbmi->bmiHeader.biPlanes        = bmp.bmPlanes;
-    pbmi->bmiHeader.biBitCount      = bmp.bmBitsPixel;
-
-    if (cClrBits < 24)
-        pbmi->bmiHeader.biClrUsed   = (1 << cClrBits);
-
-    pbmi->bmiHeader.biCompression   = BI_RGB;
-    pbmi->bmiHeader.biSizeImage     = (pbmi->bmiHeader.biWidth + 7) / 8 * pbmi->bmiHeader.biHeight * cClrBits;
-    pbmi->bmiHeader.biClrImportant  = 0;
-
-    ::GetDIBits(memHdc, hBmp, 0, (WORD)(WORD)pbmi->bmiHeader.biHeight, lpResult, pbmi, DIB_RGB_COLORS);
-
-    ::LocalFree(pbmi);
-    ::ReleaseDC(hwnd, hdc);
-    return true;
+    return 1;
 }
 
 DWORD CCaptureCpp::AppendBitmapHeader(LPBYTE lpResult, LPBITMAP lpBitmap)
@@ -273,16 +215,6 @@ CAPTURECPP_API bool GetDesktopSize(int nIndex, int* w, int* h)
     return false;
 }
 
-CAPTURECPP_API bool GetCaptureData(LPBYTE lpResult)
-{
-    return CCaptureCppCppInstance.GetCaptureData(lpResult);
-}
-
-CAPTURECPP_API DWORD GetWindowBitmapSize(LPBITMAP lpBitmap)
-{
-    return CCaptureCppCppInstance.GetWindowBitmapSize(lpBitmap);
-}
-
 CAPTURECPP_API DWORD AppendBitmapHeader(LPBYTE lpData, LPBITMAP lpBitmap)
 {
     return CCaptureCppCppInstance.AppendBitmapHeader(lpData, lpBitmap);
@@ -293,7 +225,12 @@ CAPTURECPP_API bool GetWindowHDC(HWND *lpHwnd, HDC *lpHdc)
     return CCaptureCppCppInstance.GetWindowHDC(lpHwnd, lpHdc);
 }
 
-CAPTURECPP_API DWORD GetHdcCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBYTE lpResult, LPBITMAP lpBitmap)
+CAPTURECPP_API DWORD GetCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBYTE lpResult)
 {
-    return CCaptureCppCppInstance.GetHdcCaptureData(hwnd, hdc, x, y, width, height, lpResult, lpBitmap);
+    return CCaptureCppCppInstance.GetCaptureData(hwnd, hdc, x, y, width, height, lpResult);
+}
+
+CAPTURECPP_API DWORD GetCaptureDataSize(HWND hwnd, HDC hdc, int x, int y, int width, int height, LPBITMAP lpBitmap)
+{
+    return CCaptureCppCppInstance.GetCaptureDataSize(hwnd, hdc, x, y, width, height, lpBitmap);
 }
