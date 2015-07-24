@@ -42,7 +42,7 @@ namespace CozyAnywhere.Plugin.WinCapture
                 {
                     for (int j = 0; j < blockSizeH; ++j)
                     {
-                        var bmp = CaptureUtil.DefGetCaptureData(hwnd, hdc, i * blockSize, j * blockSize, blockSize + i * blockSize, blockSize + j * blockSize);
+                        var bmp = CaptureUtil.DefGetCaptureData(hwnd, hdc, i * blockSize, j * blockSize, blockSize, blockSize);
                         var jpg = CaptureUtil.ConvertBmpToJpeg(bmp);
                         var meta = new CaptureSplitMetaData()
                         {
@@ -51,9 +51,11 @@ namespace CozyAnywhere.Plugin.WinCapture
                             Width = blockSize,
                             Height = blockSize,
                         };
+
+                        var m = JsonConvert.SerializeObject(meta);
                         result.Add(new ReturnValuePacket()
                         {
-                            MetaData = JsonConvert.SerializeObject(meta),
+                            MetaData = m,
                             Data = jpg,
                         });
                     }

@@ -32,31 +32,33 @@ namespace CozyAnywhere.ServerCore
                         RspType     = result.MethodReturnValue.DataType,
                     };
 
-                    if(rspMsg.RspType == PluginMethodReturnValueType.StringDataType)
+                    if (rspMsg.RspType == PluginMethodReturnValueType.StringDataType)
                     {
                         rspMsg.StringCommandRsp = result.MethodReturnValue.Data as string;
                     }
-                    else if(rspMsg.RspType == PluginMethodReturnValueType.BinaryDataType)
+                    else if (rspMsg.RspType == PluginMethodReturnValueType.BinaryDataType)
                     {
                         rspMsg.BinaryCommandRsp = result.MethodReturnValue.Data as byte[];
                     }
                     else if (rspMsg.RspType == PluginMethodReturnValueType.PacketBinaryDataType)
                     {
-                        var data = result.MethodReturnValue.Data as List<ReturnValuePacket>;
-                        if(data != null)
+                        var data = result.MethodReturnValue.Data as PluginMehtodReturnValuePacket;
+                        if (data != null)
                         {
-                            foreach(var obj in data)
+                            foreach (var obj in data.Packet)
                             {
-                                client.SendMessage(new BinaryPacketMessage() 
-                                { 
-                                    Data        = obj.Data,
-                                    MetaData    = obj.MetaData,
+                                client.SendMessage(new BinaryPacketMessage()
+                                {
+                                    Data = obj.Data,
+                                    MetaData = obj.MetaData,
                                 });
                             }
                         }
                     }
-
-                    client.SendMessage(rspMsg);
+                    else
+                    {
+                        client.SendMessage(rspMsg);
+                    }
                 }
             }
         }

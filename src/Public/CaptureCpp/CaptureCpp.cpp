@@ -11,7 +11,7 @@ CCaptureCpp::CCaptureCpp(void)
 
 }
 
-void CCaptureCpp::GetWindowSize(HWND hwnd, LPLONG, LPLONG y)
+void CCaptureCpp::GetWindowSize(HWND hwnd, LPLONG x, LPLONG y)
 {
     RECT rect;
     ::GetWindowRect(hwnd, &rect);
@@ -93,7 +93,7 @@ DWORD CCaptureCpp::GetCaptureData(HWND hwnd, HDC hdc, int x, int y, int width, i
     HDC memHdc = ::CreateCompatibleDC(hdc);
     HBITMAP hBmp = ::CreateCompatibleBitmap(hdc, size.x, size.y);
     ::SelectObject(memHdc, hBmp);
-    ::BitBlt(memHdc, x, y, size.x, size.y, hdc, 0, 0, SRCCOPY);
+    ::BitBlt(memHdc, 0, 0, size.x, size.y, hdc, x, y, SRCCOPY);
 
     BITMAP bmp;
     PBITMAPINFO pbmi;

@@ -33,7 +33,7 @@ namespace ConsoleCaptureTester
                 {
                     for (int j = 0; j < blockSizeH; ++j)
                     {
-                        var r = CaptureUtil.DefGetCaptureData(hwnd, hdc, i * blockSize, j * blockSize, blockSize + i * blockSize, blockSize + j * blockSize);
+                        var r = CaptureUtil.DefGetCaptureData(hwnd, hdc, i * blockSize, j * blockSize, blockSize, blockSize);
                         var result = CaptureUtil.ConvertBmpToJpeg(r);
                         using (FileStream fs = new FileStream(@"D:\Test\test" + num + @".jpg", FileMode.Create, FileAccess.Write))
                         {

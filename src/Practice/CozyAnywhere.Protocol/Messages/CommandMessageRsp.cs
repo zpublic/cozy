@@ -8,6 +8,7 @@ namespace CozyAnywhere.Protocol.Messages
         public const byte NoDataType        = 0;
         public const byte StringDataType    = 1;
         public const byte BinaryDataType    = 2;
+        public const byte PacketBinaryDataType = 3;
 
         public uint Id { get { return MessageId.CommandMessageRsp; } }
 

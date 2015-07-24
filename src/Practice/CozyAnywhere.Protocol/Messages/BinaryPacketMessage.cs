@@ -3,7 +3,7 @@ using NetworkProtocol;
 
 namespace CozyAnywhere.Protocol.Messages
 {
-    public class BinaryPacketMessage : IMessage
+    public struct BinaryPacketMessage : IMessage
     {
         public uint Id { get { return MessageId.BinaryPacketMessage; } }
 
@@ -13,6 +13,7 @@ namespace CozyAnywhere.Protocol.Messages
 
         public void Write(NetOutgoingMessage om)
         {
+            if (MetaData == null) MetaData = "Null";
             om.Write(MetaData);
             om.Write(Data.Length);
             om.Write(Data);

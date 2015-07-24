@@ -36,6 +36,9 @@ namespace CozyAnywhere.ClientCore
                 case MessageId.PluginQueryMessage:
                     OnPluginQueryMessage(baseMsg);
                     break;
+                case MessageId.BinaryPacketMessage:
+                    OnBinaryPacketMessage(baseMsg);
+                    break;
                 default:
                     break;
             }
