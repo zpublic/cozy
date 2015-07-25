@@ -35,14 +35,15 @@ namespace CozyAnywhere.Plugin.WinCapture
                 CaptureUtil.GetWindowSize(hwnd, ref x, ref y);
 
                 const int blockSize = 128;
-                int blockSizeW = (x + blockSize - 1) / blockSize;
-                int blockSizeH = (y + blockSize - 1) / blockSize;
-
+                int blockSizeW      = (x + blockSize - 1) / blockSize;
+                int blockSizeH      = (y + blockSize - 1) / blockSize;
+                var bitmap          = new BITMAP();
+                var bitmapSize      = CaptureUtil.DefGetCaptureBlockBitmap(hwnd, hdc, 0, 0, blockSize, blockSize, ref bitmap);
                 for (int i = 0; i < blockSizeW; ++i)
                 {
                     for (int j = 0; j < blockSizeH; ++j)
                     {
-                        var bmp     = CaptureUtil.DefGetCaptureData(hwnd, hdc, i * blockSize, j * blockSize, blockSize, blockSize);
+                        var bmp     = CaptureUtil.DefGetCaptureData(hwnd, hdc, bitmapSize, bitmap, i * blockSize, j * blockSize, blockSize, blockSize);
                         var jpg     = CaptureUtil.ConvertBmpToJpeg(bmp);
                         var meta    = new CaptureSplitMetaData()
                         {

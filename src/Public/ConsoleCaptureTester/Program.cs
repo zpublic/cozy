@@ -27,13 +27,15 @@ namespace ConsoleCaptureTester
                 // sqrt(1024) = 32
                 int num             = 0;
                 const int blockSize = 128;
+                var bitmap          = new BITMAP();
+                var bitmapSize      = CaptureUtil.DefGetCaptureBlockBitmap(hwnd, hdc, 0, 0, blockSize, blockSize, ref bitmap);
                 int blockSizeW      = (x + blockSize - 1) / blockSize;
                 int blockSizeH      = (y + blockSize - 1) / blockSize;
                 for (int i = 0; i < blockSizeW; ++i)
                 {
                     for (int j = 0; j < blockSizeH; ++j)
                     {
-                        var r       = CaptureUtil.DefGetCaptureData(hwnd, hdc, i * blockSize, j * blockSize, blockSize, blockSize);
+                        var r       = CaptureUtil.DefGetCaptureData(hwnd, hdc, bitmapSize, bitmap, i * blockSize, j * blockSize, blockSize, blockSize);
                         var result  = CaptureUtil.ConvertBmpToJpeg(r);
                         using (FileStream fs = new FileStream(@"D:\Test\test" + num + @".jpg", FileMode.Create, FileAccess.Write))
                         {
