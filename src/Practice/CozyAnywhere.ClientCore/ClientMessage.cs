@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using CozyAnywhere.Plugin.WinFile.Model;
 using CozyAnywhere.Plugin.WinProcess.Model;
+using CozyAnywhere.Plugin.WinCapture;
 using CozyAnywhere.ClientCore.EventArg;
 using System.Linq;
 using CozyAnywhere.PluginBase;
@@ -21,6 +22,8 @@ namespace CozyAnywhere.ClientCore
         {
             MessageReader.RegisterType<CommandMessageRsp>(MessageId.CommandMessageRsp);
             MessageReader.RegisterType<PluginQueryMessage>(MessageId.PluginQueryMessage);
+            MessageReader.RegisterType<BinaryPacketMessage>(MessageId.BinaryPacketMessage);
+
         }
 
         public void RegisterResponseActions()
@@ -36,8 +39,6 @@ namespace CozyAnywhere.ClientCore
 
             ResponseActions["ProcessEnum"]      = new Action<CommandMessageRsp>(OnProcessEnum);
             ResponseActions["ProcessTerminate"] = new Action<CommandMessageRsp>(OnProcessTerminate);
-
-            ResponseActions["GetCaptureData"]   = new Action<CommandMessageRsp>(OnGetCaptureData);
         }
 
         private void OnCommandMessageRsp(IMessage msg)
@@ -60,6 +61,20 @@ namespace CozyAnywhere.ClientCore
                 if (PluginChangedHandler != null)
                 {
                     PluginChangedHandler(this, new PluginChangedEvnetArgs(except));
+                }
+            }
+        }
+
+        private void OnBinaryPacketMessage(IMessage msg)
+        {
+            var rspMsg = (BinaryPacketMessage)msg;
+            if (rspMsg.Data != null)
+            {
+                if (CaptureRefreshHandler != null)
+                {
+                    var meta    = JsonConvert.DeserializeObject<CaptureSplitMetaData>(rspMsg.MetaData);
+                    var t       = Tuple.Create(meta.X, meta.Y, meta.Width, meta.Height);
+                    CaptureRefreshHandler(this, new CaptureRefreshEventArgs(t, rspMsg.Data));
                 }
             }
         }
@@ -161,17 +176,6 @@ namespace CozyAnywhere.ClientCore
             if (rsp.RspType == CommandMessageRsp.StringDataType)
             {
                 var result = JsonConvert.DeserializeObject<bool>(rsp.StringCommandRsp);
-            }
-        }
-
-        private void OnGetCaptureData(CommandMessageRsp rsp)
-        {
-            if (rsp.RspType == CommandMessageRsp.BinaryDataType)
-            {
-                if (CaptureRefreshHandler != null)
-                {
-                    CaptureRefreshHandler(this, new CaptureRefreshEventArgs(rsp.BinaryCommandRsp));
-                }
             }
         }
         #endregion

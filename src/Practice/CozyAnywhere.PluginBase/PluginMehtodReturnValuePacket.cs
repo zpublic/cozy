@@ -4,8 +4,6 @@ namespace CozyAnywhere.PluginBase
 {
     public class PluginMehtodReturnValuePacket
     {
-        public int Size { get; set; }
-
         public int Count
         {
             get
@@ -18,6 +16,6 @@ namespace CozyAnywhere.PluginBase
             }
         }
 
-        public List<byte[]> Packet { get; set; }
+        public List<ReturnValuePacket> Packet { get; set; }
     }
 }

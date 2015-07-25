@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\DelegateCommand.cs" />
+    <Compile Include="Ext\BitmapLocker.cs" />
     <Compile Include="Factory\CapturePluginPageFactory.cs" />
     <Compile Include="Factory\FilePluginPageFactory.cs" />
     <Compile Include="Factory\IControlFactory.cs" />

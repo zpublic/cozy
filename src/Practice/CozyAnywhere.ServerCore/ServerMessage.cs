@@ -3,6 +3,7 @@ using CozyAnywhere.Protocol.Messages;
 using NetworkHelper;
 using CozyAnywhere.PluginBase;
 using NetworkProtocol;
+using System.Collections.Generic;
 
 namespace CozyAnywhere.ServerCore
 {
@@ -31,16 +32,33 @@ namespace CozyAnywhere.ServerCore
                         RspType     = result.MethodReturnValue.DataType,
                     };
 
-                    if(rspMsg.RspType == PluginMethodReturnValueType.StringDataType)
+                    if (rspMsg.RspType == PluginMethodReturnValueType.StringDataType)
                     {
                         rspMsg.StringCommandRsp = result.MethodReturnValue.Data as string;
                     }
-                    else if(rspMsg.RspType == PluginMethodReturnValueType.BinaryDataType)
+                    else if (rspMsg.RspType == PluginMethodReturnValueType.BinaryDataType)
                     {
                         rspMsg.BinaryCommandRsp = result.MethodReturnValue.Data as byte[];
                     }
-
-                    client.SendMessage(rspMsg);
+                    else if (rspMsg.RspType == PluginMethodReturnValueType.PacketBinaryDataType)
+                    {
+                        var data = result.MethodReturnValue.Data as PluginMehtodReturnValuePacket;
+                        if (data != null)
+                        {
+                            foreach (var obj in data.Packet)
+                            {
+                                client.SendMessage(new BinaryPacketMessage()
+                                {
+                                    Data        = obj.Data,
+                                    MetaData    = obj.MetaData,
+                                });
+                            }
+                        }
+                    }
+                    else
+                    {
+                        client.SendMessage(rspMsg);
+                    }
                 }
             }
         }
@@ -49,7 +67,7 @@ namespace CozyAnywhere.ServerCore
         {
             var loadMsg = (PluginLoadMessage)msg;
 
-            var list = EnumPluginFolder();
+            var list    = EnumPluginFolder();
             ServerPluginMgr.AddPluginsWithFileNames(list);
 
             var rspMsg = new PluginQueryMessage()

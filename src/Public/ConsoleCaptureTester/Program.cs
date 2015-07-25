@@ -4,31 +4,45 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 using CozyAnywhere.Plugin.WinCapture;
+using CozyAnywhere.Plugin.WinCapture.Model;
 
 namespace ConsoleCaptureTester
 {
     // CaptureCpp.dll
     internal class Program
     {
-        [DllImport(@"CaptureCpp.dll",
-           CharSet = CharSet.Auto,
-           CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint GetWindowBitmapSize();
-
-        [DllImport(@"CaptureCpp.dll",
-           CharSet = CharSet.Auto,
-           CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool GetCaptureData(ref byte result, uint size);
-
         private static void Main(string[] args)
         {
-            uint offset = 0;
-            var result  = CaptureUtil.ConvertBmpToJpeg(CaptureUtil.DefGetCaptureData(out offset));
-            using (FileStream fs = new FileStream(@"D:\test.jpg", FileMode.Create, FileAccess.Write))
+            //var r = CaptureUtil.DefGetCaptureData(ref offset, ref width, ref height);
+            IntPtr hwnd = IntPtr.Zero;
+            IntPtr hdc  = IntPtr.Zero;
+
+            if (CaptureUtil.GetWindowHDC(ref hwnd, ref hdc))
             {
-                fs.Write(result, 0, result.Length);
+                int x = 0;
+                int y = 0;
+                CaptureUtil.GetWindowSize(hwnd, ref x, ref y);
+
+                // 4k / 4 = 1k
+                // sqrt(1024) = 32
+                int num             = 0;
+                const int blockSize = 128;
+                int blockSizeW      = (x + blockSize - 1) / blockSize;
+                int blockSizeH      = (y + blockSize - 1) / blockSize;
+                for (int i = 0; i < blockSizeW; ++i)
+                {
+                    for (int j = 0; j < blockSizeH; ++j)
+                    {
+                        var r       = CaptureUtil.DefGetCaptureData(hwnd, hdc, i * blockSize, j * blockSize, blockSize, blockSize);
+                        var result  = CaptureUtil.ConvertBmpToJpeg(r);
+                        using (FileStream fs = new FileStream(@"D:\Test\test" + num + @".jpg", FileMode.Create, FileAccess.Write))
+                        {
+                            fs.Write(result, 0, result.Length);
+                        }
+                        ++num;
+                    }
+                }
             }
-            Console.ReadKey();
         }
     }
 }

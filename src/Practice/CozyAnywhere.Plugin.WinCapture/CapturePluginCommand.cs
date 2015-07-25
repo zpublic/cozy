@@ -18,8 +18,8 @@ namespace CozyAnywhere.Plugin.WinCapture
 
         public static string MakeGetCaptureDataCommand()
         {
-            var args = new GetCaptureDataArgs();
-            var argsSerialize = JsonConvert.SerializeObject(args);
+            var args            = new GetCaptureDataArgs();
+            var argsSerialize   = JsonConvert.SerializeObject(args);
             return PluginCommandSerializeMaker.MakeCommand(InnerPluginName, "GetCaptureData", argsSerialize);
         }
     }
