@@ -9,16 +9,17 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CozyAnywhere.ConsoleRelayServer</RootNamespace>
     <AssemblyName>CozyAnywhere.ConsoleRelayServer</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -27,7 +28,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\..\bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -48,6 +49,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Public\Lidgren.Network\Lidgren.Network.csproj">
+      <Project>{49ba1c69-6104-41ac-a5d8-b54fa9f696e8}</Project>
+      <Name>Lidgren.Network</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Public\NetworkRelayServer\NetworkRelayServer.csproj">
+      <Project>{63034967-8773-4d2c-bf6b-2e165bb82e11}</Project>
+      <Name>NetworkRelayServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyAnywhere.RelayServer\CozyAnywhere.RelayServerCore.csproj">
+      <Project>{a9060a30-59f0-4f36-9b29-b51172daf2e4}</Project>
+      <Name>CozyAnywhere.RelayServerCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
