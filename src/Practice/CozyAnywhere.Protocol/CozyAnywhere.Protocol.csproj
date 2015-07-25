@@ -48,10 +48,10 @@
     <Compile Include="IPluginLoadHelper.cs" />
     <Compile Include="MessageId.cs" />
     <Compile Include="Messages\BinaryPacketMessage.cs" />
-    <Compile Include="Messages\CloseConnectionMessage.cs" />
     <Compile Include="Messages\CommandMessage.cs" />
     <Compile Include="Messages\CommandMessageRsp.cs" />
-    <Compile Include="Messages\ConnectionTypeQueryMessageRsp.cs" />
+    <Compile Include="Messages\ConnectMessage.cs" />
+    <Compile Include="Messages\ConnectMessageRsp.cs" />
     <Compile Include="Messages\FileDeleteMessage.cs" />
     <Compile Include="Messages\FileEnumMessage.cs" />
     <Compile Include="Messages\PluginLoadMessage.cs" />
@@ -59,7 +59,6 @@
     <Compile Include="Messages\ProcessEnumMessage.cs" />
     <Compile Include="Messages\ProcessEnumMessageRsp.cs" />
     <Compile Include="Messages\ProcessTerminateMessage.cs" />
-    <Compile Include="Messages\ConnectionTypeQueryMessage.cs" />
     <Compile Include="PluginCommand.cs" />
     <Compile Include="PluginCommandMethod.cs" />
     <Compile Include="IPluginCommandMethodArgs.cs" />

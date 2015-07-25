@@ -3,16 +3,20 @@ using Lidgren.Network;
 
 namespace CozyAnywhere.Protocol.Messages
 {
-    public class ConnectionTypeQueryMessage : IMessage
+    public class ConnectMessageRsp : IMessage
     {
-        public uint Id { get { return MessageId.ConnectionTypeQueryMessage; } }
+        public uint Id { get { return MessageId.ConnectMessageRsp; } }
+
+        public bool CanConnect { get; set; }
 
         public void Write(NetOutgoingMessage om)
         {
+            om.Write(CanConnect);
         }
 
         public void Read(NetIncomingMessage im)
         {
+            CanConnect = im.ReadBoolean();
         }
     }
 }

@@ -3,12 +3,12 @@ using Lidgren.Network;
 
 namespace CozyAnywhere.Protocol.Messages
 {
-    public class ConnectionTypeQueryMessageRsp : IMessage
+    public class ConnectMessage : IMessage
     {
-        public uint Id { get { return MessageId.ConnectionTypeQueryMessageRsp; } }
-
         public const byte ServerType = 0;
         public const byte ClientType = 1;
+
+        public uint Id { get { return MessageId.ConnectMessage; } }
 
         public byte ConnectionType { get; set; }
 

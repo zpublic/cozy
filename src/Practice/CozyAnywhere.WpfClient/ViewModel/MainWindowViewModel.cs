@@ -12,7 +12,31 @@ namespace CozyAnywhere.WpfClient.ViewModel
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        public int Port { get; set; }
+        private int _Port;
+        public int Port
+        {
+            get
+            {
+                return _Port;
+            }
+            set
+            {
+                Set(ref _Port, value, "Port");
+            }
+        }
+
+        private string _Address;
+        public string Address
+        {
+            get
+            {
+                return _Address;
+            }
+            set
+            {
+                Set(ref _Address, value, "Address");
+            }
+        }
 
         public static AnywhereClient clientCore { get; set; }
 
@@ -79,6 +103,23 @@ namespace CozyAnywhere.WpfClient.ViewModel
                 });
             }
         }
+
+        private ICommand _ConnectCommand;
+
+        public ICommand ConnectCommand
+        {
+            get
+            {
+                return _ConnectCommand = _ConnectCommand ?? new DelegateCommand((x)=>
+                {
+                    if (Address != null)
+                    {
+                        clientCore.ConnectServer(Address, 48360);
+                    }
+                });
+            }
+        }
+
 
         public MainWindowViewModel()
         {

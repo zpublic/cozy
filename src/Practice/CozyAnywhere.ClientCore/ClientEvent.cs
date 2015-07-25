@@ -2,6 +2,7 @@
 using NetworkHelper;
 using NetworkHelper.Event;
 using System;
+using Lidgren.Network;
 
 namespace CozyAnywhere.ClientCore
 {
@@ -19,9 +20,8 @@ namespace CozyAnywhere.ClientCore
 
         private void OnStatusMessage(object sender, StatusMessageArgs msg)
         {
-            if (msg.Status == NetConnectionStatus.Connected)
+            if (msg.Status == NetworkHelper.NetConnectionStatus.Connected)
             {
-                SendPluginLoadMessage();
             }
         }
 
@@ -38,6 +38,9 @@ namespace CozyAnywhere.ClientCore
                     break;
                 case MessageId.BinaryPacketMessage:
                     OnBinaryPacketMessage(baseMsg);
+                    break;
+                case MessageId.ConnectMessage:
+                    OnConnectMessage(baseMsg, msg.Input.SenderConnection);
                     break;
                 default:
                     break;

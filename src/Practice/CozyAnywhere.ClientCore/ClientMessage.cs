@@ -9,6 +9,7 @@ using CozyAnywhere.Plugin.WinProcess.Model;
 using CozyAnywhere.Plugin.WinCapture;
 using CozyAnywhere.ClientCore.EventArg;
 using System.Linq;
+using Lidgren.Network;
 
 namespace CozyAnywhere.ClientCore
 {
@@ -73,6 +74,21 @@ namespace CozyAnywhere.ClientCore
                 }
             }
         }
+
+        private void OnConnectMessage(IMessage msg, NetConnection conn)
+        {
+            var connMsg = (ConnectMessage)msg;
+
+            var rspMsg = new ConnectMessageRsp()
+            {
+                CanConnect = true,
+            };
+            server.SendMessage(rspMsg, conn);
+
+            var pluginmsg = new PluginLoadMessage();
+            server.SendMessage(pluginmsg, conn);
+        }
+
 
         #region ResponseActions
 

@@ -23,8 +23,10 @@
                 </TabControl.ItemTemplate>
             </TabControl>
             <StackPanel Orientation="Horizontal" Margin="3">
-                <TextBox Text="{Binding Port, Mode=TwoWay}"></TextBox>
-                <Button Content="{Binding ListenButtonText, Mode=TwoWay}" Command="{Binding ListenCommand}"></Button>
+                <TextBox Text="{Binding Port, Mode=TwoWay}" Margin="3"></TextBox>
+                <Button Content="{Binding ListenButtonText, Mode=TwoWay}" Command="{Binding ListenCommand}" Margin="3"></Button>
+                <TextBox Width="180" Margin="3" Text="{Binding Address}"></TextBox>
+                <Button Content="connect" Margin="3" Command="{Binding ConnectCommand}"></Button>
             </StackPanel>
         </StackPanel>
     </Grid>

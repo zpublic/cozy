@@ -59,6 +59,14 @@ namespace CozyAnywhere.ClientCore
             }
         }
 
+        public void ConnectServer(string ip, int port)
+        {
+            if(server != null)
+            {
+                server.Connect(ip, port);
+            }
+        }
+
         public void SendEnumFileMessage(string path)
         {
             if (server != null)

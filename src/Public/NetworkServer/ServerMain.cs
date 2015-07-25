@@ -30,6 +30,11 @@ namespace NetworkServer
             IsRunning = true;
         }
 
+        public void Connect(string ip, int port)
+        {
+            server.Connect(ip, port);
+        }
+
         public void Shutdown()
         {
             IsRunning = false;

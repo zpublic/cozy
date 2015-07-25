@@ -16,5 +16,7 @@
         public const uint ConnectionTypeQueryMessage    = 1011;
         public const uint ConnectionTypeQueryMessageRsp = 1012;
         public const uint CloseConnectionMessage        = 1013;
+        public const uint ConnectMessage                = 1014;
+        public const uint ConnectMessageRsp             = 1015;
     }
 }

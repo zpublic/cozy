@@ -1,6 +1,7 @@
 ﻿using NetworkHelper.Event;
 using NetworkHelper;
 using System;
+using CozyAnywhere.Protocol.Messages;
 using CozyAnywhere.Protocol;
 
 namespace CozyAnywhere.ServerCore
@@ -19,6 +20,11 @@ namespace CozyAnywhere.ServerCore
 
         private void OnStatusMessage(object sender, StatusMessageArgs msg)
         {
+            if (msg.Status == NetConnectionStatus.Connected)
+            {
+                var connMsg = new ConnectMessage();
+                client.SendMessage(connMsg);
+            }
         }
 
         private void OnDataMessage(object sender, DataMessageArgs msg)
@@ -31,6 +37,9 @@ namespace CozyAnywhere.ServerCore
                     break;
                 case MessageId.PluginLoadMessage:
                     OnPluginLoadMessage(baseMsg);
+                    break;
+                case MessageId.ConnectMessageRsp:
+                    OnConnectMessageRsp(baseMsg);
                     break;
                 default:
                     break;

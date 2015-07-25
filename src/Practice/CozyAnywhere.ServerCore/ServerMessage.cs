@@ -51,11 +51,9 @@ namespace CozyAnywhere.ServerCore
                                 });
                             }
                         }
+                        return;
                     }
-                    else
-                    {
-                        client.SendMessage(rspMsg);
-                    }
+                    client.SendMessage(rspMsg);
                 }
             }
         }
@@ -72,6 +70,15 @@ namespace CozyAnywhere.ServerCore
                 Plugins = ServerPluginMgr.AllPluginName(),
             };
             client.SendMessage(rspMsg);
+        }
+
+        private void OnConnectMessageRsp(IMessage msg)
+        {
+            var connMsg = (ConnectMessageRsp)msg;
+            if (connMsg.CanConnect == false)
+            {
+                client.DisConnect();
+            }
         }
     }
 }
