@@ -7,7 +7,7 @@ using System.Reflection;
 using NetworkProtocol;
 using NetworkHelper;
 
-namespace CozyAnywhere.RelayServer
+namespace CozyAnywhere.RelayServerCore
 {
     public partial class AnywhereRelayServer
     {
