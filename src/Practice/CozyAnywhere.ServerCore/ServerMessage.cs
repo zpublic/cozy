@@ -1,9 +1,7 @@
-﻿using CozyAnywhere.Protocol;
-using CozyAnywhere.Protocol.Messages;
+﻿using CozyAnywhere.Protocol.Messages;
 using NetworkHelper;
 using CozyAnywhere.PluginBase;
 using NetworkProtocol;
-using System.Collections.Generic;
 
 namespace CozyAnywhere.ServerCore
 {
@@ -11,8 +9,7 @@ namespace CozyAnywhere.ServerCore
     {
         public void InitServerMessage()
         {
-            MessageReader.RegisterType<CozyAnywhere.Protocol.Messages.CommandMessage>(MessageId.CommandMessage);
-            MessageReader.RegisterType<PluginLoadMessage>(MessageId.PluginLoadMessage);
+            MessageReader.RegisterTypeWithAssembly("CozyAnywhere.Protocol", "CozyAnywhere.Protocol.Messages");
         }
 
         public void OnCommandMessage(IMessage msg)

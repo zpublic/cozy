@@ -1,5 +1,4 @@
 ﻿using System;
-using CozyAnywhere.Protocol;
 using CozyAnywhere.Protocol.Messages;
 using NetworkHelper;
 using NetworkProtocol;
@@ -10,7 +9,6 @@ using CozyAnywhere.Plugin.WinProcess.Model;
 using CozyAnywhere.Plugin.WinCapture;
 using CozyAnywhere.ClientCore.EventArg;
 using System.Linq;
-using CozyAnywhere.PluginBase;
 
 namespace CozyAnywhere.ClientCore
 {
@@ -20,10 +18,7 @@ namespace CozyAnywhere.ClientCore
 
         public void InitClientMessage()
         {
-            MessageReader.RegisterType<CommandMessageRsp>(MessageId.CommandMessageRsp);
-            MessageReader.RegisterType<PluginQueryMessage>(MessageId.PluginQueryMessage);
-            MessageReader.RegisterType<BinaryPacketMessage>(MessageId.BinaryPacketMessage);
-
+            MessageReader.RegisterTypeWithAssembly("CozyAnywhere.Protocol", "CozyAnywhere.Protocol.Messages");
         }
 
         public void RegisterResponseActions()
