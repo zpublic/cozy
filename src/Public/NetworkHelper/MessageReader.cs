@@ -20,6 +20,14 @@ namespace NetworkHelper
             }
         }
 
+        public static void RegisterType(Type type, uint id)
+        {
+            lock(ObjLocker)
+            {
+                IdToTypeDictionary[id] = type;
+            }
+        }
+
         public static IMessage GetTypeInstanceByStream(NetIncomingMessage stream)
         {
             var id = stream.ReadUInt32();

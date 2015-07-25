@@ -2,7 +2,6 @@
 using NetworkHelper;
 using System;
 using CozyAnywhere.Protocol;
-using CozyAnywhere.Protocol.Messages;
 
 namespace CozyAnywhere.ServerCore
 {

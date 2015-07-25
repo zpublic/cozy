@@ -13,5 +13,8 @@
         public const uint PluginLoadMessage             = 1008;
         public const uint PluginQueryMessage            = 1009;
         public const uint BinaryPacketMessage           = 1010;
+        public const uint ConnectionTypeQueryMessage    = 1011;
+        public const uint ConnectionTypeQueryMessageRsp = 1012;
+        public const uint CloseConnectionMessage        = 1013;
     }
 }
