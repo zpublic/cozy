@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using CozyWeixin.Core.Account;
 
 [assembly: OwinStartupAttribute(typeof(CozyWexin.Mvc.Startup))]
 namespace CozyWexin.Mvc
@@ -9,6 +10,7 @@ namespace CozyWexin.Mvc
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            Account.GetInstance().Register();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using CozyWeixin.Core.Account.Interface;
+﻿using CozyWeixin.Core.Account;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,13 @@ namespace CozyWexin.Mvc.ApiControllers {
         [HttpGet]
         [Route("test")]
         public string TestFunc() {
-            return "test";
+            return Account.GetInstance().AccessToken;
+        }
+
+        [HttpPost]
+        [Route("receive-msg")]
+        public string ReceiveMsg() {
+            return "什么？ 你叫我";
         }
 
     }
