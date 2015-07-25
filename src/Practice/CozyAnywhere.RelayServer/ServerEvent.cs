@@ -22,6 +22,10 @@ namespace CozyAnywhere.RelayServerCore
         private void OnDataMessage(object sender, DataMessageArgs msg)
         {
             var baseMsg = MessageReader.GetTypeInstanceByStream(msg.Input);
+            if(baseMsg.Id == MessageId.ConnectMessage)
+            {
+                OnConnectMessage(baseMsg, msg.Input.SenderConnection);
+            }
         }
 
         private void OnInternalMessage(object sender, InternalMessageArgs msg)
