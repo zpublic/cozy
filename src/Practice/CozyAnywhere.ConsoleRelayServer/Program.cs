@@ -1,19 +1,33 @@
 ﻿using NetworkRelayServer;
+using CozyAnywhere.RelayServerCore.Events;
 using System;
+using CozyAnywhere.RelayServerCore;
 
 namespace CozyAnywhere.ConsoleRelayServer
 {
     public class Program
     {
-        public static ServerRelay server { get; set; }
+        public static AnywhereRelayServer server { get; set; }
         static void Main(string[] args)
         {
-            server = new ServerRelay(1000, 36048);
+            server = new AnywhereRelayServer(1000, 36048);
+            server.ServerConnectMessage += new EventHandler<ServerConnectArgs>(OnServerConnect);
+            server.ClientConnectMessage += new EventHandler<ClientConnectArgs>(OnClientConnect);
             server.Listen();
             while (true)
             {
                 server.EnterMainLoop();
             }
+        }
+
+        private static void OnClientConnect(object sender, ClientConnectArgs msg)
+        {
+            Console.WriteLine("Client Connect");
+        }
+
+        private static void OnServerConnect(object sender, ServerConnectArgs msg)
+        {
+            Console.WriteLine("Server Connect");
         }
     }
 }

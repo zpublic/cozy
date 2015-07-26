@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\ClientConnectArgs.cs" />
+    <Compile Include="Events\ServerConnectArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerEvent.cs" />
     <Compile Include="ServerMain.cs" />

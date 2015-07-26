@@ -38,6 +38,9 @@ namespace CozyAnywhere.ServerCore
                 case MessageId.PluginLoadMessage:
                     OnPluginLoadMessage(baseMsg);
                     break;
+                case MessageId.QueryConnectMessage:
+                    OnConnectQueryMessage(baseMsg);
+                    break;
                 case MessageId.ConnectMessageRsp:
                     OnConnectMessageRsp(baseMsg);
                     break;

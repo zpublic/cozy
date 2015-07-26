@@ -114,7 +114,7 @@ namespace CozyAnywhere.WpfClient.ViewModel
                 {
                     if (Address != null)
                     {
-                        clientCore.ConnectServer(Address, 48360);
+                        clientCore.ConnectServer(Address, 36048);
                     }
                 });
             }

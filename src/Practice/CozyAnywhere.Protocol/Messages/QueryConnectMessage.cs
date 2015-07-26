@@ -3,9 +3,9 @@ using Lidgren.Network;
 
 namespace CozyAnywhere.Protocol.Messages
 {
-    public class ConnectMessage : IMessage
+    public class QueryConnectMessage : IMessage
     {
-        public uint Id { get { return MessageId.ConnectMessage; } }
+        public uint Id { get { return MessageId.QueryConnectMessage; } }
 
         public void Write(NetOutgoingMessage om)
         {

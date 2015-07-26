@@ -15,23 +15,6 @@ namespace CozyAnywhere.RelayServerCore
         private void OnConnectMessage(IMessage msg, NetConnection conn)
         {
             var connMsg = (ConnectMessage)msg;
-            if (server.ServerConn == null && connMsg.ConnectionType == ConnectMessage.ServerType)
-            {
-                server.ServerConn = conn;
-            }
-            else if(server.ClientConn == null && connMsg.ConnectionType == ConnectMessage.ClientType)
-            {
-                server.ClientConn = conn;
-                server.SendMessageToServer(msg);
-            }
-            else
-            {
-                var rspMsg = new ConnectMessageRsp()
-                {
-                    CanConnect = false,
-                };
-                server.SendMessage(rspMsg, conn);
-            }
         }
     }
 }
