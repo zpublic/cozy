@@ -2,7 +2,6 @@
 using NetworkHelper.Event;
 using NetworkHelper;
 using CozyAnywhere.Protocol;
-using CozyAnywhere.Protocol.Messages;
 
 namespace CozyAnywhere.RelayServerCore
 {
@@ -10,12 +9,12 @@ namespace CozyAnywhere.RelayServerCore
     {
         private void InitEvent()
         {
-            server.RelayMessage += new EventHandler<DataMessageArgs>(OnRelayMessage);
+            server.StatusMessage += new EventHandler<StatusMessageArgs>(OnStatusMessage);
             server.DataMessage += new EventHandler<DataMessageArgs>(OnDataMessage);
             server.InternalMessage += new EventHandler<InternalMessageArgs>(OnInternalMessage);
         }
 
-        private void OnRelayMessage(object sender, DataMessageArgs msg)
+        private void OnStatusMessage(object sender, StatusMessageArgs msg)
         {
         }
 

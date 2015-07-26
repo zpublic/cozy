@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Lidgren.Network;
 using NetworkHelper.Event;
 using NetworkProtocol;
@@ -66,7 +63,9 @@ namespace NetworkRelayServer
                         break;
 
                     case NetIncomingMessageType.StatusChanged:
-                        OnStatusMessage(this, msg);
+                        var status = (NetworkHelper.NetConnectionStatus)msg.ReadByte();
+                        string reason = msg.ReadString();
+                        OnStatusMessage(this, status, reason);
                         break;
 
                     case NetIncomingMessageType.Data:
@@ -134,13 +133,13 @@ namespace NetworkRelayServer
             }
         }
 
-        public event EventHandler<DataMessageArgs> RelayMessage;
+        public event EventHandler<StatusMessageArgs> StatusMessage;
 
-        public void OnStatusMessage(object sender, NetIncomingMessage im)
+        public void OnStatusMessage(object sender, NetworkHelper.NetConnectionStatus status, String reason)
         {
-            if (RelayMessage != null)
+            if (StatusMessage != null)
             {
-                RelayMessage(sender, new DataMessageArgs(im));
+                StatusMessage(sender, new StatusMessageArgs(status, reason));
             }
         }
 
