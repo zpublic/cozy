@@ -25,7 +25,7 @@ namespace CozyAnywhere.WpfClient.ViewModel
             }
         }
 
-        private string _Address;
+        private string _Address = "114.215.134.101";
         public string Address
         {
             get
@@ -114,7 +114,11 @@ namespace CozyAnywhere.WpfClient.ViewModel
                 {
                     if (Address != null)
                     {
-                        clientCore.ConnectServer(Address, 36048);
+                        if(!clientCore.IsListing)
+                        {
+                            clientCore.Listen();
+                        }
+                        clientCore.ConnectServer(Address, 48360);
                     }
                 });
             }

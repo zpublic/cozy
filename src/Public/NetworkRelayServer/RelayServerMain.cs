@@ -61,17 +61,12 @@ namespace NetworkRelayServer
                         string text = msg.ReadString();
                         OnInternalMessage(this, text);
                         break;
-
                     case NetIncomingMessageType.StatusChanged:
-                        var status = (NetworkHelper.NetConnectionStatus)msg.ReadByte();
-                        string reason = msg.ReadString();
-                        OnStatusMessage(this, status, reason);
+                        OnStatusMessage(this, msg);
                         break;
-
                     case NetIncomingMessageType.Data:
                         OnDataMessage(this, msg);
                         break;
-
                     default:
                         break;
                 }
@@ -133,13 +128,13 @@ namespace NetworkRelayServer
             }
         }
 
-        public event EventHandler<StatusMessageArgs> StatusMessage;
+        public event EventHandler<DataMessageArgs> StatusMessage;
 
-        public void OnStatusMessage(object sender, NetworkHelper.NetConnectionStatus status, String reason)
+        public void OnStatusMessage(object sender, NetIncomingMessage im)
         {
             if (StatusMessage != null)
             {
-                StatusMessage(sender, new StatusMessageArgs(status, reason));
+                StatusMessage(sender, new DataMessageArgs(im));
             }
         }
 

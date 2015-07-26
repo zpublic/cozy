@@ -11,24 +11,48 @@ namespace CozyAnywhere.RelayServerCore
     {
         private void InitEvent()
         {
-            server.StatusMessage += new EventHandler<StatusMessageArgs>(OnStatusMessage);
+            server.StatusMessage += new EventHandler<DataMessageArgs>(OnStatusMessage);
             server.DataMessage += new EventHandler<DataMessageArgs>(OnDataMessage);
             server.InternalMessage += new EventHandler<InternalMessageArgs>(OnInternalMessage);
         }
 
-        private void OnStatusMessage(object sender, StatusMessageArgs msg)
+        private void OnStatusMessage(object sender, DataMessageArgs msg)
         {
-            if(msg.Status == NetworkHelper.NetConnectionStatus.Connected)
+            var status = (NetworkHelper.NetConnectionStatus)msg.Input.ReadByte();
+            string reason = msg.Input.ReadString();
+            var conn = msg.Input.SenderConnection;
+            if (status == NetworkHelper.NetConnectionStatus.Connected)
             {
+                if (server.ServerConn == null)
+                {
+                    server.ServerConn = conn;
+                }
+                else if (server.ClientConn == null)
+                {
+                    server.ClientConn = conn;
+                }
+                else
+                {
+                    return;
+                }
+                var queryMsg = new QueryConnectMessage();
+                server.SendMessage(queryMsg, conn);
             }
         }
 
         private void OnDataMessage(object sender, DataMessageArgs msg)
         {
             var baseMsg = MessageReader.GetTypeInstanceByStream(msg.Input);
-            if (baseMsg.Id == MessageId.ConnectMessage)
+            if (server.ServerConn == null || server.ClientConn == null)
             {
-                OnConnectMessage(baseMsg, msg.Input.SenderConnection);
+                if (baseMsg.Id == MessageId.ConnectMessage)
+                {
+                    OnConnectMessage(baseMsg, msg.Input.SenderConnection);
+                }
+                else if (baseMsg.Id == MessageId.QueryConnectMessageRsp)
+                {
+                    OnQueryMessageRsp(baseMsg, msg.Input.SenderConnection);
+                }
             }
             else
             {

@@ -42,6 +42,9 @@ namespace CozyAnywhere.ClientCore
                 case MessageId.ConnectMessage:
                     OnConnectMessage(baseMsg, msg.Input.SenderConnection);
                     break;
+                case MessageId.QueryConnectMessage:
+                    OnQueryMessage(baseMsg, msg.Input.SenderConnection);
+                    break;
                 case MessageId.QueryConnectMessageRsp:
                     OnQueryMessageRsp(baseMsg, msg.Input.SenderConnection);
                     break;
