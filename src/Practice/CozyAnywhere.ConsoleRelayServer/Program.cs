@@ -13,6 +13,7 @@ namespace CozyAnywhere.ConsoleRelayServer
             server = new AnywhereRelayServer(1000, 36048);
             server.ServerConnectMessage += new EventHandler<ServerConnectArgs>(OnServerConnect);
             server.ClientConnectMessage += new EventHandler<ClientConnectArgs>(OnClientConnect);
+            server.MessageSendMessage += new EventHandler<MessageSendMessage>(OnMessageSend);
             server.Listen();
             server.EnterMainLoop();
         }
@@ -25,6 +26,11 @@ namespace CozyAnywhere.ConsoleRelayServer
         private static void OnServerConnect(object sender, ServerConnectArgs msg)
         {
             Console.WriteLine("Server Connect");
+        }
+
+        private static void OnMessageSend(object sender, MessageSendMessage msg)
+        {
+            Console.WriteLine(msg.From + " send " + msg.Id + " to " + msg.To);
         }
     }
 }

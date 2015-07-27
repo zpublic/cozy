@@ -56,17 +56,28 @@ namespace CozyAnywhere.RelayServerCore
 
         private void DispatchMessage(IMessage msg, NetConnection conn)
         {
+            uint id = msg.Id;
+            string from = null;
+            string to = null;
+
             if (conn == server.ServerConn)
             {
                 server.SendMessageToClient(msg);
+                from = "server";
+                to = "client";
             }
             else if (conn == server.ClientConn)
             {
                 server.SendMessageToServer(msg);
+                from = "client";
+                to = "server";
             }
+
+            MessageSendMessage(this, new Events.MessageSendMessage(from, to, id));
         }
 
         public event EventHandler<ClientConnectArgs> ClientConnectMessage;
         public event EventHandler<ServerConnectArgs> ServerConnectMessage;
+        public event EventHandler<MessageSendMessage> MessageSendMessage;
     }
 }
