@@ -32,10 +32,12 @@ namespace CozyAnywhere.RelayServerCore
             if (rspMsg.ConnectionType == QueryConnectMessageRsp.ServerType)
             {
                 server.ServerConn = conn;
+                ServerConnectMessage(this, new Events.ServerConnectArgs());
             }
             else if(rspMsg.ConnectionType == QueryConnectMessageRsp.ClientType)
             {
                 server.ClientConn = conn;
+                ClientConnectMessage(this, new Events.ClientConnectArgs());
             }
             else
             {

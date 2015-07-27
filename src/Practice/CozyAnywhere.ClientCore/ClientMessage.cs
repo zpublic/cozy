@@ -99,8 +99,6 @@ namespace CozyAnywhere.ClientCore
             var queryMsg = (QueryConnectMessageRsp)msg;
             if (queryMsg.ConnectionType != QueryConnectMessageRsp.ServerType)
             {
-                var pluginMsg = new PluginLoadMessage();
-                server.SendMessage(pluginMsg, conn);
             }
         }
 

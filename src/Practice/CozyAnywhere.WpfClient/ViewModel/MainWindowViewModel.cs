@@ -25,7 +25,7 @@ namespace CozyAnywhere.WpfClient.ViewModel
             }
         }
 
-        private string _Address = "114.215.134.101";
+        private string _Address = "127.0.0.1";
         public string Address
         {
             get
@@ -118,7 +118,23 @@ namespace CozyAnywhere.WpfClient.ViewModel
                         {
                             clientCore.Listen();
                         }
-                        clientCore.ConnectServer(Address, 48360);
+                        clientCore.ConnectServer(Address, 36048);
+                    }
+                });
+            }
+        }
+
+        private ICommand _LoadPluginCommand;
+
+        public ICommand LoadPluginCommand
+        {
+            get
+            {
+                return _LoadPluginCommand = _LoadPluginCommand ?? new DelegateCommand((x) =>
+                {
+                    if (clientCore.IsListing)
+                    {
+                        clientCore.SendPluginLoadMessage();
                     }
                 });
             }

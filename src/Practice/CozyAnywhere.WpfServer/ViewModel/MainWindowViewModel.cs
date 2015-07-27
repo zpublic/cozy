@@ -17,7 +17,7 @@ namespace CozyAnywhere.WpfServer.ViewModel
             {
                 return _ConnectCommand = _ConnectCommand ?? new DelegateCommand((x) =>
                 {
-                    serverCore.Connect("127.0.0.1", 48360);
+                    serverCore.Connect("127.0.0.1", 36048);
                 });
             }
         }

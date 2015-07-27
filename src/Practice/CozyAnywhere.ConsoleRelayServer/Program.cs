@@ -10,7 +10,7 @@ namespace CozyAnywhere.ConsoleRelayServer
         public static AnywhereRelayServer server { get; set; }
         static void Main(string[] args)
         {
-            server = new AnywhereRelayServer(1000, 48360);
+            server = new AnywhereRelayServer(1000, 36048);
             server.ServerConnectMessage += new EventHandler<ServerConnectArgs>(OnServerConnect);
             server.ClientConnectMessage += new EventHandler<ClientConnectArgs>(OnClientConnect);
             server.Listen();
