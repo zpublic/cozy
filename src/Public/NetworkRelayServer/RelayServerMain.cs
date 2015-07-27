@@ -24,7 +24,7 @@ namespace NetworkRelayServer
 
         public ServerRelay(int MaxConnections, int Port)
         {
-            NetPeerConfiguration config = new NetPeerConfiguration("CozyAnywhereRelay");
+            NetPeerConfiguration config = new NetPeerConfiguration("CozyAnywhere");
             config.MaximumConnections = MaxConnections;
             config.Port = Port;
             this.Port = Port;
