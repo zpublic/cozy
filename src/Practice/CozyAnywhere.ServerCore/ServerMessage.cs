@@ -2,6 +2,8 @@
 using NetworkHelper;
 using CozyAnywhere.PluginBase;
 using NetworkProtocol;
+using System;
+using Lidgren.Network;
 
 namespace CozyAnywhere.ServerCore
 {
@@ -9,12 +11,25 @@ namespace CozyAnywhere.ServerCore
     {
         public void InitServerMessage()
         {
-            MessageReader.RegisterTypeWithAssembly("CozyAnywhere.Protocol", "CozyAnywhere.Protocol.Messages");
+            var asm = "CozyAnywhere.Protocol";
+            var ns  = "CozyAnywhere.Protocol.Messages";
+            MessageReader.RegisterTypeWithAssembly(asm, ns);
+            MessageCallbackInvoker.LoadMessage(asm, ns);
+            RegisterCallback();
         }
 
-        public void OnCommandMessage(IMessage msg)
+        private void RegisterCallback()
         {
-            var comm = (CozyAnywhere.Protocol.Messages.CommandMessage)msg;
+            MessageCallbackInvoker.RegisterCallback<CommandMessage>(new Action<IMessage, NetConnection>(OnCommandMessage));
+            MessageCallbackInvoker.RegisterCallback<ConnectMessage>(new Action<IMessage, NetConnection>(OnConnectMessage));
+            MessageCallbackInvoker.RegisterCallback<PluginLoadMessage>(new Action<IMessage, NetConnection>(OnPluginLoadMessage));
+            MessageCallbackInvoker.RegisterCallback<QueryConnectMessage>(new Action<IMessage, NetConnection>(OnConnectQueryMessage));
+            MessageCallbackInvoker.RegisterCallback<QueryConnectMessageRsp>(new Action<IMessage, NetConnection>(OnConnectQueryMessageRsp));
+        }
+
+        public void OnCommandMessage(IMessage msg, NetConnection conn)
+        {
+            var comm = (CommandMessage)msg;
 
             if (comm.Command != null)
             {
@@ -58,7 +73,7 @@ namespace CozyAnywhere.ServerCore
             }
         }
 
-        public void OnPluginLoadMessage(IMessage msg)
+        public void OnPluginLoadMessage(IMessage msg, NetConnection conn)
         {
             var loadMsg = (PluginLoadMessage)msg;
 
@@ -72,7 +87,7 @@ namespace CozyAnywhere.ServerCore
             client.SendMessage(rspMsg);
         }
 
-        private void OnConnectQueryMessage(IMessage msg)
+        private void OnConnectQueryMessage(IMessage msg, NetConnection conn)
         {
             var queryMsg = (QueryConnectMessage)msg;
             var rspMsg = new QueryConnectMessageRsp()
@@ -82,7 +97,7 @@ namespace CozyAnywhere.ServerCore
             client.SendMessage(rspMsg);
         }
 
-        private void OnConnectQueryMessageRsp(IMessage msg)
+        private void OnConnectQueryMessageRsp(IMessage msg, NetConnection conn)
         {
             var rspMsg = (QueryConnectMessageRsp)msg;
             if (rspMsg.ConnectionType == QueryConnectMessageRsp.ClientType)
@@ -91,7 +106,7 @@ namespace CozyAnywhere.ServerCore
             }
         }
 
-        private void OnConnectMessage(IMessage msg)
+        private void OnConnectMessage(IMessage msg, NetConnection conn)
         {
             var connMsg = (ConnectMessage)msg;
         }

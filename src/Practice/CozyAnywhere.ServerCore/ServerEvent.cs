@@ -30,26 +30,7 @@ namespace CozyAnywhere.ServerCore
         private void OnDataMessage(object sender, DataMessageArgs msg)
         {
             var baseMsg = MessageReader.GetTypeInstanceByStream(msg.Input);
-            switch (baseMsg.Id)
-            {
-                case MessageId.CommandMessage:
-                    OnCommandMessage(baseMsg);
-                    break;
-                case MessageId.PluginLoadMessage:
-                    OnPluginLoadMessage(baseMsg);
-                    break;
-                case MessageId.QueryConnectMessage:
-                    OnConnectQueryMessage(baseMsg);
-                    break;
-                case MessageId.QueryConnectMessageRsp:
-                    OnConnectQueryMessageRsp(baseMsg);
-                    break;
-                case MessageId.ConnectMessage:
-                    OnConnectMessage(baseMsg);
-                    break;
-                default:
-                    break;
-            }
+            MessageCallbackInvoker.Invoke(baseMsg, msg.Input.SenderConnection);
         }
 
         private void OnInternalMessage(object sender, InternalMessageArgs msg)

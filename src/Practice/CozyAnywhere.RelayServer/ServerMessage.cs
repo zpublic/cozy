@@ -2,6 +2,7 @@
 using NetworkProtocol;
 using Lidgren.Network;
 using CozyAnywhere.Protocol.Messages;
+using System;
 
 namespace CozyAnywhere.RelayServerCore
 {
@@ -9,7 +10,19 @@ namespace CozyAnywhere.RelayServerCore
     {
         private void InitMessage()
         {
-            MessageReader.RegisterTypeWithAssembly("CozyAnywhere.Protocol", "CozyAnywhere.Protocol.Messages");
+            var asm = "CozyAnywhere.Protocol";
+            var ns = "CozyAnywhere.Protocol.Messages";
+            MessageReader.RegisterTypeWithAssembly(asm, ns);
+            MessageCallbackInvoker.LoadMessage(asm, ns);
+            RegisterCallback();
+        }
+
+        private void RegisterCallback()
+        {
+            MessageCallbackInvoker.RegisterCallback<ConnectMessage>(new Action<IMessage, NetConnection>(OnConnectMessage));
+            MessageCallbackInvoker.RegisterCallback<QueryConnectMessage>(new Action<IMessage, NetConnection>(OnConnectQueryMessage));
+            MessageCallbackInvoker.RegisterCallback<QueryConnectMessageRsp>(new Action<IMessage, NetConnection>(OnConnectQueryMessageRsp));
+            MessageCallbackInvoker.DefaultAction = new Action<IMessage, NetConnection>(DispatchMessage);
         }
 
         private void OnConnectMessage(IMessage msg, NetConnection conn)
@@ -43,6 +56,28 @@ namespace CozyAnywhere.RelayServerCore
             {
                 // TODO Disconnect the conn
             }
+        }
+
+        private void DispatchMessage(IMessage msg, NetConnection conn)
+        {
+            uint id = msg.Id;
+            string from = null;
+            string to = null;
+
+            if (conn == server.ServerConn)
+            {
+                server.SendMessageToClient(msg);
+                from = "server";
+                to = "client";
+            }
+            else if (conn == server.ClientConn)
+            {
+                server.SendMessageToServer(msg);
+                from = "client";
+                to = "server";
+            }
+
+            MessageSendMessage(this, new Events.MessageSendMessage(from, to, id));
         }
     }
 }

@@ -19,7 +19,21 @@ namespace CozyAnywhere.ClientCore
 
         public void InitClientMessage()
         {
-            MessageReader.RegisterTypeWithAssembly("CozyAnywhere.Protocol", "CozyAnywhere.Protocol.Messages");
+            var asm = "CozyAnywhere.Protocol";
+            var ns = "CozyAnywhere.Protocol.Messages";
+            MessageReader.RegisterTypeWithAssembly(asm, ns);
+            MessageCallbackInvoker.LoadMessage(asm, ns);
+            RegisterCallback();
+        }
+
+        private void RegisterCallback()
+        {
+            MessageCallbackInvoker.RegisterCallback<CommandMessageRsp>(new Action<IMessage, NetConnection>(OnCommandMessageRsp));
+            MessageCallbackInvoker.RegisterCallback<PluginQueryMessage>(new Action<IMessage, NetConnection>(OnPluginQueryMessage));
+            MessageCallbackInvoker.RegisterCallback<BinaryPacketMessage>(new Action<IMessage, NetConnection>(OnBinaryPacketMessage));
+            MessageCallbackInvoker.RegisterCallback<ConnectMessage>(new Action<IMessage, NetConnection>(OnConnectMessage));
+            MessageCallbackInvoker.RegisterCallback<QueryConnectMessage>(new Action<IMessage, NetConnection>(OnConnectQueryMessage));
+            MessageCallbackInvoker.RegisterCallback<QueryConnectMessageRsp>(new Action<IMessage, NetConnection>(OnConnectQueryMessageRsp));
         }
 
         public void RegisterResponseActions()
@@ -37,7 +51,7 @@ namespace CozyAnywhere.ClientCore
             ResponseActions["ProcessTerminate"] = new Action<CommandMessageRsp>(OnProcessTerminate);
         }
 
-        private void OnCommandMessageRsp(IMessage msg)
+        private void OnCommandMessageRsp(IMessage msg, NetConnection conn)
         {
             var rspMsg = (CommandMessageRsp)msg;
             var name = rspMsg.MethodName;
@@ -47,7 +61,7 @@ namespace CozyAnywhere.ClientCore
             }
         }
 
-        private void OnPluginQueryMessage(IMessage msg)
+        private void OnPluginQueryMessage(IMessage msg, NetConnection conn)
         {
             var rspMsg = (PluginQueryMessage)msg;
             if (PluginNameCollection != null)
@@ -61,7 +75,7 @@ namespace CozyAnywhere.ClientCore
             }
         }
 
-        private void OnBinaryPacketMessage(IMessage msg)
+        private void OnBinaryPacketMessage(IMessage msg, NetConnection conn)
         {
             var rspMsg = (BinaryPacketMessage)msg;
             if (rspMsg.Data != null)

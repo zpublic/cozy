@@ -1,9 +1,7 @@
-﻿using CozyAnywhere.Protocol;
-using NetworkHelper;
+﻿using NetworkHelper;
 using NetworkHelper.Event;
 using CozyAnywhere.Protocol.Messages;
 using System;
-using Lidgren.Network;
 
 namespace CozyAnywhere.ClientCore
 {
@@ -33,29 +31,7 @@ namespace CozyAnywhere.ClientCore
         private void OnDataMessage(object sender, DataMessageArgs msg)
         {
             var baseMsg = MessageReader.GetTypeInstanceByStream(msg.Input);
-            switch (baseMsg.Id)
-            {
-                case MessageId.CommandMessageRsp:
-                    OnCommandMessageRsp(baseMsg);
-                    break;
-                case MessageId.PluginQueryMessage:
-                    OnPluginQueryMessage(baseMsg);
-                    break;
-                case MessageId.BinaryPacketMessage:
-                    OnBinaryPacketMessage(baseMsg);
-                    break;
-                case MessageId.ConnectMessage:
-                    OnConnectMessage(baseMsg, msg.Input.SenderConnection);
-                    break;
-                case MessageId.QueryConnectMessage:
-                    OnConnectQueryMessage(baseMsg, msg.Input.SenderConnection);
-                    break;
-                case MessageId.QueryConnectMessageRsp:
-                    OnConnectQueryMessageRsp(baseMsg, msg.Input.SenderConnection);
-                    break;
-                default:
-                    break;
-            }
+            MessageCallbackInvoker.Invoke(baseMsg, msg.Input.SenderConnection);
         }
 
         private void OnInternalMessage(object sender, InternalMessageArgs msg)
