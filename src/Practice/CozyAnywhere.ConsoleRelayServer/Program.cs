@@ -1,5 +1,4 @@
-﻿using NetworkRelayServer;
-using CozyAnywhere.RelayServerCore.Events;
+﻿using CozyAnywhere.RelayServerCore.Events;
 using System;
 using CozyAnywhere.RelayServerCore;
 
@@ -13,7 +12,7 @@ namespace CozyAnywhere.ConsoleRelayServer
             server = new AnywhereRelayServer(1000, 36048);
             server.ServerConnectMessage += new EventHandler<ServerConnectArgs>(OnServerConnect);
             server.ClientConnectMessage += new EventHandler<ClientConnectArgs>(OnClientConnect);
-            server.MessageSendMessage += new EventHandler<MessageSendMessage>(OnMessageSend);
+            server.MessageSendMessage   += new EventHandler<MessageSendMessage>(OnMessageSend);
             server.Listen();
             server.EnterMainLoop();
         }
