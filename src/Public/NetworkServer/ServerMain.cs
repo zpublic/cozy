@@ -84,7 +84,6 @@ namespace NetworkServer
                     case NetIncomingMessageType.DiscoveryRequest:
                         server.SendDiscoveryResponse(null, msg.SenderEndPoint);
                         break;
-
                     case NetIncomingMessageType.VerboseDebugMessage:
                     case NetIncomingMessageType.DebugMessage:
                     case NetIncomingMessageType.WarningMessage:
@@ -92,15 +91,12 @@ namespace NetworkServer
                         string text = msg.ReadString();
                         OnInternalMessage(this, text);
                         break;
-
                     case NetIncomingMessageType.StatusChanged:
                         OnStatusMessage(this, msg);
                         break;
-
                     case NetIncomingMessageType.Data:
                         OnDataMessage(this, msg);
                         break;
-
                     default:
                         break;
                 }

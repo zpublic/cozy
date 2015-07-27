@@ -1,5 +1,4 @@
 ﻿using System;
-using CozyAnywhere.Plugin.WinCapture;
 
 namespace CozyAnywhere.ClientCore.EventArg
 {
@@ -11,8 +10,8 @@ namespace CozyAnywhere.ClientCore.EventArg
 
         public CaptureRefreshEventArgs(Tuple<int, int, int, int> meta, byte[] data)
         {
-            MetaData = meta;
-            Data = data;
+            MetaData    = meta;
+            Data        = data;
         }
     }
 }

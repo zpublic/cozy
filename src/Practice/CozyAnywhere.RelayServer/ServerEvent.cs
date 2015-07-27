@@ -10,14 +10,14 @@ namespace CozyAnywhere.RelayServerCore
     {
         private void InitEvent()
         {
-            server.StatusMessage += new EventHandler<DataMessageArgs>(OnStatusMessage);
-            server.DataMessage += new EventHandler<DataMessageArgs>(OnDataMessage);
-            server.InternalMessage += new EventHandler<InternalMessageArgs>(OnInternalMessage);
+            server.StatusMessage    += new EventHandler<DataMessageArgs>(OnStatusMessage);
+            server.DataMessage      += new EventHandler<DataMessageArgs>(OnDataMessage);
+            server.InternalMessage  += new EventHandler<InternalMessageArgs>(OnInternalMessage);
         }
 
         private void OnStatusMessage(object sender, DataMessageArgs msg)
         {
-            var status = (NetworkHelper.NetConnectionStatus)msg.Input.ReadByte();
+            var status = (NetConnectionStatus)msg.Input.ReadByte();
             string reason = msg.Input.ReadString();
             var queryMsg = new QueryConnectMessage();
             server.SendMessage(queryMsg, msg.Input.SenderConnection);

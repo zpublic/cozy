@@ -54,7 +54,7 @@ namespace NetworkHelper
                     if (type.Namespace == Ns)
                     {
                         uint id = ((IMessage)Activator.CreateInstance(type)).Id;
-                        MessageReader.RegisterType(type, id);
+                        RegisterType(type, id);
                     }
                 }
             }

@@ -20,7 +20,7 @@ namespace CozyAnywhere.ClientCore
         public void InitClientMessage()
         {
             var asm = "CozyAnywhere.Protocol";
-            var ns = "CozyAnywhere.Protocol.Messages";
+            var ns  = "CozyAnywhere.Protocol.Messages";
             MessageReader.RegisterTypeWithAssembly(asm, ns);
             MessageCallbackInvoker.LoadMessage(asm, ns);
             RegisterCallback();
@@ -53,8 +53,8 @@ namespace CozyAnywhere.ClientCore
 
         private void OnCommandMessageRsp(IMessage msg, NetConnection conn)
         {
-            var rspMsg = (CommandMessageRsp)msg;
-            var name = rspMsg.MethodName;
+            var rspMsg  = (CommandMessageRsp)msg;
+            var name    = rspMsg.MethodName;
             if (ResponseActions.ContainsKey(name))
             {
                 ResponseActions[name](rspMsg);
@@ -91,16 +91,15 @@ namespace CozyAnywhere.ClientCore
 
         private void OnConnectMessage(IMessage msg, NetConnection conn)
         {
-            var connMsg = (ConnectMessage)msg;
-
-            var queryMsg = new QueryConnectMessage();
+            var connMsg     = (ConnectMessage)msg;
+            var queryMsg    = new QueryConnectMessage();
             server.SendMessage(queryMsg, conn);
         }
 
         private void OnConnectQueryMessage(IMessage msg, NetConnection conn)
         {
-            var queryMsg = (QueryConnectMessage)msg;
-            var rspMsg = new QueryConnectMessageRsp()
+            var queryMsg    = (QueryConnectMessage)msg;
+            var rspMsg      = new QueryConnectMessageRsp()
             {
                 ConnectionType = QueryConnectMessageRsp.ServerType,
             };

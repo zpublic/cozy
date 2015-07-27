@@ -11,7 +11,7 @@ namespace CozyAnywhere.RelayServerCore
         private void InitMessage()
         {
             var asm = "CozyAnywhere.Protocol";
-            var ns = "CozyAnywhere.Protocol.Messages";
+            var ns  = "CozyAnywhere.Protocol.Messages";
             MessageReader.RegisterTypeWithAssembly(asm, ns);
             MessageCallbackInvoker.LoadMessage(asm, ns);
             RegisterCallback();
@@ -60,21 +60,21 @@ namespace CozyAnywhere.RelayServerCore
 
         private void DispatchMessage(IMessage msg, NetConnection conn)
         {
-            uint id = msg.Id;
+            uint id     = msg.Id;
             string from = null;
-            string to = null;
+            string to   = null;
 
             if (conn == server.ServerConn)
             {
                 server.SendMessageToClient(msg);
-                from = "server";
-                to = "client";
+                from    = "server";
+                to      = "client";
             }
             else if (conn == server.ClientConn)
             {
                 server.SendMessageToServer(msg);
-                from = "client";
-                to = "server";
+                from    = "client";
+                to      = "server";
             }
 
             MessageSendMessage(this, new Events.MessageSendMessage(from, to, id));

@@ -25,9 +25,9 @@ namespace NetworkRelayServer
         public ServerRelay(int MaxConnections, int Port)
         {
             NetPeerConfiguration config = new NetPeerConfiguration("CozyAnywhere");
-            config.MaximumConnections = MaxConnections;
-            config.Port = Port;
-            this.Port = Port;
+            config.MaximumConnections   = MaxConnections;
+            config.Port                 = Port;
+            this.Port                   = Port;
             server = new NetServer(config);
         }
 
@@ -53,7 +53,6 @@ namespace NetworkRelayServer
                     case NetIncomingMessageType.DiscoveryRequest:
                         server.SendDiscoveryResponse(null, msg.SenderEndPoint);
                         break;
-
                     case NetIncomingMessageType.VerboseDebugMessage:
                     case NetIncomingMessageType.DebugMessage:
                     case NetIncomingMessageType.WarningMessage:

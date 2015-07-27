@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CozyAnywhere.RelayServerCore.Events
 {
@@ -14,9 +10,9 @@ namespace CozyAnywhere.RelayServerCore.Events
 
         public MessageSendMessage(string from, string to, uint id)
         {
-            From = from;
-            To = to;
-            Id = id;
+            From    = from;
+            To      = to;
+            Id      = id;
         }
     }
 }
