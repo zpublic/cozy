@@ -72,24 +72,28 @@ namespace CozyAnywhere.ServerCore
             client.SendMessage(rspMsg);
         }
 
-        private void OnConnectMessageRsp(IMessage msg)
-        {
-            var connMsg = (ConnectMessageRsp)msg;
-            if (connMsg.CanConnect == false)
-            {
-                client.DisConnect();
-            }
-        }
-
         private void OnConnectQueryMessage(IMessage msg)
         {
             var queryMsg = (QueryConnectMessage)msg;
-
             var rspMsg = new QueryConnectMessageRsp()
             {
                 ConnectionType = QueryConnectMessageRsp.ClientType,
             };
             client.SendMessage(rspMsg);
+        }
+
+        private void OnConnectQueryMessageRsp(IMessage msg)
+        {
+            var rspMsg = (QueryConnectMessageRsp)msg;
+            if (rspMsg.ConnectionType == QueryConnectMessageRsp.ClientType)
+            {
+                client.DisConnect();
+            }
+        }
+
+        private void OnConnectMessage(IMessage msg)
+        {
+            var connMsg = (ConnectMessage)msg;
         }
     }
 }

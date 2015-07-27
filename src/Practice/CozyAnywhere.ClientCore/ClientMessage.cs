@@ -83,10 +83,9 @@ namespace CozyAnywhere.ClientCore
             server.SendMessage(queryMsg, conn);
         }
 
-        private void OnQueryMessage(IMessage msg, NetConnection conn)
+        private void OnConnectQueryMessage(IMessage msg, NetConnection conn)
         {
             var queryMsg = (QueryConnectMessage)msg;
-
             var rspMsg = new QueryConnectMessageRsp()
             {
                 ConnectionType = QueryConnectMessageRsp.ServerType,
@@ -95,21 +94,13 @@ namespace CozyAnywhere.ClientCore
         }
 
 
-        private void OnQueryMessageRsp(IMessage msg, NetConnection conn)
+        private void OnConnectQueryMessageRsp(IMessage msg, NetConnection conn)
         {
             var queryMsg = (QueryConnectMessageRsp)msg;
-            var result = queryMsg.ConnectionType == QueryConnectMessageRsp.ClientType;
-            var rspMsg = new ConnectMessageRsp()
-            {
-                CanConnect = result,
-            };
-            server.SendMessage(rspMsg, conn);
-
-            if (result)
+            if (queryMsg.ConnectionType != QueryConnectMessageRsp.ServerType)
             {
                 var pluginMsg = new PluginLoadMessage();
                 server.SendMessage(pluginMsg, conn);
-
             }
         }
 

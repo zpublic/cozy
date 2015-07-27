@@ -1,6 +1,7 @@
 ﻿using CozyAnywhere.Protocol;
 using NetworkHelper;
 using NetworkHelper.Event;
+using CozyAnywhere.Protocol.Messages;
 using System;
 using Lidgren.Network;
 
@@ -12,16 +13,20 @@ namespace CozyAnywhere.ClientCore
         {
             if (server != null)
             {
-                server.StatusMessage    += new EventHandler<StatusMessageArgs>(OnStatusMessage);
+                server.StatusMessage    += new EventHandler<DataMessageArgs>(OnStatusMessage);
                 server.DataMessage      += new EventHandler<DataMessageArgs>(OnDataMessage);
                 server.InternalMessage  += new EventHandler<InternalMessageArgs>(OnInternalMessage);
             }
         }
 
-        private void OnStatusMessage(object sender, StatusMessageArgs msg)
+        private void OnStatusMessage(object sender, DataMessageArgs msg)
         {
-            if (msg.Status == NetworkHelper.NetConnectionStatus.Connected)
+            var status = (NetworkHelper.NetConnectionStatus)msg.Input.ReadByte();
+            string reason = msg.Input.ReadString();
+            if (status == NetworkHelper.NetConnectionStatus.Connected)
             {
+                var rspMsg = new QueryConnectMessage();
+                server.SendMessage(rspMsg, msg.Input.SenderConnection);
             }
         }
 
@@ -43,10 +48,10 @@ namespace CozyAnywhere.ClientCore
                     OnConnectMessage(baseMsg, msg.Input.SenderConnection);
                     break;
                 case MessageId.QueryConnectMessage:
-                    OnQueryMessage(baseMsg, msg.Input.SenderConnection);
+                    OnConnectQueryMessage(baseMsg, msg.Input.SenderConnection);
                     break;
                 case MessageId.QueryConnectMessageRsp:
-                    OnQueryMessageRsp(baseMsg, msg.Input.SenderConnection);
+                    OnConnectQueryMessageRsp(baseMsg, msg.Input.SenderConnection);
                     break;
                 default:
                     break;

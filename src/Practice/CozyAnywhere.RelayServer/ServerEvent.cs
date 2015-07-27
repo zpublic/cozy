@@ -4,6 +4,8 @@ using NetworkHelper;
 using CozyAnywhere.Protocol;
 using CozyAnywhere.RelayServerCore.Events;
 using CozyAnywhere.Protocol.Messages;
+using NetworkProtocol;
+using Lidgren.Network;
 
 namespace CozyAnywhere.RelayServerCore
 {
@@ -20,24 +22,8 @@ namespace CozyAnywhere.RelayServerCore
         {
             var status = (NetworkHelper.NetConnectionStatus)msg.Input.ReadByte();
             string reason = msg.Input.ReadString();
-            var conn = msg.Input.SenderConnection;
-            if (status == NetworkHelper.NetConnectionStatus.Connected)
-            {
-                if (server.ServerConn == null)
-                {
-                    server.ServerConn = conn;
-                }
-                else if (server.ClientConn == null)
-                {
-                    server.ClientConn = conn;
-                }
-                else
-                {
-                    return;
-                }
-                var queryMsg = new QueryConnectMessage();
-                server.SendMessage(queryMsg, conn);
-            }
+            var queryMsg = new QueryConnectMessage();
+            server.SendMessage(queryMsg, msg.Input.SenderConnection);
         }
 
         private void OnDataMessage(object sender, DataMessageArgs msg)
@@ -51,24 +37,33 @@ namespace CozyAnywhere.RelayServerCore
                 }
                 else if (baseMsg.Id == MessageId.QueryConnectMessageRsp)
                 {
-                    OnQueryMessageRsp(baseMsg, msg.Input.SenderConnection);
+                    OnConnectQueryMessageRsp(baseMsg, msg.Input.SenderConnection);
+                }
+                else if (baseMsg.Id == MessageId.QueryConnectMessageRsp)
+                {
+                    OnConnectQueryMessage(baseMsg, msg.Input.SenderConnection);
                 }
             }
             else
             {
-                if(msg.Input.SenderConnection == server.ServerConn)
-                {
-                    server.SendMessageToClient(baseMsg);
-                }
-                else if(msg.Input.SenderConnection == server.ClientConn)
-                {
-                    server.SendMessageToServer(baseMsg);
-                }
+                DispatchMessage(baseMsg, msg.Input.SenderConnection);
             }
         }
 
         private void OnInternalMessage(object sender, InternalMessageArgs msg)
         {
+        }
+
+        private void DispatchMessage(IMessage msg, NetConnection conn)
+        {
+            if (conn == server.ServerConn)
+            {
+                server.SendMessageToClient(msg);
+            }
+            else if (conn == server.ClientConn)
+            {
+                server.SendMessageToServer(msg);
+            }
         }
 
         public event EventHandler<ClientConnectArgs> ClientConnectMessage;

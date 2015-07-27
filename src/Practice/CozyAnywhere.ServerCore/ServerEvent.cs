@@ -22,8 +22,8 @@ namespace CozyAnywhere.ServerCore
         {
             if (msg.Status == NetConnectionStatus.Connected)
             {
-                var connMsg = new ConnectMessage();
-                client.SendMessage(connMsg);
+                var rspMsg = new QueryConnectMessage();
+                client.SendMessage(rspMsg);
             }
         }
 
@@ -41,8 +41,11 @@ namespace CozyAnywhere.ServerCore
                 case MessageId.QueryConnectMessage:
                     OnConnectQueryMessage(baseMsg);
                     break;
-                case MessageId.ConnectMessageRsp:
-                    OnConnectMessageRsp(baseMsg);
+                case MessageId.QueryConnectMessageRsp:
+                    OnConnectQueryMessageRsp(baseMsg);
+                    break;
+                case MessageId.ConnectMessage:
+                    OnConnectMessage(baseMsg);
                     break;
                 default:
                     break;

@@ -51,7 +51,6 @@
     <Compile Include="Messages\CommandMessage.cs" />
     <Compile Include="Messages\CommandMessageRsp.cs" />
     <Compile Include="Messages\ConnectMessage.cs" />
-    <Compile Include="Messages\ConnectMessageRsp.cs" />
     <Compile Include="Messages\PluginLoadMessage.cs" />
     <Compile Include="Messages\PluginQueryMessage.cs" />
     <Compile Include="Messages\QueryConnectMessage.cs" />

@@ -15,31 +15,32 @@ namespace CozyAnywhere.RelayServerCore
         private void OnConnectMessage(IMessage msg, NetConnection conn)
         {
             var connMsg = (ConnectMessage)msg;
-            if(conn == server.ServerConn)
-            {
-                ServerConnectMessage(this, new Events.ServerConnectArgs());
-            }
-            else if(conn == server.ClientConn)
-            {
-                ClientConnectMessage(this, new Events.ClientConnectArgs());
-            }
         }
 
-        private void OnQueryMessageRsp(IMessage msg, NetConnection conn)
+        private void OnConnectQueryMessage(IMessage msg, NetConnection conn)
+        {
+            var rspMsg = new QueryConnectMessageRsp()
+            {
+                ConnectionType = QueryConnectMessageRsp.RelayServerType,
+            };
+            server.SendMessage(rspMsg, conn);
+        }
+
+        private void OnConnectQueryMessageRsp(IMessage msg, NetConnection conn)
         {
             var rspMsg = (QueryConnectMessageRsp)msg;
-            var disMsg = new ConnectMessageRsp();
-            if ((conn == server.ServerConn && rspMsg.ConnectionType == QueryConnectMessageRsp.ServerType)
-                || (conn == server.ClientConn && rspMsg.ConnectionType == QueryConnectMessageRsp.ClientType))
+            if (rspMsg.ConnectionType == QueryConnectMessageRsp.ServerType)
             {
-                disMsg.CanConnect = true;
+                server.ServerConn = conn;
+            }
+            else if(rspMsg.ConnectionType == QueryConnectMessageRsp.ClientType)
+            {
+                server.ClientConn = conn;
             }
             else
             {
-                disMsg.CanConnect = false;
+                // TODO Disconnect the conn
             }
-            server.SendMessage(disMsg, conn);
         }
-
     }
 }
