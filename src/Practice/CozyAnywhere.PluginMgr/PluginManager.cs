@@ -2,12 +2,10 @@
 using CozyAnywhere.Protocol;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System;
 
 namespace CozyAnywhere.PluginMgr
 {
-    public class PluginManager
+    public partial class PluginManager
     {
         private Dictionary<string, IPlugin> PluginDictionary = new Dictionary<string, IPlugin>();
         private object objLocker = new object();
@@ -64,23 +62,6 @@ namespace CozyAnywhere.PluginMgr
                 {
                     AddPluginWithFileName(file);
                 }
-            }
-        }
-
-        public void AddPluginWithFileName(string filename)
-        {
-            if (filename.StartsWith("CozyAnywhere.Plugin.") && filename.EndsWith(".dll"))
-            {
-                string ns                   = filename.Substring(0, filename.Length - 4);
-                Assembly assembly           = Assembly.LoadFrom(filename);
-
-                Type loadhelper             = assembly.GetType(ns + ".LoadHelper");
-                IPluginLoadHelper helper    = (IPluginLoadHelper)Activator.CreateInstance(loadhelper, null);
-
-                string pluginName           = helper.PluginName;
-                Type pluginType             = assembly.GetType(ns + "." + pluginName);
-                IPlugin plugin              = (IPlugin)Activator.CreateInstance(pluginType, null);
-                AddPlugin(plugin);
             }
         }
     }
