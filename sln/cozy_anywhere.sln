@@ -93,6 +93,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkRelayServer", "..\sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAnywhere.ConsoleRelayServer", "..\src\Practice\CozyAnywhere.ConsoleRelayServer\CozyAnywhere.ConsoleRelayServer.csproj", "{FE5282C0-FC07-4F7D-9BD8-827923A195A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginHelper", "..\src\Public\PluginHelper\PluginHelper.csproj", "{A6E46A3F-AAF9-4EF2-B23C-E841FF77E2BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -479,6 +481,18 @@ Global
 		{FE5282C0-FC07-4F7D-9BD8-827923A195A6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FE5282C0-FC07-4F7D-9BD8-827923A195A6}.Release|Win32.ActiveCfg = Release|Any CPU
 		{FE5282C0-FC07-4F7D-9BD8-827923A195A6}.Release|Win32.Build.0 = Release|Any CPU
+		{A6E46A3F-AAF9-4EF2-B23C-E841FF77E2BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6E46A3F-AAF9-4EF2-B23C-E841FF77E2BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6E46A3F-AAF9-4EF2-B23C-E841FF77E2BE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A6E46A3F-AAF9-4EF2-B23C-E841FF77E2BE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A6E46A3F-AAF9-4EF2-B23C-E841FF77E2BE}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{A6E46A3F-AAF9-4EF2-B23C-E841FF77E2BE}.Debug|Win32.Build.0 = Debug|Any CPU
+		{A6E46A3F-AAF9-4EF2-B23C-E841FF77E2BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6E46A3F-AAF9-4EF2-B23C-E841FF77E2BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6E46A3F-AAF9-4EF2-B23C-E841FF77E2BE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A6E46A3F-AAF9-4EF2-B23C-E841FF77E2BE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A6E46A3F-AAF9-4EF2-B23C-E841FF77E2BE}.Release|Win32.ActiveCfg = Release|Any CPU
+		{A6E46A3F-AAF9-4EF2-B23C-E841FF77E2BE}.Release|Win32.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -524,5 +538,6 @@ Global
 		{A9060A30-59F0-4F36-9B29-B51172DAF2E4} = {91C94250-6798-4508-A6D4-ED2595309822}
 		{63034967-8773-4D2C-BF6B-2E165BB82E11} = {78CC2301-23F1-41C9-8336-37C59B47DAE6}
 		{FE5282C0-FC07-4F7D-9BD8-827923A195A6} = {91C94250-6798-4508-A6D4-ED2595309822}
+		{A6E46A3F-AAF9-4EF2-B23C-E841FF77E2BE} = {8072D6B3-04F8-486F-AC8D-48B79133830C}
 	EndGlobalSection
 EndGlobal
