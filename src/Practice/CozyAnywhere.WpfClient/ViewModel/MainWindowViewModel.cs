@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using CozyAnywhere.WpfClient.UserControls;
 
 namespace CozyAnywhere.WpfClient.ViewModel
 {
@@ -149,6 +150,12 @@ namespace CozyAnywhere.WpfClient.ViewModel
             BindCoreCollections();
             clientCore.PluginChangedHandler += new EventHandler<PluginChangedEvnetArgs>(OnPluginChanged);
             SetUpdateTimer();
+
+            ControlList.Add(new DefaultControlInfo()
+            {
+                Name = "Connect",
+                Controls = new ConnectPage(),
+            });
         }
 
         private Dictionary<string, IControlFactory> ControlCreateDictionary = new Dictionary<string, IControlFactory>();
