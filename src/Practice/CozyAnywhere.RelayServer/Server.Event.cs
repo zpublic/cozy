@@ -1,7 +1,6 @@
 ﻿using System;
 using NetworkHelper.Event;
 using NetworkHelper;
-using CozyAnywhere.RelayServerCore.Events;
 using CozyAnywhere.Protocol.Messages;
 
 namespace CozyAnywhere.RelayServerCore
@@ -32,9 +31,5 @@ namespace CozyAnywhere.RelayServerCore
         private void OnInternalMessage(object sender, InternalMessageArgs msg)
         {
         }
-
-        public event EventHandler<ClientConnectArgs> ClientConnectMessage;
-        public event EventHandler<ServerConnectArgs> ServerConnectMessage;
-        public event EventHandler<MessageSendMessage> MessageSendMessage;
     }
 }

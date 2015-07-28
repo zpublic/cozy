@@ -40,10 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServerEvent.cs" />
-    <Compile Include="ServerIO.cs" />
-    <Compile Include="ServerMain.cs" />
-    <Compile Include="ServerMessage.cs" />
+    <Compile Include="Server.Event.cs" />
+    <Compile Include="Server.IO.cs" />
+    <Compile Include="Server.Main.cs" />
+    <Compile Include="Server.Message.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Public\Lidgren.Network\Lidgren.Network.csproj">

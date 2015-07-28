@@ -43,11 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientCollections.cs" />
-    <Compile Include="ClientEvent.cs" />
-    <Compile Include="ClientEventHandler.cs" />
-    <Compile Include="ClientMain.cs" />
-    <Compile Include="ClientMessage.cs" />
+    <Compile Include="Client.Collections.cs" />
+    <Compile Include="Client.Event.cs" />
+    <Compile Include="Client.EventHandler.cs" />
+    <Compile Include="Client.Main.cs" />
+    <Compile Include="Client.Message.cs" />
     <Compile Include="EventArg\CaptureRefreshEventArgs.cs" />
     <Compile Include="EventArg\PluginChangedEvnetArgs.cs" />
     <Compile Include="EventArg\ServerConnectEventArgs.cs" />
