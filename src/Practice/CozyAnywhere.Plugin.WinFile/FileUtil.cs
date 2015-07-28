@@ -85,7 +85,7 @@ namespace CozyAnywhere.Plugin.WinFile
 
             FileEnum(enumPath, (x, b) => 
             {
-                string name     = Marshal.PtrToStringAuto(x);
+                string name     = path + Marshal.PtrToStringAuto(x);
                 bool isFolder   = b;
                 var file = new WinFileModel()
                 {
