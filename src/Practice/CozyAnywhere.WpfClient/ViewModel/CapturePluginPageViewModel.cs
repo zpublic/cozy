@@ -40,7 +40,7 @@ namespace CozyAnywhere.WpfClient.ViewModel
                 {
                     if (clientCore != null)
                     {
-                        clientCore.SendCaptureMessage();
+                        clientCore.SendGetCaptureDataMessage();
                     }
                 });
             }

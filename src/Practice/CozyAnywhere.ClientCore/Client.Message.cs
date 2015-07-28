@@ -4,12 +4,10 @@ using NetworkHelper;
 using NetworkProtocol;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using CozyAnywhere.Plugin.WinFile.Model;
-using CozyAnywhere.Plugin.WinProcess.Model;
-using CozyAnywhere.Plugin.WinCapture;
 using CozyAnywhere.ClientCore.EventArg;
 using System.Linq;
 using Lidgren.Network;
+using CozyAnywhere.ClientCore.Model;
 
 namespace CozyAnywhere.ClientCore
 {

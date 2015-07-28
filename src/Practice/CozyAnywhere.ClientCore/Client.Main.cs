@@ -1,8 +1,6 @@
 ﻿using NetworkServer;
-using CozyAnywhere.Plugin.WinFile;
-using CozyAnywhere.Plugin.WinProcess;
-using CozyAnywhere.Plugin.WinCapture;
 using CozyAnywhere.Protocol.Messages;
+using PluginHelper;
 
 namespace CozyAnywhere.ClientCore
 {
@@ -11,6 +9,8 @@ namespace CozyAnywhere.ClientCore
         private Server server { get; set; }
 
         public bool IsListing { get; set; }
+
+        private PluginCommandMaker CommandMaker { get; set; }
 
         public AnywhereClient(int MaxConn, int Port)
         {
@@ -23,6 +23,7 @@ namespace CozyAnywhere.ClientCore
             server = new Server(MaxConn, Port);
             InitClientMessage();
             InitClientEvent();
+            InitCommand();
         }
 
         public void Listen()
@@ -67,77 +68,23 @@ namespace CozyAnywhere.ClientCore
             }
         }
 
-        public void SendEnumFileMessage(string path)
+        private void InitCommand()
         {
-            if (server != null)
+            CommandMaker    = new PluginCommandMaker();
+            var files       = EnumPluginFolder();
+            var asss        = LoadPlugins(files);
+            foreach(var obj in asss)
             {
-                var command = FilePlugin.MakeFileEnumCommand(path, false, false);
-                var commandMsg = new CommandMessage()
-                {
-                    Command = command,
-                };
-                server.SendMessage(commandMsg);
-            }
-        }
-
-        public void SendEnumProcessMessage()
-        {
-            if (server != null)
-            {
-                var command1 = ProcessPlugin.MakeProcessEnumCommand();
-                var commandMsg1 = new CommandMessage()
-                {
-                    Command = command1,
-                };
-                server.SendMessage(commandMsg1);
-            }
-        }
-
-        public void SendDeleteMessage(string path)
-        {
-            if(server != null)
-            {
-                var command    = FilePlugin.MakeFileDeleteCommand(@"D:\" + path);
-                var commandMsg = new CommandMessage()
-                {
-                    Command = command,
-                };
-                server.SendMessage(commandMsg);
-            }
-        }
-
-        public void SendTerminateMessage(uint pid)
-        {
-            if(server != null)
-            {
-                var command     = ProcessPlugin.MakeProcessTerminateCommand(pid);
-                var commandMsg  = new CommandMessage()
-                {
-                    Command = command,
-                };
-                server.SendMessage(commandMsg);
+                CommandMaker.LoadCommand(obj.Item2, obj.Item1);
             }
         }
 
         public void SendPluginLoadMessage()
         {
-            if(server != null)
+            if (server != null)
             {
                 var loadMsg = new PluginLoadMessage();
                 server.SendMessage(loadMsg);
-            }
-        }
-
-        public void SendCaptureMessage()
-        {
-            if(server != null)
-            {
-                var command1 = CapturePlugin.MakeGetCaptureDataCommand();
-                var commandMsg1 = new CommandMessage()
-                {
-                    Command = command1,
-                };
-                server.SendMessage(commandMsg1);
             }
         }
     }

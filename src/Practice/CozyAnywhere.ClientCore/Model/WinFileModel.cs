@@ -1,4 +1,4 @@
-﻿namespace CozyAnywhere.Plugin.WinFile.Model
+﻿namespace CozyAnywhere.ClientCore.Model
 {
     public class WinFileModel
     {

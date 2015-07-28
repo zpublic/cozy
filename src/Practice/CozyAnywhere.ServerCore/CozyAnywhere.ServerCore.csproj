@@ -62,6 +62,10 @@
       <Project>{cac595d7-c876-4c7a-a33a-c3f30b9e012e}</Project>
       <Name>NetworkProtocol</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Public\PluginHelper\PluginHelper.csproj">
+      <Project>{a6e46a3f-aaf9-4ef2-b23c-e841ff77e2be}</Project>
+      <Name>PluginHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyAnywhere.PluginBase\CozyAnywhere.PluginBase.csproj">
       <Project>{3073b255-8934-4898-af1f-00f149c5f00e}</Project>
       <Name>CozyAnywhere.PluginBase</Name>

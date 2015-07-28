@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Reflection;
 
 namespace PluginHelper
@@ -13,8 +9,8 @@ namespace PluginHelper
 
         public void LoadCommand(Assembly asm, string pluginName)
         {
-            var pluginType = asm.GetType(pluginName);
-            var methods = pluginType.GetMethods();
+            var pluginType  = asm.GetType(pluginName);
+            var methods     = pluginType.GetMethods();
             foreach (var method in methods)
             {
                 if (method.IsStatic
@@ -22,10 +18,21 @@ namespace PluginHelper
                     && method.Name.StartsWith("Make")
                     && method.Name.EndsWith("Command"))
                 {
-                    var name = method.Name.Substring(4, method.Name.Length - 11);
-                    MakerDictionary[name] = method;
+                    var name                = method.Name.Substring(4, method.Name.Length - 11);
+                    MakerDictionary[name]   = method;
                 }
             }
+        }
+
+        public string Invoke(string commandName, object[] parms)
+        {
+            if (MakerDictionary.ContainsKey(commandName))
+            {
+                var method = MakerDictionary[commandName];
+                var result = method.Invoke(null, parms) as string;
+                return result;
+            }
+            return null;
         }
     }
 }
