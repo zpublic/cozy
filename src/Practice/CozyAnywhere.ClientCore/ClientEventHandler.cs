@@ -8,5 +8,7 @@ namespace CozyAnywhere.ClientCore
         public event EventHandler<PluginChangedEvnetArgs> PluginChangedHandler;
 
         public event EventHandler<CaptureRefreshEventArgs> CaptureRefreshHandler;
+
+        public event EventHandler<ServerConnectEventArgs> ServerConnectHandler;
     }
 }

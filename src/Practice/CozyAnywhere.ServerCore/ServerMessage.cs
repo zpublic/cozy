@@ -104,6 +104,19 @@ namespace CozyAnywhere.ServerCore
             {
                 client.DisConnect();
             }
+            else
+            {
+                string name = "TestClientName";
+                string ip   = "127.0.0.1";
+                string info = "ext info";
+                var connMsg = new ConnectMessage()
+                {
+                    Address     = ip,
+                    ConnectName = name,
+                    Information = info,
+                };
+                client.SendMessage(connMsg);
+            }
         }
 
         private void OnConnectMessage(IMessage msg, NetConnection conn)

@@ -10,5 +10,6 @@
         public const uint ConnectMessage                = 1005;
         public const uint QueryConnectMessage           = 1006;
         public const uint QueryConnectMessageRsp        = 1007;
+        public const uint DisconnectMessage             = 1008;
     }
 }

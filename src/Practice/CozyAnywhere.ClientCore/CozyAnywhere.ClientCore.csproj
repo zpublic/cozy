@@ -50,6 +50,7 @@
     <Compile Include="ClientMessage.cs" />
     <Compile Include="EventArg\CaptureRefreshEventArgs.cs" />
     <Compile Include="EventArg\PluginChangedEvnetArgs.cs" />
+    <Compile Include="EventArg\ServerConnectEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

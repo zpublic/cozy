@@ -92,8 +92,11 @@ namespace CozyAnywhere.ClientCore
         private void OnConnectMessage(IMessage msg, NetConnection conn)
         {
             var connMsg     = (ConnectMessage)msg;
-            var queryMsg    = new QueryConnectMessage();
-            server.SendMessage(queryMsg, conn);
+            if(ServerConnectHandler != null)
+            {
+                ServerConnectHandler(this, new ServerConnectEventArgs(connMsg.Address, connMsg.ConnectName, connMsg.Information));
+            }
+
         }
 
         private void OnConnectQueryMessage(IMessage msg, NetConnection conn)
@@ -112,6 +115,21 @@ namespace CozyAnywhere.ClientCore
             var queryMsg = (QueryConnectMessageRsp)msg;
             if (queryMsg.ConnectionType != QueryConnectMessageRsp.ServerType)
             {
+                var disMsg = new DisconnectMessage();
+                server.SendMessage(disMsg, conn);
+            }
+            else
+            {
+                string name = "TestServerName";
+                string ip   = "127.0.0.1";
+                string info = "ext info";
+                var connMsg = new ConnectMessage()
+                {
+                    Address     = ip,
+                    ConnectName = name,
+                    Information = info,
+                };
+                server.SendMessage(connMsg, conn);
             }
         }
 
