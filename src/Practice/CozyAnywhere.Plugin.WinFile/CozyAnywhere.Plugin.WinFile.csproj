@@ -47,12 +47,14 @@
     <Compile Include="ArgsFactory\FileCopyArgsFactory.cs" />
     <Compile Include="ArgsFactory\FileDeleteArgsFactory.cs" />
     <Compile Include="ArgsFactory\FileEnumArgsFactory.cs" />
+    <Compile Include="ArgsFactory\FileGetCurrentDirectoryArgsFactory.cs" />
     <Compile Include="ArgsFactory\FileGetLengthArgsFactory.cs" />
     <Compile Include="ArgsFactory\FileGetTimesArgsFactory.cs" />
     <Compile Include="ArgsFactory\FileIsDirectoryArgsFactory.cs" />
     <Compile Include="ArgsFactory\FileMoveArgsFactory.cs" />
     <Compile Include="ArgsFactory\FilePathExistArgsFactory.cs" />
     <Compile Include="Args\FileCopyArgs.cs" />
+    <Compile Include="Args\FileGetCurrentDirectoryArgs.cs" />
     <Compile Include="Args\FileIsDirectoryArgs.cs" />
     <Compile Include="Args\FileDeleteArgs.cs" />
     <Compile Include="Args\FileEnumArgs.cs" />

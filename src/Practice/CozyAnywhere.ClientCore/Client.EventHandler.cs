@@ -10,5 +10,7 @@ namespace CozyAnywhere.ClientCore
         public event EventHandler<CaptureRefreshEventArgs> CaptureRefreshHandler;
 
         public event EventHandler<ServerConnectEventArgs> ServerConnectHandler;
+
+        public event EventHandler<CurrentFilePathRefreshEventArgs> CurrentFilePathHandler;
     }
 }
