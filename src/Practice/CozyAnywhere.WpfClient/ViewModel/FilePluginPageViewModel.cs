@@ -48,7 +48,7 @@ namespace CozyAnywhere.WpfClient.ViewModel
                 {
                     if (FileListSelectedItem != null)
                     {
-                        clientCore.SendDeleteMessage(FileListSelectedItem.Item1);
+                        clientCore.SendFileDeleteMessage(FileListSelectedItem.Item1);
                     }
                 });
             }
@@ -61,7 +61,7 @@ namespace CozyAnywhere.WpfClient.ViewModel
             {
                 return _RefreshCommand = _RefreshCommand ?? new DelegateCommand((x) =>
                 {
-                    clientCore.SendEnumFileMessage(@"D:\");
+                    clientCore.SendFileEnumMessage(@"D:\");
                 });
             }
         }

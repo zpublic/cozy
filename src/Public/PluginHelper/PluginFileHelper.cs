@@ -1,21 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace CozyAnywhere.ServerCore
+namespace PluginHelper
 {
-    public partial class AnywhereServer
+    public static class PluginFileHelper
     {
-        public List<string> EnumPluginFolder()
+        public static List<string> EnumPluginFolder(string path)
         {
             List<string> result = new List<string>();
-            string path = @"./Plugins/";
+           
             if (Directory.Exists(path))
             {
                 DirectoryInfo TheFolder = new DirectoryInfo(path);
                 foreach (FileInfo file in TheFolder.GetFiles())
                 {
-                    if (file.Name.EndsWith(".dll"))
-                        result.Add(file.Name);
+                    result.Add(file.Name);
                 }
             }
             return result;

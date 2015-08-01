@@ -40,7 +40,7 @@ namespace CozyAnywhere.WpfClient.ViewModel
                 {
                     if (clientCore != null)
                     {
-                        clientCore.SendCaptureMessage();
+                        clientCore.SendGetCaptureDataMessage();
                     }
                 });
             }
@@ -48,11 +48,10 @@ namespace CozyAnywhere.WpfClient.ViewModel
 
         public CapturePluginPageViewModel()
         {
-            clientCore      = MainWindowViewModel.clientCore;
-            clientCore.CaptureRefreshHandler += OnCaptureRefresh;
-
-            GlobalBMP       = new Bitmap(((1366 + 127) / 128 * 128), ((768 + 127) / 128) * 128);
-            GlobalLocker    = new BitmapLocker(GlobalBMP);
+            clientCore                          = MainWindowViewModel.clientCore;
+            clientCore.CaptureRefreshHandler    += new System.EventHandler<CaptureRefreshEventArgs>(OnCaptureRefresh);
+            GlobalBMP                           = new Bitmap(((1366 + 127) / 128 * 128), ((768 + 127) / 128) * 128);
+            GlobalLocker                        = new BitmapLocker(GlobalBMP);
         }
 
         private void OnCaptureRefresh(object sender, CaptureRefreshEventArgs msg)

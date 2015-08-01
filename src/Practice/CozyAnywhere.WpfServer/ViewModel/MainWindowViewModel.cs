@@ -17,10 +17,38 @@ namespace CozyAnywhere.WpfServer.ViewModel
             {
                 return _ConnectCommand = _ConnectCommand ?? new DelegateCommand((x) =>
                 {
-                    serverCore.Connect("127.0.0.1", 48360);
+                    serverCore.Connect(Address, Port);
                 });
             }
         }
+
+        private string _Address = "127.0.0.1";
+
+        public string Address
+        {
+            get
+            {
+                return _Address;
+            }
+            set
+            {
+                Set(ref _Address, value, "Address");
+            }
+        }
+
+        private int _Port = 36048;
+        public int Port
+        {
+            get
+            {
+                return _Port;
+            }
+            set
+            {
+                Set(ref _Port, value, "Port");
+            }
+        }
+
 
         public MainWindowViewModel()
         {

@@ -41,19 +41,17 @@ namespace CozyAnywhere.Plugin.WinCapture
 
         #region DefaultMethod
 
-        public static byte[] DefGetCaptureData(IntPtr hwnd, IntPtr hdc, int x, int y, int w, int h)
+        public static uint DefGetCaptureBlockBitmap(IntPtr hwnd, IntPtr hdc, int x, int y, int w, int h, ref BITMAP bmp)
         {
-            BITMAP bmp  = new BITMAP();
-            uint offset = 0;
-            uint size   = GetCaptureDataSize(hwnd, hdc, x, y, w, h, ref bmp);
-            if (size == 0)
-            {
-                offset = 0;
-                return null;
-            }
+            return GetCaptureDataSize(hwnd, hdc, x, y, w, h, ref bmp);
+        }
 
+        public static byte[] DefGetCaptureData(IntPtr hwnd, IntPtr hdc, uint size, BITMAP bmp, int x, int y, int w, int h)
+        {
+            uint offset = 0;
             byte[] data = new byte[size];
             offset      = AppendBitmapHeader(ref data[0], ref bmp);
+
             if (offset == 0)
             {
                 return null;

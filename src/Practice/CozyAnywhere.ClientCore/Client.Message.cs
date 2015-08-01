@@ -1,16 +1,13 @@
 ﻿using System;
-using CozyAnywhere.Protocol;
 using CozyAnywhere.Protocol.Messages;
 using NetworkHelper;
 using NetworkProtocol;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using CozyAnywhere.Plugin.WinFile.Model;
-using CozyAnywhere.Plugin.WinProcess.Model;
-using CozyAnywhere.Plugin.WinCapture;
 using CozyAnywhere.ClientCore.EventArg;
 using System.Linq;
-using CozyAnywhere.PluginBase;
+using Lidgren.Network;
+using CozyAnywhere.ClientCore.Model;
 
 namespace CozyAnywhere.ClientCore
 {
@@ -20,10 +17,21 @@ namespace CozyAnywhere.ClientCore
 
         public void InitClientMessage()
         {
-            MessageReader.RegisterType<CommandMessageRsp>(MessageId.CommandMessageRsp);
-            MessageReader.RegisterType<PluginQueryMessage>(MessageId.PluginQueryMessage);
-            MessageReader.RegisterType<BinaryPacketMessage>(MessageId.BinaryPacketMessage);
+            var asm = "CozyAnywhere.Protocol";
+            var ns  = "CozyAnywhere.Protocol.Messages";
+            MessageReader.RegisterTypeWithAssembly(asm, ns);
+            MessageCallbackInvoker.LoadMessage(asm, ns);
+            RegisterCallback();
+        }
 
+        private void RegisterCallback()
+        {
+            MessageCallbackInvoker.RegisterCallback<CommandMessageRsp>(new Action<IMessage, NetConnection>(OnCommandMessageRsp));
+            MessageCallbackInvoker.RegisterCallback<PluginQueryMessage>(new Action<IMessage, NetConnection>(OnPluginQueryMessage));
+            MessageCallbackInvoker.RegisterCallback<BinaryPacketMessage>(new Action<IMessage, NetConnection>(OnBinaryPacketMessage));
+            MessageCallbackInvoker.RegisterCallback<ConnectMessage>(new Action<IMessage, NetConnection>(OnConnectMessage));
+            MessageCallbackInvoker.RegisterCallback<QueryConnectMessage>(new Action<IMessage, NetConnection>(OnConnectQueryMessage));
+            MessageCallbackInvoker.RegisterCallback<QueryConnectMessageRsp>(new Action<IMessage, NetConnection>(OnConnectQueryMessageRsp));
         }
 
         public void RegisterResponseActions()
@@ -41,17 +49,17 @@ namespace CozyAnywhere.ClientCore
             ResponseActions["ProcessTerminate"] = new Action<CommandMessageRsp>(OnProcessTerminate);
         }
 
-        private void OnCommandMessageRsp(IMessage msg)
+        private void OnCommandMessageRsp(IMessage msg, NetConnection conn)
         {
-            var rspMsg = (CommandMessageRsp)msg;
-            var name = rspMsg.MethodName;
+            var rspMsg  = (CommandMessageRsp)msg;
+            var name    = rspMsg.MethodName;
             if (ResponseActions.ContainsKey(name))
             {
                 ResponseActions[name](rspMsg);
             }
         }
 
-        private void OnPluginQueryMessage(IMessage msg)
+        private void OnPluginQueryMessage(IMessage msg, NetConnection conn)
         {
             var rspMsg = (PluginQueryMessage)msg;
             if (PluginNameCollection != null)
@@ -65,7 +73,7 @@ namespace CozyAnywhere.ClientCore
             }
         }
 
-        private void OnBinaryPacketMessage(IMessage msg)
+        private void OnBinaryPacketMessage(IMessage msg, NetConnection conn)
         {
             var rspMsg = (BinaryPacketMessage)msg;
             if (rspMsg.Data != null)
@@ -76,6 +84,50 @@ namespace CozyAnywhere.ClientCore
                     var t       = Tuple.Create(meta.X, meta.Y, meta.Width, meta.Height);
                     CaptureRefreshHandler(this, new CaptureRefreshEventArgs(t, rspMsg.Data));
                 }
+            }
+        }
+
+        private void OnConnectMessage(IMessage msg, NetConnection conn)
+        {
+            var connMsg     = (ConnectMessage)msg;
+            if(ServerConnectHandler != null)
+            {
+                ServerConnectHandler(this, new ServerConnectEventArgs(connMsg.Address, connMsg.ConnectName, connMsg.Information));
+            }
+
+        }
+
+        private void OnConnectQueryMessage(IMessage msg, NetConnection conn)
+        {
+            var queryMsg    = (QueryConnectMessage)msg;
+            var rspMsg      = new QueryConnectMessageRsp()
+            {
+                ConnectionType = QueryConnectMessageRsp.ServerType,
+            };
+            server.SendMessage(rspMsg, conn);
+        }
+
+
+        private void OnConnectQueryMessageRsp(IMessage msg, NetConnection conn)
+        {
+            var queryMsg = (QueryConnectMessageRsp)msg;
+            if (queryMsg.ConnectionType != QueryConnectMessageRsp.ServerType)
+            {
+                var disMsg = new DisconnectMessage();
+                server.SendMessage(disMsg, conn);
+            }
+            else
+            {
+                string name = "TestServerName";
+                string ip   = "127.0.0.1";
+                string info = "ext info";
+                var connMsg = new ConnectMessage()
+                {
+                    Address     = ip,
+                    ConnectName = name,
+                    Information = info,
+                };
+                server.SendMessage(connMsg, conn);
             }
         }
 

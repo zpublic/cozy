@@ -8,6 +8,10 @@
     </Window.DataContext>
     <Grid>
         <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Address, Mode=TwoWay}" Width="150"></TextBox>
+                <TextBox Text="{Binding Port, Mode=TwoWay}" Width="60"></TextBox>
+            </StackPanel>
             <Button Content="Connect" Command="{Binding ConnectCommand}"></Button>
         </StackPanel>
     </Grid>
