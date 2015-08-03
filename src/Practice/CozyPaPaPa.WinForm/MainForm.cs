@@ -13,20 +13,19 @@ using CozyPaPaPa.Core;
 namespace CozyPaPaPa.WinForm {
 
     public partial class MainForm : MetroForm {
+        private Pa pa = new Pa();
+        System.Media.SoundPlayer player;
 
         public MainForm() {
             InitializeComponent();
-            var pa = new Pa();
             pa.KeyPressEvent += Pa_KeyPressEvent;
-            pa.KeyDownEvent += Pa_KeyDownEvent;
-        }
-
-        private void Pa_KeyDownEvent(object sender, KeyEventArgs e) {
-            MessageBox.Show(e.KeyCode.ToString());
+            pa.Start();
+            player = new System.Media.SoundPlayer("g:\\code\\dotnet\\a5\\Tickeys\\Resources\\data\\mechanical\\1.wav");
+            player.Load();
         }
 
         private void Pa_KeyPressEvent(object sender, KeyPressEventArgs e) {
-            MessageBox.Show(e.KeyChar.ToString());
+            player.Play();
         }
     }
 }
