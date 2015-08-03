@@ -65,6 +65,12 @@ Cozy
 >>
 >> CozyMind - 思维导图  
 >>
+>> CozySpider - 爬虫  
+>>
+>> CozyWeixin - 微信公众号相关  
+>>
+>> CozyPaPaPa - 在敲键盘时发出声音  
+>>
   
 交流QQ群
 --------------------------------
@@ -83,7 +89,7 @@ vs2015（推荐社区版）
   
 windows7以上（推荐win8.1）  
 
-书籍：  
+C#学习书籍：  
 zapline在用《C＃高级编程（第九版）》  
 <http://item.jd.com/11611762.html>  
 网上可以找到英文完整版  
