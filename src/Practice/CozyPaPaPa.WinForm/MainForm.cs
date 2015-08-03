@@ -20,7 +20,7 @@ namespace CozyPaPaPa.WinForm {
             InitializeComponent();
             pa.KeyPressEvent += Pa_KeyPressEvent;
             pa.Start();
-            player = new System.Media.SoundPlayer("g:\\code\\dotnet\\a5\\Tickeys\\Resources\\data\\mechanical\\1.wav");
+            player = new System.Media.SoundPlayer(@"Resources\1.wav");
             player.Load();
         }
 
