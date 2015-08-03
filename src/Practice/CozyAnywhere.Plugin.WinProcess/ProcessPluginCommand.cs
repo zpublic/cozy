@@ -3,6 +3,9 @@ using CozyAnywhere.Plugin.WinProcess.ArgsFactory;
 using CozyAnywhere.Protocol;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System;
+using System.Reflection;
+using PluginHelper;
 
 namespace CozyAnywhere.Plugin.WinProcess
 {
@@ -13,11 +16,14 @@ namespace CozyAnywhere.Plugin.WinProcess
 
         private void RegisterMethod()
         {
-            MethodDictionary["ProcessCreate"]               = new ProcessCreateArgsFactory();
-            MethodDictionary["ProcessEnum"]                 = new ProcessEnumArgsFactory();
-            MethodDictionary["ProcessGetName"]              = new ProcessGetNameArgsFactory();
-            MethodDictionary["ProcessTerminate"]            = new ProcessTerminateArgsFactory();
-            MethodDictionary["ProcessTerminateWithTimeOut"] = new ProcessTerminateWithTimeOutArgsFactory();
+            var asm         = Assembly.GetExecutingAssembly();
+            var factorylist = ArgsFactoryLoader.LoadArgsFactory(asm, "CozyAnywhere.Plugin.WinProcess.ArgsFactory");
+
+            foreach (var obj in factorylist)
+            {
+                var factory                 = (IPluginCommandMethodArgsFactory)Activator.CreateInstance(obj.Item2);
+                MethodDictionary[obj.Item1] = factory;
+            }
         }
 
         public static string MakeProcessCreateCommand(string path)

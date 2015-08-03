@@ -84,17 +84,14 @@ namespace NetworkClient
                         string text = msg.ReadString();
                         OnInternalMessage(this, text);
                         break;
-
                     case NetIncomingMessageType.DiscoveryResponse:
                         client.Connect(msg.SenderEndPoint);
                         break;
-
                     case NetIncomingMessageType.StatusChanged:
                         NetConnectionStatus status = (NetConnectionStatus)msg.ReadByte();
                         string reason = msg.ReadString();
                         OnStatusMessage(this, status, reason);
                         break;
-
                     case NetIncomingMessageType.Data:
                         OnDataMessage(this, msg);
                         break;

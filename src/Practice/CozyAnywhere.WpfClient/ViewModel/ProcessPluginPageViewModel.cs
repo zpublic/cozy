@@ -48,7 +48,7 @@ namespace CozyAnywhere.WpfClient.ViewModel
                 {
                     if (ProcessListSelectedItem != null)
                     {
-                        clientCore.SendTerminateMessage(ProcessListSelectedItem.Item1);
+                        clientCore.SendProcessTerminateMessage(ProcessListSelectedItem.Item1);
                     }
                 });
             }
@@ -62,7 +62,7 @@ namespace CozyAnywhere.WpfClient.ViewModel
             {
                 return _RefreshCommand = _RefreshCommand ?? new DelegateCommand((x) =>
                 {
-                    clientCore.SendEnumProcessMessage();
+                    clientCore.SendProcessEnumMessage();
                 });
             }
         }

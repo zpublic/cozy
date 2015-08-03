@@ -43,6 +43,7 @@
     <Compile Include="Event\DataMessageArgs.cs" />
     <Compile Include="Event\InternalMessageArgs.cs" />
     <Compile Include="Event\StatusMessageArgs.cs" />
+    <Compile Include="MessageCallbackInvoker.cs" />
     <Compile Include="MessageReader.cs" />
     <Compile Include="NetConnectionStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

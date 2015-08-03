@@ -1,6 +1,6 @@
-﻿using CozyAnywhere.Protocol;
-using NetworkHelper;
+﻿using NetworkHelper;
 using NetworkHelper.Event;
+using CozyAnywhere.Protocol.Messages;
 using System;
 
 namespace CozyAnywhere.ClientCore
@@ -11,34 +11,27 @@ namespace CozyAnywhere.ClientCore
         {
             if (server != null)
             {
-                server.StatusMessage    += new EventHandler<StatusMessageArgs>(OnStatusMessage);
+                server.StatusMessage    += new EventHandler<DataMessageArgs>(OnStatusMessage);
                 server.DataMessage      += new EventHandler<DataMessageArgs>(OnDataMessage);
                 server.InternalMessage  += new EventHandler<InternalMessageArgs>(OnInternalMessage);
             }
         }
 
-        private void OnStatusMessage(object sender, StatusMessageArgs msg)
+        private void OnStatusMessage(object sender, DataMessageArgs msg)
         {
-            if (msg.Status == NetConnectionStatus.Connected)
+            var status = (NetworkHelper.NetConnectionStatus)msg.Input.ReadByte();
+            string reason = msg.Input.ReadString();
+            if (status == NetworkHelper.NetConnectionStatus.Connected)
             {
-                SendPluginLoadMessage();
+                var rspMsg = new QueryConnectMessage();
+                server.SendMessage(rspMsg, msg.Input.SenderConnection);
             }
         }
 
         private void OnDataMessage(object sender, DataMessageArgs msg)
         {
             var baseMsg = MessageReader.GetTypeInstanceByStream(msg.Input);
-            switch (baseMsg.Id)
-            {
-                case MessageId.CommandMessageRsp:
-                    OnCommandMessageRsp(baseMsg);
-                    break;
-                case MessageId.PluginQueryMessage:
-                    OnPluginQueryMessage(baseMsg);
-                    break;
-                default:
-                    break;
-            }
+            MessageCallbackInvoker.Invoke(baseMsg, msg.Input.SenderConnection);
         }
 
         private void OnInternalMessage(object sender, InternalMessageArgs msg)

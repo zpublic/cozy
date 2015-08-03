@@ -3,9 +3,9 @@ using NetworkProtocol;
 
 namespace CozyAnywhere.Protocol.Messages
 {
-    public struct ProcessEnumMessage : IMessage
+    public class DisconnectMessage : IMessage
     {
-        public uint Id { get { return MessageId.ProcessEnumMessage; } }
+        public uint Id { get { return MessageId.DisconnectMessage; } }
 
         public void Write(NetOutgoingMessage om)
         {

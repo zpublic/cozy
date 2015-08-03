@@ -43,13 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientCollections.cs" />
-    <Compile Include="ClientEvent.cs" />
-    <Compile Include="ClientEventHandler.cs" />
-    <Compile Include="ClientMain.cs" />
-    <Compile Include="ClientMessage.cs" />
+    <Compile Include="Client.Collections.cs" />
+    <Compile Include="Client.CommandMake.cs" />
+    <Compile Include="Client.Event.cs" />
+    <Compile Include="Client.EventHandler.cs" />
+    <Compile Include="Client.IO.cs" />
+    <Compile Include="Client.Main.cs" />
+    <Compile Include="Client.Message.cs" />
     <Compile Include="EventArg\CaptureRefreshEventArgs.cs" />
     <Compile Include="EventArg\PluginChangedEvnetArgs.cs" />
+    <Compile Include="EventArg\ServerConnectEventArgs.cs" />
+    <Compile Include="Model\CaptureSplitMetaData.cs" />
+    <Compile Include="Model\WinFileModel.cs" />
+    <Compile Include="Model\WinFileTimeModel.cs" />
+    <Compile Include="Model\WinProcessModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,17 +76,9 @@
       <Project>{3827bbcf-b396-4536-96c0-eea82d51cbe6}</Project>
       <Name>NetworkServer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CozyAnywhere.Plugin.WinCapture\CozyAnywhere.Plugin.WinCapture.csproj">
-      <Project>{e9557031-3390-42aa-bb0a-36321f80899e}</Project>
-      <Name>CozyAnywhere.Plugin.WinCapture</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyAnywhere.Plugin.WinFile\CozyAnywhere.Plugin.WinFile.csproj">
-      <Project>{865c7166-f6dc-43ec-b3e2-f6b999123a60}</Project>
-      <Name>CozyAnywhere.Plugin.WinFile</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyAnywhere.Plugin.WinProcess\CozyAnywhere.Plugin.WinProcess.csproj">
-      <Project>{803ab2f5-c93d-4262-a942-9bf533e58cc6}</Project>
-      <Name>CozyAnywhere.Plugin.WinProcess</Name>
+    <ProjectReference Include="..\..\Public\PluginHelper\PluginHelper.csproj">
+      <Project>{a6e46a3f-aaf9-4ef2-b23c-e841ff77e2be}</Project>
+      <Name>PluginHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\CozyAnywhere.PluginBase\CozyAnywhere.PluginBase.csproj">
       <Project>{3073b255-8934-4898-af1f-00f149c5f00e}</Project>
