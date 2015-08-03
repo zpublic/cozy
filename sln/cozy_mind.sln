@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyMind", "..\src\Practice\CozyMind\CozyMind.csproj", "{1E03872B-A3DF-4DD4-B097-F3BA4E9F22E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyMind.Core", "..\src\Practice\CozyMind.Core\CozyMind.Core.csproj", "{413EB490-DDB1-4B8B-88BF-869395F55AC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyMind.TestData", "..\src\Practice\CozyMind.TestData\CozyMind.TestData.csproj", "{6211C204-287C-4D3B-BE93-737854D14AD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{1E03872B-A3DF-4DD4-B097-F3BA4E9F22E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E03872B-A3DF-4DD4-B097-F3BA4E9F22E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E03872B-A3DF-4DD4-B097-F3BA4E9F22E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{413EB490-DDB1-4B8B-88BF-869395F55AC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{413EB490-DDB1-4B8B-88BF-869395F55AC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{413EB490-DDB1-4B8B-88BF-869395F55AC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{413EB490-DDB1-4B8B-88BF-869395F55AC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6211C204-287C-4D3B-BE93-737854D14AD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6211C204-287C-4D3B-BE93-737854D14AD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6211C204-287C-4D3B-BE93-737854D14AD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6211C204-287C-4D3B-BE93-737854D14AD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
