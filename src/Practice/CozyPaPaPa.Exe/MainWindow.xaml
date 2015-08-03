@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CozyPaPaPa.Exe"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="CozyPaPaPa" Height="227.575" Width="525">
     <Grid>
-        
+        <Button x:Name="button" Content="Pa" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="497" Height="178" Click="button_Click"/>
+
     </Grid>
 </Window>
