@@ -1,8 +1,10 @@
 ﻿using CozyAnywhere.Plugin.WinKeyboard.Args;
-using CozyAnywhere.Plugin.WinKeyboard.ArgsFactory;
 using CozyAnywhere.Protocol;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System;
+using System.Reflection;
+using PluginHelper;
 
 namespace CozyAnywhere.Plugin.WinKeyboard
 {
@@ -13,9 +15,14 @@ namespace CozyAnywhere.Plugin.WinKeyboard
 
         private void RegisterMethod()
         {
-            MethodDictionary["KeyboardEvent"]           = new KeyboardEventArgsFactory();
-            MethodDictionary["KeyboardQueryKeyState"]   = new KeyboardQueryKeyStateArgsFactory();
-            MethodDictionary["KeyboardSendKeyEvent"]    = new KeyboardSendKeyEventArgsFactory();
+            var asm         = Assembly.GetExecutingAssembly();
+            var factorylist = ArgsFactoryLoader.LoadArgsFactory(asm, "CozyAnywhere.Plugin.WinKeyboard.ArgsFactory");
+
+            foreach (var obj in factorylist)
+            {
+                var factory                 = (IPluginCommandMethodArgsFactory)Activator.CreateInstance(obj.Item2);
+                MethodDictionary[obj.Item1] = factory;
+            }
         }
 
         public static string MakeKeyboardEventCommand(VirtualKey key, byte scan, uint flag, uint extraInfo)

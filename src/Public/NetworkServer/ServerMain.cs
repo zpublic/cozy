@@ -30,6 +30,11 @@ namespace NetworkServer
             IsRunning = true;
         }
 
+        public void Connect(string ip, int port)
+        {
+            server.Connect(ip, port);
+        }
+
         public void Shutdown()
         {
             IsRunning = false;
@@ -79,7 +84,6 @@ namespace NetworkServer
                     case NetIncomingMessageType.DiscoveryRequest:
                         server.SendDiscoveryResponse(null, msg.SenderEndPoint);
                         break;
-
                     case NetIncomingMessageType.VerboseDebugMessage:
                     case NetIncomingMessageType.DebugMessage:
                     case NetIncomingMessageType.WarningMessage:
@@ -87,17 +91,12 @@ namespace NetworkServer
                         string text = msg.ReadString();
                         OnInternalMessage(this, text);
                         break;
-
                     case NetIncomingMessageType.StatusChanged:
-                        NetConnectionStatus status = (NetConnectionStatus)msg.ReadByte();
-                        string reason = msg.ReadString();
-                        OnStatusMessage(this, status, reason);
+                        OnStatusMessage(this, msg);
                         break;
-
                     case NetIncomingMessageType.Data:
                         OnDataMessage(this, msg);
                         break;
-
                     default:
                         break;
                 }
@@ -124,13 +123,13 @@ namespace NetworkServer
             }
         }
 
-        public event EventHandler<StatusMessageArgs> StatusMessage;
+        public event EventHandler<DataMessageArgs> StatusMessage;
 
-        public void OnStatusMessage(object sender, NetConnectionStatus status, String reason)
+        public void OnStatusMessage(object sender, NetIncomingMessage msg)
         {
             if (StatusMessage != null)
             {
-                StatusMessage(sender, new StatusMessageArgs((NetworkHelper.NetConnectionStatus)status, reason));
+                StatusMessage(sender, new DataMessageArgs(msg));
             }
         }
 

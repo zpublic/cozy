@@ -7,12 +7,37 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using CozyAnywhere.WpfClient.UserControls;
 
 namespace CozyAnywhere.WpfClient.ViewModel
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        public int Port { get; set; }
+        private int _Port;
+        public int Port
+        {
+            get
+            {
+                return _Port;
+            }
+            set
+            {
+                Set(ref _Port, value, "Port");
+            }
+        }
+
+        private string _Address = "127.0.0.1";
+        public string Address
+        {
+            get
+            {
+                return _Address;
+            }
+            set
+            {
+                Set(ref _Address, value, "Address");
+            }
+        }
 
         public static AnywhereClient clientCore { get; set; }
 
@@ -80,6 +105,43 @@ namespace CozyAnywhere.WpfClient.ViewModel
             }
         }
 
+        private ICommand _ConnectCommand;
+
+        public ICommand ConnectCommand
+        {
+            get
+            {
+                return _ConnectCommand = _ConnectCommand ?? new DelegateCommand((x)=>
+                {
+                    if (Address != null)
+                    {
+                        if(!clientCore.IsListing)
+                        {
+                            clientCore.Listen();
+                        }
+                        clientCore.ConnectServer(Address, 36048);
+                    }
+                });
+            }
+        }
+
+        private ICommand _LoadPluginCommand;
+
+        public ICommand LoadPluginCommand
+        {
+            get
+            {
+                return _LoadPluginCommand = _LoadPluginCommand ?? new DelegateCommand((x) =>
+                {
+                    if (clientCore.IsListing)
+                    {
+                        clientCore.SendPluginLoadMessage();
+                    }
+                });
+            }
+        }
+
+
         public MainWindowViewModel()
         {
             RegisterControls();
@@ -88,6 +150,12 @@ namespace CozyAnywhere.WpfClient.ViewModel
             BindCoreCollections();
             clientCore.PluginChangedHandler += new EventHandler<PluginChangedEvnetArgs>(OnPluginChanged);
             SetUpdateTimer();
+
+            ControlList.Add(new DefaultControlInfo()
+            {
+                Name = "Connect",
+                Controls = new ConnectPage(),
+            });
         }
 
         private Dictionary<string, IControlFactory> ControlCreateDictionary = new Dictionary<string, IControlFactory>();

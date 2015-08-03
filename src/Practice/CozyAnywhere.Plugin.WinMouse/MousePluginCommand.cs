@@ -1,10 +1,11 @@
 ﻿using CozyAnywhere.Plugin.WinMouse.Args;
-using CozyAnywhere.Plugin.WinMouse.ArgsFactory;
 using CozyAnywhere.Plugin.WinMouse.Tag;
 using CozyAnywhere.Protocol;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using CozyAnywhere.PluginBase;
+using System.Reflection;
+using System;
+using PluginHelper;
 
 namespace CozyAnywhere.Plugin.WinMouse
 {
@@ -15,15 +16,14 @@ namespace CozyAnywhere.Plugin.WinMouse
 
         private void RegisterMethod()
         {
-            MethodDictionary["MouseClick"]                  = new MouseClickArgsFactory();
-            MethodDictionary["MouseCursorClip"]             = new MouseCursorClipArgsFactory();
-            MethodDictionary["MouseCursorUnClip"]           = new MouseCursorUnClipArgsFactory();
-            MethodDictionary["MouseEvent"]                  = new MouseEventArgsFactory();
-            MethodDictionary["MouseGetCurrsorPosition"]     = new MouseGetCurrsorPositionArgsFactory();
-            MethodDictionary["MouseLeftClick"]              = new MouseLeftClickArgsFactory();
-            MethodDictionary["MouseMiddleClick"]            = new MouseMiddleClickArgsFactory();
-            MethodDictionary["MouseRightClick"]             = new MouseRightClickArgsFactory();
-            MethodDictionary["MouseSetCursorPosition"]      = new MouseSetCursorPositionArgsFactory();
+            var asm         = Assembly.GetExecutingAssembly();
+            var factorylist = ArgsFactoryLoader.LoadArgsFactory(asm, "CozyAnywhere.Plugin.WinMouse.ArgsFactory");
+
+            foreach (var obj in factorylist)
+            {
+                var factory                 = (IPluginCommandMethodArgsFactory)Activator.CreateInstance(obj.Item2);
+                MethodDictionary[obj.Item1] = factory;
+            }
         }
 
         public static string MakeMouseClickCommand(ButtonTag tag, uint x, uint y)

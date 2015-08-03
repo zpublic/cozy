@@ -56,14 +56,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\DelegateCommand.cs" />
+    <Compile Include="Ext\BitmapLocker.cs" />
     <Compile Include="Factory\CapturePluginPageFactory.cs" />
     <Compile Include="Factory\FilePluginPageFactory.cs" />
     <Compile Include="Factory\IControlFactory.cs" />
     <Compile Include="Factory\ProcessPluginPageFactory.cs" />
+    <Compile Include="Model\ConnectInfo.cs" />
     <Compile Include="Model\DefaultControlInfo.cs" />
     <Compile Include="Model\WinFileInfo.cs" />
     <Compile Include="UserControls\CapturePluginPage.xaml.cs">
       <DependentUpon>CapturePluginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ConnectPage.xaml.cs">
+      <DependentUpon>ConnectPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FilePluginPage.xaml.cs">
       <DependentUpon>FilePluginPage.xaml</DependentUpon>
@@ -73,6 +78,7 @@
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\CapturePluginPageViewModel.cs" />
+    <Compile Include="ViewModel\ConnectPageViewModel.cs" />
     <Compile Include="ViewModel\FilePluginPageViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ProcessPluginPageViewModel.cs" />
@@ -89,6 +95,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserControls\CapturePluginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ConnectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

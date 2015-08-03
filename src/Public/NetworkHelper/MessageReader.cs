@@ -2,6 +2,7 @@
 using NetworkProtocol;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace NetworkHelper
 {
@@ -20,6 +21,14 @@ namespace NetworkHelper
             }
         }
 
+        public static void RegisterType(Type type, uint id)
+        {
+            lock(ObjLocker)
+            {
+                IdToTypeDictionary[id] = type;
+            }
+        }
+
         public static IMessage GetTypeInstanceByStream(NetIncomingMessage stream)
         {
             var id = stream.ReadUInt32();
@@ -32,6 +41,22 @@ namespace NetworkHelper
                     return instance;
                 }
                 throw new KeyNotFoundException("Unknow Type");
+            }
+        }
+
+        public static void RegisterTypeWithAssembly(string Ass, string Ns)
+        {
+            Assembly asm = Assembly.Load(Ass);
+            if (asm != null)
+            {
+                foreach (Type type in asm.GetTypes())
+                {
+                    if (type.Namespace == Ns)
+                    {
+                        uint id = ((IMessage)Activator.CreateInstance(type)).Id;
+                        RegisterType(type, id);
+                    }
+                }
             }
         }
     }

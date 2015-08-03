@@ -54,6 +54,10 @@
       <Project>{e9557031-3390-42aa-bb0a-36321f80899e}</Project>
       <Name>CozyAnywhere.Plugin.WinCapture</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Practice\CozyAnywhere.PluginBase\CozyAnywhere.PluginBase.csproj">
+      <Project>{3073b255-8934-4898-af1f-00f149c5f00e}</Project>
+      <Name>CozyAnywhere.PluginBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

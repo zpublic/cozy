@@ -111,6 +111,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyMind.Core\CozyMind.Core.csproj">
+      <Project>{413eb490-ddb1-4b8b-88bf-869395f55ac5}</Project>
+      <Name>CozyMind.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyMind.TestData\CozyMind.TestData.csproj">
+      <Project>{6211c204-287c-4d3b-be93-737854d14ad5}</Project>
+      <Name>CozyMind.TestData</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
