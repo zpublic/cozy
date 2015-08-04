@@ -191,11 +191,11 @@ namespace NetworkClient
                 }
                 if (packetMsg != null)
                 {
-                    int n = (packetMsg.LengthBytes + 547) / 548;
+                    int n = (packetMsg.LengthBytes + MaxPacketSize - 1) / MaxPacketSize;
                     for (int i = 0; i < n; ++i)
                     {
-                        int l       = packetMsg.LengthBytes - i * 548;
-                        int length  = l < 548 ? l : 548;
+                        int l       = packetMsg.LengthBytes - i * MaxPacketSize;
+                        int length  = l < MaxPacketSize ? l : MaxPacketSize;
 
                         if (length > 0)
                         {
@@ -207,7 +207,7 @@ namespace NetworkClient
                                 Bytes           = new byte[length],
                             };
 
-                            Array.Copy(packetMsg.Data, i * 548, pm.Bytes, 0, length);
+                            Array.Copy(packetMsg.Data, i * MaxPacketSize, pm.Bytes, 0, length);
                             om.Write(pm.Id);
                             pm.Write(om);
                             client.SendMessage(om, NetDeliveryMethod.Unreliable);
