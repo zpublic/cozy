@@ -21,6 +21,7 @@ namespace NetworkProtocol
         public void Add(PacketMessage msg)
         {
             PacketList.Add(msg);
+            ++Size;
         }
 
         public PacketNetBuffer(int targetSize, NetConnection conn)

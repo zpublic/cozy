@@ -13,6 +13,10 @@ namespace NetworkClient
         private readonly Queue<NetClientMsg> MessageQueue   = new Queue<NetClientMsg>();
         private readonly object MessageQueueLocker          = new object();
 
+        private readonly Dictionary<long, NetOutgoingMessage> PacketMessageDictionary
+    = new Dictionary<long, NetOutgoingMessage>();
+        private readonly object PacketMessageDictionaryLocker = new object();
+
         public Client()
         {
             NetPeerConfiguration config = new NetPeerConfiguration("CozyAnywhere");
@@ -35,7 +39,24 @@ namespace NetworkClient
                 NetOutgoingMessage om = client.CreateMessage();
                 om.Write(msg.Id);
                 msg.Write(om);
-                MessageQueue.Enqueue(new NetClientMsg(om, NetDeliveryMethod.Unreliable));
+                if (om.LengthBytes > 548)
+                {
+                    var id = client.UniqueIdentifier;
+                    lock (PacketMessageDictionaryLocker)
+                    {
+                        PacketMessageDictionary[id] = om;
+                    }
+                    var packetMsg = new SendPacketMessage()
+                    {
+                        UniqueIdentifier = id,
+                        TargetSize = (om.LengthBytes + 547) / 548,
+                    };
+                    SendMessage(packetMsg);
+                }
+                else
+                {
+                    MessageQueue.Enqueue(new NetClientMsg(om, NetDeliveryMethod.Unreliable));
+                }
             }
         }
 
@@ -99,6 +120,21 @@ namespace NetworkClient
             }
         }
 
+        private bool DefMessageProc(uint id, NetBuffer im)
+        {
+            bool result = false;
+            switch (id)
+            {
+                case DefaultMessageId.SendPacketMessageRecv:
+                    OnSendPacketMessageRecv(im);
+                    result = true;
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
+
         public event EventHandler<InternalMessageArgs> InternalMessage;
 
         public void OnInternalMessage(object sender, String msg)
@@ -126,7 +162,55 @@ namespace NetworkClient
             if (DataMessage != null)
             {
                 uint id = im.ReadUInt32();
-                DataMessage(sender, new DataMessageArgs(im, id, im.SenderConnection));
+                if (!DefMessageProc(id, im))
+                {
+                    DataMessage(sender, new DataMessageArgs(im, id, im.SenderConnection));
+                }
+            }
+        }
+
+        private void OnSendPacketMessageRecv(NetBuffer msg)
+        {
+            var recvMsg = new SendPacketMessageRecv();
+            recvMsg.Read(msg);
+            var UniqueIdentifier = recvMsg.UniqueIdentifier;
+            var MessageRacketId = recvMsg.MessagePacketId;
+            if (PacketMessageDictionary.ContainsKey(UniqueIdentifier))
+            {
+                NetOutgoingMessage packetMsg = null;
+                lock (PacketMessageDictionaryLocker)
+                {
+                    if (PacketMessageDictionary.ContainsKey(UniqueIdentifier))
+                    {
+                        packetMsg = PacketMessageDictionary[UniqueIdentifier];
+                        PacketMessageDictionary.Remove(UniqueIdentifier);
+                    }
+                }
+                if (packetMsg != null)
+                {
+                    int n = (packetMsg.LengthBytes + 547) / 548;
+                    for (int i = 0; i < n; ++i)
+                    {
+                        int l = packetMsg.LengthBytes - i * 548;
+                        int length = l < 548 ? l : 548;
+
+                        if (length > 0)
+                        {
+                            NetOutgoingMessage om = client.CreateMessage();
+                            var pm = new PacketMessage()
+                            {
+                                Number = i,
+                                MessagePacketId = MessageRacketId,
+                                Bytes = new byte[length],
+                            };
+
+                            Array.Copy(packetMsg.Data, i * 548, pm.Bytes, 0, length);
+                            om.Write(pm.Id);
+                            pm.Write(om);
+                            client.SendMessage(om, NetDeliveryMethod.Unreliable);
+                        }
+                    }
+                }
             }
         }
     }

@@ -21,6 +21,7 @@ namespace NetworkProtocol
         public void Write(NetBuffer om)
         {
             om.Write(MessagePacketId);
+            om.Write(Number);
             if (Bytes != null)
             {
                 om.Write(Bytes.Length);
@@ -36,6 +37,7 @@ namespace NetworkProtocol
         public void Read(NetBuffer im)
         {
             MessagePacketId = im.ReadInt64();
+            Number = im.ReadInt32();
             int length = im.ReadInt32();
             if (length != 0)
             {

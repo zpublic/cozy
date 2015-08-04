@@ -22,7 +22,8 @@ namespace NetworkServer
             = new Dictionary<long, PacketNetBuffer>();
         private readonly object SendPacketMessageRecvDictionaryLocker = new object();
 
-        private readonly Queue<NetBuffer> AlreadyMessageQueue = new Queue<NetBuffer>();
+        private readonly Queue<Tuple<NetBuffer, NetConnection>> AlreadyMessageQueue
+            = new Queue<Tuple<NetBuffer, NetConnection>>();
         private readonly object AlreadyMessageQueueLocker = new object();
 
         public bool IsRunning { get; set; }
@@ -32,7 +33,7 @@ namespace NetworkServer
         {
             get
             {
-                return _MessageRecvId;
+                return ++_MessageRecvId;
             }
         }
 
@@ -66,24 +67,7 @@ namespace NetworkServer
             NetOutgoingMessage om = server.CreateMessage();
             om.Write(msg.Id);
             msg.Write(om);
-            if (om.LengthBytes > 65535)
-            {
-                var id = server.UniqueIdentifier;
-                lock(PacketMessageDictionaryLocker)
-                {
-                    PacketMessageDictionary[id] = om;
-                }
-                var packetMsg = new SendPacketMessage()
-                {
-                    UniqueIdentifier = id,
-                    TargetSize = (om.LengthBytes + 59999) / 60000,
-                };
-                SendMessage(packetMsg, conn);
-            }
-            else
-            {
-                server.SendMessage(om, conn, NetDeliveryMethod.Unreliable);
-            }
+            server.SendMessage(om, conn, NetDeliveryMethod.Unreliable);
         }
 
         public void SendMessage(IMessage msg)
@@ -147,28 +131,11 @@ namespace NetworkServer
             while (IsRunning)
             {
                 RecivePacket();
-                RecvAlreadyPacketMessage();
                 Thread.Sleep(1);
             }
             server.Shutdown("exit");
         }
 
-
-        public void RecvAlreadyPacketMessage()
-        {
-            if(AlreadyMessageQueue.Count > 0)
-            {
-                lock (AlreadyMessageQueueLocker)
-                {
-                    while(AlreadyMessageQueue.Count > 0)
-                    {
-                        var msg = AlreadyMessageQueue.Dequeue();
-
-                        //TODO send msg to OnDataMessage;
-                    }
-                }
-            }
-        }
 
         public event EventHandler<InternalMessageArgs> InternalMessage;
 
@@ -204,7 +171,6 @@ namespace NetworkServer
             }
         }
 
-
         private bool DefMessageProc(uint id, NetBuffer im, NetConnection conn)
         {
             bool result = false;
@@ -214,11 +180,6 @@ namespace NetworkServer
                     OnSendPacketMessage(im, conn);
                     result = true;
                     break;
-                case DefaultMessageId.SendPacketMessageRecv:
-                    OnSendPacketMessageRecv(im, conn);
-                    result = true;
-                    break;
-
                 case DefaultMessageId.PacketMessage:
                     OnPacketMessage(im);
                     result = true;
@@ -257,7 +218,7 @@ namespace NetworkServer
                         }
                         lock(AlreadyMessageQueueLocker)
                         {
-                            AlreadyMessageQueue.Enqueue(ms);
+                            OnDataMessage(this, ms, packet.SendConnection);
                         }
                     }
                 }
@@ -282,54 +243,6 @@ namespace NetworkServer
                 MessagePacketId     = id,
             };
             SendMessage(rspMsg, conn);
-        }
-
-        private void OnSendPacketMessageRecv(NetBuffer msg, NetConnection conn)
-        {
-            var recvMsg = new SendPacketMessageRecv();
-            recvMsg.Read(msg);
-            var UniqueIdentifier    = recvMsg.UniqueIdentifier;
-            var MessageRacketId     = recvMsg.MessagePacketId;
-            if(PacketMessageDictionary.ContainsKey(UniqueIdentifier))
-            {
-                NetOutgoingMessage packetMsg = null;
-                lock (PacketMessageDictionaryLocker)
-                {
-                    if (PacketMessageDictionary.ContainsKey(UniqueIdentifier))
-                    {
-                        packetMsg = PacketMessageDictionary[UniqueIdentifier];
-                        PacketMessageDictionary.Remove(UniqueIdentifier);
-                    }
-                }
-                if(packetMsg != null)
-                {
-                    lock(SendPacketMessageRecvDictionaryLocker)
-                    {
-                        int n = (packetMsg.LengthBytes + 59999) / 60000;
-                        for(int i= 0; i < n; ++i)
-                        {
-                            int l = packetMsg.LengthBytes - i * 60000;
-                            int length = l < 60000 ? l : 60000;
-
-                            if (length > 0)
-                            {
-                                NetOutgoingMessage om = server.CreateMessage();
-                                var pm = new PacketMessage()
-                                {
-                                    Number = i,
-                                    MessagePacketId = MessageRacketId,
-                                    Bytes = new byte[length],
-                                };
-
-                                Array.Copy(packetMsg.Data, pm.Bytes, length);
-                                om.Write(pm.Id);
-                                pm.Write(om);
-                                server.SendMessage(om, conn, NetDeliveryMethod.Unreliable);
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 }
