@@ -125,7 +125,8 @@ namespace NetworkClient
         {
             if (DataMessage != null)
             {
-                DataMessage(sender, new DataMessageArgs(im));
+                uint id = im.ReadUInt32();
+                DataMessage(sender, new DataMessageArgs(im, id));
             }
         }
     }

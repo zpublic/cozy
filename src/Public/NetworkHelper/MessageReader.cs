@@ -29,9 +29,8 @@ namespace NetworkHelper
             }
         }
 
-        public static IMessage GetTypeInstanceByStream(NetIncomingMessage stream)
+        public static IMessage GetTypeInstance(uint id, NetIncomingMessage stream)
         {
-            var id = stream.ReadUInt32();
             lock (ObjLocker)
             {
                 if (IdToTypeDictionary.ContainsKey(id))

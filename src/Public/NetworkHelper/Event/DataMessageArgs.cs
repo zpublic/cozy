@@ -7,9 +7,12 @@ namespace NetworkHelper.Event
     {
         public NetIncomingMessage Input { get; set; }
 
-        public DataMessageArgs(NetIncomingMessage input)
+        public uint MessageId { get; set; }
+
+        public DataMessageArgs(NetIncomingMessage input, uint id)
         {
             Input = input;
+            MessageId = id;
         }
     }
 }
