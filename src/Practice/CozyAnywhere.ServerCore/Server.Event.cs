@@ -29,7 +29,7 @@ namespace CozyAnywhere.ServerCore
         private void OnDataMessage(object sender, DataMessageArgs msg)
         {
             var baseMsg = MessageReader.GetTypeInstance(msg.MessageId, msg.Input);
-            MessageCallbackInvoker.Invoke(baseMsg, msg.Input.SenderConnection);
+            MessageCallbackInvoker.Invoke(baseMsg, msg.Connection);
         }
 
         private void OnInternalMessage(object sender, InternalMessageArgs msg)

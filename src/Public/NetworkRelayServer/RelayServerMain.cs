@@ -134,7 +134,7 @@ namespace NetworkRelayServer
             if (StatusMessage != null)
             {
                 uint id = im.ReadUInt32();
-                StatusMessage(sender, new DataMessageArgs(im, id));
+                StatusMessage(sender, new DataMessageArgs(im, id, im.SenderConnection));
             }
         }
 
@@ -145,7 +145,7 @@ namespace NetworkRelayServer
             if (DataMessage != null)
             {
                 uint id = im.ReadUInt32();
-                DataMessage(sender, new DataMessageArgs(im, id));
+                DataMessage(sender, new DataMessageArgs(im, id, im.SenderConnection));
             }
         }
     }

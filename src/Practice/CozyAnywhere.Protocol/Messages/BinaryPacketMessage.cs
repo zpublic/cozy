@@ -11,7 +11,7 @@ namespace CozyAnywhere.Protocol.Messages
 
         public byte[] Data { get; set; }
 
-        public void Write(NetOutgoingMessage om)
+        public void Write(NetBuffer om)
         {
             if (MetaData == null) MetaData = "Null";
             om.Write(MetaData);
@@ -19,7 +19,7 @@ namespace CozyAnywhere.Protocol.Messages
             om.Write(Data);
         }
 
-        public void Read(NetIncomingMessage im)
+        public void Read(NetBuffer im)
         {
             MetaData    = im.ReadString();
             int l       = im.ReadInt32();

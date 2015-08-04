@@ -6,8 +6,8 @@ namespace NetworkProtocol
     {
         uint Id { get; }
 
-        void Write(NetOutgoingMessage om);
+        void Write(NetBuffer om);
 
-        void Read(NetIncomingMessage im);
+        void Read(NetBuffer im);
     }
 }

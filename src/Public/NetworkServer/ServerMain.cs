@@ -129,10 +129,12 @@ namespace NetworkServer
                         OnInternalMessage(this, text);
                         break;
                     case NetIncomingMessageType.StatusChanged:
-                        OnStatusMessage(this, msg);
+                        var status = (NetworkHelper.NetConnectionStatus)msg.ReadByte();
+                        string reason = msg.ReadString();
+                        OnStatusMessage(this, status, reason, msg.SenderConnection);
                         break;
                     case NetIncomingMessageType.Data:
-                        OnDataMessage(this, msg);
+                        OnDataMessage(this, msg, msg.SenderConnection);
                         break;
                     default:
                         break;
@@ -178,43 +180,42 @@ namespace NetworkServer
             }
         }
 
-        public event EventHandler<DataMessageArgs> StatusMessage;
+        public event EventHandler<StatusMessageArgs> StatusMessage;
 
-        public void OnStatusMessage(object sender, NetIncomingMessage im)
+        public void OnStatusMessage(object sender, NetworkHelper.NetConnectionStatus status, String reason, NetConnection conn)
         {
             if (StatusMessage != null)
             {
-                uint id = im.ReadUInt32();
-                StatusMessage(sender, new DataMessageArgs(im, id));
+                StatusMessage(sender, new StatusMessageArgs(status, reason, conn));
             }
         }
 
         public event EventHandler<DataMessageArgs> DataMessage;
 
-        public void OnDataMessage(object sender, NetIncomingMessage im)
+        public void OnDataMessage(object sender, NetBuffer im, NetConnection conn)
         {
             if (DataMessage != null)
             {
                 uint id = im.ReadUInt32();
-                if(!DefMessageProc(id, im))
+                if(!DefMessageProc(id, im, conn))
                 {
-                    DataMessage(sender, new DataMessageArgs(im, id));
+                    DataMessage(sender, new DataMessageArgs(im, id, conn));
                 }
             }
         }
 
 
-        private bool DefMessageProc(uint id, NetIncomingMessage im)
+        private bool DefMessageProc(uint id, NetBuffer im, NetConnection conn)
         {
             bool result = false;
             switch(id)
             {
                 case DefaultMessageId.SendPacketMessage:
-                    OnSendPacketMessage(im);
+                    OnSendPacketMessage(im, conn);
                     result = true;
                     break;
                 case DefaultMessageId.SendPacketMessageRecv:
-                    OnSendPacketMessageRecv(im);
+                    OnSendPacketMessageRecv(im, conn);
                     result = true;
                     break;
 
@@ -228,7 +229,7 @@ namespace NetworkServer
             return result;
         }
 
-        private void OnPacketMessage(NetIncomingMessage msg)
+        private void OnPacketMessage(NetBuffer msg)
         {
             var packetMsg = new PacketMessage();
             packetMsg.Read(msg);
@@ -263,7 +264,7 @@ namespace NetworkServer
             }
         }
 
-        private void OnSendPacketMessage(NetIncomingMessage msg)
+        private void OnSendPacketMessage(NetBuffer msg, NetConnection conn)
         {
             long id         = MessageRecvId;
             var packetMsg   = new SendPacketMessage();
@@ -272,7 +273,7 @@ namespace NetworkServer
 
             lock(SendPacketMessageRecvDictionaryLocker)
             {
-                SendPacketMessageRecvDictionary[id] = new PacketNetBuffer(packetMsg.TargetSize, msg.SenderConnection);
+                SendPacketMessageRecvDictionary[id] = new PacketNetBuffer(packetMsg.TargetSize, conn);
             }
 
             var rspMsg = new SendPacketMessageRecv()
@@ -280,10 +281,10 @@ namespace NetworkServer
                 UniqueIdentifier    = packetMsg.UniqueIdentifier,
                 MessagePacketId     = id,
             };
-            SendMessage(rspMsg, msg.SenderConnection);
+            SendMessage(rspMsg, conn);
         }
 
-        private void OnSendPacketMessageRecv(NetIncomingMessage msg)
+        private void OnSendPacketMessageRecv(NetBuffer msg, NetConnection conn)
         {
             var recvMsg = new SendPacketMessageRecv();
             recvMsg.Read(msg);
@@ -323,7 +324,7 @@ namespace NetworkServer
                                 Array.Copy(packetMsg.Data, pm.Bytes, length);
                                 om.Write(pm.Id);
                                 pm.Write(om);
-                                server.SendMessage(om, msg.SenderConnection, NetDeliveryMethod.Unreliable);
+                                server.SendMessage(om, conn, NetDeliveryMethod.Unreliable);
                             }
                         }
                     }

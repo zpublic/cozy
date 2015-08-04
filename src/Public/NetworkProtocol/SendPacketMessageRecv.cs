@@ -11,14 +11,14 @@ namespace NetworkProtocol
 
         public long MessagePacketId { get; set; }
 
-        public void Write(NetOutgoingMessage om)
+        public void Write(NetBuffer om)
         {
             om.Write(UniqueIdentifier);
             om.Write(MessagePacketId);
         }
 
 
-        public void Read(NetIncomingMessage im)
+        public void Read(NetBuffer im)
         {
             UniqueIdentifier = im.ReadInt64();
             MessagePacketId = im.ReadInt64();

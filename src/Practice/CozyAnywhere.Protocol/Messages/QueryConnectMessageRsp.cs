@@ -13,12 +13,12 @@ namespace CozyAnywhere.Protocol.Messages
 
         public byte ConnectionType { get; set; }
 
-        public void Write(NetOutgoingMessage om)
+        public void Write(NetBuffer om)
         {
             om.Write(ConnectionType);
         }
 
-        public void Read(NetIncomingMessage im)
+        public void Read(NetBuffer im)
         {
             ConnectionType = im.ReadByte();
         }

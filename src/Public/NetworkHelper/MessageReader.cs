@@ -29,7 +29,7 @@ namespace NetworkHelper
             }
         }
 
-        public static IMessage GetTypeInstance(uint id, NetIncomingMessage stream)
+        public static IMessage GetTypeInstance(uint id, NetBuffer stream)
         {
             lock (ObjLocker)
             {

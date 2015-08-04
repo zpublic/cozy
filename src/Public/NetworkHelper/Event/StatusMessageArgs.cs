@@ -1,4 +1,5 @@
 ﻿using System;
+using Lidgren.Network;
 
 namespace NetworkHelper.Event
 {
@@ -8,10 +9,13 @@ namespace NetworkHelper.Event
 
         public String Reason { get; set; }
 
-        public StatusMessageArgs(NetConnectionStatus status, String reason)
+        public NetConnection Connection { get; set; }
+
+        public StatusMessageArgs(NetConnectionStatus status, String reason, NetConnection conn)
         {
             Status = status;
             Reason = reason;
+            Connection = conn;
         }
     }
 }

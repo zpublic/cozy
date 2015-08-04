@@ -18,7 +18,7 @@ namespace NetworkProtocol
         // MaxBytesLength = 60000
         public byte[] Bytes { get; set; }
 
-        public void Write(NetOutgoingMessage om)
+        public void Write(NetBuffer om)
         {
             om.Write(MessagePacketId);
             if (Bytes != null)
@@ -33,7 +33,7 @@ namespace NetworkProtocol
         }
 
 
-        public void Read(NetIncomingMessage im)
+        public void Read(NetBuffer im)
         {
             MessagePacketId = im.ReadInt64();
             int length = im.ReadInt32();

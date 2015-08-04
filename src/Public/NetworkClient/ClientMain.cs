@@ -90,7 +90,7 @@ namespace NetworkClient
                     case NetIncomingMessageType.StatusChanged:
                         NetConnectionStatus status = (NetConnectionStatus)msg.ReadByte();
                         string reason = msg.ReadString();
-                        OnStatusMessage(this, status, reason);
+                        OnStatusMessage(this, status, reason, msg.SenderConnection);
                         break;
                     case NetIncomingMessageType.Data:
                         OnDataMessage(this, msg);
@@ -111,11 +111,11 @@ namespace NetworkClient
 
         public event EventHandler<StatusMessageArgs> StatusMessage;
 
-        public void OnStatusMessage(object sender, NetConnectionStatus status, String reason)
+        public void OnStatusMessage(object sender, NetConnectionStatus status, String reason, NetConnection conn)
         {
             if (StatusMessage != null)
             {
-                StatusMessage(sender, new StatusMessageArgs((NetworkHelper.NetConnectionStatus)status, reason));
+                StatusMessage(sender, new StatusMessageArgs((NetworkHelper.NetConnectionStatus)status, reason, conn));
             }
         }
 
@@ -126,7 +126,7 @@ namespace NetworkClient
             if (DataMessage != null)
             {
                 uint id = im.ReadUInt32();
-                DataMessage(sender, new DataMessageArgs(im, id));
+                DataMessage(sender, new DataMessageArgs(im, id, im.SenderConnection));
             }
         }
     }
