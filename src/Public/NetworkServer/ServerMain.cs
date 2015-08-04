@@ -4,6 +4,7 @@ using NetworkProtocol;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using NetworkProtocol.Messages;
 
 namespace NetworkServer
 {
@@ -192,10 +193,10 @@ namespace NetworkServer
 
         private void OnPacketMessage(NetBuffer msg)
         {
-            var packetMsg = new PacketMessage();
+            var packetMsg   = new PacketMessage();
             packetMsg.Read(msg);
 
-            long id = packetMsg.MessagePacketId;
+            long id         = packetMsg.MessagePacketId;
             if(SendPacketMessageRecvDictionary.ContainsKey(id))
             {
                 PacketNetBuffer packet = null;

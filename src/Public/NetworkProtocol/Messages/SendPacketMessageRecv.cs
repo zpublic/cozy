@@ -1,7 +1,7 @@
 ﻿using Lidgren.Network;
 
 
-namespace NetworkProtocol
+namespace NetworkProtocol.Messages
 {
     public class SendPacketMessageRecv : IMessage
     {
@@ -20,8 +20,8 @@ namespace NetworkProtocol
 
         public void Read(NetBuffer im)
         {
-            UniqueIdentifier = im.ReadInt64();
-            MessagePacketId = im.ReadInt64();
+            UniqueIdentifier    = im.ReadInt64();
+            MessagePacketId     = im.ReadInt64();
         }
     }
 }

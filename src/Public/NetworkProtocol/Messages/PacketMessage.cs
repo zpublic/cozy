@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lidgren.Network;
+﻿using Lidgren.Network;
 
-namespace NetworkProtocol
+namespace NetworkProtocol.Messages
 {
     public class PacketMessage : IMessage
     {
@@ -37,8 +32,8 @@ namespace NetworkProtocol
         public void Read(NetBuffer im)
         {
             MessagePacketId = im.ReadInt64();
-            Number = im.ReadInt32();
-            int length = im.ReadInt32();
+            Number          = im.ReadInt32();
+            int length      = im.ReadInt32();
             if (length != 0)
             {
                 Bytes = im.ReadBytes(length);

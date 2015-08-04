@@ -45,11 +45,11 @@
   <ItemGroup>
     <Compile Include="DefaultMessageId.cs" />
     <Compile Include="IMessage.cs" />
-    <Compile Include="PacketMessage.cs" />
+    <Compile Include="Messages\PacketMessage.cs" />
     <Compile Include="PacketNetBuffer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SendPacketMessage.cs" />
-    <Compile Include="SendPacketMessageRecv.cs" />
+    <Compile Include="Messages\SendPacketMessage.cs" />
+    <Compile Include="Messages\SendPacketMessageRecv.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lidgren.Network\Lidgren.Network.csproj">

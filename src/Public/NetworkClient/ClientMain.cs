@@ -3,6 +3,7 @@ using NetworkHelper.Event;
 using NetworkProtocol;
 using System;
 using System.Collections.Generic;
+using NetworkProtocol.Messages;
 
 namespace NetworkClient
 {
@@ -14,8 +15,10 @@ namespace NetworkClient
         private readonly object MessageQueueLocker          = new object();
 
         private readonly Dictionary<long, NetOutgoingMessage> PacketMessageDictionary
-    = new Dictionary<long, NetOutgoingMessage>();
+                = new Dictionary<long, NetOutgoingMessage>();
         private readonly object PacketMessageDictionaryLocker = new object();
+
+        public const int MaxPacketSize = 548;
 
         public Client()
         {
@@ -39,7 +42,7 @@ namespace NetworkClient
                 NetOutgoingMessage om = client.CreateMessage();
                 om.Write(msg.Id);
                 msg.Write(om);
-                if (om.LengthBytes > 548)
+                if (om.LengthBytes > MaxPacketSize)
                 {
                     var id = client.UniqueIdentifier;
                     lock (PacketMessageDictionaryLocker)
@@ -48,8 +51,8 @@ namespace NetworkClient
                     }
                     var packetMsg = new SendPacketMessage()
                     {
-                        UniqueIdentifier = id,
-                        TargetSize = (om.LengthBytes + 547) / 548,
+                        UniqueIdentifier    = id,
+                        TargetSize          = (om.LengthBytes + MaxPacketSize - 1) / MaxPacketSize,
                     };
                     SendMessage(packetMsg);
                 }
@@ -171,10 +174,10 @@ namespace NetworkClient
 
         private void OnSendPacketMessageRecv(NetBuffer msg)
         {
-            var recvMsg = new SendPacketMessageRecv();
+            var recvMsg             = new SendPacketMessageRecv();
             recvMsg.Read(msg);
-            var UniqueIdentifier = recvMsg.UniqueIdentifier;
-            var MessageRacketId = recvMsg.MessagePacketId;
+            var UniqueIdentifier    = recvMsg.UniqueIdentifier;
+            var MessageRacketId     = recvMsg.MessagePacketId;
             if (PacketMessageDictionary.ContainsKey(UniqueIdentifier))
             {
                 NetOutgoingMessage packetMsg = null;
@@ -191,17 +194,17 @@ namespace NetworkClient
                     int n = (packetMsg.LengthBytes + 547) / 548;
                     for (int i = 0; i < n; ++i)
                     {
-                        int l = packetMsg.LengthBytes - i * 548;
-                        int length = l < 548 ? l : 548;
+                        int l       = packetMsg.LengthBytes - i * 548;
+                        int length  = l < 548 ? l : 548;
 
                         if (length > 0)
                         {
-                            NetOutgoingMessage om = client.CreateMessage();
-                            var pm = new PacketMessage()
+                            NetOutgoingMessage om   = client.CreateMessage();
+                            var pm                  = new PacketMessage()
                             {
-                                Number = i,
+                                Number          = i,
                                 MessagePacketId = MessageRacketId,
-                                Bytes = new byte[length],
+                                Bytes           = new byte[length],
                             };
 
                             Array.Copy(packetMsg.Data, i * 548, pm.Bytes, 0, length);
