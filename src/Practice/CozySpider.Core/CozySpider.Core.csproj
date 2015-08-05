@@ -47,6 +47,8 @@
     <Compile Include="Event\EventArgsBase.cs" />
     <Compile Include="Model\SpiderWorkerList.cs" />
     <Compile Include="Output\IOutput.cs" />
+    <Compile Include="Reader\DefaultReader.cs" />
+    <Compile Include="Reader\IUrlReader.cs" />
     <Compile Include="UrlFilter\BloomFilter.cs" />
     <Compile Include="UrlFilter\HashFilter.cs" />
     <Compile Include="Model\ResultStorage.cs" />

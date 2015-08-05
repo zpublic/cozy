@@ -20,7 +20,7 @@ namespace CozySpider.Core
                 {
                     if (UrlMatch(i, setting))
                     {
-                        urlQueue.EnQueue(new UrlInfo(i, setting.Depth));
+                        urlQueue.EnQueue(new UrlInfo(i, 0));
                     }
                 }
             }

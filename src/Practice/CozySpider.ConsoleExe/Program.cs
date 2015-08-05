@@ -14,11 +14,11 @@ namespace CozySpider.ConsoleExe
         static void Main(string[] args)
         {
             SpiderSeeds seeds = new SpiderSeeds();
-            seeds.AddSeed("http://www.javfee.com/cn/genre/w/currentPage/");
-
+            //seeds.AddSeed("http://www.javfee.com/cn/genre/w/currentPage/");
+            seeds.AddSeed(@"http://www.cnblogs.com/Jiajun/archive/2012/06/17/2552458.html");
             IUrlMatch match = new FindStringMatch()
             {
-                StringFind  = "javfee.com",
+                StringFind  = "html",
                 NoCase      = true
             };
 
@@ -31,9 +31,8 @@ namespace CozySpider.ConsoleExe
             SpiderMaster master = new SpiderMaster();
             master.Init(setting);
             master.Crawl();
-            master.Test();
-            Thread.Sleep(3000);
 
+            Thread.Sleep(10000);
             master.Stop();
         }
     }

@@ -15,22 +15,25 @@ namespace CozySpider.Core.Model
 
         public int AllWorkersCount { get; private set; }
 
+        private SpiderSetting Setting { get; set; }
+
         public void Add(SpiderWorker worker)
         {
             Workers.Add(worker);
             ++AllWorkersCount;
         }
 
-        public SpiderWorkerList(UrlAddressQueue addressQueue)
+        public SpiderWorkerList(UrlAddressQueue addressQueue, SpiderSetting setting)
         {
             AddressQueue = addressQueue;
+            Setting = setting;
         }
 
         public void Start()
         {
             foreach(var worker in Workers)
             {
-                worker.BeginWaitWork(AddressQueue);
+                worker.BeginWaitWork(AddressQueue, Setting);
             }
         }
 

@@ -22,6 +22,7 @@ namespace CozySpider.Core.Worker
         {
             InnerThread = new Thread(new ThreadStart(ThreadProc));
             InnerThread.Start();
+            IsWaiting = true;
         }
 
         public override void StopWaitWork()

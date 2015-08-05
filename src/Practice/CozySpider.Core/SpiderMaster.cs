@@ -11,7 +11,7 @@ namespace CozySpider.Core
 {
     public class SpiderMaster
     {
-        private SpiderSetting setting = null;
+        private SpiderSetting Setting { get; set; }
 
         private UrlAddressQueue urlQueue { get; set; }
 
@@ -20,12 +20,14 @@ namespace CozySpider.Core
         public SpiderMaster()
         {
             urlQueue = new UrlAddressQueue();
-            Workers  = new SpiderWorkerList(urlQueue);
         }
 
         public void Init(SpiderSetting setting)
         {
-            this.setting = setting;
+            this.Setting = setting;
+
+            Workers = new SpiderWorkerList(urlQueue, Setting);
+
             for (int i = 0; i < setting.WorkerCount; ++i)
             {
                  Workers.Add(new SpiderThreadWorker());
@@ -35,17 +37,12 @@ namespace CozySpider.Core
 
         public void Crawl()
         {
-            SpiderProcess.Seed2Queue(urlQueue, setting);
+            SpiderProcess.Seed2Queue(urlQueue, Setting);
         }
 
         public void Stop()
         {
             Workers.Stop();
-        }
-
-        public void Test()
-        {
-            urlQueue.EnQueue(new UrlInfo("hehe", 1));
         }
     }
 }
