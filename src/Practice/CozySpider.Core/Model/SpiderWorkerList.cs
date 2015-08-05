@@ -35,7 +35,7 @@ namespace CozySpider.Core.Model
         {
             for (int i = 0; i < n; ++i)
             {
-                var worker = new SpiderThreadWorker();
+                var worker                      = new SpiderThreadWorker();
                 worker.AddUrlEventHandler       += new EventHandler<AddUrlEventArgs>(AddUrlEventAction);
                 worker.DataReceivedEventHandler += new EventHandler<DataReceivedEventArgs>(DataReceivedAction);
                 Workers.Add(worker);
@@ -45,8 +45,8 @@ namespace CozySpider.Core.Model
 
         public SpiderWorkerList(UrlAddressQueue addressQueue, SpiderSetting setting)
         {
-            AddressQueue = addressQueue;
-            Setting = setting;
+            AddressQueue    = addressQueue;
+            Setting         = setting;
         }
 
         public void Start()

@@ -18,6 +18,8 @@ namespace CozySpider.Core
 
         private IUrlReader Reader { get; set; }
 
+        private const string pattern = @"http://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?";
+
         public SpiderWorker()
         {
             Reader = new DefaultReader();
@@ -30,8 +32,8 @@ namespace CozySpider.Core
                 throw new ArgumentNullException("UrlAddressQueue and SpiderSetting must not null");
             }
 
-            AddressQueue = queue;
-            Setting = setting;
+            AddressQueue    = queue;
+            Setting         = setting;
             DoWork(new Action(() =>
             {
                 if(AddressQueue.HasValue)
@@ -39,11 +41,9 @@ namespace CozySpider.Core
                     var result = this.AddressQueue.DeQueue();
                     if (result.Depth < Setting.Depth)
                     {
-                        var pageData = Reader.Read(result.Url);
-                        // TODO GetWebPage
-                        const string pattern = @"http://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?";
-                        Regex r = new Regex(pattern, RegexOptions.IgnoreCase);
-                        MatchCollection m = r.Matches(pageData);
+                        var pageData        = Reader.Read(result.Url);
+                        Regex r             = new Regex(pattern, RegexOptions.IgnoreCase);
+                        MatchCollection m   = r.Matches(pageData);
 
                         foreach(var url in m)
                         {

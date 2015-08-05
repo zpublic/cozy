@@ -20,8 +20,8 @@ namespace CozySpider.Core.Worker
         public SpiderThreadWorker()
         {
             InnerThread = new Thread(new ThreadStart(ThreadProc));
+            IsWaiting   = true;
             InnerThread.Start();
-            IsWaiting = true;
         }
 
         public override void StopWaitWork()

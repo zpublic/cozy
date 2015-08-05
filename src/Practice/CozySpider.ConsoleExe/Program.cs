@@ -55,11 +55,11 @@ namespace CozySpider.ConsoleExe
         private static void OnAddUrlEvent(object sender, Core.Event.AddUrlEventArgs args)
         {
             Console.WriteLine(args.Url);
-            WebRequest request = WebRequest.Create(args.Url.Trim());
+            WebRequest request  = WebRequest.Create(args.Url.Trim());
             WebResponse respone = request.GetResponse();
-            Stream rspStream = respone.GetResponseStream();
+            Stream rspStream    = respone.GetResponseStream();
 
-            string path = @"./img/";
+            string path         = @"./img/";
 
             if(!Directory.Exists(path))
             {
