@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using CozySpider.Core.Worker;
 
 namespace CozySpider.Core
 {
-    public class SpiderMaster
+    public partial class SpiderMaster
     {
         private SpiderSetting Setting { get; set; }
 
@@ -26,18 +25,18 @@ namespace CozySpider.Core
         {
             this.Setting = setting;
 
-            Workers = new SpiderWorkerList(urlQueue, Setting);
+            Workers                     = new SpiderWorkerList(urlQueue, Setting);
+            Workers.AddUrlEventAction   = new Action<object, Event.AddUrlEventArgs>(OnAddUrlEventHandler);
+            Workers.DataReceivedAction  = new Action<object, Event.DataReceivedEventArgs>(OnDataReceivedEventHandler);
 
-            for (int i = 0; i < setting.WorkerCount; ++i)
-            {
-                 Workers.Add(new SpiderThreadWorker());
-            }
+            Workers.CreateWorker(setting.WorkerCount);
             Workers.Start();
         }
 
         public void Crawl()
         {
             SpiderProcess.Seed2Queue(urlQueue, Setting);
+
         }
 
         public void Stop()

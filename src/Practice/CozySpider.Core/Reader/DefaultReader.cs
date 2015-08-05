@@ -14,10 +14,13 @@ namespace CozySpider.Core.Reader
         {
             WebRequest request  = WebRequest.Create(url.Trim());
             WebResponse respone = request.GetResponse();
-            Stream rspStream    = respone.GetResponseStream();
-            StreamReader reader = new StreamReader(rspStream, Encoding.Default);
-            string result       = reader.ReadToEnd();
-            return result;
+            using (var rspStream = respone.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(rspStream, Encoding.Default);
+                string result = reader.ReadToEnd();
+
+                return result;
+            }
         }
     }
 }

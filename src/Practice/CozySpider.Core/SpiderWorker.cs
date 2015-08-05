@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace CozySpider.Core
 {
-    public abstract class SpiderWorker
+    public abstract partial class SpiderWorker
     {
         protected UrlAddressQueue AddressQueue { get; set; }
 
@@ -34,7 +34,7 @@ namespace CozySpider.Core
             Setting = setting;
             DoWork(new Action(() =>
             {
-                if(this.AddressQueue.HasValue)
+                if(AddressQueue.HasValue)
                 {
                     var result = this.AddressQueue.DeQueue();
                     if (result.Depth < Setting.Depth)
@@ -51,6 +51,17 @@ namespace CozySpider.Core
                             if (SpiderProcess.UrlMatch(U, setting))
                             {
                                 AddressQueue.EnQueue(new UrlInfo(U, result.Depth + 1));
+                                if(AddUrlEventHandler != null)
+                                {
+                                    AddUrlEventHandler(this, new Event.AddUrlEventArgs(U));
+                                }
+                            }
+                        }
+                        if(!AddressQueue.HasValue)
+                        {
+                            if (DataReceivedEventHandler != null)
+                            {
+                                DataReceivedEventHandler(this, new Event.DataReceivedEventArgs());
                             }
                         }
                     }

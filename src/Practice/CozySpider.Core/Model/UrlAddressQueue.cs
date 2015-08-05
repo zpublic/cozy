@@ -21,6 +21,8 @@ namespace CozySpider.Core.Model
             }
         }
 
+        public ManualResetEvent WorkersEvent { get; set; }
+
         public int Count
         {
             get

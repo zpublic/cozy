@@ -18,10 +18,7 @@ namespace CozySpider.Core
                 var c = setting.Seeds.GetSeeds();
                 foreach (var i in c)
                 {
-                    if (UrlMatch(i, setting))
-                    {
-                        urlQueue.EnQueue(new UrlInfo(i, 0));
-                    }
+                    urlQueue.EnQueue(new UrlInfo(i, 0));
                 }
             }
         }
