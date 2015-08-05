@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using CozySpider.Core.Worker;
 
 namespace CozySpider.Core
 {
@@ -11,17 +13,24 @@ namespace CozySpider.Core
     {
         private SpiderSetting setting = null;
 
-        private UrlAddressQueue urlQueue = new UrlAddressQueue();
+        private UrlAddressQueue urlQueue { get; set; }
 
-        private List<SpiderWorker> workers = new List<SpiderWorker>();
+        private SpiderWorkerList Workers { get; set; }
+
+        public SpiderMaster()
+        {
+            urlQueue = new UrlAddressQueue();
+            Workers  = new SpiderWorkerList(urlQueue);
+        }
 
         public void Init(SpiderSetting setting)
         {
             this.setting = setting;
             for (int i = 0; i < setting.WorkerCount; ++i)
             {
-                workers.Add(new SpiderWorker());
+                 Workers.Add(new SpiderThreadWorker());
             }
+            Workers.Start();
         }
 
         public void Crawl()

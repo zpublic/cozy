@@ -44,6 +44,7 @@
     <Compile Include="Event\DataReceivedEventArgs.cs" />
     <Compile Include="Event\ErrorEventArgs.cs" />
     <Compile Include="Event\EventArgsBase.cs" />
+    <Compile Include="Model\SpiderWorkerList.cs" />
     <Compile Include="Output\IOutput.cs" />
     <Compile Include="UrlFilter\BloomFilter.cs" />
     <Compile Include="UrlFilter\HashFilter.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="UrlFilter\IUrlFilter.cs" />
     <Compile Include="UrlMatch\FindStringMatch.cs" />
     <Compile Include="UrlMatch\IUrlMatch.cs" />
+    <Compile Include="Worker\SpiderThreadWorker.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

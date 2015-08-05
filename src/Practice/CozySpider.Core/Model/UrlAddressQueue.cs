@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CozySpider.Core.Model
 {
-    class UrlAddressQueue
+    public class UrlAddressQueue
     {
         protected readonly Queue<UrlInfo> InnerQueue = new Queue<UrlInfo>();
         protected readonly object SyncObject = new object();

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CozySpider.Core
 {
-    class SpiderProcess
+    public class SpiderProcess
     {
         public static void Seed2Queue(
             UrlAddressQueue urlQueue,
