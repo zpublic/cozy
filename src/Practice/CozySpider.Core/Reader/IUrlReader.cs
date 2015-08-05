@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozySpider.Core.Event
+namespace CozySpider.Core.Reader
 {
-    public class DataReceivedEventArgs : EventArgs
+    public interface IUrlReader
     {
-
+        string Read(string url);
     }
 }

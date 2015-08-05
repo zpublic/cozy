@@ -5,11 +5,17 @@ namespace NetworkHelper.Event
 {
     public class DataMessageArgs : EventArgs
     {
-        public NetIncomingMessage Input { get; set; }
+        public NetBuffer Input { get; set; }
 
-        public DataMessageArgs(NetIncomingMessage input)
+        public uint MessageId { get; set; }
+
+        public NetConnection Connection { get; set; }
+
+        public DataMessageArgs(NetBuffer input, uint id, NetConnection conn)
         {
             Input = input;
+            MessageId = id;
+            Connection = conn;
         }
     }
 }

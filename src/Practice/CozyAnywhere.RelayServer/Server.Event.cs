@@ -19,13 +19,13 @@ namespace CozyAnywhere.RelayServerCore
             var status = (NetConnectionStatus)msg.Input.ReadByte();
             string reason = msg.Input.ReadString();
             var queryMsg = new QueryConnectMessage();
-            server.SendMessage(queryMsg, msg.Input.SenderConnection);
+            server.SendMessage(queryMsg, msg.Connection);
         }
 
         private void OnDataMessage(object sender, DataMessageArgs msg)
         {
-            var baseMsg = MessageReader.GetTypeInstanceByStream(msg.Input);
-            MessageCallbackInvoker.Invoke(baseMsg, msg.Input.SenderConnection);
+            var baseMsg = MessageReader.GetTypeInstance(msg.MessageId, msg.Input);
+            MessageCallbackInvoker.Invoke(baseMsg, msg.Connection);
         }
 
         private void OnInternalMessage(object sender, InternalMessageArgs msg)

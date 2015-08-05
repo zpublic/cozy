@@ -36,7 +36,7 @@ namespace CozyAnywhere.WpfServer.ViewModel
             }
         }
 
-        private int _Port = 36048;
+        private int _Port = 48360;
         public int Port
         {
             get

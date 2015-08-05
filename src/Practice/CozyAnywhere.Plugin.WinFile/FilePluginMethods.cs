@@ -97,5 +97,16 @@ namespace CozyAnywhere.Plugin.WinFile
                 Data        = JsonConvert.SerializeObject(result),
             };
         }
+
+        public PluginMethodReturnValueType Shell(FileGetCurrentDirectoryArgs ExistArgs)
+        {
+            var result = FileUtil.FileGetCurrentDirectory() + @"\";
+
+            return new PluginMethodReturnValueType()
+            {
+                DataType    = PluginMethodReturnValueType.StringDataType,
+                Data        = JsonConvert.SerializeObject(result),
+            };
+        }
     }
 }

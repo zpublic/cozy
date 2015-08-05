@@ -11,7 +11,7 @@ namespace CozyAnywhere.Protocol.Messages
         public string ConnectName { get; set; }
         public string Information { get; set; }
 
-        public void Write(NetOutgoingMessage om)
+        public void Write(NetBuffer om)
         {
             if (Address == null) Address = string.Empty;
             if (ConnectName == null) ConnectName = string.Empty;
@@ -22,7 +22,7 @@ namespace CozyAnywhere.Protocol.Messages
             om.Write(Information);
         }
 
-        public void Read(NetIncomingMessage im)
+        public void Read(NetBuffer im)
         {
             Address     = im.ReadString();
             ConnectName = im.ReadString();

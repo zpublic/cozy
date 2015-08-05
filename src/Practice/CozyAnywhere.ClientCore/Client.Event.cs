@@ -11,27 +11,25 @@ namespace CozyAnywhere.ClientCore
         {
             if (server != null)
             {
-                server.StatusMessage    += new EventHandler<DataMessageArgs>(OnStatusMessage);
+                server.StatusMessage    += new EventHandler<StatusMessageArgs>(OnStatusMessage);
                 server.DataMessage      += new EventHandler<DataMessageArgs>(OnDataMessage);
                 server.InternalMessage  += new EventHandler<InternalMessageArgs>(OnInternalMessage);
             }
         }
 
-        private void OnStatusMessage(object sender, DataMessageArgs msg)
+        private void OnStatusMessage(object sender, StatusMessageArgs msg)
         {
-            var status = (NetworkHelper.NetConnectionStatus)msg.Input.ReadByte();
-            string reason = msg.Input.ReadString();
-            if (status == NetworkHelper.NetConnectionStatus.Connected)
+            if (msg.Status == NetworkHelper.NetConnectionStatus.Connected)
             {
                 var rspMsg = new QueryConnectMessage();
-                server.SendMessage(rspMsg, msg.Input.SenderConnection);
+                server.SendMessage(rspMsg, msg.Connection);
             }
         }
 
         private void OnDataMessage(object sender, DataMessageArgs msg)
         {
-            var baseMsg = MessageReader.GetTypeInstanceByStream(msg.Input);
-            MessageCallbackInvoker.Invoke(baseMsg, msg.Input.SenderConnection);
+            var baseMsg = MessageReader.GetTypeInstance(msg.MessageId, msg.Input);
+            MessageCallbackInvoker.Invoke(baseMsg, msg.Connection);
         }
 
         private void OnInternalMessage(object sender, InternalMessageArgs msg)

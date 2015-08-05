@@ -132,6 +132,16 @@ void CFileUtilCpp::FileEnum(LPCTSTR lpPath, FILEENUMPROC lpEnumFunc)
     }
 }
 
+DWORD CFileUtilCpp::CurrentDirectoryGet(DWORD dwLength, LPTSTR lpResult)
+{
+    LPTSTR lpOutput = nullptr;
+    if (dwLength != 0)
+    {
+        lpOutput = lpResult;
+    }
+    return ::GetCurrentDirectory(dwLength, lpOutput);
+}
+
 FILEUTILCPP_API bool FileCopy(LPCTSTR lpSourcePath, LPCTSTR lpDestPath, bool bFailIfExists)
 {
     return CFileUtilCppInstance.FileCopy(lpSourcePath, lpDestPath, bFailIfExists);
@@ -175,4 +185,9 @@ FILEUTILCPP_API bool FillFileData(LPCTSTR lpPath, WIN32_FIND_DATA* lpData)
 FILEUTILCPP_API void FileEnum(LPCTSTR lpPath, FILEENUMPROC lpEnumFunc)
 {
     CFileUtilCppInstance.FileEnum(lpPath, lpEnumFunc);
+}
+
+FILEUTILCPP_API  DWORD CurrentDirectoryGet(DWORD dwLength, LPTSTR lpResult)
+{
+    return CFileUtilCppInstance.CurrentDirectoryGet(dwLength, lpResult);
 }

@@ -37,6 +37,8 @@ public:
     bool GetFileTimes(LPCTSTR lpPath, FILETIME* lpCreationTime, FILETIME* lpLastAccessTime, FILETIME* lpLastWriteTime);
 
     bool FillFileData(LPCTSTR lpPath, WIN32_FIND_DATA* lpData);
+
+    DWORD CurrentDirectoryGet(DWORD dwLength, LPTSTR lpResult);
 };
 
 extern FILEUTILCPP_API CFileUtilCpp CFileUtilCppInstance;
@@ -58,3 +60,5 @@ extern "C" FILEUTILCPP_API bool GetFileTimes(LPCTSTR lpPath, FILETIME* lpCreatio
 extern "C" FILEUTILCPP_API bool FillFileData(LPCTSTR lpPath, WIN32_FIND_DATA* lpData);
 
 extern "C" FILEUTILCPP_API void FileEnum(LPCTSTR lpPath, FILEENUMPROC lpEnumFunc);
+
+extern "C" FILEUTILCPP_API  DWORD CurrentDirectoryGet(DWORD dwLength, LPTSTR lpResult);

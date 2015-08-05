@@ -9,12 +9,12 @@ namespace CozyAnywhere.Protocol.Messages
 
         public string Command { get; set; }
 
-        public void Write(NetOutgoingMessage om)
+        public void Write(NetBuffer om)
         {
             om.Write(Command);
         }
 
-        public void Read(NetIncomingMessage im)
+        public void Read(NetBuffer im)
         {
             Command = im.ReadString();
         }

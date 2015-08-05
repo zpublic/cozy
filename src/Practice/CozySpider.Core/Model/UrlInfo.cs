@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CozySpider.Core.Model
 {
-    class UrlInfo
+    public class UrlInfo
     {
         public UrlInfo(string url, int depth)
         {

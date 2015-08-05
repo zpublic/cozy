@@ -6,19 +6,26 @@ using System.Threading.Tasks;
 using CozySpider.Core;
 using CozySpider.Core.UrlMatch;
 using System.Threading;
+using CozySpider.Core.Event;
+using System.IO;
+using System.Net;
 
 namespace CozySpider.ConsoleExe
 {
-    class Program
+    public class Program
     {
+        private static AutoResetEvent CompleteEvent = new AutoResetEvent(false);
+
         static void Main(string[] args)
         {
-            SpiderSeeds seeds = new SpiderSeeds();
-            seeds.AddSeed("http://www.javfee.com/cn/genre/w/currentPage/");
+            Console.WriteLine("Init");
 
+            SpiderSeeds seeds = new SpiderSeeds();
+            // seeds.AddSeed("http://www.javfee.com/cn/genre/w/currentPage/");
+            seeds.AddSeed(@"http://image.baidu.com/search/index?tn=baiduimage&ct=201326592&lm=-1&cl=2&t=12&word=complete&ie=utf-8&fr=news");
             IUrlMatch match = new FindStringMatch()
             {
-                StringFind  = "javfee.com",
+                StringFind  = ".jpg",
                 NoCase      = true
             };
 
@@ -30,9 +37,43 @@ namespace CozySpider.ConsoleExe
 
             SpiderMaster master = new SpiderMaster();
             master.Init(setting);
+            master.AddUrlEventHandler       += OnAddUrlEvent;
+            master.DataReceivedEventHandler += OnDataReceivedEvent;
+
+            Console.WriteLine("Begin");
             master.Crawl();
-            Thread.Sleep(3000);
+
+            CompleteEvent.WaitOne();
             master.Stop();
+            Console.WriteLine("Finish");
+            Console.ReadKey();
+        }
+
+        private static int id;
+        public static int Id { get { return id++; } }
+
+        private static void OnAddUrlEvent(object sender, Core.Event.AddUrlEventArgs args)
+        {
+            Console.WriteLine(args.Url);
+            WebRequest request  = WebRequest.Create(args.Url.Trim());
+            WebResponse respone = request.GetResponse();
+            Stream rspStream    = respone.GetResponseStream();
+
+            string path         = @"./img/";
+
+            if(!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            using (FileStream fs = new FileStream(path + Id + ".jpg", FileMode.Create, FileAccess.ReadWrite))
+            {
+                rspStream.CopyTo(fs);
+            }
+        }
+
+        private static void OnDataReceivedEvent(object sender, Core.Event.DataReceivedEventArgs args)
+        {
+            CompleteEvent.Set();
         }
     }
 }

@@ -18,17 +18,15 @@ namespace ConsoleClientTester
             SynchronizationContext.SetSynchronizationContext(SynContext);
 
             server                  = new Server(1000, 48360);
-            server.StatusMessage    += new EventHandler<DataMessageArgs>(OnStatusMessage);
+            server.StatusMessage    += new EventHandler<StatusMessageArgs>(OnStatusMessage);
             server.Listen();
 
             server.EnterMainLoop();
         }
 
-        public static void OnStatusMessage(object sender, DataMessageArgs e)
+        public static void OnStatusMessage(object sender, StatusMessageArgs e)
         {
-            var status = (NetworkHelper.NetConnectionStatus)e.Input.ReadByte();
-            string reason = e.Input.ReadString();
-            if (status == NetConnectionStatus.Connected)
+            if (e.Status == NetConnectionStatus.Connected)
             {
                 Console.WriteLine("Connected");
             }

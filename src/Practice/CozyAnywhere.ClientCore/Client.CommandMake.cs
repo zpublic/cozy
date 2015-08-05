@@ -86,5 +86,21 @@ namespace CozyAnywhere.ClientCore
                 }
             }
         }
+
+        public void SendFileGetCurrentDirectoryMessage()
+        {
+            if(server != null)
+            {
+                var command = CommandMaker.Invoke("FileGetCurrentDirectory", null);
+                if (command != null)
+                {
+                    var commandMsg = new CommandMessage()
+                    {
+                        Command = command,
+                    };
+                    server.SendMessage(commandMsg);
+                }
+            }
+        }
     }
 }
