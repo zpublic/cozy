@@ -155,3 +155,5 @@ sln/packages/
 !sln/packages/repositories.config
 !src/Practice/CozyHttpServer/CozyHttpServer_TemporaryKey.pfx
 /sln/.vs
+/sln/asm
+/sln/saves
