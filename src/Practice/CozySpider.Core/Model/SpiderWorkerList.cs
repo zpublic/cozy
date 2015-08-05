@@ -30,7 +30,7 @@ namespace CozySpider.Core.Model
         {
             foreach(var worker in Workers)
             {
-                worker.RecvWork(AddressQueue);
+                worker.BeginWaitWork(AddressQueue);
             }
         }
 
@@ -38,7 +38,7 @@ namespace CozySpider.Core.Model
         {
             foreach(var worker in Workers)
             {
-                worker.StopWork();
+                worker.StopWaitWork();
             }
         }
     }

@@ -12,8 +12,6 @@ namespace CozySpider.Core.Worker
     {
         private Thread InnerThread { get; set; }
 
-        private AutoResetEvent BeginEvent { get; set; }
-
         private Action WorkAction { get; set; }
 
         public bool ShouldStop { get; set; }
@@ -22,12 +20,11 @@ namespace CozySpider.Core.Worker
 
         public SpiderThreadWorker()
         {
-            BeginEvent  = new AutoResetEvent(false);
             InnerThread = new Thread(new ThreadStart(ThreadProc));
             InnerThread.Start();
         }
 
-        public override void StopWork()
+        public override void StopWaitWork()
         {
             ShouldStop = true;
             if(IsWaiting)
@@ -39,17 +36,20 @@ namespace CozySpider.Core.Worker
         protected override void DoWork(Action action)
         {
             WorkAction = action;
-            BeginEvent.Set();
         }
 
         private void ThreadProc()
         {
             while(!ShouldStop)
             {
-                BeginEvent.WaitOne();
-                IsWaiting = false;
-                WorkAction();
-                IsWaiting = true;
+                if (AddressQueue != null)
+                {
+                    AddressQueue.AutoResetEvent.WaitOne();
+                    IsWaiting = false;
+                    WorkAction();
+                    IsWaiting = true;
+                    Thread.Sleep(0);
+                }
             }
         }
     }

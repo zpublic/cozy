@@ -31,7 +31,9 @@ namespace CozySpider.ConsoleExe
             SpiderMaster master = new SpiderMaster();
             master.Init(setting);
             master.Crawl();
+            master.Test();
             Thread.Sleep(3000);
+
             master.Stop();
         }
     }

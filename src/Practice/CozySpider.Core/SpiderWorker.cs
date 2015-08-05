@@ -4,27 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozySpider.Core.Model;
+using System.Threading;
 
 namespace CozySpider.Core
 {
     public abstract class SpiderWorker
     {
-        public void RecvWork(UrlAddressQueue queue)
-        {
-            if (queue != null)
-            {
-                queue.AutoResetEvent.WaitOne();
-                var result = queue.DeQueue();
-                DoWork(new Action(()=> 
-                {
+        protected UrlAddressQueue AddressQueue { get; set; }
 
-                    // TODO Parser the result
-                }));
+        public void BeginWaitWork(UrlAddressQueue queue)
+        {
+            if (queue == null)
+            {
+                throw new ArgumentNullException("UrlAddressQueue Must Not Null");
             }
+
+            AddressQueue = queue;
+            DoWork(new Action(() =>
+            {
+                if(this.AddressQueue.HasValue)
+                {
+                    var result = this.AddressQueue.DeQueue();
+                    System.Windows.Forms.MessageBox.Show("hello " + result.Url + " " + result.Depth);
+                }
+            }));
+
         }
 
         protected abstract void DoWork(Action action);
 
-        public abstract void StopWork();
+        public abstract void StopWaitWork();
     }
 }

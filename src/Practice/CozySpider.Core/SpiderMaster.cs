@@ -40,7 +40,12 @@ namespace CozySpider.Core
 
         public void Stop()
         {
+            Workers.Stop();
+        }
 
+        public void Test()
+        {
+            urlQueue.EnQueue(new UrlInfo("hehe", 1));
         }
     }
 }
