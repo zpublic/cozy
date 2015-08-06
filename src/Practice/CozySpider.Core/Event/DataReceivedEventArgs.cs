@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace CozySpider.Core.Event
 {
-    public class DataReceivedEventArgs : EventArgs
+    public class DataReceivedEventArgs : EventArgsBase
     {
+        public DataReceivedEventArgs(string url)
+            :base(url)
+        {
 
+        }
     }
 }

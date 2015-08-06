@@ -39,29 +39,38 @@ namespace CozySpider.Core
                 if(AddressQueue.HasValue)
                 {
                     var result = this.AddressQueue.DeQueue();
+
                     if (result.Depth < Setting.Depth)
                     {
-                        var pageData        = Reader.Read(result.Url);
-                        Regex r             = new Regex(pattern, RegexOptions.IgnoreCase);
-                        MatchCollection m   = r.Matches(pageData);
-
-                        foreach(var url in m)
+                        try
                         {
-                            var U = url.ToString();
-                            if (SpiderProcess.UrlMatch(U, setting))
+                            var pageData = Reader.Read(result.Url);
+                            if(DataReceivedEventHandler != null)
                             {
-                                AddressQueue.EnQueue(new UrlInfo(U, result.Depth + 1));
-                                if(AddUrlEventHandler != null)
+                                DataReceivedEventHandler(this, new Event.DataReceivedEventArgs(result.Url));
+                            }
+
+                            Regex r             = new Regex(pattern, RegexOptions.IgnoreCase);
+                            MatchCollection m   = r.Matches(pageData);
+
+                            foreach (var url in m)
+                            {
+                                var U = url.ToString();
+                                if (SpiderProcess.UrlMatch(U, setting))
                                 {
-                                    AddUrlEventHandler(this, new Event.AddUrlEventArgs(U));
+                                    if (AddUrlEventHandler != null)
+                                    {
+                                        AddUrlEventHandler(this, new Event.AddUrlEventArgs(U, result.Depth));
+                                    }
+                                    
                                 }
                             }
                         }
-                        if(!AddressQueue.HasValue)
+                        catch (Exception e)
                         {
-                            if (DataReceivedEventHandler != null)
+                            if(ErrorEventHandler != null)
                             {
-                                DataReceivedEventHandler(this, new Event.DataReceivedEventArgs());
+                                ErrorEventHandler(this, new Event.ErrorEventArgs(result.Url, e.Message));
                             }
                         }
                     }

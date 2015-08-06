@@ -14,11 +14,14 @@ namespace CozySpider.Core
 
         private UrlAddressQueue urlQueue { get; set; }
 
+        private UrlAddressPool urlPool { get; set; }
+
         private SpiderWorkerList Workers { get; set; }
 
         public SpiderMaster()
         {
             urlQueue = new UrlAddressQueue();
+            urlPool = new UrlAddressPool();
         }
 
         public void Init(SpiderSetting setting)
@@ -26,8 +29,7 @@ namespace CozySpider.Core
             this.Setting = setting;
 
             Workers                     = new SpiderWorkerList(urlQueue, Setting);
-            Workers.AddUrlEventAction   = new Action<object, Event.AddUrlEventArgs>(OnAddUrlEventHandler);
-            Workers.DataReceivedAction  = new Action<object, Event.DataReceivedEventArgs>(OnDataReceivedEventHandler);
+            RegisterEventHandler();
 
             Workers.CreateWorker(setting.WorkerCount);
             Workers.Start();
@@ -36,7 +38,6 @@ namespace CozySpider.Core
         public void Crawl()
         {
             SpiderProcess.Seed2Queue(urlQueue, Setting);
-
         }
 
         public void Stop()

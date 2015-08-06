@@ -12,5 +12,7 @@ namespace CozySpider.Core
         public EventHandler<AddUrlEventArgs> AddUrlEventHandler;
 
         public EventHandler<DataReceivedEventArgs> DataReceivedEventHandler;
+
+        public EventHandler<ErrorEventArgs> ErrorEventHandler;
     }
 }

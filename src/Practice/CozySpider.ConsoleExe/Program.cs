@@ -14,8 +14,6 @@ namespace CozySpider.ConsoleExe
 {
     public class Program
     {
-        private static AutoResetEvent CompleteEvent = new AutoResetEvent(false);
-
         static void Main(string[] args)
         {
             Console.WriteLine("Init");
@@ -24,13 +22,13 @@ namespace CozySpider.ConsoleExe
             seeds.AddSeed("http://www.javfee.com/cn/genre/3t");
             IUrlMatch match = new FindStringMatch()
             {
-                StringFind  = ".jpg",
+                StringFind  = "www.javfee.com",
                 NoCase      = true
             };
 
             SpiderSetting setting = new SpiderSetting();
             setting.Depth           = 2;
-            setting.WorkerCount     = 2;
+            setting.WorkerCount     = 5;
             setting.Seeds           = seeds;
             setting.Match           = match;
 
@@ -42,10 +40,9 @@ namespace CozySpider.ConsoleExe
             Console.WriteLine("Begin");
             master.Crawl();
 
-            CompleteEvent.WaitOne();
+            Console.ReadKey();
             master.Stop();
             Console.WriteLine("Finish");
-            Console.ReadKey();
         }
 
         private static int id;
@@ -53,26 +50,11 @@ namespace CozySpider.ConsoleExe
 
         private static void OnAddUrlEvent(object sender, Core.Event.AddUrlEventArgs args)
         {
-            Console.WriteLine(args.Url);
-            WebRequest request  = WebRequest.Create(args.Url.Trim());
-            WebResponse respone = request.GetResponse();
-            Stream rspStream    = respone.GetResponseStream();
-
-            string path         = @"./img/";
-
-            if(!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-            using (FileStream fs = new FileStream(path + Id + ".jpg", FileMode.Create, FileAccess.ReadWrite))
-            {
-                rspStream.CopyTo(fs);
-            }
+            Console.WriteLine(args.Message);
         }
 
         private static void OnDataReceivedEvent(object sender, Core.Event.DataReceivedEventArgs args)
         {
-            CompleteEvent.Set();
         }
     }
 }

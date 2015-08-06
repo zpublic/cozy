@@ -44,7 +44,11 @@ namespace CozySpider.Core.Worker
             {
                 if (AddressQueue != null)
                 {
-                    AddressQueue.AutoResetEvent.WaitOne();
+                    if (!AddressQueue.HasValue)
+                    {
+                        AddressQueue.AutoResetEvent.WaitOne();
+                    }
+
                     IsWaiting = false;
                     WorkAction();
                     IsWaiting = true;

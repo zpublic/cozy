@@ -25,6 +25,8 @@ namespace CozySpider.Core.Model
 
         public Action<object, DataReceivedEventArgs> DataReceivedAction;
 
+        public Action<object, ErrorEventArgs> ErrorAction;
+
         public void Add(SpiderWorker worker)
         {
             Workers.Add(worker);
