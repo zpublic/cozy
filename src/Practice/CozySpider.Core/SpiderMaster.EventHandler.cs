@@ -16,14 +16,12 @@ namespace CozySpider.Core
 
         public EventHandler<ErrorEventArgs> ErrorEventHandler;
 
-
         private void OnAddUrlEventHandler(object sender, AddUrlEventArgs args)
         {
             bool isExist = urlPool.Add(args.Url);
             if (!isExist)
             {
                 urlQueue.EnQueue(new UrlInfo(args.Url, args.Depth + 1));
-
             }
 
             if (AddUrlEventHandler != null)
@@ -46,13 +44,6 @@ namespace CozySpider.Core
             {
                 ErrorEventHandler(sender, args);
             }
-        }
-
-        private void RegisterEventHandler()
-        {
-            Workers.AddUrlEventAction   = new Action<object, AddUrlEventArgs>(OnAddUrlEventHandler);
-            Workers.DataReceivedAction  = new Action<object, DataReceivedEventArgs>(OnDataReceivedEventHandler);
-            Workers.ErrorAction         = new Action<object, ErrorEventArgs>(OnErrorEventHandler);
         }
     }
 }

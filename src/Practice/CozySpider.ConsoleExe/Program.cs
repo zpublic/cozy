@@ -28,7 +28,7 @@ namespace CozySpider.ConsoleExe
 
             SpiderSetting setting = new SpiderSetting();
             setting.Depth           = 2;
-            setting.WorkerCount     = 5;
+            setting.WorkerCount     = 2;
             setting.Seeds           = seeds;
             setting.Match           = match;
 

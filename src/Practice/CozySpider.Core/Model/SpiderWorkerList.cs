@@ -13,19 +13,16 @@ namespace CozySpider.Core.Model
     {
         private List<SpiderWorker> Workers = new List<SpiderWorker>();
 
-        private UrlAddressQueue AddressQueue { get; set; }
+        public UrlAddressQueue AddressQueue { get; set; }
 
         public int AllWorkersCount { get; private set; }
 
         public int FreeWokersCount { get; private set; }
 
-        private SpiderSetting Setting { get; set; }
-
-        public Action<object, AddUrlEventArgs> AddUrlEventAction;
-
-        public Action<object, DataReceivedEventArgs> DataReceivedAction;
-
-        public Action<object, ErrorEventArgs> ErrorAction;
+        public SpiderWorkerList(UrlAddressQueue queue)
+        {
+            AddressQueue = queue;
+        }
 
         public void Add(SpiderWorker worker)
         {
@@ -37,25 +34,24 @@ namespace CozySpider.Core.Model
         {
             for (int i = 0; i < n; ++i)
             {
-                var worker                      = new SpiderThreadWorker();
-                worker.AddUrlEventHandler       += new EventHandler<AddUrlEventArgs>(AddUrlEventAction);
-                worker.DataReceivedEventHandler += new EventHandler<DataReceivedEventArgs>(DataReceivedAction);
+                SpiderWorker worker = new SpiderThreadWorker(AddressQueue);
                 Workers.Add(worker);
             }
-            
         }
 
-        public SpiderWorkerList(UrlAddressQueue addressQueue, SpiderSetting setting)
+        public void SetWorkAction(Action action)
         {
-            AddressQueue    = addressQueue;
-            Setting         = setting;
+            foreach (var worker in Workers)
+            {
+                worker.WrokAction = action;
+            }
         }
 
         public void Start()
         {
             foreach(var worker in Workers)
             {
-                worker.BeginWaitWork(AddressQueue, Setting);
+                worker.BeginWork();
             }
             AllWorkersCount = FreeWokersCount = Workers.Count;
         }

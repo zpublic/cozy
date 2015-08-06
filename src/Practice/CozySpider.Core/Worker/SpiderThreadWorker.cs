@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using CozySpider.Core.Model;
 
 namespace CozySpider.Core.Worker
 {
@@ -11,17 +12,23 @@ namespace CozySpider.Core.Worker
     {
         private Thread InnerThread { get; set; }
 
-        private Action WorkAction { get; set; }
-
         public bool ShouldStop { get; set; }
 
         public bool IsWaiting { get; set; }
 
-        public SpiderThreadWorker()
+        public SpiderThreadWorker(UrlAddressQueue queue)
+            :base(queue)
         {
             InnerThread = new Thread(new ThreadStart(ThreadProc));
-            IsWaiting   = true;
-            InnerThread.Start();
+        }
+
+        public override void BeginWork()
+        {
+            if(InnerThread.ThreadState != ThreadState.Running)
+            {
+                IsWaiting = true;
+                InnerThread.Start();
+            }
         }
 
         public override void StopWaitWork()
@@ -33,27 +40,19 @@ namespace CozySpider.Core.Worker
             }
         }
 
-        protected override void DoWork(Action action)
-        {
-            WorkAction = action;
-        }
-
         private void ThreadProc()
         {
-            while(!ShouldStop)
+            while (!ShouldStop && AddressQueue != null)
             {
-                if (AddressQueue != null)
+                if (!AddressQueue.HasValue)
                 {
-                    if (!AddressQueue.HasValue)
-                    {
-                        AddressQueue.AutoResetEvent.WaitOne();
-                    }
-
-                    IsWaiting = false;
-                    WorkAction();
-                    IsWaiting = true;
-                    Thread.Sleep(0);
+                    AddressQueue.AutoResetEvent.WaitOne();
                 }
+
+                IsWaiting = false;
+                WrokAction();
+                IsWaiting = true;
+                Thread.Sleep(0);
             }
         }
     }

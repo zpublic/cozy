@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using CozySpider.Core.Reader;
 
 namespace CozySpider.Core
 {
@@ -18,20 +19,21 @@ namespace CozySpider.Core
 
         private SpiderWorkerList Workers { get; set; }
 
+        private IUrlReader Reader { get; set; }
+
         public SpiderMaster()
         {
-            urlQueue = new UrlAddressQueue();
-            urlPool = new UrlAddressPool();
+            urlQueue    = new UrlAddressQueue();
+            urlPool     = new UrlAddressPool();
+            Reader      = new DefaultReader();
         }
 
         public void Init(SpiderSetting setting)
         {
-            this.Setting = setting;
-
-            Workers                     = new SpiderWorkerList(urlQueue, Setting);
-            RegisterEventHandler();
-
+            Setting = setting;
+            Workers = new SpiderWorkerList(urlQueue);
             Workers.CreateWorker(setting.WorkerCount);
+            Workers.SetWorkAction(WorkerAction);
             Workers.Start();
         }
 

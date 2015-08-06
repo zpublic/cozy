@@ -49,6 +49,7 @@
     <Compile Include="Output\IOutput.cs" />
     <Compile Include="Reader\DefaultReader.cs" />
     <Compile Include="Reader\IUrlReader.cs" />
+    <Compile Include="SpiderMaster.Action.cs" />
     <Compile Include="SpiderMaster.EventHandler.cs" />
     <Compile Include="UrlFilter\BloomFilter.cs" />
     <Compile Include="UrlFilter\HashFilter.cs" />
@@ -71,9 +72,6 @@
     <Compile Include="UrlMatch\FindStringMatch.cs" />
     <Compile Include="UrlMatch\IUrlMatch.cs" />
     <Compile Include="Worker\SpiderThreadWorker.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="SpiderWorker.Handler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
