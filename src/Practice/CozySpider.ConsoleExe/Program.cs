@@ -17,6 +17,7 @@ namespace CozySpider.ConsoleExe
         static void Main(string[] args)
         {
             Console.WriteLine("Init");
+            InitRecvThread();
 
             SpiderSeeds seeds = new SpiderSeeds();
             seeds.AddSeed("http://www.javfee.com/cn/genre/3t");
@@ -34,27 +35,63 @@ namespace CozySpider.ConsoleExe
 
             SpiderMaster master = new SpiderMaster();
             master.Init(setting);
-            master.AddUrlEventHandler       += OnAddUrlEvent;
-            master.DataReceivedEventHandler += OnDataReceivedEvent;
+            master.AddUrlEventHandler       += OnEvent;
+            master.DataReceivedEventHandler += OnEvent;
+            master.ErrorEventHandler        += OnEvent;
 
             Console.WriteLine("Begin");
             master.Crawl();
 
             Console.ReadKey();
             master.Stop();
+            StopRecvThread();
             Console.WriteLine("Finish");
         }
 
-        private static int id;
-        public static int Id { get { return id++; } }
+        static AutoResetEvent ARE = new AutoResetEvent(false);
 
-        private static void OnAddUrlEvent(object sender, Core.Event.AddUrlEventArgs args)
+        static Queue<string> MessageQueue = new Queue<string>();
+        static object locker = new object();
+
+        static Thread RecvThread { get; set; }
+
+        private static void InitRecvThread()
         {
-            Console.WriteLine(args.Message);
+            var RecvThread = new Thread(new ThreadStart(() => 
+            {
+                while(true)
+                {
+                    if(MessageQueue.Count == 0)
+                    {
+                        ARE.WaitOne();
+                    }
+
+                    lock (locker)
+                    {
+                        if(MessageQueue.Count > 0)
+                        {
+                            var result = MessageQueue.Dequeue();
+                            Console.WriteLine(result);
+                        }
+                    }
+                    Thread.Sleep(0);
+                }
+            }));
+            RecvThread.Start();
         }
 
-        private static void OnDataReceivedEvent(object sender, Core.Event.DataReceivedEventArgs args)
+        private static void StopRecvThread()
         {
+            RecvThread.Abort();
+        }
+
+        private static void OnEvent(object sender, EventArgsBase e)
+        {
+            lock(locker)
+            {
+                MessageQueue.Enqueue(e.Message);
+                ARE.Set();
+            }
         }
     }
 }
