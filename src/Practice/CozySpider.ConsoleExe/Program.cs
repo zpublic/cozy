@@ -21,8 +21,7 @@ namespace CozySpider.ConsoleExe
             Console.WriteLine("Init");
 
             SpiderSeeds seeds = new SpiderSeeds();
-            // seeds.AddSeed("http://www.javfee.com/cn/genre/w/currentPage/");
-            seeds.AddSeed(@"http://image.baidu.com/search/index?tn=baiduimage&ct=201326592&lm=-1&cl=2&t=12&word=complete&ie=utf-8&fr=news");
+            seeds.AddSeed("http://www.javfee.com/cn/genre/3t");
             IUrlMatch match = new FindStringMatch()
             {
                 StringFind  = ".jpg",
