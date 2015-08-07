@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CozySpider.Core.Event;
 using System.Threading.Tasks;
+using CozySpider.Core.Model;
 
 namespace CozySpider.Core
 {
@@ -13,9 +14,16 @@ namespace CozySpider.Core
 
         public EventHandler<DataReceivedEventArgs> DataReceivedEventHandler;
 
+        public EventHandler<ErrorEventArgs> ErrorEventHandler;
 
         private void OnAddUrlEventHandler(object sender, AddUrlEventArgs args)
         {
+            bool isExist = urlPool.Add(args.Url);
+            if (!isExist)
+            {
+                urlQueue.EnQueue(new UrlInfo(args.Url, args.Depth + 1));
+            }
+
             if (AddUrlEventHandler != null)
             {
                 AddUrlEventHandler(sender, args);
@@ -27,6 +35,14 @@ namespace CozySpider.Core
             if(DataReceivedEventHandler != null)
             {
                 DataReceivedEventHandler(sender, args);
+            }
+        }
+
+        private void OnErrorEventHandler(object sender, ErrorEventArgs args)
+        {
+            if(ErrorEventHandler != null)
+            {
+                ErrorEventHandler(sender, args);
             }
         }
     }
