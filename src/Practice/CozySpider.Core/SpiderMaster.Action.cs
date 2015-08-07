@@ -13,9 +13,9 @@ namespace CozySpider.Core
 
         public void WorkerAction()
         {
-            if(urlQueue.HasValue)
+            var result = urlQueue.DeQueue();
+            if (result != null)
             {
-                var result = urlQueue.DeQueue();
                 if (result.Depth < Setting.Depth)
                 {
                     try
