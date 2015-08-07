@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using CozySpider.Core.Model;
 
 namespace CozySpider.Core
 {
@@ -21,7 +20,7 @@ namespace CozySpider.Core
                 {
                     try
                     {
-                        var pageData = Reader.Read(result.Url);
+                        var pageData = SpiderProcess.UrlRead(result.Url, Setting);
                         OnDataReceivedEventHandler(this, new Event.DataReceivedEventArgs(result.Url));
 
                         Regex r             = new Regex(pattern, RegexOptions.IgnoreCase);

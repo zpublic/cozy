@@ -10,6 +10,7 @@ using CozySpider.Core.Event;
 using System.IO;
 using System.Net;
 using CozySpider.Core.UrlFilter;
+using CozySpider.Core.Reader;
 
 namespace CozySpider.ConsoleExe
 {
@@ -30,12 +31,15 @@ namespace CozySpider.ConsoleExe
 
             IUrlFilter filter = new BloomFilter();
 
+            IUrlReader reader = new DefaultReader();
+
             SpiderSetting setting = new SpiderSetting();
             setting.Depth           = 3;
             setting.WorkerCount     = 8;
             setting.Seeds           = seeds;
             setting.Match           = match;
             setting.Filter          = filter;
+            setting.Reader          = reader;
 
             SpiderMaster master = new SpiderMaster();
             master.Init(setting);
