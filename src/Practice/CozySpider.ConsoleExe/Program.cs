@@ -9,6 +9,7 @@ using System.Threading;
 using CozySpider.Core.Event;
 using System.IO;
 using System.Net;
+using CozySpider.Core.UrlFilter;
 
 namespace CozySpider.ConsoleExe
 {
@@ -27,11 +28,14 @@ namespace CozySpider.ConsoleExe
                 NoCase      = true
             };
 
+            IUrlFilter filter = new BloomFilter();
+
             SpiderSetting setting = new SpiderSetting();
-            setting.Depth           = 2;
-            setting.WorkerCount     = 2;
+            setting.Depth           = 3;
+            setting.WorkerCount     = 8;
             setting.Seeds           = seeds;
             setting.Match           = match;
+            setting.Filter          = filter;
 
             SpiderMaster master = new SpiderMaster();
             master.Init(setting);

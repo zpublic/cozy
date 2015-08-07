@@ -13,12 +13,12 @@ namespace CozySpider.Core.Model
 
         public bool Add(string url)
         {
-            if(AddressHashSet.Contains(url))
-            {
-                return false;
-            }
-            AddressHashSet.Add(url);
-            return true;
+            //if(AddressHashSet.Contains(url))
+            //{
+            //    return true;
+            //}
+            //AddressHashSet.Add(url);
+            return false;
         }
 
         public List<string> GetUrls()

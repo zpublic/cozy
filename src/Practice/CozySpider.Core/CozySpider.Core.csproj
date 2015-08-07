@@ -71,6 +71,7 @@
     <Compile Include="UrlFilter\IUrlFilter.cs" />
     <Compile Include="UrlMatch\FindStringMatch.cs" />
     <Compile Include="UrlMatch\IUrlMatch.cs" />
+    <Compile Include="Util\BloomFilter.cs" />
     <Compile Include="Worker\SpiderThreadWorker.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

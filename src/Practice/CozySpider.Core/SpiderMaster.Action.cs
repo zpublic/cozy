@@ -30,6 +30,10 @@ namespace CozySpider.Core
                         foreach (var url in m)
                         {
                             var U = url.ToString();
+                            if (SpiderProcess.UrlFilter(U, Setting))
+                            {
+                                continue;
+                            }
                             if (SpiderProcess.UrlMatch(U, Setting))
                             {
                                 OnAddUrlEventHandler(this, new Event.AddUrlEventArgs(U, result.Depth));

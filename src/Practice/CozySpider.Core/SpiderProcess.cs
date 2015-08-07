@@ -25,6 +25,10 @@ namespace CozySpider.Core
 
         public static bool UrlFilter(string url, SpiderSetting setting)
         {
+            if (url != null && setting.Filter != null)
+            {
+                return setting.Filter.Filter(url);
+            }
             return false;
         }
 
