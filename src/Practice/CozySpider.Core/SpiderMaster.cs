@@ -36,6 +36,12 @@ namespace CozySpider.Core
         public void Crawl()
         {
             SpiderProcess.Seed2Queue(urlQueue, Setting);
+
+            while(true)
+            {
+                Workers.WorkersFreeEvent.WaitOne();
+                if (!urlQueue.HasValue) break;
+            }
         }
 
         public void Stop()

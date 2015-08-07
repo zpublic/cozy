@@ -15,6 +15,15 @@ namespace CozySpider.Core.Model
 
         public UrlAddressQueue AddressQueue { get; set; }
 
+        private readonly AutoResetEvent workersFreeEvent = new AutoResetEvent(true);
+        public AutoResetEvent WorkersFreeEvent
+        {
+            get
+            {
+                return workersFreeEvent;
+            }
+        }
+
         public SpiderWorkerList(UrlAddressQueue queue)
         {
             AddressQueue = queue;

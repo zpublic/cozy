@@ -10,12 +10,22 @@ namespace CozySpider.Core.Model
     {
         public void OnBeginWork()
         {
+            if(IsWorkersFree)
+            {
+                WorkersFreeEvent.Reset();
+            }
+
             SubWorkerCount();
         }
 
         public void OnFinishWork()
         {
             AddWrokerCount();
+
+            if(IsWorkersFree)
+            {
+                workersFreeEvent.Set();
+            }
         }
     }
 }
