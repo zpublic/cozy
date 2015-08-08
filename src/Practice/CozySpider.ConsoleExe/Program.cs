@@ -53,6 +53,7 @@ namespace CozySpider.ConsoleExe
             master.Stop();
             StopRecvThread();
             Console.WriteLine("Finish");
+            Console.ReadKey();
         }
 
         static AutoResetEvent ARE = new AutoResetEvent(false);

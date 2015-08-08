@@ -6,6 +6,10 @@ using System.Text;
 using CozyAnywhere.PluginBase;
 using System.Collections.Generic;
 using CozyAnywhere.Plugin.WinCapture.Model;
+using System.Drawing;
+using System.IO;
+using PluginHelper;
+using System.Drawing.Imaging;
 
 namespace CozyAnywhere.Plugin.WinCapture
 {
@@ -38,28 +42,56 @@ namespace CozyAnywhere.Plugin.WinCapture
                 int blockSizeW      = (x + blockSize - 1) / blockSize;
                 int blockSizeH      = (y + blockSize - 1) / blockSize;
                 var bitmap          = new BITMAP();
-                var bitmapSize      = CaptureUtil.DefGetCaptureBlockBitmap(hwnd, hdc, 0, 0, blockSize, blockSize, ref bitmap);
-                for (int i = 0; i < blockSizeW; ++i)
+                var bitmapSize      = CaptureUtil.DefGetCaptureBlockBitmap(hwnd, hdc, 0, 0, 0, 0, ref bitmap);
+                var bmp = CaptureUtil.DefGetCaptureData(hwnd, hdc, bitmapSize, bitmap, 0, 0, x, y);
+                using (MemoryStream ms = new MemoryStream(bmp))
                 {
-                    for (int j = 0; j < blockSizeH; ++j)
+                    var pic = (Bitmap)Image.FromStream(ms);
+                    var locker = new BitmapLocker(pic);
+                    locker.LockBits();
+                    for (int i = 0; i < blockSizeW; ++i)
                     {
-                        var bmp     = CaptureUtil.DefGetCaptureData(hwnd, hdc, bitmapSize, bitmap, i * blockSize, j * blockSize, blockSize, blockSize);
-                        var jpg     = CaptureUtil.ConvertBmpToJpeg(bmp);
-                        var meta    = new CaptureSplitMetaData()
+                        for (int j = 0; j < blockSizeH; ++j)
                         {
-                            X       = i * blockSize,
-                            Y       = j * blockSize,
-                            Width   = blockSize,
-                            Height  = blockSize,
-                        };
+                            Bitmap outputBmp = new Bitmap(blockSize, blockSize);
+                            var outputLocker = new BitmapLocker(outputBmp);
+                            outputLocker.LockBits();
+                            int blockBeginX = i * blockSize;
+                            int blockBeginY = j * blockSize;
+                            int blockWidth  = (i + 1) * (blockSize) > x ? (x % blockSize) : blockSize;
+                            int blockHeight = (j + 1) * (blockSize) > y ? (y % blockSize) : blockSize;
+                            for (int k = 0; k < blockWidth; ++k)
+                            {
+                                for (int l = 0; l < blockHeight; ++l)
+                                {
+                                    outputLocker.SetPixel(k, l, locker.GetPixel(blockBeginX + k, blockBeginY + l));
+                                }
+                            }
+                            outputLocker.UnlockBits();
+                            using (MemoryStream oms = new MemoryStream())
+                            {
+                                outputBmp.Save(oms, ImageFormat.Jpeg);
+                                byte[] data = new byte[oms.Length];
+                                oms.Seek(0, SeekOrigin.Begin);
+                                oms.Read(data, 0, data.Length);
+                                var meta = new CaptureSplitMetaData()
+                                {
+                                    X = blockBeginX,
+                                    Y = blockBeginY,
+                                    Width = blockSize,
+                                    Height = blockSize,
+                                };
 
-                        var m = JsonConvert.SerializeObject(meta);
-                        result.Add(new ReturnValuePacket()
-                        {
-                            MetaData    = m,
-                            Data        = jpg,
-                        });
+                                var m = JsonConvert.SerializeObject(meta);
+                                result.Add(new ReturnValuePacket()
+                                {
+                                    MetaData = m,
+                                    Data = data,
+                                });
+                            }
+                        }
                     }
+                    locker.UnlockBits();
                 }
             }
 
