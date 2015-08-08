@@ -8,9 +8,9 @@
     </Window.DataContext>
     <Grid>
         <StackPanel>
-            <Button Content="Update" Height="20"></Button>
+            <Button Content="Update" Height="20" Command="{Binding UpdateCommand}"></Button>
             <StackPanel Orientation="Horizontal" Height="300">
-                <ListView Height="300" Width="60" ItemsSource="{Binding WallpaperList}" SelectedItem="{Binding SelectedWallpaperListItem, Mode=TwoWay}">
+                <ListView Height="300" Width="60" ItemsSource="{Binding WallpaperList, Mode=TwoWay}" SelectedItem="{Binding SelectedWallpaperListItem, Mode=TwoWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Title}">

@@ -4,16 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 using CozyWallpaper.Gui.Model;
 using System.Windows.Media.Imaging;
 using CozyWallpaper.Core;
+using System.Windows.Input;
+using CozyWallpaper.Gui.Command;
 
 namespace CozyWallpaper.Gui.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        private List<WallpaperInfo> wallpaperList = new List<WallpaperInfo>();
-        public List<WallpaperInfo> WallpaperList
+        private ObservableCollection<WallpaperInfo> wallpaperList = new ObservableCollection<WallpaperInfo>();
+        public ObservableCollection<WallpaperInfo> WallpaperList
         {
             get
             {
@@ -67,10 +70,35 @@ namespace CozyWallpaper.Gui.ViewModels
             }
         }
 
+        private HashSet<string> UrlSet = new HashSet<string>();
+
+        private ICommand updateCommand;
+        public ICommand UpdateCommand
+        {
+            get
+            {
+                return updateCommand = updateCommand ?? new DelegateCommand((x)=> 
+                {
+                    var result = WallpaperNative.GetBingWallpaperUrl();
+                    foreach (var obj in result)
+                    {
+                        if (!UrlSet.Contains(obj.Url))
+                        {
+                            UrlSet.Add(obj.Url);
+                            WallpaperList.Add(new WallpaperInfo() { Title = obj.Title, Url = obj.Url });
+                        }
+                        else
+                        {
+                            // TODO no update
+                        }
+                    }
+                });
+            }
+        }
+
         public MainWindowViewModel()
         {
             PropertyChanged += new PropertyChangedEventHandler(OnPropertyChanged);
-            TestData();
         }
 
         public void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
@@ -114,12 +142,6 @@ namespace CozyWallpaper.Gui.ViewModels
             {
                 ImageDictionary[url] = img;
             }
-        }
-
-        public void TestData()
-        {
-            WallpaperList.Add(new WallpaperInfo() { Title = "123", Url = @"https://www.baidu.com/img/baidu_jgylogo3.gif?v=38768253.gif" });
-            WallpaperList.Add(new WallpaperInfo() { Title = "456", Url = @"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2435223104,2211683229&fm=58" });
         }
     }
 }
