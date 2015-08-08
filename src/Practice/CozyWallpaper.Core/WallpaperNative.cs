@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net;
 using Newtonsoft.Json;
 using CozyWallpaper.Core.json;
+using CozyWallpaper.Core.Model;
 
 namespace CozyWallpaper.Core
 {
@@ -24,11 +24,19 @@ namespace CozyWallpaper.Core
 
         private const string BingWallpaperApi = @"http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US";
 
-        public static List<string> GetBingWallpaperUrl()
+        public static List<WallpaperInfo> GetBingWallpaperUrl()
         {
             var content = ReadPageContent(BingWallpaperApi);
             var obj     = JsonConvert.DeserializeObject<BingWallpaperObject>(content);
-            var s       = from o in obj.images select o.url;
+            var s =
+                from o
+                in obj.images
+                select
+                new WallpaperInfo()
+                {
+                    Title   = o.copyright,
+                    Url     = o.url,
+                };
             return s.ToList();
         }
     }
