@@ -36,10 +36,10 @@ namespace CozyWallpaper.Gui.Storage
         {
             Add(new WallpaperStorageObject()
             {
-                Url = url,
-                Titile = title,
-                FileName = filename,
-                Extension = ext,
+                Url         = url,
+                Titile      = title,
+                FileName    = filename,
+                Extension   = ext,
             });
         }
 
@@ -55,8 +55,8 @@ namespace CozyWallpaper.Gui.Storage
 
         public void ReadStorageJosn(string json)
         {
-            var data = JsonConvert.DeserializeObject<WallpaperStorage>(json);
-            Wallpapers = data.Wallpapers;
+            var data    = JsonConvert.DeserializeObject<WallpaperStorage>(json);
+            Wallpapers  = data.Wallpapers;
         }
 
         public IEnumerable<WallpaperStorageObject> GetWallpapers()
