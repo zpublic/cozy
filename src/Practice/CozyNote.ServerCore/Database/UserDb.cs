@@ -11,7 +11,8 @@ namespace CozyNote.ServerCore.Database
 
         public UserDb()
         {
-            if (!Directory.Exists(@"cozy_db\")) {
+            if (!Directory.Exists(@"cozy_db\"))
+            {
                 Directory.CreateDirectory(@"cozy_db\");
             }
             db = new LiteDatabase(@"cozy_db\user.db");

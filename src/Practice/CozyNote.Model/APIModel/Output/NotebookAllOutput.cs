@@ -11,6 +11,6 @@ namespace CozyNote.Model.APIModel.Output
     {
         public int ResultStatus { get; set; }
 
-        public List<Notebook> NotebookList { get; set; }
+        public List<int> NotebookList { get; set; }
     }
 }

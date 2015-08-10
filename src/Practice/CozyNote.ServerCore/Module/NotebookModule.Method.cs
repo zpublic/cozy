@@ -24,20 +24,8 @@ namespace CozyNote.ServerCore.Module
                 var User = DbHolding.User.Get(Input.UserName);
                 if(User.pass == Input.UserPass)
                 {
-                    var NotebookList        = new List<Notebook>();
-                    var UserNotebookList    = User.notebook_list;
-
-                    foreach(var id in UserNotebookList)
-                    {
-                        if(DbHolding.Notebook.IsExist(id))
-                        {
-                            var notebook = DbHolding.Notebook.Get(id);
-                            NotebookList.Add(notebook);
-                        }
-                    }
-
                     Result.ResultStatus = ResultStatus.SuccessStatus;
-                    Result.NotebookList = NotebookList;
+                    Result.NotebookList = User.notebook_list;
                 }
             }
 
