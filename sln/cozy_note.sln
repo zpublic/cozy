@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{AC5561
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyNote.ServerConsole", "..\src\Practice\CozyNote.ServerConsole\CozyNote.ServerConsole.csproj", "{4EF373D2-DC99-46F7-9E6B-B6D8BF931B73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyNote.ClientCore", "..\src\Practice\CozyNote.ClientCore\CozyNote.ClientCore.csproj", "{491971C7-ACC6-46FD-ADE3-2267A11D7E0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyNote.WinformClient", "..\src\Practice\CozyNote.WinformClient\CozyNote.WinformClient.csproj", "{1B5AEFB5-3F2F-479F-B7DE-EA848B66C50A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,14 @@ Global
 		{4EF373D2-DC99-46F7-9E6B-B6D8BF931B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EF373D2-DC99-46F7-9E6B-B6D8BF931B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EF373D2-DC99-46F7-9E6B-B6D8BF931B73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{491971C7-ACC6-46FD-ADE3-2267A11D7E0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{491971C7-ACC6-46FD-ADE3-2267A11D7E0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{491971C7-ACC6-46FD-ADE3-2267A11D7E0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{491971C7-ACC6-46FD-ADE3-2267A11D7E0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B5AEFB5-3F2F-479F-B7DE-EA848B66C50A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B5AEFB5-3F2F-479F-B7DE-EA848B66C50A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B5AEFB5-3F2F-479F-B7DE-EA848B66C50A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B5AEFB5-3F2F-479F-B7DE-EA848B66C50A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,5 +44,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{F12E71E9-BA31-46CC-841C-2E20568F4C51} = {96B26208-F9AB-4FE1-A959-E3805D236DBC}
 		{4EF373D2-DC99-46F7-9E6B-B6D8BF931B73} = {96B26208-F9AB-4FE1-A959-E3805D236DBC}
+		{491971C7-ACC6-46FD-ADE3-2267A11D7E0E} = {AC556112-7844-463F-B36A-124CD3C81D26}
+		{1B5AEFB5-3F2F-479F-B7DE-EA848B66C50A} = {AC556112-7844-463F-B36A-124CD3C81D26}
 	EndGlobalSection
 EndGlobal
