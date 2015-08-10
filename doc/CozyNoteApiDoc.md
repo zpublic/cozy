@@ -199,8 +199,8 @@ output｛
 note/move
 ------------------
 input｛
-    form notebook-name,
-    form notebook-pass,
+    from notebook-name,
+    from notebook-pass,
     to notebook-name,
     to notebook-pass,
     note-id
