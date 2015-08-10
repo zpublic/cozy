@@ -13,7 +13,7 @@ namespace CozyNote.ServerTester
 
             UserDb db = new UserDb();
 
-            bool b = db.IsExist(100);
+            bool b = db.IsExist("100");
 
             int id = db.Create(u);
 
