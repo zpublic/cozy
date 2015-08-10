@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CozyNote.Model\CozyNote.Model.csproj">
+      <Project>{26a7afe3-8629-4da1-bc30-8872564176f5}</Project>
+      <Name>CozyNote.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyNote.ServerCore\CozyNote.ServerCore.csproj">
       <Project>{f12e71e9-ba31-46cc-841c-2e20568f4c51}</Project>
       <Name>CozyNote.ServerCore</Name>

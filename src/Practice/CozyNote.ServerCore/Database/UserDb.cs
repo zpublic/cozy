@@ -1,4 +1,4 @@
-﻿using CozyNote.ServerCore.Model;
+﻿using CozyNote.Model.ObjectModel;
 using LiteDB;
 using System.IO;
 
@@ -42,6 +42,15 @@ namespace CozyNote.ServerCore.Database
                 return col.Delete(u.id);
             }
             return false;
+        }
+
+        public void DeleteNotebook(int id)
+        {
+            var user = col.Find(x => x.notebook_list.Contains(id));
+            foreach(var obj in user)
+            {
+                obj.notebook_list.Remove(id);
+            }
         }
 
         public bool Update(User obj)

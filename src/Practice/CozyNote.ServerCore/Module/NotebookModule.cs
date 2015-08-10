@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace CozyNote.ServerCore.Module
 {
-    public class NotebookModule : NancyModule
+    public partial class NotebookModule : NancyModule
     {
         public NotebookModule() : base("/notebook")
         {

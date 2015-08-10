@@ -2,7 +2,7 @@
 
 namespace CozyNote.ServerCore.Module
 {
-    class UserModule : NancyModule
+    public partial class UserModule : NancyModule
     {
         public UserModule() : base("/user")
         {

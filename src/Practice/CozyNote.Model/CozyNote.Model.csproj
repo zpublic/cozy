@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{26A7AFE3-8629-4DA1-BC30-8872564176F5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CozyNote.Model</RootNamespace>
+    <AssemblyName>CozyNote.Model</AssemblyName>
+    <DefaultLanguage>zh-CN</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="APIModel\Input\NotebookAllInput.cs" />
+    <Compile Include="APIModel\Input\NotebookCreateInput.cs" />
+    <Compile Include="APIModel\Input\NotebookDeleteInput.cs" />
+    <Compile Include="APIModel\Input\NotebookGetInput.cs" />
+    <Compile Include="APIModel\Input\NotebookListInput.cs" />
+    <Compile Include="APIModel\Input\NotebookUpdateInput.cs" />
+    <Compile Include="APIModel\Input\NoteCreateInput.cs" />
+    <Compile Include="APIModel\Input\NoteDeleteInput.cs" />
+    <Compile Include="APIModel\Input\NoteGetInput.cs" />
+    <Compile Include="APIModel\Input\NoteMoveInput.cs" />
+    <Compile Include="APIModel\Input\NoteUpdateInput.cs" />
+    <Compile Include="APIModel\Input\UserCreateInput.cs" />
+    <Compile Include="APIModel\Input\UserNotebookInput.cs" />
+    <Compile Include="APIModel\Input\UserUpdateInput.cs" />
+    <Compile Include="APIModel\Output\NotebookAllOutput.cs" />
+    <Compile Include="APIModel\Output\NotebookCreateOutput.cs" />
+    <Compile Include="APIModel\Output\NotebookDeleteOutput.cs" />
+    <Compile Include="APIModel\Output\NotebookGetOutput.cs" />
+    <Compile Include="APIModel\Output\NotebookListOutput.cs" />
+    <Compile Include="APIModel\Output\NotebookUpdateOutput.cs" />
+    <Compile Include="APIModel\Output\NoteCreateOutput.cs" />
+    <Compile Include="APIModel\Output\NoteDeleteOutput.cs" />
+    <Compile Include="APIModel\Output\NoteGetOutput.cs" />
+    <Compile Include="APIModel\Output\NoteMoveOutput.cs" />
+    <Compile Include="APIModel\Output\NoteUpdateOutput.cs" />
+    <Compile Include="APIModel\Output\UserCreateOutput.cs" />
+    <Compile Include="APIModel\Output\UserNotebookOutput.cs" />
+    <Compile Include="APIModel\Output\UserUpdateOutput.cs" />
+    <Compile Include="APIModel\ResultStatus.cs" />
+    <Compile Include="ObjectModel\Note.cs" />
+    <Compile Include="ObjectModel\Notebook.cs" />
+    <Compile Include="ObjectModel\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

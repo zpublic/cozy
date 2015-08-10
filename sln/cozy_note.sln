@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyNote.WinformClient", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyNote.ServerTester", "..\src\Practice\CozyNote.ServerTester\CozyNote.ServerTester.csproj", "{1ECCCE7A-3269-44B3-AF52-A26A9116FD9F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Public", "Public", "{CFAF245B-10AC-41AD-91AE-C980ADD6FDA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyNote.Model", "..\src\Practice\CozyNote.Model\CozyNote.Model.csproj", "{26A7AFE3-8629-4DA1-BC30-8872564176F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,10 @@ Global
 		{1ECCCE7A-3269-44B3-AF52-A26A9116FD9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1ECCCE7A-3269-44B3-AF52-A26A9116FD9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1ECCCE7A-3269-44B3-AF52-A26A9116FD9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26A7AFE3-8629-4DA1-BC30-8872564176F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26A7AFE3-8629-4DA1-BC30-8872564176F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26A7AFE3-8629-4DA1-BC30-8872564176F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26A7AFE3-8629-4DA1-BC30-8872564176F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +61,6 @@ Global
 		{491971C7-ACC6-46FD-ADE3-2267A11D7E0E} = {AC556112-7844-463F-B36A-124CD3C81D26}
 		{1B5AEFB5-3F2F-479F-B7DE-EA848B66C50A} = {AC556112-7844-463F-B36A-124CD3C81D26}
 		{1ECCCE7A-3269-44B3-AF52-A26A9116FD9F} = {96B26208-F9AB-4FE1-A959-E3805D236DBC}
+		{26A7AFE3-8629-4DA1-BC30-8872564176F5} = {CFAF245B-10AC-41AD-91AE-C980ADD6FDA6}
 	EndGlobalSection
 EndGlobal

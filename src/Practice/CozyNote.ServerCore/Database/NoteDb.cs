@@ -1,4 +1,4 @@
-﻿using CozyNote.ServerCore.Model;
+﻿using CozyNote.Model.ObjectModel;
 using LiteDB;
 using System.IO;
 
