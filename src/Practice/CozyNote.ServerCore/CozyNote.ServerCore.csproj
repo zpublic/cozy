@@ -63,9 +63,6 @@
     <Compile Include="Database\NotebookDb.cs" />
     <Compile Include="Database\NoteDb.cs" />
     <Compile Include="Database\UserDb.cs" />
-    <Compile Include="Model\Note.cs" />
-    <Compile Include="Model\Notebook.cs" />
-    <Compile Include="Model\User.cs" />
     <Compile Include="Module\NotebookModule.cs" />
     <Compile Include="Module\NoteModule.cs" />
     <Compile Include="Module\UserModule.cs" />
@@ -75,7 +72,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CozyNote.Model\CozyNote.Model.csproj">
+      <Project>{26a7afe3-8629-4da1-bc30-8872564176f5}</Project>
+      <Name>CozyNote.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,5 +1,5 @@
 ﻿using CozyNote.ServerCore.Database;
-using CozyNote.ServerCore.Model;
+using CozyNote.Model.ObjectModel;
 
 namespace CozyNote.ServerTester
 {
