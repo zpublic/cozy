@@ -12,5 +12,10 @@ namespace CozyNote.Model.ObjectModel
         public string nickname { get; set; }
         public string pass { get; set; }
         public List<int> notebook_list { get; set; }
+
+        public User()
+        {
+            notebook_list = new List<int>();
+        }
     }
 }

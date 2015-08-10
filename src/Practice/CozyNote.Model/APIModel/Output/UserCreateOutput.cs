@@ -8,6 +8,7 @@ namespace CozyNote.Model.APIModel.Output
 {
     public class UserCreateOutput
     {
-        public string Result { get; set; }
+        public int ResultStatus { get; set; }
+        public int UserId { get; set; }
     }
 }
