@@ -1,7 +1,12 @@
 接口列表
 ==================================
+> user
+>> notebook - 查看用户全部笔记本  
+>> create - 创建用户  
+>> update - 更新用户信息  
+>
 > notebook  
->> all - 查看用户全部笔记本  
+>> all - 查看用户全部笔记本（同user/notebook）  
 >> get - 查看笔记本信息  
 >> list - 列出笔记本下的笔记  
 >> update - 修改笔记本   
@@ -20,31 +25,71 @@
 ==================================
 
 user｛
-    name
+    id,
+    nickname,
+    [pass],
+    notebook_list
 ｝
 
 notebook｛
-    id，
-    [pass]，
-    name，
-    notes_num
+    id,
+    [pass],
+    name,
+    notes_num,
+    note_list
 ｝
 
 note ｛
-    id，
-    name，
-    notebook_id，
-    type(0)，
+    id,
+    name,
+    notebook_id,
+    type(0),
     data
 ｝
 
 接口输入输出
 ==================================
 
+user/notebook
+------------------
+input｛
+    user-nickname,
+    user-pass
+｝
+
+output｛
+    notebook list
+｝
+
+user/create
+------------------
+input｛
+    user-nickname,
+    user-pass
+｝
+
+output｛
+    ok
+｝
+
+user/update
+------------------
+input｛
+    user-nickname,
+    user-pass,
+    new nickname，
+    new pass
+｝
+
+output｛
+    ok
+｝
+
 notebook/all
 ------------------
 input｛
-    user-name
+    user-nickname,
+    user-pass
 ｝
 
 output｛
@@ -54,19 +99,19 @@ output｛
 notebook/get
 ------------------
 input｛
-    notebook-id，
+    notebook-id,
     notebook-pass
 ｝
 
 output｛
-    notebook-name
+    notebook-name,
     notebook-notes_num
 ｝
 
 notebook/list
 ------------------
 input｛
-    notebook-id，
+    notebook-id,
     notebook-pass
 ｝
 
@@ -77,9 +122,9 @@ output｛
 notebook/update
 ------------------
 input｛
-    notebook-id，
-    notebook-pass，
-    new name，
+    notebook-id,
+    notebook-pass,
+    new name,
     new pass
 ｝
 
@@ -90,8 +135,8 @@ output｛
 notebook/create
 ------------------
 input｛
-    user-name，
-    notebook-name，
+    user-name,
+    notebook-name,
     notebook-pass
 ｝
 
@@ -102,7 +147,7 @@ output｛
 notebook/delete
 ------------------
 input｛
-    notebook-id，
+    notebook-id,
     notebook-pass
 ｝
 
@@ -113,10 +158,10 @@ output｛
 note/create
 ------------------
 input｛
-    notebook-name，
-    notebook-pass
-    note-name，
-    note-type，
+    notebook-name,
+    notebook-pass,
+    note-name,
+    note-type,
     note-data
 ｝
 
@@ -127,8 +172,8 @@ output｛
 note/get
 ------------------
 input｛
-    notebook-name，
-    notebook-pass
+    notebook-name,
+    notebook-pass,
     note-id
 ｝
 
@@ -139,11 +184,11 @@ output｛
 note/update
 ------------------
 input｛
-    notebook-name，
-    notebook-pass
-    note-id
-    new name，
-    new type，
+    notebook-name,
+    notebook-pass,
+    note-id,
+    new name,
+    new type,
     new data
 ｝
 
@@ -154,10 +199,10 @@ output｛
 note/move
 ------------------
 input｛
-    form notebook-name，
-    form notebook-pass
-    to notebook-name，
-    to notebook-pass
+    form notebook-name,
+    form notebook-pass,
+    to notebook-name,
+    to notebook-pass,
     note-id
 ｝
 
@@ -168,8 +213,8 @@ output｛
 note/delete
 ------------------
 input｛
-    notebook-name，
-    notebook-pass
+    notebook-name,
+    notebook-pass,
     note-id
 ｝
 
