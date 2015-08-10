@@ -4,19 +4,26 @@ namespace CozyNote.ServerCore.Module
 {
     class UserModule : NancyModule
     {
-        public UserModule()
+        public UserModule() : base("/user")
         {
-            Get["/user/notebook"] = x =>
+            Post["/notebook"] = x =>
             {
                 return "a";
             };
 
-            Get["/user/create"] = x =>
+            Post["/create"] = x =>
             {
+                var body = this.Request.Body;
+                long len = body.Length;
+                if (len > 0)
+                {
+                    byte[] byData = new byte[len];
+                    body.Read(byData, 0, (int)len);
+                }
                 return "a";
             };
 
-            Get["/user/update"] = x =>
+            Post["/update"] = x =>
             {
                 return "a";
             };

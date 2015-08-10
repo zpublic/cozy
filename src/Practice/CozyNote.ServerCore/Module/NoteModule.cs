@@ -4,29 +4,29 @@ namespace CozyNote.ServerCore.Module
 {
     public class NoteModule : NancyModule
     {
-        public NoteModule()
+        public NoteModule() : base("/note")
         {
-            Get["/note/create"] = x =>
+            Post["/create"] = x =>
             {
                 return "a";
             };
 
-            Get["/note/get"] = x =>
+            Post["/get"] = x =>
             {
                 return "a";
             };
 
-            Get["/note/update"] = x =>
+            Post["/update"] = x =>
             {
                 return "a";
             };
 
-            Get["/note/move"] = x =>
+            Post["/move"] = x =>
             {
                 return "a";
             };
 
-            Get["/note/delete"] = x =>
+            Post["/delete"] = x =>
             {
                 return "a";
             };

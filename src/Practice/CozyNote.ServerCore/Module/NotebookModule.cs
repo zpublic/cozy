@@ -5,9 +5,9 @@ namespace CozyNote.ServerCore.Module
 {
     public class NotebookModule : NancyModule
     {
-        public NotebookModule()
+        public NotebookModule() : base("/notebook")
         {
-            Get["/notebook/all"] = x =>
+            Post["/all"] = x =>
             {
                 var rsp = new
                 {
@@ -18,27 +18,27 @@ namespace CozyNote.ServerCore.Module
                 return JsonConvert.SerializeObject(rsp);
             };
 
-            Get["/notebook/get"] = x =>
+            Post["/get"] = x =>
             {
                 return "a";
             };
 
-            Get["/notebook/list"] = x =>
+            Post["/list"] = x =>
             {
                 return "a";
             };
 
-            Get["/notebook/update"] = x =>
+            Post["/update"] = x =>
             {
                 return "a";
             };
 
-            Get["/notebook/create"] = x =>
+            Post["/create"] = x =>
             {
                 return "a";
             };
 
-            Get["/notebook/delete"] = x =>
+            Post["/delete"] = x =>
             {
                 return "a";
             };

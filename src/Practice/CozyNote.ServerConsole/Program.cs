@@ -13,13 +13,6 @@ namespace CozyNote.ServerConsole
         static void Main(string[] args)
         {
             ServerHost.Run("http://localhost:23333");
-            try
-            {
-                Process.Start("http://localhost:23333/notebook/all");
-            }
-            catch (Exception)
-            {
-            }
             Console.ReadLine();
         }
     }
