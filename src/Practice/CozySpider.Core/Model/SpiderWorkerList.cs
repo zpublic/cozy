@@ -9,15 +9,20 @@ using CozySpider.Core.Worker;
 
 namespace CozySpider.Core.Model
 {
-    public class SpiderWorkerList
+    public partial class SpiderWorkerList
     {
         private List<SpiderWorker> Workers = new List<SpiderWorker>();
 
         public UrlAddressQueue AddressQueue { get; set; }
 
-        public int AllWorkersCount { get; private set; }
-
-        public int FreeWokersCount { get; private set; }
+        private readonly AutoResetEvent workersFreeEvent = new AutoResetEvent(true);
+        public AutoResetEvent WorkersFreeEvent
+        {
+            get
+            {
+                return workersFreeEvent;
+            }
+        }
 
         public SpiderWorkerList(UrlAddressQueue queue)
         {
@@ -34,7 +39,9 @@ namespace CozySpider.Core.Model
         {
             for (int i = 0; i < n; ++i)
             {
-                SpiderWorker worker = new SpiderThreadWorker(AddressQueue);
+                SpiderWorker worker     = new SpiderThreadWorker(AddressQueue);
+                worker.BeginWorkAction  = new Action(OnBeginWork);
+                worker.FinishWorkAction = new Action(OnFinishWork);
                 Workers.Add(worker);
             }
         }
@@ -51,16 +58,16 @@ namespace CozySpider.Core.Model
         {
             foreach(var worker in Workers)
             {
-                worker.BeginWork();
+                worker.StartWork();
             }
-            AllWorkersCount = FreeWokersCount = Workers.Count;
+            AllWorkersCount = freeWokersCount = Workers.Count;
         }
 
         public void Stop()
         {
             foreach(var worker in Workers)
             {
-                worker.StopWaitWork();
+                worker.StopWork();
             }
         }
     }

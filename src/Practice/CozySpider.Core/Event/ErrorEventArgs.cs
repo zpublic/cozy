@@ -21,7 +21,7 @@ namespace CozySpider.Core.Event
         public ErrorEventArgs(string url, string Message)
             : base(url)
         {
-
+            ErrorMessage = Message;
         }
     }
 }

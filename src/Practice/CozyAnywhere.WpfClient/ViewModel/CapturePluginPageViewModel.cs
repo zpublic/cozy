@@ -5,8 +5,8 @@ using System.Windows.Media.Imaging;
 using CozyAnywhere.WpfClient.Command;
 using System.Windows.Input;
 using System.Drawing;
-using CozyAnywhere.WpfClient.Ext;
 using System.Drawing.Imaging;
+using PluginHelper;
 
 namespace CozyAnywhere.WpfClient.ViewModel
 {

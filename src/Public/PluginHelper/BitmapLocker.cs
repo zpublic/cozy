@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 
-namespace CozyAnywhere.WpfClient.Ext
+namespace PluginHelper
 {
     public class BitmapLocker
     {

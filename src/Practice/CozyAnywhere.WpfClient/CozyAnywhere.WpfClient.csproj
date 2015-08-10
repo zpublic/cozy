@@ -56,7 +56,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\DelegateCommand.cs" />
-    <Compile Include="Ext\BitmapLocker.cs" />
     <Compile Include="Factory\CapturePluginPageFactory.cs" />
     <Compile Include="Factory\FilePluginPageFactory.cs" />
     <Compile Include="Factory\IControlFactory.cs" />
@@ -139,11 +138,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Public\PluginHelper\PluginHelper.csproj">
+      <Project>{a6e46a3f-aaf9-4ef2-b23c-e841ff77e2be}</Project>
+      <Name>PluginHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyAnywhere.ClientCore\CozyAnywhere.ClientCore.csproj">
       <Project>{f7556701-ef07-4404-8feb-13d7c19a0e4a}</Project>
       <Name>CozyAnywhere.ClientCore</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

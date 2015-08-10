@@ -40,5 +40,14 @@ namespace CozySpider.Core
             }
             return false;
         }
+
+        public static string UrlRead(string url, SpiderSetting setting)
+        {
+            if(url != null && setting.Reader != null)
+            {
+                return setting.Reader.Read(url);
+            }
+            return null;
+        }
     }
 }
