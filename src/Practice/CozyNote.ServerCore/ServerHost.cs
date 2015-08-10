@@ -3,6 +3,7 @@ using Nancy.Hosting.Self;
 using System;
 using System.Diagnostics;
 using CozyNote.ServerCore.Database;
+using System.Text;
 
 namespace CozyNote.ServerCore
 {
@@ -12,7 +13,12 @@ namespace CozyNote.ServerCore
         {
             Get["/"] = x =>
             {
-                return "hello world!";
+                //return "hello world!";
+                var jsonBytes = Encoding.UTF8.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(new { name = "Max", age = "19" })); 
+                return new Response {
+                    ContentType = "application/json",
+                    Contents = s => s.Write(jsonBytes, 0, jsonBytes.Length)
+                };
             };
         }
     }
@@ -27,7 +33,7 @@ namespace CozyNote.ServerCore
             };
             var host = new NancyHost(new Uri(uri), new DefaultNancyBootstrapper(), hostConfigs);
             host.Start();
-            TestData();
+            //TestData();
         }
 
         public static void TestData()
