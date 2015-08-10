@@ -22,7 +22,7 @@ namespace CozySpider.Core.Worker
             InnerThread = new Thread(new ThreadStart(ThreadProc));
         }
 
-        public override void BeginWork()
+        public override void StartWork()
         {
             if(InnerThread.ThreadState != ThreadState.Running)
             {
@@ -31,7 +31,7 @@ namespace CozySpider.Core.Worker
             }
         }
 
-        public override void StopWaitWork()
+        public override void StopWork()
         {
             ShouldStop = true;
             if(IsWaiting)
@@ -49,9 +49,16 @@ namespace CozySpider.Core.Worker
                     AddressQueue.AutoResetEvent.WaitOne();
                 }
 
+                if(BeginWorkAction != null)
+                    BeginWorkAction();
+
                 IsWaiting = false;
                 WrokAction();
                 IsWaiting = true;
+
+                if(FinishWorkAction != null)
+                    FinishWorkAction();
+
                 Thread.Sleep(0);
             }
         }

@@ -7,7 +7,7 @@ using CozySpider.Core.Model;
 
 namespace CozySpider.Core
 {
-    public abstract class SpiderWorker
+    public abstract partial class SpiderWorker
     {
         protected UrlAddressQueue AddressQueue { get; set; }
 
@@ -32,13 +32,17 @@ namespace CozySpider.Core
             }
         }
 
+        public Action BeginWorkAction { get; set; }
+
+        public Action FinishWorkAction { get; set; }
+
         public SpiderWorker(UrlAddressQueue queue)
         {
             AddressQueue = queue;
         }
 
-        public abstract void BeginWork();
+        public abstract void StartWork();
 
-        public abstract void StopWaitWork();
+        public abstract void StopWork();
     }
 }

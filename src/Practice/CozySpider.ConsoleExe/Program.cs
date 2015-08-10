@@ -10,6 +10,7 @@ using CozySpider.Core.Event;
 using System.IO;
 using System.Net;
 using CozySpider.Core.UrlFilter;
+using CozySpider.Core.Reader;
 
 namespace CozySpider.ConsoleExe
 {
@@ -21,7 +22,7 @@ namespace CozySpider.ConsoleExe
             InitRecvThread();
 
             SpiderSeeds seeds = new SpiderSeeds();
-            seeds.AddSeed("http://www.javfee.com/cn/genre/3t");
+            seeds.AddSeed("http://www.javfee.com/cn");
             IUrlMatch match = new FindStringMatch()
             {
                 StringFind  = "www.javfee.com",
@@ -30,12 +31,15 @@ namespace CozySpider.ConsoleExe
 
             IUrlFilter filter = new BloomFilter();
 
+            IUrlReader reader = new DefaultReader();
+
             SpiderSetting setting = new SpiderSetting();
-            setting.Depth           = 3;
+            setting.Depth           = 2;
             setting.WorkerCount     = 8;
             setting.Seeds           = seeds;
             setting.Match           = match;
             setting.Filter          = filter;
+            setting.Reader          = reader;
 
             SpiderMaster master = new SpiderMaster();
             master.Init(setting);
@@ -46,10 +50,10 @@ namespace CozySpider.ConsoleExe
             Console.WriteLine("Begin");
             master.Crawl();
 
-            Console.ReadKey();
             master.Stop();
             StopRecvThread();
             Console.WriteLine("Finish");
+            Console.ReadKey();
         }
 
         static AutoResetEvent ARE = new AutoResetEvent(false);
@@ -61,7 +65,7 @@ namespace CozySpider.ConsoleExe
 
         private static void InitRecvThread()
         {
-            var RecvThread = new Thread(new ThreadStart(() => 
+            RecvThread = new Thread(new ThreadStart(() => 
             {
                 while(true)
                 {

@@ -18,7 +18,7 @@ namespace NetworkClient
                 = new Dictionary<long, NetOutgoingMessage>();
         private readonly object PacketMessageDictionaryLocker = new object();
 
-        public const int MaxPacketSize = 548;
+        public const int MaxPacketSize = 8192;
 
         public Client()
         {
