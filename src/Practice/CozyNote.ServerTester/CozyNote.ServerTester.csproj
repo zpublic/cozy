@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F12E71E9-BA31-46CC-841C-2E20568F4C51}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{1ECCCE7A-3269-44B3-AF52-A26A9116FD9F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyNote.ServerCore</RootNamespace>
-    <AssemblyName>CozyNote.ServerCore</AssemblyName>
+    <RootNamespace>CozyNote.ServerTester</RootNamespace>
+    <AssemblyName>CozyNote.ServerTester</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -21,34 +22,17 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LiteDB, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\sln\packages\LiteDB.1.0.2\lib\net40\LiteDB.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Nancy, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\sln\packages\Nancy.1.2.0\lib\net40\Nancy.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Nancy.Hosting.Self, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\sln\packages\Nancy.Hosting.Self.1.2.0\lib\net40\Nancy.Hosting.Self.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\sln\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -59,21 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\NotebookDb.cs" />
-    <Compile Include="Database\NoteDb.cs" />
-    <Compile Include="Database\UserDb.cs" />
-    <Compile Include="Model\Note.cs" />
-    <Compile Include="Model\Notebook.cs" />
-    <Compile Include="Model\User.cs" />
-    <Compile Include="Module\NotebookModule.cs" />
-    <Compile Include="Module\NoteModule.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServerHost.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CozyNote.ServerCore\CozyNote.ServerCore.csproj">
+      <Project>{f12e71e9-ba31-46cc-841c-2e20568f4c51}</Project>
+      <Name>CozyNote.ServerCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

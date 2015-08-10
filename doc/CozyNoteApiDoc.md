@@ -20,21 +20,24 @@
 ==================================
 
 user｛
-    name
+    id,
+    nickname,
+    notebook_list
 ｝
 
 notebook｛
-    id，
-    [pass]，
-    name，
-    notes_num
+    id,
+    [pass],
+    name,
+    notes_num,
+    note_list
 ｝
 
 note ｛
-    id，
-    name，
-    notebook_id，
-    type(0)，
+    id,
+    name,
+    notebook_id,
+    type(0),
     data
 ｝
 

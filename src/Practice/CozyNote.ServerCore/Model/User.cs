@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace CozyNote.ServerCore.Model
 {
-    public class Notebook
+    public class User
     {
         public int id { get; set; }
-        public string name { get; set; }
-        public int notes_num { get; set; }
-        public int[] note_list { get; set; }
+        public string nickname { get; set; }
+        public int[] notebook_list { get; set; }
     }
 }
