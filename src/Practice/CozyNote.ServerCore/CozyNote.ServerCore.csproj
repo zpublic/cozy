@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\DbHolding.cs" />
     <Compile Include="Database\NotebookDb.cs" />
     <Compile Include="Database\NoteDb.cs" />
     <Compile Include="Database\UserDb.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Module\NotebookModule.cs" />
     <Compile Include="Module\NoteModule.cs" />
+    <Compile Include="Module\UserModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerHost.cs" />
   </ItemGroup>

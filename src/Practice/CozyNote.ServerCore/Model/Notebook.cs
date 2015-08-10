@@ -9,6 +9,7 @@ namespace CozyNote.ServerCore.Model
     public class Notebook
     {
         public int id { get; set; }
+        public string pass { get; set; }
         public string name { get; set; }
         public int notes_num { get; set; }
         public int[] note_list { get; set; }

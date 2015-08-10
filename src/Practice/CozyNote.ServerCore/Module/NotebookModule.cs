@@ -17,6 +17,31 @@ namespace CozyNote.ServerCore.Module
                 };
                 return JsonConvert.SerializeObject(rsp);
             };
+
+            Get["/notebook/get"] = x =>
+            {
+                return "a";
+            };
+
+            Get["/notebook/list"] = x =>
+            {
+                return "a";
+            };
+
+            Get["/notebook/update"] = x =>
+            {
+                return "a";
+            };
+
+            Get["/notebook/create"] = x =>
+            {
+                return "a";
+            };
+
+            Get["/notebook/delete"] = x =>
+            {
+                return "a";
+            };
         }
     }
 }

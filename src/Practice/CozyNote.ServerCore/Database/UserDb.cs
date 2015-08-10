@@ -16,9 +16,9 @@ namespace CozyNote.ServerCore.Database
             col = db.GetCollection<User>("user");
         }
 
-        public bool IsExist(int id)
+        public bool IsExist(string nickname)
         {
-            return col.FindById(id) != null;
+            return col.FindOne(x => x.nickname == nickname) != null;
         }
 
         public int Create(User obj)
@@ -32,9 +32,29 @@ namespace CozyNote.ServerCore.Database
             return col.Delete(id);
         }
 
+        public bool Delete(string nickname)
+        {
+            User u = Get(nickname);
+            if (u != null)
+            {
+                return col.Delete(u.id);
+            }
+            return false;
+        }
+
         public bool Update(User obj)
         {
             return col.Update(obj.id, obj);
+        }
+
+        public User Get(int id)
+        {
+            return col.FindById(id);
+        }
+
+        public User Get(string nickname)
+        {
+            return col.FindOne(x => x.nickname == nickname);
         }
     }
 }

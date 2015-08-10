@@ -1,7 +1,12 @@
 接口列表
 ==================================
+> user
+>> notebook - 查看用户全部笔记本  
+>> create - 创建用户  
+>> update - 更新用户信息  
+>
 > notebook  
->> all - 查看用户全部笔记本  
+>> all - 查看用户全部笔记本（同user/notebook）  
 >> get - 查看笔记本信息  
 >> list - 列出笔记本下的笔记  
 >> update - 修改笔记本   
@@ -22,6 +27,7 @@
 user｛
     id,
     nickname,
+    [pass],
     notebook_list
 ｝
 
@@ -44,10 +50,46 @@ note ｛
 接口输入输出
 ==================================
 
+user/notebook
+------------------
+input｛
+    user-nickname
+    user-pass
+｝
+
+output｛
+    notebook list
+｝
+
+user/create
+------------------
+input｛
+    user-nickname
+    user-pass
+｝
+
+output｛
+    ok
+｝
+
+user/update
+------------------
+input｛
+    user-nickname
+    user-pass,
+    new nickname，
+    new pass
+｝
+
+output｛
+    ok
+｝
+
 notebook/all
 ------------------
 input｛
-    user-name
+    user-nickname
+    user-pass
 ｝
 
 output｛
