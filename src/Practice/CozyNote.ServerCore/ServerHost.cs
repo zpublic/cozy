@@ -20,7 +20,11 @@ namespace CozyNote.ServerCore
     {
         public static void Run(string uri)
         {
-            var host = new NancyHost(new Uri(uri));
+            HostConfiguration hostConfigs = new HostConfiguration()
+            {
+                UrlReservations = new UrlReservations() { CreateAutomatically = true }
+            };
+            var host = new NancyHost(new Uri(uri), new DefaultNancyBootstrapper(), hostConfigs);
             host.Start();
         }
     }
