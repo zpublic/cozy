@@ -53,7 +53,7 @@ note ｛
 user/notebook
 ------------------
 input｛
-    user-nickname
+    user-nickname,
     user-pass
 ｝
 
@@ -64,7 +64,7 @@ output｛
 user/create
 ------------------
 input｛
-    user-nickname
+    user-nickname,
     user-pass
 ｝
 
@@ -75,7 +75,7 @@ output｛
 user/update
 ------------------
 input｛
-    user-nickname
+    user-nickname,
     user-pass,
     new nickname，
     new pass
@@ -88,7 +88,7 @@ output｛
 notebook/all
 ------------------
 input｛
-    user-nickname
+    user-nickname,
     user-pass
 ｝
 
@@ -99,19 +99,19 @@ output｛
 notebook/get
 ------------------
 input｛
-    notebook-id，
+    notebook-id,
     notebook-pass
 ｝
 
 output｛
-    notebook-name
+    notebook-name,
     notebook-notes_num
 ｝
 
 notebook/list
 ------------------
 input｛
-    notebook-id，
+    notebook-id,
     notebook-pass
 ｝
 
@@ -122,9 +122,9 @@ output｛
 notebook/update
 ------------------
 input｛
-    notebook-id，
-    notebook-pass，
-    new name，
+    notebook-id,
+    notebook-pass,
+    new name,
     new pass
 ｝
 
@@ -135,8 +135,8 @@ output｛
 notebook/create
 ------------------
 input｛
-    user-name，
-    notebook-name，
+    user-name,
+    notebook-name,
     notebook-pass
 ｝
 
@@ -147,7 +147,7 @@ output｛
 notebook/delete
 ------------------
 input｛
-    notebook-id，
+    notebook-id,
     notebook-pass
 ｝
 
@@ -158,10 +158,10 @@ output｛
 note/create
 ------------------
 input｛
-    notebook-name，
-    notebook-pass
-    note-name，
-    note-type，
+    notebook-name,
+    notebook-pass,
+    note-name,
+    note-type,
     note-data
 ｝
 
@@ -172,8 +172,8 @@ output｛
 note/get
 ------------------
 input｛
-    notebook-name，
-    notebook-pass
+    notebook-name,
+    notebook-pass,
     note-id
 ｝
 
@@ -184,11 +184,11 @@ output｛
 note/update
 ------------------
 input｛
-    notebook-name，
-    notebook-pass
-    note-id
-    new name，
-    new type，
+    notebook-name,
+    notebook-pass,
+    note-id,
+    new name,
+    new type,
     new data
 ｝
 
@@ -199,10 +199,10 @@ output｛
 note/move
 ------------------
 input｛
-    form notebook-name，
-    form notebook-pass
-    to notebook-name，
-    to notebook-pass
+    form notebook-name,
+    form notebook-pass,
+    to notebook-name,
+    to notebook-pass,
     note-id
 ｝
 
@@ -213,8 +213,8 @@ output｛
 note/delete
 ------------------
 input｛
-    notebook-name，
-    notebook-pass
+    notebook-name,
+    notebook-pass,
     note-id
 ｝
 
