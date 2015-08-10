@@ -37,6 +37,34 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APIModel\Input\NotebookAllInput.cs" />
+    <Compile Include="APIModel\Input\NotebookCreateInput.cs" />
+    <Compile Include="APIModel\Input\NotebookDeleteInput.cs" />
+    <Compile Include="APIModel\Input\NotebookGetInput.cs" />
+    <Compile Include="APIModel\Input\NotebookListInput.cs" />
+    <Compile Include="APIModel\Input\NotebookUpdateInput.cs" />
+    <Compile Include="APIModel\Input\NoteCreateInput.cs" />
+    <Compile Include="APIModel\Input\NoteDeleteInput.cs" />
+    <Compile Include="APIModel\Input\NoteGetInput.cs" />
+    <Compile Include="APIModel\Input\NoteMoveInput.cs" />
+    <Compile Include="APIModel\Input\NoteUpdateInput.cs" />
+    <Compile Include="APIModel\Input\UserCreateInput.cs" />
+    <Compile Include="APIModel\Input\UserNotebookInput.cs" />
+    <Compile Include="APIModel\Input\UserUpdateInput.cs" />
+    <Compile Include="APIModel\Output\NotebookAllOutput.cs" />
+    <Compile Include="APIModel\Output\NotebookCreateOutput.cs" />
+    <Compile Include="APIModel\Output\NotebookDeleteOutput.cs" />
+    <Compile Include="APIModel\Output\NotebookGetOutput.cs" />
+    <Compile Include="APIModel\Output\NotebookListOutput.cs" />
+    <Compile Include="APIModel\Output\NotebookUpdateOutput.cs" />
+    <Compile Include="APIModel\Output\NoteCreateOutput.cs" />
+    <Compile Include="APIModel\Output\NoteDeleteOutput.cs" />
+    <Compile Include="APIModel\Output\NoteGetOutput.cs" />
+    <Compile Include="APIModel\Output\NoteMoveOutput.cs" />
+    <Compile Include="APIModel\Output\NoteUpdateOutput.cs" />
+    <Compile Include="APIModel\Output\UserCreateOutput.cs" />
+    <Compile Include="APIModel\Output\UserNotebookOutput.cs" />
+    <Compile Include="APIModel\Output\UserUpdateOutput.cs" />
     <Compile Include="ObjectModel\Note.cs" />
     <Compile Include="ObjectModel\Notebook.cs" />
     <Compile Include="ObjectModel\User.cs" />
