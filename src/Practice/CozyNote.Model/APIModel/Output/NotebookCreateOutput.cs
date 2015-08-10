@@ -8,6 +8,8 @@ namespace CozyNote.Model.APIModel.Output
 {
     public class NotebookCreateOutput
     {
+        public int ResultStatus { get; set; }
+
         public int NotebookId { get; set; }
     }
 }

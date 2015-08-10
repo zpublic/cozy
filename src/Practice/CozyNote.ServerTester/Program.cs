@@ -1,5 +1,6 @@
 ﻿using CozyNote.ServerCore.Database;
 using CozyNote.Model.ObjectModel;
+using System.Collections.Generic;
 
 namespace CozyNote.ServerTester
 {
@@ -9,7 +10,7 @@ namespace CozyNote.ServerTester
         {
             User u = new User();
             u.nickname = "zapline";
-            u.notebook_list = new int[] { 11, 12, 13 };
+            u.notebook_list = new List<int> { 11, 12, 13 };
 
             UserDb db = new UserDb();
 

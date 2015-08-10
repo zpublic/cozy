@@ -10,7 +10,7 @@ namespace CozyNote.Model.ObjectModel
     {
         public int id { get; set; }
         public string name { get; set; }
-        public string notebook_id { get; set; }
+        public int notebook_id { get; set; }
         public int type { get; set; }
         public string data { get; set; }
     }

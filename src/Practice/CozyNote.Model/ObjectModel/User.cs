@@ -11,6 +11,6 @@ namespace CozyNote.Model.ObjectModel
         public int id { get; set; }
         public string nickname { get; set; }
         public string pass { get; set; }
-        public int[] notebook_list { get; set; }
+        public List<int> notebook_list { get; set; }
     }
 }

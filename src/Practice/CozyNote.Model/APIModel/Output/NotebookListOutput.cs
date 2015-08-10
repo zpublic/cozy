@@ -9,6 +9,8 @@ namespace CozyNote.Model.APIModel.Output
 {
     public class NotebookListOutput
     {
+        public int ResultStatus { get; set; }
+
         public List<Note> NoteList { get; set; }
     }
 }

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyNote.Model.APIModel.Output
+namespace CozyNote.ServerCore.Module
 {
-    public class NotebookDeleteOutput
+    public partial class NoteModule
     {
-        public int ResultStatus { get; set; }
     }
 }

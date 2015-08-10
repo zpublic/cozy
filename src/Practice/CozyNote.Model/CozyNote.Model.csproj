@@ -65,6 +65,7 @@
     <Compile Include="APIModel\Output\UserCreateOutput.cs" />
     <Compile Include="APIModel\Output\UserNotebookOutput.cs" />
     <Compile Include="APIModel\Output\UserUpdateOutput.cs" />
+    <Compile Include="APIModel\ResultStatus.cs" />
     <Compile Include="ObjectModel\Note.cs" />
     <Compile Include="ObjectModel\Notebook.cs" />
     <Compile Include="ObjectModel\User.cs" />

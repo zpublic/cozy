@@ -44,6 +44,15 @@ namespace CozyNote.ServerCore.Database
             return false;
         }
 
+        public void DeleteNotebook(int id)
+        {
+            var user = col.Find(x => x.notebook_list.Contains(id));
+            foreach(var obj in user)
+            {
+                obj.notebook_list.Remove(id);
+            }
+        }
+
         public bool Update(User obj)
         {
             return col.Update(obj.id, obj);
