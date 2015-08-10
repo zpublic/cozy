@@ -1,5 +1,6 @@
 ﻿using Nancy;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace CozyNote.ServerCore.Module
 {
@@ -9,13 +10,13 @@ namespace CozyNote.ServerCore.Module
         {
             Post["/all"] = x =>
             {
-                var rsp = new
+                var body = this.Request.Body;
+                body.Seek(0, SeekOrigin.Begin);
+                using (var reader = new StreamReader(body))
                 {
-                    title = "abc",
-                    url = "http:://www.laorouji.com",
-                    text = "aaaaa",
-                };
-                return JsonConvert.SerializeObject(rsp);
+                    var result = reader.ReadToEnd();
+                    return OnNotebookAll(result);
+                }
             };
 
             Post["/get"] = x =>

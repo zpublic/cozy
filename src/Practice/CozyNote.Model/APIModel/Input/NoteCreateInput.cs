@@ -14,7 +14,7 @@ namespace CozyNote.Model.APIModel.Input
 
         public string NoteName { get; set; }
 
-        public string NoteType { get; set; }
+        public int NoteType { get; set; }
 
         public string NoteData { get; set; }
     }
