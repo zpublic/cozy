@@ -24,16 +24,16 @@ user｛
 ｝
 
 notebook｛
-    name，
     id，
     [pass]，
+    name，
     notes_num
 ｝
 
 note ｛
     id，
     name，
-    notebook-id，
+    notebook_id，
     type(0)，
     data
 ｝
