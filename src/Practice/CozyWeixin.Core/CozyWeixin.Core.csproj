@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\Account.cs" />
+    <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Models\ReceiveModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\Event\EventBase.cs" />
     <Compile Include="Request\Event\LocationEvent.cs" />
