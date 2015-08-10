@@ -11,6 +11,7 @@
     </UserControl.DataContext>
     <Grid>
         <StackPanel>
+            <TextBlock Text="{Binding CurrentPath, Mode=TwoWay}"></TextBlock>
             <ListView ItemsSource="{Binding Path=FileList, Mode=TwoWay}" Height="290" SelectedItem="{Binding FileListSelectedItem, Mode=TwoWay}">
                 <ListView.View>
                     <GridView>

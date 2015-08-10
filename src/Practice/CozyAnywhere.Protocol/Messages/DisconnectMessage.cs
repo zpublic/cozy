@@ -7,11 +7,11 @@ namespace CozyAnywhere.Protocol.Messages
     {
         public uint Id { get { return MessageId.DisconnectMessage; } }
 
-        public void Write(NetOutgoingMessage om)
+        public void Write(NetBuffer om)
         {
         }
 
-        public void Read(NetIncomingMessage im)
+        public void Read(NetBuffer im)
         {
         }
     }

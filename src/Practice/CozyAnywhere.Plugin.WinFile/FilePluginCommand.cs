@@ -109,5 +109,12 @@ namespace CozyAnywhere.Plugin.WinFile
             var argsSerialize = JsonConvert.SerializeObject(args);
             return PluginCommandSerializeMaker.MakeCommand(InnerPluginName, "FilePathExist", argsSerialize);
         }
+
+        public static string MakeFileGetCurrentDirectoryCommand()
+        {
+            var args            = new FileGetCurrentDirectoryArgs();
+            var argsSerialize   = JsonConvert.SerializeObject(args);
+            return PluginCommandSerializeMaker.MakeCommand(InnerPluginName, "FileGetCurrentDirectory", argsSerialize);
+        }
     }
 }

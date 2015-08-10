@@ -38,6 +38,19 @@ namespace CozyAnywhere.WpfClient.ViewModel
             }
         }
 
+        private string _CurrentPath;
+        public string CurrentPath
+        {
+            get
+            {
+                return _CurrentPath;
+            }
+            set
+            {
+                Set(ref _CurrentPath, value, "CurrentPath");
+            }
+        }
+
         private ICommand _DeleteCommand;
 
         public ICommand DeleteCommand
@@ -61,7 +74,7 @@ namespace CozyAnywhere.WpfClient.ViewModel
             {
                 return _RefreshCommand = _RefreshCommand ?? new DelegateCommand((x) =>
                 {
-                    clientCore.SendFileEnumMessage(@"D:\");
+                    clientCore.SendFileEnumMessage(CurrentPath);
                 });
             }
         }
@@ -70,6 +83,14 @@ namespace CozyAnywhere.WpfClient.ViewModel
         {
             clientCore = MainWindowViewModel.clientCore;
             BindCoreCollections();
+
+            clientCore.CurrentFilePathHandler += OnCurrentPathRefresh;
+            clientCore.SendFileGetCurrentDirectoryMessage();
+        }
+
+        private void OnCurrentPathRefresh(object sender, ClientCore.EventArg.CurrentFilePathRefreshEventArgs e)
+        {
+            CurrentPath = e.Path;
         }
 
         private void BindCoreCollections()

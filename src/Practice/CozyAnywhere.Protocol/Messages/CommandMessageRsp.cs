@@ -22,7 +22,7 @@ namespace CozyAnywhere.Protocol.Messages
 
         public byte[] BinaryCommandRsp { get; set; }
 
-        public void Write(NetOutgoingMessage om)
+        public void Write(NetBuffer om)
         {
             om.Write(PluginName);
             om.Write(MethodName);
@@ -38,7 +38,7 @@ namespace CozyAnywhere.Protocol.Messages
             }
         }
 
-        public void Read(NetIncomingMessage im)
+        public void Read(NetBuffer im)
         {
             PluginName  = im.ReadString();
             MethodName  = im.ReadString();

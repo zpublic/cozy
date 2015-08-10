@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CozySpider.Core
 {
-    class SpiderProcess
+    public class SpiderProcess
     {
         public static void Seed2Queue(
             UrlAddressQueue urlQueue,
@@ -18,16 +18,17 @@ namespace CozySpider.Core
                 var c = setting.Seeds.GetSeeds();
                 foreach (var i in c)
                 {
-                    if (UrlMatch(i, setting))
-                    {
-                        urlQueue.EnQueue(new UrlInfo(i, setting.Depth));
-                    }
+                    urlQueue.EnQueue(new UrlInfo(i, 0));
                 }
             }
         }
 
         public static bool UrlFilter(string url, SpiderSetting setting)
         {
+            if (url != null && setting.Filter != null)
+            {
+                return setting.Filter.Filter(url);
+            }
             return false;
         }
 
@@ -38,6 +39,15 @@ namespace CozySpider.Core
                 return setting.Match.Match(url);
             }
             return false;
+        }
+
+        public static string UrlRead(string url, SpiderSetting setting)
+        {
+            if(url != null && setting.Reader != null)
+            {
+                return setting.Reader.Read(url);
+            }
+            return null;
         }
     }
 }

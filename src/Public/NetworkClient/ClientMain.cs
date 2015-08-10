@@ -3,6 +3,7 @@ using NetworkHelper.Event;
 using NetworkProtocol;
 using System;
 using System.Collections.Generic;
+using NetworkProtocol.Messages;
 
 namespace NetworkClient
 {
@@ -12,6 +13,12 @@ namespace NetworkClient
 
         private readonly Queue<NetClientMsg> MessageQueue   = new Queue<NetClientMsg>();
         private readonly object MessageQueueLocker          = new object();
+
+        private readonly Dictionary<long, NetOutgoingMessage> PacketMessageDictionary
+                = new Dictionary<long, NetOutgoingMessage>();
+        private readonly object PacketMessageDictionaryLocker = new object();
+
+        public const int MaxPacketSize = 8192;
 
         public Client()
         {
@@ -35,7 +42,24 @@ namespace NetworkClient
                 NetOutgoingMessage om = client.CreateMessage();
                 om.Write(msg.Id);
                 msg.Write(om);
-                MessageQueue.Enqueue(new NetClientMsg(om, NetDeliveryMethod.Unreliable));
+                if (om.LengthBytes > MaxPacketSize)
+                {
+                    var id = client.UniqueIdentifier;
+                    lock (PacketMessageDictionaryLocker)
+                    {
+                        PacketMessageDictionary[id] = om;
+                    }
+                    var packetMsg = new SendPacketMessage()
+                    {
+                        UniqueIdentifier    = id,
+                        TargetSize          = (om.LengthBytes + MaxPacketSize - 1) / MaxPacketSize,
+                    };
+                    SendMessage(packetMsg);
+                }
+                else
+                {
+                    MessageQueue.Enqueue(new NetClientMsg(om, NetDeliveryMethod.Unreliable));
+                }
             }
         }
 
@@ -90,13 +114,28 @@ namespace NetworkClient
                     case NetIncomingMessageType.StatusChanged:
                         NetConnectionStatus status = (NetConnectionStatus)msg.ReadByte();
                         string reason = msg.ReadString();
-                        OnStatusMessage(this, status, reason);
+                        OnStatusMessage(this, status, reason, msg.SenderConnection);
                         break;
                     case NetIncomingMessageType.Data:
                         OnDataMessage(this, msg);
                         break;
                 }
             }
+        }
+
+        private bool DefMessageProc(uint id, NetBuffer im)
+        {
+            bool result = false;
+            switch (id)
+            {
+                case DefaultMessageId.SendPacketMessageRecv:
+                    OnSendPacketMessageRecv(im);
+                    result = true;
+                    break;
+                default:
+                    break;
+            }
+            return result;
         }
 
         public event EventHandler<InternalMessageArgs> InternalMessage;
@@ -111,11 +150,11 @@ namespace NetworkClient
 
         public event EventHandler<StatusMessageArgs> StatusMessage;
 
-        public void OnStatusMessage(object sender, NetConnectionStatus status, String reason)
+        public void OnStatusMessage(object sender, NetConnectionStatus status, String reason, NetConnection conn)
         {
             if (StatusMessage != null)
             {
-                StatusMessage(sender, new StatusMessageArgs((NetworkHelper.NetConnectionStatus)status, reason));
+                StatusMessage(sender, new StatusMessageArgs((NetworkHelper.NetConnectionStatus)status, reason, conn));
             }
         }
 
@@ -125,7 +164,56 @@ namespace NetworkClient
         {
             if (DataMessage != null)
             {
-                DataMessage(sender, new DataMessageArgs(im));
+                uint id = im.ReadUInt32();
+                if (!DefMessageProc(id, im))
+                {
+                    DataMessage(sender, new DataMessageArgs(im, id, im.SenderConnection));
+                }
+            }
+        }
+
+        private void OnSendPacketMessageRecv(NetBuffer msg)
+        {
+            var recvMsg             = new SendPacketMessageRecv();
+            recvMsg.Read(msg);
+            var UniqueIdentifier    = recvMsg.UniqueIdentifier;
+            var MessageRacketId     = recvMsg.MessagePacketId;
+            if (PacketMessageDictionary.ContainsKey(UniqueIdentifier))
+            {
+                NetOutgoingMessage packetMsg = null;
+                lock (PacketMessageDictionaryLocker)
+                {
+                    if (PacketMessageDictionary.ContainsKey(UniqueIdentifier))
+                    {
+                        packetMsg = PacketMessageDictionary[UniqueIdentifier];
+                        PacketMessageDictionary.Remove(UniqueIdentifier);
+                    }
+                }
+                if (packetMsg != null)
+                {
+                    int n = (packetMsg.LengthBytes + MaxPacketSize - 1) / MaxPacketSize;
+                    for (int i = 0; i < n; ++i)
+                    {
+                        int l       = packetMsg.LengthBytes - i * MaxPacketSize;
+                        int length  = l < MaxPacketSize ? l : MaxPacketSize;
+
+                        if (length > 0)
+                        {
+                            NetOutgoingMessage om   = client.CreateMessage();
+                            var pm                  = new PacketMessage()
+                            {
+                                Number          = i,
+                                MessagePacketId = MessageRacketId,
+                                Bytes           = new byte[length],
+                            };
+
+                            Array.Copy(packetMsg.Data, i * MaxPacketSize, pm.Bytes, 0, length);
+                            om.Write(pm.Id);
+                            pm.Write(om);
+                            client.SendMessage(om, NetDeliveryMethod.Unreliable);
+                        }
+                    }
+                }
             }
         }
     }

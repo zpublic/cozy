@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,7 +45,14 @@
     <Compile Include="Event\DataReceivedEventArgs.cs" />
     <Compile Include="Event\ErrorEventArgs.cs" />
     <Compile Include="Event\EventArgsBase.cs" />
+    <Compile Include="Model\SpiderWorkerList.Action.cs" />
+    <Compile Include="Model\SpiderWorkerList.Count.cs" />
+    <Compile Include="Model\SpiderWorkerList.cs" />
     <Compile Include="Output\IOutput.cs" />
+    <Compile Include="Reader\DefaultReader.cs" />
+    <Compile Include="Reader\IUrlReader.cs" />
+    <Compile Include="SpiderMaster.Action.cs" />
+    <Compile Include="SpiderMaster.EventHandler.cs" />
     <Compile Include="UrlFilter\BloomFilter.cs" />
     <Compile Include="UrlFilter\HashFilter.cs" />
     <Compile Include="Model\ResultStorage.cs" />
@@ -65,8 +73,9 @@
     <Compile Include="UrlFilter\IUrlFilter.cs" />
     <Compile Include="UrlMatch\FindStringMatch.cs" />
     <Compile Include="UrlMatch\IUrlMatch.cs" />
+    <Compile Include="Util\BloomFilter.cs" />
+    <Compile Include="Worker\SpiderThreadWorker.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

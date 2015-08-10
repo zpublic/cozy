@@ -36,17 +36,18 @@ namespace CozyAnywhere.ClientCore
 
         public void RegisterResponseActions()
         {
-            ResponseActions["FileCopy"]         = new Action<CommandMessageRsp>(OnFileCopyResponse);
-            ResponseActions["FileDelete"]       = new Action<CommandMessageRsp>(OnFileDeleteResponse);
-            ResponseActions["FileEnum"]         = new Action<CommandMessageRsp>(OnFileEnumResponse);
-            ResponseActions["FileGetLength"]    = new Action<CommandMessageRsp>(OnFileGetLengthResponse);
-            ResponseActions["FileGetTimes"]     = new Action<CommandMessageRsp>(OnFileGetTimesResponse);
-            ResponseActions["FileIsDirectory"]  = new Action<CommandMessageRsp>(OnFileIsDirectoryResponse);
-            ResponseActions["FileMove"]         = new Action<CommandMessageRsp>(OnFileMoveResponse);
-            ResponseActions["FilePathExist"]    = new Action<CommandMessageRsp>(OnFilePathExistResponse);
+            ResponseActions["FileCopy"]                 = new Action<CommandMessageRsp>(OnFileCopyResponse);
+            ResponseActions["FileDelete"]               = new Action<CommandMessageRsp>(OnFileDeleteResponse);
+            ResponseActions["FileEnum"]                 = new Action<CommandMessageRsp>(OnFileEnumResponse);
+            ResponseActions["FileGetLength"]            = new Action<CommandMessageRsp>(OnFileGetLengthResponse);
+            ResponseActions["FileGetTimes"]             = new Action<CommandMessageRsp>(OnFileGetTimesResponse);
+            ResponseActions["FileIsDirectory"]          = new Action<CommandMessageRsp>(OnFileIsDirectoryResponse);
+            ResponseActions["FileMove"]                 = new Action<CommandMessageRsp>(OnFileMoveResponse);
+            ResponseActions["FilePathExist"]            = new Action<CommandMessageRsp>(OnFilePathExistResponse);
+            ResponseActions["FileGetCurrentDirectory"]  = new Action<CommandMessageRsp>(OnFileGetCurrentDirectory);
 
-            ResponseActions["ProcessEnum"]      = new Action<CommandMessageRsp>(OnProcessEnum);
-            ResponseActions["ProcessTerminate"] = new Action<CommandMessageRsp>(OnProcessTerminate);
+            ResponseActions["ProcessEnum"]              = new Action<CommandMessageRsp>(OnProcessEnum);
+            ResponseActions["ProcessTerminate"]         = new Action<CommandMessageRsp>(OnProcessTerminate);
         }
 
         private void OnCommandMessageRsp(IMessage msg, NetConnection conn)
@@ -166,6 +167,18 @@ namespace CozyAnywhere.ClientCore
 
         }
 
+        private void OnFileGetCurrentDirectory(CommandMessageRsp rsp)
+        {
+            if(rsp.RspType == CommandMessageRsp.StringDataType)
+            {
+                var result = JsonConvert.DeserializeObject<string>(rsp.StringCommandRsp);
+                if(CurrentFilePathHandler != null)
+                {
+                    CurrentFilePathHandler(this, new CurrentFilePathRefreshEventArgs(result));
+                }
+            }
+        }
+
         private void OnFileGetLengthResponse(CommandMessageRsp rsp)
         {
             if (rsp.RspType == CommandMessageRsp.StringDataType)
@@ -230,6 +243,7 @@ namespace CozyAnywhere.ClientCore
                 var result = JsonConvert.DeserializeObject<bool>(rsp.StringCommandRsp);
             }
         }
+
         #endregion
     }
 }

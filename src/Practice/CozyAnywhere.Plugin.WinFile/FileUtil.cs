@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Text;
 using System.Collections.Generic;
 using CozyAnywhere.Plugin.WinFile.Model;
 using CozyAnywhere.Plugin.WinFile.Ext;
@@ -60,7 +60,30 @@ namespace CozyAnywhere.Plugin.WinFile
             CallingConvention   = CallingConvention.Cdecl)]
         public static extern void FileEnum(string Path, FileEnumFunc func);
 
+        // DWORD CurrentDirectoryGet(DWORD dwLength, LPTSTR lpResult);
+        [DllImport(@"FileUtilCpp.dll",
+            CharSet             = CharSet.Auto,
+            CallingConvention   = CallingConvention.Cdecl)]
+        public static extern uint CurrentDirectoryGet(uint length, StringBuilder result);
+
         #region DefaultMethod
+
+        public static string FileGetCurrentDirectory()
+        {
+            uint length = CurrentDirectoryGet(0, null);
+            if(length != 0)
+            {
+                StringBuilder result = new StringBuilder((int)length);
+                if(CurrentDirectoryGet(length, result) != 0)
+                {
+                    return result.ToString();
+                }
+                return null;
+            }
+            return null;
+        }
+
+
         public static WinFileTimeModel DefGetFileTimes(string path)
         {
             ulong creationTime      = 0;
@@ -85,7 +108,7 @@ namespace CozyAnywhere.Plugin.WinFile
 
             FileEnum(enumPath, (x, b) => 
             {
-                string name     = path + Marshal.PtrToStringAuto(x);
+                string name     = Marshal.PtrToStringAuto(x);
                 bool isFolder   = b;
                 var file = new WinFileModel()
                 {
@@ -102,9 +125,8 @@ namespace CozyAnywhere.Plugin.WinFile
                 {
                     file.Times  = DefGetFileTimes(enumPath + name);
                 }
-
                 Result.Add(file);
-                return false; 
+                return false;
             });
 
             return Result;

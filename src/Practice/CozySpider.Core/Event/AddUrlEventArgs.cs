@@ -6,7 +6,22 @@ using System.Threading.Tasks;
 
 namespace CozySpider.Core.Event
 {
-    class AddUrlEventArgs
+    public class AddUrlEventArgs : EventArgsBase
     {
+        public int Depth { get; set; }
+
+        public override string Message
+        {
+            get
+            {
+                return base.Message + " " + Depth;
+            }
+        }
+
+        public AddUrlEventArgs(string url, int depth)
+            : base(url)
+        {
+            Depth = depth;
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace CozyAnywhere.Protocol.Messages
 
         public List<string> Plugins { get; set; }
 
-        public void Write(NetOutgoingMessage om)
+        public void Write(NetBuffer om)
         {
             if(Plugins != null)
             {
@@ -30,7 +30,7 @@ namespace CozyAnywhere.Protocol.Messages
             }
         }
 
-        public void Read(NetIncomingMessage im)
+        public void Read(NetBuffer im)
         {
             if (Plugins == null)
             {

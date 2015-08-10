@@ -3,35 +3,50 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CozySpider.Core
 {
-    public class SpiderMaster
+    public partial class SpiderMaster
     {
-        private SpiderSetting setting = null;
+        private SpiderSetting Setting { get; set; }
 
-        private UrlAddressQueue urlQueue = new UrlAddressQueue();
+        private UrlAddressQueue urlQueue { get; set; }
 
-        private List<SpiderWorker> workers = new List<SpiderWorker>();
+        private UrlAddressPool urlPool { get; set; }
+
+        private SpiderWorkerList Workers { get; set; }
+
+        public SpiderMaster()
+        {
+            urlQueue    = new UrlAddressQueue();
+            urlPool     = new UrlAddressPool();
+        }
 
         public void Init(SpiderSetting setting)
         {
-            this.setting = setting;
-            for (int i = 0; i < setting.WorkerCount; ++i)
-            {
-                workers.Add(new SpiderWorker());
-            }
+            Setting = setting;
+            Workers = new SpiderWorkerList(urlQueue);
+            Workers.CreateWorker(setting.WorkerCount);
+            Workers.SetWorkAction(WorkerAction);
+            Workers.Start();
         }
 
         public void Crawl()
         {
-            SpiderProcess.Seed2Queue(urlQueue, setting);
+            SpiderProcess.Seed2Queue(urlQueue, Setting);
+
+            while(true)
+            {
+                Workers.WorkersFreeEvent.WaitOne();
+                if (!urlQueue.HasValue) break;
+            }
         }
 
         public void Stop()
         {
-
+            Workers.Stop();
         }
     }
 }

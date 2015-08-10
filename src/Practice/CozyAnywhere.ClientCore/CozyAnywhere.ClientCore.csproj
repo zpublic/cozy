@@ -51,6 +51,7 @@
     <Compile Include="Client.Main.cs" />
     <Compile Include="Client.Message.cs" />
     <Compile Include="EventArg\CaptureRefreshEventArgs.cs" />
+    <Compile Include="EventArg\CurrentFilePathRefreshEventArgs.cs" />
     <Compile Include="EventArg\PluginChangedEvnetArgs.cs" />
     <Compile Include="EventArg\ServerConnectEventArgs.cs" />
     <Compile Include="Model\CaptureSplitMetaData.cs" />

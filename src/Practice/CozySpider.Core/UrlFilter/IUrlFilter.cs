@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CozySpider.Core.UrlFilter
 {
-    interface IUrlFilter
+    public interface IUrlFilter
     {
+        bool Filter(string url);
     }
 }
