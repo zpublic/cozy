@@ -32,7 +32,6 @@ namespace CozyNote.ServerCore
 
         public static void TestData()
         {
-
             var notebook = new Model.ObjectModel.Notebook()
             {
                 name = "testbook",
@@ -42,8 +41,9 @@ namespace CozyNote.ServerCore
 
             var user = new Model.ObjectModel.User()
             {
-                nickname    = "kingwl",
-                pass        = "123456"
+                nickname        = "kingwl",
+                pass            = "123456",
+                notebook_list   = new System.Collections.Generic.List<int>() { 1, 2, 3, 3, },
             };
 
             user.notebook_list.Add(notebookid);
@@ -61,7 +61,6 @@ namespace CozyNote.ServerCore
 
             notebook.note_list.Add(noteid);
             notebook.notes_num++;
-
             
             DbHolding.User.Update(user);
             DbHolding.Notebook.Update(notebook);
