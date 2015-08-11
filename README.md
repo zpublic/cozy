@@ -71,6 +71,8 @@ Cozy
 >>
 >> CozyPaPaPa - 在敲键盘时发出声音  
 >>
+>> [CozyNote - 云笔记](doc/CozyNote.md)  
+>>
   
 交流QQ群
 --------------------------------

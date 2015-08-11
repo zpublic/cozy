@@ -2,7 +2,7 @@
 using LiteDB;
 using System.IO;
 
-namespace CozyNote.ServerCore.Database
+namespace CozyNote.Database
 {
     public class UserDb
     {
@@ -11,10 +11,7 @@ namespace CozyNote.ServerCore.Database
 
         public UserDb()
         {
-            if (!Directory.Exists(@"cozy_db\")) {
-                Directory.CreateDirectory(@"cozy_db\");
-            }
-            db = new LiteDatabase(@"cozy_db\user.db");
+            db = new LiteDatabase(@"user.db");
             col = db.GetCollection<User>("user");
         }
 
@@ -50,6 +47,7 @@ namespace CozyNote.ServerCore.Database
             foreach(var obj in user)
             {
                 obj.notebook_list.Remove(id);
+                Update(obj);
             }
         }
 

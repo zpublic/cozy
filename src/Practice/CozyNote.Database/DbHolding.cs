@@ -1,4 +1,4 @@
-﻿namespace CozyNote.ServerCore.Database
+﻿namespace CozyNote.Database
 {
     public class DbHolding
     {

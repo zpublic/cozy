@@ -2,7 +2,7 @@
 using LiteDB;
 using System.IO;
 
-namespace CozyNote.ServerCore.Database
+namespace CozyNote.Database
 {
     public class NoteDb
     {
@@ -11,8 +11,7 @@ namespace CozyNote.ServerCore.Database
 
         public NoteDb()
         {
-            Directory.CreateDirectory(@"c:\cozy_db");
-            db = new LiteDatabase(@"c:\cozy_db\note.db");
+            db = new LiteDatabase(@"note.db");
             col = db.GetCollection<Note>("note");
         }
 

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyNote.Model.APIModel.Output
+namespace CozyNote.Model.APIModel
 {
-    public class UserCreateOutput : OutputBase
+    public class OutputBase
     {
-        public int UserId { get; set; }
+        public int ResultStatus { get; set; }
     }
 }

@@ -33,10 +33,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LiteDB, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\sln\packages\LiteDB.1.0.2\lib\net40\LiteDB.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Nancy, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\sln\packages\Nancy.1.2.0\lib\net40\Nancy.dll</HintPath>
       <Private>True</Private>
@@ -59,10 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\DbHolding.cs" />
-    <Compile Include="Database\NotebookDb.cs" />
-    <Compile Include="Database\NoteDb.cs" />
-    <Compile Include="Database\UserDb.cs" />
+    <Compile Include="ModuleHelper.cs" />
     <Compile Include="Module\NotebookModule.cs" />
     <Compile Include="Module\NotebookModule.Method.cs" />
     <Compile Include="Module\NoteModule.cs" />
@@ -76,6 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CozyNote.Database\CozyNote.Database.csproj">
+      <Project>{c6c196c2-7cbf-45c2-bea7-f48074ad0261}</Project>
+      <Name>CozyNote.Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyNote.Model\CozyNote.Model.csproj">
       <Project>{26a7afe3-8629-4da1-bc30-8872564176f5}</Project>
       <Name>CozyNote.Model</Name>

@@ -136,6 +136,7 @@ notebook/create
 ------------------
 input｛
     user-name,
+	user-pass,
     notebook-name,
     notebook-pass
 ｝
@@ -158,7 +159,7 @@ output｛
 note/create
 ------------------
 input｛
-    notebook-name,
+    notebook-id,
     notebook-pass,
     note-name,
     note-type,
@@ -172,7 +173,7 @@ output｛
 note/get
 ------------------
 input｛
-    notebook-name,
+    notebook-id,
     notebook-pass,
     note-id
 ｝
@@ -184,7 +185,7 @@ output｛
 note/update
 ------------------
 input｛
-    notebook-name,
+    notebook-id,
     notebook-pass,
     note-id,
     new name,
@@ -199,9 +200,9 @@ output｛
 note/move
 ------------------
 input｛
-    from notebook-name,
+    from notebook-id,
     from notebook-pass,
-    to notebook-name,
+    to notebook-id,
     to notebook-pass,
     note-id
 ｝

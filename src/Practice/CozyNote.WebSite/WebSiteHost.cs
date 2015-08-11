@@ -1,9 +1,8 @@
 ﻿using Nancy;
 using Nancy.Hosting.Self;
 using System;
-using System.Diagnostics;
 
-namespace CozyNote.ServerCore
+namespace CozyNote.WebSite
 {
     public class HelloModule : NancyModule
     {
@@ -16,7 +15,7 @@ namespace CozyNote.ServerCore
         }
     }
 
-    public class ServerHost
+    class WebSiteHost
     {
         public static void Run(string uri)
         {

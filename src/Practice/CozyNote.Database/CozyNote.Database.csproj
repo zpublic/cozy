@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1ECCCE7A-3269-44B3-AF52-A26A9116FD9F}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{C6C196C2-7CBF-45C2-BEA7-F48074AD0261}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyNote.ServerTester</RootNamespace>
-    <AssemblyName>CozyNote.ServerTester</AssemblyName>
+    <RootNamespace>CozyNote.Database</RootNamespace>
+    <AssemblyName>CozyNote.Database</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,9 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nancy, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null" />
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\sln\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="LiteDB, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\LiteDB.1.0.2\lib\net40\LiteDB.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -48,31 +44,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Program.Methods.cs" />
+    <Compile Include="DbHolding.cs" />
+    <Compile Include="NotebookDb.cs" />
+    <Compile Include="NoteDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDb.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CozyNote.ClientCore\CozyNote.ClientCore.csproj">
-      <Project>{491971c7-acc6-46fd-ade3-2267a11d7e0e}</Project>
-      <Name>CozyNote.ClientCore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyNote.Database\CozyNote.Database.csproj">
-      <Project>{c6c196c2-7cbf-45c2-bea7-f48074ad0261}</Project>
-      <Name>CozyNote.Database</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CozyNote.Model\CozyNote.Model.csproj">
       <Project>{26a7afe3-8629-4da1-bc30-8872564176f5}</Project>
       <Name>CozyNote.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CozyNote.ServerCore\CozyNote.ServerCore.csproj">
-      <Project>{f12e71e9-ba31-46cc-841c-2e20568f4c51}</Project>
-      <Name>CozyNote.ServerCore</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

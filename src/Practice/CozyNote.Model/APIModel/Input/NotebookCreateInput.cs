@@ -10,6 +10,8 @@ namespace CozyNote.Model.APIModel.Input
     {
         public string UserName { get; set; }
 
+        public string UserPass { get; set; }
+
         public string NotebookName { get; set; }
 
         public string NotebookPass { get; set; }

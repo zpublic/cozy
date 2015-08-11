@@ -8,7 +8,7 @@ namespace CozyNote.Model.APIModel.Input
 {
     public class NoteDeleteInput
     {
-        public string NotebookName { get; set; }
+        public int NotebookId { get; set; }
 
         public string NotebookPass { get; set; }
 

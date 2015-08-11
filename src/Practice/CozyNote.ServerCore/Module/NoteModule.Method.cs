@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CozyNote.Model.APIModel;
 using CozyNote.Model.APIModel.Input;
 using CozyNote.Model.APIModel.Output;
-using CozyNote.ServerCore.Database;
+using CozyNote.Database;
 using Newtonsoft.Json;
 using CozyNote.Model.ObjectModel;
 
@@ -16,29 +16,26 @@ namespace CozyNote.ServerCore.Module
     {
         public string OnNoteCreate(string args)
         {
-            var Input   = JsonConvert.DeserializeObject<NoteCreateInput>(args);
-            var Result  = new NoteCreateOutput();
+            var Input       = JsonConvert.DeserializeObject<NoteCreateInput>(args);
+            var Result      = new NoteCreateOutput();
 
-            if(DbHolding.Notebook.IsExist(Input.NotebookName))
+            var notebook    = ModuleHelper.GetNotebook(Input.NotebookId, Input.NotebookPass);
+            if(notebook != null)
             {
-                var notebook = DbHolding.Notebook.Get(Input.NotebookName);
-                if(notebook.pass == Input.NotebookPass)
+                var note = new Note()
                 {
-                    var note = new Note()
-                    {
-                        notebook_id = notebook.id,
-                        name        = Input.NoteName,
-                        type        = Input.NoteType,
-                        data        = Input.NoteData,
-                    };
+                    notebook_id = notebook.id,
+                    name        = Input.NoteName,
+                    type        = Input.NoteType,
+                    data        = Input.NoteData,
+                };
+                var id = DbHolding.Note.Create(note);
 
-                    var id = DbHolding.Note.Create(note);
-                    notebook.note_list.Add(id);
-                    notebook.notes_num++;
+                notebook.note_list.Add(id);
+                DbHolding.Notebook.Update(notebook);
 
-                    Result.NoteId       = id;
-                    Result.ResultStatus = ResultStatus.SuccessStatus;
-                }
+                Result.NoteId       = id;
+                Result.ResultStatus = ResultStatus.SuccessStatus;
             }
 
             var Output = JsonConvert.SerializeObject(Result);
@@ -50,18 +47,11 @@ namespace CozyNote.ServerCore.Module
             var Input   = JsonConvert.DeserializeObject<NoteGetInput>(args);
             var Result  = new NoteGetOutput();
 
-            if(DbHolding.Notebook.IsExist(Input.NotebookName))
+            var note    = ModuleHelper.GetNote(Input.NotebookId, Input.NotebookPass, Input.NoteId);
+            if (note != null)
             {
-                var notebook = DbHolding.Notebook.Get(Input.NotebookName);
-                if(notebook.pass == Input.NotebookPass)
-                {
-                    if(notebook.note_list.Contains(Input.NoteId) && DbHolding.Note.IsExist(Input.NoteId))
-                    {
-                        var note            = DbHolding.Note.Get(Input.NoteId);
-                        Result.Result       = note;
-                        Result.ResultStatus = ResultStatus.SuccessStatus;
-                    }
-                }
+                Result.Result       = note;
+                Result.ResultStatus = ResultStatus.SuccessStatus;
             }
 
             var Output = JsonConvert.SerializeObject(Result);
@@ -73,21 +63,13 @@ namespace CozyNote.ServerCore.Module
             var Input   = JsonConvert.DeserializeObject<NoteUpdateInput>(args);
             var Result  = new NoteUpdateOutput();
 
-            if (DbHolding.Notebook.IsExist(Input.NotebookName))
+            var note    = ModuleHelper.GetNote(Input.NotebookId, Input.NotebookPass, Input.NoteId);
+            if (note != null)
             {
-                var notebook = DbHolding.Notebook.Get(Input.NotebookName);
-                if (notebook.pass == Input.NotebookPass)
-                {
-                    if (notebook.note_list.Contains(Input.NoteId) && DbHolding.Note.IsExist(Input.NoteId))
-                    {
-                        var note    = DbHolding.Note.Get(Input.NoteId);
-                        note.name   = Input.NewName;
-                        note.type   = Input.NewType;
-                        note.data   = Input.NewData;
-
-                        Result.ResultStatus = ResultStatus.SuccessStatus;
-                    }
-                }
+                note.name           = Input.NewName;
+                note.type           = Input.NewType;
+                note.data           = Input.NewData;
+                Result.ResultStatus = ResultStatus.SuccessStatus;
             }
 
             var Output = JsonConvert.SerializeObject(Result);
@@ -96,29 +78,28 @@ namespace CozyNote.ServerCore.Module
 
         public string OnNoteMove(string args)
         {
-            var Input = JsonConvert.DeserializeObject<NoteMoveInput>(args);
-            var Result = new NoteMoveOutput();
+            var Input   = JsonConvert.DeserializeObject<NoteMoveInput>(args);
+            var Result  = new NoteMoveOutput();
 
-            if (DbHolding.Notebook.IsExist(Input.FromName))
+            var FromNotebook    = ModuleHelper.GetNotebook(Input.FromId, Input.FromPass);
+            var note            = ModuleHelper.GetNote(Input.FromId, Input.FromPass, Input.NoteId);
+
+            if(note != null)
             {
-                var FromNotebook = DbHolding.Notebook.Get(Input.FromName);
-                if (FromNotebook.pass == Input.FromPass)
+                var ToNotebook = ModuleHelper.GetNotebook(Input.ToId, Input.ToPass);
+                if (ToNotebook != null)
                 {
-                    if (FromNotebook.note_list.Contains(Input.NoteId) && DbHolding.Note.IsExist(Input.NoteId))
-                    {
-                        var note = DbHolding.Note.Get(Input.NoteId);
-                        if (DbHolding.Notebook.IsExist(Input.ToName))
-                        {
-                            var ToNotebook = DbHolding.Notebook.Get(Input.ToName);
-                            if(ToNotebook.pass == Input.ToPass)
-                            {
-                                ToNotebook.note_list.Add(note.id);
-                                ToNotebook.notes_num++;
+                    ToNotebook.note_list.Add(note.id);
 
-                                Result.ResultStatus = ResultStatus.SuccessStatus;
-                            }
-                        }
-                    }
+                    FromNotebook.note_list.Remove(note.id);
+
+                    note.notebook_id = ToNotebook.id;
+
+                    DbHolding.Note.Update(note);
+                    DbHolding.Notebook.Update(FromNotebook);
+                    DbHolding.Notebook.Update(ToNotebook);
+
+                    Result.ResultStatus = ResultStatus.SuccessStatus;
                 }
             }
 
@@ -131,21 +112,19 @@ namespace CozyNote.ServerCore.Module
             var Input   = JsonConvert.DeserializeObject<NoteDeleteInput>(args);
             var Result  = new NoteDeleteOutput();
 
-            if (DbHolding.Notebook.IsExist(Input.NotebookName))
-            {
-                var Notebook = DbHolding.Notebook.Get(Input.NotebookName);
-                if (Notebook.pass == Input.NotebookPass)
-                {
-                    if (Notebook.note_list.Contains(Input.NoteId) && DbHolding.Note.IsExist(Input.NoteId))
-                    {
-                        Notebook.note_list.Remove(Input.NoteId);
-                        Notebook.notes_num--;
-                        DbHolding.Note.Delete(Input.NoteId);
+            var notebook    = ModuleHelper.GetNotebook(Input.NotebookId, Input.NotebookPass);
+            var note        = ModuleHelper.GetNote(Input.NotebookId, Input.NotebookPass, Input.NoteId);
 
-                        Result.ResultStatus = ResultStatus.SuccessStatus;
-                    }
-                }
+            if(note != null)
+            {
+                notebook.note_list.Remove(note.id);
+                DbHolding.Note.Delete(note.id);
+
+                DbHolding.Notebook.Update(notebook);
+
+                Result.ResultStatus = ResultStatus.SuccessStatus;
             }
+
             var Output = JsonConvert.SerializeObject(Result);
             return Output;
         }

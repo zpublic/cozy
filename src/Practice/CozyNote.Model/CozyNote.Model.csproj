@@ -51,6 +51,7 @@
     <Compile Include="APIModel\Input\UserCreateInput.cs" />
     <Compile Include="APIModel\Input\UserNotebookInput.cs" />
     <Compile Include="APIModel\Input\UserUpdateInput.cs" />
+    <Compile Include="APIModel\OutputBase.cs" />
     <Compile Include="APIModel\Output\NotebookAllOutput.cs" />
     <Compile Include="APIModel\Output\NotebookCreateOutput.cs" />
     <Compile Include="APIModel\Output\NotebookDeleteOutput.cs" />
