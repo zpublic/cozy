@@ -10,5 +10,10 @@ namespace CozyNote.Model.APIModel
     {
         public const int FailedStatus   = 0;
         public const int SuccessStatus  = 1;
+
+        public static bool IsSuccess(int result)
+        {
+            return result == SuccessStatus;
+        }
     }
 }

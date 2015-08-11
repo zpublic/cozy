@@ -2,7 +2,8 @@
 {
     public static class ApiDef
     {
-        public static string Host = @"https://114.215.134.101:23333";
+        public static string DebugHost      = @"http://localhost:23333/";
+        public static string Host           = DebugHost;
 
         // UserApi
         public static string User           = Host + "/user";
