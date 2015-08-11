@@ -33,6 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Nancy, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,8 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CozyNote.ClientCore\CozyNote.ClientCore.csproj">
+      <Project>{491971c7-acc6-46fd-ade3-2267a11d7e0e}</Project>
+      <Name>CozyNote.ClientCore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyNote.Database\CozyNote.Database.csproj">
       <Project>{c6c196c2-7cbf-45c2-bea7-f48074ad0261}</Project>
       <Name>CozyNote.Database</Name>
