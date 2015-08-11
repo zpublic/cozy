@@ -7,10 +7,8 @@ using CozyNote.Model.ObjectModel;
 
 namespace CozyNote.Model.APIModel.Output
 {
-    public class NotebookListOutput
+    public class NotebookListOutput : OutputBase
     {
-        public int ResultStatus { get; set; }
-
-        public List<Note> NoteList { get; set; }
+        public List<int> NoteList { get; set; }
     }
 }

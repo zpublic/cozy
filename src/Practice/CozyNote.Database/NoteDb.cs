@@ -11,8 +11,7 @@ namespace CozyNote.Database
 
         public NoteDb()
         {
-            Directory.CreateDirectory(@"c:\cozy_db");
-            db = new LiteDatabase(@"c:\cozy_db\note.db");
+            db = new LiteDatabase(@"note.db");
             col = db.GetCollection<Note>("note");
         }
 

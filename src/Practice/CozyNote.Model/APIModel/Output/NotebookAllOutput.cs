@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace CozyNote.Model.APIModel.Output
 {
-    public class NotebookAllOutput
+    public class NotebookAllOutput : OutputBase
     {
-        public int ResultStatus { get; set; }
-
         public List<int> NotebookList { get; set; }
     }
 }

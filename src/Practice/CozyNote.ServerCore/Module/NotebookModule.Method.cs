@@ -19,14 +19,11 @@ namespace CozyNote.ServerCore.Module
             var Input   = JsonConvert.DeserializeObject<NotebookAllInput>(args);
             var Result  = new NotebookAllOutput();
 
-            if (DbHolding.User.IsExist(Input.UserName))
+            var user = ModuleHelper.GetUser(Input.UserName, Input.UserPass);
+            if(user != null)
             {
-                var User = DbHolding.User.Get(Input.UserName);
-                if(User.pass == Input.UserPass)
-                {
-                    Result.ResultStatus = ResultStatus.SuccessStatus;
-                    Result.NotebookList = User.notebook_list;
-                }
+                Result.NotebookList = user.notebook_list;
+                Result.ResultStatus = ResultStatus.SuccessStatus;
             }
 
             var Output = JsonConvert.SerializeObject(Result);
@@ -38,16 +35,12 @@ namespace CozyNote.ServerCore.Module
             var Input   = JsonConvert.DeserializeObject<NotebookGetInput>(args);
             var Result  = new NotebookGetOutput();
 
-            if(DbHolding.Notebook.IsExist(Input.NotebookId))
+            var notebook = ModuleHelper.GetNotebook(Input.NotebookId, Input.NotebookPass);
+            if(notebook != null)
             {
-                var notebook = DbHolding.Notebook.Get(Input.NotebookId);
-
-                if(notebook.pass == Input.NotebookPass)
-                {
-                    Result.ResultStatus = ResultStatus.SuccessStatus;
-                    Result.NotebookName = notebook.name;
-                    Result.NoteSum      = notebook.notes_num;
-                }
+                Result.NoteSum      = notebook.note_list.Count;
+                Result.NotebookName = notebook.name;
+                Result.ResultStatus = ResultStatus.SuccessStatus;
             }
 
             var Output = JsonConvert.SerializeObject(Result);
@@ -58,29 +51,12 @@ namespace CozyNote.ServerCore.Module
         {
             var Input   = JsonConvert.DeserializeObject<NotebookListInput>(args);
             var Result  = new NotebookListOutput();
-            if (DbHolding.Notebook.IsExist(Input.NotebookId))
+
+            var notebook = ModuleHelper.GetNotebook(Input.NotebookId, Input.NotebookPass);
+            if (notebook != null)
             {
-                var notebook = DbHolding.Notebook.Get(Input.NotebookId);
-                if (notebook.pass == Input.NotebookPass)
-                {
-                    var NoteList            = new List<Note>();
-                    var NotebookNoteList    = notebook.note_list;
-
-                    foreach(var id in NotebookNoteList)
-                    {
-                        if(DbHolding.Note.IsExist(id))
-                        {
-                            var note = DbHolding.Note.Get(id);
-                            if(note.notebook_id == id)
-                            {
-                                NoteList.Add(note);
-                            }
-                        }
-                    }
-
-                    Result.ResultStatus = ResultStatus.SuccessStatus;
-                    Result.NoteList     = NoteList;
-                }
+                Result.NoteList     = notebook.note_list;
+                Result.ResultStatus = ResultStatus.SuccessStatus;
             }
 
             var Output = JsonConvert.SerializeObject(Result);
@@ -92,16 +68,12 @@ namespace CozyNote.ServerCore.Module
             var Input   = JsonConvert.DeserializeObject<NotebookUpdateInput>(args);
             var Result  = new NotebookUpdateOutput();
 
-            if (DbHolding.Notebook.IsExist(Input.NotebookId))
+            var notebook = ModuleHelper.GetNotebook(Input.NotebookId, Input.NotebookPass);
+            if (notebook != null)
             {
-                var notebook = DbHolding.Notebook.Get(Input.NotebookId);
-
-                if (notebook.pass == Input.NotebookPass)
-                {
-                    notebook.name = Input.NewName;
-                    notebook.pass = Input.NewPass;
-                }
-
+                notebook.name       = Input.NewName;
+                notebook.pass       = Input.NewPass;
+                DbHolding.Notebook.Update(notebook);
                 Result.ResultStatus = ResultStatus.SuccessStatus;
             }
 
@@ -114,17 +86,18 @@ namespace CozyNote.ServerCore.Module
             var Input   = JsonConvert.DeserializeObject<NotebookCreateInput>(args);
             var Result  = new NotebookCreateOutput();
 
-            if(DbHolding.User.IsExist(Input.UserName))
+            var user = ModuleHelper.GetUser(Input.UserName, Input.UserPass);
+            if(user != null)
             {
                 var NewNotebook = new Notebook()
                 {
                     name = Input.NotebookName,
                     pass = Input.NotebookPass,
                 };
+                int id = DbHolding.Notebook.Create(NewNotebook);
 
-                int id      = DbHolding.Notebook.Create(NewNotebook);
-                var user    = DbHolding.User.Get(Input.UserName);
                 user.notebook_list.Add(id);
+                DbHolding.User.Update(user);
 
                 Result.NotebookId   = id;
                 Result.ResultStatus = ResultStatus.SuccessStatus;
@@ -139,17 +112,13 @@ namespace CozyNote.ServerCore.Module
             var Input   = JsonConvert.DeserializeObject<NotebookDeleteInput>(args);
             var Result  = new NotebookDeleteOutput();
 
-            if (DbHolding.Notebook.IsExist(Input.NotebookId))
+            var notebook = ModuleHelper.GetNotebook(Input.NotebookId, Input.NotebookPass);
+            if(notebook != null)
             {
-                var notebook = DbHolding.Notebook.Get(Input.NotebookId);
+                DbHolding.User.DeleteNotebook(Input.NotebookId);
+                DbHolding.Notebook.Delete(Input.NotebookId);
 
-                if (notebook.pass == Input.NotebookPass)
-                {
-                    DbHolding.User.DeleteNotebook(Input.NotebookId);
-                    DbHolding.Notebook.Delete(Input.NotebookId);
-
-                    Result.ResultStatus = ResultStatus.SuccessStatus;
-                }
+                Result.ResultStatus = ResultStatus.SuccessStatus;
             }
 
             var Output = JsonConvert.SerializeObject(Result);

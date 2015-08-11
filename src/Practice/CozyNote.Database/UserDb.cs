@@ -11,11 +11,7 @@ namespace CozyNote.Database
 
         public UserDb()
         {
-            if (!Directory.Exists(@"cozy_db\"))
-            {
-                Directory.CreateDirectory(@"cozy_db\");
-            }
-            db = new LiteDatabase(@"cozy_db\user.db");
+            db = new LiteDatabase(@"user.db");
             col = db.GetCollection<User>("user");
         }
 
@@ -51,6 +47,7 @@ namespace CozyNote.Database
             foreach(var obj in user)
             {
                 obj.notebook_list.Remove(id);
+                Update(obj);
             }
         }
 

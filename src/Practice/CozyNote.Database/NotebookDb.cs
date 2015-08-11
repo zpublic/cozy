@@ -11,19 +11,13 @@ namespace CozyNote.Database
 
         public NotebookDb()
         {
-            Directory.CreateDirectory(@"c:\cozy_db");
-            db = new LiteDatabase(@"c:\cozy_db\notebook.db");
+            db = new LiteDatabase(@"notebook.db");
             col = db.GetCollection<Notebook>("notebook");
         }
 
         public bool IsExist(int id)
         {
             return col.FindById(id) != null;
-        }
-
-        public bool IsExist(string name)
-        {
-            return col.FindOne(x => x.name == name) != null;
         }
 
         public int Create(Notebook obj)
@@ -43,7 +37,7 @@ namespace CozyNote.Database
             foreach(var obj in notebook)
             {
                 obj.note_list.Remove(id);
-                obj.notes_num--;
+                Update(obj);
             }
         }
 
@@ -55,11 +49,6 @@ namespace CozyNote.Database
         public Notebook Get(int id)
         {
             return col.FindById(id);
-        }
-
-        public Notebook Get(string name)
-        {
-            return col.FindOne(x => x.name == name);
         }
     }
 }

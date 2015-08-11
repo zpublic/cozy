@@ -8,27 +8,32 @@ namespace CozyNote.ServerCore.Module
         {
             Post["/create"] = x =>
             {
-                return "a";
+                var data = this.ReadBodyData();
+                return OnNoteCreate(data);
             };
 
             Post["/get"] = x =>
             {
-                return "a";
+                var data = this.ReadBodyData();
+                return OnNoteGet(data);
             };
 
             Post["/update"] = x =>
             {
-                return "a";
+                var data = this.ReadBodyData();
+                return OnNoteUpdate(data);
             };
 
             Post["/move"] = x =>
             {
-                return "a";
+                var data = this.ReadBodyData();
+                return OnNoteMove(data); ;
             };
 
             Post["/delete"] = x =>
             {
-                return "a";
+                var data = this.ReadBodyData();
+                return OnNoteDelete(data);
             };
         }
     }
