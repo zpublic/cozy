@@ -19,26 +19,11 @@ namespace CozyNote.ServerCore.Module
             var Input   = JsonConvert.DeserializeObject<UserNotebookInput>(args);
             var Result  = new UserNotebookOutput();
 
-            if (DbHolding.User.IsExist(Input.UserName))
+            var user = ModuleHelper.GetUser(Input.UserName, Input.UserPass);
+            if (user != null)
             {
-                var User = DbHolding.User.Get(Input.UserName);
-                if (User.pass == Input.UserPass)
-                {
-                    var NotebookList        = new List<Notebook>();
-                    var UserNotebookList    = User.notebook_list;
-
-                    foreach (var id in UserNotebookList)
-                    {
-                        if (DbHolding.Notebook.IsExist(id))
-                        {
-                            var notebook = DbHolding.Notebook.Get(id);
-                            NotebookList.Add(notebook);
-                        }
-                    }
-
-                    Result.ResultStatus = ResultStatus.SuccessStatus;
-                    Result.NotebookList = NotebookList;
-                }
+                Result.NotebookList = user.notebook_list;
+                Result.ResultStatus = ResultStatus.SuccessStatus;
             }
 
             var Output = JsonConvert.SerializeObject(Result);

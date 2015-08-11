@@ -8,11 +8,11 @@ namespace CozyNote.Model.APIModel.Input
 {
     public class NoteMoveInput
     {
-        public string FromName { get; set; }
+        public int FromId { get; set; }
 
         public string FromPass { get; set; }
 
-        public string ToName { get; set; }
+        public int ToId { get; set; }
 
         public string ToPass { get; set; }
 

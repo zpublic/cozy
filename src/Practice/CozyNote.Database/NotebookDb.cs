@@ -21,11 +21,6 @@ namespace CozyNote.Database
             return col.FindById(id) != null;
         }
 
-        public bool IsExist(string name)
-        {
-            return col.FindOne(x => x.name == name) != null;
-        }
-
         public int Create(Notebook obj)
         {
             var r = col.Insert(obj);
@@ -44,6 +39,7 @@ namespace CozyNote.Database
             {
                 obj.note_list.Remove(id);
                 obj.notes_num--;
+                Update(obj);
             }
         }
 
@@ -55,11 +51,6 @@ namespace CozyNote.Database
         public Notebook Get(int id)
         {
             return col.FindById(id);
-        }
-
-        public Notebook Get(string name)
-        {
-            return col.FindOne(x => x.name == name);
         }
     }
 }

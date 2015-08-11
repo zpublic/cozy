@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModuleHelper.cs" />
     <Compile Include="Module\NotebookModule.cs" />
     <Compile Include="Module\NotebookModule.Method.cs" />
     <Compile Include="Module\NoteModule.cs" />
