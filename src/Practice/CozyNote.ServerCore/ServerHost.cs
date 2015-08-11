@@ -11,14 +11,9 @@ namespace CozyNote.ServerCore
     {
         public HelloModule()
         {
-            Get["/"] = x =>
+            Get["/"] = x => 
             {
-                //return "hello world!";
-                var jsonBytes = Encoding.UTF8.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(new { name = "Max", age = "19" })); 
-                return new Response {
-                    ContentType = "application/json",
-                    Contents = s => s.Write(jsonBytes, 0, jsonBytes.Length)
-                };
+                return "hello world!";
             };
         }
     }

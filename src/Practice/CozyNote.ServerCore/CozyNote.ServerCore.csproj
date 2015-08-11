@@ -60,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\DbHolding.cs" />
-    <Compile Include="Database\DbContent.cs" />
     <Compile Include="Database\NotebookDb.cs" />
     <Compile Include="Database\NoteDb.cs" />
     <Compile Include="Database\UserDb.cs" />
@@ -82,9 +81,7 @@
       <Name>CozyNote.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
