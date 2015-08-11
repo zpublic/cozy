@@ -94,6 +94,7 @@ namespace CozyNote.ServerCore.Module
                     name = Input.NotebookName,
                     pass = Input.NotebookPass,
                 };
+                NewNotebook.user_list.Add(user.id);
                 int id = DbHolding.Notebook.Create(NewNotebook);
 
                 user.notebook_list.Add(id);
@@ -115,7 +116,13 @@ namespace CozyNote.ServerCore.Module
             var notebook = ModuleHelper.GetNotebook(Input.NotebookId, Input.NotebookPass);
             if(notebook != null)
             {
-                DbHolding.User.DeleteNotebook(Input.NotebookId);
+                foreach (var obj in notebook.user_list)
+                {
+                    var user = DbHolding.User.Get(obj);
+                    user.notebook_list.Remove(notebook.id);
+                    DbHolding.User.Update(user);
+                }
+
                 DbHolding.Notebook.Delete(Input.NotebookId);
 
                 Result.ResultStatus = ResultStatus.SuccessStatus;
