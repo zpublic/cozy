@@ -7,7 +7,7 @@ using CozyNote.Model.APIModel.Input;
 using CozyNote.Model.APIModel.Output;
 using CozyNote.Model.ObjectModel;
 using Newtonsoft.Json;
-using CozyNote.ServerCore.Database;
+using CozyNote.Database;
 using CozyNote.Model.APIModel;
 
 namespace CozyNote.ServerCore.Module

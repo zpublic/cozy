@@ -2,7 +2,7 @@
 using Nancy.Hosting.Self;
 using System;
 using System.Diagnostics;
-using CozyNote.ServerCore.Database;
+using CozyNote.Database;
 
 namespace CozyNote.ServerCore
 {

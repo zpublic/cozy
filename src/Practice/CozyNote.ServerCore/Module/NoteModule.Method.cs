@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CozyNote.Model.APIModel;
 using CozyNote.Model.APIModel.Input;
 using CozyNote.Model.APIModel.Output;
-using CozyNote.ServerCore.Database;
+using CozyNote.Database;
 using Newtonsoft.Json;
 using CozyNote.Model.ObjectModel;
 

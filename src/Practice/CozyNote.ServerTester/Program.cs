@@ -1,4 +1,4 @@
-﻿using CozyNote.ServerCore.Database;
+﻿using CozyNote.Database;
 using CozyNote.Model.ObjectModel;
 using System.Collections.Generic;
 

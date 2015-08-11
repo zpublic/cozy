@@ -2,7 +2,7 @@
 using LiteDB;
 using System.IO;
 
-namespace CozyNote.ServerCore.Database
+namespace CozyNote.Database
 {
     public class UserDb
     {
