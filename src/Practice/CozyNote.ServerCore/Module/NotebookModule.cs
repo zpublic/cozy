@@ -10,38 +10,38 @@ namespace CozyNote.ServerCore.Module
         {
             Post["/all"] = x =>
             {
-                var body = this.Request.Body;
-                body.Seek(0, SeekOrigin.Begin);
-                using (var reader = new StreamReader(body))
-                {
-                    var result = reader.ReadToEnd();
-                    return OnNotebookAll(result);
-                }
+                var data = this.ReadBodyData();
+                return OnNotebookAll(data);
             };
 
             Post["/get"] = x =>
             {
-                return "a";
+                var data = this.ReadBodyData();
+                return OnNotebookGet(data);
             };
 
             Post["/list"] = x =>
             {
-                return "a";
+                var data = this.ReadBodyData();
+                return OnNotebookList(data);
             };
 
             Post["/update"] = x =>
             {
-                return "a";
+                var data = this.ReadBodyData();
+                return OnNotebookUpdate(data);
             };
 
             Post["/create"] = x =>
             {
-                return "a";
+                var data = this.ReadBodyData();
+                return OnNotebookCreate(data);
             };
 
             Post["/delete"] = x =>
             {
-                return "a";
+                var data = this.ReadBodyData();
+                return OnNotebookDelete(data);
             };
         }
     }

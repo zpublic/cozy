@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using CozyNote.Database;
 using CozyNote.Model.ObjectModel;
+using Nancy;
 
 namespace CozyNote.ServerCore
 {
@@ -49,6 +51,17 @@ namespace CozyNote.ServerCore
                 }
             }
             return null;
+        }
+
+        public static string ReadBodyData(this NancyModule module)
+        {
+            var body = module.Request.Body;
+            body.Seek(0, SeekOrigin.Begin);
+            using (var reader = new StreamReader(body))
+            {
+                var result = reader.ReadToEnd();
+                return result;
+            }
         }
     }
 }

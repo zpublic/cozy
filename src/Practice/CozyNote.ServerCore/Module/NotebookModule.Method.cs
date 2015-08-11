@@ -55,22 +55,7 @@ namespace CozyNote.ServerCore.Module
             var notebook = ModuleHelper.GetNotebook(Input.NotebookId, Input.NotebookPass);
             if (notebook != null)
             {
-                var NoteList            = new List<Note>();
-                var NotebookNoteList    = notebook.note_list;
-
-                foreach (var id in NotebookNoteList)
-                {
-                    if (DbHolding.Note.IsExist(id))
-                    {
-                        var note = DbHolding.Note.Get(id);
-                        if (note.notebook_id == id)
-                        {
-                            NoteList.Add(note);
-                        }
-                    }
-                }
-
-                Result.NoteList     = NoteList;
+                Result.NoteList     = notebook.note_list;
                 Result.ResultStatus = ResultStatus.SuccessStatus;
             }
 

@@ -8,24 +8,20 @@ namespace CozyNote.ServerCore.Module
         {
             Post["/notebook"] = x =>
             {
-                return "a";
+                var data = this.ReadBodyData();
+                return OnUserNotebook(data);
             };
 
             Post["/create"] = x =>
             {
-                var body = this.Request.Body;
-                long len = body.Length;
-                if (len > 0)
-                {
-                    byte[] byData = new byte[len];
-                    body.Read(byData, 0, (int)len);
-                }
-                return "a";
+                var data = this.ReadBodyData();
+                return OnUserCreate(data);
             };
 
             Post["/update"] = x =>
             {
-                return "a";
+                var data = this.ReadBodyData();
+                return OnUserUpdate(data);
             };
         }
     }
