@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace CozyNote.Model.APIModel.Output
 {
-    public class UserUpdateOutput
+    public class UserUpdateOutput : OutputBase
     {
-        public int ResultStatus { get; set; }
     }
 }
