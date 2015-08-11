@@ -32,7 +32,6 @@ namespace CozyNote.ServerCore.Module
                 var id = DbHolding.Note.Create(note);
 
                 notebook.note_list.Add(id);
-                notebook.notes_num++;
                 DbHolding.Notebook.Update(notebook);
 
                 Result.NoteId       = id;
@@ -91,10 +90,8 @@ namespace CozyNote.ServerCore.Module
                 if (ToNotebook != null)
                 {
                     ToNotebook.note_list.Add(note.id);
-                    ToNotebook.notes_num++;
 
                     FromNotebook.note_list.Remove(note.id);
-                    FromNotebook.notes_num--;
 
                     note.notebook_id = ToNotebook.id;
 
@@ -121,7 +118,6 @@ namespace CozyNote.ServerCore.Module
             if(note != null)
             {
                 notebook.note_list.Remove(note.id);
-                notebook.notes_num--;
                 DbHolding.Note.Delete(note.id);
 
                 DbHolding.Notebook.Update(notebook);

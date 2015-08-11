@@ -38,8 +38,8 @@ namespace CozyNote.ServerCore.Module
             var notebook = ModuleHelper.GetNotebook(Input.NotebookId, Input.NotebookPass);
             if(notebook != null)
             {
+                Result.NoteSum      = notebook.note_list.Count;
                 Result.NotebookName = notebook.name;
-                Result.NoteSum      = notebook.notes_num;
                 Result.ResultStatus = ResultStatus.SuccessStatus;
             }
 

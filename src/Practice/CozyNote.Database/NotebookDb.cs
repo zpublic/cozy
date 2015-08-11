@@ -37,7 +37,6 @@ namespace CozyNote.Database
             foreach(var obj in notebook)
             {
                 obj.note_list.Remove(id);
-                obj.notes_num--;
                 Update(obj);
             }
         }
