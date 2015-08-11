@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System;
 using CozyNote.ServerCore.Module;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace CozyNote.ServerTester
 {
@@ -47,7 +48,18 @@ namespace CozyNote.ServerTester
 
         public static void Clear()
         {
-            // TODO Delete the db file;
+            if (File.Exists(@"notebook.db"))
+            {
+                File.Delete(@"notebook.db");
+            }
+            if (File.Exists(@"note.db"))
+            {
+                File.Delete(@"note.db");
+            }
+            if (File.Exists(@"user.db"))
+            {
+                File.Delete(@"user.db");
+            }
 
             Console.WriteLine("Clear Complete");
         }
