@@ -22,11 +22,7 @@ namespace CozyNote.ConsoleClient.Scene
             Id = id;
         }
 
-        public void Enter()
-        {
-        }
-
-        public void Run()
+        public override void Run()
         {
             Console.Clear();
             Console.WriteLine("欢迎使用CozyNote，您可以输入以下指令:");
@@ -73,10 +69,6 @@ namespace CozyNote.ConsoleClient.Scene
         private void OnReturn()
         {
             SceneManager.Instance.PopScene();
-        }
-
-        public void Exit()
-        {
         }
     }
 }

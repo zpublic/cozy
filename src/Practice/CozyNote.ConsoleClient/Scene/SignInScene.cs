@@ -9,12 +9,7 @@ namespace CozyNote.ConsoleClient.Scene
 {
     public class SignInScene : IScene
     {
-        public void Enter()
-        {
-            
-        }
-
-        public void Run()
+        public override void Run()
         {
             Console.Clear();
             Console.WriteLine("欢迎使用CozyNote，您可以输入以下指令:");
@@ -58,11 +53,6 @@ namespace CozyNote.ConsoleClient.Scene
                 Console.WriteLine("用户名或密码错误"); ;
             }
             Console.ReadKey();
-        }
-
-        public void Exit()
-        {
-
         }
     }
 }

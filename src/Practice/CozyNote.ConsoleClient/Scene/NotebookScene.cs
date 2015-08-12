@@ -28,12 +28,7 @@ namespace CozyNote.ConsoleClient.Scene
             NotebookPass = notebookpass;
         }
 
-        public void Enter()
-        {
-
-        }
-
-        public void Run()
+        public override void Run()
         {
             Console.Clear();
             Console.WriteLine("欢迎使用CozyNote，您可以输入以下指令:");
@@ -151,11 +146,6 @@ namespace CozyNote.ConsoleClient.Scene
                 Console.WriteLine("输入失败");
             }
             Console.ReadKey();
-        }
-
-        public void Exit()
-        {
-
         }
     }
 }

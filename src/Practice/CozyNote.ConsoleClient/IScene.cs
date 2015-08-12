@@ -6,12 +6,21 @@ using System.Threading.Tasks;
 
 namespace CozyNote.ConsoleClient
 {
-    public interface IScene
+    public class IScene
     {
-        void Enter();
+        public virtual void Enter()
+        {
 
-        void Run();
+        }
 
-        void Exit();
+        public virtual void Run()
+        {
+
+        }
+
+        public virtual void Exit()
+        {
+
+        }
     }
 }
