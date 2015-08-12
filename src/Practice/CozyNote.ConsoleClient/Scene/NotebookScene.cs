@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyNote.ClientCore.Api;
-using CozyNote;
 
 namespace CozyNote.ConsoleClient.Scene
 {
@@ -22,10 +21,10 @@ namespace CozyNote.ConsoleClient.Scene
 
         public NotebookScene(string username, string password, int notebookid, string notebookpass)
         {
-            Username = username;
-            Password = password;
-            NotebookId = notebookid;
-            NotebookPass = notebookpass;
+            Username        = username;
+            Password        = password;
+            NotebookId      = notebookid;
+            NotebookPass    = notebookpass;
         }
 
         public override void Run()

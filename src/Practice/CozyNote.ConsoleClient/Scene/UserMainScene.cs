@@ -15,9 +15,9 @@ namespace CozyNote.ConsoleClient.Scene
 
         public UserMainScene(string username, string password, List<int> notebookList)
         {
-            Username = username;
-            Password = password;
-            NotebookList = notebookList;
+            Username        = username;
+            Password        = password;
+            NotebookList    = notebookList;
         }
 
         public override void Run()

@@ -48,7 +48,6 @@ namespace CozyNote.ConsoleClient.Scene
             SceneManager.Instance.PushScene(new SignInScene());
         }
 
-
         private void OnSignUp()
         {
             SceneManager.Instance.PushScene(new SignUpScene());

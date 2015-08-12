@@ -17,9 +17,9 @@ namespace CozyNote.ConsoleClient.Scene
 
         public NotebookPasswordScene(string username, string password, int id)
         {
-            Username = username;
-            Password = password;
-            Id = id;
+            Username    = username;
+            Password    = password;
+            Id          = id;
         }
 
         public override void Run()
@@ -52,7 +52,7 @@ namespace CozyNote.ConsoleClient.Scene
         {
             Console.WriteLine("请输入Notebook密码");
 
-            string pass = Console.ReadLine();
+            string pass     = Console.ReadLine();
             List<int> Notes = null;
             if (NotebookApi.NotebookList(Id, pass, ref Notes))
             {
