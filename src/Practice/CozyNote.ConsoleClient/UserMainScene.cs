@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CozyNote.ClientCore.Api;
 
 namespace CozyNote.ConsoleClient
 {
@@ -14,14 +15,14 @@ namespace CozyNote.ConsoleClient
 
         public UserMainScene(string username, string password, List<int> notebookList)
         {
-            Username        = username;
-            Password        = password;
-            NotebookList    = notebookList;
+            Username = username;
+            Password = password;
+            NotebookList = notebookList;
         }
 
         public void Enter()
         {
-           
+
         }
 
         public void Run()
@@ -61,12 +62,26 @@ namespace CozyNote.ConsoleClient
 
         private void OnModifyNotebook()
         {
-            SceneManager.Instance.PushScene(new NotebookManagerScene(Username, Password, NotebookList));
+            SceneManager.Instance.PushScene(new NotebookManagerScene(Username, Password));
         }
 
         private void OnModifyUserInfo()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("输入新名称");
+            string newName = Console.ReadLine();
+            Console.WriteLine("输入新密码");
+            string newPass = Console.ReadLine();
+
+            if (UserApi.UserUpdate(Username, Password, newName, newPass))
+            {
+                Console.WriteLine("修改成功 按下任意按键返回重新登录");
+                SceneManager.Instance.PopScene();
+            }
+            else
+            {
+                Console.WriteLine("修改失败");
+            }
+            Console.ReadKey();
         }
 
         public void Exit()

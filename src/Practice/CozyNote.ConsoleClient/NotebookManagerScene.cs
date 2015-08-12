@@ -15,16 +15,15 @@ namespace CozyNote.ConsoleClient
 
         private List<int> NotebookList { get; set; }
 
-        public NotebookManagerScene(string username, string password, List<int> notebookList)
+        public NotebookManagerScene(string username, string password)
         {
             Username = username;
             Password = password;
-            NotebookList = notebookList;
         }
 
         public void Enter()
         {
-            
+
         }
 
         public void Run()
@@ -35,6 +34,7 @@ namespace CozyNote.ConsoleClient
             Console.WriteLine("1.查看所有Notebook");
             Console.WriteLine("2.管理Notebook");
             Console.WriteLine("3.创建Notebook");
+            Console.WriteLine("4.删除Notebook");
 
             int n = 0;
             if (int.TryParse(Console.ReadLine().Trim(), out n))
@@ -53,6 +53,9 @@ namespace CozyNote.ConsoleClient
                     case 3:
                         OnCreateNotebook();
                         break;
+                    case 4:
+                        OnDeleteBook();
+                        break;
                     default:
                         Console.WriteLine("指令错误");
                         Console.ReadKey();
@@ -63,16 +66,26 @@ namespace CozyNote.ConsoleClient
 
         private void OnEnumNotebook()
         {
-            Console.WriteLine("您的Notebook有:");
-            Tuple<string, int> result = null;
-            foreach(var obj in NotebookList)
+            List<int> notebooklist = null;
+            if (UserApi.UserNotebook(Username, Password, ref notebooklist))
             {
-                Console.WriteLine("Id : {0}", obj);
-                if(NotebookApi.NotebookGet(obj, ref result))
+                NotebookList = notebooklist;
+
+                Console.WriteLine("您的Notebook有:");
+                Tuple<string, int> result = null;
+                foreach (var obj in NotebookList)
                 {
-                    Console.WriteLine("Name : {0}", result.Item1);
-                    Console.WriteLine("NoteSum : {0}", result.Item2);
+                    Console.WriteLine("Id : {0}", obj);
+                    if (NotebookApi.NotebookGet(obj, ref result))
+                    {
+                        Console.WriteLine("Name : {0}", result.Item1);
+                        Console.WriteLine("NoteSum : {0}", result.Item2);
+                    }
                 }
+            }
+            else
+            {
+                Console.WriteLine("获取信息失败");
             }
             Console.ReadKey();
         }
@@ -81,7 +94,7 @@ namespace CozyNote.ConsoleClient
         {
             Console.WriteLine("请输入NotebookId");
             int id = 0;
-            if(int.TryParse(Console.ReadLine().Trim(), out id) && NotebookList.Contains(id))
+            if (int.TryParse(Console.ReadLine().Trim(), out id) && NotebookList.Contains(id))
             {
                 SceneManager.Instance.PushScene(new NotebookPasswordScene(Username, Password, id));
             }
@@ -94,7 +107,45 @@ namespace CozyNote.ConsoleClient
 
         private void OnCreateNotebook()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("输入NotebookName");
+            string notebookname = Console.ReadLine();
+            Console.WriteLine("输入NotebookPass");
+            string notebookpass = Console.ReadLine();
+
+            int notebookid = 0;
+            if (NotebookApi.NotebookCreate(Username, Password, notebookname, notebookpass, ref notebookid))
+            {
+                Console.WriteLine("创建成功");
+            }
+            else
+            {
+                Console.WriteLine("创建失败");
+            }
+            Console.ReadKey();
+        }
+
+        private void OnDeleteBook()
+        {
+            Console.WriteLine("输入要删除的Notebook的ID");
+            int id = 0;
+            if (int.TryParse(Console.ReadLine().Trim(), out id))
+            {
+                Console.WriteLine("输入要删除的Notebook的密码");
+                string pass = Console.ReadLine();
+                if(NotebookApi.NotebookDelete(id, pass))
+                {
+                    Console.WriteLine("删除成功");
+                }
+                else
+                {
+                    Console.WriteLine("密码错误");
+                }
+            }
+            else
+            {
+                Console.WriteLine("输入错误");
+            }
+            Console.ReadKey();
         }
 
         private void OnReturn()

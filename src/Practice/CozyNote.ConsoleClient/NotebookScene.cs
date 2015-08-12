@@ -70,7 +70,7 @@ namespace CozyNote.ConsoleClient
         private void OnEnumNote()
         {
             List<int> notelist = null;
-            if(NotebookApi.NotebookList(NotebookId, NotebookPass, ref notelist))
+            if (NotebookApi.NotebookList(NotebookId, NotebookPass, ref notelist))
             {
                 NoteList = notelist;
 
@@ -95,7 +95,7 @@ namespace CozyNote.ConsoleClient
             {
                 Console.WriteLine("获取数据失败");
             }
-            
+
             Console.ReadKey();
         }
 
@@ -106,11 +106,15 @@ namespace CozyNote.ConsoleClient
 
         private void OnNoteCreate()
         {
+            Console.WriteLine("输入Type");
             int type = 0;
             if (int.TryParse(Console.ReadLine().Trim(), out type))
             {
+                Console.WriteLine("输入Name");
                 string notename = Console.ReadLine();
+                Console.WriteLine("输入Data");
                 string notedata = Console.ReadLine();
+
                 int noteid = 0;
                 if (NoteApi.NoteCreate(NotebookId, NotebookPass, notename, type, notedata, ref noteid))
                 {
@@ -123,14 +127,31 @@ namespace CozyNote.ConsoleClient
             }
             else
             {
-                Console.WriteLine("Type Error");
+                Console.WriteLine("Type错误");
             }
             Console.ReadKey();
         }
 
         private void OnNoteDelete()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("输入ID");
+            int id = 0;
+            if (int.TryParse(Console.ReadLine().Trim(), out id))
+            {
+                if (NoteApi.NoteDelete(NotebookId, NotebookPass, id))
+                {
+                    Console.WriteLine("删除成功");
+                }
+                else
+                {
+                    Console.WriteLine("删除失败");
+                }
+            }
+            else
+            {
+                Console.WriteLine("输入失败");
+            }
+            Console.ReadKey();
         }
 
         public void Exit()

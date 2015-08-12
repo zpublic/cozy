@@ -50,7 +50,7 @@ namespace CozyNote.ConsoleClient
             List<int> notebooklist = null;
             if(UserApi.UserNotebook(username, password, ref notebooklist))
             {
-                Console.WriteLine("登陆成功 即将转到用户界面");
+                Console.WriteLine("登陆成功 按下任意按键转到用户界面");
                 SceneManager.Instance.PushScene(new UserMainScene(username, password, notebooklist));
             }
             else

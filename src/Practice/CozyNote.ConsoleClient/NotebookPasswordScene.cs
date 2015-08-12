@@ -61,7 +61,7 @@ namespace CozyNote.ConsoleClient
             if (NotebookApi.NotebookList(Id, pass, ref Notes))
             {
                 SceneManager.Instance.PushScene(new NotebookScene(Username, Password, Id, pass));
-                Console.WriteLine("密码正确 即将转入Notebook页面");
+                Console.WriteLine("密码正确 按下任意按键转入Notebook页面");
             }
             else
             {
