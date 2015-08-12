@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using CozyNote.ClientCore.Api;
 
-namespace CozyNote.ConsoleClient
+namespace CozyNote.ConsoleClient.Scene
 {
-    public class SignUpScene : IScene
+    public class SignInScene : IScene
     {
         public void Enter()
         {
@@ -19,7 +19,7 @@ namespace CozyNote.ConsoleClient
             Console.Clear();
             Console.WriteLine("欢迎使用CozyNote，您可以输入以下指令:");
             Console.WriteLine("0.返回上层");
-            Console.WriteLine("1.注册新用户");
+            Console.WriteLine("1.登陆");
 
             int n = 0;
             if (int.TryParse(Console.ReadLine().Trim(), out n))
@@ -27,42 +27,37 @@ namespace CozyNote.ConsoleClient
                 switch (n)
                 {
                     case 0:
-                        OnReturn();
+                        SceneManager.Instance.PopScene();
                         break;
                     case 1:
-                        OnSignUp();
+                        OnSignIn();
                         break;
                     default:
                         Console.WriteLine("指令错误");
+                        Console.ReadKey();
                         break;
                 }
             }
         }
 
-        private void OnSignUp()
+        private void OnSignIn()
         {
-            Console.WriteLine("请输入新用户名:");
+            Console.WriteLine("请输入用户名:");
             string username = Console.ReadLine();
-            Console.WriteLine("请输入新用户密码:");
+            Console.WriteLine("请输入用户密码:");
             string password = Console.ReadLine();
 
-            int userid = 0;
-            if(UserApi.UserCreate(username, password, ref userid))
+            List<int> notebooklist = null;
+            if(UserApi.UserNotebook(username, password, ref notebooklist))
             {
-                Console.WriteLine("注册成功 用户id : {0}", userid);
-                Console.WriteLine("按任意键返回上层");
-                SceneManager.Instance.PopScene();
+                Console.WriteLine("登陆成功 按下任意按键转到用户界面");
+                SceneManager.Instance.PushScene(new UserMainScene(username, password, notebooklist));
             }
             else
             {
-                Console.WriteLine("注册失败");
+                Console.WriteLine("用户名或密码错误"); ;
             }
             Console.ReadKey();
-        }
-
-        private void OnReturn()
-        {
-            SceneManager.Instance.PopScene();
         }
 
         public void Exit()

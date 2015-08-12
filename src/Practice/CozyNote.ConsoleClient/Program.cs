@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyNote.ClientCore.Api;
+using CozyNote.ConsoleClient.Scene;
 
 namespace CozyNote.ConsoleClient
 {

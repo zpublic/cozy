@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CozyNote.ClientCore.Api;
 using CozyNote;
 
-namespace CozyNote.ConsoleClient
+namespace CozyNote.ConsoleClient.Scene
 {
     public class NotebookScene : IScene
     {
@@ -95,7 +95,6 @@ namespace CozyNote.ConsoleClient
             {
                 Console.WriteLine("获取数据失败");
             }
-
             Console.ReadKey();
         }
 

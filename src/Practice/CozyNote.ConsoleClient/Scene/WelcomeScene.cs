@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CozyNote.ClientCore.Api;
 
-namespace CozyNote.ConsoleClient
+namespace CozyNote.ConsoleClient.Scene
 {
     public class WelcomeScene : IScene
     {
