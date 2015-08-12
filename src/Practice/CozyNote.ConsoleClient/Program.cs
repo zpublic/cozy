@@ -17,7 +17,18 @@ namespace CozyNote.ConsoleClient
 
         public void Run()
         {
-            TestDate();
+            SceneManager.Instance.PushScene(new WelcomeScene());
+            MainLoop();
+        }
+
+        public void MainLoop()
+        {
+            var scenes = SceneManager.Instance;
+            while (!scenes.Empty)
+            {
+                var scene = SceneManager.Instance.CurrScene;
+                scene.Run();
+            }
         }
 
         private void TestDate()
