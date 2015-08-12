@@ -57,15 +57,16 @@ namespace CozyNote.ServerCore.Module
             var Input   = JsonConvert.DeserializeObject<UserUpdateInput>(args);
             var Result  = new UserUpdateOutput();
 
-            if(DbHolding.User.IsExist(Input.UserName) && !DbHolding.User.IsExist(Input.NewName))
+            if(DbHolding.User.IsExist(Input.UserName))
             {
                 var user = DbHolding.User.Get(Input.UserName);
 
                 if(user.pass == Input.UserPass)
                 {
                     user.nickname   = Input.NewName;
-                    user.pass       = Input.UserPass;
+                    user.pass       = Input.NewPass;
 
+                    DbHolding.User.Update(user);
                     Result.ResultStatus = ResultStatus.SuccessStatus;
                 }
             }

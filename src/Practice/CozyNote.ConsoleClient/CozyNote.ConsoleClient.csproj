@@ -52,8 +52,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IScene.cs" />
+    <Compile Include="Scene\NotebookManagerScene.cs" />
+    <Compile Include="Scene\NotebookPasswordScene.cs" />
+    <Compile Include="Scene\NotebookScene.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene\SignInScene.cs" />
+    <Compile Include="Scene\SignUpScene.cs" />
+    <Compile Include="Scene\UserMainScene.cs" />
+    <Compile Include="Scene\WelcomeScene.cs" />
+    <Compile Include="SceneManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
