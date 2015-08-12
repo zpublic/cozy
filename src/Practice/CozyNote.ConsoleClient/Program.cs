@@ -23,6 +23,8 @@ namespace CozyNote.ConsoleClient
         private void TestDate()
         {
             Console.WriteLine("before create notebook");
+            int uid = 0;
+            UserApi.UserCreate("kingwl", "123456", ref uid);
 
             List<int> list = null;
             if (UserApi.UserNotebook("kingwl", "123456", ref list))
