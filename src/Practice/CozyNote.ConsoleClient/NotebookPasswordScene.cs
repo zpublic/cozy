@@ -7,11 +7,23 @@ using CozyNote.ClientCore.Api;
 
 namespace CozyNote.ConsoleClient
 {
-    public class SignUpScene : IScene
+    public class NotebookPasswordScene : IScene
     {
+        private string Username { get; set; }
+
+        private string Password { get; set; }
+
+        private int Id { get; set; }
+
+        public NotebookPasswordScene(string username, string password, int id)
+        {
+            Username = username;
+            Password = password;
+            Id = id;
+        }
+
         public void Enter()
         {
-            
         }
 
         public void Run()
@@ -19,7 +31,7 @@ namespace CozyNote.ConsoleClient
             Console.Clear();
             Console.WriteLine("欢迎使用CozyNote，您可以输入以下指令:");
             Console.WriteLine("0.返回上层");
-            Console.WriteLine("1.注册新用户");
+            Console.WriteLine("1.输入密码以查看Notebook");
 
             int n = 0;
             if (int.TryParse(Console.ReadLine().Trim(), out n))
@@ -30,32 +42,30 @@ namespace CozyNote.ConsoleClient
                         OnReturn();
                         break;
                     case 1:
-                        OnSignUp();
+                        OnEnterPass();
                         break;
                     default:
                         Console.WriteLine("指令错误");
+                        Console.ReadKey();
                         break;
                 }
             }
         }
 
-        private void OnSignUp()
+        private void OnEnterPass()
         {
-            Console.WriteLine("请输入新用户名:");
-            string username = Console.ReadLine();
-            Console.WriteLine("请输入新用户密码:");
-            string password = Console.ReadLine();
+            Console.WriteLine("请输入Notebook密码");
 
-            int userid = 0;
-            if(UserApi.UserCreate(username, password, ref userid))
+            string pass = Console.ReadLine();
+            List<int> Notes = null;
+            if (NotebookApi.NotebookList(Id, pass, ref Notes))
             {
-                Console.WriteLine("注册成功 用户id : {0}", userid);
-                Console.WriteLine("按任意键返回上层");
-                SceneManager.Instance.PopScene();
+                SceneManager.Instance.PushScene(new NotebookScene(Username, Password, Id, pass));
+                Console.WriteLine("密码正确 即将转入Notebook页面");
             }
             else
             {
-                Console.WriteLine("注册失败");
+                Console.WriteLine("密码错误");
             }
             Console.ReadKey();
         }
@@ -67,7 +77,6 @@ namespace CozyNote.ConsoleClient
 
         public void Exit()
         {
-
         }
     }
 }

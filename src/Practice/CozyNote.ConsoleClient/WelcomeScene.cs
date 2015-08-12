@@ -28,13 +28,13 @@ namespace CozyNote.ConsoleClient
                 switch (n)
                 {
                     case 0:
-                        SceneManager.Instance.Exit();
+                        OnExit();
                         return;
                     case 1:
-                        SceneManager.Instance.PushScene(new SignUpScene());
+                        OnSignUp();
                         return;
                     case 2:
-                        SceneManager.Instance.PushScene(new SignInScene());
+                        OnSignIn();
                         return;
                     default:
                         Console.WriteLine("指令错误");
@@ -45,8 +45,23 @@ namespace CozyNote.ConsoleClient
             {
                 Console.WriteLine("输入错误");
             }
-            Console.WriteLine("按下任意键继续");
             Console.ReadKey();
+        }
+
+        private void OnSignIn()
+        {
+            SceneManager.Instance.PushScene(new SignInScene());
+        }
+
+
+        private void OnSignUp()
+        {
+            SceneManager.Instance.PushScene(new SignUpScene());
+        }
+
+        private void OnExit()
+        {
+            SceneManager.Instance.Exit();
         }
 
         public void Exit()

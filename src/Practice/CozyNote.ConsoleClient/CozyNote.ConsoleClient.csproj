@@ -53,11 +53,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IScene.cs" />
+    <Compile Include="NotebookManagerScene.cs" />
+    <Compile Include="NotebookPasswordScene.cs" />
     <Compile Include="NotebookScene.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignInScene.cs" />
     <Compile Include="SignUpScene.cs" />
+    <Compile Include="UserMainScene.cs" />
     <Compile Include="WelcomeScene.cs" />
     <Compile Include="SceneManager.cs" />
   </ItemGroup>

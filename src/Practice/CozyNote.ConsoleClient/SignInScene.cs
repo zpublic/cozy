@@ -34,6 +34,7 @@ namespace CozyNote.ConsoleClient
                         break;
                     default:
                         Console.WriteLine("指令错误");
+                        Console.ReadKey();
                         break;
                 }
             }
@@ -49,13 +50,13 @@ namespace CozyNote.ConsoleClient
             List<int> notebooklist = null;
             if(UserApi.UserNotebook(username, password, ref notebooklist))
             {
-
+                Console.WriteLine("登陆成功 即将转到用户界面");
+                SceneManager.Instance.PushScene(new UserMainScene(username, password, notebooklist));
             }
             else
             {
                 Console.WriteLine("用户名或密码错误"); ;
             }
-            Console.WriteLine("按下任意键继续");
             Console.ReadKey();
         }
 

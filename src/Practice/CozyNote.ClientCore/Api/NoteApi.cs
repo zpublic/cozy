@@ -4,6 +4,7 @@ using CozyNote.Model.APIModel;
 using Newtonsoft.Json;
 using CozyNote.ClientCore.Network;
 using CozyNote.Model.ObjectModel;
+using System;
 
 namespace CozyNote.ClientCore.Api
 {
@@ -31,7 +32,7 @@ namespace CozyNote.ClientCore.Api
             return issuccess;
         }
 
-        public static bool NoteGet(int notebookid, string notebookpass, int noteid, ref Note note)
+        public static bool NoteGet(int notebookid, string notebookpass, int noteid, ref Tuple<int, string, string> note)
         {
             var input = new NoteGetInput()
             {
@@ -46,7 +47,7 @@ namespace CozyNote.ClientCore.Api
             var issuccess   = ResultStatus.IsSuccess(result.ResultStatus);
             if (issuccess)
             {
-                note = result.Result;
+                note = Tuple.Create(result.Result.type, result.Result.name, result.Result.data);
             }
             return issuccess;
         }
