@@ -63,7 +63,7 @@ namespace CozyNote.ServerTester
             Console.WriteLine("UserNotebookIdList :");
             foreach(var notebookid in usernotebooklist)
             {
-                var notebook = GetNotebook(notebookid, TestNotebookPass);
+                var notebook = GetNotebook(notebookid);
                 Console.WriteLine("Id : {0}", notebookid);
                 Console.WriteLine("Name : {0}", notebook.Item1);
                 Console.WriteLine("Count : {0}", notebook.Item2);

@@ -17,12 +17,11 @@ namespace CozyNote.ClientCore.Api
             return UserApi.UserNotebook(username, userpass, ref notebooklist);
         }
 
-        public static bool NotebookGet(int notebookid, string notebookpass, ref Tuple<string, int> info)
+        public static bool NotebookGet(int notebookid, ref Tuple<string, int> info)
         {
             var input = new NotebookGetInput()
             {
                 NotebookId  = notebookid,
-                NotebookPass = notebookpass,
             };
             var json    = JsonConvert.SerializeObject(input);
             var output  = HttpReader.HttpPost(ApiDef.NotebookGet, json);

@@ -100,7 +100,6 @@ notebook/get
 ------------------
 input｛
     notebook-id,
-    notebook-pass
 ｝
 
 output｛
@@ -137,7 +136,7 @@ notebook/create
 input｛
     user-name,
 	user-pass,
-    notebook-id,
+    notebook-name,
     notebook-pass
 ｝
 
@@ -214,7 +213,7 @@ output｛
 note/delete
 ------------------
 input｛
-    notebook-name,
+    notebook-id,
     notebook-pass,
     note-id
 ｝

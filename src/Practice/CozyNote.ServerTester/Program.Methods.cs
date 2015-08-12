@@ -62,12 +62,11 @@ namespace CozyNote.ServerTester
             return usernotebookoutput.NotebookList;
         }
 
-        public static Tuple<string, int> GetNotebook(int notebookid, string notebookpass)
+        public static Tuple<string, int> GetNotebook(int notebookid)
         {
             var notebookgetinput = new NotebookGetInput()
             {
                 NotebookId      = notebookid,
-                NotebookPass    = notebookpass,
             };
             var output              = notebookmodule.OnNotebookGet(JsonConvert.SerializeObject(notebookgetinput));
             var notebookgetoutput   = JsonConvert.DeserializeObject<NotebookGetOutput>(output);

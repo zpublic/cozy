@@ -35,11 +35,11 @@ namespace CozyNote.ServerCore.Module
             var Input   = JsonConvert.DeserializeObject<NotebookGetInput>(args);
             var Result  = new NotebookGetOutput();
 
-            var notebook = ModuleHelper.GetNotebook(Input.NotebookId, Input.NotebookPass);
-            if(notebook != null)
+            var notebookinfo = ModuleHelper.GetNotebookInfo(Input.NotebookId);
+            if(notebookinfo != null)
             {
-                Result.NoteSum      = notebook.note_list.Count;
-                Result.NotebookName = notebook.name;
+                Result.NotebookName = notebookinfo.Item1;
+                Result.NoteSum      = notebookinfo.Item2;
                 Result.ResultStatus = ResultStatus.SuccessStatus;
             }
 
