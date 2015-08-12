@@ -31,16 +31,6 @@ namespace CozyNote.Database
             return col.Delete(id);
         }
 
-        public void DeleteNote(int id)
-        {
-            var notebook = col.Find(x => x.note_list.Contains(id));
-            foreach(var obj in notebook)
-            {
-                obj.note_list.Remove(id);
-                Update(obj);
-            }
-        }
-
         public bool Update(Notebook obj)
         {
             return col.Update(obj.id, obj);

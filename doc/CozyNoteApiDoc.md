@@ -137,7 +137,7 @@ notebook/create
 input｛
     user-name,
 	user-pass,
-    notebook-name,
+    notebook-id,
     notebook-pass
 ｝
 
