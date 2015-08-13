@@ -45,7 +45,7 @@ namespace CozyNote.ConsoleClient.Scene
             }
             else
             {
-                Console.WriteLine("用户名或密码错误"); ;
+                Console.WriteLine("登录失败");
             }
             Console.ReadKey();
         }

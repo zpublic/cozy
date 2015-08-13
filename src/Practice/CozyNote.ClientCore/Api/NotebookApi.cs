@@ -24,7 +24,16 @@ namespace CozyNote.ClientCore.Api
                 NotebookId  = notebookid,
             };
             var json    = JsonConvert.SerializeObject(input);
-            var output  = HttpReader.HttpPost(ApiDef.NotebookGet, json);
+
+            string output = null;
+            try
+            {
+                output = HttpReader.HttpPost(ApiDef.NotebookGet, json);
+            }
+            catch (AggregateException)
+            {
+                return false;
+            }
 
             var result      = JsonConvert.DeserializeObject<NotebookGetOutput>(output);
             var issuccess   = ResultStatus.IsSuccess(result.ResultStatus);
@@ -43,7 +52,17 @@ namespace CozyNote.ClientCore.Api
                 NotebookPass    = notebookpass,
             };
             var json    = JsonConvert.SerializeObject(input);
-            var output  = HttpReader.HttpPost(ApiDef.NotebookList, json);
+
+
+            string output = null;
+            try
+            {
+                output = HttpReader.HttpPost(ApiDef.NotebookList, json);
+            }
+            catch (AggregateException)
+            {
+                return false;
+            }
 
             var result      = JsonConvert.DeserializeObject<NotebookListOutput>(output);
             var issuccess   = ResultStatus.IsSuccess(result.ResultStatus);
@@ -64,7 +83,16 @@ namespace CozyNote.ClientCore.Api
                 NewPass = newpass,
             };
             var json = JsonConvert.SerializeObject(input);
-            var output = HttpReader.HttpPost(ApiDef.NotebookUpdate, json);
+
+            string output = null;
+            try
+            {
+                output = HttpReader.HttpPost(ApiDef.NotebookUpdate, json);
+            }
+            catch (AggregateException)
+            {
+                return false;
+            }
 
             var result = JsonConvert.DeserializeObject<NotebookUpdateOutput>(output);
             return ResultStatus.IsSuccess(result.ResultStatus);
@@ -80,7 +108,16 @@ namespace CozyNote.ClientCore.Api
                 NotebookPass    = notebookpass,
             };
             var json    = JsonConvert.SerializeObject(input);
-            var output  = HttpReader.HttpPost(ApiDef.NotebookCreate, json);
+
+            string output = null;
+            try
+            {
+                output = HttpReader.HttpPost(ApiDef.NotebookCreate, json);
+            }
+            catch (AggregateException)
+            {
+                return false;
+            }
 
             var result      = JsonConvert.DeserializeObject<NotebookCreateOutput>(output);
             var issuccess   = ResultStatus.IsSuccess(result.ResultStatus);
@@ -99,7 +136,16 @@ namespace CozyNote.ClientCore.Api
                 NotebookPass    = notebookpass,
             };
             var json    = JsonConvert.SerializeObject(input);
-            var output  = HttpReader.HttpPost(ApiDef.NotebookDelete, json);
+
+            string output = null;
+            try
+            {
+                output = HttpReader.HttpPost(ApiDef.NotebookDelete, json);
+            }
+            catch (AggregateException)
+            {
+                return false;
+            }
 
             var result = JsonConvert.DeserializeObject<NotebookDeleteOutput>(output);
             return ResultStatus.IsSuccess(result.ResultStatus);
