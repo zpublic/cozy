@@ -7,7 +7,7 @@ using CozyNote.ClientCore.Api;
 
 namespace CozyNote.ConsoleClient.Scene
 {
-    public class UserMainScene : IScene
+    public class UserMainScene : SceneBase
     {
         private string Username;
         private string Password;

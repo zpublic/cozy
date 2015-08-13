@@ -7,32 +7,27 @@ using CozyNote.ClientCore.Api;
 
 namespace CozyNote.ConsoleClient.Scene
 {
-    public class SignInScene : IScene
+    public class SignInScene : SceneBase
     {
+        private Menu menu { get; set; }
+
+        public override void Enter()
+        {
+            menu = new Menu();
+            menu.Add(new MenuItem() { Text = "返回", Command = OnReturn, });
+            menu.Add(new MenuItem() { Text = "登陆", Command = OnSignIn, });
+        }
+
         public override void Run()
         {
             Console.Clear();
-            Console.WriteLine("欢迎使用CozyNote，您可以输入以下指令:");
-            Console.WriteLine("0.返回上层");
-            Console.WriteLine("1.登陆");
+            Menu.Print(menu);
+            menu.Input();
+        }
 
-            int n = 0;
-            if (int.TryParse(Console.ReadLine().Trim(), out n))
-            {
-                switch (n)
-                {
-                    case 0:
-                        SceneManager.Instance.PopScene();
-                        break;
-                    case 1:
-                        OnSignIn();
-                        break;
-                    default:
-                        Console.WriteLine("指令错误");
-                        Console.ReadKey();
-                        break;
-                }
-            }
+        private void OnReturn()
+        {
+            SceneManager.Instance.PopScene();
         }
 
         private void OnSignIn()
@@ -50,7 +45,7 @@ namespace CozyNote.ConsoleClient.Scene
             }
             else
             {
-                Console.WriteLine("用户名或密码错误"); ;
+                Console.WriteLine("登录失败");
             }
             Console.ReadKey();
         }

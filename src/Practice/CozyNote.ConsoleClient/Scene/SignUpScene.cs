@@ -7,31 +7,22 @@ using CozyNote.ClientCore.Api;
 
 namespace CozyNote.ConsoleClient.Scene
 {
-    public class SignUpScene : IScene
+    public class SignUpScene : SceneBase
     {
+        private Menu menu { get; set; }
+
+        public override void Enter()
+        {
+            menu = new Menu();
+            menu.Add(new MenuItem() { Text = "返回", Command = OnReturn, });
+            menu.Add(new MenuItem() { Text = "注册", Command = OnSignUp, });
+        }
+
         public override void Run()
         {
             Console.Clear();
-            Console.WriteLine("欢迎使用CozyNote，您可以输入以下指令:");
-            Console.WriteLine("0.返回上层");
-            Console.WriteLine("1.注册新用户");
-
-            int n = 0;
-            if (int.TryParse(Console.ReadLine().Trim(), out n))
-            {
-                switch (n)
-                {
-                    case 0:
-                        OnReturn();
-                        break;
-                    case 1:
-                        OnSignUp();
-                        break;
-                    default:
-                        Console.WriteLine("指令错误");
-                        break;
-                }
-            }
+            Menu.Print(menu);
+            menu.Input();
         }
 
         private void OnSignUp()

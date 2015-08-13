@@ -4,6 +4,7 @@ using CozyNote.Model.APIModel;
 using Newtonsoft.Json;
 using CozyNote.ClientCore.Network;
 using System.Collections.Generic;
+using System;
 
 namespace CozyNote.ClientCore.Api
 {
@@ -16,9 +17,17 @@ namespace CozyNote.ClientCore.Api
                 UserName = username,
                 UserPass = pass,
             };
-
             var json    = JsonConvert.SerializeObject(input);
-            var output  = HttpReader.HttpPost(ApiDef.UserCreate, json);
+
+            string output = null;
+            try
+            {
+                output = HttpReader.HttpPost(ApiDef.UserCreate, json);
+            }
+            catch (AggregateException)
+            {
+                return false;
+            }
 
             var result  = JsonConvert.DeserializeObject<UserCreateOutput>(output);
             var issuccess = ResultStatus.IsSuccess(result.ResultStatus);
@@ -37,7 +46,16 @@ namespace CozyNote.ClientCore.Api
                 UserPass    = userpass,
             };
             var json    = JsonConvert.SerializeObject(input);
-            var output  = HttpReader.HttpPost(ApiDef.UserNotebook, json);
+
+            string output = null;
+            try
+            {
+                output = HttpReader.HttpPost(ApiDef.UserNotebook, json);
+            }
+            catch(System.AggregateException)
+            {
+                return false;
+            }
 
             var result  = JsonConvert.DeserializeObject<UserNotebookOutput>(output);
             var issuccess = ResultStatus.IsSuccess(result.ResultStatus);
@@ -58,7 +76,16 @@ namespace CozyNote.ClientCore.Api
                 NewPass     = newpass,
             };
             var json    = JsonConvert.SerializeObject(input);
-            var output  = HttpReader.HttpPost(ApiDef.UserUpdate, json);
+
+            string output = null;
+            try
+            {
+                output = HttpReader.HttpPost(ApiDef.UserUpdate, json);
+            }
+            catch (System.AggregateException)
+            {
+                return false;
+            }
 
             var result  = JsonConvert.DeserializeObject<UserUpdateOutput>(output);
             return ResultStatus.IsSuccess(result.ResultStatus);

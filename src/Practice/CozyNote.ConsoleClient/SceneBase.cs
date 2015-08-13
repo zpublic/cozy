@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CozyNote.ConsoleClient
 {
-    public class IScene
+    public class SceneBase
     {
         public virtual void Enter()
         {

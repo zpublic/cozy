@@ -21,7 +21,16 @@ namespace CozyNote.ClientCore.Api
                 NoteData        = notedate,
             };
             var json    = JsonConvert.SerializeObject(input);
-            var output  = HttpReader.HttpPost(ApiDef.NoteCreate, json);
+
+            string output = null;
+            try
+            {
+                output = HttpReader.HttpPost(ApiDef.NoteCreate, json);
+            }
+            catch (AggregateException)
+            {
+                return false;
+            }
 
             var result      = JsonConvert.DeserializeObject<NoteCreateOutput>(output);
             var issuccess   = ResultStatus.IsSuccess(result.ResultStatus);
@@ -41,7 +50,16 @@ namespace CozyNote.ClientCore.Api
                 NoteId          = noteid,
             };
             var json    = JsonConvert.SerializeObject(input);
-            var output  = HttpReader.HttpPost(ApiDef.NoteGet, json);
+
+            string output = null;
+            try
+            {
+                output = HttpReader.HttpPost(ApiDef.NoteGet, json);
+            }
+            catch (AggregateException)
+            {
+                return false;
+            }
 
             var result      = JsonConvert.DeserializeObject<NoteGetOutput>(output);
             var issuccess   = ResultStatus.IsSuccess(result.ResultStatus);
@@ -64,7 +82,16 @@ namespace CozyNote.ClientCore.Api
                 NewData         = newdate,
             };
             var json    = JsonConvert.SerializeObject(input);
-            var output  = HttpReader.HttpPost(ApiDef.NoteUpdate, json);
+
+            string output = null;
+            try
+            {
+                output = HttpReader.HttpPost(ApiDef.NoteUpdate, json);
+            }
+            catch (AggregateException)
+            {
+                return false;
+            }
 
             var result = JsonConvert.DeserializeObject<NoteUpdateOutput>(output);
             return ResultStatus.IsSuccess(result.ResultStatus);
@@ -81,7 +108,16 @@ namespace CozyNote.ClientCore.Api
                 NoteId      = noteid,
             };
             var json    = JsonConvert.SerializeObject(input);
-            var output  = HttpReader.HttpPost(ApiDef.NoteMove, json);
+
+            string output = null;
+            try
+            {
+                output = HttpReader.HttpPost(ApiDef.NoteMove, json);
+            }
+            catch (AggregateException)
+            {
+                return false;
+            }
 
             var result = JsonConvert.DeserializeObject<NoteMoveOutput>(output);
             return ResultStatus.IsSuccess(result.ResultStatus);
@@ -96,7 +132,16 @@ namespace CozyNote.ClientCore.Api
                 NoteId          = noteid,
             };
             var json    = JsonConvert.SerializeObject(input);
-            var output  = HttpReader.HttpPost(ApiDef.NoteDelete, json);
+
+            string output = null;
+            try
+            {
+                output = HttpReader.HttpPost(ApiDef.NoteDelete, json);
+            }
+            catch (AggregateException)
+            {
+                return false;
+            }
 
             var result = JsonConvert.DeserializeObject<NoteDeleteOutput>(output);
             return ResultStatus.IsSuccess(result.ResultStatus);
