@@ -10,9 +10,9 @@ namespace CozyNote.ConsoleClient
     {
         public static SceneManager Instance = new SceneManager();
 
-        private Stack<IScene> SceneStack = new Stack<IScene>();
+        private Stack<SceneBase> SceneStack = new Stack<SceneBase>();
 
-        public IScene CurrScene
+        public SceneBase CurrScene
         {
             get
             {
@@ -33,20 +33,20 @@ namespace CozyNote.ConsoleClient
 
         }
 
-        public void PushScene(IScene scene)
+        public void PushScene(SceneBase scene)
         {
             scene.Enter();
             SceneStack.Push(scene);
         }
 
-        public IScene PopScene()
+        public SceneBase PopScene()
         {
             var scene = SceneStack.Pop();
             scene.Exit();
             return scene;
         }
 
-        public void ReplaceScene(IScene scene)
+        public void ReplaceScene(SceneBase scene)
         {
             SceneStack.Pop().Exit();
 

@@ -7,7 +7,7 @@ using CozyNote.ClientCore.Api;
 
 namespace CozyNote.ConsoleClient.Scene
 {
-    public class NotebookScene : IScene
+    public class NotebookScene : SceneBase
     {
         private string Username { get; set; }
 
@@ -19,6 +19,8 @@ namespace CozyNote.ConsoleClient.Scene
 
         private List<int> NoteList { get; set; }
 
+        private Menu menu { get; set; }
+
         public NotebookScene(string username, string password, int notebookid, string notebookpass)
         {
             Username        = username;
@@ -27,38 +29,21 @@ namespace CozyNote.ConsoleClient.Scene
             NotebookPass    = notebookpass;
         }
 
+        public override void Enter()
+        {
+            menu = new Menu();
+            menu.Add(new MenuItem() { Text = "返回", Command = OnReturn, });
+            menu.Add(new MenuItem() { Text = "查看所有Note", Command = OnEnumNote, });
+            menu.Add(new MenuItem() { Text = "创建Note", Command = OnNoteCreate, });
+            menu.Add(new MenuItem() { Text = "删除Note", Command = OnNoteDelete, });
+
+        }
+
         public override void Run()
         {
             Console.Clear();
-            Console.WriteLine("欢迎使用CozyNote，您可以输入以下指令:");
-            Console.WriteLine("0.返回上层");
-            Console.WriteLine("1.查看所有Note");
-            Console.WriteLine("2.创建Note");
-            Console.WriteLine("3.删除Note");
-
-            int n = 0;
-            if (int.TryParse(Console.ReadLine().Trim(), out n))
-            {
-                switch (n)
-                {
-                    case 0:
-                        OnReturn();
-                        break;
-                    case 1:
-                        OnEnumNote();
-                        break;
-                    case 2:
-                        OnNoteCreate();
-                        break;
-                    case 3:
-                        OnNoteDelete();
-                        break;
-                    default:
-                        Console.WriteLine("指令错误");
-                        Console.ReadKey();
-                        break;
-                }
-            }
+            Menu.Print(menu);
+            menu.Input();
         }
 
         private void OnEnumNote()

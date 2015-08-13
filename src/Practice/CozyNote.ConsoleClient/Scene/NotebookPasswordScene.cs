@@ -7,13 +7,15 @@ using CozyNote.ClientCore.Api;
 
 namespace CozyNote.ConsoleClient.Scene
 {
-    public class NotebookPasswordScene : IScene
+    public class NotebookPasswordScene : SceneBase
     {
         private string Username { get; set; }
 
         private string Password { get; set; }
 
         private int Id { get; set; }
+
+        private Menu menu { get; set; }
 
         public NotebookPasswordScene(string username, string password, int id)
         {
@@ -22,30 +24,19 @@ namespace CozyNote.ConsoleClient.Scene
             Id          = id;
         }
 
+        public override void Enter()
+        {
+            menu = new Menu();
+            menu.Add(new MenuItem() { Text = "返回", Command = OnReturn, });
+            menu.Add(new MenuItem() { Text = "输入密码", Command = OnEnterPass, });
+
+        }
+
         public override void Run()
         {
             Console.Clear();
-            Console.WriteLine("欢迎使用CozyNote，您可以输入以下指令:");
-            Console.WriteLine("0.返回上层");
-            Console.WriteLine("1.输入密码以查看Notebook");
-
-            int n = 0;
-            if (int.TryParse(Console.ReadLine().Trim(), out n))
-            {
-                switch (n)
-                {
-                    case 0:
-                        OnReturn();
-                        break;
-                    case 1:
-                        OnEnterPass();
-                        break;
-                    default:
-                        Console.WriteLine("指令错误");
-                        Console.ReadKey();
-                        break;
-                }
-            }
+            Menu.Print(menu);
+            menu.Input();
         }
 
         private void OnEnterPass()

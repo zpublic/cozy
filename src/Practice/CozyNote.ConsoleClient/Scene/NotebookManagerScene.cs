@@ -7,7 +7,7 @@ using CozyNote.ClientCore.Api;
 
 namespace CozyNote.ConsoleClient.Scene
 {
-    public class NotebookManagerScene : IScene
+    public class NotebookManagerScene : SceneBase
     {
         private string Username { get; set; }
 
@@ -15,48 +15,29 @@ namespace CozyNote.ConsoleClient.Scene
 
         private List<int> NotebookList { get; set; }
 
+        private Menu menu { get; set; }
+
         public NotebookManagerScene(string username, string password)
         {
             Username = username;
             Password = password;
         }
 
+        public override void Enter()
+        {
+            menu = new Menu();
+            menu.Add(new MenuItem() { Text = "返回", Command = OnReturn, });
+            menu.Add(new MenuItem() { Text = "查看所有Notebook", Command = OnEnumNotebook, });
+            menu.Add(new MenuItem() { Text = "管理Notebook", Command = OnModifyNotebook, });
+            menu.Add(new MenuItem() { Text = "创建Notebook", Command = OnCreateNotebook, });
+            menu.Add(new MenuItem() { Text = "删除Notebook", Command = OnDeleteNotebook, });
+        }
+
         public override void Run()
         {
             Console.Clear();
-            Console.WriteLine("欢迎使用CozyNote，您可以输入以下指令:");
-            Console.WriteLine("0.返回上层");
-            Console.WriteLine("1.查看所有Notebook");
-            Console.WriteLine("2.管理Notebook");
-            Console.WriteLine("3.创建Notebook");
-            Console.WriteLine("4.删除Notebook");
-
-            int n = 0;
-            if (int.TryParse(Console.ReadLine().Trim(), out n))
-            {
-                switch (n)
-                {
-                    case 0:
-                        OnReturn();
-                        break;
-                    case 1:
-                        OnEnumNotebook();
-                        break;
-                    case 2:
-                        OnModifyNotebook();
-                        break;
-                    case 3:
-                        OnCreateNotebook();
-                        break;
-                    case 4:
-                        OnDeleteBook();
-                        break;
-                    default:
-                        Console.WriteLine("指令错误");
-                        Console.ReadKey();
-                        break;
-                }
-            }
+            Menu.Print(menu);
+            menu.Input();
         }
 
         private void OnEnumNotebook()
@@ -119,7 +100,7 @@ namespace CozyNote.ConsoleClient.Scene
             Console.ReadKey();
         }
 
-        private void OnDeleteBook()
+        private void OnDeleteNotebook()
         {
             Console.WriteLine("输入要删除的Notebook的ID");
             int id = 0;
