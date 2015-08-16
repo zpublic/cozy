@@ -13,10 +13,25 @@ LPCTSTR lpShowWindowText = TEXT("ShowWindowHotKey");
 
 COZYDITTO_CORE_API bool RegisterShowWindowHotKey(HWND hWnd, UINT fsModifiers, UINT vk)
 {
-    return CozyRegisterHotKey(hWnd, ::GlobalAddAtom(lpShowWindowText), fsModifiers, vk);
+    return CozyRegisterHotKey(hWnd, GetShowWindowHotKeyId(), fsModifiers, vk);
 }
 
 COZYDITTO_CORE_API bool UnregisterShowWindowHotKey(HWND hWnd)
 {
-    return CozyUnregisterHotKey(hWnd, ::GlobalAddAtom(lpShowWindowText));
+    return CozyUnregisterHotKey(hWnd, GetShowWindowHotKeyId());
+}
+
+COZYDITTO_CORE_API int GetShowWindowHotKeyId()
+{
+    return ::GlobalAddAtom(lpShowWindowText);
+}
+
+COZYDITTO_CORE_API bool SetClipboardText(HWND hWnd, LPCTSTR lpText, DWORD dwLength)
+{
+    return CozySetClipboardText(hWnd, lpText, dwLength);
+}
+
+COZYDITTO_CORE_API DWORD GetClipboardText(HWND hWnd, LPTSTR lpResult)
+{
+    return CozyGetClipboardText(hWnd, lpResult);
 }

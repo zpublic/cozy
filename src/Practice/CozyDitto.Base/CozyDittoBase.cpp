@@ -38,7 +38,7 @@ COZYDITTO_BASE_API bool CozySetClipboardText(HWND hWnd, LPCTSTR lpText, DWORD dw
     ::GlobalUnlock(hGlobalMemory);
     ::OpenClipboard(hWnd);
     ::EmptyClipboard();
-    ::SetClipboardData(CF_TEXT, hGlobalMemory);
+    ::SetClipboardData(CF_UNICODETEXT, hGlobalMemory);
     ::CloseClipboard();
     return true;
 }
@@ -46,7 +46,7 @@ COZYDITTO_BASE_API bool CozySetClipboardText(HWND hWnd, LPCTSTR lpText, DWORD dw
 COZYDITTO_BASE_API DWORD CozyGetClipboardText(HWND hWnd, LPTSTR lpResult)
 {
     ::OpenClipboard(hWnd);
-    HANDLE hClipMemory  = ::GetClipboardData(CF_TEXT);
+    HANDLE hClipMemory  = ::GetClipboardData(CF_UNICODETEXT);
     DWORD dwLength      = ::GlobalSize(hClipMemory);
     if (dwLength > 0 && lpResult != nullptr)
     {
