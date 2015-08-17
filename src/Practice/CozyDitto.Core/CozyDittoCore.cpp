@@ -8,7 +8,6 @@
 
 #define COZYDITTO_BASE_IMPORT
 #include "../CozyDitto.Base/CozyDittoBase.h"
-#include "CozyDittoDef.h"
 
 LPCTSTR lpHindWindowClassName = TEXT("CozyDittoHidden");
 
