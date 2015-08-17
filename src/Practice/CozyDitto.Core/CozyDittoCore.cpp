@@ -5,19 +5,40 @@
 #include "CozyDittoCore.h"
 
 #pragma comment(lib, "CozyDitto.Base.lib")
-
 #define COZYDITTO_BASE_IMPORT
 #include "../CozyDitto.Base/CozyDittoBase.h"
 
+#include "CozyDittoDef.h"
+
 LPCTSTR lpHindWindowClassName = TEXT("CozyDittoHidden");
 
-HWND HideMessageWindowHwnd = nullptr;
+HWND HideMessageWindowHwnd  = nullptr;
 
-HINSTANCE hInstance = nullptr;
+HINSTANCE hInstance         = nullptr;
 
 MSG HindWindowMessage;
 
+
+void OnClose(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    ::DestroyWindow(hwnd);
+    ::PostQuitMessage(0);
+}
+
 HotKeyCallBack pHotKeyCallBack = nullptr;
+
+void OnHotKey(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    if (pHotKeyCallBack != nullptr)
+    {
+        pHotKeyCallBack(wParam);
+    }
+}
+
+MESSAGE_MAP_BEGIN
+MESSAGE_HANDLER(WM_CLOSE, OnClose)
+MESSAGE_HANDLER(WM_HOTKEY, OnHotKey)
+MESSAGE_MAP_END
 
 COZYDITTO_CORE_API bool RegisterHotKeyWithName(LPCTSTR lpId ,UINT fsModifiers, UINT vk)
 {
@@ -44,35 +65,13 @@ COZYDITTO_CORE_API DWORD GetClipboardText(LPTSTR lpResult)
     return CozyGetClipboardText(HideMessageWindowHwnd, lpResult);
 }
 
-
-LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-    switch (message)
-    {
-    case WM_CLOSE:
-        ::DestroyWindow(hwnd);
-        ::PostQuitMessage(0);
-        break;
-    case WM_HOTKEY:
-        if (pHotKeyCallBack != nullptr)
-        {
-            pHotKeyCallBack(wParam);
-        }
-        break;
-    default:
-        return ::DefWindowProc(hwnd, message, wParam, lParam);
-        break;
-    }
-    return 0;
-}
-
 COZYDITTO_CORE_API bool CreateHideMessageWindow()
 {
     hInstance = ::GetModuleHandle(nullptr);
 
     WNDCLASS wndclass;
     wndclass.style          = CS_HREDRAW | CS_VREDRAW;
-    wndclass.lpfnWndProc    = WndProc;
+    wndclass.lpfnWndProc    = ProcessWindowMessage;
     wndclass.cbClsExtra     = 0;
     wndclass.cbWndExtra     = 0;
     wndclass.hbrBackground  = (HBRUSH)GetStockObject(WHITE_BRUSH);
