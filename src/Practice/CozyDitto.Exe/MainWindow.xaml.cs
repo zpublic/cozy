@@ -12,9 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CozyDitto.Utils;
-using System.Windows.Interop;
-using System.Threading;
 
 namespace CozyDitto.Exe
 {
@@ -26,30 +23,6 @@ namespace CozyDitto.Exe
         public MainWindow()
         {
             InitializeComponent();
-
-            var hidewindowthread = new Thread(new ThreadStart(() => { Util.EnterMessageLoop(); }));
-            this.Loaded += (sender, m) =>
-            {
-                Util.CreateHideMessageWindow();
-                Util.RegisterHotKeyWithName("SetClipboard", Util.KeyModifiers.Ctrl, VirtualKey.VK_F1);
-                Util.SetHotKeyCallback((x)=>
-                {
-                    if(x == Util.GetHotKeyIdWithName("SetClipboard"))
-                    {
-                        Util.SetClipboardText("cozy zui diao");
-                        return true;
-                    }
-                    return false;
-                });
-
-                hidewindowthread.Start();
-            };
-
-            this.Closed += (sender, m) =>
-            {
-                Util.UnregisterHotKeyWithName("SetClipboard");
-                hidewindowthread.Abort();
-            };
         }
     }
 }
