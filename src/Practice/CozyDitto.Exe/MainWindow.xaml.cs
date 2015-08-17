@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CozyDitto.Utils;
 using System.Windows.Interop;
+using System.Threading;
 
 namespace CozyDitto.Exe
 {
@@ -26,34 +27,29 @@ namespace CozyDitto.Exe
         {
             InitializeComponent();
 
+            var hidewindowthread = new Thread(new ThreadStart(() => { Util.EnterMessageLoop(); }));
             this.Loaded += (sender, m) =>
             {
-                var handle = new WindowInteropHelper(this).Handle;
-                Util.RegisterShowWindowHotKey(handle, Util.KeyModifiers.Ctrl, VirtualKey.VK_F1);
-
-                var source = PresentationSource.FromVisual(this) as HwndSource;
-                if (source != null)
+                Util.CreateHideMessageWindow();
+                Util.RegisterHotKeyWithName("SetClipboard", Util.KeyModifiers.Ctrl, VirtualKey.VK_F1);
+                Util.SetHotKeyCallback((x)=>
                 {
-                    source.AddHook(WndProc);
-                }
-            };
-        }
-
-        private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-        {
-            switch(msg)
-            {
-                case Util.WM_HOTKEY:
-                    if(wParam.ToInt32() == Util.GetShowWindowHotKeyId())
+                    if(x == Util.GetHotKeyIdWithName("SetClipboard"))
                     {
-                        var handle = new WindowInteropHelper(this).Handle;
-                        Util.SetClipboardText(handle, "cozy");
+                        Util.SetClipboardText("cozy zui diao");
+                        return true;
                     }
-                    break;
-                default:
-                    break;
-            }
-            return IntPtr.Zero;
+                    return false;
+                });
+
+                hidewindowthread.Start();
+            };
+
+            this.Closed += (sender, m) =>
+            {
+                Util.UnregisterHotKeyWithName("SetClipboard");
+                hidewindowthread.Abort();
+            };
         }
     }
 }

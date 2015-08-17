@@ -9,51 +9,70 @@ namespace CozyDitto.Utils
 {
     public static partial class Util
     {
-        // bool RegisterShowWindowHotKey(HWND hWnd, UINT fsModifiers, UINT vk);
+        // bool RegisterHotKeyWithName(LPCTSTR lpId ,UINT fsModifiers, UINT vk)
         [DllImport(@"CozyDitto.Core.dll",
            CharSet = CharSet.Auto,
            CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool RegisterShowWindowHotKey(IntPtr hWnd, KeyModifiers fsModifiers, VirtualKey vk);
+        public static extern bool RegisterHotKeyWithName(string name, KeyModifiers fsModifiers, VirtualKey vk);
 
-        // bool UnregisterShowWindowHotKey(HWND hWnd);
+        // bool UnregisterHotKeyWithName(LPCTSTR lpId);
         [DllImport(@"CozyDitto.Core.dll",
            CharSet = CharSet.Auto,
            CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool UnregisterShowWindowHotKey(IntPtr hWnd);
+        public static extern bool UnregisterHotKeyWithName(string name);
 
-        // int GetShowWindowHotKeyId();
+        // int GetHotKeyIdWithName(LPCTSTR lpName)
         [DllImport(@"CozyDitto.Core.dll",
            CharSet = CharSet.Auto,
            CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GetShowWindowHotKeyId();
+        public static extern int GetHotKeyIdWithName(string name);
 
-        // bool SetClipboardText(HWND hWnd, LPCTSTR lpText, DWORD dwLength);
+        // bool SetClipboardText(LPCTSTR lpText, DWORD dwLength);
         [DllImport(@"CozyDitto.Core.dll",
            CharSet = CharSet.Auto,
            CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool SetClipboardText(IntPtr hWnd, string text, uint length);
+        public static extern bool SetClipboardText(string text, uint length);
 
-        public static bool SetClipboardText(IntPtr hWnd, string text)
+        public static bool SetClipboardText(string text)
         {
-            return SetClipboardText(hWnd, text, (uint)text.Length * 2);
+            return SetClipboardText(text, (uint)text.Length * 2);
         }
 
+        // DWORD GetClipboardText(LPTSTR lpResult);
         [DllImport(@"CozyDitto.Core.dll",
            CharSet = CharSet.Auto,
            CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint GetClipboardText(IntPtr hWnd, StringBuilder result);
+        public static extern uint GetClipboardText(StringBuilder result);
 
-        public static string GetClipboardText(IntPtr hWnd)
+        public static string GetClipboardText()
         {
-            uint size = GetClipboardSize(hWnd);
+            uint size = GetClipboardSize();
             StringBuilder sb = new StringBuilder((int)size);
-            GetClipboardText(hWnd, sb);
+            GetClipboardText(sb);
             return sb.ToString();
         }
 
-        public static uint GetClipboardSize(IntPtr hWnd)
+        public static uint GetClipboardSize()
         {
-            return GetClipboardText(hWnd, null);
+            return GetClipboardText(null);
         }
+
+        // bool CreateHideMessageWindow()
+        [DllImport(@"CozyDitto.Core.dll",
+           CharSet = CharSet.Auto,
+           CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool CreateHideMessageWindow();
+
+        // void EnterMessageLoop();
+        [DllImport(@"CozyDitto.Core.dll",
+           CharSet = CharSet.Auto,
+           CallingConvention = CallingConvention.Cdecl)]
+        public static extern void EnterMessageLoop();
+
+        // void SetHotKeyCallback(HotKeyCallBack callback);
+        [DllImport(@"CozyDitto.Core.dll",
+           CharSet = CharSet.Auto,
+           CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SetHotKeyCallback(HotKeyCallback callback);
     }
 }
