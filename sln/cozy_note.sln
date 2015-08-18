@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyNote.Database", "..\src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyNote.WebSite", "..\src\Practice\CozyNote.WebSite\CozyNote.WebSite.csproj", "{51BC63A3-C849-4A07-B563-0245A709868C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyNote.ConsoleClient", "..\src\Practice\CozyNote.ConsoleClient\CozyNote.ConsoleClient.csproj", "{EB2BE393-550F-4352-A1A8-289FE0283EB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{51BC63A3-C849-4A07-B563-0245A709868C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51BC63A3-C849-4A07-B563-0245A709868C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51BC63A3-C849-4A07-B563-0245A709868C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB2BE393-550F-4352-A1A8-289FE0283EB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB2BE393-550F-4352-A1A8-289FE0283EB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB2BE393-550F-4352-A1A8-289FE0283EB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB2BE393-550F-4352-A1A8-289FE0283EB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,5 +82,6 @@ Global
 		{26A7AFE3-8629-4DA1-BC30-8872564176F5} = {CFAF245B-10AC-41AD-91AE-C980ADD6FDA6}
 		{C6C196C2-7CBF-45C2-BEA7-F48074AD0261} = {96B26208-F9AB-4FE1-A959-E3805D236DBC}
 		{51BC63A3-C849-4A07-B563-0245A709868C} = {AC556112-7844-463F-B36A-124CD3C81D26}
+		{EB2BE393-550F-4352-A1A8-289FE0283EB4} = {AC556112-7844-463F-B36A-124CD3C81D26}
 	EndGlobalSection
 EndGlobal

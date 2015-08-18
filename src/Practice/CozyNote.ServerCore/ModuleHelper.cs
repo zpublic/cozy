@@ -25,6 +25,16 @@ namespace CozyNote.ServerCore
             return null;
         }
 
+        public static Tuple<string, int> GetNotebookInfo(int id)
+        {
+            if (DbHolding.Notebook.IsExist(id))
+            {
+                var notebook = DbHolding.Notebook.Get(id);
+                return Tuple.Create(notebook.name, notebook.note_list.Count);
+            }
+            return null;
+        }
+
         public static Notebook GetNotebook(int id, string password)
         {
             if (DbHolding.Notebook.IsExist(id))
