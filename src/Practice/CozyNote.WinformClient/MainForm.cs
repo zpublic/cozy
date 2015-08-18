@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
+using CozyNote.WinformClient.DAL;
 
 namespace CozyNote.WinformClient {
 
@@ -18,7 +19,6 @@ namespace CozyNote.WinformClient {
             public string Title { get; set; }
             public string Content { get; set; }
         }
-
 
         public MainForm() {
             InitializeComponent();
@@ -59,6 +59,7 @@ namespace CozyNote.WinformClient {
         }
 
         private List<TestModel> GetDataSource() {
+
             return Enumerable.Range(0, 20)
                 .Select(x => new TestModel {
                     Title = $"文章标题{x}",
