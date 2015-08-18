@@ -18,5 +18,8 @@ namespace CozyDitto.Utils
             Shift = 4,
             WindowsKey = 8
         }
+
+        // typedef bool(*HotKeyCallBack)(int id);
+        public delegate bool HotKeyCallback(int id);
     }
 }

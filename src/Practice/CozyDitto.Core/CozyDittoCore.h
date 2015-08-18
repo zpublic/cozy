@@ -7,14 +7,22 @@
 #define COZYDITTO_CORE_API _declspec(dllimport)
 #endif
 
-EXTERN_C COZYDITTO_CORE_API bool RegisterShowWindowHotKey(HWND hWnd, UINT fsModifiers, UINT vk);
+typedef bool(CALLBACK * HotKeyCallBack)(int id);
 
-EXTERN_C COZYDITTO_CORE_API int GetShowWindowHotKeyId();
+EXTERN_C COZYDITTO_CORE_API bool RegisterHotKeyWithName(LPCTSTR lpId, UINT fsModifiers, UINT vk);
 
-EXTERN_C COZYDITTO_CORE_API bool UnregisterShowWindowHotKey(HWND hWnd);
+EXTERN_C COZYDITTO_CORE_API int GetHotKeyIdWithName(LPCTSTR lpName);
 
-EXTERN_C COZYDITTO_CORE_API bool SetClipboardText(HWND hWnd, LPCTSTR lpText, DWORD dwLength);
+EXTERN_C COZYDITTO_CORE_API bool UnregisterHotKeyWithName(LPCTSTR lpId);
 
-EXTERN_C COZYDITTO_CORE_API DWORD GetClipboardText(HWND hWnd, LPTSTR lpResult);
+EXTERN_C COZYDITTO_CORE_API bool SetClipboardText(LPCTSTR lpText, DWORD dwLength);
+
+EXTERN_C COZYDITTO_CORE_API DWORD GetClipboardText(LPTSTR lpResult);
+
+EXTERN_C COZYDITTO_CORE_API bool CreateHideMessageWindow();
+
+EXTERN_C COZYDITTO_CORE_API void EnterMessageLoop();
+
+EXTERN_C COZYDITTO_CORE_API void SetHotKeyCallback(HotKeyCallBack callback);
 
 #endif // __COZY_DITTO_CORE__
