@@ -27,7 +27,7 @@
     <ClInclude Include="CozyDittoCore.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="CozyDittoDef.h">
+    <ClInclude Include="CozyDittoHideDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -39,6 +39,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CozyDittoCore.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CozyDittoHideDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
