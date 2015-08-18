@@ -19,7 +19,7 @@ namespace CozyDitto.Utils
             WindowsKey = 8
         }
 
-        // typedef bool(*HotKeyCallBack)(int id);
-        public delegate bool HotKeyCallback(int id);
+        // void(CALLBACK*HotKeyCallback)(WPARAM wParam, LPARAM lParam);
+        public delegate bool HotKeyCallback(uint wParam, uint lParam);
     }
 }

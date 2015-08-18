@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,23 @@ namespace CozyDitto.Exe
         public MainWindow()
         {
             InitializeComponent();
+            ViewModel.PropertyChanged += OnPropertyChanged;
+        }
+
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+        {
+            if(args.PropertyName == "Visibility")
+            {
+                var status = ViewModel.Visibility;
+                if(status == "Enabled")
+                {
+                    this.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    this.Visibility = Visibility.Collapsed;
+                }
+            }
         }
     }
 }
