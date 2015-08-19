@@ -34,6 +34,7 @@ COZYDITTO_BASE_API bool CozySetClipboardText(HWND hWnd, LPCTSTR lpText, DWORD dw
     }
 
     ::CopyMemory(lpGlobalMemory, lpText, dwLength);
+    lpGlobalMemory[dwLength] = 0;
 
     ::GlobalUnlock(hGlobalMemory);
     ::OpenClipboard(hWnd);
