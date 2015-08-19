@@ -2,7 +2,7 @@
 
 namespace CozyNote.WinformClient.DAL {
 
-    public class DbManager {
+    internal class DbManager {
 
         private LiteDatabase liteDataBase;
         private static DbManager singleInstance;
