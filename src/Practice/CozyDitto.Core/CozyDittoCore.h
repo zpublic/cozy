@@ -32,8 +32,6 @@ public:
 
     void SetHotKeyCallback(HotKeyCallback callback);
 
-    void EnterMessageLoop();
-
 private:
     CozyDittoHideDlg*   m_pHideDlg;
 };

@@ -86,7 +86,7 @@ COZYDITTO_CORE_API DWORD GetClipboardText(LPTSTR lpResult)
 
 COZYDITTO_CORE_API void SetHotKeyCallback(HotKeyCallback callback)
 {
-    return CozyDittoCoreInstance.SetHotKeyCallback(callback);
+    CozyDittoCoreInstance.SetHotKeyCallback(callback);
 }
 
 COZYDITTO_CORE_API void EnterMessageLoop()

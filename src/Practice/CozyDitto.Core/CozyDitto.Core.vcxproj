@@ -73,11 +73,13 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\..\..\bin\</OutDir>
     <LibraryPath>C:\Users\AngelC\Documents\cozy\bin;$(LibraryPath)</LibraryPath>
+    <ReferencePath>C:\Users\AngelC\Documents\cozy\bin\;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\..\..\bin\</OutDir>
     <LibraryPath>C:\Users\AngelC\Documents\cozy\bin;$(LibraryPath)</LibraryPath>
+    <ReferencePath>C:\Users\AngelC\Documents\cozy\bin\;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
