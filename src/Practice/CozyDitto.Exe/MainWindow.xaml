@@ -13,6 +13,9 @@
     <Window.DataContext>
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
     </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="C" Modifiers="Ctrl" Command="{Binding CopyCommand}"></KeyBinding>
+    </Window.InputBindings>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Deactivated">
             <i:InvokeCommandAction Command="{Binding DeactivateCommand}" CommandParameter="{x:Null}"></i:InvokeCommandAction>
@@ -20,7 +23,8 @@
     </i:Interaction.Triggers>
     <Grid>
         <StackPanel>
-            <ListView Height="300" ItemsSource="{Binding ClipboardList, Mode=TwoWay}"></ListView>
+            <ListView Height="300" ItemsSource="{Binding ClipboardList, Mode=TwoWay}" 
+                      SelectedItem="{Binding SelectedClipboardText, Mode=TwoWay}"></ListView>
         </StackPanel>
     </Grid>
 </Window>

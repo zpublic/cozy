@@ -40,20 +40,49 @@ namespace CozyDitto.Exe.ViewModel
             }
         }
 
+        private string selectedClipboardText;
+        public string SelectedClipboardText
+        {
+            get
+            {
+                return selectedClipboardText;
+            }
+            set
+            {
+                Set(ref selectedClipboardText, value, "SelectedClipboardText");
+            }
+        }
+
         private ICommand deactivateCommand;
         public ICommand DeactivateCommand
         {
             get
             {
-                return deactivateCommand = deactivateCommand ?? new DelegateCommand((x)=> 
+                return deactivateCommand = deactivateCommand ?? new DelegateCommand((x) =>
                 {
                     WindowVisibility = Visibility.Collapsed;
                 });
             }
         }
 
-        private static Util.HotKeyCallback callback { get; set; }
+        private ICommand copyCommand;
+        public ICommand CopyCommand
+        {
+            get
+            {
+                return copyCommand = copyCommand ?? new DelegateCommand((x) =>
+                {
+                    if(SelectedClipboardText != null && SelectedClipboardText.Length > 0)
+                    {
+                        Util.SetClipboardText(SelectedClipboardText);
 
+                        WindowVisibility = Visibility.Collapsed;
+                    }
+                });
+            }
+        }
+
+        private static Util.HotKeyCallback callback { get; set; }
         public MainWindowViewModel()
         {
             callback = new Util.HotKeyCallback(OnHotKey);
@@ -77,9 +106,9 @@ namespace CozyDitto.Exe.ViewModel
                     WindowVisibility = Visibility.Visible;
 
                     var clipdata = Util.GetClipboardText();
-                    if(clipdata != null && clipdata.Length > 0)
+                    if (clipdata != null && clipdata.Length > 0)
                     {
-                        if(clipboardList.Count > 0 && clipdata == clipboardList.Last())
+                        if (clipboardList.Count > 0 && clipdata == clipboardList.Last())
                         {
                             return true;
                         }
