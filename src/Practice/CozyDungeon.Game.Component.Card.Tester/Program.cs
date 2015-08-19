@@ -26,11 +26,12 @@ namespace CozyDungeon.Game.Component.Card.Tester
             {
                 Id = 2,
                 Name = "愤怒的泡面",
-                Desc = "card2",
+                Desc = @"泡面那么受欢迎并不是因为它有多么好吃，只是因为它适合一个人吃。",
                 Element = Enum.FiveLine.Wood,
                 HP = 10,
                 ATK = 3,
-                DEF = 1
+                DEF = 1,
+                Level = Enum.RoleCardLevel.Level2,
             };
 
             RoleCard r1 = (RoleCard)card1.Clone();

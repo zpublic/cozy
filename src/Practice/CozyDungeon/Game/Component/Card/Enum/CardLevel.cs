@@ -15,6 +15,7 @@ namespace CozyDungeon.Game.Component.Card.Enum
         Level4,
         Level5,
         Level6,
+        Level7,
     };
 
     public class CardLevel
@@ -25,9 +26,10 @@ namespace CozyDungeon.Game.Component.Card.Enum
             { RoleCardLevel.Level1, "普通" },
             { RoleCardLevel.Level2, "优秀" },
             { RoleCardLevel.Level3, "精英" },
-            { RoleCardLevel.Level4, "领袖" },
-            { RoleCardLevel.Level5, "传说" },
+            { RoleCardLevel.Level4, "王者" },
+            { RoleCardLevel.Level5, "传奇" },
             { RoleCardLevel.Level6, "史诗" },
+            { RoleCardLevel.Level7, "传说" },
         };
 
         public static string RoleCardLevelName(RoleCardLevel level)
