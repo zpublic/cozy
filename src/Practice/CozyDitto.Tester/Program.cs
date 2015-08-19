@@ -12,11 +12,10 @@ namespace CozyDitto.Tester
     {
         static void Main(string[] args)
         {
-            Util.CreateHideMessageWindow();
             Util.RegisterHotKeyWithName("SetClipboard", Util.KeyModifiers.Ctrl, VirtualKey.VK_F2);
-            Util.SetHotKeyCallback((x) =>
+            Util.SetHotKeyCallback((w, l) =>
             {
-                if (x == Util.GetHotKeyIdWithName("SetClipboard"))
+                if (w == Util.GetHotKeyIdWithName("SetClipboard"))
                 {
                     Util.SetClipboardText("cozy zui diao");
                     return true;
@@ -25,6 +24,7 @@ namespace CozyDitto.Tester
             });
 
             Util.EnterMessageLoop();
+
             Util.UnregisterHotKeyWithName("SetClipboard");
         }
     }

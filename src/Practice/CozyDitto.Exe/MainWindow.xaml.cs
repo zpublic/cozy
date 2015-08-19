@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,10 @@ namespace CozyDitto.Exe
         public MainWindow()
         {
             InitializeComponent();
+            this.ViewModel.ActivateEventHandler += (sender, msg) =>
+            {
+                this.Activate();
+            };
         }
     }
 }
