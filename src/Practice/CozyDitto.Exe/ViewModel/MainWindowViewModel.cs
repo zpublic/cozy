@@ -82,6 +82,13 @@ namespace CozyDitto.Exe.ViewModel
             }
         }
 
+        public class ActivateEventArgs : EventArgs
+        {
+
+        }
+
+        public event EventHandler<ActivateEventArgs> ActivateEventHandler;
+
         private static Util.HotKeyCallback callback { get; set; }
 
         public MainWindowViewModel()
@@ -108,9 +115,13 @@ namespace CozyDitto.Exe.ViewModel
                 else
                 {
                     WindowVisibility = Visibility.Visible;
+                    if(ActivateEventHandler != null)
+                    {
+                        ActivateEventHandler(this, new ActivateEventArgs());
+                    }
 
                     var clipdata = Util.GetClipboardText();
-                    if (clipdata != null && clipdata.Length > 0)
+                    if (clipdata != null && clipdata.Length > 0 && !string.IsNullOrWhiteSpace(clipdata))
                     {
                         if (clipboardList.Count > 0 && clipdata == clipboardList.Last())
                         {
@@ -125,3 +136,4 @@ namespace CozyDitto.Exe.ViewModel
         }
     }
 }
+

@@ -24,6 +24,10 @@ namespace CozyDitto.Exe
         public MainWindow()
         {
             InitializeComponent();
+            this.ViewModel.ActivateEventHandler += (sender, msg) =>
+            {
+                this.Activate();
+            };
         }
     }
 }
