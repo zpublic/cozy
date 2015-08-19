@@ -3,56 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.ObjectModel;
 using System.Windows;
 using CozyDitto.Utils;
 using System.Threading;
-using System.Windows.Input;
-using CozyDitto.Exe.Command;
+using CozyDitto.Exe.DataBase;
+using CozyDitto.Exe.EventArg;
 
 namespace CozyDitto.Exe.ViewModel
 {
-    public class MainWindowViewModel : BaseViewModel
+    public partial class MainWindowViewModel : BaseViewModel
     {
-        private ObservableCollection<string> clipboardList = new ObservableCollection<string>();
-        public ObservableCollection<string> ClipboardList
-        {
-            get
-            {
-                return clipboardList;
-            }
-            set
-            {
-                Set(ref clipboardList, value, "ClipboardList");
-            }
-        }
-
-        private const string Enabled = "Enabled";
-        private const string Disabled = "Disabled";
-        private string visibility = Enabled;
-        public string Visibility
-        {
-            get
-            {
-                return visibility;
-            }
-            set
-            {
-                Set(ref visibility, value, "Visibility");
-            }
-        }
-
-        private ICommand lostFocusCommand;
-        public ICommand LostFocusCommand
-        {
-            get
-            {
-                return lostFocusCommand = lostFocusCommand ?? new DelegateCommand((x)=> 
-                {
-                    Visibility = Disabled;
-                });
-            }
-        }
+        public event EventHandler<ActivateEventArgs> ActivateEventHandler;
 
         private static Util.HotKeyCallback callback { get; set; }
 
@@ -60,32 +21,63 @@ namespace CozyDitto.Exe.ViewModel
         {
             callback = new Util.HotKeyCallback(OnHotKey);
 
+            ReadDBData();
+            RegisterHotKey();
+            StartMessageThread();
+        }
+
+        private void ReadDBData()
+        {
+            var data = ClipboardDB.Instance.GetAll();
+            foreach(var obj in data)
+            {
+                ClipboardList.Add(obj.text);
+            }
+        }
+
+        private void RegisterHotKey()
+        {
             Util.RegisterHotKeyWithName("Visibility", Util.KeyModifiers.Ctrl, VirtualKey.VK_F1);
             Util.SetHotKeyCallback(callback);
+        }
 
-            new Thread(new ThreadStart(() => { Util.EnterMessageLoop(); })).Start();
+        private void StartMessageThread()
+        {
+            var MessageLoopThread = new Thread(new ThreadStart(() => { Util.EnterMessageLoop(); }));
+            MessageLoopThread.IsBackground = true;
+            MessageLoopThread.Start();
         }
 
         private bool OnHotKey(uint w, uint l)
         {
             if (w == Util.GetHotKeyIdWithName("Visibility"))
             {
-                if (Visibility == Enabled)
+                if (WindowVisibility == Visibility.Visible)
                 {
-                    Visibility = Disabled;
+                    WindowVisibility = Visibility.Collapsed;
                 }
                 else
                 {
-                    Visibility = Enabled;
-
-                    var clipdata = Util.GetClipboardText();
-                    if(clipdata != null && clipdata.Length > 0)
+                    WindowVisibility = Visibility.Visible;
+                    if(ActivateEventHandler != null)
                     {
-                        if(clipboardList.Count > 0 && clipdata == clipboardList.Last())
+                        ActivateEventHandler(this, new ActivateEventArgs());
+                    }
+
+                    var clipdata = Util.GetClipboardText().Trim();
+                    if (clipdata != null && clipdata.Length > 0 && !string.IsNullOrWhiteSpace(clipdata))
+                    {
+                        if (clipboardList.Count > 0 && clipdata == clipboardList.Last())
                         {
                             return true;
                         }
+
                         ClipboardList.Add(clipdata);
+                        ClipboardDB.Instance.Create(new ClipboardRecord()
+                        {
+                            text = clipdata,
+                            time = DateTime.Now,
+                        });
                     }
                 }
                 return true;
@@ -94,3 +86,4 @@ namespace CozyDitto.Exe.ViewModel
         }
     }
 }
+
