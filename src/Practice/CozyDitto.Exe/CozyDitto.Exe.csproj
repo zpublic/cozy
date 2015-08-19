@@ -70,8 +70,11 @@
     <Compile Include="Command\ExecuteCommandAction.cs" />
     <Compile Include="DataBase\ClipboardDB.cs" />
     <Compile Include="DataBase\ClipboardRecord.cs" />
+    <Compile Include="EventArg\ActivateEventArgs.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewMode.Commands.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.Properties.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
