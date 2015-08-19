@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,21 @@ using System.Windows.Forms;
 
 namespace CozyDungeon.RoleCardEditor
 {
-    public partial class EditorForm : Form
+    public partial class EditorForm : MetroForm
     {
         public EditorForm()
         {
             InitializeComponent();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroLabel3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
