@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CozyNote.WinformClient.DAL {
+﻿namespace CozyNote.WinformClient.DAL {
 
     public static class Factory {
 
@@ -14,5 +12,17 @@ namespace CozyNote.WinformClient.DAL {
                     return new Native.NoteDAL();
             }
         }
+
+        public static IUserDAL GetUserDAL(DALType dalType = DALType.Defualt) {
+            switch (dalType) {
+                case DALType.HttpAPI:
+                    return new HttpApi.UserDAL();
+                case DALType.Native:
+                    return new Native.UserDAL();
+                default:
+                    return new Native.UserDAL();
+            }
+        }
+
     }
 }

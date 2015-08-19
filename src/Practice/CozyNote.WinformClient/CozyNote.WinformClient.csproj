@@ -65,9 +65,12 @@
     <Compile Include="DAL\DbManager.cs" />
     <Compile Include="DAL\Factory.cs" />
     <Compile Include="DAL\Imp\HttpApi\NoteDAL.cs" />
+    <Compile Include="DAL\Imp\HttpApi\UserDAL.cs" />
     <Compile Include="DAL\Imp\Native\DALNativeBase.cs" />
     <Compile Include="DAL\Imp\Native\NoteDAL.cs" />
+    <Compile Include="DAL\Imp\Native\UserDAL.cs" />
     <Compile Include="DAL\Interface\INoteDAL.cs" />
+    <Compile Include="DAL\Interface\IUserDAL.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
