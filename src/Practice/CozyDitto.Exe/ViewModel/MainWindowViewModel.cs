@@ -27,29 +27,27 @@ namespace CozyDitto.Exe.ViewModel
             }
         }
 
-        private const string Enabled = "Enabled";
-        private const string Disabled = "Disabled";
-        private string visibility = Enabled;
-        public string Visibility
+        private Visibility windowVisibility = Visibility.Visible;
+        public Visibility WindowVisibility
         {
             get
             {
-                return visibility;
+                return windowVisibility;
             }
             set
             {
-                Set(ref visibility, value, "Visibility");
+                Set(ref windowVisibility, value, "WindowVisibility");
             }
         }
 
-        private ICommand lostFocusCommand;
-        public ICommand LostFocusCommand
+        private ICommand deactivateCommand;
+        public ICommand DeactivateCommand
         {
             get
             {
-                return lostFocusCommand = lostFocusCommand ?? new DelegateCommand((x)=> 
+                return deactivateCommand = deactivateCommand ?? new DelegateCommand((x)=> 
                 {
-                    Visibility = Disabled;
+                    WindowVisibility = Visibility.Collapsed;
                 });
             }
         }
@@ -70,13 +68,13 @@ namespace CozyDitto.Exe.ViewModel
         {
             if (w == Util.GetHotKeyIdWithName("Visibility"))
             {
-                if (Visibility == Enabled)
+                if (WindowVisibility == Visibility.Visible)
                 {
-                    Visibility = Disabled;
+                    WindowVisibility = Visibility.Collapsed;
                 }
                 else
                 {
-                    Visibility = Enabled;
+                    WindowVisibility = Visibility.Visible;
 
                     var clipdata = Util.GetClipboardText();
                     if(clipdata != null && clipdata.Length > 0)

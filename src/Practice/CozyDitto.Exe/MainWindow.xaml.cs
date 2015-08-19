@@ -24,23 +24,6 @@ namespace CozyDitto.Exe
         public MainWindow()
         {
             InitializeComponent();
-            ViewModel.PropertyChanged += OnPropertyChanged;
-        }
-
-        private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
-        {
-            if(args.PropertyName == "Visibility")
-            {
-                var status = ViewModel.Visibility;
-                if(status == "Enabled")
-                {
-                    this.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    this.Visibility = Visibility.Collapsed;
-                }
-            }
         }
     }
 }
