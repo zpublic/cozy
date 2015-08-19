@@ -8,7 +8,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:command="clr-namespace:CozyDitto.Exe.Command"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" Visibility="{Binding WindowVisibility, Mode=TwoWay}"
+        Title="CozyDitto" Height="350" Width="525" Visibility="{Binding WindowVisibility, Mode=TwoWay}"
         Topmost="True">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
