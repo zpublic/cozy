@@ -58,7 +58,7 @@ namespace CozyDitto.Utils
 
         public static uint GetClipboardSize()
         {
-            return GetClipboardText(null);
+            return GetClipboardText(null) / 2;
         }
 
         public static string GetClipboardText()
