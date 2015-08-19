@@ -83,6 +83,7 @@ namespace CozyDitto.Exe.ViewModel
         }
 
         private static Util.HotKeyCallback callback { get; set; }
+
         public MainWindowViewModel()
         {
             callback = new Util.HotKeyCallback(OnHotKey);
@@ -90,7 +91,10 @@ namespace CozyDitto.Exe.ViewModel
             Util.RegisterHotKeyWithName("Visibility", Util.KeyModifiers.Ctrl, VirtualKey.VK_F1);
             Util.SetHotKeyCallback(callback);
 
-            new Thread(new ThreadStart(() => { Util.EnterMessageLoop(); })).Start();
+            var MessageLoopThread = new Thread(new ThreadStart(() => { Util.EnterMessageLoop(); }));
+            MessageLoopThread.IsBackground = true;
+
+            MessageLoopThread.Start();
         }
 
         private bool OnHotKey(uint w, uint l)
