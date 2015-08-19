@@ -9,6 +9,7 @@ using CozyDitto.Utils;
 using System.Threading;
 using System.Windows.Input;
 using CozyDitto.Exe.Command;
+using CozyDitto.Exe.DataBase;
 
 namespace CozyDitto.Exe.ViewModel
 {
@@ -95,12 +96,30 @@ namespace CozyDitto.Exe.ViewModel
         {
             callback = new Util.HotKeyCallback(OnHotKey);
 
+            ReadDBData();
+            RegisterHotKey();
+            StartMessageThread();
+        }
+
+        private void ReadDBData()
+        {
+            var data = ClipboardDB.Instance.GetAll();
+            foreach(var obj in data)
+            {
+                ClipboardList.Add(obj.text);
+            }
+        }
+
+        private void RegisterHotKey()
+        {
             Util.RegisterHotKeyWithName("Visibility", Util.KeyModifiers.Ctrl, VirtualKey.VK_F1);
             Util.SetHotKeyCallback(callback);
+        }
 
+        private void StartMessageThread()
+        {
             var MessageLoopThread = new Thread(new ThreadStart(() => { Util.EnterMessageLoop(); }));
             MessageLoopThread.IsBackground = true;
-
             MessageLoopThread.Start();
         }
 
@@ -120,14 +139,20 @@ namespace CozyDitto.Exe.ViewModel
                         ActivateEventHandler(this, new ActivateEventArgs());
                     }
 
-                    var clipdata = Util.GetClipboardText();
+                    var clipdata = Util.GetClipboardText().Trim();
                     if (clipdata != null && clipdata.Length > 0 && !string.IsNullOrWhiteSpace(clipdata))
                     {
                         if (clipboardList.Count > 0 && clipdata == clipboardList.Last())
                         {
                             return true;
                         }
+
                         ClipboardList.Add(clipdata);
+                        ClipboardDB.Instance.Create(new ClipboardRecord()
+                        {
+                            text = clipdata,
+                            time = DateTime.Now,
+                        });
                     }
                 }
                 return true;
