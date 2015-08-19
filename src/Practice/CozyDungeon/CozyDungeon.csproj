@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Game\Component\Card\Enum\CardLevel.cs" />
     <Compile Include="Game\Component\Card\Enum\FiveLine.cs" />
     <Compile Include="Game\Component\Card\Logic\RoleCardAttack.cs" />
     <Compile Include="Game\Component\Card\Logic\RoleCardLogic.cs" />
