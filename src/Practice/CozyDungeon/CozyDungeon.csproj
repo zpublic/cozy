@@ -100,11 +100,21 @@
       <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\SharpDX.XInput.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Game\Component\Card\Enum\FiveLine.cs" />
+    <Compile Include="Game\Component\Card\Logic\RoleCardAttack.cs" />
+    <Compile Include="Game\Component\Card\Logic\RoleCardLogic.cs" />
+    <Compile Include="Game\Component\Card\Model\BaseCard.cs" />
+    <Compile Include="Game\Component\Card\Model\RoleCard.cs" />
     <Compile Include="IntroLayer.cs" />
     <Compile Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Game\Object\Player\Model\" />
+    <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
