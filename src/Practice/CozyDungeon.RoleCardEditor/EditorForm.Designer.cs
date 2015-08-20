@@ -47,6 +47,9 @@
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.DEFBox = new System.Windows.Forms.TextBox();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
+            this.CreateButton = new MetroFramework.Controls.MetroButton();
+            this.OpenImageButton = new MetroFramework.Controls.MetroButton();
+            this.AddCardButton = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.cardPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,11 +64,12 @@
             // cardPictureBox
             // 
             this.cardPictureBox.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.cardPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.cardPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.cardPictureBox.Location = new System.Drawing.Point(585, 134);
             this.cardPictureBox.Name = "cardPictureBox";
             this.cardPictureBox.Size = new System.Drawing.Size(270, 380);
-            this.cardPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.cardPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.cardPictureBox.TabIndex = 9;
             this.cardPictureBox.TabStop = false;
             // 
@@ -99,10 +103,11 @@
             // CardTabControl
             // 
             this.CardTabControl.Alignment = System.Windows.Forms.TabAlignment.Left;
+            this.CardTabControl.ItemSize = new System.Drawing.Size(60, 0);
             this.CardTabControl.Location = new System.Drawing.Point(24, 92);
             this.CardTabControl.Multiline = true;
             this.CardTabControl.Name = "CardTabControl";
-            this.CardTabControl.Size = new System.Drawing.Size(237, 477);
+            this.CardTabControl.Size = new System.Drawing.Size(302, 477);
             this.CardTabControl.TabIndex = 11;
             this.CardTabControl.UseSelectable = true;
             // 
@@ -132,7 +137,6 @@
             this.metroLabel3.Size = new System.Drawing.Size(45, 19);
             this.metroLabel3.TabIndex = 12;
             this.metroLabel3.Text = "Name";
-            this.metroLabel3.Click += new System.EventHandler(this.metroLabel3_Click);
             // 
             // metroLabel4
             // 
@@ -159,7 +163,6 @@
             this.NameBox.Name = "NameBox";
             this.NameBox.Size = new System.Drawing.Size(147, 21);
             this.NameBox.TabIndex = 7;
-            this.NameBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // IDBox
             // 
@@ -216,11 +219,43 @@
             this.metroLabel7.TabIndex = 12;
             this.metroLabel7.Text = "DEF";
             // 
+            // CreateButton
+            // 
+            this.CreateButton.Location = new System.Drawing.Point(267, 63);
+            this.CreateButton.Name = "CreateButton";
+            this.CreateButton.Size = new System.Drawing.Size(75, 23);
+            this.CreateButton.TabIndex = 14;
+            this.CreateButton.Text = "新建";
+            this.CreateButton.UseSelectable = true;
+            // 
+            // OpenImageButton
+            // 
+            this.OpenImageButton.Location = new System.Drawing.Point(585, 536);
+            this.OpenImageButton.Name = "OpenImageButton";
+            this.OpenImageButton.Size = new System.Drawing.Size(114, 23);
+            this.OpenImageButton.TabIndex = 15;
+            this.OpenImageButton.Text = "打开图片";
+            this.OpenImageButton.UseSelectable = true;
+            this.OpenImageButton.Click += new System.EventHandler(this.OpenImageButton_Click);
+            // 
+            // AddCardButton
+            // 
+            this.AddCardButton.Location = new System.Drawing.Point(741, 536);
+            this.AddCardButton.Name = "AddCardButton";
+            this.AddCardButton.Size = new System.Drawing.Size(114, 23);
+            this.AddCardButton.TabIndex = 16;
+            this.AddCardButton.Text = "添加到牌组";
+            this.AddCardButton.UseSelectable = true;
+            this.AddCardButton.Click += new System.EventHandler(this.AddCardButton_Click);
+            // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 592);
+            this.Controls.Add(this.AddCardButton);
+            this.Controls.Add(this.OpenImageButton);
+            this.Controls.Add(this.CreateButton);
             this.Controls.Add(this.LevelBox);
             this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.metroLabel3);
@@ -268,5 +303,8 @@
         private MetroFramework.Controls.MetroLabel metroLabel6;
         private System.Windows.Forms.TextBox DEFBox;
         private MetroFramework.Controls.MetroLabel metroLabel7;
+        private MetroFramework.Controls.MetroButton CreateButton;
+        private MetroFramework.Controls.MetroButton OpenImageButton;
+        private MetroFramework.Controls.MetroButton AddCardButton;
     }
 }
