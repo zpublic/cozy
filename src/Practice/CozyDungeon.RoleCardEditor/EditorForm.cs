@@ -94,7 +94,6 @@ namespace CozyDungeon.RoleCardEditor
                 var filename            = fileDig.FileName;
                 SelectedImage           = Image.FromFile(filename, false);
                 RefreshImage();
-                ResetId();
             }
         }
 
@@ -119,6 +118,7 @@ namespace CozyDungeon.RoleCardEditor
                 CardListBoxList[(int)LevelBox.SelectedValue].Items.Add(card.Name);
                 CardImageDictionary[card.Id] = cardPictureBox.Image;
                 ResetInput();
+                ResetId();
             }
         }
 
