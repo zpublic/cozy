@@ -68,7 +68,6 @@
     <Compile Include="EditorForm.Designer.cs">
       <DependentUpon>EditorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\CardListInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EditorForm.resx">
@@ -82,6 +81,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -103,6 +103,22 @@
       <Name>CozyDungeon</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level5.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
