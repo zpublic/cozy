@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.DescBox = new System.Windows.Forms.TextBox();
-            this.cardPictureBox = new System.Windows.Forms.PictureBox();
             this.OpenButton = new MetroFramework.Controls.MetroButton();
             this.SaveButton = new MetroFramework.Controls.MetroButton();
             this.CloseButton = new MetroFramework.Controls.MetroButton();
@@ -50,6 +49,7 @@
             this.CreateButton = new MetroFramework.Controls.MetroButton();
             this.OpenImageButton = new MetroFramework.Controls.MetroButton();
             this.AddCardButton = new MetroFramework.Controls.MetroButton();
+            this.cardPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.cardPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,18 +60,6 @@
             this.DescBox.Name = "DescBox";
             this.DescBox.Size = new System.Drawing.Size(198, 92);
             this.DescBox.TabIndex = 8;
-            // 
-            // cardPictureBox
-            // 
-            this.cardPictureBox.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.cardPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.cardPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.cardPictureBox.Location = new System.Drawing.Point(585, 134);
-            this.cardPictureBox.Name = "cardPictureBox";
-            this.cardPictureBox.Size = new System.Drawing.Size(270, 380);
-            this.cardPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.cardPictureBox.TabIndex = 9;
-            this.cardPictureBox.TabStop = false;
             // 
             // OpenButton
             // 
@@ -90,6 +78,7 @@
             this.SaveButton.TabIndex = 10;
             this.SaveButton.Text = "保存";
             this.SaveButton.UseSelectable = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // CloseButton
             // 
@@ -156,6 +145,7 @@
             this.LevelBox.Size = new System.Drawing.Size(147, 29);
             this.LevelBox.TabIndex = 13;
             this.LevelBox.UseSelectable = true;
+            this.LevelBox.SelectedIndexChanged += new System.EventHandler(this.LevelBox_SelectedIndexChanged);
             // 
             // NameBox
             // 
@@ -166,6 +156,7 @@
             // 
             // IDBox
             // 
+            this.IDBox.Enabled = false;
             this.IDBox.Location = new System.Drawing.Point(394, 182);
             this.IDBox.Name = "IDBox";
             this.IDBox.Size = new System.Drawing.Size(147, 21);
@@ -232,7 +223,7 @@
             // 
             this.OpenImageButton.Location = new System.Drawing.Point(585, 536);
             this.OpenImageButton.Name = "OpenImageButton";
-            this.OpenImageButton.Size = new System.Drawing.Size(114, 23);
+            this.OpenImageButton.Size = new System.Drawing.Size(110, 23);
             this.OpenImageButton.TabIndex = 15;
             this.OpenImageButton.Text = "打开图片";
             this.OpenImageButton.UseSelectable = true;
@@ -240,13 +231,25 @@
             // 
             // AddCardButton
             // 
-            this.AddCardButton.Location = new System.Drawing.Point(741, 536);
+            this.AddCardButton.Location = new System.Drawing.Point(745, 536);
             this.AddCardButton.Name = "AddCardButton";
-            this.AddCardButton.Size = new System.Drawing.Size(114, 23);
+            this.AddCardButton.Size = new System.Drawing.Size(110, 23);
             this.AddCardButton.TabIndex = 16;
             this.AddCardButton.Text = "添加到牌组";
             this.AddCardButton.UseSelectable = true;
             this.AddCardButton.Click += new System.EventHandler(this.AddCardButton_Click);
+            // 
+            // cardPictureBox
+            // 
+            this.cardPictureBox.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.cardPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.cardPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.cardPictureBox.Location = new System.Drawing.Point(585, 134);
+            this.cardPictureBox.Name = "cardPictureBox";
+            this.cardPictureBox.Size = new System.Drawing.Size(270, 380);
+            this.cardPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.cardPictureBox.TabIndex = 9;
+            this.cardPictureBox.TabStop = false;
             // 
             // EditorForm
             // 

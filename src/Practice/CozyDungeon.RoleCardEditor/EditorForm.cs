@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CozyDungeon.Game.Component.Card.Model;
 using CozyDungeon.Game.Component.Card.Enum;
 using System.Reflection;
 
@@ -29,9 +28,8 @@ namespace CozyDungeon.RoleCardEditor
             ResetId();
         }
 
-        private List<ListBox> CardListBoxList { get; set; } = new List<ListBox>();
-        private List<RoleCard> CardList { get; set; } = new List<RoleCard>();
-        private List<RoleCardLevel> CardLevels { get; set; } = new List<RoleCardLevel>();
+        private List<ListBox> CardListBoxList { get; set; }     = new List<ListBox>();
+        private List<RoleCardLevel> CardLevels { get; set; }    = new List<RoleCardLevel>();
 
         private void InitTabControlPages()
         {
@@ -59,68 +57,34 @@ namespace CozyDungeon.RoleCardEditor
                        in CardLevels
                        select new KeyValuePair<string, int>(CardLevel.RoleCardLevelName(obj), (int)obj);
 
-            LevelBox.DataSource     = LevelValueList.ToList();
             LevelBox.DisplayMember  = "Key";
             LevelBox.ValueMember    = "Value";
-        }
-
-        private int InnerID = 0;
-        public string IDMaker
-        {
-            get
-            {
-                InnerID++;
-                return InnerID.ToString();
-            }
-        }
-
-        private void ResetId()
-        {
-            IDBox.Text = IDMaker;
+            LevelBox.DataSource     = LevelValueList.ToList();
         }
 
         private void OpenImageButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog fileDig  = new OpenFileDialog();
-            fileDig.Filter          = @"图片 | *.jpg; *.png; *.gif";
-            if(fileDig.ShowDialog() == DialogResult.OK)
-            {
-                var filename            = fileDig.FileName;
-                cardPictureBox.Image    = Image.FromFile(filename, false);
-            }
+            OpenImage();
         }
 
         private void AddCardButton_Click(object sender, EventArgs e)
         {
             if(CheckInput())
             {
-                var card = new RoleCard()
-                {
-                    Level   = (RoleCardLevel)Enum.ToObject(typeof(RoleCardLevel), (int)LevelBox.SelectedValue),
-                    Id      = int.Parse(IDBox.Text),
-                    Name    = NameBox.Text,
-                    Desc    = DescBox.Text,
-                    ATK     = int.Parse(ATKBox.Text),
-                    DEF     = int.Parse(DEFBox.Text),
-                    HP      = int.Parse(HPBox.Text),
-                    Element = FiveLine.Water,
-                };
-
-                CardList.Add(card);
-                CardListBoxList[(int)LevelBox.SelectedValue].Items.Add(card.Name);
-
-                ResetInput();
+                AddCard();
             }
         }
 
         private void ResetInput()
         {
-            ResetId();
+            LevelBox.SelectedIndex  = 0;
             NameBox.Text            = string.Empty;
             DescBox.Text            = string.Empty;
             HPBox.Text              = string.Empty;
             ATKBox.Text             = string.Empty;
             DEFBox.Text             = string.Empty;
+            SelectedImage           = null;
+            BorderImage             = null;
             cardPictureBox.Image    = null;
         }
 
@@ -130,8 +94,18 @@ namespace CozyDungeon.RoleCardEditor
             if (HPBox.Text.Length       == 0) return false;
             if (ATKBox.Text.Length      == 0) return false;
             if (DEFBox.Text.Length      == 0) return false;
-            if (cardPictureBox.Image    == null) return false;
+            if (SelectedImage           == null) return false;
             return true;
+        }
+
+        private void LevelBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadBorder();
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            SaveData();
         }
     }
 }
