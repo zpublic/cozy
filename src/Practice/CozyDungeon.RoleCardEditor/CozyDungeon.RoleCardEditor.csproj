@@ -62,11 +62,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditorForm.Card.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditorForm.Designer.cs">
       <DependentUpon>EditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditorForm.Image.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditorForm.IO.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
