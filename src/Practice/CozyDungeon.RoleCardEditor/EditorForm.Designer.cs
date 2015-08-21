@@ -156,6 +156,7 @@
             // 
             // IDBox
             // 
+            this.IDBox.Enabled = false;
             this.IDBox.Location = new System.Drawing.Point(394, 182);
             this.IDBox.Name = "IDBox";
             this.IDBox.Size = new System.Drawing.Size(147, 21);
@@ -222,7 +223,7 @@
             // 
             this.OpenImageButton.Location = new System.Drawing.Point(585, 536);
             this.OpenImageButton.Name = "OpenImageButton";
-            this.OpenImageButton.Size = new System.Drawing.Size(95, 23);
+            this.OpenImageButton.Size = new System.Drawing.Size(110, 23);
             this.OpenImageButton.TabIndex = 15;
             this.OpenImageButton.Text = "打开图片";
             this.OpenImageButton.UseSelectable = true;
@@ -230,9 +231,9 @@
             // 
             // AddCardButton
             // 
-            this.AddCardButton.Location = new System.Drawing.Point(686, 536);
+            this.AddCardButton.Location = new System.Drawing.Point(745, 536);
             this.AddCardButton.Name = "AddCardButton";
-            this.AddCardButton.Size = new System.Drawing.Size(95, 23);
+            this.AddCardButton.Size = new System.Drawing.Size(110, 23);
             this.AddCardButton.TabIndex = 16;
             this.AddCardButton.Text = "添加到牌组";
             this.AddCardButton.UseSelectable = true;
