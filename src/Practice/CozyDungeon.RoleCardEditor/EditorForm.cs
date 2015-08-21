@@ -25,6 +25,7 @@ namespace CozyDungeon.RoleCardEditor
         {
             InitTabControlPages();
             InitLevelBox();
+            CreateNewCards();
             ResetId();
         }
 
@@ -75,6 +76,76 @@ namespace CozyDungeon.RoleCardEditor
             }
         }
 
+        private void CreateNewCards()
+        {
+            CloseCards();
+            EnableAllControls();
+            this.Text       = "至强卡牌编辑器 - " + "未命名";
+        }
+
+        private void CloseCards()
+        {
+            if (IsModified)
+            {
+                var result = MessageBox.Show("是否保存", "关闭", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes)
+                {
+                    SaveData();
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+            ClearAll();
+            DisableAllControls();
+        }
+
+        private void DisableAllControls()
+        {
+            CardTabControl.Enabled  = false;
+            LevelBox.Enabled        = false;
+            NameBox.Enabled         = false;
+            DescBox.Enabled         = false;
+            HPBox.Enabled           = false;
+            ATKBox.Enabled          = false;
+            DEFBox.Enabled          = false;
+            cardPictureBox.Enabled  = false;
+            OpenImageButton.Enabled = false;
+            AddCardButton.Enabled   = false;
+        }
+
+        private void EnableAllControls()
+        {
+            CardTabControl.Enabled = true;
+            LevelBox.Enabled        = true;
+            NameBox.Enabled         = true;
+            DescBox.Enabled         = true;
+            HPBox.Enabled           = true;
+            ATKBox.Enabled          = true;
+            DEFBox.Enabled          = true;
+            cardPictureBox.Enabled  = true;
+            OpenImageButton.Enabled = true;
+            AddCardButton.Enabled   = true;
+        }
+
+        private void ClearAll()
+        {
+            foreach(var obj in CardListBoxList)
+            {
+                obj.Items.Clear();
+            }
+
+            CardImageDictionary.Clear();
+            CardList.Clear();
+            ResetInput();
+            ClearId();
+
+            SaveFileName    = null;
+            IsModified      = false;
+            this.Text       = "至强卡牌编辑器";
+        }
+
         private void ResetInput()
         {
             LevelBox.SelectedIndex  = 0;
@@ -106,6 +177,16 @@ namespace CozyDungeon.RoleCardEditor
         private void SaveButton_Click(object sender, EventArgs e)
         {
             SaveData();
+        }
+
+        private void CreateButton_Click(object sender, EventArgs e)
+        {
+            CreateNewCards();
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            CloseCards();
         }
     }
 }

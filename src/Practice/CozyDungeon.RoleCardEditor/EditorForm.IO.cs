@@ -15,15 +15,23 @@ namespace CozyDungeon.RoleCardEditor
     {
         private List<RoleCard> CardList { get; set; } = new List<RoleCard>();
 
+        private Uri SaveFileName { get; set; }
         private void SaveData()
         {
-            SaveFileDialog fileDig  = new SaveFileDialog();
-            fileDig.Filter          = @"json | *.json";
-
-            if (fileDig.ShowDialog() == DialogResult.OK)
+            if (SaveFileName == null)
             {
-                var filename                = new Uri(fileDig.FileName);
-                List<List<int>> savejson    = new List<List<int>>();
+                SaveFileDialog fileDig = new SaveFileDialog();
+                fileDig.Filter = @"json | *.json";
+
+                if (fileDig.ShowDialog() == DialogResult.OK)
+                {
+                    SaveFileName = new Uri(fileDig.FileName);
+                }
+            }
+
+            if(SaveFileName != null)
+            {
+                List<List<int>> savejson = new List<List<int>>();
 
                 for (int i = 0; i < CardLevels.Count; ++i)
                 {
@@ -35,15 +43,18 @@ namespace CozyDungeon.RoleCardEditor
                     savejson[(int)obj.Level].Add(obj.Id);
                 }
 
-                using (var fs = new FileStream(filename.AbsolutePath, FileMode.Create, FileAccess.ReadWrite))
+                using (var fs = new FileStream(SaveFileName.AbsolutePath, FileMode.Create, FileAccess.ReadWrite))
                 {
                     var json = JsonConvert.SerializeObject(savejson);
                     var data = Encoding.UTF8.GetBytes(json);
                     fs.Write(data, 0, data.Length);
                 }
 
-                SaveObject(filename);
-                SaveImage(filename);
+                SaveObject(SaveFileName);
+                SaveImage(SaveFileName);
+
+                IsModified  = false;
+                this.Text   = "至强卡牌编辑器 - " + Path.GetFileNameWithoutExtension(SaveFileName.AbsolutePath);
             }
         }
 
