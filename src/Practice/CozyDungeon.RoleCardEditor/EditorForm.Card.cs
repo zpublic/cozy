@@ -19,11 +19,17 @@ namespace CozyDungeon.RoleCardEditor
             }
         }
 
+        private void ClearId()
+        {
+            InnerID = 0;
+        }
+
         private void ResetId()
         {
             IDBox.Text = IDMaker;
         }
 
+        private bool IsModified { get; set; }
 
         private void AddCard()
         {
@@ -37,6 +43,7 @@ namespace CozyDungeon.RoleCardEditor
                 DEF     = int.Parse(DEFBox.Text),
                 HP      = int.Parse(HPBox.Text),
             };
+            IsModified = true;
 
             CardList.Add(card);
             CardListBoxList[(int)LevelBox.SelectedValue].Items.Add(card.Name);

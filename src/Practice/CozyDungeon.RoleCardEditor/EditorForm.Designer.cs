@@ -88,6 +88,7 @@
             this.CloseButton.TabIndex = 10;
             this.CloseButton.Text = "关闭";
             this.CloseButton.UseSelectable = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // CardTabControl
             // 
@@ -218,6 +219,7 @@
             this.CreateButton.TabIndex = 14;
             this.CreateButton.Text = "新建";
             this.CreateButton.UseSelectable = true;
+            this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
             // OpenImageButton
             // 
