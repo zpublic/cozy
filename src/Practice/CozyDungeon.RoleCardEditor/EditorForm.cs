@@ -200,7 +200,8 @@ namespace CozyDungeon.RoleCardEditor
                     fs.Write(data, 0, data.Length);
                 }
 
-                var JsonDireName = Path.GetDirectoryName(filename.AbsolutePath) + @"\object\";
+                var objName = Path.GetFileNameWithoutExtension(filename.AbsolutePath);
+                var JsonDireName = Path.GetDirectoryName(filename.AbsolutePath) + @"\"+ objName + @"_object\";
                 Directory.CreateDirectory(JsonDireName);
                 foreach (var obj in CardList)
                 {
@@ -214,7 +215,7 @@ namespace CozyDungeon.RoleCardEditor
                     }
                 }
 
-                var ImageDireName = Path.GetDirectoryName(filename.AbsolutePath) + @"\image\";
+                var ImageDireName = Path.GetDirectoryName(filename.AbsolutePath) + @"\" + objName + @"_image\";
                 Directory.CreateDirectory(ImageDireName);
                 foreach (var obj in CardImageDictionary)
                 {
