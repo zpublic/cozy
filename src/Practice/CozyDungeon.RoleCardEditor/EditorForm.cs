@@ -54,6 +54,7 @@ namespace CozyDungeon.RoleCardEditor
                 list.DisplayMember = "Name";
                 list.ValueMember = "Id";
                 list.DataSource = listData;
+                list.ContextMenuStrip = TabControlContextMenu;
 
                 list.SelectedIndexChanged += (sender, msg) =>
                 {

@@ -52,6 +52,9 @@
             this.AddCardButton = new MetroFramework.Controls.MetroButton();
             this.TabControlContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cardPictureBox = new System.Windows.Forms.PictureBox();
+            this.ModifyItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TabControlContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cardPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -249,8 +252,11 @@
             // 
             // TabControlContextMenu
             // 
+            this.TabControlContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ModifyItem,
+            this.RemoveItem});
             this.TabControlContextMenu.Name = "TabControlContextMenu";
-            this.TabControlContextMenu.Size = new System.Drawing.Size(61, 4);
+            this.TabControlContextMenu.Size = new System.Drawing.Size(138, 48);
             // 
             // cardPictureBox
             // 
@@ -263,6 +269,18 @@
             this.cardPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.cardPictureBox.TabIndex = 9;
             this.cardPictureBox.TabStop = false;
+            // 
+            // ModifyItem
+            // 
+            this.ModifyItem.Name = "ModifyItem";
+            this.ModifyItem.Size = new System.Drawing.Size(137, 22);
+            this.ModifyItem.Text = "查看 \\ 修改";
+            // 
+            // RemoveItem
+            // 
+            this.RemoveItem.Name = "RemoveItem";
+            this.RemoveItem.Size = new System.Drawing.Size(152, 22);
+            this.RemoveItem.Text = "删除";
             // 
             // EditorForm
             // 
@@ -293,6 +311,7 @@
             this.Controls.Add(this.IDBox);
             this.Name = "EditorForm";
             this.Text = "至强卡牌编辑器";
+            this.TabControlContextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cardPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -323,5 +342,7 @@
         private MetroFramework.Controls.MetroButton OpenImageButton;
         private MetroFramework.Controls.MetroButton AddCardButton;
         private System.Windows.Forms.ContextMenuStrip TabControlContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem ModifyItem;
+        private System.Windows.Forms.ToolStripMenuItem RemoveItem;
     }
 }
