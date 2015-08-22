@@ -50,8 +50,8 @@
             this.CreateButton = new MetroFramework.Controls.MetroButton();
             this.OpenImageButton = new MetroFramework.Controls.MetroButton();
             this.AddCardButton = new MetroFramework.Controls.MetroButton();
-            this.cardPictureBox = new System.Windows.Forms.PictureBox();
             this.TabControlContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cardPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.cardPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -156,6 +156,7 @@
             this.NameBox.Name = "NameBox";
             this.NameBox.Size = new System.Drawing.Size(147, 21);
             this.NameBox.TabIndex = 7;
+            this.NameBox.TextChanged += new System.EventHandler(this.NameBox_TextChanged);
             // 
             // IDBox
             // 
@@ -171,6 +172,7 @@
             this.HPBox.Name = "HPBox";
             this.HPBox.Size = new System.Drawing.Size(147, 21);
             this.HPBox.TabIndex = 7;
+            this.HPBox.TextChanged += new System.EventHandler(this.HPBox_TextChanged);
             // 
             // metroLabel5
             // 
@@ -187,6 +189,7 @@
             this.ATKBox.Name = "ATKBox";
             this.ATKBox.Size = new System.Drawing.Size(147, 21);
             this.ATKBox.TabIndex = 7;
+            this.ATKBox.TextChanged += new System.EventHandler(this.ATKBox_TextChanged);
             // 
             // metroLabel6
             // 
@@ -203,6 +206,7 @@
             this.DEFBox.Name = "DEFBox";
             this.DEFBox.Size = new System.Drawing.Size(147, 21);
             this.DEFBox.TabIndex = 7;
+            this.DEFBox.TextChanged += new System.EventHandler(this.DEFBox_TextChanged);
             // 
             // metroLabel7
             // 
@@ -243,6 +247,11 @@
             this.AddCardButton.UseSelectable = true;
             this.AddCardButton.Click += new System.EventHandler(this.AddCardButton_Click);
             // 
+            // TabControlContextMenu
+            // 
+            this.TabControlContextMenu.Name = "TabControlContextMenu";
+            this.TabControlContextMenu.Size = new System.Drawing.Size(61, 4);
+            // 
             // cardPictureBox
             // 
             this.cardPictureBox.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -254,11 +263,6 @@
             this.cardPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.cardPictureBox.TabIndex = 9;
             this.cardPictureBox.TabStop = false;
-            // 
-            // TabControlContextMenu
-            // 
-            this.TabControlContextMenu.Name = "TabControlContextMenu";
-            this.TabControlContextMenu.Size = new System.Drawing.Size(153, 26);
             // 
             // EditorForm
             // 

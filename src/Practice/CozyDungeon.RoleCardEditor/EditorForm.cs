@@ -200,5 +200,25 @@ namespace CozyDungeon.RoleCardEditor
         {
             CloseCards();
         }
+
+        private void HPBox_TextChanged(object sender, EventArgs e)
+        {
+            RefreshImage();
+        }
+
+        private void ATKBox_TextChanged(object sender, EventArgs e)
+        {
+            RefreshImage();
+        }
+
+        private void DEFBox_TextChanged(object sender, EventArgs e)
+        {
+            RefreshImage();
+        }
+
+        private void NameBox_TextChanged(object sender, EventArgs e)
+        {
+            RefreshImage();
+        }
     }
 }
