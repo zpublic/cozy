@@ -49,13 +49,16 @@ namespace CozyDungeon.RoleCardEditor
                 var page = new TabPage { Text = CardLevel.RoleCardLevelName(obj) };
                 CardTabControl.TabPages.Add(page);
 
-                var list = new ListBox() { Dock = DockStyle.Fill };
                 var listData = new BindingList<RoleCard>();
-                list.DisplayMember = "Name";
-                list.ValueMember = "Id";
-                list.DataSource = listData;
-                list.ContextMenuStrip = TabControlContextMenu;
-
+                var list            = new ListBox()
+                {
+                    Dock                = DockStyle.Fill,
+                    ContextMenuStrip    = TabControlContextMenu,
+                    DisplayMember       = "Name",
+                    ValueMember         = "Id",
+                    DataSource          = listData,
+                };
+                
                 list.SelectedIndexChanged += (sender, msg) =>
                 {
                     SelectedItem = list.SelectedItem as RoleCard;
@@ -94,7 +97,7 @@ namespace CozyDungeon.RoleCardEditor
         {
             CloseCards();
             EnableAllControls();
-            this.Text       = "至强卡牌编辑器 - " + "未命名";
+            this.Text = "至强卡牌编辑器 - " + "未命名";
         }
 
         private void CloseCards()
