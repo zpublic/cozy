@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CozyDungeon.Game.Component.Card.Enum;
 using System.Reflection;
+using CozyDungeon.Game.Component.Card.Model;
 
 namespace CozyDungeon.RoleCardEditor
 {
@@ -29,8 +30,10 @@ namespace CozyDungeon.RoleCardEditor
             ResetId();
         }
 
-        private List<ListBox> CardListBoxList { get; set; }     = new List<ListBox>();
+        private List<BindingList<RoleCard>> ListOfRoleCardList { get; set; } = new List<BindingList<RoleCard>>();
         private List<RoleCardLevel> CardLevels { get; set; }    = new List<RoleCardLevel>();
+
+        private RoleCard SelectedItem { get; set; }
 
         private void InitTabControlPages()
         {
@@ -47,8 +50,18 @@ namespace CozyDungeon.RoleCardEditor
                 CardTabControl.TabPages.Add(page);
 
                 var list = new ListBox() { Dock = DockStyle.Fill };
+                var listData = new BindingList<RoleCard>();
+                list.DisplayMember = "Name";
+                list.ValueMember = "Id";
+                list.DataSource = listData;
+
+                list.SelectedIndexChanged += (sender, msg) =>
+                {
+                    SelectedItem = list.SelectedItem as RoleCard;
+                };
+
                 page.Controls.Add(list);
-                CardListBoxList.Add(list);
+                ListOfRoleCardList.Add(listData);
             }
         }
 
@@ -131,13 +144,12 @@ namespace CozyDungeon.RoleCardEditor
 
         private void ClearAll()
         {
-            foreach(var obj in CardListBoxList)
+            foreach(var obj in ListOfRoleCardList)
             {
-                obj.Items.Clear();
+                obj.Clear();
             }
 
             CardImageDictionary.Clear();
-            CardList.Clear();
             ResetInput();
             ClearId();
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.DescBox = new System.Windows.Forms.TextBox();
             this.OpenButton = new MetroFramework.Controls.MetroButton();
             this.SaveButton = new MetroFramework.Controls.MetroButton();
@@ -50,6 +51,7 @@
             this.OpenImageButton = new MetroFramework.Controls.MetroButton();
             this.AddCardButton = new MetroFramework.Controls.MetroButton();
             this.cardPictureBox = new System.Windows.Forms.PictureBox();
+            this.TabControlContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.cardPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -253,6 +255,11 @@
             this.cardPictureBox.TabIndex = 9;
             this.cardPictureBox.TabStop = false;
             // 
+            // TabControlContextMenu
+            // 
+            this.TabControlContextMenu.Name = "TabControlContextMenu";
+            this.TabControlContextMenu.Size = new System.Drawing.Size(153, 26);
+            // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -311,5 +318,6 @@
         private MetroFramework.Controls.MetroButton CreateButton;
         private MetroFramework.Controls.MetroButton OpenImageButton;
         private MetroFramework.Controls.MetroButton AddCardButton;
+        private System.Windows.Forms.ContextMenuStrip TabControlContextMenu;
     }
 }

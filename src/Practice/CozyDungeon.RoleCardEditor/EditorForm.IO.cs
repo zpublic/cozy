@@ -7,14 +7,11 @@ using System.IO;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
 using Newtonsoft.Json;
-using CozyDungeon.Game.Component.Card.Model;
 
 namespace CozyDungeon.RoleCardEditor
 {
     public partial class EditorForm
     {
-        private List<RoleCard> CardList { get; set; } = new List<RoleCard>();
-
         private Uri SaveFileName { get; set; }
         private void SaveData()
         {
@@ -31,21 +28,24 @@ namespace CozyDungeon.RoleCardEditor
 
             if(SaveFileName != null)
             {
-                List<List<int>> savejson = new List<List<int>>();
 
+                var result = new List<List<int>>();
                 for (int i = 0; i < CardLevels.Count; ++i)
                 {
-                    savejson.Add(new List<int>());
+                    result.Add(new List<int>());
                 }
 
-                foreach (var obj in CardList)
+                for(int i = 0; i < ListOfRoleCardList.Count; ++i)
                 {
-                    savejson[(int)obj.Level].Add(obj.Id);
+                    foreach(var obj in ListOfRoleCardList[i])
+                    {
+                        result[i].Add(obj.Id);
+                    }
                 }
 
                 using (var fs = new FileStream(SaveFileName.AbsolutePath, FileMode.Create, FileAccess.ReadWrite))
                 {
-                    var json = JsonConvert.SerializeObject(savejson);
+                    var json = JsonConvert.SerializeObject(result);
                     var data = Encoding.UTF8.GetBytes(json);
                     fs.Write(data, 0, data.Length);
                 }
@@ -64,15 +64,18 @@ namespace CozyDungeon.RoleCardEditor
             var JsonDireName    = Path.GetDirectoryName(filename.AbsolutePath) + @"\" + objName + @"_object\";
             Directory.CreateDirectory(JsonDireName);
 
-            foreach (var obj in CardList)
+            foreach (var list in ListOfRoleCardList)
             {
-                var json        = JsonConvert.SerializeObject(obj);
-                var jsonname    = JsonDireName + obj.Id + ".json";
-
-                using (var fs = new FileStream(jsonname, FileMode.Create, FileAccess.ReadWrite))
+                foreach(var obj in list)
                 {
-                    var data = Encoding.UTF8.GetBytes(json);
-                    fs.Write(data, 0, data.Length);
+                    var json = JsonConvert.SerializeObject(obj);
+                    var jsonname = JsonDireName + obj.Id + ".json";
+
+                    using (var fs = new FileStream(jsonname, FileMode.Create, FileAccess.ReadWrite))
+                    {
+                        var data = Encoding.UTF8.GetBytes(json);
+                        fs.Write(data, 0, data.Length);
+                    }
                 }
             }
         }

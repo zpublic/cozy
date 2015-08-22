@@ -45,9 +45,8 @@ namespace CozyDungeon.RoleCardEditor
             };
             IsModified = true;
 
-            CardList.Add(card);
-            CardListBoxList[(int)LevelBox.SelectedValue].Items.Add(card.Name);
             CardImageDictionary[card.Id] = cardPictureBox.Image;
+            ListOfRoleCardList[(int)LevelBox.SelectedValue].Add(card);
 
             ResetInput();
             ResetId();
