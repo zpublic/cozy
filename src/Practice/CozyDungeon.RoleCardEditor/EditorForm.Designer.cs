@@ -61,7 +61,7 @@
             this.DescBox.Multiline = true;
             this.DescBox.Name = "DescBox";
             this.DescBox.Size = new System.Drawing.Size(198, 92);
-            this.DescBox.TabIndex = 8;
+            this.DescBox.TabIndex = 2;
             // 
             // OpenButton
             // 
@@ -146,7 +146,7 @@
             this.LevelBox.Location = new System.Drawing.Point(394, 132);
             this.LevelBox.Name = "LevelBox";
             this.LevelBox.Size = new System.Drawing.Size(147, 29);
-            this.LevelBox.TabIndex = 13;
+            this.LevelBox.TabIndex = 0;
             this.LevelBox.UseSelectable = true;
             this.LevelBox.SelectedIndexChanged += new System.EventHandler(this.LevelBox_SelectedIndexChanged);
             // 
@@ -155,7 +155,7 @@
             this.NameBox.Location = new System.Drawing.Point(394, 226);
             this.NameBox.Name = "NameBox";
             this.NameBox.Size = new System.Drawing.Size(147, 21);
-            this.NameBox.TabIndex = 7;
+            this.NameBox.TabIndex = 1;
             this.NameBox.TextChanged += new System.EventHandler(this.NameBox_TextChanged);
             // 
             // IDBox
@@ -171,7 +171,7 @@
             this.HPBox.Location = new System.Drawing.Point(394, 404);
             this.HPBox.Name = "HPBox";
             this.HPBox.Size = new System.Drawing.Size(147, 21);
-            this.HPBox.TabIndex = 7;
+            this.HPBox.TabIndex = 3;
             this.HPBox.TextChanged += new System.EventHandler(this.HPBox_TextChanged);
             // 
             // metroLabel5
@@ -188,7 +188,7 @@
             this.ATKBox.Location = new System.Drawing.Point(394, 449);
             this.ATKBox.Name = "ATKBox";
             this.ATKBox.Size = new System.Drawing.Size(147, 21);
-            this.ATKBox.TabIndex = 7;
+            this.ATKBox.TabIndex = 4;
             this.ATKBox.TextChanged += new System.EventHandler(this.ATKBox_TextChanged);
             // 
             // metroLabel6
@@ -205,7 +205,7 @@
             this.DEFBox.Location = new System.Drawing.Point(394, 492);
             this.DEFBox.Name = "DEFBox";
             this.DEFBox.Size = new System.Drawing.Size(147, 21);
-            this.DEFBox.TabIndex = 7;
+            this.DEFBox.TabIndex = 5;
             this.DEFBox.TextChanged += new System.EventHandler(this.DEFBox_TextChanged);
             // 
             // metroLabel7
