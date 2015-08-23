@@ -237,11 +237,15 @@ namespace CozyDungeon.RoleCardEditor
 
         private void CreateCardButton_Click(object sender, EventArgs e)
         {
-            var form = new CozyForm.CreateCardForm();
-            if(form.ShowDialog() == DialogResult.OK)
+            var form = new CozyForm.CreateCardForm(CardLevels);
+            form.CardCreateEventHandler += (s, msg) =>
             {
-
-            }
+                var card = msg.Card;
+                var img = msg.CardImage;
+                ListOfRoleCardList[(int)card.Level].Add(card);
+                CardImageDictionary[(int)card.Level] = img;
+            };
+            form.ShowDialog();
         }
     }
 }

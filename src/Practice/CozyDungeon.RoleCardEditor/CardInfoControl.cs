@@ -110,20 +110,29 @@ namespace CozyDungeon.RoleCardEditor
 
         private void HPBox_TextChanged(object sender, EventArgs e)
         {
-            RoleCard.HP = int.Parse(HPBox.Text);
-            RefreshImage();
+            if(HPBox.Text.Length > 0)
+            {
+                RoleCard.HP = int.Parse(HPBox.Text);
+                RefreshImage();
+            }
         }
 
         private void ATKBox_TextChanged(object sender, EventArgs e)
         {
-            RoleCard.ATK = int.Parse(ATKBox.Text);
-            RefreshImage();
+            if (ATKBox.Text.Length > 0)
+            {
+                RoleCard.ATK = int.Parse(ATKBox.Text);
+                RefreshImage();
+            }
         }
 
         private void DEFBox_TextChanged(object sender, EventArgs e)
         {
-            RoleCard.DEF = int.Parse(DEFBox.Text);
-            RefreshImage();
+            if (DEFBox.Text.Length > 0)
+            {
+                RoleCard.DEF = int.Parse(DEFBox.Text);
+                RefreshImage();
+            }
         }
 
         private void OpenImageButton_Click(object sender, EventArgs e)
@@ -134,7 +143,7 @@ namespace CozyDungeon.RoleCardEditor
 
         private Image BorderImage { get; set; }
 
-        private Image SelectedImage { get; set; }
+        public Image SelectedImage { get; set; }
 
         private void OpenImage()
         {
@@ -159,10 +168,12 @@ namespace CozyDungeon.RoleCardEditor
             }
         }
 
+        public Image CardImage { get; set; }
+
         private void RefreshImage()
         {
-            var CardPictureImage = new Bitmap(270, 380);
-            using (Graphics g = Graphics.FromImage(CardPictureImage))
+            CardImage = new Bitmap(270, 380);
+            using (Graphics g = Graphics.FromImage(CardImage))
             {
                 if (SelectedImage != null)
                 {
@@ -180,7 +191,7 @@ namespace CozyDungeon.RoleCardEditor
                     RefreshText(g);
                 }
             }
-            cardPictureBox.Image = CardPictureImage;
+            cardPictureBox.Image = CardImage;
         }
 
         private void RefreshText(Graphics g)

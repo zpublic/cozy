@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.AddCardButton = new MetroFramework.Controls.MetroButton();
             this.OpenImageButton = new MetroFramework.Controls.MetroButton();
             this.LevelBox = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
@@ -38,30 +37,21 @@
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.cardPictureBox = new System.Windows.Forms.PictureBox();
             this.DescBox = new System.Windows.Forms.TextBox();
             this.NameBox = new System.Windows.Forms.TextBox();
             this.DEFBox = new System.Windows.Forms.TextBox();
             this.ATKBox = new System.Windows.Forms.TextBox();
             this.HPBox = new System.Windows.Forms.TextBox();
             this.IDBox = new System.Windows.Forms.TextBox();
+            this.cardPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.cardPictureBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // AddCardButton
-            // 
-            this.AddCardButton.Location = new System.Drawing.Point(414, 414);
-            this.AddCardButton.Name = "AddCardButton";
-            this.AddCardButton.Size = new System.Drawing.Size(110, 23);
-            this.AddCardButton.TabIndex = 33;
-            this.AddCardButton.Text = "添加到牌组";
-            this.AddCardButton.UseSelectable = true;
             // 
             // OpenImageButton
             // 
             this.OpenImageButton.Location = new System.Drawing.Point(254, 414);
             this.OpenImageButton.Name = "OpenImageButton";
-            this.OpenImageButton.Size = new System.Drawing.Size(110, 23);
+            this.OpenImageButton.Size = new System.Drawing.Size(270, 23);
             this.OpenImageButton.TabIndex = 32;
             this.OpenImageButton.Text = "打开图片";
             this.OpenImageButton.UseSelectable = true;
@@ -141,18 +131,6 @@
             this.metroLabel1.TabIndex = 25;
             this.metroLabel1.Text = "Level";
             // 
-            // cardPictureBox
-            // 
-            this.cardPictureBox.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.cardPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.cardPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.cardPictureBox.Location = new System.Drawing.Point(254, 12);
-            this.cardPictureBox.Name = "cardPictureBox";
-            this.cardPictureBox.Size = new System.Drawing.Size(270, 380);
-            this.cardPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.cardPictureBox.TabIndex = 24;
-            this.cardPictureBox.TabStop = false;
-            // 
             // DescBox
             // 
             this.DescBox.Location = new System.Drawing.Point(12, 165);
@@ -202,11 +180,22 @@
             this.IDBox.Size = new System.Drawing.Size(147, 21);
             this.IDBox.TabIndex = 23;
             // 
+            // cardPictureBox
+            // 
+            this.cardPictureBox.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.cardPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.cardPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.cardPictureBox.Location = new System.Drawing.Point(254, 12);
+            this.cardPictureBox.Name = "cardPictureBox";
+            this.cardPictureBox.Size = new System.Drawing.Size(270, 380);
+            this.cardPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.cardPictureBox.TabIndex = 24;
+            this.cardPictureBox.TabStop = false;
+            // 
             // CardInfoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.AddCardButton);
             this.Controls.Add(this.OpenImageButton);
             this.Controls.Add(this.LevelBox);
             this.Controls.Add(this.metroLabel4);
@@ -232,8 +221,6 @@
         }
 
         #endregion
-
-        private MetroFramework.Controls.MetroButton AddCardButton;
         private MetroFramework.Controls.MetroButton OpenImageButton;
         private MetroFramework.Controls.MetroComboBox LevelBox;
         private MetroFramework.Controls.MetroLabel metroLabel4;

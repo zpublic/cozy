@@ -30,13 +30,14 @@
         {
             CozyDungeon.Game.Component.Card.Model.RoleCard roleCard1 = new CozyDungeon.Game.Component.Card.Model.RoleCard();
             this.cardInfoControl1 = new CozyDungeon.RoleCardEditor.CardInfoControl();
+            this.CompleteButton = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // cardInfoControl1
             // 
             this.cardInfoControl1.CardLevels = null;
             this.cardInfoControl1.Id = 0;
-            this.cardInfoControl1.Location = new System.Drawing.Point(41, 63);
+            this.cardInfoControl1.Location = new System.Drawing.Point(23, 63);
             this.cardInfoControl1.Name = "cardInfoControl1";
             roleCard1.ATK = 1;
             roleCard1.DEF = 0;
@@ -50,11 +51,22 @@
             this.cardInfoControl1.Size = new System.Drawing.Size(540, 447);
             this.cardInfoControl1.TabIndex = 0;
             // 
+            // CompleteButton
+            // 
+            this.CompleteButton.Location = new System.Drawing.Point(140, 516);
+            this.CompleteButton.Name = "CompleteButton";
+            this.CompleteButton.Size = new System.Drawing.Size(270, 23);
+            this.CompleteButton.TabIndex = 33;
+            this.CompleteButton.Text = "完成";
+            this.CompleteButton.UseSelectable = true;
+            this.CompleteButton.Click += new System.EventHandler(this.CompleteButton_Click);
+            // 
             // CreateCardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 528);
+            this.ClientSize = new System.Drawing.Size(600, 548);
+            this.Controls.Add(this.CompleteButton);
             this.Controls.Add(this.cardInfoControl1);
             this.Name = "CreateCardForm";
             this.Text = "CreateCardForm";
@@ -65,5 +77,6 @@
         #endregion
 
         private CardInfoControl cardInfoControl1;
+        private MetroFramework.Controls.MetroButton CompleteButton;
     }
 }
