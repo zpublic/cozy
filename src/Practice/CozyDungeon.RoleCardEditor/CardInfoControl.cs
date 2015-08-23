@@ -116,6 +116,18 @@ namespace CozyDungeon.RoleCardEditor
             LoadBorder();
         }
 
+        public bool LevelBoxEnable
+        {
+            get
+            {
+                return LevelBox.Enabled;
+            }
+            set
+            {
+                LevelBox.Enabled = value;
+            }
+        }
+
         public void　Clear()
         {
             BeginModify();
