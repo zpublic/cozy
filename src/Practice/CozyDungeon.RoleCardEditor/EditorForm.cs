@@ -234,5 +234,14 @@ namespace CozyDungeon.RoleCardEditor
         {
             RefreshImage();
         }
+
+        private void CreateCardButton_Click(object sender, EventArgs e)
+        {
+            var form = new CozyForm.CreateCardForm();
+            if(form.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
     }
 }

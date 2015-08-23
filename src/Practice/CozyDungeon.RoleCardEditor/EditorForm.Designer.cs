@@ -38,6 +38,7 @@
             this.TabControlContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ModifyItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateCardButton = new MetroFramework.Controls.MetroButton();
             this.cardInfoControl1 = new CozyDungeon.RoleCardEditor.CardInfoControl();
             this.TabControlContextMenu.SuspendLayout();
             this.SuspendLayout();
@@ -112,6 +113,16 @@
             this.RemoveItem.Size = new System.Drawing.Size(137, 22);
             this.RemoveItem.Text = "删除";
             // 
+            // CreateCardButton
+            // 
+            this.CreateCardButton.Location = new System.Drawing.Point(589, 62);
+            this.CreateCardButton.Name = "CreateCardButton";
+            this.CreateCardButton.Size = new System.Drawing.Size(96, 23);
+            this.CreateCardButton.TabIndex = 16;
+            this.CreateCardButton.Text = "创建新卡片";
+            this.CreateCardButton.UseSelectable = true;
+            this.CreateCardButton.Click += new System.EventHandler(this.CreateCardButton_Click);
+            // 
             // cardInfoControl1
             // 
             this.cardInfoControl1.CardLevels = null;
@@ -135,6 +146,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 592);
+            this.Controls.Add(this.CreateCardButton);
             this.Controls.Add(this.cardInfoControl1);
             this.Controls.Add(this.CreateButton);
             this.Controls.Add(this.CardTabControl);
@@ -158,5 +170,6 @@
         private System.Windows.Forms.ToolStripMenuItem ModifyItem;
         private System.Windows.Forms.ToolStripMenuItem RemoveItem;
         private CardInfoControl cardInfoControl1;
+        private MetroFramework.Controls.MetroButton CreateCardButton;
     }
 }

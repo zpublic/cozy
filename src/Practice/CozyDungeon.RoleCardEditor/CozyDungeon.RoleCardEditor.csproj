@@ -62,6 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CozyForm\CreateCardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CozyForm\CreateCardForm.Designer.cs">
+      <DependentUpon>CreateCardForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditorForm.Card.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     <Compile Include="CardInfoControl.Designer.cs">
       <DependentUpon>CardInfoControl.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CozyForm\CreateCardForm.resx">
+      <DependentUpon>CreateCardForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditorForm.resx">
       <DependentUpon>EditorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -180,6 +189,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CozyControl\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
