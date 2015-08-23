@@ -58,6 +58,13 @@ namespace CozyDungeon.RoleCardEditor
         private void InitCardControl()
         {
             cardInfoControl1.CardLevels = CardLevels;
+            cardInfoControl1.ImageRefreshEventHandler += (sender, msg) =>
+            {
+                if(CardImageDictionary.ContainsKey(msg.Id))
+                {
+                    CardImageDictionary[msg.Id] = msg.Img;
+                }
+            };
         }
 
         private void InitTabControlPages()
