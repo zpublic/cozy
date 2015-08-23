@@ -10,11 +10,14 @@ using System.Windows.Forms;
 using CozyDungeon.Game.Component.Card.Enum;
 using CozyDungeon.Game.Component.Card.Model;
 using CozyDungeon.RoleCardEditor.Properties;
+using CozyDungeon.RoleCardEditor.EventArg;
 
 namespace CozyDungeon.RoleCardEditor
 {
     public partial class CardInfoControl : UserControl
     {
+        public event EventHandler<ImageRefreshEventArgs> ImageRefreshEventHandler;
+
         private CozyCardImage images = new CozyCardImage();
         public CozyCardImage Images
         {
@@ -121,13 +124,13 @@ namespace CozyDungeon.RoleCardEditor
 
         private void RefreshControls()
         {
-            LevelBox.SelectedValue = RoleCard.Level;
-            IDBox.Text = RoleCard.Id.ToString();
-            NameBox.Text = RoleCard.Name;
-            DescBox.Text = RoleCard.Desc;
-            HPBox.Text = RoleCard.HP.ToString();
-            ATKBox.Text = RoleCard.ATK.ToString();
-            DEFBox.Text = RoleCard.DEF.ToString();
+            LevelBox.SelectedValue  = RoleCard.Level;
+            IDBox.Text              = RoleCard.Id.ToString();
+            NameBox.Text            = RoleCard.Name;
+            DescBox.Text            = RoleCard.Desc;
+            HPBox.Text              = RoleCard.HP.ToString();
+            ATKBox.Text             = RoleCard.ATK.ToString();
+            DEFBox.Text             = RoleCard.DEF.ToString();
             RefreshImage();
         }
 
@@ -195,12 +198,12 @@ namespace CozyDungeon.RoleCardEditor
 
         private void OpenImage()
         {
-            OpenFileDialog fileDig = new OpenFileDialog();
-            fileDig.Filter = @"图片 | *.jpg; *.png; *.gif";
+            OpenFileDialog fileDig  = new OpenFileDialog();
+            fileDig.Filter          = @"图片 | *.jpg; *.png; *.gif";
             if (fileDig.ShowDialog() == DialogResult.OK)
             {
-                var filename = fileDig.FileName;
-                Images = new CozyCardImage()
+                var filename    = fileDig.FileName;
+                Images          = new CozyCardImage()
                 {
                     SelectedImage = Image.FromFile(filename, false),
                 };
@@ -249,21 +252,6 @@ namespace CozyDungeon.RoleCardEditor
                 cardPictureBox.Image = Images.CardImage;
             }
         }
-
-        public class ImageRefreshEventArgs : EventArgs
-        {
-            public CozyCardImage Img { get; set; }
-
-            public int Id { get; set; }
-
-            public ImageRefreshEventArgs(int id, CozyCardImage img)
-            {
-                Img = img;
-                Id = id;
-            }
-        }
-
-        public event EventHandler<ImageRefreshEventArgs> ImageRefreshEventHandler;
 
         private void RefreshText(Graphics g)
         {

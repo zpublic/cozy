@@ -74,7 +74,7 @@ namespace CozyDungeon.RoleCardEditor
                 var page = new TabPage { Text = CardLevel.RoleCardLevelName(obj) };
                 CardTabControl.TabPages.Add(page);
 
-                var listData = new BindingList<RoleCard>();
+                var listData        = new BindingList<RoleCard>();
                 var list            = new ListBox()
                 {
                     Dock                = DockStyle.Fill,
@@ -102,7 +102,6 @@ namespace CozyDungeon.RoleCardEditor
                 ListOfRoleCardList.Add(listData);
             }
         }
-
 
         private void SaveButton_Click(object sender, EventArgs e)
         {

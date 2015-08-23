@@ -10,24 +10,12 @@ using MetroFramework.Forms;
 using System.Windows.Forms;
 using CozyDungeon.Game.Component.Card.Enum;
 using CozyDungeon.Game.Component.Card.Model;
+using CozyDungeon.RoleCardEditor.EventArg;
 
 namespace CozyDungeon.RoleCardEditor.CozyForm
 {
     public partial class CreateCardForm : MetroForm
     {
-        public class CardCreateEventArgs : EventArgs
-        {
-            public RoleCard Card { get; set; }
-
-            public CozyCardImage CardImage { get; set; }
-
-            public CardCreateEventArgs(RoleCard card, CozyCardImage cardimage)
-            {
-                Card        = card;
-                CardImage   = cardimage;
-            }
-        }
-
         public EventHandler<CardCreateEventArgs> CardCreateEventHandler;
 
         public CreateCardForm(List<RoleCardLevel> cardLevels, int id)
