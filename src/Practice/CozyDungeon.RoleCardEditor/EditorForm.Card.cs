@@ -26,14 +26,12 @@ namespace CozyDungeon.RoleCardEditor
 
         private bool IsModified { get; set; }
 
-        private void AddCard(RoleCard card, Image cardImage, Image selectedImage)
+        private void AddCard(RoleCard card, CozyCardImage cardImage)
         {
             IsModified = true;
 
+            CardImageDictionary[card.Id]            = cardImage;
             ListOfRoleCardList[(int)card.Level].Add(card);
-            CardImageDictionary[card.Id] = cardImage;
-
-            ResetInput();
         }
     }
 }

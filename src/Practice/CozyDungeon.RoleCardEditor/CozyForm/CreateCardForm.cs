@@ -19,15 +19,12 @@ namespace CozyDungeon.RoleCardEditor.CozyForm
         {
             public RoleCard Card { get; set; }
 
-            public Image CardImage { get; set; }
+            public CozyCardImage CardImage { get; set; }
 
-            public Image SelectedImage { get; set; }
-
-            public CardCreateEventArgs(RoleCard card, Image cardimage, Image selectedImage)
+            public CardCreateEventArgs(RoleCard card, CozyCardImage cardimage)
             {
                 Card = card;
                 CardImage = cardimage;
-                SelectedImage = selectedImage;
             }
         }
 
@@ -43,12 +40,12 @@ namespace CozyDungeon.RoleCardEditor.CozyForm
 
         private void CompleteButton_Click(object sender, EventArgs e)
         {
-            if(CardCreateEventHandler != null)
+            DialogResult = DialogResult.OK;
+            if (CardCreateEventHandler != null)
             {
-                DialogResult = DialogResult.OK;
-                this.Close();
-                CardCreateEventHandler(this, new CardCreateEventArgs(cardInfoControl1.RoleCard,cardInfoControl1.CardImage, cardInfoControl1.SelectedImage));
+                CardCreateEventHandler(this, new CardCreateEventArgs(cardInfoControl1.RoleCard,cardInfoControl1.Images));
             }
+            this.Close();
         }
     }
 }

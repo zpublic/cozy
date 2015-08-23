@@ -91,7 +91,7 @@ namespace CozyDungeon.RoleCardEditor
                 var imagename = ImageDireName + obj.Key + ".png";
                 using (var fs = new FileStream(imagename, FileMode.Create, FileAccess.ReadWrite))
                 {
-                    obj.Value.Save(fs, ImageFormat.Png);
+                    obj.Value.CardImage.Save(fs, ImageFormat.Png);
                 }
             }
         }

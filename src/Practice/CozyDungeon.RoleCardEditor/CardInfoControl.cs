@@ -15,6 +15,19 @@ namespace CozyDungeon.RoleCardEditor
 {
     public partial class CardInfoControl : UserControl
     {
+        private CozyCardImage images = new CozyCardImage();
+        public CozyCardImage Images
+        {
+            get
+            {
+                return images;
+            }
+            set
+            {
+                images = value;
+            }
+        }
+
         private RoleCard roleCard = new RoleCard();
         public RoleCard RoleCard
         {
@@ -24,8 +37,10 @@ namespace CozyDungeon.RoleCardEditor
             }
             set
             {
-                roleCard = value;
-                RefreshControls();
+                if (RoleCard != value)
+                {
+                    roleCard = value;
+                }
             }
         }
 
@@ -55,8 +70,22 @@ namespace CozyDungeon.RoleCardEditor
             set
             {
                 InnerId = value;
+                RoleCard.Id = value;
                 IDBox.Text = value.ToString();
             }
+        }
+
+        private bool IsModification { get; set; }
+
+        public void BeginModify()
+        {
+            IsModification = true;
+        }
+
+        public void EndModify()
+        {
+            IsModification = false;
+            RefreshControls();
         }
 
         public CardInfoControl()
@@ -86,8 +115,8 @@ namespace CozyDungeon.RoleCardEditor
 
         public void　Clear()
         {
-            RoleCard = new RoleCard();
-            SelectedImage = null;
+            RoleCard    = new RoleCard();
+            Images      = new CozyCardImage();
         }
 
         private void RefreshControls()
@@ -105,13 +134,19 @@ namespace CozyDungeon.RoleCardEditor
         private void DescBox_TextChanged(object sender, EventArgs e)
         {
             RoleCard.Desc = DescBox.Text;
-            RefreshImage();
+            if(!IsModification)
+            {
+                RefreshImage();
+            }
         }
 
         private void NameBox_TextChanged(object sender, EventArgs e)
         {
             RoleCard.Name = NameBox.Text;
-            RefreshImage();
+            if (!IsModification)
+            {
+                RefreshImage();
+            }
         }
 
         private void HPBox_TextChanged(object sender, EventArgs e)
@@ -119,7 +154,10 @@ namespace CozyDungeon.RoleCardEditor
             if(HPBox.Text.Length > 0)
             {
                 RoleCard.HP = int.Parse(HPBox.Text);
-                RefreshImage();
+                if (!IsModification)
+                {
+                    RefreshImage();
+                }
             }
         }
 
@@ -128,7 +166,10 @@ namespace CozyDungeon.RoleCardEditor
             if (ATKBox.Text.Length > 0)
             {
                 RoleCard.ATK = int.Parse(ATKBox.Text);
-                RefreshImage();
+                if (!IsModification)
+                {
+                    RefreshImage();
+                }
             }
         }
 
@@ -137,7 +178,10 @@ namespace CozyDungeon.RoleCardEditor
             if (DEFBox.Text.Length > 0)
             {
                 RoleCard.DEF = int.Parse(DEFBox.Text);
-                RefreshImage();
+                if (!IsModification)
+                {
+                    RefreshImage();
+                }
             }
         }
 
@@ -149,20 +193,6 @@ namespace CozyDungeon.RoleCardEditor
 
         private Image BorderImage { get; set; }
 
-        private Image selectedImage;
-        public Image SelectedImage
-        {
-            get
-            {
-                return selectedImage;
-            }
-            set
-            {
-                selectedImage = value;
-                RefreshImage();
-            }
-        }
-
         private void OpenImage()
         {
             OpenFileDialog fileDig = new OpenFileDialog();
@@ -170,7 +200,10 @@ namespace CozyDungeon.RoleCardEditor
             if (fileDig.ShowDialog() == DialogResult.OK)
             {
                 var filename = fileDig.FileName;
-                SelectedImage = Image.FromFile(filename, false);
+                Images = new CozyCardImage()
+                {
+                    SelectedImage = Image.FromFile(filename, false),
+                };
                 RefreshImage();
             }
         }
@@ -186,30 +219,31 @@ namespace CozyDungeon.RoleCardEditor
             }
         }
 
-        public Image CardImage { get; set; }
-
         private void RefreshImage()
         {
-            CardImage = new Bitmap(270, 380);
-            using (Graphics g = Graphics.FromImage(CardImage))
+            if (Images != null)
             {
-                if (SelectedImage != null)
+                Images.CardImage = new Bitmap(270, 380);
+                using (Graphics g = Graphics.FromImage(Images.CardImage))
                 {
-                    g.DrawImage(SelectedImage, new Rectangle(Point.Empty, cardPictureBox.Size));
-                }
-                if (BorderImage != null)
-                {
-                    g.DrawImage(Resources.mask, new Rectangle(new Point(6, 225), Resources.mask.Size));
-                    g.DrawImage(BorderImage, new Rectangle(Point.Empty, cardPictureBox.Size));
+                    if (Images.SelectedImage != null)
+                    {
+                        g.DrawImage(Images.SelectedImage, new Rectangle(Point.Empty, cardPictureBox.Size));
+                    }
+                    if (BorderImage != null)
+                    {
+                        g.DrawImage(Resources.mask, new Rectangle(new Point(6, 225), Resources.mask.Size));
+                        g.DrawImage(BorderImage, new Rectangle(Point.Empty, cardPictureBox.Size));
 
-                    g.DrawImage(Resources.hp, new Rectangle(Point.Empty, Resources.hp.Size));
-                    g.DrawImage(Resources.atk, new Rectangle(new Point(30, 340), Resources.atk.Size));
-                    g.DrawImage(Resources.def, new Rectangle(new Point(180, 340), Resources.def.Size));
+                        g.DrawImage(Resources.hp, new Rectangle(Point.Empty, Resources.hp.Size));
+                        g.DrawImage(Resources.atk, new Rectangle(new Point(30, 340), Resources.atk.Size));
+                        g.DrawImage(Resources.def, new Rectangle(new Point(180, 340), Resources.def.Size));
 
-                    RefreshText(g);
+                        RefreshText(g);
+                    }
                 }
+                cardPictureBox.Image = Images.CardImage;
             }
-            cardPictureBox.Image = CardImage;
         }
 
         private void RefreshText(Graphics g)

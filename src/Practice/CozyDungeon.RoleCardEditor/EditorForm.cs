@@ -34,10 +34,8 @@ namespace CozyDungeon.RoleCardEditor
 
         private List<BindingList<RoleCard>> ListOfRoleCardList { get; set; } = new List<BindingList<RoleCard>>();
         private List<RoleCardLevel> CardLevels { get; set; }    = new List<RoleCardLevel>();
-        private Dictionary<int, Image> CardImageDictionary { get; set; }
-                        = new Dictionary<int, Image>();
+        private Dictionary<int, CozyCardImage> CardImageDictionary { get; set; } = new Dictionary<int, CozyCardImage>();
 
-        private RoleCard SelectedItem { get; set; }
 
         private void InitCardControl()
         {
@@ -53,6 +51,8 @@ namespace CozyDungeon.RoleCardEditor
                 CardLevels.Add((RoleCardLevel)value);
             }
         }
+
+        private RoleCard SelectedItem { get; set; }
 
         private void InitTabControlPages()
         {
@@ -73,7 +73,17 @@ namespace CozyDungeon.RoleCardEditor
                 
                 list.SelectedIndexChanged += (sender, msg) =>
                 {
-                    SelectedItem = list.SelectedItem as RoleCard;
+                    var item = list.SelectedItem as RoleCard;
+
+                    if (ListOfRoleCardList[CardTabControl.SelectedIndex].Contains(item))
+                    {
+                        SelectedItem = item;
+
+                        cardInfoControl1.BeginModify();
+                        cardInfoControl1.Images = CardImageDictionary[SelectedItem.Id];
+                        cardInfoControl1.RoleCard = SelectedItem;
+                        cardInfoControl1.EndModify();
+                    }
                 };
 
                 page.Controls.Add(list);
@@ -161,7 +171,8 @@ namespace CozyDungeon.RoleCardEditor
             var form = new CozyForm.CreateCardForm(CardLevels, CardIdCache);
             form.CardCreateEventHandler += (s, msg) =>
             {
-                AddCard(msg.Card, msg.CardImage, msg.SelectedImage);
+                AddCard(msg.Card, msg.CardImage);
+                CardTabControl.SelectedIndex = (int)msg.Card.Level;
             };
             if(form.ShowDialog() == DialogResult.OK)
             {
