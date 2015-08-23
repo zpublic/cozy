@@ -15,8 +15,6 @@ namespace CozyDungeon.RoleCardEditor.CozyForm
 {
     public partial class CreateCardForm : MetroForm
     {
-        private List<RoleCardLevel> CardLevels { get; set; }
-
         public class CardCreateEventArgs : EventArgs
         {
             public RoleCard Card { get; set; }
@@ -35,19 +33,19 @@ namespace CozyDungeon.RoleCardEditor.CozyForm
 
         public EventHandler<CardCreateEventArgs> CardCreateEventHandler;
 
-        public CreateCardForm(List<RoleCardLevel> cardLevels)
+        public CreateCardForm(List<RoleCardLevel> cardLevels, int id)
         {
             InitializeComponent();
 
-            CardLevels = cardLevels;
-
-            cardInfoControl1.CardLevels = CardLevels;
+            cardInfoControl1.CardLevels = cardLevels;
+            cardInfoControl1.Id = id;
         }
 
         private void CompleteButton_Click(object sender, EventArgs e)
         {
             if(CardCreateEventHandler != null)
             {
+                DialogResult = DialogResult.OK;
                 this.Close();
                 CardCreateEventHandler(this, new CardCreateEventArgs(cardInfoControl1.RoleCard,cardInfoControl1.CardImage, cardInfoControl1.SelectedImage));
             }

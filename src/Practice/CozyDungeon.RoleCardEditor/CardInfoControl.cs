@@ -84,6 +84,12 @@ namespace CozyDungeon.RoleCardEditor
             LoadBorder();
         }
 
+        public void　Clear()
+        {
+            RoleCard = new RoleCard();
+            SelectedImage = null;
+        }
+
         private void RefreshControls()
         {
             LevelBox.SelectedValue = RoleCard.Level;
@@ -143,7 +149,19 @@ namespace CozyDungeon.RoleCardEditor
 
         private Image BorderImage { get; set; }
 
-        public Image SelectedImage { get; set; }
+        private Image selectedImage;
+        public Image SelectedImage
+        {
+            get
+            {
+                return selectedImage;
+            }
+            set
+            {
+                selectedImage = value;
+                RefreshImage();
+            }
+        }
 
         private void OpenImage()
         {

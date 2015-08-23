@@ -26,14 +26,16 @@ namespace CozyDungeon.RoleCardEditor
         {
             LoadCardLevels();
             InitCardControl();
-            InitLevelBox();
             InitTabControlPages();
             CreateNewCards();
-            ResetId();
+
+            CardIdCache = IDMaker;
         }
 
         private List<BindingList<RoleCard>> ListOfRoleCardList { get; set; } = new List<BindingList<RoleCard>>();
         private List<RoleCardLevel> CardLevels { get; set; }    = new List<RoleCardLevel>();
+        private Dictionary<int, Image> CardImageDictionary { get; set; }
+                        = new Dictionary<int, Image>();
 
         private RoleCard SelectedItem { get; set; }
 
@@ -79,30 +81,6 @@ namespace CozyDungeon.RoleCardEditor
             }
         }
 
-        private void InitLevelBox()
-        {
-            //var LevelValueList = from obj
-            //           in CardLevels
-            //           select new KeyValuePair<string, int>(CardLevel.RoleCardLevelName(obj), (int)obj);
-
-            //LevelBox.DisplayMember  = "Key";
-            //LevelBox.ValueMember    = "Value";
-            //LevelBox.DataSource     = LevelValueList.ToList();
-        }
-
-        private void OpenImageButton_Click(object sender, EventArgs e)
-        {
-            OpenImage();
-        }
-
-        private void AddCardButton_Click(object sender, EventArgs e)
-        {
-            if(CheckInput())
-            {
-                AddCard();
-            }
-        }
-
         private void CreateNewCards()
         {
             CloseCards();
@@ -131,29 +109,13 @@ namespace CozyDungeon.RoleCardEditor
         private void DisableAllControls()
         {
             CardTabControl.Enabled  = false;
-            //LevelBox.Enabled        = false;
-            //NameBox.Enabled         = false;
-            //DescBox.Enabled         = false;
-            //HPBox.Enabled           = false;
-            //ATKBox.Enabled          = false;
-            //DEFBox.Enabled          = false;
-            //cardPictureBox.Enabled  = false;
-            //OpenImageButton.Enabled = false;
-            //AddCardButton.Enabled   = false;
+            cardInfoControl1.Enabled = false;
         }
 
         private void EnableAllControls()
         {
             CardTabControl.Enabled = true;
-            //LevelBox.Enabled        = true;
-            //NameBox.Enabled         = true;
-            //DescBox.Enabled         = true;
-            //HPBox.Enabled           = true;
-            //ATKBox.Enabled          = true;
-            //DEFBox.Enabled          = true;
-            //cardPictureBox.Enabled  = true;
-            //OpenImageButton.Enabled = true;
-            //AddCardButton.Enabled   = true;
+            cardInfoControl1.Enabled = true;
         }
 
         private void ClearAll()
@@ -174,30 +136,7 @@ namespace CozyDungeon.RoleCardEditor
 
         private void ResetInput()
         {
-            //LevelBox.SelectedIndex  = 0;
-            //NameBox.Text            = string.Empty;
-            //DescBox.Text            = string.Empty;
-            //HPBox.Text              = string.Empty;
-            //ATKBox.Text             = string.Empty;
-            //DEFBox.Text             = string.Empty;
-            //SelectedImage           = null;
-            //BorderImage             = null;
-            //cardPictureBox.Image    = null;
-        }
-
-        private bool CheckInput()
-        {
-            //if (NameBox.Text.Length     == 0) return false;
-            //if (HPBox.Text.Length       == 0) return false;
-            //if (ATKBox.Text.Length      == 0) return false;
-            //if (DEFBox.Text.Length      == 0) return false;
-            //if (SelectedImage           == null) return false;
-            return true;
-        }
-
-        private void LevelBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadBorder();
+            cardInfoControl1.Clear();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -215,37 +154,19 @@ namespace CozyDungeon.RoleCardEditor
             CloseCards();
         }
 
-        private void HPBox_TextChanged(object sender, EventArgs e)
-        {
-            RefreshImage();
-        }
-
-        private void ATKBox_TextChanged(object sender, EventArgs e)
-        {
-            RefreshImage();
-        }
-
-        private void DEFBox_TextChanged(object sender, EventArgs e)
-        {
-            RefreshImage();
-        }
-
-        private void NameBox_TextChanged(object sender, EventArgs e)
-        {
-            RefreshImage();
-        }
+        private int CardIdCache { get; set; }
 
         private void CreateCardButton_Click(object sender, EventArgs e)
         {
-            var form = new CozyForm.CreateCardForm(CardLevels);
+            var form = new CozyForm.CreateCardForm(CardLevels, CardIdCache);
             form.CardCreateEventHandler += (s, msg) =>
             {
-                var card = msg.Card;
-                var img = msg.CardImage;
-                ListOfRoleCardList[(int)card.Level].Add(card);
-                CardImageDictionary[(int)card.Level] = img;
+                AddCard(msg.Card, msg.CardImage, msg.SelectedImage);
             };
-            form.ShowDialog();
+            if(form.ShowDialog() == DialogResult.OK)
+            {
+                CardIdCache = IDMaker;
+            }
         }
     }
 }

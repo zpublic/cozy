@@ -1,6 +1,7 @@
 ﻿using CozyDungeon.Game.Component.Card.Model;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +11,11 @@ namespace CozyDungeon.RoleCardEditor
     public partial class EditorForm
     {
         private int InnerID = 0;
-        public string IDMaker
+        public int IDMaker
         {
             get
             {
-                InnerID++;
-                return InnerID.ToString();
+                return InnerID++;
             }
         }
 
@@ -24,32 +24,16 @@ namespace CozyDungeon.RoleCardEditor
             InnerID = 0;
         }
 
-        private void ResetId()
-        {
-            //IDBox.Text = IDMaker;
-        }
-
         private bool IsModified { get; set; }
 
-        private void AddCard()
+        private void AddCard(RoleCard card, Image cardImage, Image selectedImage)
         {
-            var card = new RoleCard()
-            {
-                //Level   = CardLevels[(int)LevelBox.SelectedValue],
-                //Id      = int.Parse(IDBox.Text),
-                //Name    = NameBox.Text,
-                //Desc    = DescBox.Text,
-                //ATK     = int.Parse(ATKBox.Text),
-                //DEF     = int.Parse(DEFBox.Text),
-                //HP      = int.Parse(HPBox.Text),
-            };
             IsModified = true;
 
-           //// CardImageDictionary[card.Id] = cardPictureBox.Image;
-           // ListOfRoleCardList[(int)LevelBox.SelectedValue].Add(card);
+            ListOfRoleCardList[(int)card.Level].Add(card);
+            CardImageDictionary[card.Id] = cardImage;
 
             ResetInput();
-            ResetId();
         }
     }
 }
