@@ -52,6 +52,7 @@
             this.OpenButton.TabIndex = 10;
             this.OpenButton.Text = "打开";
             this.OpenButton.UseSelectable = true;
+            this.OpenButton.Click += new System.EventHandler(this.OpenButton_Click);
             // 
             // SaveButton
             // 
@@ -100,19 +101,19 @@
             this.CreateCardItem,
             this.RemoveCardItem});
             this.TabControlContextMenu.Name = "TabControlContextMenu";
-            this.TabControlContextMenu.Size = new System.Drawing.Size(153, 70);
+            this.TabControlContextMenu.Size = new System.Drawing.Size(101, 48);
             // 
             // RemoveCardItem
             // 
             this.RemoveCardItem.Name = "RemoveCardItem";
-            this.RemoveCardItem.Size = new System.Drawing.Size(152, 22);
+            this.RemoveCardItem.Size = new System.Drawing.Size(100, 22);
             this.RemoveCardItem.Text = "删除";
             this.RemoveCardItem.Click += new System.EventHandler(this.RemoveCardItem_Click);
             // 
             // CreateCardItem
             // 
             this.CreateCardItem.Name = "CreateCardItem";
-            this.CreateCardItem.Size = new System.Drawing.Size(152, 22);
+            this.CreateCardItem.Size = new System.Drawing.Size(100, 22);
             this.CreateCardItem.Text = "创建";
             this.CreateCardItem.Click += new System.EventHandler(this.CreateCardItem_Click);
             // 

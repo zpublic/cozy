@@ -123,6 +123,21 @@ namespace CozyDungeon.RoleCardEditor
             CreateCard();
         }
 
+        private void CreateCardItem_Click(object sender, EventArgs e)
+        {
+            CreateCard();
+        }
+
+        private void RemoveCardItem_Click(object sender, EventArgs e)
+        {
+            RemoveCard();
+        }
+
+        private void OpenButton_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
         private void CreateNewCards()
         {
             CloseCards();
@@ -179,16 +194,6 @@ namespace CozyDungeon.RoleCardEditor
         private void ResetInput()
         {
             cardInfoControl1.Clear();
-        }
-
-        private void CreateCardItem_Click(object sender, EventArgs e)
-        {
-            CreateCard();
-        }
-
-        private void RemoveCardItem_Click(object sender, EventArgs e)
-        {
-            RemoveCard();
         }
     }
 }

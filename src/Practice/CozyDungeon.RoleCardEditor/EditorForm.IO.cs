@@ -7,12 +7,78 @@ using System.IO;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
 using Newtonsoft.Json;
+using CozyDungeon.Game.Component.Card.Model;
+using System.Drawing;
 
 namespace CozyDungeon.RoleCardEditor
 {
     public partial class EditorForm
     {
         private Uri SaveFileName { get; set; }
+
+        private void LoadData()
+        {
+            OpenFileDialog fileDlg = new OpenFileDialog();
+            fileDlg.Filter = @"json | *.json";
+
+            if(fileDlg.ShowDialog() == DialogResult.OK)
+            {
+                SaveFileName = new Uri(fileDlg.FileName);
+            }
+
+            if (SaveFileName != null)
+            {
+                var objName         = Path.GetFileNameWithoutExtension(SaveFileName.AbsolutePath);
+                var JsonDireName    = Path.GetDirectoryName(SaveFileName.AbsolutePath) + @"\" + objName + @"_object\";
+                var ImageDireName = Path.GetDirectoryName(SaveFileName.AbsolutePath) + @"\" + objName + @"_image\";
+                var SelectedImageDireName = Path.GetDirectoryName(SaveFileName.AbsolutePath) + @"\" + objName + @"_selected_image\";
+
+                var result          = new List<List<int>>();
+                for (int i = 0; i < CardLevels.Count; ++i)
+                {
+                    result.Add(new List<int>());
+                }
+
+                using (var fs = new FileStream(SaveFileName.AbsolutePath, FileMode.Open, FileAccess.Read))
+                {
+                    using (var reader = new StreamReader(fs, Encoding.UTF8))
+                    {
+                        var json = reader.ReadToEnd();
+                        result = JsonConvert.DeserializeObject<List<List<int>>>(json);
+                    }
+                }
+
+                for(int i = 0; i < result.Count; ++i)
+                {
+                    foreach(var obj in result[i])
+                    {
+                        var jsonname = JsonDireName + obj + ".json";
+                        using (var fs = new FileStream(jsonname, FileMode.Open, FileAccess.Read))
+                        {
+                            using (var reader = new StreamReader(fs, Encoding.UTF8))
+                            {
+                                var json = reader.ReadToEnd();
+                                var card = JsonConvert.DeserializeObject<RoleCard>(json);
+                                ListOfRoleCardList[i].Add(card);
+                            }
+                        }
+
+                        CozyCardImage Img = new CozyCardImage();
+                        var imagename = ImageDireName + obj + ".png";
+                        using (var fs = new FileStream(imagename, FileMode.Open, FileAccess.Read))
+                        {
+                            Img.CardImage = Image.FromStream(fs);
+                        }
+                        var selectedimagename = SelectedImageDireName + obj + ".png";
+                        using (var fs = new FileStream(selectedimagename, FileMode.Open, FileAccess.Read))
+                        {
+                            Img.SelectedImage = Image.FromStream(fs);
+                        }
+                        CardImageDictionary[obj] = Img;
+                    }
+                }
+            }
+        }
 
         private void SaveData()
         {
@@ -53,6 +119,7 @@ namespace CozyDungeon.RoleCardEditor
 
                 SaveObject(SaveFileName);
                 SaveImage(SaveFileName);
+                SaveSelectedImage(SaveFileName);
 
                 IsModified  = false;
                 this.Text   = "至强卡牌编辑器 - " + Path.GetFileNameWithoutExtension(SaveFileName.AbsolutePath);
@@ -93,6 +160,22 @@ namespace CozyDungeon.RoleCardEditor
                 using (var fs = new FileStream(imagename, FileMode.Create, FileAccess.ReadWrite))
                 {
                     obj.Value.CardImage.Save(fs, ImageFormat.Png);
+                }
+            }
+        }
+
+        private void SaveSelectedImage(Uri filename)
+        {
+            var objName = Path.GetFileNameWithoutExtension(filename.AbsolutePath);
+            var SelectedImageDireName = Path.GetDirectoryName(filename.AbsolutePath) + @"\" + objName + @"_selected_image\";
+            Directory.CreateDirectory(SelectedImageDireName);
+
+            foreach (var obj in CardImageDictionary)
+            {
+                var selectedimagename = SelectedImageDireName + obj.Key + ".png";
+                using (var fs = new FileStream(selectedimagename, FileMode.Create, FileAccess.ReadWrite))
+                {
+                    obj.Value.SelectedImage.Save(fs, ImageFormat.Png);
                 }
             }
         }
