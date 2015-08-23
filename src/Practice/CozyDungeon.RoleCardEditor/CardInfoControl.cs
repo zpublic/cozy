@@ -224,8 +224,12 @@ namespace CozyDungeon.RoleCardEditor
             {
                 string name = "level" + (value < 5 ? value : 5);
                 BorderImage = (Image)Resources.ResourceManager.GetObject(name);
-                RefreshImage();
             }
+            else
+            {
+                BorderImage = null;
+            }
+            RefreshImage();
         }
 
         private void RefreshImage()
