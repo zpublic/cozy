@@ -24,8 +24,10 @@ namespace CozyDungeon.RoleCardEditor
 
         private void Init()
         {
-            InitTabControlPages();
+            LoadCardLevels();
+            InitCardControl();
             InitLevelBox();
+            InitTabControlPages();
             CreateNewCards();
             ResetId();
         }
@@ -35,15 +37,23 @@ namespace CozyDungeon.RoleCardEditor
 
         private RoleCard SelectedItem { get; set; }
 
-        private void InitTabControlPages()
+        private void InitCardControl()
+        {
+            cardInfoControl1.CardLevels = CardLevels;
+            cardInfoControl1.Id = InnerID;
+        }
+        private void LoadCardLevels()
         {
             var fields = typeof(RoleCardLevel).GetFields(BindingFlags.Static | BindingFlags.Public);
-            foreach(var fi in fields)
+            foreach (var fi in fields)
             {
                 var value = fi.GetValue(null);
                 CardLevels.Add((RoleCardLevel)value);
             }
+        }
 
+        private void InitTabControlPages()
+        {
             foreach(var obj in CardLevels)
             {
                 var page = new TabPage { Text = CardLevel.RoleCardLevelName(obj) };
@@ -71,13 +81,13 @@ namespace CozyDungeon.RoleCardEditor
 
         private void InitLevelBox()
         {
-            var LevelValueList = from obj
-                       in CardLevels
-                       select new KeyValuePair<string, int>(CardLevel.RoleCardLevelName(obj), (int)obj);
+            //var LevelValueList = from obj
+            //           in CardLevels
+            //           select new KeyValuePair<string, int>(CardLevel.RoleCardLevelName(obj), (int)obj);
 
-            LevelBox.DisplayMember  = "Key";
-            LevelBox.ValueMember    = "Value";
-            LevelBox.DataSource     = LevelValueList.ToList();
+            //LevelBox.DisplayMember  = "Key";
+            //LevelBox.ValueMember    = "Value";
+            //LevelBox.DataSource     = LevelValueList.ToList();
         }
 
         private void OpenImageButton_Click(object sender, EventArgs e)
@@ -121,29 +131,29 @@ namespace CozyDungeon.RoleCardEditor
         private void DisableAllControls()
         {
             CardTabControl.Enabled  = false;
-            LevelBox.Enabled        = false;
-            NameBox.Enabled         = false;
-            DescBox.Enabled         = false;
-            HPBox.Enabled           = false;
-            ATKBox.Enabled          = false;
-            DEFBox.Enabled          = false;
-            cardPictureBox.Enabled  = false;
-            OpenImageButton.Enabled = false;
-            AddCardButton.Enabled   = false;
+            //LevelBox.Enabled        = false;
+            //NameBox.Enabled         = false;
+            //DescBox.Enabled         = false;
+            //HPBox.Enabled           = false;
+            //ATKBox.Enabled          = false;
+            //DEFBox.Enabled          = false;
+            //cardPictureBox.Enabled  = false;
+            //OpenImageButton.Enabled = false;
+            //AddCardButton.Enabled   = false;
         }
 
         private void EnableAllControls()
         {
             CardTabControl.Enabled = true;
-            LevelBox.Enabled        = true;
-            NameBox.Enabled         = true;
-            DescBox.Enabled         = true;
-            HPBox.Enabled           = true;
-            ATKBox.Enabled          = true;
-            DEFBox.Enabled          = true;
-            cardPictureBox.Enabled  = true;
-            OpenImageButton.Enabled = true;
-            AddCardButton.Enabled   = true;
+            //LevelBox.Enabled        = true;
+            //NameBox.Enabled         = true;
+            //DescBox.Enabled         = true;
+            //HPBox.Enabled           = true;
+            //ATKBox.Enabled          = true;
+            //DEFBox.Enabled          = true;
+            //cardPictureBox.Enabled  = true;
+            //OpenImageButton.Enabled = true;
+            //AddCardButton.Enabled   = true;
         }
 
         private void ClearAll()
@@ -164,24 +174,24 @@ namespace CozyDungeon.RoleCardEditor
 
         private void ResetInput()
         {
-            LevelBox.SelectedIndex  = 0;
-            NameBox.Text            = string.Empty;
-            DescBox.Text            = string.Empty;
-            HPBox.Text              = string.Empty;
-            ATKBox.Text             = string.Empty;
-            DEFBox.Text             = string.Empty;
-            SelectedImage           = null;
-            BorderImage             = null;
-            cardPictureBox.Image    = null;
+            //LevelBox.SelectedIndex  = 0;
+            //NameBox.Text            = string.Empty;
+            //DescBox.Text            = string.Empty;
+            //HPBox.Text              = string.Empty;
+            //ATKBox.Text             = string.Empty;
+            //DEFBox.Text             = string.Empty;
+            //SelectedImage           = null;
+            //BorderImage             = null;
+            //cardPictureBox.Image    = null;
         }
 
         private bool CheckInput()
         {
-            if (NameBox.Text.Length     == 0) return false;
-            if (HPBox.Text.Length       == 0) return false;
-            if (ATKBox.Text.Length      == 0) return false;
-            if (DEFBox.Text.Length      == 0) return false;
-            if (SelectedImage           == null) return false;
+            //if (NameBox.Text.Length     == 0) return false;
+            //if (HPBox.Text.Length       == 0) return false;
+            //if (ATKBox.Text.Length      == 0) return false;
+            //if (DEFBox.Text.Length      == 0) return false;
+            //if (SelectedImage           == null) return false;
             return true;
         }
 

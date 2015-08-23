@@ -26,7 +26,7 @@ namespace CozyDungeon.RoleCardEditor
 
         private void ResetId()
         {
-            IDBox.Text = IDMaker;
+            //IDBox.Text = IDMaker;
         }
 
         private bool IsModified { get; set; }
@@ -35,18 +35,18 @@ namespace CozyDungeon.RoleCardEditor
         {
             var card = new RoleCard()
             {
-                Level   = CardLevels[(int)LevelBox.SelectedValue],
-                Id      = int.Parse(IDBox.Text),
-                Name    = NameBox.Text,
-                Desc    = DescBox.Text,
-                ATK     = int.Parse(ATKBox.Text),
-                DEF     = int.Parse(DEFBox.Text),
-                HP      = int.Parse(HPBox.Text),
+                //Level   = CardLevels[(int)LevelBox.SelectedValue],
+                //Id      = int.Parse(IDBox.Text),
+                //Name    = NameBox.Text,
+                //Desc    = DescBox.Text,
+                //ATK     = int.Parse(ATKBox.Text),
+                //DEF     = int.Parse(DEFBox.Text),
+                //HP      = int.Parse(HPBox.Text),
             };
             IsModified = true;
 
-            CardImageDictionary[card.Id] = cardPictureBox.Image;
-            ListOfRoleCardList[(int)LevelBox.SelectedValue].Add(card);
+           //// CardImageDictionary[card.Id] = cardPictureBox.Image;
+           // ListOfRoleCardList[(int)LevelBox.SelectedValue].Add(card);
 
             ResetInput();
             ResetId();
