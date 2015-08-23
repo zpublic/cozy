@@ -23,8 +23,8 @@ namespace CozyDungeon.RoleCardEditor.CozyForm
 
             public CardCreateEventArgs(RoleCard card, CozyCardImage cardimage)
             {
-                Card = card;
-                CardImage = cardimage;
+                Card        = card;
+                CardImage   = cardimage;
             }
         }
 
@@ -35,7 +35,7 @@ namespace CozyDungeon.RoleCardEditor.CozyForm
             InitializeComponent();
 
             cardInfoControl1.CardLevels = cardLevels;
-            cardInfoControl1.Id = id;
+            cardInfoControl1.Id         = id;
         }
 
         private void CompleteButton_Click(object sender, EventArgs e)

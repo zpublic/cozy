@@ -16,6 +16,19 @@ namespace CozyDungeon.RoleCardEditor
 {
     public partial class EditorForm : MetroForm
     {
+        private List<BindingList<RoleCard>> ListOfRoleCardList { get; set; }
+            = new List<BindingList<RoleCard>>();
+
+        private List<RoleCardLevel> CardLevels { get; set; }
+            = new List<RoleCardLevel>();
+
+        private Dictionary<int, CozyCardImage> CardImageDictionary { get; set; }
+            = new Dictionary<int, CozyCardImage>();
+
+        private RoleCard SelectedItem { get; set; }
+
+        private bool IsModified { get; set; }
+
         public EditorForm()
         {
             InitializeComponent();
@@ -32,16 +45,6 @@ namespace CozyDungeon.RoleCardEditor
             CardIdCache = IDMaker;
         }
 
-        private List<BindingList<RoleCard>> ListOfRoleCardList { get; set; } = new List<BindingList<RoleCard>>();
-        private List<RoleCardLevel> CardLevels { get; set; }    = new List<RoleCardLevel>();
-        private Dictionary<int, CozyCardImage> CardImageDictionary { get; set; } = new Dictionary<int, CozyCardImage>();
-
-
-        private void InitCardControl()
-        {
-            cardInfoControl1.CardLevels = CardLevels;
-            cardInfoControl1.Id = InnerID;
-        }
         private void LoadCardLevels()
         {
             var fields = typeof(RoleCardLevel).GetFields(BindingFlags.Static | BindingFlags.Public);
@@ -52,7 +55,10 @@ namespace CozyDungeon.RoleCardEditor
             }
         }
 
-        private RoleCard SelectedItem { get; set; }
+        private void InitCardControl()
+        {
+            cardInfoControl1.CardLevels = CardLevels;
+        }
 
         private void InitTabControlPages()
         {
@@ -74,14 +80,13 @@ namespace CozyDungeon.RoleCardEditor
                 list.SelectedIndexChanged += (sender, msg) =>
                 {
                     var item = list.SelectedItem as RoleCard;
-
                     if (ListOfRoleCardList[CardTabControl.SelectedIndex].Contains(item))
                     {
                         SelectedItem = item;
 
                         cardInfoControl1.BeginModify();
-                        cardInfoControl1.Images = CardImageDictionary[SelectedItem.Id];
-                        cardInfoControl1.RoleCard = SelectedItem;
+                        cardInfoControl1.Images     = CardImageDictionary[SelectedItem.Id];
+                        cardInfoControl1.RoleCard   = SelectedItem;
                         cardInfoControl1.EndModify();
                     }
                 };
@@ -89,6 +94,27 @@ namespace CozyDungeon.RoleCardEditor
                 page.Controls.Add(list);
                 ListOfRoleCardList.Add(listData);
             }
+        }
+
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            SaveData();
+        }
+
+        private void CreateButton_Click(object sender, EventArgs e)
+        {
+            CreateNewCards();
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            CloseCards();
+        }
+
+        private void CreateCardButton_Click(object sender, EventArgs e)
+        {
+            CreateCard();
         }
 
         private void CreateNewCards()
@@ -118,14 +144,14 @@ namespace CozyDungeon.RoleCardEditor
 
         private void DisableAllControls()
         {
-            CardTabControl.Enabled  = false;
-            cardInfoControl1.Enabled = false;
+            CardTabControl.Enabled      = false;
+            cardInfoControl1.Enabled    = false;
         }
 
         private void EnableAllControls()
         {
-            CardTabControl.Enabled = true;
-            cardInfoControl1.Enabled = true;
+            CardTabControl.Enabled      = true;
+            cardInfoControl1.Enabled    = true;
         }
 
         private void ClearAll()
@@ -147,37 +173,6 @@ namespace CozyDungeon.RoleCardEditor
         private void ResetInput()
         {
             cardInfoControl1.Clear();
-        }
-
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            SaveData();
-        }
-
-        private void CreateButton_Click(object sender, EventArgs e)
-        {
-            CreateNewCards();
-        }
-
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            CloseCards();
-        }
-
-        private int CardIdCache { get; set; }
-
-        private void CreateCardButton_Click(object sender, EventArgs e)
-        {
-            var form = new CozyForm.CreateCardForm(CardLevels, CardIdCache);
-            form.CardCreateEventHandler += (s, msg) =>
-            {
-                AddCard(msg.Card, msg.CardImage);
-                CardTabControl.SelectedIndex = (int)msg.Card.Level;
-            };
-            if(form.ShowDialog() == DialogResult.OK)
-            {
-                CardIdCache = IDMaker;
-            }
         }
     }
 }

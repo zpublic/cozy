@@ -13,6 +13,7 @@ namespace CozyDungeon.RoleCardEditor
     public partial class EditorForm
     {
         private Uri SaveFileName { get; set; }
+
         private void SaveData()
         {
             if (SaveFileName == null)

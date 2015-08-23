@@ -248,6 +248,30 @@ namespace CozyDungeon.RoleCardEditor
 
         private void RefreshText(Graphics g)
         {
+            RefreshName(g);
+            RefreshHp(g);
+            RefreshATK(g);
+            RefreshDEF(g);
+        }
+
+        private void RefreshName(Graphics g)
+        {
+            if (NameBox.Text != null && NameBox.Text.Length > 0)
+            {
+                var font = new Font("黑体", 14, FontStyle.Regular);
+                var size = g.MeasureString(NameBox.Text, font);
+
+                g.DrawString(
+                        NameBox.Text,
+                        font,
+                        new SolidBrush(Color.WhiteSmoke),
+                        137 - size.Width / 2,
+                        328);
+            }
+        }
+
+        private void RefreshHp(Graphics g)
+        {
             if (HPBox.Text != null && HPBox.Text.Length > 0)
             {
                 int hp = int.Parse(HPBox.Text);
@@ -257,7 +281,10 @@ namespace CozyDungeon.RoleCardEditor
                     g.DrawImage(img, new Rectangle(new Point(29 - img.Width / 2, 27 - img.Height / 2), img.Size));
                 }
             }
+        }
 
+        private void RefreshATK(Graphics g)
+        {
             if (ATKBox.Text != null && ATKBox.Text.Length > 0)
             {
                 int atk = int.Parse(ATKBox.Text);
@@ -271,7 +298,10 @@ namespace CozyDungeon.RoleCardEditor
                         350);
                 }
             }
+        }
 
+        private void RefreshDEF(Graphics g)
+        {
             if (DEFBox.Text != null && DEFBox.Text.Length > 0)
             {
                 int def = int.Parse(DEFBox.Text);
@@ -284,19 +314,6 @@ namespace CozyDungeon.RoleCardEditor
                         215,
                         350);
                 }
-            }
-
-            if (NameBox.Text != null && NameBox.Text.Length > 0)
-            {
-                var font = new Font("黑体", 14, FontStyle.Regular);
-                var size = g.MeasureString(NameBox.Text, font);
-
-                g.DrawString(
-                        NameBox.Text,
-                        font,
-                        new SolidBrush(Color.WhiteSmoke),
-                        137 - size.Width / 2,
-                        328);
             }
         }
     }
