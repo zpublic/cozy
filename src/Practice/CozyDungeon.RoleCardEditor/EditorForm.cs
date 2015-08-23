@@ -180,5 +180,15 @@ namespace CozyDungeon.RoleCardEditor
         {
             cardInfoControl1.Clear();
         }
+
+        private void CreateCardItem_Click(object sender, EventArgs e)
+        {
+            CreateCard();
+        }
+
+        private void RemoveCardItem_Click(object sender, EventArgs e)
+        {
+            RemoveCard();
+        }
     }
 }

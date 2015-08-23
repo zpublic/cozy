@@ -46,5 +46,21 @@ namespace CozyDungeon.RoleCardEditor
             CardImageDictionary[card.Id] = cardImage;
             ListOfRoleCardList[(int)card.Level].Add(card);
         }
+
+        private void RemoveCard()
+        {
+            if(SelectedItem != null)
+            {
+                IsModified  = true;
+                var card    = SelectedItem;
+
+                if(CardImageDictionary.ContainsKey(card.Id))
+                {
+                    CardImageDictionary.Remove(card.Id);
+                }
+                ListOfRoleCardList[(int)card.Level].Remove(card);
+                ResetInput();
+            }
+        }
     }
 }

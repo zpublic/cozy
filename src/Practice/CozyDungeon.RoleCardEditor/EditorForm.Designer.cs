@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            CozyDungeon.RoleCardEditor.CozyCardImage cozyCardImage1 = new CozyDungeon.RoleCardEditor.CozyCardImage();
             CozyDungeon.Game.Component.Card.Model.RoleCard roleCard1 = new CozyDungeon.Game.Component.Card.Model.RoleCard();
             this.OpenButton = new MetroFramework.Controls.MetroButton();
             this.SaveButton = new MetroFramework.Controls.MetroButton();
@@ -36,8 +37,8 @@
             this.CardTabControl = new MetroFramework.Controls.MetroTabControl();
             this.CreateButton = new MetroFramework.Controls.MetroButton();
             this.TabControlContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ModifyItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.RemoveItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveCardItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateCardItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateCardButton = new MetroFramework.Controls.MetroButton();
             this.cardInfoControl1 = new CozyDungeon.RoleCardEditor.CardInfoControl();
             this.TabControlContextMenu.SuspendLayout();
@@ -96,22 +97,24 @@
             // TabControlContextMenu
             // 
             this.TabControlContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ModifyItem,
-            this.RemoveItem});
+            this.CreateCardItem,
+            this.RemoveCardItem});
             this.TabControlContextMenu.Name = "TabControlContextMenu";
-            this.TabControlContextMenu.Size = new System.Drawing.Size(138, 48);
+            this.TabControlContextMenu.Size = new System.Drawing.Size(153, 70);
             // 
-            // ModifyItem
+            // RemoveCardItem
             // 
-            this.ModifyItem.Name = "ModifyItem";
-            this.ModifyItem.Size = new System.Drawing.Size(137, 22);
-            this.ModifyItem.Text = "查看 \\ 修改";
+            this.RemoveCardItem.Name = "RemoveCardItem";
+            this.RemoveCardItem.Size = new System.Drawing.Size(152, 22);
+            this.RemoveCardItem.Text = "删除";
+            this.RemoveCardItem.Click += new System.EventHandler(this.RemoveCardItem_Click);
             // 
-            // RemoveItem
+            // CreateCardItem
             // 
-            this.RemoveItem.Name = "RemoveItem";
-            this.RemoveItem.Size = new System.Drawing.Size(137, 22);
-            this.RemoveItem.Text = "删除";
+            this.CreateCardItem.Name = "CreateCardItem";
+            this.CreateCardItem.Size = new System.Drawing.Size(152, 22);
+            this.CreateCardItem.Text = "创建";
+            this.CreateCardItem.Click += new System.EventHandler(this.CreateCardItem_Click);
             // 
             // CreateCardButton
             // 
@@ -127,6 +130,9 @@
             // 
             this.cardInfoControl1.CardLevels = null;
             this.cardInfoControl1.Id = 0;
+            cozyCardImage1.CardImage = null;
+            cozyCardImage1.SelectedImage = null;
+            this.cardInfoControl1.Images = cozyCardImage1;
             this.cardInfoControl1.Location = new System.Drawing.Point(342, 92);
             this.cardInfoControl1.Name = "cardInfoControl1";
             roleCard1.ATK = 1;
@@ -167,9 +173,9 @@
         private MetroFramework.Controls.MetroTabControl CardTabControl;
         private MetroFramework.Controls.MetroButton CreateButton;
         private System.Windows.Forms.ContextMenuStrip TabControlContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem ModifyItem;
-        private System.Windows.Forms.ToolStripMenuItem RemoveItem;
+        private System.Windows.Forms.ToolStripMenuItem RemoveCardItem;
         private CardInfoControl cardInfoControl1;
         private MetroFramework.Controls.MetroButton CreateCardButton;
+        private System.Windows.Forms.ToolStripMenuItem CreateCardItem;
     }
 }

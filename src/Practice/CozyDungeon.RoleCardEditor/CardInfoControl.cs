@@ -118,8 +118,10 @@ namespace CozyDungeon.RoleCardEditor
 
         public void　Clear()
         {
+            BeginModify();
             RoleCard    = new RoleCard();
             Images      = new CozyCardImage();
+            EndModify();
         }
 
         private void RefreshControls()
