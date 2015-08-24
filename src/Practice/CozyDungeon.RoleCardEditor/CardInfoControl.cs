@@ -116,6 +116,18 @@ namespace CozyDungeon.RoleCardEditor
             LoadBorder();
         }
 
+        public bool IdBoxEnable
+        {
+            get
+            {
+                return IDBox.Enabled;
+            }
+            set
+            {
+                IDBox.Enabled = value;
+            }
+        }
+
         public bool LevelBoxEnable
         {
             get
@@ -163,6 +175,15 @@ namespace CozyDungeon.RoleCardEditor
             if (!IsModification)
             {
                 RefreshImage();
+            }
+        }
+
+
+        private void IDBox_TextChanged(object sender, EventArgs e)
+        {
+            if(IDBox.Text.Length > 0)
+            {
+                RoleCard.Id = int.Parse(IDBox.Text);
             }
         }
 

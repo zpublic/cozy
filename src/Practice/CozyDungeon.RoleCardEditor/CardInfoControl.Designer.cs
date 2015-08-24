@@ -174,11 +174,11 @@
             // 
             // IDBox
             // 
-            this.IDBox.Enabled = false;
             this.IDBox.Location = new System.Drawing.Point(63, 60);
             this.IDBox.Name = "IDBox";
             this.IDBox.Size = new System.Drawing.Size(147, 21);
             this.IDBox.TabIndex = 23;
+            this.IDBox.TextChanged += new System.EventHandler(this.IDBox_TextChanged);
             // 
             // cardPictureBox
             // 

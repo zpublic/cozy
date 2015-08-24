@@ -10,33 +10,15 @@ namespace CozyDungeon.RoleCardEditor
 {
     public partial class EditorForm
     {
-        private int InnerID = 0;
-        public int IDMaker
-        {
-            get
-            {
-                return InnerID++;
-            }
-        }
-
-        private void ClearId()
-        {
-            InnerID = 0;
-        }
-        private int CardIdCache { get; set; }
-
         private void CreateCard()
         {
-            var form = new CozyForm.CreateCardForm(CardLevels, CardIdCache);
+            var form = new CozyForm.CreateCardForm(CardLevels);
             form.CardCreateEventHandler += (s, msg) =>
             {
                 AddCard(msg.Card, msg.CardImage);
                 CardTabControl.SelectedIndex = (int)msg.Card.Level;
             };
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                CardIdCache = IDMaker;
-            }
+            form.ShowDialog();
         }
 
         private void AddCard(RoleCard card, CozyCardImage cardImage)
