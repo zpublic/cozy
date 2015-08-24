@@ -10,11 +10,25 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CozyDungeon.Game.Component.Card.Enum;
 using System.Reflection;
+using CozyDungeon.Game.Component.Card.Model;
 
 namespace CozyDungeon.RoleCardEditor
 {
     public partial class EditorForm : MetroForm
     {
+        private List<BindingList<RoleCard>> ListOfRoleCardList { get; set; }
+            = new List<BindingList<RoleCard>>();
+
+        private List<RoleCardLevel> CardLevels { get; set; }
+            = new List<RoleCardLevel>();
+
+        private Dictionary<int, CozyCardImage> CardImageDictionary { get; set; }
+            = new Dictionary<int, CozyCardImage>();
+
+        private RoleCard SelectedItem { get; set; }
+
+        private bool IsModified { get; set; }
+
         public EditorForm()
         {
             InitializeComponent();
@@ -23,64 +37,113 @@ namespace CozyDungeon.RoleCardEditor
 
         private void Init()
         {
+            LoadCardLevels();
+            InitCardControl();
             InitTabControlPages();
-            InitLevelBox();
             CreateNewCards();
-            ResetId();
+
+            CardIdCache = IDMaker;
         }
 
-        private List<ListBox> CardListBoxList { get; set; }     = new List<ListBox>();
-        private List<RoleCardLevel> CardLevels { get; set; }    = new List<RoleCardLevel>();
-
-        private void InitTabControlPages()
+        private void LoadCardLevels()
         {
             var fields = typeof(RoleCardLevel).GetFields(BindingFlags.Static | BindingFlags.Public);
-            foreach(var fi in fields)
+            foreach (var fi in fields)
             {
                 var value = fi.GetValue(null);
                 CardLevels.Add((RoleCardLevel)value);
             }
+        }
 
+        private void InitCardControl()
+        {
+            cardInfoControl1.LevelBoxEnable = false;
+            cardInfoControl1.CardLevels     = CardLevels;
+            cardInfoControl1.ImageRefreshEventHandler += (sender, msg) =>
+            {
+                if(CardImageDictionary.ContainsKey(msg.Id))
+                {
+                    CardImageDictionary[msg.Id] = msg.Img;
+                }
+            };
+        }
+
+        private void InitTabControlPages()
+        {
             foreach(var obj in CardLevels)
             {
                 var page = new TabPage { Text = CardLevel.RoleCardLevelName(obj) };
                 CardTabControl.TabPages.Add(page);
 
-                var list = new ListBox() { Dock = DockStyle.Fill };
+                var listData        = new BindingList<RoleCard>();
+                var list            = new ListBox()
+                {
+                    Dock                = DockStyle.Fill,
+                    ContextMenuStrip    = TabControlContextMenu,
+                    DisplayMember       = "Name",
+                    ValueMember         = "Id",
+                    DataSource          = listData,
+                };
+                
+                list.SelectedIndexChanged += (sender, msg) =>
+                {
+                    var item = list.SelectedItem as RoleCard;
+                    if (ListOfRoleCardList[CardTabControl.SelectedIndex].Contains(item))
+                    {
+                        SelectedItem = item;
+
+                        cardInfoControl1.BeginModify();
+                        cardInfoControl1.Images     = CardImageDictionary[SelectedItem.Id];
+                        cardInfoControl1.RoleCard   = SelectedItem;
+                        cardInfoControl1.EndModify();
+                    }
+                };
+
                 page.Controls.Add(list);
-                CardListBoxList.Add(list);
+                ListOfRoleCardList.Add(listData);
             }
         }
 
-        private void InitLevelBox()
+        private void SaveButton_Click(object sender, EventArgs e)
         {
-            var LevelValueList = from obj
-                       in CardLevels
-                       select new KeyValuePair<string, int>(CardLevel.RoleCardLevelName(obj), (int)obj);
-
-            LevelBox.DisplayMember  = "Key";
-            LevelBox.ValueMember    = "Value";
-            LevelBox.DataSource     = LevelValueList.ToList();
+            SaveData();
         }
 
-        private void OpenImageButton_Click(object sender, EventArgs e)
+        private void CreateButton_Click(object sender, EventArgs e)
         {
-            OpenImage();
+            CreateNewCards();
         }
 
-        private void AddCardButton_Click(object sender, EventArgs e)
+        private void CloseButton_Click(object sender, EventArgs e)
         {
-            if(CheckInput())
-            {
-                AddCard();
-            }
+            CloseCards();
+        }
+
+        private void CreateCardButton_Click(object sender, EventArgs e)
+        {
+            CreateCard();
+        }
+
+        private void CreateCardItem_Click(object sender, EventArgs e)
+        {
+            CreateCard();
+        }
+
+        private void RemoveCardItem_Click(object sender, EventArgs e)
+        {
+            RemoveCard();
+        }
+
+        private void OpenButton_Click(object sender, EventArgs e)
+        {
+            LoadData();
         }
 
         private void CreateNewCards()
         {
             CloseCards();
             EnableAllControls();
-            this.Text       = "至强卡牌编辑器 - " + "未命名";
+            this.Text = "至强卡牌编辑器 - " + "未命名";
         }
 
         private void CloseCards()
@@ -103,41 +166,24 @@ namespace CozyDungeon.RoleCardEditor
 
         private void DisableAllControls()
         {
-            CardTabControl.Enabled  = false;
-            LevelBox.Enabled        = false;
-            NameBox.Enabled         = false;
-            DescBox.Enabled         = false;
-            HPBox.Enabled           = false;
-            ATKBox.Enabled          = false;
-            DEFBox.Enabled          = false;
-            cardPictureBox.Enabled  = false;
-            OpenImageButton.Enabled = false;
-            AddCardButton.Enabled   = false;
+            CardTabControl.Enabled      = false;
+            cardInfoControl1.Enabled    = false;
         }
 
         private void EnableAllControls()
         {
-            CardTabControl.Enabled = true;
-            LevelBox.Enabled        = true;
-            NameBox.Enabled         = true;
-            DescBox.Enabled         = true;
-            HPBox.Enabled           = true;
-            ATKBox.Enabled          = true;
-            DEFBox.Enabled          = true;
-            cardPictureBox.Enabled  = true;
-            OpenImageButton.Enabled = true;
-            AddCardButton.Enabled   = true;
+            CardTabControl.Enabled      = true;
+            cardInfoControl1.Enabled    = true;
         }
 
         private void ClearAll()
         {
-            foreach(var obj in CardListBoxList)
+            foreach(var obj in ListOfRoleCardList)
             {
-                obj.Items.Clear();
+                obj.Clear();
             }
 
             CardImageDictionary.Clear();
-            CardList.Clear();
             ResetInput();
             ClearId();
 
@@ -148,45 +194,7 @@ namespace CozyDungeon.RoleCardEditor
 
         private void ResetInput()
         {
-            LevelBox.SelectedIndex  = 0;
-            NameBox.Text            = string.Empty;
-            DescBox.Text            = string.Empty;
-            HPBox.Text              = string.Empty;
-            ATKBox.Text             = string.Empty;
-            DEFBox.Text             = string.Empty;
-            SelectedImage           = null;
-            BorderImage             = null;
-            cardPictureBox.Image    = null;
-        }
-
-        private bool CheckInput()
-        {
-            if (NameBox.Text.Length     == 0) return false;
-            if (HPBox.Text.Length       == 0) return false;
-            if (ATKBox.Text.Length      == 0) return false;
-            if (DEFBox.Text.Length      == 0) return false;
-            if (SelectedImage           == null) return false;
-            return true;
-        }
-
-        private void LevelBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadBorder();
-        }
-
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            SaveData();
-        }
-
-        private void CreateButton_Click(object sender, EventArgs e)
-        {
-            CreateNewCards();
-        }
-
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            CloseCards();
+            cardInfoControl1.Clear();
         }
     }
 }
