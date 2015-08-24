@@ -44,6 +44,8 @@
             this.HPBox = new System.Windows.Forms.TextBox();
             this.IDBox = new System.Windows.Forms.TextBox();
             this.cardPictureBox = new System.Windows.Forms.PictureBox();
+            this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
+            this.FiveLineBox = new MetroFramework.Controls.MetroComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.cardPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +63,7 @@
             // 
             this.LevelBox.FormattingEnabled = true;
             this.LevelBox.ItemHeight = 23;
-            this.LevelBox.Location = new System.Drawing.Point(63, 10);
+            this.LevelBox.Location = new System.Drawing.Point(80, 47);
             this.LevelBox.Name = "LevelBox";
             this.LevelBox.Size = new System.Drawing.Size(147, 29);
             this.LevelBox.TabIndex = 17;
@@ -71,7 +73,7 @@
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(12, 143);
+            this.metroLabel4.Location = new System.Drawing.Point(12, 172);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(36, 19);
             this.metroLabel4.TabIndex = 30;
@@ -80,7 +82,7 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(12, 105);
+            this.metroLabel3.Location = new System.Drawing.Point(12, 143);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(45, 19);
             this.metroLabel3.TabIndex = 29;
@@ -89,7 +91,7 @@
             // metroLabel7
             // 
             this.metroLabel7.AutoSize = true;
-            this.metroLabel7.Location = new System.Drawing.Point(12, 372);
+            this.metroLabel7.Location = new System.Drawing.Point(12, 399);
             this.metroLabel7.Name = "metroLabel7";
             this.metroLabel7.Size = new System.Drawing.Size(32, 19);
             this.metroLabel7.TabIndex = 28;
@@ -98,7 +100,7 @@
             // metroLabel6
             // 
             this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(12, 329);
+            this.metroLabel6.Location = new System.Drawing.Point(12, 356);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(30, 19);
             this.metroLabel6.TabIndex = 27;
@@ -107,7 +109,7 @@
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(12, 284);
+            this.metroLabel5.Location = new System.Drawing.Point(12, 311);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(26, 19);
             this.metroLabel5.TabIndex = 31;
@@ -116,7 +118,7 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(12, 62);
+            this.metroLabel2.Location = new System.Drawing.Point(12, 14);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(21, 19);
             this.metroLabel2.TabIndex = 26;
@@ -125,7 +127,7 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(12, 14);
+            this.metroLabel1.Location = new System.Drawing.Point(10, 57);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(38, 19);
             this.metroLabel1.TabIndex = 25;
@@ -133,16 +135,16 @@
             // 
             // DescBox
             // 
-            this.DescBox.Location = new System.Drawing.Point(12, 165);
+            this.DescBox.Location = new System.Drawing.Point(12, 204);
             this.DescBox.Multiline = true;
             this.DescBox.Name = "DescBox";
-            this.DescBox.Size = new System.Drawing.Size(198, 92);
+            this.DescBox.Size = new System.Drawing.Size(215, 92);
             this.DescBox.TabIndex = 19;
             this.DescBox.TextChanged += new System.EventHandler(this.DescBox_TextChanged);
             // 
             // NameBox
             // 
-            this.NameBox.Location = new System.Drawing.Point(63, 104);
+            this.NameBox.Location = new System.Drawing.Point(80, 143);
             this.NameBox.Name = "NameBox";
             this.NameBox.Size = new System.Drawing.Size(147, 21);
             this.NameBox.TabIndex = 18;
@@ -150,31 +152,31 @@
             // 
             // DEFBox
             // 
-            this.DEFBox.Location = new System.Drawing.Point(63, 370);
+            this.DEFBox.Location = new System.Drawing.Point(63, 399);
             this.DEFBox.Name = "DEFBox";
-            this.DEFBox.Size = new System.Drawing.Size(147, 21);
+            this.DEFBox.Size = new System.Drawing.Size(164, 21);
             this.DEFBox.TabIndex = 22;
             this.DEFBox.TextChanged += new System.EventHandler(this.DEFBox_TextChanged);
             // 
             // ATKBox
             // 
-            this.ATKBox.Location = new System.Drawing.Point(63, 327);
+            this.ATKBox.Location = new System.Drawing.Point(63, 356);
             this.ATKBox.Name = "ATKBox";
-            this.ATKBox.Size = new System.Drawing.Size(147, 21);
+            this.ATKBox.Size = new System.Drawing.Size(164, 21);
             this.ATKBox.TabIndex = 21;
             this.ATKBox.TextChanged += new System.EventHandler(this.ATKBox_TextChanged);
             // 
             // HPBox
             // 
-            this.HPBox.Location = new System.Drawing.Point(63, 282);
+            this.HPBox.Location = new System.Drawing.Point(63, 311);
             this.HPBox.Name = "HPBox";
-            this.HPBox.Size = new System.Drawing.Size(147, 21);
+            this.HPBox.Size = new System.Drawing.Size(164, 21);
             this.HPBox.TabIndex = 20;
             this.HPBox.TextChanged += new System.EventHandler(this.HPBox_TextChanged);
             // 
             // IDBox
             // 
-            this.IDBox.Location = new System.Drawing.Point(63, 60);
+            this.IDBox.Location = new System.Drawing.Point(80, 12);
             this.IDBox.Name = "IDBox";
             this.IDBox.Size = new System.Drawing.Size(147, 21);
             this.IDBox.TabIndex = 23;
@@ -192,10 +194,38 @@
             this.cardPictureBox.TabIndex = 24;
             this.cardPictureBox.TabStop = false;
             // 
+            // metroLabel8
+            // 
+            this.metroLabel8.AutoSize = true;
+            this.metroLabel8.Location = new System.Drawing.Point(12, 106);
+            this.metroLabel8.Name = "metroLabel8";
+            this.metroLabel8.Size = new System.Drawing.Size(55, 19);
+            this.metroLabel8.TabIndex = 33;
+            this.metroLabel8.Text = "FiveLine";
+            // 
+            // FiveLineBox
+            // 
+            this.FiveLineBox.FormattingEnabled = true;
+            this.FiveLineBox.ItemHeight = 23;
+            this.FiveLineBox.Items.AddRange(new object[] {
+            "金",
+            "木",
+            "水",
+            "火",
+            "土"});
+            this.FiveLineBox.Location = new System.Drawing.Point(80, 96);
+            this.FiveLineBox.Name = "FiveLineBox";
+            this.FiveLineBox.Size = new System.Drawing.Size(147, 29);
+            this.FiveLineBox.TabIndex = 34;
+            this.FiveLineBox.UseSelectable = true;
+            this.FiveLineBox.SelectedIndexChanged += new System.EventHandler(this.FiveLineBox_SelectedIndexChanged);
+            // 
             // CardInfoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.FiveLineBox);
+            this.Controls.Add(this.metroLabel8);
             this.Controls.Add(this.OpenImageButton);
             this.Controls.Add(this.LevelBox);
             this.Controls.Add(this.metroLabel4);
@@ -237,5 +267,7 @@
         private System.Windows.Forms.TextBox ATKBox;
         private System.Windows.Forms.TextBox HPBox;
         private System.Windows.Forms.TextBox IDBox;
+        private MetroFramework.Controls.MetroLabel metroLabel8;
+        private MetroFramework.Controls.MetroComboBox FiveLineBox;
     }
 }
