@@ -94,7 +94,19 @@ namespace CozyDungeon.RoleCardEditor
         public CardInfoControl()
         {
             InitializeComponent();
+            LoadImage();
             InitFiveLineBox();
+        }
+
+        private Dictionary<FiveLine, Image> FiveLineImages = new Dictionary<FiveLine, Image>();
+
+        private void LoadImage()
+        {
+            FiveLineImages[FiveLine.Gold]   = Image.FromFile(@"./Content/gold.png");
+            FiveLineImages[FiveLine.Wood]   = Image.FromFile(@"./Content/wood.png");
+            FiveLineImages[FiveLine.Water]  = Image.FromFile(@"./Content/water.png");
+            FiveLineImages[FiveLine.Fire]   = Image.FromFile(@"./Content/fire.png");
+            FiveLineImages[FiveLine.Earth]  = Image.FromFile(@"./Content/earth.png");
         }
 
         private void RefreshLevelBox()
@@ -249,7 +261,8 @@ namespace CozyDungeon.RoleCardEditor
 
         private void LoadFiveLine()
         {
-            FiveLineImage = null;
+            var fiveline = (FiveLine)FiveLineBox.SelectedValue;
+            FiveLineImage = FiveLineImages[fiveline];
             if (!IsModification)
             {
                 RefreshImage();
@@ -318,12 +331,12 @@ namespace CozyDungeon.RoleCardEditor
                         g.DrawImage(Resources.atk, new Rectangle(new Point(30, 340), Resources.atk.Size));
                         g.DrawImage(Resources.def, new Rectangle(new Point(180, 340), Resources.def.Size));
 
+                        if (FiveLineImage != null)
+                        {
+                            g.DrawImage(FiveLineImage, new Rectangle(new Point(230, 6), new Size(32, 32)));
+                        }
+
                         RefreshText(g);
-                    }
-                    if(FiveLineImage != null)
-                    {
-                        // TODO Draw FivelineImage
-                        // g.DrawImage(FiveLineImage, Rectangle.Empty);
                     }
                 }
                 cardPictureBox.Image = Images.CardImage;
