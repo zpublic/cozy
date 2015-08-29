@@ -33,6 +33,7 @@ namespace CozyDungeon
                 NormalSprite    = new CCSprite(@"gold"),
                 ClickedSprite   = new CCSprite(@"water"),
                 Text            = "Hello Bttton",
+                HasBorder       = true,
             };
 
             b.OnClick += () =>

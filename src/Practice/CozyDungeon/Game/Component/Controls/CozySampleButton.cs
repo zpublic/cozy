@@ -22,7 +22,7 @@ namespace CozyDungeon.Game.Component.Controls
             }
             set
             {
-                if(value != null && value != text && value.Length > 0)
+                if (value != null && value != text && value.Length > 0)
                 {
                     text = value;
                     RefreshText();
@@ -50,8 +50,8 @@ namespace CozyDungeon.Game.Component.Controls
             {
                 this.RemoveChild(DisplayText);
             }
-            DisplayText             = new CCLabel(text, "微软雅黑", FontSize);
-            DisplayText.Position    = new CCPoint(ContentSize.Width / 2, ContentSize.Height / 2);
+            DisplayText = new CCLabel(text, "微软雅黑", FontSize);
+            DisplayText.Position = new CCPoint(ContentSize.Width / 2, ContentSize.Height / 2);
             this.AddChild(DisplayText, 2);
         }
 
@@ -68,15 +68,15 @@ namespace CozyDungeon.Game.Component.Controls
             }
             set
             {
-                if(value != null && value != normalSprite)
+                if (value != null && value != normalSprite)
                 {
-                    if(normalSprite != null)
+                    if (normalSprite != null)
                     {
                         this.RemoveChild(normalSprite);
                     }
 
-                    normalSprite            = value;
-                    normalSprite.Position   = new CCPoint(ContentSize.Width / 2, ContentSize.Height / 2);
+                    normalSprite = value;
+                    normalSprite.Position = new CCPoint(ContentSize.Width / 2, ContentSize.Height / 2);
                     this.AddChild(normalSprite, 1);
                     RefreshDisplaySprite();
                 }
@@ -98,8 +98,8 @@ namespace CozyDungeon.Game.Component.Controls
                     {
                         this.RemoveChild(clickedSprite);
                     }
-                    clickedSprite           = value;
-                    clickedSprite.Position  = new CCPoint(ContentSize.Width / 2, ContentSize.Height / 2);
+                    clickedSprite = value;
+                    clickedSprite.Position = new CCPoint(ContentSize.Width / 2, ContentSize.Height / 2);
                     this.AddChild(clickedSprite, 1);
                     RefreshDisplaySprite();
                 }
@@ -153,27 +153,28 @@ namespace CozyDungeon.Game.Component.Controls
 
         public void Init()
         {
-            Status          = ButtonStatus.Released;
+            Status = ButtonStatus.Released;
 
-            EventListener   = new CCEventListenerTouchOneByOne()
+            EventListener = new CCEventListenerTouchOneByOne()
             {
                 OnTouchBegan = OnTouchBegan,
                 OnTouchEnded = OnTouchEnded,
             };
+            this.AddChild(BorderNode);
         }
 
         public void InitWithRect(float x, float y, float width, float height)
         {
             Init();
 
-            Position    = new CCPoint(x, y);
+            Position = new CCPoint(x, y);
             ContentSize = new CCSize(width, height);
         }
 
         public void InitWithSprite(CCSprite normal, CCSprite clicked)
         {
-            NormalSprite    = normal;
-            ClickedSprite   = clicked;
+            NormalSprite = normal;
+            ClickedSprite = clicked;
         }
 
         #endregion
@@ -189,7 +190,7 @@ namespace CozyDungeon.Game.Component.Controls
         private bool OnTouchBegan(CCTouch touch, CCEvent e)
         {
             var rect = new CCRect(PositionX, PositionY, ContentSize.Width, ContentSize.Height);
-            if(rect.ContainsPoint(touch.Location))
+            if (rect.ContainsPoint(touch.Location))
             {
                 OnKeyDown();
                 return true;
@@ -213,6 +214,56 @@ namespace CozyDungeon.Game.Component.Controls
         {
             Status = ButtonStatus.Released;
             RefreshDisplaySprite();
+        }
+
+        #endregion
+
+        #region Border 
+
+        private CCDrawNode BorderNode { get; set; } = new CCDrawNode();
+
+        private int borderSize = 1;
+        private int BorderSize
+        {
+            get
+            {
+                return borderSize;
+            }
+            set
+            {
+                borderSize = value;
+                RefreshBorder();
+            }
+        }
+
+        private bool hasBorder;
+        public bool HasBorder
+        {
+            get
+            {
+                return hasBorder;
+            }
+            set
+            {
+                if (hasBorder != value)
+                {
+                    hasBorder = value;
+                    RefreshBorder();
+                }
+            }
+        }
+
+        private void RefreshBorder()
+        {
+            if (HasBorder)
+            {
+                BorderNode.Cleanup();
+                BorderNode.DrawRect(
+                    new CCRect(0, 0, ContentSize.Width, ContentSize.Height),
+                    new CCColor4B(0, 0, 0),
+                    BorderSize,
+                    new CCColor4B(255, 255, 255));
+            }
         }
 
         #endregion
