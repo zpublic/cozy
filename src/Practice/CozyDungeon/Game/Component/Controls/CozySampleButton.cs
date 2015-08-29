@@ -28,7 +28,7 @@ namespace CozyDungeon.Game.Component.Controls
                     }
 
                     normalSprite = value;
-                    normalSprite.Position = new CCPoint(ContentSize.Width / 2, ContentSize.Height / 2);
+                    normalSprite.Position = ContentSize.Center;
                     this.AddChild(normalSprite, 1);
                     RefreshDisplaySprite();
                 }
@@ -51,7 +51,7 @@ namespace CozyDungeon.Game.Component.Controls
                         this.RemoveChild(clickedSprite);
                     }
                     clickedSprite = value;
-                    clickedSprite.Position = new CCPoint(ContentSize.Width / 2, ContentSize.Height / 2);
+                    clickedSprite.Position = ContentSize.Center;
                     this.AddChild(clickedSprite, 1);
                     RefreshDisplaySprite();
                 }

@@ -28,10 +28,10 @@ namespace CozyDungeon
             CCScene scene = new CCScene(mainWindow);
             CCLayer layer = new IntroLayer(DefaultResolution);
 
-            var b = new CozySampleButton(0, 0, 158, 158)
+            var b = new CozyColorSampleButton(100, 100, 158, 158)
             {
-                NormalSprite    = new CCSprite(@"gold"),
-                ClickedSprite   = new CCSprite(@"water"),
+                NormalColor     = new CCColor4B(255, 0, 0),
+                ClickedColor    = new CCColor4B(0, 255, 0),
                 Text            = "Hello Bttton",
                 HasBorder       = true,
             };
