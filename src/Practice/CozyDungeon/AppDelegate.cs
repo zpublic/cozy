@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CozyDungeon.Game.Component.Controls;
 
 namespace CozyDungeon
 {
@@ -26,6 +27,20 @@ namespace CozyDungeon
 
             CCScene scene = new CCScene(mainWindow);
             CCLayer layer = new IntroLayer(DefaultResolution);
+
+            var b = new CozySampleButton(0, 0, 158, 158)
+            {
+                NormalSprite    = new CCSprite(@"gold"),
+                ClickedSprite   = new CCSprite(@"water"),
+                Text            = "Hello Bttton",
+            };
+
+            b.OnClick += () =>
+            {
+            };
+
+            layer.AddChild(b);
+            layer.AddEventListener(b.EventListener, layer);
 
             scene.AddChild(layer);
 

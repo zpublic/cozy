@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\CozyDungeon\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -27,7 +27,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\..\bin\CozyDungeon\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -110,6 +110,8 @@
     <Compile Include="Game\Component\Card\Logic\RoleCardLogic.cs" />
     <Compile Include="Game\Component\Card\Model\BaseCard.cs" />
     <Compile Include="Game\Component\Card\Model\RoleCard.cs" />
+    <Compile Include="Game\Component\Controls\ButtonStatus.cs" />
+    <Compile Include="Game\Component\Controls\CozySampleButton.cs" />
     <Compile Include="IntroLayer.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
