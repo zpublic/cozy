@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CocosSharp;
+using CozyDungeon.Public.Controls.Enum;
 
 namespace CozyDungeon.Public.Controls
 {

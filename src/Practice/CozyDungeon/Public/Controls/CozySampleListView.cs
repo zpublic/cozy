@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CozyDungeon.Public.Controls.Events;
 using CocosSharp;
+using CozyDungeon.Public.Controls.Enum;
 
 namespace CozyDungeon.Public.Controls
 {
@@ -48,7 +49,7 @@ namespace CozyDungeon.Public.Controls
                 else
                 {
                     item.Visible = true;
-                    y-= item.MarginTop;
+                    y -= item.MarginTop;
                     item.PositionX = x;
                     item.PositionY = y - item.ContentSize.Height;
                     y -= item.ContentSize.Height;
