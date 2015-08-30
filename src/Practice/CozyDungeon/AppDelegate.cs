@@ -52,8 +52,6 @@ namespace CozyDungeon
             list.AddItem(new CozySampleListViewItemSprite(new CCSprite("gold"))
 
             {
-                MarginBottom    = 100,
-                MarginTop       = 100,
                 HasBorder       = true,
             });
             list.AddItem(b);

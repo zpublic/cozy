@@ -38,21 +38,21 @@ namespace CozyDungeon.Public.Controls
         private void RefreshVertical()
         {
             float x = 0.0f;
-            float y = 0.0f;
+            float y = ContentSize.Height;
             foreach (var item in Items)
             {
-                if (y + item.MarginTop + item.ContentSize.Height > ContentSize.Height)
+                if (y - item.MarginTop - item.ContentSize.Height <= 0)
                 {
                     item.Visible = false;
                 }
                 else
                 {
                     item.Visible = true;
-                    y += item.MarginTop;
+                    y-= item.MarginTop;
                     item.PositionX = x;
-                    item.PositionY = y;
-                    y += item.ContentSize.Height;
-                    y += item.MarginBottom;
+                    item.PositionY = y - item.ContentSize.Height;
+                    y -= item.ContentSize.Height;
+                    y -= item.MarginBottom;
                 }
             }
         }
