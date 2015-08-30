@@ -98,13 +98,19 @@ namespace CozyDungeon.Public.Controls
 
         private bool OnTouchBegan(CCTouch touch, CCEvent e)
         {
-            var rect = new CCRect(PositionWorldspace.X, PositionWorldspace.Y, ContentSize.Width, ContentSize.Height);
-            if (rect.ContainsPoint(touch.Location))
+            if (!Visible)
             {
-                OnKeyDown();
-                return true;
+                return false;
             }
-            return false;
+
+            var rect = new CCRect(PositionWorldspace.X, PositionWorldspace.Y, ContentSize.Width, ContentSize.Height);
+            if (!rect.ContainsPoint(touch.Location))
+            {
+                return false;
+            }
+
+            OnKeyDown();
+            return true;
         }
 
         private void OnTouchEnded(CCTouch touch, CCEvent e)
