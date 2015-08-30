@@ -62,7 +62,8 @@ namespace CozyDungeon.Public.Controls
 
         #region Constructors
 
-        public CozyColorSampleButton()
+        public CozyColorSampleButton(float width, float height)
+            :base(width, height)
         {
         }
 
@@ -71,15 +72,16 @@ namespace CozyDungeon.Public.Controls
         {
         }
 
-        public CozyColorSampleButton(CCColor4B normal, CCColor4B clicked)
+        public CozyColorSampleButton(float width, float height, CCColor4B normal, CCColor4B clicked)
+            :base(width, height)
         {
             NormalColor = normal;
             ClickedColor = clicked;
         }
 
-        public override void Init()
+        public override void Init(float width, float height)
         {
-            base.Init();
+            base.Init(width, height);
             this.AddChild(BackgroundNode);
         }
 

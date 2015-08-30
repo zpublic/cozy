@@ -88,7 +88,8 @@ namespace CozyDungeon.Public.Controls
 
         #region Constructors
 
-        public CozySampleButton()
+        public CozySampleButton(float width, float height)
+            :base(width, height)
         {
         }
 
@@ -97,7 +98,8 @@ namespace CozyDungeon.Public.Controls
         {
         }
 
-        public CozySampleButton(CCSprite normal, CCSprite clicked)
+        public CozySampleButton(float width, float height, CCSprite normal, CCSprite clicked)
+            :base(width, height)
         {
             InitWithSprite(normal, clicked);
         }

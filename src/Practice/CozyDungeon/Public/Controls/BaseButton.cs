@@ -7,7 +7,7 @@ using CocosSharp;
 
 namespace CozyDungeon.Public.Controls
 {
-    public class BaseButton : CCNode
+    public class BaseButton : CozyControl
     {
         #region Text
 
@@ -59,9 +59,9 @@ namespace CozyDungeon.Public.Controls
 
         #region Constructors
 
-        public BaseButton()
+        public BaseButton(float width, float height)
         {
-            Init();
+            Init(width, height);
         }
 
         public BaseButton(float x, float y, float width, float height)
@@ -69,7 +69,7 @@ namespace CozyDungeon.Public.Controls
             InitWithRect(x, y, width, height);
         }
 
-        public virtual void Init()
+        public virtual void Init(float width, float height)
         {
             EventListener = new CCEventListenerTouchOneByOne()
             {
@@ -77,14 +77,14 @@ namespace CozyDungeon.Public.Controls
                 OnTouchEnded = OnTouchEnded,
             };
             this.AddChild(BorderNode);
+            ContentSize = new CCSize(width, height);
         }
 
         public virtual void InitWithRect(float x, float y, float width, float height)
         {
-            Init();
+            Init(width, height);
 
             Position    = new CCPoint(x, y);
-            ContentSize = new CCSize(width, height);
         }
 
         #endregion
