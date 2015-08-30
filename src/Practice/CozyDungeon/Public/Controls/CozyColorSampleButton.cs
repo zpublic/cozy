@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CocosSharp;
 
-namespace CozyDungeon.Game.Component.Controls
+namespace CozyDungeon.Public.Controls
 {
     public class CozyColorSampleButton : BaseButton
     {
