@@ -118,6 +118,8 @@
     <Compile Include="IntroLayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Public\Controls\CozySampleListView.cs" />
+    <Compile Include="Public\Controls\CozySampleListViewItem.cs" />
+    <Compile Include="Public\Controls\CozySampleListViewItemSprite.cs" />
     <Compile Include="Public\Controls\Events\ItemAddEventArgs.cs" />
     <Compile Include="Public\Controls\ControlOrientation.cs" />
   </ItemGroup>

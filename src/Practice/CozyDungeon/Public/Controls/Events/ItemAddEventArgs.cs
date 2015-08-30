@@ -9,9 +9,9 @@ namespace CozyDungeon.Public.Controls.Events
 {
     public class ItemAddEventArgs : EventArgs
     {
-        public CCNode Control { get; set; }
+        public CozyControl Control { get; set; }
 
-        public ItemAddEventArgs(CCNode control)
+        public ItemAddEventArgs(CozyControl control)
         {
             Control = control;
         }

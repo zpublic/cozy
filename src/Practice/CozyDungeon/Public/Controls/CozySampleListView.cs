@@ -10,11 +10,10 @@ namespace CozyDungeon.Public.Controls
 {
     public class CozySampleListView : CozyControl
     {
-        public List<CCNode> Items { get; set; } = new List<CCNode>();
+        public List<CozyControl> Items { get; set; } = new List<CozyControl>();
 
-        public void AddItem(CCNode control)
+        public void AddItem(CozyControl control)
         {
-            control.AnchorPoint = CCPoint.Zero;
             this.AddChild(control);
             Items.Add(control);
             RefreshItems();
@@ -42,11 +41,18 @@ namespace CozyDungeon.Public.Controls
             float y = 0.0f;
             foreach (var item in Items)
             {
-                if (y - PositionY <= ContentSize.Height)
+                if (y + item.MarginTop + item.ContentSize.Height > ContentSize.Height)
                 {
+                    item.Visible = false;
+                }
+                else
+                {
+                    item.Visible = true;
+                    y += item.MarginTop;
                     item.PositionX = x;
                     item.PositionY = y;
                     y += item.ContentSize.Height;
+                    y += item.MarginBottom;
                 }
             }
         }
@@ -57,14 +63,19 @@ namespace CozyDungeon.Public.Controls
             float y = 0.0f;
             foreach (var item in Items)
             {
-                if (x - PositionX > ContentSize.Width)
+                if (x + item.MarginBottom + item.ContentSize.Width > ContentSize.Width)
                 {
-                    break;
+                    item.Visible = false;
                 }
-                item.PositionX = x;
-                item.PositionY = y;
-                x += item.ContentSize.Width;
-
+                else
+                {
+                    item.Visible = true;
+                    x += item.MarginLeft;
+                    item.PositionX = x;
+                    item.PositionY = y;
+                    x += item.ContentSize.Width;
+                    x += item.MarginRight;
+                }
             }
         }
 
