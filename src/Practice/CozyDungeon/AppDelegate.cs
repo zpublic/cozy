@@ -45,6 +45,7 @@ namespace CozyDungeon
                 ContentSize = new CCSize(350, 350),
                 Orientation = ControlOrientation.Vertical,
                 Position    = new CCPoint(100, 100),
+                HasBorder   = true,
             };
             layer.AddChild(list);
 
@@ -53,6 +54,7 @@ namespace CozyDungeon
             {
                 MarginBottom    = 100,
                 MarginTop       = 100,
+                HasBorder       = true,
             });
             list.AddItem(b);
             list.AddItem(new CozySampleListViewItemSprite(new CCSprite("gold")));

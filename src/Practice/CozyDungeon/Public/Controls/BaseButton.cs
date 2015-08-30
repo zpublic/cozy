@@ -76,7 +76,6 @@ namespace CozyDungeon.Public.Controls
                 OnTouchBegan = OnTouchBegan,
                 OnTouchEnded = OnTouchEnded,
             };
-            this.AddChild(BorderNode);
             ContentSize = new CCSize(width, height);
         }
 
@@ -122,56 +121,6 @@ namespace CozyDungeon.Public.Controls
         protected virtual void OnKeyUp()
         {
             Status = ButtonStatus.Released;
-        }
-
-        #endregion
-
-        #region Border 
-
-        private CCDrawNode BorderNode { get; set; } = new CCDrawNode();
-
-        private int borderSize = 1;
-        private int BorderSize
-        {
-            get
-            {
-                return borderSize;
-            }
-            set
-            {
-                borderSize = value;
-                RefreshBorder();
-            }
-        }
-
-        private bool hasBorder;
-        public bool HasBorder
-        {
-            get
-            {
-                return hasBorder;
-            }
-            set
-            {
-                if (hasBorder != value)
-                {
-                    hasBorder = value;
-                    RefreshBorder();
-                }
-            }
-        }
-
-        private void RefreshBorder()
-        {
-            if (HasBorder)
-            {
-                BorderNode.Cleanup();
-                BorderNode.DrawRect(
-                    new CCRect(0, 0, ContentSize.Width, ContentSize.Height),
-                    new CCColor4B(0, 0, 0),
-                    BorderSize,
-                    new CCColor4B(255, 255, 255));
-            }
         }
 
         #endregion
