@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CocosSharp;
+using CozyDungeon.Public.Controls.Enum;
 
-namespace CozyDungeon.Game.Component.Controls
+namespace CozyDungeon.Public.Controls
 {
     public class CozySampleButton : BaseButton
     {
@@ -88,7 +89,8 @@ namespace CozyDungeon.Game.Component.Controls
 
         #region Constructors
 
-        public CozySampleButton()
+        public CozySampleButton(float width, float height)
+            :base(width, height)
         {
         }
 
@@ -97,7 +99,8 @@ namespace CozyDungeon.Game.Component.Controls
         {
         }
 
-        public CozySampleButton(CCSprite normal, CCSprite clicked)
+        public CozySampleButton(float width, float height, CCSprite normal, CCSprite clicked)
+            :base(width, height)
         {
             InitWithSprite(normal, clicked);
         }

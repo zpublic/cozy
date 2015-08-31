@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyDungeon.Game.Component.Controls
+namespace CozyDungeon.Public.Controls
 {
-    public enum ButtonStatus : int
+    public class CozySampleListViewItem : CozyControl
     {
-        Released = 0,
-        Pressed = 1,
+
     }
 }

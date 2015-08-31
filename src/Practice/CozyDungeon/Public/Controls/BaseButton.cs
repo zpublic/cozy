@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CocosSharp;
+using CozyDungeon.Public.Controls.Enum;
 
-namespace CozyDungeon.Game.Component.Controls
+namespace CozyDungeon.Public.Controls
 {
-    public class BaseButton : CCNode
+    public class BaseButton : CozyControl
     {
         #region Text
 
@@ -59,9 +60,9 @@ namespace CozyDungeon.Game.Component.Controls
 
         #region Constructors
 
-        public BaseButton()
+        public BaseButton(float width, float height)
         {
-            Init();
+            Init(width, height);
         }
 
         public BaseButton(float x, float y, float width, float height)
@@ -69,22 +70,21 @@ namespace CozyDungeon.Game.Component.Controls
             InitWithRect(x, y, width, height);
         }
 
-        public virtual void Init()
+        public virtual void Init(float width, float height)
         {
             EventListener = new CCEventListenerTouchOneByOne()
             {
                 OnTouchBegan = OnTouchBegan,
                 OnTouchEnded = OnTouchEnded,
             };
-            this.AddChild(BorderNode);
+            ContentSize = new CCSize(width, height);
         }
 
         public virtual void InitWithRect(float x, float y, float width, float height)
         {
-            Init();
+            Init(width, height);
 
             Position    = new CCPoint(x, y);
-            ContentSize = new CCSize(width, height);
         }
 
         #endregion
@@ -99,13 +99,19 @@ namespace CozyDungeon.Game.Component.Controls
 
         private bool OnTouchBegan(CCTouch touch, CCEvent e)
         {
-            var rect = new CCRect(PositionX, PositionY, ContentSize.Width, ContentSize.Height);
-            if (rect.ContainsPoint(touch.Location))
+            if (!Visible)
             {
-                OnKeyDown();
-                return true;
+                return false;
             }
-            return false;
+
+            var rect = new CCRect(PositionWorldspace.X, PositionWorldspace.Y, ContentSize.Width, ContentSize.Height);
+            if (!rect.ContainsPoint(touch.Location))
+            {
+                return false;
+            }
+
+            OnKeyDown();
+            return true;
         }
 
         private void OnTouchEnded(CCTouch touch, CCEvent e)
@@ -122,56 +128,6 @@ namespace CozyDungeon.Game.Component.Controls
         protected virtual void OnKeyUp()
         {
             Status = ButtonStatus.Released;
-        }
-
-        #endregion
-
-        #region Border 
-
-        private CCDrawNode BorderNode { get; set; } = new CCDrawNode();
-
-        private int borderSize = 1;
-        private int BorderSize
-        {
-            get
-            {
-                return borderSize;
-            }
-            set
-            {
-                borderSize = value;
-                RefreshBorder();
-            }
-        }
-
-        private bool hasBorder;
-        public bool HasBorder
-        {
-            get
-            {
-                return hasBorder;
-            }
-            set
-            {
-                if (hasBorder != value)
-                {
-                    hasBorder = value;
-                    RefreshBorder();
-                }
-            }
-        }
-
-        private void RefreshBorder()
-        {
-            if (HasBorder)
-            {
-                BorderNode.Cleanup();
-                BorderNode.DrawRect(
-                    new CCRect(0, 0, ContentSize.Width, ContentSize.Height),
-                    new CCColor4B(0, 0, 0),
-                    BorderSize,
-                    new CCColor4B(255, 255, 255));
-            }
         }
 
         #endregion

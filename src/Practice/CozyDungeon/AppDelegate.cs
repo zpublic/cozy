@@ -3,7 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CozyDungeon.Game.Component.Controls;
+using CozyDungeon.Public.Controls;
+using CozyDungeon.Public.Controls.Enum;
 
 namespace CozyDungeon
 {
@@ -40,7 +41,31 @@ namespace CozyDungeon
             {
             };
 
-            layer.AddChild(b);
+            var list = new CozySampleListView()
+            {
+                ContentSize = new CCSize(350, 350),
+                Orientation = ControlOrientation.Vertical,
+                Position    = new CCPoint(100, 100),
+                HasBorder   = true,
+            };
+            layer.AddChild(list);
+
+            list.AddItem(new CozySampleListViewItemSprite(new CCSprite("gold"))
+
+            {
+                MarginBottom    = 10,
+                MarginTop       = 10,
+                HasBorder       = true,
+            });
+            list.AddItem(b);
+            list.AddItem(new CozySampleListViewItemSprite(new CCSprite("gold"))
+
+            {
+                MarginBottom    = 10,
+                MarginTop       = 10,
+                HasBorder       = true,
+            });
+
             layer.AddEventListener(b.EventListener, layer);
 
             scene.AddChild(layer);
