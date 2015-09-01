@@ -12,10 +12,11 @@
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="CozyDictBase.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CozyDict.Base.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="CozyDictBase.cpp" />
   </ItemGroup>
 </Project>
