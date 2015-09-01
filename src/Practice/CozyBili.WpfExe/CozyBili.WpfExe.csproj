@@ -98,6 +98,10 @@
       <Project>{c7db81f5-d98f-48d6-9d51-19dde0d95d06}</Project>
       <Name>CozyBili.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyBili.Danmaku\CozyBili.Danmaku.csproj">
+      <Project>{0aa7a977-67a0-47c5-8e7d-89f42bbd953a}</Project>
+      <Name>CozyBili.Danmaku</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -124,10 +124,11 @@
     <Compile Include="Public\Controls\Events\ItemAddEventArgs.cs" />
     <Compile Include="Public\Controls\Enum\ControlOrientation.cs" />
     <Compile Include="Public\Controls\Events\ItemRemoveEventArgs.cs" />
+    <Compile Include="View\Scene\BgLayer.cs" />
+    <Compile Include="View\Scene\HomePageScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Game\Object\Player\Model\" />
-    <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

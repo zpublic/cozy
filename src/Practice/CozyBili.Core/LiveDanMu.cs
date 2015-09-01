@@ -55,23 +55,35 @@ namespace CozyBili.Core {
             Init();
         }
 
+        private Thread threadNetwork;
+
         /// <summary>
         /// Go!!  给老子跑起来
         /// </summary>
         public void Run() {
-            new Thread(() => {
-                while (OffLineReCoonetced && ListenLoop()) {
-                    //这里并没有什么卵用，仅仅只为了做到断线重连的效果
-                }
-            }).Start();
+            if (threadNetwork == null)
+            {
+                threadNetwork = new Thread(() => {
+                    while (OffLineReCoonetced && ListenLoop())
+                    {
+                    }
+                });
+                threadNetwork.Start();
+            }
         }
 
         /// <summary>
         /// Stop
         /// </summary>
         public void Stop() {
-            OffLineReCoonetced = false;
             Coonetced = false;
+            OffLineReCoonetced = false;
+            Client.Close();
+            while (threadNetwork.IsAlive)
+            {
+                Thread.Sleep(100);
+            }
+            threadNetwork = null;
         }
 
         private void Init() {
@@ -96,14 +108,25 @@ namespace CozyBili.Core {
                         var num = BitConverter.ToInt16(array, 0);
                         num = IPAddress.NetworkToHostOrder(num);
                         switch (num) {
-                            case 1: {
+                            case 1:
+                                {
                                     NetStream.Read(array, 0, 4);
                                     var onlineNum = IPAddress.NetworkToHostOrder(BitConverter.ToInt32(array, 0));
                                     TirggerOnLineNum(onlineNum);
                                     break;
                                 }
-                            case 2:
-                            case 4: {
+                            case 2://newCommentString
+                                {
+                                    NetStream.Read(array, 0, 2);
+                                    var size = (short)(IPAddress.NetworkToHostOrder(BitConverter.ToInt16(array, 0)) - 4);
+                                    var array2 = new byte[size];
+                                    NetStream.Read(array2, 0, size);
+                                    var danMuMsg = Encoding.UTF8.GetString(array2, 0, size);
+                                    TirggerReceiveDanMu(DanMuModel.CreateModel(danMuMsg, 2));
+                                    break;
+                                }
+                            case 4:
+                                {
                                     NetStream.Read(array, 0, 2);
                                     var size = (short)(IPAddress.NetworkToHostOrder(BitConverter.ToInt16(array, 0)) - 4);
                                     var array2 = new byte[size];
@@ -112,17 +135,22 @@ namespace CozyBili.Core {
                                     TirggerReceiveDanMu(DanMuModel.CreateModel(danMuMsg));
                                     break;
                                 }
-                            case 8:
+                            case 8: //x 条新的评论信息
                                 NetStream.Read(array, 0, 2);
                                 break;
                             default:
-                                return true;
+                                NetStream.Read(array, 0, 2);
+                                var packetlength = BitConverter.ToInt16(array, 0);
+                                packetlength = (short)(IPAddress.NetworkToHostOrder(packetlength) - 4);
+                                var buffer = new byte[packetlength];
+                                NetStream.Read(buffer, 0, packetlength);
+                                break;
                         }
                     }
                 }
-                catch (Exception) {
+                catch (Exception e) {
+                    e.ToString();
                     return true;
-
                 }
                 finally {
                     Disconnect();

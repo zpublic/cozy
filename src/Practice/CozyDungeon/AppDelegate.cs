@@ -16,7 +16,6 @@ namespace CozyDungeon
 
         public override void ApplicationDidFinishLaunching(CCApplication application, CCWindow mainWindow)
         {
-
             SharedWindow = mainWindow;
 
             DefaultResolution = new CCSize(
@@ -24,7 +23,6 @@ namespace CozyDungeon
                 application.MainWindow.WindowSizeInPixels.Height);
 
             application.ContentRootDirectory = "Content";
-            application.ContentSearchPaths.Add("SD");
 
             CCScene scene = new CCScene(mainWindow);
             CCLayer layer = new IntroLayer(DefaultResolution);
@@ -69,7 +67,6 @@ namespace CozyDungeon
             layer.AddEventListener(b.EventListener, layer);
 
             scene.AddChild(layer);
-
             mainWindow.RunWithScene(scene);
         }
     }
