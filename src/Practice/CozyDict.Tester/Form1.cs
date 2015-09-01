@@ -25,8 +25,8 @@ namespace CozyDict.Tester
         {
             InitCallback();
 
+            OutputUtil.StartPipe();
             MouseUtil.SetMouseHook(MouseCallback);
-
             OutputUtil.InitHookEnv();
             OutputUtil.SetTextOutWHook();
         }
@@ -46,8 +46,9 @@ namespace CozyDict.Tester
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MouseUtil.UnSetMouseHook();
             OutputUtil.UnsetAllHook();
+            MouseUtil.UnSetMouseHook();
+            OutputUtil.StopPipe();
         }
     }
 }

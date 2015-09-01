@@ -5,6 +5,7 @@
 #include "CozyDictBase.h"
 
 #include "ipcpipesvrchannel.h"
+#include "ipcjsonprocessor.h"
 
 HHOOK CozyDictBase::m_hHook = nullptr;
 
@@ -92,6 +93,7 @@ bool CozyDictBase::StartPipe()
     }
 
     m_lpPipeSvr = new zl::Ipc::ipcPipeSvrChannel();
+    m_lpPipeSvr->SetProcessor(new zl::Ipc::ipcJsonProcessor());
     return !!m_lpPipeSvr->Start(hPipe);
 }
 
@@ -121,12 +123,12 @@ COZYDICTAPI bool InvalidateMouseWindow(int nXpos, int nYPos)
     return CozyDictBaseInstance.InvalidateMouseWindow(nXpos, nYPos);
 }
 
-EXTERN_C COZYDICTAPI bool StartPipe()
+COZYDICTAPI bool StartPipe()
 {
     return CozyDictBaseInstance.StartPipe();
 }
 
-EXTERN_C COZYDICTAPI bool StopPipe()
+COZYDICTAPI bool StopPipe()
 {
     return CozyDictBaseInstance.StopPipe();
 }
