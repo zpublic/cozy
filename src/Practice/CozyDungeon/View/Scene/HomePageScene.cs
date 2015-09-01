@@ -11,7 +11,7 @@ namespace CozyDungeon.View.Scene
     {
         public HomePageScene(CCWindow window) : base(window)
         {
-            AddChild(new BgLayer(@"pic\bg1.png"));
+            AddChild(new BgLayer(@"pic\1.png"));
         }
     }
 }

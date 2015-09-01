@@ -94,6 +94,19 @@ namespace CozyDungeon.RoleCardEditor
         public CardInfoControl()
         {
             InitializeComponent();
+            LoadImage();
+            InitFiveLineBox();
+        }
+
+        private Dictionary<FiveLine, Image> FiveLineImages = new Dictionary<FiveLine, Image>();
+
+        private void LoadImage()
+        {
+            FiveLineImages[FiveLine.Gold]   = Image.FromFile(@"./Content/gold.png");
+            FiveLineImages[FiveLine.Wood]   = Image.FromFile(@"./Content/wood.png");
+            FiveLineImages[FiveLine.Water]  = Image.FromFile(@"./Content/water.png");
+            FiveLineImages[FiveLine.Fire]   = Image.FromFile(@"./Content/fire.png");
+            FiveLineImages[FiveLine.Earth]  = Image.FromFile(@"./Content/earth.png");
         }
 
         private void RefreshLevelBox()
@@ -104,16 +117,37 @@ namespace CozyDungeon.RoleCardEditor
                        in CardLevels
                                      select new KeyValuePair<string, RoleCardLevel>(CardLevel.RoleCardLevelName(obj), obj);
 
-                LevelBox.DisplayMember = "Key";
-                LevelBox.ValueMember = "Value";
-                LevelBox.DataSource = LevelValueList.ToList();
+                LevelBox.DisplayMember  = "Key";
+                LevelBox.ValueMember    = "Value";
+                LevelBox.DataSource     = LevelValueList.ToList();
             }
         }
 
-        private void LevelBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void InitFiveLineBox()
         {
-            RoleCard.Level = (RoleCardLevel)LevelBox.SelectedValue;
-            LoadBorder();
+            var fivelineList = new List<KeyValuePair<string, FiveLine>>
+            {
+                new KeyValuePair<string, FiveLine>("金", FiveLine.Gold),
+                new KeyValuePair<string, FiveLine>("木", FiveLine.Wood),
+                new KeyValuePair<string, FiveLine>("水", FiveLine.Water),
+                new KeyValuePair<string, FiveLine>("火", FiveLine.Fire),
+                new KeyValuePair<string, FiveLine>("土", FiveLine.Earth),
+            };
+            FiveLineBox.DisplayMember   = "Key";
+            FiveLineBox.ValueMember     = "Value";
+            FiveLineBox.DataSource      = fivelineList;
+        }
+
+        public bool IdBoxEnable
+        {
+            get
+            {
+                return IDBox.Enabled;
+            }
+            set
+            {
+                IDBox.Enabled = value;
+            }
         }
 
         public bool LevelBoxEnable
@@ -138,14 +172,21 @@ namespace CozyDungeon.RoleCardEditor
 
         private void RefreshControls()
         {
-            LevelBox.SelectedValue  = RoleCard.Level;
-            IDBox.Text              = RoleCard.Id.ToString();
-            NameBox.Text            = RoleCard.Name;
-            DescBox.Text            = RoleCard.Desc;
-            HPBox.Text              = RoleCard.HP.ToString();
-            ATKBox.Text             = RoleCard.ATK.ToString();
-            DEFBox.Text             = RoleCard.DEF.ToString();
+            LevelBox.SelectedValue      = RoleCard.Level;
+            IDBox.Text                  = RoleCard.Id.ToString();
+            NameBox.Text                = RoleCard.Name;
+            DescBox.Text                = RoleCard.Desc;
+            HPBox.Text                  = RoleCard.HP.ToString();
+            ATKBox.Text                 = RoleCard.ATK.ToString();
+            DEFBox.Text                 = RoleCard.DEF.ToString();
+            FiveLineBox.SelectedValue   = RoleCard.Element;
             RefreshImage();
+        }
+
+        private void LevelBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RoleCard.Level = (RoleCardLevel)LevelBox.SelectedValue;
+            LoadBorder();
         }
 
         private void DescBox_TextChanged(object sender, EventArgs e)
@@ -163,6 +204,14 @@ namespace CozyDungeon.RoleCardEditor
             if (!IsModification)
             {
                 RefreshImage();
+            }
+        }
+
+        private void IDBox_TextChanged(object sender, EventArgs e)
+        {
+            if(IDBox.Text.Length > 0)
+            {
+                RoleCard.Id = int.Parse(IDBox.Text);
             }
         }
 
@@ -202,13 +251,29 @@ namespace CozyDungeon.RoleCardEditor
             }
         }
 
+        private void FiveLineBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RoleCard.Element = (FiveLine)FiveLineBox.SelectedValue;
+            LoadFiveLine();
+        }
+
+        Image FiveLineImage { get; set; }
+
+        private void LoadFiveLine()
+        {
+            var fiveline = (FiveLine)FiveLineBox.SelectedValue;
+            FiveLineImage = FiveLineImages[fiveline];
+            if (!IsModification)
+            {
+                RefreshImage();
+            }
+        }
+
         private void OpenImageButton_Click(object sender, EventArgs e)
         {
             OpenImage();
             RefreshImage();
         }
-
-        private Image BorderImage { get; set; }
 
         private void OpenImage()
         {
@@ -228,6 +293,8 @@ namespace CozyDungeon.RoleCardEditor
                 }
             }
         }
+
+        private Image BorderImage { get; set; }
 
         private void LoadBorder()
         {
@@ -263,6 +330,11 @@ namespace CozyDungeon.RoleCardEditor
                         g.DrawImage(Resources.hp, new Rectangle(Point.Empty, Resources.hp.Size));
                         g.DrawImage(Resources.atk, new Rectangle(new Point(30, 340), Resources.atk.Size));
                         g.DrawImage(Resources.def, new Rectangle(new Point(180, 340), Resources.def.Size));
+
+                        if (FiveLineImage != null)
+                        {
+                            g.DrawImage(FiveLineImage, new Rectangle(new Point(230, 6), new Size(32, 32)));
+                        }
 
                         RefreshText(g);
                     }

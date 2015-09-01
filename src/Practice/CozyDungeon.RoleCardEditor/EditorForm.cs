@@ -41,8 +41,6 @@ namespace CozyDungeon.RoleCardEditor
             InitCardControl();
             InitTabControlPages();
             CreateNewCards();
-
-            CardIdCache = IDMaker;
         }
 
         private void LoadCardLevels()
@@ -57,6 +55,7 @@ namespace CozyDungeon.RoleCardEditor
 
         private void InitCardControl()
         {
+            cardInfoControl1.IdBoxEnable    = false;
             cardInfoControl1.LevelBoxEnable = false;
             cardInfoControl1.CardLevels     = CardLevels;
             cardInfoControl1.ImageRefreshEventHandler += (sender, msg) =>
@@ -185,7 +184,6 @@ namespace CozyDungeon.RoleCardEditor
 
             CardImageDictionary.Clear();
             ResetInput();
-            ClearId();
 
             SaveFileName    = null;
             IsModified      = false;

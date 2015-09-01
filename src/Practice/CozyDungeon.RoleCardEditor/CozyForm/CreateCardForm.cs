@@ -18,12 +18,11 @@ namespace CozyDungeon.RoleCardEditor.CozyForm
     {
         public EventHandler<CardCreateEventArgs> CardCreateEventHandler;
 
-        public CreateCardForm(List<RoleCardLevel> cardLevels, int id)
+        public CreateCardForm(List<RoleCardLevel> cardLevels)
         {
             InitializeComponent();
 
             cardInfoControl1.CardLevels = cardLevels;
-            cardInfoControl1.Id         = id;
         }
 
         private void CompleteButton_Click(object sender, EventArgs e)
