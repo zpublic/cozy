@@ -17,25 +17,25 @@ namespace CozyDict.Core
 
         public delegate bool ExtTextOutWCallback(IntPtr hdc, int x, int y, uint optionsm, IntPtr rect, IntPtr lpString, uint c, IntPtr dx);
 
-        [DllImport(@"CozyDict.Base.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ResetAPIHookCallback();
 
-        [DllImport(@"CozyDict.Base.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern void InitHookEnv();
 
-        [DllImport(@"CozyDict.Base.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool SetTextOutAHook(TextOutACallback callback);
 
-        [DllImport(@"CozyDict.Base.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool SetTextOutWHook(TextOutWCallback callback);
 
-        [DllImport(@"CozyDict.Base.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool SetExtTextOutAHook(ExtTextOutACallback callback);
 
-        [DllImport(@"CozyDict.Base.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool SetExtTextOutWHook(ExtTextOutWCallback callback);
 
-        [DllImport(@"CozyDict.Base.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool UnsetAllHook();
     }
 }

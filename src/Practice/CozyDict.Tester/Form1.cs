@@ -20,8 +20,19 @@ namespace CozyDict.Tester
         }
 
         private static MouseUtil.MouseHookCallback MouseCallback;
+        private static OutputUtil.TextOutWCallback TextOutputCallback;
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+            InitCallback();
+
+            MouseUtil.SetMouseHook(MouseCallback);
+
+            OutputUtil.InitHookEnv();
+            OutputUtil.SetTextOutWHook(TextOutputCallback);
+        }
+
+        private void InitCallback()
         {
             MouseCallback = (code, wparam, lparam) =>
             {
@@ -33,12 +44,18 @@ namespace CozyDict.Tester
                 return IntPtr.Zero;
             };
 
-            MouseUtil.SetMouseHook(MouseCallback);
+            TextOutputCallback = (hdc, x, y, lpString, c) =>
+            {
+                var str = Marshal.PtrToStringAuto(lpString);
+                label2.Text = str;
+                return false;
+            };
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             MouseUtil.UnSetMouseHook();
+            OutputUtil.UnsetAllHook();
         }
     }
 }
