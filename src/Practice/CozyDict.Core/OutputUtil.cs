@@ -9,6 +9,12 @@ namespace CozyDict.Core
 {
     public static class OutputUtil
     {
+        [DllImport(@"CozyDict.Base.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool StartPipe();
+
+        [DllImport(@"CozyDict.Base.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool StopPipe();
+
         [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern void InitHookEnv();
 
