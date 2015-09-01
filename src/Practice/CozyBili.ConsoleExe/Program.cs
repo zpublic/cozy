@@ -8,7 +8,7 @@ namespace CozyBili.ConsoleExe {
 
         static void Main(string[] args) {
             
-            args = args.Length > 0 ? args : new[] { "1029" };
+            args = args.Length > 0 ? args : new[] { "34083" };
 
             const string title = "CozyBili";
             int roomId;
