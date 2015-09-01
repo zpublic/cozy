@@ -7,3 +7,6 @@
 [submodule "src/Practice/CozyKxlol.MapEditor/Content"]
 	path = src/Practice/CozyKxlol.MapEditor/Content
 	url = https://git.oschina.net/zapline/cozy_res_cozykxlolcontent.git
+[submodule "src/Practice/CozyDict.Gui/tessdata"]
+	path = src/Practice/CozyDict.Gui/tessdata
+	url = https://git.oschina.net/zapline/cozy_res_tessdata.git
