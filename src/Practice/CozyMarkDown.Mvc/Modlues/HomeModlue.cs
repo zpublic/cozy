@@ -5,13 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Nancy;
 
-namespace CozyMarkDonw.Mvc.Modlues {
+namespace CozyMarkDown.Mvc.Modlues {
 
     public class HomeModlue : NancyModule {
 
         public HomeModlue() {
+            
+
             Get["/"] = x => {
-                return View["/Home"];
+                return View["/Index"];
             };
         }
     }

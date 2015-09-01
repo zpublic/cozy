@@ -1,16 +1,13 @@
-﻿
-
-<!DOCTYPE html>
-
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <title>@ViewBag.Title</title>
 </head>
 <body>
+    <h1>我是母版页</h1>
     <div>
-        <h1 style="background-color:red">Hello,Nancy</h1>
-        @DateTime.Now
+        @RenderBody()
     </div>
 </body>
 </html>
