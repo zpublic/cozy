@@ -144,7 +144,7 @@ bool CozyDictHook::SendPipeData(LPVOID lpBytes, DWORD dwSize)
 {
     if (m_lpPipeClt != nullptr)
     {
-        return m_lpPipeClt->Send(lpBytes, dwSize);
+        return !!m_lpPipeClt->Send(lpBytes, dwSize);
     }
     return false;
 }
@@ -177,4 +177,13 @@ COZYDICTAPI bool SetExtTextOutWHook()
 COZYDICTAPI bool UnsetAllHook()
 {
     return CozyDictHookInstance.UnsetAllApiHook();
+}
+
+COZYDICTAPI bool SetAllHook()
+{
+    if (!SetTextOutAHook()) return false;
+    if (!SetTextOutWHook()) return false;
+    if (!SetExtTextOutAHook()) return false;
+    if (!SetExtTextOutWHook()) return false;
+    return true;
 }

@@ -69,5 +69,6 @@ EXTERN_C COZYDICTAPI bool SetTextOutWHook();
 EXTERN_C COZYDICTAPI bool SetExtTextOutAHook();
 EXTERN_C COZYDICTAPI bool SetExtTextOutWHook();
 EXTERN_C COZYDICTAPI bool UnsetAllHook();
+EXTERN_C COZYDICTAPI bool SetAllHook();
 
 #endif // __COZY_DICK_HOOK__
