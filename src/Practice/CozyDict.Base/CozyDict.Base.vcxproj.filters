@@ -5,6 +5,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="3rd">
+      <UniqueIdentifier>{e480acba-24bf-42b3-aa58-0ac6ef875ca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\disasm-lib">
+      <UniqueIdentifier>{d48eded9-5ed0-40a6-8ab6-fd67fd802bd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\mhook-lib">
+      <UniqueIdentifier>{e0021854-6241-4a32-9b92-4fc24bd4b887}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -13,10 +22,43 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="CozyDictBase.h" />
+    <ClInclude Include="3rd\disasm-lib\cpu.h">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="3rd\disasm-lib\disasm.h">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="3rd\disasm-lib\disasm_x86.h">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="3rd\disasm-lib\disasm_x86_tables.h">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="3rd\disasm-lib\misc.h">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="3rd\mhook-lib\mhook.h">
+      <Filter>3rd\mhook-lib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="CozyDictBase.cpp" />
+    <ClCompile Include="3rd\disasm-lib\cpu.c">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rd\disasm-lib\disasm.c">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rd\disasm-lib\disasm_x86.c">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rd\disasm-lib\misc.c">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rd\mhook-lib\mhook.cpp">
+      <Filter>3rd\mhook-lib</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
