@@ -75,6 +75,7 @@ Cozy
 >>
 >> [CozyDungeon - 卡牌游戏](doc/CozyDungeon.md)  
 >>
+>> CozyDict - 屏幕取词工具，使用hook和ocr技术结合实现  
   
 交流QQ群
 --------------------------------

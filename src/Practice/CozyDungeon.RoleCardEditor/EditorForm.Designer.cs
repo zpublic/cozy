@@ -28,245 +28,155 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.cardPictureBox = new System.Windows.Forms.PictureBox();
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
-            this.metroButton2 = new MetroFramework.Controls.MetroButton();
-            this.metroButton3 = new MetroFramework.Controls.MetroButton();
-            this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
-            this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.cardPictureBox)).BeginInit();
+            this.components = new System.ComponentModel.Container();
+            CozyDungeon.RoleCardEditor.CozyCardImage cozyCardImage1 = new CozyDungeon.RoleCardEditor.CozyCardImage();
+            CozyDungeon.Game.Component.Card.Model.RoleCard roleCard1 = new CozyDungeon.Game.Component.Card.Model.RoleCard();
+            this.OpenButton = new MetroFramework.Controls.MetroButton();
+            this.SaveButton = new MetroFramework.Controls.MetroButton();
+            this.CloseButton = new MetroFramework.Controls.MetroButton();
+            this.CardTabControl = new MetroFramework.Controls.MetroTabControl();
+            this.CreateButton = new MetroFramework.Controls.MetroButton();
+            this.TabControlContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.RemoveCardItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateCardItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateCardButton = new MetroFramework.Controls.MetroButton();
+            this.cardInfoControl1 = new CozyDungeon.RoleCardEditor.CardInfoControl();
+            this.TabControlContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox3
+            // OpenButton
             // 
-            this.textBox3.Location = new System.Drawing.Point(343, 287);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(198, 92);
-            this.textBox3.TabIndex = 8;
+            this.OpenButton.Location = new System.Drawing.Point(24, 63);
+            this.OpenButton.Name = "OpenButton";
+            this.OpenButton.Size = new System.Drawing.Size(75, 23);
+            this.OpenButton.TabIndex = 10;
+            this.OpenButton.Text = "打开";
+            this.OpenButton.UseSelectable = true;
+            this.OpenButton.Click += new System.EventHandler(this.OpenButton_Click);
             // 
-            // cardPictureBox
+            // SaveButton
             // 
-            this.cardPictureBox.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.cardPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.cardPictureBox.Location = new System.Drawing.Point(585, 134);
-            this.cardPictureBox.Name = "cardPictureBox";
-            this.cardPictureBox.Size = new System.Drawing.Size(270, 380);
-            this.cardPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.cardPictureBox.TabIndex = 9;
-            this.cardPictureBox.TabStop = false;
+            this.SaveButton.Location = new System.Drawing.Point(105, 62);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.TabIndex = 10;
+            this.SaveButton.Text = "保存";
+            this.SaveButton.UseSelectable = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // metroButton1
+            // CloseButton
             // 
-            this.metroButton1.Location = new System.Drawing.Point(24, 63);
-            this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(75, 23);
-            this.metroButton1.TabIndex = 10;
-            this.metroButton1.Text = "打开";
-            this.metroButton1.UseSelectable = true;
+            this.CloseButton.Location = new System.Drawing.Point(186, 63);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(75, 23);
+            this.CloseButton.TabIndex = 10;
+            this.CloseButton.Text = "关闭";
+            this.CloseButton.UseSelectable = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
-            // metroButton2
+            // CardTabControl
             // 
-            this.metroButton2.Location = new System.Drawing.Point(105, 62);
-            this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(75, 23);
-            this.metroButton2.TabIndex = 10;
-            this.metroButton2.Text = "保存";
-            this.metroButton2.UseSelectable = true;
+            this.CardTabControl.Alignment = System.Windows.Forms.TabAlignment.Left;
+            this.CardTabControl.ItemSize = new System.Drawing.Size(60, 0);
+            this.CardTabControl.Location = new System.Drawing.Point(24, 92);
+            this.CardTabControl.Multiline = true;
+            this.CardTabControl.Name = "CardTabControl";
+            this.CardTabControl.Size = new System.Drawing.Size(302, 477);
+            this.CardTabControl.TabIndex = 11;
+            this.CardTabControl.UseSelectable = true;
             // 
-            // metroButton3
+            // CreateButton
             // 
-            this.metroButton3.Location = new System.Drawing.Point(186, 63);
-            this.metroButton3.Name = "metroButton3";
-            this.metroButton3.Size = new System.Drawing.Size(75, 23);
-            this.metroButton3.TabIndex = 10;
-            this.metroButton3.Text = "关闭";
-            this.metroButton3.UseSelectable = true;
+            this.CreateButton.Location = new System.Drawing.Point(267, 63);
+            this.CreateButton.Name = "CreateButton";
+            this.CreateButton.Size = new System.Drawing.Size(75, 23);
+            this.CreateButton.TabIndex = 14;
+            this.CreateButton.Text = "新建";
+            this.CreateButton.UseSelectable = true;
+            this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
-            // metroTabControl1
+            // TabControlContextMenu
             // 
-            this.metroTabControl1.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.metroTabControl1.Location = new System.Drawing.Point(24, 92);
-            this.metroTabControl1.Multiline = true;
-            this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.Size = new System.Drawing.Size(237, 477);
-            this.metroTabControl1.TabIndex = 11;
-            this.metroTabControl1.UseSelectable = true;
+            this.TabControlContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CreateCardItem,
+            this.RemoveCardItem});
+            this.TabControlContextMenu.Name = "TabControlContextMenu";
+            this.TabControlContextMenu.Size = new System.Drawing.Size(101, 48);
             // 
-            // metroLabel1
+            // RemoveCardItem
             // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(343, 136);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(38, 19);
-            this.metroLabel1.TabIndex = 12;
-            this.metroLabel1.Text = "Level";
+            this.RemoveCardItem.Name = "RemoveCardItem";
+            this.RemoveCardItem.Size = new System.Drawing.Size(100, 22);
+            this.RemoveCardItem.Text = "删除";
+            this.RemoveCardItem.Click += new System.EventHandler(this.RemoveCardItem_Click);
             // 
-            // metroLabel2
+            // CreateCardItem
             // 
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(343, 184);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(21, 19);
-            this.metroLabel2.TabIndex = 12;
-            this.metroLabel2.Text = "ID";
+            this.CreateCardItem.Name = "CreateCardItem";
+            this.CreateCardItem.Size = new System.Drawing.Size(100, 22);
+            this.CreateCardItem.Text = "创建";
+            this.CreateCardItem.Click += new System.EventHandler(this.CreateCardItem_Click);
             // 
-            // metroLabel3
+            // CreateCardButton
             // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(343, 227);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(45, 19);
-            this.metroLabel3.TabIndex = 12;
-            this.metroLabel3.Text = "Name";
-            this.metroLabel3.Click += new System.EventHandler(this.metroLabel3_Click);
+            this.CreateCardButton.Location = new System.Drawing.Point(589, 62);
+            this.CreateCardButton.Name = "CreateCardButton";
+            this.CreateCardButton.Size = new System.Drawing.Size(96, 23);
+            this.CreateCardButton.TabIndex = 16;
+            this.CreateCardButton.Text = "创建新卡片";
+            this.CreateCardButton.UseSelectable = true;
+            this.CreateCardButton.Click += new System.EventHandler(this.CreateCardButton_Click);
             // 
-            // metroLabel4
+            // cardInfoControl1
             // 
-            this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(343, 265);
-            this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(36, 19);
-            this.metroLabel4.TabIndex = 12;
-            this.metroLabel4.Text = "Desc";
-            // 
-            // metroComboBox1
-            // 
-            this.metroComboBox1.FormattingEnabled = true;
-            this.metroComboBox1.ItemHeight = 23;
-            this.metroComboBox1.Location = new System.Drawing.Point(394, 132);
-            this.metroComboBox1.Name = "metroComboBox1";
-            this.metroComboBox1.Size = new System.Drawing.Size(147, 29);
-            this.metroComboBox1.TabIndex = 13;
-            this.metroComboBox1.UseSelectable = true;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(394, 226);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(147, 21);
-            this.textBox2.TabIndex = 7;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(394, 182);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(147, 21);
-            this.textBox1.TabIndex = 7;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(394, 404);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(147, 21);
-            this.textBox4.TabIndex = 7;
-            // 
-            // metroLabel5
-            // 
-            this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(343, 406);
-            this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(26, 19);
-            this.metroLabel5.TabIndex = 12;
-            this.metroLabel5.Text = "HP";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(394, 449);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(147, 21);
-            this.textBox5.TabIndex = 7;
-            // 
-            // metroLabel6
-            // 
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(343, 451);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(32, 19);
-            this.metroLabel6.TabIndex = 12;
-            this.metroLabel6.Text = "ATK";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(394, 492);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(147, 21);
-            this.textBox6.TabIndex = 7;
-            // 
-            // metroLabel7
-            // 
-            this.metroLabel7.AutoSize = true;
-            this.metroLabel7.Location = new System.Drawing.Point(343, 494);
-            this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(32, 19);
-            this.metroLabel7.TabIndex = 12;
-            this.metroLabel7.Text = "DEF";
+            this.cardInfoControl1.CardLevels = null;
+            this.cardInfoControl1.Id = 0;
+            cozyCardImage1.CardImage = null;
+            cozyCardImage1.SelectedImage = null;
+            this.cardInfoControl1.Images = cozyCardImage1;
+            this.cardInfoControl1.Location = new System.Drawing.Point(342, 92);
+            this.cardInfoControl1.Name = "cardInfoControl1";
+            roleCard1.ATK = 1;
+            roleCard1.DEF = 0;
+            roleCard1.Desc = null;
+            roleCard1.Element = CozyDungeon.Game.Component.Card.Enum.FiveLine.Gold;
+            roleCard1.HP = 1;
+            roleCard1.Id = 0;
+            roleCard1.Level = CozyDungeon.Game.Component.Card.Enum.RoleCardLevel.LevelInvalid;
+            roleCard1.Name = "无效名字";
+            this.cardInfoControl1.RoleCard = roleCard1;
+            this.cardInfoControl1.Size = new System.Drawing.Size(770, 519);
+            this.cardInfoControl1.TabIndex = 15;
             // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 592);
-            this.Controls.Add(this.metroComboBox1);
-            this.Controls.Add(this.metroLabel4);
-            this.Controls.Add(this.metroLabel3);
-            this.Controls.Add(this.metroLabel7);
-            this.Controls.Add(this.metroLabel6);
-            this.Controls.Add(this.metroLabel5);
-            this.Controls.Add(this.metroLabel2);
-            this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.metroTabControl1);
-            this.Controls.Add(this.metroButton3);
-            this.Controls.Add(this.metroButton2);
-            this.Controls.Add(this.metroButton1);
-            this.Controls.Add(this.cardPictureBox);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.CreateCardButton);
+            this.Controls.Add(this.cardInfoControl1);
+            this.Controls.Add(this.CreateButton);
+            this.Controls.Add(this.CardTabControl);
+            this.Controls.Add(this.CloseButton);
+            this.Controls.Add(this.SaveButton);
+            this.Controls.Add(this.OpenButton);
             this.Name = "EditorForm";
             this.Text = "至强卡牌编辑器";
-            ((System.ComponentModel.ISupportInitialize)(this.cardPictureBox)).EndInit();
+            this.TabControlContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.PictureBox cardPictureBox;
-        private MetroFramework.Controls.MetroButton metroButton1;
-        private MetroFramework.Controls.MetroButton metroButton2;
-        private MetroFramework.Controls.MetroButton metroButton3;
-        private MetroFramework.Controls.MetroTabControl metroTabControl1;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
-        private MetroFramework.Controls.MetroLabel metroLabel2;
-        private MetroFramework.Controls.MetroLabel metroLabel3;
-        private MetroFramework.Controls.MetroLabel metroLabel4;
-        private MetroFramework.Controls.MetroComboBox metroComboBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox4;
-        private MetroFramework.Controls.MetroLabel metroLabel5;
-        private System.Windows.Forms.TextBox textBox5;
-        private MetroFramework.Controls.MetroLabel metroLabel6;
-        private System.Windows.Forms.TextBox textBox6;
-        private MetroFramework.Controls.MetroLabel metroLabel7;
+        private MetroFramework.Controls.MetroButton OpenButton;
+        private MetroFramework.Controls.MetroButton SaveButton;
+        private MetroFramework.Controls.MetroButton CloseButton;
+        private MetroFramework.Controls.MetroTabControl CardTabControl;
+        private MetroFramework.Controls.MetroButton CreateButton;
+        private System.Windows.Forms.ContextMenuStrip TabControlContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem RemoveCardItem;
+        private CardInfoControl cardInfoControl1;
+        private MetroFramework.Controls.MetroButton CreateCardButton;
+        private System.Windows.Forms.ToolStripMenuItem CreateCardItem;
     }
 }

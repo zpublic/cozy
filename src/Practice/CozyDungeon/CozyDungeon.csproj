@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\CozyDungeon\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -27,7 +27,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\..\bin\CozyDungeon\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -110,12 +110,23 @@
     <Compile Include="Game\Component\Card\Logic\RoleCardLogic.cs" />
     <Compile Include="Game\Component\Card\Model\BaseCard.cs" />
     <Compile Include="Game\Component\Card\Model\RoleCard.cs" />
+    <Compile Include="Public\Controls\BaseButton.cs" />
+    <Compile Include="Public\Controls\Enum\ButtonStatus.cs" />
+    <Compile Include="Public\Controls\CozyColorSampleButton.cs" />
+    <Compile Include="Public\Controls\CozyControl.cs" />
+    <Compile Include="Public\Controls\CozySampleButton.cs" />
     <Compile Include="IntroLayer.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Public\Controls\CozySampleListView.cs" />
+    <Compile Include="Public\Controls\CozySampleListViewItem.cs" />
+    <Compile Include="Public\Controls\CozySampleListViewItemSprite.cs" />
+    <Compile Include="Public\Controls\Events\ItemAddEventArgs.cs" />
+    <Compile Include="Public\Controls\Enum\ControlOrientation.cs" />
+    <Compile Include="View\Scene\BgLayer.cs" />
+    <Compile Include="View\Scene\HomePageScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Game\Object\Player\Model\" />
-    <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

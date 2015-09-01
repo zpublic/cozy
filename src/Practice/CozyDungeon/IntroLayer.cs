@@ -1,5 +1,6 @@
 ﻿using CocosDenshion;
 using CocosSharp;
+using CozyDungeon.View.Scene;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,6 @@ namespace CozyDungeon
         {
         }
 
-
         protected override void AddedToScene()
         {
             base.AddedToScene();
@@ -22,6 +22,7 @@ namespace CozyDungeon
 
         public override void Update(float dt)
         {
+            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new HomePageScene(AppDelegate.SharedWindow));
             base.Update(dt);
         }
     }
