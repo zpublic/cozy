@@ -33,14 +33,13 @@ CozyDictBase::~CozyDictBase()
 
 LRESULT WINAPI CozyDictBase::MouseHookProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
-    if (nCode > 0)
+    if (nCode >= 0)
     {
         if (m_lpMouseCallback != nullptr)
         {
             m_lpMouseCallback(nCode, wParam, lParam);
         }
     }
-
     return ::CallNextHookEx(m_hHook, nCode, wParam, lParam);
 }
 
