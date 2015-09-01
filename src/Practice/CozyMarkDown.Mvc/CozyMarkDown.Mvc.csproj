@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonMark, Version=0.1.0.0, Culture=neutral, PublicKeyToken=001ef8810438905d, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CommonMark.NET.0.9.1\lib\net45\CommonMark.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\sln\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -106,9 +110,43 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\Highlight\classref.txt" />
+    <Content Include="Content\Highlight\arta.css" />
+    <Content Include="Content\Highlight\ascetic.css" />
+    <Content Include="Content\Highlight\brown_paper.css" />
+    <Content Include="Content\Highlight\brown_papersq.png" />
+    <Content Include="Content\Highlight\dark.css" />
+    <Content Include="Content\Highlight\default.css" />
+    <Content Include="Content\Highlight\far.css" />
+    <Content Include="Content\Highlight\github.css" />
+    <Content Include="Content\Highlight\googlecode.css" />
+    <Content Include="Content\Highlight\idea.css" />
+    <Content Include="Content\Highlight\ir_black.css" />
+    <Content Include="Content\Highlight\magula.css" />
+    <Content Include="Content\Highlight\monokai.css" />
+    <Content Include="Content\Highlight\pojoaque.css" />
+    <Content Include="Content\Highlight\pojoaque.jpg" />
+    <Content Include="Content\Highlight\rainbow.css" />
+    <Content Include="Content\Highlight\school_book.css" />
+    <Content Include="Content\Highlight\school_book.png" />
+    <Content Include="Content\Highlight\solarized_dark.css" />
+    <Content Include="Content\Highlight\solarized_light.css" />
+    <Content Include="Content\Highlight\sunburst.css" />
+    <Content Include="Content\Highlight\tomorrow-night-blue.css" />
+    <Content Include="Content\Highlight\tomorrow-night-bright.css" />
+    <Content Include="Content\Highlight\tomorrow-night-eighties.css" />
+    <Content Include="Content\Highlight\tomorrow-night.css" />
+    <Content Include="Content\Highlight\tomorrow.css" />
+    <Content Include="Content\Highlight\vs.css" />
+    <Content Include="Content\Highlight\xcode.css" />
+    <Content Include="Content\Highlight\zenburn.css" />
     <Content Include="packages.config" />
+    <Content Include="Scripts\Highlight\highlight.pack.js" />
     <Content Include="Views\Index.cshtml" />
     <Content Include="Views\_Layout.cshtml" />
+    <Content Include="App_Code\Highlight\README.ru.md" />
+    <Content Include="App_Code\Highlight\README.md" />
+    <Content Include="App_Code\Highlight\LICENSE" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -120,6 +158,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\Highlight\Highlight.cs" />
     <Compile Include="Modlues\HomeModlue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
