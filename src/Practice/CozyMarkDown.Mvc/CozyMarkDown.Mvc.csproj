@@ -142,11 +142,12 @@
     <Content Include="Content\Highlight\zenburn.css" />
     <Content Include="packages.config" />
     <Content Include="Scripts\Highlight\highlight.pack.js" />
-    <Content Include="Views\Index.cshtml" />
     <Content Include="Views\_Layout.cshtml" />
     <Content Include="App_Code\Highlight\README.ru.md" />
     <Content Include="App_Code\Highlight\README.md" />
     <Content Include="App_Code\Highlight\LICENSE" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Test.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -159,8 +160,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\Highlight\Highlight.cs" />
+    <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Modlues\HomeModlue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\css\" />
+    <Folder Include="Content\fonts\" />
+    <Folder Include="Content\img\" />
+    <Folder Include="Content\js\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
