@@ -20,7 +20,6 @@ namespace CozyDict.Tester
         }
 
         private static MouseUtil.MouseHookCallback MouseCallback;
-        private static OutputUtil.TextOutWCallback TextOutputCallback;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -29,7 +28,7 @@ namespace CozyDict.Tester
             MouseUtil.SetMouseHook(MouseCallback);
 
             OutputUtil.InitHookEnv();
-            OutputUtil.SetTextOutWHook(TextOutputCallback);
+            OutputUtil.SetTextOutWHook();
         }
 
         private void InitCallback()
@@ -42,13 +41,6 @@ namespace CozyDict.Tester
                     label1.Text = string.Format("x : {0} y : {1}", mhs.pt.x, mhs.pt.y);
                 }
                 return IntPtr.Zero;
-            };
-
-            TextOutputCallback = (hdc, x, y, lpString, c) =>
-            {
-                var str = Marshal.PtrToStringAuto(lpString);
-                label2.Text = str;
-                return false;
             };
         }
 

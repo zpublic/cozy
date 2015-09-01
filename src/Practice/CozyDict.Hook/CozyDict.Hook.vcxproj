@@ -93,6 +93,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;COZYDICTHOOK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../Public/jsonlib/;../../Public/ipc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -107,6 +108,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;COZYDICTHOOK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../Public/jsonlib/;../../Public/ipc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -123,6 +125,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;COZYDICTHOOK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../Public/jsonlib/;../../Public/ipc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -141,6 +144,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;COZYDICTHOOK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../Public/jsonlib/;../../Public/ipc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -153,6 +157,26 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Public\ipc\ipccallclient.h" />
+    <ClInclude Include="..\..\Public\ipc\ipcimsgprocessor.h" />
+    <ClInclude Include="..\..\Public\ipc\ipcjsonprocessor.h" />
+    <ClInclude Include="..\..\Public\ipc\ipcpipecltchannel.h" />
+    <ClInclude Include="..\..\Public\ipc\ipcpipesvr.h" />
+    <ClInclude Include="..\..\Public\ipc\ipcpipesvrchannel.h" />
+    <ClInclude Include="..\..\Public\ipc\ipcrefcount.h" />
+    <ClInclude Include="..\..\Public\ipc\ipc_def.h" />
+    <ClInclude Include="..\..\Public\ipc\jsonparser\iipccallfilter.h" />
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcerror.h" />
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcexception.h" />
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcfuncmgr.h" />
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcjsonconvert.h" />
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcjsonparam.h" />
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcjsonrun.h" />
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipclocation.h" />
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipclocker.h" />
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcpublic.h" />
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcutfconv.h" />
+    <ClInclude Include="..\..\Public\jsonlib\lib_json\json_batchallocator.h" />
     <ClInclude Include="3rd\disasm-lib\cpu.h" />
     <ClInclude Include="3rd\disasm-lib\disasm.h" />
     <ClInclude Include="3rd\disasm-lib\disasm_x86.h" />
@@ -164,6 +188,14 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Public\ipc\ipccallclient.cpp" />
+    <ClCompile Include="..\..\Public\ipc\ipcjsonprocessor.cpp" />
+    <ClCompile Include="..\..\Public\ipc\ipcpipecltchannel.cpp" />
+    <ClCompile Include="..\..\Public\ipc\ipcpipesvr.cpp" />
+    <ClCompile Include="..\..\Public\ipc\ipcpipesvrchannel.cpp" />
+    <ClCompile Include="..\..\Public\jsonlib\lib_json\json_reader.cpp" />
+    <ClCompile Include="..\..\Public\jsonlib\lib_json\json_value.cpp" />
+    <ClCompile Include="..\..\Public\jsonlib\lib_json\json_writer.cpp" />
     <ClCompile Include="3rd\disasm-lib\cpu.c" />
     <ClCompile Include="3rd\disasm-lib\disasm.c" />
     <ClCompile Include="3rd\disasm-lib\disasm_x86.c" />
@@ -185,6 +217,12 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Public\jsonlib\lib_json\json_internalarray.inl" />
+    <None Include="..\..\Public\jsonlib\lib_json\json_internalmap.inl" />
+    <None Include="..\..\Public\jsonlib\lib_json\json_valueiterator.inl" />
+    <None Include="..\..\Public\jsonlib\lib_json\sconscript" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

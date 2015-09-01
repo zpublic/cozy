@@ -10,6 +10,14 @@
 
 #include "windows.h"
 
+namespace zl
+{
+    namespace Ipc
+    {
+        class ipcPipeCltChannel;
+    }
+}
+
 class CozyDictHook
 {
 public:
@@ -24,15 +32,19 @@ public:
     CozyDictHook();
     ~CozyDictHook();
 
-    void ResetAPIHookCallback();
     void InitHookEnv();
 
-    bool SetTextOutAHook(_TextOutA lpCallback);
-    bool SetTextOutWHook(_TextOutW lpCallback);
-    bool SetExtTextOutAHook(_ExtTextOutA lpCallback);
-    bool SetExtTextOutWHook(_ExtTextOutW lpCallback);
+    bool SetTextOutAHook();
+    bool SetTextOutWHook();
+    bool SetExtTextOutAHook();
+    bool SetExtTextOutWHook();
 
     bool UnsetAllApiHook();
+
+public:
+    static bool StartPipe();
+    static bool StopPipe();
+    static bool SendPipeData(LPVOID lpBytes, DWORD dwSize);
 
 public:
     static BOOL WINAPI TextOutAProc(HDC hdc, int x, int y, LPCSTR lpString, int c);
@@ -47,20 +59,15 @@ private:
     static _ExtTextOutW m_lpTrueExtTextOutW;
 
 private:
-
-    static _TextOutA m_lpTextOutACallback;
-    static _TextOutW m_lpTextOutWCallback;
-    static _ExtTextOutA m_lpExtTextOutACallback;
-    static _ExtTextOutW m_lpExtTextOutWCallback;
+    static zl::Ipc::ipcPipeCltChannel* m_lpPipeClt;
 };
 
 
-EXTERN_C COZYDICTAPI void ResetAPIHookCallback();
 EXTERN_C COZYDICTAPI void InitHookEnv();
-EXTERN_C COZYDICTAPI bool SetTextOutAHook(CozyDictHook::_TextOutA lpCallback);
-EXTERN_C COZYDICTAPI bool SetTextOutWHook(CozyDictHook::_TextOutW lpCallback);
-EXTERN_C COZYDICTAPI bool SetExtTextOutAHook(CozyDictHook::_ExtTextOutA lpCallback);
-EXTERN_C COZYDICTAPI bool SetExtTextOutWHook(CozyDictHook::_ExtTextOutW lpCallback);
+EXTERN_C COZYDICTAPI bool SetTextOutAHook();
+EXTERN_C COZYDICTAPI bool SetTextOutWHook();
+EXTERN_C COZYDICTAPI bool SetExtTextOutAHook();
+EXTERN_C COZYDICTAPI bool SetExtTextOutWHook();
 EXTERN_C COZYDICTAPI bool UnsetAllHook();
 
 #endif // __COZY_DICK_HOOK__
