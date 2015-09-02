@@ -82,20 +82,19 @@ bool CozyDictHook::SetExtTextOutWHook()
 bool CozyDictHook::UnsetAllApiHook()
 {
     bool bFlag = true;
-
-    if (!Mhook_Unhook(reinterpret_cast<LPVOID*>(m_lpTrueTextOutA)))
+    if (!Mhook_Unhook(reinterpret_cast<LPVOID*>(&m_lpTrueTextOutA)))
     {
         bFlag = false;
     }
-    if (!Mhook_Unhook(reinterpret_cast<LPVOID*>(m_lpTrueTextOutW)))
+    if (!Mhook_Unhook(reinterpret_cast<LPVOID*>(&m_lpTrueTextOutW)))
     {
         bFlag = false;
     }
-    //if (!Mhook_Unhook(reinterpret_cast<LPVOID*>(m_lpTrueExtTextOutA)))
+    //if (!Mhook_Unhook(reinterpret_cast<LPVOID*>(&m_lpTrueExtTextOutA)))
     {
         bFlag = false;
     }
-    //if (!Mhook_Unhook(reinterpret_cast<LPVOID*>(m_lpTrueExtTextOutW)))
+    //if (!Mhook_Unhook(reinterpret_cast<LPVOID*>(&m_lpTrueExtTextOutW)))
     {
         bFlag = false;
     }
