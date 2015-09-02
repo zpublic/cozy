@@ -81,23 +81,15 @@ namespace CozyBili.WpfExe
             switch (e.Danmaku.MsgType)
             {
                 case MsgTypeEnum.Comment:
-                    if (textBox1.Dispatcher.CheckAccess())
                     {
-                        _messageQueue.Enqueue("收到彈幕:" + (e.Danmaku.isAdmin ? "[管]" : "") + (e.Danmaku.isVIP ? "[爷]" : "") + e.Danmaku.CommentUser + " 說: " + e.Danmaku.CommentText);
-                        textBox1.Text = string.Join("\n", _messageQueue);
-                        textBox1.ScrollToEnd();
+                        OnComment(e);
+                        break;
                     }
-                    else
-                    {
-                        textBox1.Dispatcher.BeginInvoke(
-                            DispatcherPriority.Normal,
-                            new Action(() => b_ReceivedDanmaku(sender, e)));
-                    }
-                    break;
                 case MsgTypeEnum.GiftTop:
                     break;
                 case MsgTypeEnum.GiftSend:
                     {
+                        OnGiftSend(e);
                         break;
                     }
                 case MsgTypeEnum.Welcome:
@@ -107,8 +99,46 @@ namespace CozyBili.WpfExe
             }
         }
 
+        private void OnComment(ReceivedDanmakuArgs e)
+        {
+            if (textBox1.Dispatcher.CheckAccess())
+            {
+                _messageQueue.Enqueue((e.Danmaku.isAdmin ? "[管]" : "") + (e.Danmaku.isVIP ? "[爷]" : "") + e.Danmaku.CommentUser + " 说:  " + e.Danmaku.CommentText);
+                textBox1.Text = string.Join("\n", _messageQueue);
+                textBox1.ScrollToEnd();
+            }
+            else
+            {
+                textBox1.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Normal,
+                    new Action(() => OnComment(e)));
+            }
+        }
+
+        private void OnGiftSend(ReceivedDanmakuArgs e)
+        {
+            if (textBox1.Dispatcher.CheckAccess())
+            {
+                _messageQueue.Enqueue(
+                    e.Danmaku.GiftUser
+                    + " 赠送：  "
+                    + e.Danmaku.GiftName
+                    + " x "
+                    + e.Danmaku.GiftNum);
+                textBox1.Text = string.Join("\n", _messageQueue);
+                textBox1.ScrollToEnd();
+            }
+            else
+            {
+                textBox1.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Normal,
+                    new Action(() => OnGiftSend(e)));
+            }
+        }
+
         private void b_Disconnected(object sender, DisconnectEvtArgs args)
         {
         }
+        
     }
 }
