@@ -21,13 +21,13 @@ namespace zl
 class CozyDictHook
 {
 public:
-    typedef BOOL(WINAPI * _TextOutA)(HDC /*hdc*/, int /*x*/, int /*y*/, LPCSTR /*lpString*/, int /*c*/);
+    typedef BOOL(CALLBACK * _TextOutA)(HDC /*hdc*/, int /*x*/, int /*y*/, LPCSTR /*lpString*/, int /*c*/);
 
-    typedef BOOL(WINAPI * _TextOutW)(HDC /*hdc*/, int /*x*/, int /*y*/, LPCWSTR /*lpString*/, int /*c*/);
+    typedef BOOL(CALLBACK * _TextOutW)(HDC /*hdc*/, int /*x*/, int /*y*/, LPCWSTR /*lpString*/, int /*c*/);
 
-    typedef BOOL(WINAPI * _ExtTextOutA)(HDC /*hdc*/, int /*x*/, int /*y*/, UINT /*options*/, const RECT * /*lprect*/, LPCSTR /*lpString*/, UINT /*c*/, const INT * /*lpDx*/);
+    typedef BOOL(CALLBACK * _ExtTextOutA)(HDC /*hdc*/, int /*x*/, int /*y*/, UINT /*options*/, const RECT * /*lprect*/, LPCSTR /*lpString*/, UINT /*c*/, const INT * /*lpDx*/);
 
-    typedef BOOL(WINAPI * _ExtTextOutW)(HDC /*hdc*/, int /*x*/, int /*y*/, UINT /*options*/, const RECT * /*lprect*/, LPCWSTR /*lpString*/, UINT /*c*/, const INT * /*lpDx*/);
+    typedef BOOL(CALLBACK * _ExtTextOutW)(HDC /*hdc*/, int /*x*/, int /*y*/, UINT /*options*/, const RECT * /*lprect*/, LPCWSTR /*lpString*/, UINT /*c*/, const INT * /*lpDx*/);
 public: 
     CozyDictHook();
     ~CozyDictHook();
@@ -41,22 +41,31 @@ public:
 
     bool UnsetAllApiHook();
 
+    bool SetCBTHook();
+
+    bool UnsetCBTHook();
+
+    static void SetHInstance(HINSTANCE hInstance);
+
 public:
     static bool StartPipe();
     static bool StopPipe();
     static bool SendPipeData(LPVOID lpBytes, DWORD dwSize);
 
 public:
-    static BOOL WINAPI TextOutAProc(HDC hdc, int x, int y, LPCSTR lpString, int c);
-    static BOOL WINAPI TextOutWProc(HDC hdc, int x, int y, LPCWSTR lpString, int c);
-    static BOOL WINAPI ExtTextOutAProc(HDC hdc, int x, int y, UINT options, const RECT * lprect, LPCSTR lpString, UINT c, const INT * lpDx);
-    static BOOL WINAPI ExtTextOutWProc(HDC hdc, int x, int y, UINT options, const RECT * lprect, LPCWSTR lpString, UINT c, const INT * lpDx);
+    static BOOL CALLBACK TextOutAProc(HDC hdc, int x, int y, LPCSTR lpString, int c);
+    static BOOL CALLBACK TextOutWProc(HDC hdc, int x, int y, LPCWSTR lpString, int c);
+    static BOOL CALLBACK ExtTextOutAProc(HDC hdc, int x, int y, UINT options, const RECT * lprect, LPCSTR lpString, UINT c, const INT * lpDx);
+    static BOOL CALLBACK ExtTextOutWProc(HDC hdc, int x, int y, UINT options, const RECT * lprect, LPCWSTR lpString, UINT c, const INT * lpDx);
 
+    static LRESULT CALLBACK CBTHookProc(int nCode, WPARAM wParam, LPARAM lParam);
 private:
     static _TextOutA m_lpTrueTextOutA;
     static _TextOutW m_lpTrueTextOutW;
     static _ExtTextOutA m_lpTrueExtTextOutA;
     static _ExtTextOutW m_lpTrueExtTextOutW;
+
+    static HINSTANCE m_hInstance;
 
 private:
     static zl::Ipc::ipcPipeCltChannel* m_lpPipeClt;
@@ -64,11 +73,9 @@ private:
 
 
 EXTERN_C COZYDICTAPI void InitHookEnv();
-EXTERN_C COZYDICTAPI bool SetTextOutAHook();
-EXTERN_C COZYDICTAPI bool SetTextOutWHook();
-EXTERN_C COZYDICTAPI bool SetExtTextOutAHook();
-EXTERN_C COZYDICTAPI bool SetExtTextOutWHook();
-EXTERN_C COZYDICTAPI bool UnsetAllHook();
 EXTERN_C COZYDICTAPI bool SetAllHook();
+EXTERN_C COZYDICTAPI bool UnsetAllHook();
+EXTERN_C COZYDICTAPI bool SetCBTHook();
+EXTERN_C COZYDICTAPI bool UnSetCBTHook();
 
 #endif // __COZY_DICK_HOOK__
