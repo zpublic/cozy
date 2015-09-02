@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="3rd">
+      <UniqueIdentifier>{5413a937-9c96-4ab8-9adf-09d2a8c0f97e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\ipc">
+      <UniqueIdentifier>{0ef52098-74db-43f4-af4f-52c176abb3e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\ipc\json">
+      <UniqueIdentifier>{16553c36-c17b-4b57-928d-2e1f4359f4f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\ipc\jsonparser">
+      <UniqueIdentifier>{4cc38daf-1487-4564-866a-842449afa0dc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="CozyDictBase.h" />
+    <ClInclude Include="..\..\Public\ipc\ipc_def.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\ipccallclient.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\ipcimsgprocessor.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\ipcjsonprocessor.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\ipcpipecltchannel.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\ipcpipesvr.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\ipcpipesvrchannel.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\ipcrefcount.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\iipccallfilter.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcerror.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcexception.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcfuncmgr.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcjsonconvert.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcjsonparam.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcjsonrun.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipclocation.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipclocker.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcpublic.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcutfconv.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\jsonlib\lib_json\json_batchallocator.h">
+      <Filter>3rd\ipc\json</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="CozyDictBase.cpp" />
+    <ClCompile Include="..\..\Public\ipc\ipccallclient.cpp">
+      <Filter>3rd\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\ipc\ipcjsonprocessor.cpp">
+      <Filter>3rd\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\ipc\ipcpipecltchannel.cpp">
+      <Filter>3rd\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\ipc\ipcpipesvr.cpp">
+      <Filter>3rd\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\ipc\ipcpipesvrchannel.cpp">
+      <Filter>3rd\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\jsonlib\lib_json\json_reader.cpp">
+      <Filter>3rd\ipc\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\jsonlib\lib_json\json_value.cpp">
+      <Filter>3rd\ipc\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\jsonlib\lib_json\json_writer.cpp">
+      <Filter>3rd\ipc\json</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Public\jsonlib\lib_json\json_internalarray.inl">
+      <Filter>3rd\ipc\json</Filter>
+    </None>
+    <None Include="..\..\Public\jsonlib\lib_json\json_internalmap.inl">
+      <Filter>3rd\ipc\json</Filter>
+    </None>
+    <None Include="..\..\Public\jsonlib\lib_json\json_valueiterator.inl">
+      <Filter>3rd\ipc\json</Filter>
+    </None>
+    <None Include="..\..\Public\jsonlib\lib_json\sconscript">
+      <Filter>3rd\ipc\json</Filter>
+    </None>
+  </ItemGroup>
+</Project>

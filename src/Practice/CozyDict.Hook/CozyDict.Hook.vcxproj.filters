@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="3rd">
+      <UniqueIdentifier>{46f03a87-37c0-4140-8d81-c98bfc328635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\disasm-lib">
+      <UniqueIdentifier>{abc5cd1f-6f30-4022-ae00-46c02ee66f12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\mhook-lib">
+      <UniqueIdentifier>{e4a23253-4868-4f3b-9ec1-2f7a59abb02a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\ipc">
+      <UniqueIdentifier>{125338da-8d2f-42e7-97fd-781c86541270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\ipc\json">
+      <UniqueIdentifier>{33302bbf-ceae-4bba-ab77-6c0a7f91dc21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\ipc\jsonparser">
+      <UniqueIdentifier>{732a6b13-0084-42d9-9f4d-4ffc7ada1902}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="3rd\disasm-lib\cpu.h">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="3rd\disasm-lib\disasm.h">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="3rd\disasm-lib\disasm_x86.h">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="3rd\disasm-lib\disasm_x86_tables.h">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="3rd\disasm-lib\misc.h">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="3rd\mhook-lib\mhook.h">
+      <Filter>3rd\mhook-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="CozyDictHook.h" />
+    <ClInclude Include="..\..\Public\ipc\ipc_def.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\ipccallclient.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\ipcimsgprocessor.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\ipcjsonprocessor.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\ipcpipecltchannel.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\ipcpipesvr.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\ipcpipesvrchannel.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\ipcrefcount.h">
+      <Filter>3rd\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\jsonlib\lib_json\json_batchallocator.h">
+      <Filter>3rd\ipc\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\iipccallfilter.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcerror.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcexception.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcfuncmgr.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcjsonconvert.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcjsonparam.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcjsonrun.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipclocation.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipclocker.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcpublic.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\ipc\jsonparser\ipcutfconv.h">
+      <Filter>3rd\ipc\jsonparser</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="3rd\disasm-lib\cpu.c">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rd\disasm-lib\disasm.c">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rd\disasm-lib\disasm_x86.c">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rd\disasm-lib\misc.c">
+      <Filter>3rd\disasm-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rd\mhook-lib\mhook.cpp">
+      <Filter>3rd\mhook-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="CozyDictHook.cpp" />
+    <ClCompile Include="..\..\Public\ipc\ipccallclient.cpp">
+      <Filter>3rd\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\ipc\ipcjsonprocessor.cpp">
+      <Filter>3rd\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\ipc\ipcpipecltchannel.cpp">
+      <Filter>3rd\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\ipc\ipcpipesvr.cpp">
+      <Filter>3rd\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\ipc\ipcpipesvrchannel.cpp">
+      <Filter>3rd\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\jsonlib\lib_json\json_reader.cpp">
+      <Filter>3rd\ipc\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\jsonlib\lib_json\json_value.cpp">
+      <Filter>3rd\ipc\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\jsonlib\lib_json\json_writer.cpp">
+      <Filter>3rd\ipc\json</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Public\jsonlib\lib_json\json_internalarray.inl">
+      <Filter>3rd\ipc\json</Filter>
+    </None>
+    <None Include="..\..\Public\jsonlib\lib_json\json_internalmap.inl">
+      <Filter>3rd\ipc\json</Filter>
+    </None>
+    <None Include="..\..\Public\jsonlib\lib_json\json_valueiterator.inl">
+      <Filter>3rd\ipc\json</Filter>
+    </None>
+    <None Include="..\..\Public\jsonlib\lib_json\sconscript">
+      <Filter>3rd\ipc\json</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -24,6 +24,17 @@ namespace CozyDungeon.Public.Controls
             }
         }
 
+        public void RemoveItem(CozyControl control)
+        {
+            this.RemoveChild(control);
+            Items.Remove(control);
+            RefreshItems();
+            if(ItemRemoveEventHandler != null)
+            {
+                ItemRemoveEventHandler(this, new ItemRemoveEventArgs(control));
+            }
+        }
+
         private void RefreshItems()
         {
             if (Orientation == ControlOrientation.Horizontal)
@@ -83,5 +94,7 @@ namespace CozyDungeon.Public.Controls
         public ControlOrientation Orientation { get; set; }
 
         public event EventHandler<ItemAddEventArgs> ItemAddEventHandler;
+
+        public event EventHandler<ItemRemoveEventArgs> ItemRemoveEventHandler;
     }
 }
