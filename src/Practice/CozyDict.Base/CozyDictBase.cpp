@@ -74,8 +74,8 @@ bool CozyDictBase::InvalidateMouseWindow(int nXpos, int nYPos)
     RECT rect;
     rect.left = point.x;
     rect.top = point.y;
-    rect.right = rect.left + 16;
-    rect.bottom = rect.top + 16;
+    rect.right = rect.left + 1;
+    rect.bottom = rect.top + 1;
 
     if (!::InvalidateRect(hWnd, &rect, false))
     {
