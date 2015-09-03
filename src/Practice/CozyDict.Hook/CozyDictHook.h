@@ -14,7 +14,7 @@ namespace zl
 {
     namespace Ipc
     {
-        class ipcPipeCltChannel;
+        class ipcCallClient;
     }
 }
 
@@ -50,7 +50,7 @@ public:
 public:
     static bool StartPipe();
     static bool StopPipe();
-    static bool SendPipeData(LPVOID lpBytes, DWORD dwSize);
+    static bool SendPipeData(LPCTSTR lpBytes, DWORD dwSize);
 
 public:
     static BOOL CALLBACK TextOutAProc(HDC hdc, int x, int y, LPCSTR lpString, int c);
@@ -68,7 +68,7 @@ private:
     static HINSTANCE m_hInstance;
 
 private:
-    static zl::Ipc::ipcPipeCltChannel* m_lpPipeClt;
+    static zl::Ipc::ipcCallClient* m_lpPipeClt;
 };
 
 

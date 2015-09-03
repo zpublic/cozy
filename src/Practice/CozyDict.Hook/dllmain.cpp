@@ -13,11 +13,13 @@ BOOL APIENTRY DllMain( HMODULE hModule,
         CozyDictHook::SetHInstance(hModule);
         InitHookEnv();
         SetAllHook();
+        CozyDictHook::StartPipe();
         break;
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:
         break;
 	case DLL_PROCESS_DETACH:
+        CozyDictHook::StopPipe();
         UnsetAllHook();
         break;
 	}

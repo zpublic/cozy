@@ -5,12 +5,11 @@
 #include "CozyDictHook.h"
 
 #include "3rd/mhook-lib/mhook.h"
-#include "ipcpipecltchannel.h"
+#include "ipccallclient.h"
 #include "cstring"
 
 #pragma data_seg("CozyDictHook")
 
-DWORD dwMainPid = 0;
 HHOOK hCBTHook = nullptr;
 
 #pragma data_seg()
@@ -20,7 +19,7 @@ CozyDictHook::_TextOutW CozyDictHook::m_lpTrueTextOutW = nullptr;
 CozyDictHook::_ExtTextOutA CozyDictHook::m_lpTrueExtTextOutA = nullptr;
 CozyDictHook::_ExtTextOutW CozyDictHook::m_lpTrueExtTextOutW = nullptr;
 
-zl::Ipc::ipcPipeCltChannel* CozyDictHook::m_lpPipeClt = nullptr;
+zl::Ipc::ipcCallClient* CozyDictHook::m_lpPipeClt = nullptr;
 
 HINSTANCE CozyDictHook::m_hInstance = nullptr;
 
@@ -108,33 +107,45 @@ LRESULT CALLBACK CozyDictHook::CBTHookProc(int nCode, WPARAM wParam, LPARAM lPar
 
 BOOL CALLBACK CozyDictHook::TextOutAProc(HDC hdc, int x, int y, LPCSTR lpString, int c)
 {
-    SendPipeData((LPVOID)lpString, sizeof(*lpString) * std::strlen(lpString));
+    int len = MultiByteToWideChar(CP_ACP, 0, lpString, std::strlen(lpString), nullptr, 0);
+    LPWSTR lpWStr = new wchar_t[len + 1];
+    MultiByteToWideChar(CP_ACP, 0, lpString, std::strlen(lpString), lpWStr, len);
+    lpWStr[len] = '\0';
+    SendPipeData(lpWStr, len);
     return m_lpTrueTextOutA(hdc, x, y, lpString, c);
 }
 
 BOOL CALLBACK CozyDictHook::TextOutWProc(HDC hdc, int x, int y, LPCWSTR lpString, int c)
 {
-    SendPipeData((LPVOID)lpString, sizeof(*lpString) * std::wcslen(lpString));
+    SendPipeData(lpString, std::wcslen(lpString));
     return m_lpTrueTextOutW(hdc, x, y, lpString, c);
 }
 
 BOOL CALLBACK CozyDictHook::ExtTextOutAProc(HDC hdc, int x, int y, UINT options, const RECT * lprect, LPCSTR lpString, UINT c, const INT * lpDx)
 {
-    SendPipeData((LPVOID)lpString, sizeof(*lpString) * std::strlen(lpString));
+    int l = std::strlen(lpString);
+    int len = MultiByteToWideChar(CP_ACP, 0, lpString,l , nullptr, 0);
+    LPWSTR lpWStr = new wchar_t[len + 1];
+    MultiByteToWideChar(CP_ACP, 0, lpString, l, lpWStr, len);
+    lpWStr[len] = '\0';
+    SendPipeData(lpWStr, len);
     return m_lpTrueExtTextOutA(hdc, x, y, options, lprect, lpString, c, lpDx);
 }
 
 BOOL CALLBACK CozyDictHook::ExtTextOutWProc(HDC hdc, int x, int y, UINT options, const RECT * lprect, LPCWSTR lpString, UINT c, const INT * lpDx)
 {
-    SendPipeData((LPVOID)lpString, sizeof(*lpString) * std::wcslen(lpString));
+    SendPipeData(lpString, std::wcslen(lpString));
     return m_lpTrueExtTextOutW(hdc, x, y, options, lprect, lpString, c, lpDx);
 }
 
 bool CozyDictHook::StartPipe()
 {
-    m_lpPipeClt = new zl::Ipc::ipcPipeCltChannel();
-    m_lpPipeClt->SetPipeName(TEXT("\\\\.\\pipe\\CozyDictPipe"));
-    if (m_lpPipeClt->Connect())
+    if (m_lpPipeClt == nullptr)
+    {
+        m_lpPipeClt = new zl::Ipc::ipcCallClient();
+    }
+
+    if(m_lpPipeClt->ConnectServer(TEXT("\\\\.\\pipe\\CozyDictPipe")))
     {
         return true;
     }
@@ -147,16 +158,18 @@ bool CozyDictHook::StopPipe()
     {
         m_lpPipeClt->DisConnect();
         delete m_lpPipeClt;
+        m_lpPipeClt = nullptr;
         return true;
     }
     return false;
 }
 
-bool CozyDictHook::SendPipeData(LPVOID lpBytes, DWORD dwSize)
+bool CozyDictHook::SendPipeData(LPCTSTR lpBytes, DWORD dwSize)
 {
     if (m_lpPipeClt != nullptr)
     {
-        return !!m_lpPipeClt->Send(lpBytes, dwSize);
+        int nRetValue = 0;
+        return !!m_lpPipeClt->CallFunc("IPCProc", nRetValue, lpBytes, dwSize);
     }
     return false;
 }
@@ -202,8 +215,8 @@ COZYDICTAPI bool SetAllHook()
 {
     if (!CozyDictHookInstance.SetTextOutAHook()) return false;
     if (!CozyDictHookInstance.SetTextOutWHook()) return false;
-    if (!CozyDictHookInstance.SetExtTextOutAHook()) return false;
-    if (!CozyDictHookInstance.SetExtTextOutWHook()) return false;
+    // if (!CozyDictHookInstance.SetExtTextOutAHook()) return false;
+    // if (!CozyDictHookInstance.SetExtTextOutWHook()) return false;
     return true;
 }
 

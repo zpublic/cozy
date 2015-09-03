@@ -4,14 +4,17 @@
 #include "stdafx.h"
 #include "CozyDictBase.h"
 
-#include "ipcpipesvrchannel.h"
+#include "jsonparser/ipcjsonconvert.h"
+#include "ipcpipesvr.h"
 #include "ipcjsonprocessor.h"
+#include "jsonparser/ipcfuncmgr.h"
 
 HHOOK CozyDictBase::m_hHook = nullptr;
 
 CozyDictBase::MouseHookCallback CozyDictBase::m_lpMouseCallback = nullptr;
 
 COZYDICTAPI CozyDictBase CozyDictBaseInstance;
+
 
 CozyDictBase::CozyDictBase()
 {
@@ -86,15 +89,9 @@ bool CozyDictBase::InvalidateMouseWindow(int nXpos, int nYPos)
 
 bool CozyDictBase::StartPipe()
 {
-    HANDLE hPipe = CreateNamedPipe(TEXT("\\\\.\\pipe\\CozyDictPipe"), PIPE_ACCESS_DUPLEX, PIPE_TYPE_BYTE | PIPE_READMODE_BYTE, 1, 0, 0, 1000, NULL);
-    if (hPipe == INVALID_HANDLE_VALUE)
-    {
-        return false;
-    }
-
-    m_lpPipeSvr = new zl::Ipc::ipcPipeSvrChannel();
-    m_lpPipeSvr->SetProcessor(new zl::Ipc::ipcJsonProcessor());
-    return !!m_lpPipeSvr->Start(hPipe);
+    m_lpPipeSvr = new zl::Ipc::ipcPipeSvr();
+    m_lpPipeSvr->SetMsgProcessor(new zl::Ipc::ipcJsonProcessor());
+    return m_lpPipeSvr->Start(TEXT("\\\\.\\pipe\\CozyDictPipe"));
 }
 
 bool CozyDictBase::StopPipe()
@@ -132,3 +129,11 @@ COZYDICTAPI bool StopPipe()
 {
     return CozyDictBaseInstance.StopPipe();
 }
+
+int IPCProc(LPCTSTR lpString, DWORD dwSize)
+{
+    MessageBox(0, 0, 0, 0);
+    return 0;
+}
+
+EXPORT_GLOBAL_FUNC_2(IPCProc, int, LPCTSTR, DWORD);

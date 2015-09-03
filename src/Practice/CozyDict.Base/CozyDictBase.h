@@ -12,7 +12,7 @@ namespace zl
 {
     namespace Ipc
     {
-        class ipcPipeSvrChannel;
+        class ipcPipeSvr;
     }
 }
 
@@ -42,7 +42,7 @@ private:
     static HHOOK m_hHook;
     static MouseHookCallback m_lpMouseCallback;
 
-    zl::Ipc::ipcPipeSvrChannel* m_lpPipeSvr;
+    zl::Ipc::ipcPipeSvr* m_lpPipeSvr;
 };
 
 EXTERN_C COZYDICTAPI bool SetMouseHook(CozyDictBase::MouseHookCallback lpCallback);
