@@ -9,26 +9,28 @@ namespace CozyDict.Core
 {
     public static class OutputUtil
     {
+        public delegate int IPCCallback(IntPtr lpString, uint dwPid);
+
+        [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool SetCBTHook();
+
+        [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool UnSetCBTHook();
+
+        [DllImport("kernel32.dll")]
+        public static extern int GetCurrentProcessId();
+
+        [DllImport(@"CozyDict.Base.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint GetMouseWindowPid(int x, int y);
+
+        [DllImport(@"CozyDict.Base.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool SetIPCCallback(IPCCallback callback);
+
         [DllImport(@"CozyDict.Base.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool StartPipe();
 
         [DllImport(@"CozyDict.Base.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool StopPipe();
-
-        [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void InitHookEnv();
-
-        [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool SetTextOutAHook();
-
-        [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool SetTextOutWHook();
-
-        [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool SetExtTextOutAHook();
-
-        [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool SetExtTextOutWHook();
 
         [DllImport(@"CozyDict.Hook.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool UnsetAllHook();

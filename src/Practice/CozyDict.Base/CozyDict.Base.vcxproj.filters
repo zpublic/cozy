@@ -85,6 +85,7 @@
     <ClInclude Include="..\..\Public\jsonlib\lib_json\json_batchallocator.h">
       <Filter>3rd\ipc\json</Filter>
     </ClInclude>
+    <ClInclude Include="CozyDictBaseExport.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -114,6 +115,7 @@
     <ClCompile Include="..\..\Public\jsonlib\lib_json\json_writer.cpp">
       <Filter>3rd\ipc\json</Filter>
     </ClCompile>
+    <ClCompile Include="CozyDictBaseExport.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Public\jsonlib\lib_json\json_internalarray.inl">
