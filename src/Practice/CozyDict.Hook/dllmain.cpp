@@ -11,16 +11,13 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	{
 	case DLL_PROCESS_ATTACH:
         CozyDictHook::SetHInstance(hModule);
-        InitHookEnv();
-        SetAllHook();
-        CozyDictHook::StartPipe();
+        CozyDictHook::ProcessAttach();
         break;
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:
         break;
 	case DLL_PROCESS_DETACH:
-        CozyDictHook::StopPipe();
-        UnsetAllHook();
+        CozyDictHook::ProcessDetach();
         break;
 	}
 	return TRUE;

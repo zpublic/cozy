@@ -48,7 +48,6 @@
     <ClInclude Include="3rd\mhook-lib\mhook.h">
       <Filter>3rd\mhook-lib</Filter>
     </ClInclude>
-    <ClInclude Include="CozyDictHook.h" />
     <ClInclude Include="..\..\Public\ipc\ipc_def.h">
       <Filter>3rd\ipc</Filter>
     </ClInclude>
@@ -109,6 +108,8 @@
     <ClInclude Include="..\..\Public\ipc\jsonparser\ipcutfconv.h">
       <Filter>3rd\ipc\jsonparser</Filter>
     </ClInclude>
+    <ClInclude Include="CozyDictHook.h" />
+    <ClInclude Include="CozyDictHookExport.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="..\..\Public\jsonlib\lib_json\json_writer.cpp">
       <Filter>3rd\ipc\json</Filter>
     </ClCompile>
+    <ClCompile Include="CozyDictHookExport.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Public\jsonlib\lib_json\json_internalarray.inl">

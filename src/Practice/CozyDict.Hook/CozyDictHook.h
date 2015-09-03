@@ -1,13 +1,6 @@
 #ifndef __COZY_DICK_HOOK__
 #define __COZY_DICK_HOOK__
 
-#define COZYDICTEXPORT
-#ifndef COZYDICTEXPORT
-#define COZYDICTAPI _declspec(dllexport)
-#else
-#define COZYDICTAPI _declspec(dllexport) 
-#endif
-
 #include "windows.h"
 
 namespace zl
@@ -32,25 +25,27 @@ public:
     CozyDictHook();
     ~CozyDictHook();
 
-    void InitHookEnv();
+    static void SetHInstance(HINSTANCE hInstance);
 
+    static void ProcessAttach();
+    static void ProcessDetach();
+
+    bool SetCBTHook();
+    bool UnsetCBTHook();
+
+private:
+    void InitHookEnv();
     bool SetTextOutAHook();
     bool SetTextOutWHook();
     bool SetExtTextOutAHook();
     bool SetExtTextOutWHook();
-
+    void SetAllHook();
     bool UnsetAllApiHook();
 
-    bool SetCBTHook();
-
-    bool UnsetCBTHook();
-
-    static void SetHInstance(HINSTANCE hInstance);
-
-public:
     static bool StartPipe();
     static bool StopPipe();
     static bool SendPipeData(LPCTSTR lpBytes);
+    static bool SendPipeData(LPCSTR lpBytes);
 
 public:
     static BOOL CALLBACK TextOutAProc(HDC hdc, int x, int y, LPCSTR lpString, int c);
@@ -59,6 +54,7 @@ public:
     static BOOL CALLBACK ExtTextOutWProc(HDC hdc, int x, int y, UINT options, const RECT * lprect, LPCWSTR lpString, UINT c, const INT * lpDx);
 
     static LRESULT CALLBACK CBTHookProc(int nCode, WPARAM wParam, LPARAM lParam);
+
 private:
     static _TextOutA m_lpTrueTextOutA;
     static _TextOutW m_lpTrueTextOutW;
@@ -70,12 +66,5 @@ private:
 private:
     static zl::Ipc::ipcCallClient* m_lpPipeClt;
 };
-
-
-EXTERN_C COZYDICTAPI void InitHookEnv();
-EXTERN_C COZYDICTAPI bool SetAllHook();
-EXTERN_C COZYDICTAPI bool UnsetAllHook();
-EXTERN_C COZYDICTAPI bool SetCBTHook();
-EXTERN_C COZYDICTAPI bool UnSetCBTHook();
 
 #endif // __COZY_DICK_HOOK__

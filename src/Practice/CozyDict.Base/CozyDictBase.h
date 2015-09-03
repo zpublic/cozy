@@ -1,13 +1,6 @@
 #ifndef __COZY_DICT_BASE__
 #define __COZY_DICT_BASE__
 
-#define COZYDICTEXPORT
-#ifndef COZYDICTEXPORT
-#define COZYDICTAPI _declspec(dllexport)
-#else
-#define COZYDICTAPI _declspec(dllexport) 
-#endif
-
 namespace zl
 {
     namespace Ipc
@@ -53,13 +46,5 @@ private:
 
     zl::Ipc::ipcPipeSvr* m_lpPipeSvr;
 };
-
-EXTERN_C COZYDICTAPI bool SetMouseHook(CozyDictBase::MouseHookCallback lpCallback);
-EXTERN_C COZYDICTAPI bool UnSetMouseHook();
-EXTERN_C COZYDICTAPI bool InvalidateMouseWindow(int nXpos, int nYPos);
-EXTERN_C COZYDICTAPI bool StartPipe();
-EXTERN_C COZYDICTAPI bool StopPipe();
-EXTERN_C COZYDICTAPI void SetIPCCallback(CozyDictBase::IPCProcCallback lpCallback);
-EXTERN_C COZYDICTAPI DWORD GetMouseWindowPid(int xPox, int yPos);
 
 #endif

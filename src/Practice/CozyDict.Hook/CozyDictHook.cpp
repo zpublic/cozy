@@ -10,7 +10,7 @@
 
 #pragma data_seg("CozyDictHook")
 
-HHOOK hCBTHook = nullptr;
+HHOOK g_hCBTHook = nullptr;
 
 #pragma data_seg()
 
@@ -22,8 +22,6 @@ CozyDictHook::_ExtTextOutW CozyDictHook::m_lpTrueExtTextOutW = nullptr;
 zl::Ipc::ipcCallClient* CozyDictHook::m_lpPipeClt = nullptr;
 
 HINSTANCE CozyDictHook::m_hInstance = nullptr;
-
-COZYDICTAPI CozyDictHook CozyDictHookInstance;
 
 CozyDictHook::CozyDictHook()
 {
@@ -89,11 +87,11 @@ bool CozyDictHook::UnsetAllApiHook()
     {
         bFlag = false;
     }
-    //if (!Mhook_Unhook(reinterpret_cast<LPVOID*>(&m_lpTrueExtTextOutA)))
+    if (!Mhook_Unhook(reinterpret_cast<LPVOID*>(&m_lpTrueExtTextOutA)))
     {
         bFlag = false;
     }
-    //if (!Mhook_Unhook(reinterpret_cast<LPVOID*>(&m_lpTrueExtTextOutW)))
+    if (!Mhook_Unhook(reinterpret_cast<LPVOID*>(&m_lpTrueExtTextOutW)))
     {
         bFlag = false;
     }
@@ -102,16 +100,12 @@ bool CozyDictHook::UnsetAllApiHook()
 
 LRESULT CALLBACK CozyDictHook::CBTHookProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
-    return ::CallNextHookEx(hCBTHook, nCode, wParam, lParam);
+    return ::CallNextHookEx(g_hCBTHook, nCode, wParam, lParam);
 }
 
 BOOL CALLBACK CozyDictHook::TextOutAProc(HDC hdc, int x, int y, LPCSTR lpString, int c)
 {
-    int len = MultiByteToWideChar(CP_ACP, 0, lpString, std::strlen(lpString), nullptr, 0);
-    LPWSTR lpWStr = new wchar_t[len + 1];
-    MultiByteToWideChar(CP_ACP, 0, lpString, std::strlen(lpString), lpWStr, len);
-    lpWStr[len] = '\0';
-    SendPipeData(lpWStr);
+    SendPipeData(lpString);
     return m_lpTrueTextOutA(hdc, x, y, lpString, c);
 }
 
@@ -123,12 +117,7 @@ BOOL CALLBACK CozyDictHook::TextOutWProc(HDC hdc, int x, int y, LPCWSTR lpString
 
 BOOL CALLBACK CozyDictHook::ExtTextOutAProc(HDC hdc, int x, int y, UINT options, const RECT * lprect, LPCSTR lpString, UINT c, const INT * lpDx)
 {
-    int l = std::strlen(lpString);
-    int len = MultiByteToWideChar(CP_ACP, 0, lpString,l , nullptr, 0);
-    LPWSTR lpWStr = new wchar_t[len + 1];
-    MultiByteToWideChar(CP_ACP, 0, lpString, l, lpWStr, len);
-    lpWStr[len] = '\0';
-    SendPipeData(lpWStr);
+    SendPipeData(lpString);
     return m_lpTrueExtTextOutA(hdc, x, y, options, lprect, lpString, c, lpDx);
 }
 
@@ -166,7 +155,17 @@ bool CozyDictHook::StopPipe()
 
 bool CozyDictHook::SendPipeData(LPCTSTR lpBytes)
 {
-    if (m_lpPipeClt != nullptr)
+    if (m_lpPipeClt != nullptr && lpBytes != nullptr)
+    {
+        int nRetValue = 0;
+        return !!m_lpPipeClt->CallFunc("IPCProc", nRetValue, lpBytes, ::GetCurrentProcessId());
+    }
+    return false;
+}
+
+bool CozyDictHook::SendPipeData(LPCSTR lpBytes)
+{
+    if (m_lpPipeClt != nullptr && lpBytes != nullptr)
     {
         int nRetValue = 0;
         return !!m_lpPipeClt->CallFunc("IPCProc", nRetValue, lpBytes, ::GetCurrentProcessId());
@@ -176,8 +175,8 @@ bool CozyDictHook::SendPipeData(LPCTSTR lpBytes)
 
 bool CozyDictHook::SetCBTHook()
 {
-    hCBTHook = ::SetWindowsHookEx(WH_CBT, CBTHookProc, m_hInstance, 0);
-    if (hCBTHook == nullptr)
+    g_hCBTHook = ::SetWindowsHookEx(WH_CBT, CBTHookProc, m_hInstance, 0);
+    if (g_hCBTHook == nullptr)
     {
         return false;
     }
@@ -186,9 +185,9 @@ bool CozyDictHook::SetCBTHook()
 
 bool CozyDictHook::UnsetCBTHook()
 {
-    if (hCBTHook != nullptr)
+    if (g_hCBTHook != nullptr)
     {
-        if (::UnhookWindowsHookEx(hCBTHook))
+        if (::UnhookWindowsHookEx(g_hCBTHook))
         {
             return true;
         }
@@ -201,31 +200,10 @@ void CozyDictHook::SetHInstance(HINSTANCE hInstance)
     m_hInstance = hInstance;
 }
 
-COZYDICTAPI void InitHookEnv()
+void CozyDictHook::SetAllHook()
 {
-    CozyDictHookInstance.InitHookEnv();
-}
-
-COZYDICTAPI bool UnsetAllHook()
-{
-    return CozyDictHookInstance.UnsetAllApiHook();
-}
-
-COZYDICTAPI bool SetAllHook()
-{
-    if (!CozyDictHookInstance.SetTextOutAHook()) return false;
-    if (!CozyDictHookInstance.SetTextOutWHook()) return false;
-    // if (!CozyDictHookInstance.SetExtTextOutAHook()) return false;
-    // if (!CozyDictHookInstance.SetExtTextOutWHook()) return false;
-    return true;
-}
-
-COZYDICTAPI bool SetCBTHook()
-{
-    return CozyDictHookInstance.SetCBTHook();
-}
-
-COZYDICTAPI bool UnSetCBTHook()
-{
-    return CozyDictHookInstance.UnsetCBTHook();
+    SetTextOutAHook();
+    SetTextOutWHook();
+    SetExtTextOutAHook();
+    SetExtTextOutWHook();
 }

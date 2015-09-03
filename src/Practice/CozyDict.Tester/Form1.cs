@@ -58,7 +58,8 @@ namespace CozyDict.Tester
 
             IPCCallback = (lpString, dwPid) =>
             {
-                if (dwPid != 0 && dwPid == OutputUtil.GetMouseWindowPid(x, y))
+
+                if (dwPid != 0 && dwPid != OutputUtil.GetCurrentProcessId() && dwPid == OutputUtil.GetMouseWindowPid(x, y))
                 {
                     string str = Marshal.PtrToStringAuto(lpString);
                     syncContext.Post((o) => 
