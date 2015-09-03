@@ -50,7 +50,7 @@ public:
 public:
     static bool StartPipe();
     static bool StopPipe();
-    static bool SendPipeData(LPCTSTR lpBytes, DWORD dwSize);
+    static bool SendPipeData(LPCTSTR lpBytes);
 
 public:
     static BOOL CALLBACK TextOutAProc(HDC hdc, int x, int y, LPCSTR lpString, int c);

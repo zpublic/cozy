@@ -12,6 +12,7 @@
 HHOOK CozyDictBase::m_hHook = nullptr;
 
 CozyDictBase::MouseHookCallback CozyDictBase::m_lpMouseCallback = nullptr;
+CozyDictBase::IPCProcCallback CozyDictBase::m_lpIpcCallback = nullptr;
 
 COZYDICTAPI CozyDictBase CozyDictBaseInstance;
 
@@ -105,6 +106,33 @@ bool CozyDictBase::StopPipe()
     return false;
 }
 
+void CozyDictBase::SetIPCCallback(IPCProcCallback lpCallback)
+{
+    m_lpIpcCallback = lpCallback;
+}
+
+int CozyDictBase::IPCProc(LPCTSTR lpString, DWORD dwPid)
+{
+    if (m_lpIpcCallback != nullptr)
+    {
+        return m_lpIpcCallback(lpString, dwPid);
+    }
+    return 0;
+}
+
+DWORD CozyDictBase::GetMouseWindowPid(int xPos, int yPos)
+{
+    POINT point{ xPos, yPos };
+    HWND hWnd = ::WindowFromPoint(point);
+    if (hWnd == nullptr)
+    {
+        return 0;
+    }
+    DWORD dwPid = 0;
+    ::GetWindowThreadProcessId(hWnd, &dwPid);
+    return dwPid;
+}
+
 COZYDICTAPI bool SetMouseHook(CozyDictBase::MouseHookCallback lpCallback)
 {
     return CozyDictBaseInstance.SetMouseHook(lpCallback);
@@ -130,10 +158,19 @@ COZYDICTAPI bool StopPipe()
     return CozyDictBaseInstance.StopPipe();
 }
 
-int IPCProc(LPCTSTR lpString, DWORD dwSize)
+COZYDICTAPI void SetIPCCallback(CozyDictBase::IPCProcCallback lpCallback)
 {
-    MessageBox(0, 0, 0, 0);
-    return 0;
+    return CozyDictBaseInstance.SetIPCCallback(lpCallback);
+}
+
+COZYDICTAPI DWORD GetMouseWindowPid(int xPos, int yPos)
+{
+    return CozyDictBaseInstance.GetMouseWindowPid(xPos, yPos);
+}
+
+int IPCProc(LPCTSTR lpString, DWORD dwPid)
+{
+    return CozyDictBase::IPCProc(lpString, dwPid);
 }
 
 EXPORT_GLOBAL_FUNC_2(IPCProc, int, LPCTSTR, DWORD);
