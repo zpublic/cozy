@@ -17,9 +17,6 @@ Cozy
 >
 >
 > Public - 公共代码目录  
->> CozyPublic - 暂未整理的公共代码  
->> CozyPublic.WinApi - 调用windows api的包装  
->> FileUtilCpp - 文件操作util（c++）  
 >
 >
 > Practice - 实践工程目录  
