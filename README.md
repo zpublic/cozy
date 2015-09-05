@@ -76,6 +76,17 @@ Cozy
 >> [CozyDungeon - 卡牌游戏](doc/CozyDungeon.md)  
 >>
 >> CozyDict - 屏幕取词工具，使用hook和ocr技术结合实现  
+>>
+>> CozyDitto - 剪切板增强工具  
+>>
+>> CozyCapture - 截屏功能  
+>>
+>> CozyChart - 网页图表  
+>>
+>> CozyMail - 邮件功能  
+>>
+>> CozyMarkDown - markdown型静态博客  
+>>
   
 交流QQ群
 --------------------------------
