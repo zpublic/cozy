@@ -10,7 +10,8 @@ CozyPoker - 可联机的扑克游戏集
 >
 >> CozyPoker.Client.Core - 客户端逻辑  
 >> CozyPoker.Clinet.Game24Calc - 算24点游戏命令行单机版  
->> CozyPoker.Clinet.Bullfight - 斗牛游戏wpf联机版  
+>> CozyPoker.Clinet.Bullfight - 斗牛游戏WPF联机版  
+>> CozyPoker.Client.Mobile - 跨平台联机版  
 >
 >
 > 服务端
@@ -21,5 +22,7 @@ CozyPoker - 可联机的扑克游戏集
 >
 > 依赖
 >
->> CozyLua  
+>> CozyLua - lua脚本执行  
+>> Lidgren.Network - UDP网络库  
+>> MonoGame（CocosSharp） - 跨平台游戏引擎  
 >>
