@@ -35,8 +35,12 @@ private:
     LRESULT OnLeftButtonUp(UINT   uMsg, WPARAM   wParam, LPARAM   lParam, BOOL&   bHandled);
     LRESULT OnLeftButtonDown(UINT   uMsg, WPARAM   wParam, LPARAM   lParam, BOOL&   bHandled);
     LRESULT OnRightButtonClicked(UINT   uMsg, WPARAM   wParam, LPARAM   lParam, BOOL&   bHandled);
+
+    void BlendImage();
 private:
     CImage m_CaptureImg;
+    CImage m_ResultImg;
+    CImage m_MaskImg;
 
     LONG m_lWidth;
     LONG m_lHeight;
