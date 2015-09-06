@@ -18,7 +18,7 @@ bool CozyCaptureBase::CreateCaptureWindow()
 
 void CozyCaptureBase::EnterMainLoop()
 {
-    MSG   msg;
+    MSG msg;
     while (::GetMessage(&msg, NULL, 0, 0))
     {
         ::TranslateMessage(&msg);

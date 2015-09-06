@@ -47,9 +47,11 @@ private:
     LRESULT OnLeftButtonDownConvert(UINT   uMsg, WPARAM   wParam, LPARAM   lParam, BOOL&   bHandled);
     LRESULT OnRightButtonClickedConvert(UINT   uMsg, WPARAM   wParam, LPARAM   lParam, BOOL&   bHandled);
 
-    void BlendImage();
     void Exit();
+    void BlendImage();
+    void SendImageToClipboard();
 
+    static void Point2Rect(const POINT &pa, const POINT &pb, RECT * rect);
     static LPARAM Point2LPARAM(const POINT &p);
 private:
     CImage m_CaptureImg;

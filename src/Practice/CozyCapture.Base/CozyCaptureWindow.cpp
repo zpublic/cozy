@@ -75,16 +75,71 @@ LRESULT CozyCaptureWindow::OnMouseMove(UINT uMsg, WPARAM wParam, LPARAM lParam, 
 LRESULT CozyCaptureWindow::OnLeftButtonUp(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
     m_ThisStatus = CaptureStatus::S_Selected;
+
     return 0;
 }
 
 LRESULT CozyCaptureWindow::OnLeftButtonDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-    m_IsMoved = false;
-    m_ThisStatus = CaptureStatus::S_Selecting;
-    m_BeginPoint = POINT { GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam) };
-
+    if (m_ThisStatus == CaptureStatus::S_None)
+    {
+        m_IsMoved       = false;
+        m_ThisStatus    = CaptureStatus::S_Selecting;
+        m_BeginPoint    = POINT{ GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam) };
+    }
+    else if (m_ThisStatus == CaptureStatus::S_Selected)
+    {
+        SendImageToClipboard();
+    }
     return 0;
+}
+
+void CozyCaptureWindow::SendImageToClipboard()
+{
+    RECT ActRect;
+    Point2Rect(m_BeginPoint, m_CurrPoint, &ActRect);
+
+    CImage OutputImg;
+    OutputImg.Create(ActRect.right - ActRect.left, ActRect.bottom - ActRect.top, m_CaptureImg.GetBPP());
+
+    {
+        CImageDC outputDc(OutputImg);
+        CImageDC sourceDc(m_CaptureImg);
+
+        ::BitBlt(
+            outputDc,
+            0,
+            0,
+            ActRect.right - ActRect.left,
+            ActRect.bottom - ActRect.top,
+            sourceDc,
+            ActRect.left,
+            ActRect.top, SRCCOPY);
+    }
+
+    if (OpenClipboard())
+    {
+        HBITMAP hbitmap_dib = OutputImg.Detach();
+        if (!hbitmap_dib)
+        {
+            goto Exit0;
+        }
+
+        DIBSECTION ds;
+        ::GetObject(hbitmap_dib, sizeof(DIBSECTION), &ds);
+        ds.dsBmih.biCompression = BI_RGB;
+
+        HDC hdc             = ::GetDC(NULL);
+        HBITMAP hbitmap_ddb = ::CreateDIBitmap(hdc, &ds.dsBmih, CBM_INIT, ds.dsBm.bmBits, (BITMAPINFO*)&ds.dsBmih, DIB_RGB_COLORS);
+        ::ReleaseDC(NULL, hdc);
+
+        ::EmptyClipboard();
+        ::SetClipboardData(CF_BITMAP, hbitmap_ddb);
+        ::CloseClipboard();
+    }
+
+Exit0:
+    Exit();
 }
 
 LRESULT CozyCaptureWindow::OnRightButtonClicked(UINT uMsg, WPARAM  wParam, LPARAM lParam, BOOL& bHandled)
@@ -95,7 +150,8 @@ LRESULT CozyCaptureWindow::OnRightButtonClicked(UINT uMsg, WPARAM  wParam, LPARA
     }
     else if (m_ThisStatus == CaptureStatus::S_Selected)
     {
-        m_IsMoved = false;
+        m_IsMoved       = false;
+        m_ThisStatus    = CaptureStatus::S_None;
     }
     return 0;
 }
@@ -126,37 +182,27 @@ void CozyCaptureWindow::BlendImage()
     if (m_IsMoved)
     {
         RECT ActRect;
+        Point2Rect(m_BeginPoint, m_CurrPoint, &ActRect);
 
-        if (m_BeginPoint.x > m_CurrPoint.x)
-        {
-            ActRect.left = m_CurrPoint.x;
-            ActRect.right = m_BeginPoint.x;
-        }
-        else
-        {
-            ActRect.left = m_BeginPoint.x;
-            ActRect.right = m_CurrPoint.x;
-        }
-
-        if (m_BeginPoint.y > m_CurrPoint.y)
-        {
-            ActRect.top = m_CurrPoint.y;
-            ActRect.bottom = m_BeginPoint.y;
-        }
-        else
-        {
-            ActRect.top = m_BeginPoint.y;
-            ActRect.bottom = m_CurrPoint.y;
-        }
-
-            BLENDFUNCTION bn;
-        bn.AlphaFormat = 0;
-        bn.BlendFlags = 0;
-        bn.BlendOp = AC_SRC_OVER;
-        bn.SourceConstantAlpha = 150;
+        BLENDFUNCTION bn;
+        bn.AlphaFormat          = 0;
+        bn.BlendFlags           = 0;
+        bn.BlendOp              = AC_SRC_OVER;
+        bn.SourceConstantAlpha  = 150;
 
         ::AlphaBlend(resultDc, 0, 0, m_lWidth, m_lHeight, maskDc, 0, 0, m_lWidth, m_lHeight, bn);
-        ::BitBlt(resultDc, ActRect.left, ActRect.top, ActRect.right - ActRect.left, ActRect.bottom - ActRect.top, imageDc, ActRect.left, ActRect.top, SRCCOPY);
+
+        ::BitBlt(
+            resultDc, 
+            ActRect.left, 
+            ActRect.top, 
+            ActRect.right - ActRect.left, 
+            ActRect.bottom - ActRect.top, 
+            imageDc, 
+            ActRect.left, 
+            ActRect.top, SRCCOPY);
+
+        ::FrameRect(resultDc, &ActRect, ::CreateSolidBrush(RGB(0x1B, 0xA1, 0xE2)));
     }
 }
 
@@ -196,4 +242,29 @@ void CozyCaptureWindow::Exit()
 LPARAM CozyCaptureWindow::Point2LPARAM(const POINT &p)
 {
     return p.y << 16 | p.x;
+}
+
+void CozyCaptureWindow::Point2Rect(const POINT &pa, const POINT &pb, RECT * rect)
+{
+    if (pa.x > pb.x)
+    {
+        rect->left      = pb.x;
+        rect->right     = pa.x;
+    }
+    else
+    {
+        rect->left      = pa.x;
+        rect->right     = pb.x;
+    }
+
+    if (pa.y > pb.y)
+    {
+        rect->top       = pb.y;
+        rect->bottom    = pa.y;
+    }
+    else
+    {
+        rect->top       = pa.y;
+        rect->bottom    = pb.y;
+    }
 }
