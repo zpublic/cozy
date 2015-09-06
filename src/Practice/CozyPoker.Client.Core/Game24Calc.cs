@@ -18,7 +18,10 @@ namespace CozyPoker.Client.Core
         {
             do
             {
-                CardCollect cc = NolmalCardCollect.GetAPoker(false);
+                CardCollect cc = NormalCardCollect.Get10(CardSuiteType.Clubs);
+                cc.Add(NormalCardCollect.Get10(CardSuiteType.Hearts).Cards);
+                cc.Add(NormalCardCollect.Get10(CardSuiteType.Diamons).Cards);
+                cc.Add(NormalCardCollect.Get10(CardSuiteType.Spades).Cards);
                 cc.Shuffle();
                 cs = cc.Get(new SortedSet<int> { 0, 1, 2, 3 });
             } while (!bAllowNoAnswer && GetSolution() == "no");
@@ -26,6 +29,7 @@ namespace CozyPoker.Client.Core
         }
 
         // 校验计算表达式是否正确
+        // -4:有解（表达式解析错误）
         // -3:有解（表达式数字错误）
         // -2:有解（表达式结果错误）
         // -1:无解（回答错误）

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CozyPoker.Engine.Util
 {
-    public static class NolmalCardCollect
+    public static class NormalCardCollect
     {
         // A-K
         public static CardCollect Get13(CardSuiteType t)
@@ -27,6 +27,17 @@ namespace CozyPoker.Engine.Util
             for (byte b = 1; b <= 13; ++b)
             {
                 if (b == 2) continue;
+                cc.Add(new Card((CardValueType)b, t));
+            }
+            return cc;
+        }
+
+        // A-10
+        public static CardCollect Get10(CardSuiteType t)
+        {
+            CardCollect cc = new CardCollect();
+            for (byte b = 1; b <= 10; ++b)
+            {
                 cc.Add(new Card((CardValueType)b, t));
             }
             return cc;
