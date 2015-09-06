@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CozyPoker.Engine.Util
 {
-    public static class NolmalCardCollect
+    public static class NormalCardCollect
     {
         // A-K
         public static CardCollect Get13(CardSuiteType t)

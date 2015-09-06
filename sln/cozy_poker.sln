@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPoker.Server.Core", "..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPoker.Server.Console", "..\src\Practice\CozyPoker.Server.Console\CozyPoker.Server.Console.csproj", "{CEA01904-F1C2-4471-B961-D783C59FF914}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPoker.Client.Tester", "..\src\Practice\CozyPoker.Client.Tester\CozyPoker.Client.Tester.csproj", "{BD326A47-BBC6-4894-992B-C3B4C09134AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{CEA01904-F1C2-4471-B961-D783C59FF914}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEA01904-F1C2-4471-B961-D783C59FF914}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEA01904-F1C2-4471-B961-D783C59FF914}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD326A47-BBC6-4894-992B-C3B4C09134AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD326A47-BBC6-4894-992B-C3B4C09134AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD326A47-BBC6-4894-992B-C3B4C09134AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD326A47-BBC6-4894-992B-C3B4C09134AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,5 +82,6 @@ Global
 		{0C7B1E85-53D8-4B8F-8998-463650C43175} = {57B3A437-F915-4536-BEA8-E52D5988FC94}
 		{1E1BA457-25E9-406B-BE32-393C6B5079C9} = {699F060F-9D40-4041-9FBF-9DCEB5737081}
 		{CEA01904-F1C2-4471-B961-D783C59FF914} = {699F060F-9D40-4041-9FBF-9DCEB5737081}
+		{BD326A47-BBC6-4894-992B-C3B4C09134AD} = {57B3A437-F915-4536-BEA8-E52D5988FC94}
 	EndGlobalSection
 EndGlobal

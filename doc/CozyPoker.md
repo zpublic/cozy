@@ -9,6 +9,7 @@ CozyPoker - 可联机的扑克游戏集
 > 客户端
 >
 >> CozyPoker.Client.Core - 客户端逻辑  
+>> CozyPoker.Client.Tester - 客户端逻辑测试工程  
 >> CozyPoker.Client.Game24Calc - 算24点游戏命令行单机版  
 >> CozyPoker.Client.Bullfight - 斗牛游戏WPF联机版  
 >> CozyPoker.Client.Mobile - 跨平台联机版  

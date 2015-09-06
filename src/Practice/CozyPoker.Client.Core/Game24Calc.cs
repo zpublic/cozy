@@ -18,10 +18,10 @@ namespace CozyPoker.Client.Core
         {
             do
             {
-                CardCollect cc = NolmalCardCollect.Get10(CardSuiteType.Clubs);
-                cc.Add(NolmalCardCollect.Get10(CardSuiteType.Hearts).Cards);
-                cc.Add(NolmalCardCollect.Get10(CardSuiteType.Diamons).Cards);
-                cc.Add(NolmalCardCollect.Get10(CardSuiteType.Spades).Cards);
+                CardCollect cc = NormalCardCollect.Get10(CardSuiteType.Clubs);
+                cc.Add(NormalCardCollect.Get10(CardSuiteType.Hearts).Cards);
+                cc.Add(NormalCardCollect.Get10(CardSuiteType.Diamons).Cards);
+                cc.Add(NormalCardCollect.Get10(CardSuiteType.Spades).Cards);
                 cc.Shuffle();
                 cs = cc.Get(new SortedSet<int> { 0, 1, 2, 3 });
             } while (!bAllowNoAnswer && GetSolution() == "no");

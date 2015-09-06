@@ -44,7 +44,8 @@
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\CardCollect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\NolmalCardCollect.cs" />
+    <Compile Include="Util\NormalCardCollect.cs" />
+    <Compile Include="Util\NormalCardCompare.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logic\" />
