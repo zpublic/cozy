@@ -84,6 +84,8 @@ Cozy
 >>
 >> CozyMarkDown - markdown型静态博客  
 >>
+>> [CozyPoker - 可联机的扑克游戏集](doc/CozyPoker.md)  
+>>
   
 交流QQ群
 --------------------------------

@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Public", "Public", "{26AE99C8-F034-4933-8BE8-8203C26D42D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{57B3A437-F915-4536-BEA8-E52D5988FC94}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{699F060F-9D40-4041-9FBF-9DCEB5737081}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPoker.Engine", "..\src\Practice\CozyPoker.Engine\CozyPoker.Engine.csproj", "{67AC6E52-66A7-4F9A-9A24-799D638D6195}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLua.Core", "..\src\Practice\CozyLua.Core\CozyLua.Core.csproj", "{5FBF2C89-021C-4297-A408-D856A5288829}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLua.Core.Tester", "..\src\Practice\CozyLua.Core.Tester\CozyLua.Core.Tester.csproj", "{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPoker.Client.Core", "..\src\Practice\CozyPoker.Client.Core\CozyPoker.Client.Core.csproj", "{F04569C3-FD7F-4D15-99FD-486F6D88AF3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPoker.Client.Game24Calc", "..\src\Practice\CozyPoker.Client.Game24Calc\CozyPoker.Client.Game24Calc.csproj", "{567D3E8C-AF49-4770-862C-8993728A8E6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPoker.Client.Bullfight", "..\src\Practice\CozyPoker.Client.Bullfight\CozyPoker.Client.Bullfight.csproj", "{0C7B1E85-53D8-4B8F-8998-463650C43175}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPoker.Server.Core", "..\src\Practice\CozyPoker.Server.Core\CozyPoker.Server.Core.csproj", "{1E1BA457-25E9-406B-BE32-393C6B5079C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPoker.Server.Console", "..\src\Practice\CozyPoker.Server.Console\CozyPoker.Server.Console.csproj", "{CEA01904-F1C2-4471-B961-D783C59FF914}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67AC6E52-66A7-4F9A-9A24-799D638D6195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67AC6E52-66A7-4F9A-9A24-799D638D6195}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67AC6E52-66A7-4F9A-9A24-799D638D6195}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67AC6E52-66A7-4F9A-9A24-799D638D6195}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FBF2C89-021C-4297-A408-D856A5288829}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FBF2C89-021C-4297-A408-D856A5288829}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FBF2C89-021C-4297-A408-D856A5288829}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FBF2C89-021C-4297-A408-D856A5288829}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F04569C3-FD7F-4D15-99FD-486F6D88AF3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F04569C3-FD7F-4D15-99FD-486F6D88AF3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F04569C3-FD7F-4D15-99FD-486F6D88AF3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F04569C3-FD7F-4D15-99FD-486F6D88AF3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{567D3E8C-AF49-4770-862C-8993728A8E6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{567D3E8C-AF49-4770-862C-8993728A8E6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{567D3E8C-AF49-4770-862C-8993728A8E6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{567D3E8C-AF49-4770-862C-8993728A8E6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C7B1E85-53D8-4B8F-8998-463650C43175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C7B1E85-53D8-4B8F-8998-463650C43175}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C7B1E85-53D8-4B8F-8998-463650C43175}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C7B1E85-53D8-4B8F-8998-463650C43175}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E1BA457-25E9-406B-BE32-393C6B5079C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E1BA457-25E9-406B-BE32-393C6B5079C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E1BA457-25E9-406B-BE32-393C6B5079C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E1BA457-25E9-406B-BE32-393C6B5079C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEA01904-F1C2-4471-B961-D783C59FF914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA01904-F1C2-4471-B961-D783C59FF914}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA01904-F1C2-4471-B961-D783C59FF914}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA01904-F1C2-4471-B961-D783C59FF914}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{67AC6E52-66A7-4F9A-9A24-799D638D6195} = {26AE99C8-F034-4933-8BE8-8203C26D42D0}
+		{5FBF2C89-021C-4297-A408-D856A5288829} = {26AE99C8-F034-4933-8BE8-8203C26D42D0}
+		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20} = {26AE99C8-F034-4933-8BE8-8203C26D42D0}
+		{F04569C3-FD7F-4D15-99FD-486F6D88AF3B} = {57B3A437-F915-4536-BEA8-E52D5988FC94}
+		{567D3E8C-AF49-4770-862C-8993728A8E6B} = {57B3A437-F915-4536-BEA8-E52D5988FC94}
+		{0C7B1E85-53D8-4B8F-8998-463650C43175} = {57B3A437-F915-4536-BEA8-E52D5988FC94}
+		{1E1BA457-25E9-406B-BE32-393C6B5079C9} = {699F060F-9D40-4041-9FBF-9DCEB5737081}
+		{CEA01904-F1C2-4471-B961-D783C59FF914} = {699F060F-9D40-4041-9FBF-9DCEB5737081}
+	EndGlobalSection
+EndGlobal

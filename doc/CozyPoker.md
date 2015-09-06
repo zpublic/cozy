@@ -9,15 +9,15 @@ CozyPoker - 可联机的扑克游戏集
 > 客户端
 >
 >> CozyPoker.Client.Core - 客户端逻辑  
->> CozyPoker.Clinet.Game24Calc - 算24点游戏命令行单机版  
->> CozyPoker.Clinet.Bullfight - 斗牛游戏WPF联机版  
+>> CozyPoker.Client.Game24Calc - 算24点游戏命令行单机版  
+>> CozyPoker.Client.Bullfight - 斗牛游戏WPF联机版  
 >> CozyPoker.Client.Mobile - 跨平台联机版  
 >
 >
 > 服务端
 >
 >> CozyPoker.Server.Core - 服务端逻辑  
->> CozyPoker.server.Console - 命令行服务端程序  
+>> CozyPoker.Server.Console - 命令行服务端程序  
 >
 >
 > 依赖
