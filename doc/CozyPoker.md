@@ -4,6 +4,7 @@ CozyPoker - 可联机的扑克游戏集
 > 公用
 >
 >> CozyPoker.Engine - 扑克游戏引擎  
+>> CozyPoker.Network - 网络通信模块  
 >
 >
 > 客户端
