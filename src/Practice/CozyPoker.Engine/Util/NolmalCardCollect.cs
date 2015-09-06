@@ -32,6 +32,17 @@ namespace CozyPoker.Engine.Util
             return cc;
         }
 
+        // A-10
+        public static CardCollect Get10(CardSuiteType t)
+        {
+            CardCollect cc = new CardCollect();
+            for (byte b = 1; b <= 10; ++b)
+            {
+                cc.Add(new Card((CardValueType)b, t));
+            }
+            return cc;
+        }
+
         public static CardCollect Get2Joker()
         {
             CardCollect cc = new CardCollect();
