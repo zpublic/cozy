@@ -7,9 +7,9 @@
 
 COZYAPI CozyCaptureBase g_CozyCaptureBaseInstance;
 
-bool CozyCaptureBase::CreateCaptureWindow()
+bool CozyCaptureBase::CreateCaptureWindow(DWORD dwFlags, LPCTSTR lpFileName, LPDWORD lpResultState)
 {
-    m_lpCaptureWindow = new CozyCaptureWindow();
+    m_lpCaptureWindow = new CozyCaptureWindow(dwFlags, lpFileName, lpResultState);
     m_lpCaptureWindow->Create(nullptr, CWindow::rcDefault);
     m_lpCaptureWindow->ShowWindow(SW_NORMAL);
 
@@ -18,7 +18,7 @@ bool CozyCaptureBase::CreateCaptureWindow()
 
 void CozyCaptureBase::EnterMainLoop()
 {
-    MSG   msg;
+    MSG msg;
     while (::GetMessage(&msg, NULL, 0, 0))
     {
         ::TranslateMessage(&msg);
@@ -29,13 +29,13 @@ void CozyCaptureBase::EnterMainLoop()
     m_lpCaptureWindow = nullptr;
 }
 
-COZYAPI bool CreateCaptureWindow()
+COZYAPI bool GetCaptureImage(DWORD dwFlags, LPCTSTR lpFileName, LPDWORD lpResultState)
 {
-    return g_CozyCaptureBaseInstance.CreateCaptureWindow();
-}
+    if (!g_CozyCaptureBaseInstance.CreateCaptureWindow(dwFlags, lpFileName, lpResultState))
+    {
+        return false;
+    }
+    g_CozyCaptureBaseInstance.EnterMainLoop();
+    return true;
 
-
-COZYAPI void EnterMainLoop()
-{
-    return g_CozyCaptureBaseInstance.EnterMainLoop();
 }

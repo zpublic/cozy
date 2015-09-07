@@ -12,14 +12,13 @@ class CozyCaptureWindow;
 class CozyCaptureBase
 {
 public:
-    bool CreateCaptureWindow();
+    bool CreateCaptureWindow(DWORD dwFlags, LPCTSTR lpFileName, LPDWORD lpResultState);
 
     void EnterMainLoop();
     
     CozyCaptureWindow* m_lpCaptureWindow;
 };
 
-extern "C" COZYAPI bool CreateCaptureWindow();
-extern "C" COZYAPI void EnterMainLoop();
+extern "C" COZYAPI bool GetCaptureImage(DWORD dwFlags, LPCTSTR lpFileName, LPDWORD lpResultState);
 
 #endif // __COZY_CAPTURE_BASE__
