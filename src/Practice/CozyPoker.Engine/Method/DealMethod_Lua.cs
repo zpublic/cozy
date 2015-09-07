@@ -22,6 +22,7 @@ namespace CozyPoker.Engine.Method
             CozyLuaCore lua = new CozyLuaCore();
             lua.LoadCLRPackage();
             lua.DoString("import ('CozyPoker.Engine', 'CozyPoker.Engine.Model')");
+            lua.DoString("import ('CozyPoker.Engine', 'CozyPoker.Engine.Util')");
             lua.DoFile(PathTransform.LuaScript(script_));
             var f = lua.GetFunction("deal");
             return (CardCollect)f.Call(cc).First();

@@ -13,6 +13,36 @@ namespace CozyPoker.Client.Tester
         static void Main(string[] args)
         {
             //TestGameBullfight();
+            //PatternAequitas();
+            PatternFirehawk();
+        }
+
+        private static void PatternFirehawk()
+        {
+            PatternFirehawk p = new PatternFirehawk();
+            if (p.Init("firehawk_bullfight"))
+            {
+                p.Shuffle();
+                var ccA = p.Deal();
+                foreach (var i in ccA.Cards)
+                {
+                    Console.Write(i.ToString());
+                    Console.Write("  ");
+                }
+                Console.WriteLine();
+                var ccB = p.Deal();
+                foreach (var i in ccB.Cards)
+                {
+                    Console.Write(i.ToString());
+                    Console.Write("  ");
+                }
+                Console.WriteLine();
+                p.Compare(ccA, ccB);
+            }
+        }
+
+        private static void PatternAequitas()
+        {
             PatternAequitas p = new PatternAequitas();
             if (p.Init("aequitas_24calc"))
             {
