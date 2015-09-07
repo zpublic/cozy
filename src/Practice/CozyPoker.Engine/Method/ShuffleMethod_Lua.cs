@@ -9,26 +9,22 @@ using CozyPoker.Engine.Util;
 
 namespace CozyPoker.Engine.Method
 {
-    public class CardCollectMethod_Lua : CardCollectMethod
+    public class ShuffleMethod_Lua : ShuffleMethod
     {
         private string script_;
-        public CardCollectMethod_Lua(string script)
+        public ShuffleMethod_Lua(string script)
         {
             script_ = script;
         }
 
-        public CardCollect Run()
+        public void Run(CardCollect cc)
         {
             CozyLuaCore lua = new CozyLuaCore();
             lua.LoadCLRPackage();
             lua.DoString("import ('CozyPoker.Engine', 'CozyPoker.Engine.Model')");
             lua.DoFile(PathTransform.LuaScript(script_));
-            //lua.DoString(@" import ('CozyPoker.Engine', 'CozyPoker.Engine.Model')");
-            //lua.DoString(@"
-            //    cc = CardCollect()
-            //    c = Card(1,1)
-            //    cc:Add(c)");
-            return (CardCollect)lua["cc"];
+            var f = lua.GetFunction("shuffle");
+            f.Call(cc);
         }
     }
 }

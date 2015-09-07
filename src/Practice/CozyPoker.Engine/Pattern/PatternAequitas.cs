@@ -24,7 +24,9 @@ namespace CozyPoker.Engine.Pattern
         {
             if (base.Init(script))
             {
-                Step1 = CardCollectMethodParser.ParseCardCollectMethod(mapMethod["s1"]);
+                Step1 = CardCollectMethodParser.Parse(mapMethod["s1"]);
+                Step2 = ShuffleMethodParser.Parse(mapMethod["s2"]);
+                Step3 = DealMethodParser.Parse(mapMethod["s3"]);
                 if (Step1 != null
                     && Step2 != null
                     && Step3 != null)
@@ -35,7 +37,7 @@ namespace CozyPoker.Engine.Pattern
             return false;
         }
 
-        public List<Card> Run()
+        public CardCollect Run()
         {
             var cc = Step1.Run();
             Step2.Run(cc);

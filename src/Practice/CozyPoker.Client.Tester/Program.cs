@@ -14,9 +14,29 @@ namespace CozyPoker.Client.Tester
         {
             //TestGameBullfight();
             PatternAequitas p = new PatternAequitas();
-            if (p.Init("a"))
+            if (p.Init("aequitas_24calc"))
             {
                 var cc = p.Run();
+                foreach (var i in cc.Cards)
+                {
+                    Console.Write(i.ToString());
+                    Console.Write("  ");
+                }
+                Console.WriteLine();
+                cc = p.Run();
+                foreach (var i in cc.Cards)
+                {
+                    Console.Write(i.ToString());
+                    Console.Write("  ");
+                }
+                Console.WriteLine();
+                cc = p.Run();
+                foreach (var i in cc.Cards)
+                {
+                    Console.Write(i.ToString());
+                    Console.Write("  ");
+                }
+                Console.WriteLine();
             }
         }
 

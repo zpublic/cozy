@@ -8,7 +8,7 @@ namespace CozyPoker.Engine.Model
 {
     public class CardCollect
     {
-        Random random_ = new Random();
+        static Random random_ = new Random();
 
         private List<Card> cards_ = new List<Card>();
         public ICollection<Card> Cards

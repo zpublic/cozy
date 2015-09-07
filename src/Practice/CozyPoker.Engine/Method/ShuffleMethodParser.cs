@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 
 namespace CozyPoker.Engine.Method
 {
-    public class CardCollectMethodParser
+    public class ShuffleMethodParser
     {
-        public static CardCollectMethod Parse(string s)
+        public static ShuffleMethod Parse(string s)
         {
             var ss = s.Split(':');
             switch (ss[0])
             {
                 case "cpp":
-                    return cppCardCollectMethod(ss[1]);
+                    return cppShuffleMethod(ss[1]);
                 case "lua":
-                    return luaCardCollectMethod(ss[1]);
+                    return luaShuffleMethod(ss[1]);
             }
             return null;
         }
 
         // cpp的先不写了
-        private static CardCollectMethod cppCardCollectMethod(string s)
+        private static ShuffleMethod cppShuffleMethod(string s)
         {
             return null;
         }
 
-        private static CardCollectMethod luaCardCollectMethod(string s)
+        private static ShuffleMethod luaShuffleMethod(string s)
         {
-            return new CardCollectMethod_Lua(s);
+            return new ShuffleMethod_Lua(s);
         }
     }
 }

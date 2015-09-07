@@ -9,6 +9,6 @@ namespace CozyPoker.Engine.Method
 {
     public interface DealMethod
     {
-        List<Card> Run(CardCollect cc);
+        CardCollect Run(CardCollect cc);
     }
 }
