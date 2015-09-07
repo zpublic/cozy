@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Method\CardCollectMethod.cs" />
+    <Compile Include="Method\CardCollectMethodParser.cs" />
+    <Compile Include="Method\CardCollectMethod_Lua.cs" />
     <Compile Include="Method\DealMethod.cs" />
     <Compile Include="Method\ShuffleMethod.cs" />
     <Compile Include="Model\Card.cs" />

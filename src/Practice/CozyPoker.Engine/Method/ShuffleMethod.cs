@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CozyPoker.Engine.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace CozyPoker.Engine.Method
 {
     public interface ShuffleMethod
     {
+        void Run(CardCollect cc);
     }
 }

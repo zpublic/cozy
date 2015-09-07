@@ -1,4 +1,5 @@
 ﻿using CozyPoker.Engine.Method;
+using CozyPoker.Engine.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,22 @@ namespace CozyPoker.Engine.Pattern
 
         // 3，发牌
         public DealMethod Step3 { get; set; }
+
+        override public bool Init(string script)
+        {
+            if (base.Init(script))
+            {
+
+                return true;
+            }
+            return false;
+        }
+
+        public List<Card> Run()
+        {
+            var cc = Step1.Run();
+            Step2.Run(cc);
+            return Step3.Run(cc);
+        }
     }
 }
