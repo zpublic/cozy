@@ -13,8 +13,11 @@ namespace CozyPoker.Client.Tester
         static void Main(string[] args)
         {
             //TestGameBullfight();
-            PatternBase p = new PatternBase();
-            p.Init("a");
+            PatternAequitas p = new PatternAequitas();
+            if (p.Init("a"))
+            {
+                var cc = p.Run();
+            }
         }
 
         private static void TestGameBullfight()

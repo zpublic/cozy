@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyPoker.Engine.Model;
+using CozyLua.Core;
 
 namespace CozyPoker.Engine.Method
 {
@@ -17,8 +18,15 @@ namespace CozyPoker.Engine.Method
 
         public CardCollect Run()
         {
-            CardCollect cc = new CardCollect();
-            return cc;
+            CozyLuaCore lua = new CozyLuaCore();
+            //lua.DoFile(script_);
+            lua.LoadCLRPackage();
+            lua.DoString(@" import ('CozyPoker.Engine', 'CozyPoker.Engine.Model')");
+            lua.DoString(@"
+                cc = CardCollect()
+                c = Card(1,1)
+                cc:Add(c)");
+            return (CardCollect)lua["cc"];
         }
     }
 }

@@ -24,8 +24,13 @@ namespace CozyPoker.Engine.Pattern
         {
             if (base.Init(script))
             {
-
-                return true;
+                Step1 = CardCollectMethodParser.ParseCardCollectMethod(mapMethod["s1"]);
+                if (Step1 != null
+                    && Step2 != null
+                    && Step3 != null)
+                {
+                    return true;
+                }
             }
             return false;
         }

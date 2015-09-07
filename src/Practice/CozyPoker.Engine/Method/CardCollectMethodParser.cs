@@ -21,6 +21,7 @@ namespace CozyPoker.Engine.Method
             return null;
         }
 
+        // cpp的先不写了
         private static CardCollectMethod cppCardCollectMethod(string s)
         {
             return null;
@@ -28,7 +29,7 @@ namespace CozyPoker.Engine.Method
 
         private static CardCollectMethod luaCardCollectMethod(string s)
         {
-            return null;
+            return new CardCollectMethod_Lua(s);
         }
     }
 }

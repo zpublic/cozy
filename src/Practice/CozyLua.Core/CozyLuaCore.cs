@@ -16,6 +16,11 @@ namespace CozyLua.Core
             mLua = new NLua.Lua();
         }
 
+        public void LoadCLRPackage()
+        {
+            mLua.LoadCLRPackage();
+        }
+
         public object[] DoString(string sLua)
         {
             return mLua.DoString(sLua);

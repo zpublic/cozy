@@ -18,7 +18,7 @@ namespace CozyPoker.Engine.Pattern
             lua.DoString(@"
                 methods = {
                     s1='lua:cardcollect_a_10',
-                    s2='cpp:normal',
+                    s2='lua:shuffle_normal',
                     s3='lua:deal_get4'
                 }");
 
