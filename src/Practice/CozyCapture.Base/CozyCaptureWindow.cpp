@@ -104,19 +104,9 @@ void CozyCaptureWindow::SendImageToClipboard()
 
     {
         CImageDC outputDc(OutputImg);
-        CImageDC sourceDc(m_CaptureImg);
-
-        ::BitBlt(
-            outputDc,
-            0,
-            0,
-            ActRect.right - ActRect.left,
-            ActRect.bottom - ActRect.top,
-            sourceDc,
-            ActRect.left,
-            ActRect.top, SRCCOPY);
+        m_CaptureImg.BitBlt(outputDc, 0, 0, ActRect.right - ActRect.left, ActRect.bottom - ActRect.top, ActRect.left, ActRect.top);
     }
-
+    
     if (OpenClipboard())
     {
         HBITMAP hbitmap_dib = OutputImg.Detach();
@@ -173,33 +163,25 @@ LRESULT CozyCaptureWindow::OnClose(UINT   uMsg, WPARAM   wParam, LPARAM   lParam
 
 void CozyCaptureWindow::BlendImage()
 {
-    CImageDC imageDc(m_CaptureImg);
     CImageDC resultDc(m_ResultImg);
     CImageDC maskDc(m_MaskImg);
 
-    ::BitBlt(resultDc, 0, 0, m_lWidth, m_lHeight, imageDc, 0, 0, SRCCOPY);
+    m_CaptureImg.BitBlt(resultDc, 0, 0, m_lWidth, m_lHeight, 0, 0);
     
     if (m_IsMoved)
     {
         RECT ActRect;
         Point2Rect(m_BeginPoint, m_CurrPoint, &ActRect);
 
-        BLENDFUNCTION bn;
-        bn.AlphaFormat          = 0;
-        bn.BlendFlags           = 0;
-        bn.BlendOp              = AC_SRC_OVER;
-        bn.SourceConstantAlpha  = 150;
+        m_MaskImg.AlphaBlend(resultDc, 0, 0, m_lWidth, m_lHeight, 0, 0, m_lWidth, m_lHeight, 150, AC_SRC_OVER);
 
-        ::AlphaBlend(resultDc, 0, 0, m_lWidth, m_lHeight, maskDc, 0, 0, m_lWidth, m_lHeight, bn);
-
-        ::BitBlt(
+        m_CaptureImg.BitBlt(
             resultDc, 
             ActRect.left, 
             ActRect.top, 
             ActRect.right - ActRect.left, 
             ActRect.bottom - ActRect.top, 
-            imageDc, 
-            ActRect.left, 
+            ActRect.left,
             ActRect.top, SRCCOPY);
 
         ::FrameRect(resultDc, &ActRect, ::CreateSolidBrush(RGB(0x1B, 0xA1, 0xE2)));
