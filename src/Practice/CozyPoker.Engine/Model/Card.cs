@@ -36,6 +36,12 @@ namespace CozyPoker.Engine.Model
 
     public class Card
     {
+        public Card(byte v, byte s)
+        {
+            Value = (CardValueType)v;
+            Suite = (CardSuiteType)s;
+        }
+
         public Card(CardValueType v, CardSuiteType s)
         {
             Value = v;

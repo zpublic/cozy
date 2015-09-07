@@ -1,0 +1,1 @@
+cc = NormalCardCollect.GetAPoker(false)

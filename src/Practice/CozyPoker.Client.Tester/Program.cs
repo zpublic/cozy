@@ -1,4 +1,5 @@
 ﻿using CozyPoker.Client.Core;
+using CozyPoker.Engine.Pattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,62 @@ namespace CozyPoker.Client.Tester
     {
         static void Main(string[] args)
         {
-            TestGameBullfight();
+            //TestGameBullfight();
+            //PatternAequitas();
+            PatternFirehawk();
+        }
+
+        private static void PatternFirehawk()
+        {
+            PatternFirehawk p = new PatternFirehawk();
+            if (p.Init("firehawk_bullfight"))
+            {
+                p.Shuffle();
+                var ccA = p.Deal();
+                foreach (var i in ccA.Cards)
+                {
+                    Console.Write(i.ToString());
+                    Console.Write("  ");
+                }
+                Console.WriteLine();
+                var ccB = p.Deal();
+                foreach (var i in ccB.Cards)
+                {
+                    Console.Write(i.ToString());
+                    Console.Write("  ");
+                }
+                Console.WriteLine();
+                p.Compare(ccA, ccB);
+            }
+        }
+
+        private static void PatternAequitas()
+        {
+            PatternAequitas p = new PatternAequitas();
+            if (p.Init("aequitas_24calc"))
+            {
+                var cc = p.Run();
+                foreach (var i in cc.Cards)
+                {
+                    Console.Write(i.ToString());
+                    Console.Write("  ");
+                }
+                Console.WriteLine();
+                cc = p.Run();
+                foreach (var i in cc.Cards)
+                {
+                    Console.Write(i.ToString());
+                    Console.Write("  ");
+                }
+                Console.WriteLine();
+                cc = p.Run();
+                foreach (var i in cc.Cards)
+                {
+                    Console.Write(i.ToString());
+                    Console.Write("  ");
+                }
+                Console.WriteLine();
+            }
         }
 
         private static void TestGameBullfight()
