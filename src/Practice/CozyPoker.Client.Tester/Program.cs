@@ -1,4 +1,5 @@
 ﻿using CozyPoker.Client.Core;
+using CozyPoker.Engine.Pattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,9 @@ namespace CozyPoker.Client.Tester
     {
         static void Main(string[] args)
         {
-            TestGameBullfight();
+            //TestGameBullfight();
+            PatternBase p = new PatternBase();
+            p.Init("a");
         }
 
         private static void TestGameBullfight()
