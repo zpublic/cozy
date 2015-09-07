@@ -1,8 +1,17 @@
 #include "CozyCaptureWindow.h"
 
-CozyCaptureWindow::CozyCaptureWindow()
+CozyCaptureWindow::CozyCaptureWindow(DWORD dwFlags, LPCTSTR lpFileName, LPDWORD lpResultState)
+    :m_lpFileName(lpFileName), m_lpResultState(lpResultState)
 {
-
+    if (dwFlags | FLG_TOCLIP)
+    {
+        m_IsSaveToClipboard = true;
+    }
+    if (dwFlags | FLG_TOFILE)
+    {
+        m_IsSaveToFile = true;
+    }
+    *m_lpResultState = RET_FAILED;
 }
 
 CozyCaptureWindow::~CozyCaptureWindow()
@@ -21,7 +30,7 @@ LRESULT CozyCaptureWindow::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOO
     m_lHeight   = rect.bottom - rect.top;
     MoveWindow(0, 0, m_lWidth, m_lHeight);
 
-    SetWindowPos(m_hWnd, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+    SetWindowPos(HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 
     HBITMAP hBmp = ::CreateCompatibleBitmap(hdc, m_lWidth, m_lHeight);
 
@@ -58,6 +67,7 @@ LRESULT CozyCaptureWindow::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOO
 
     CImageDC imageDc(m_CaptureImg);
     ::BitBlt(imageDc, 0, 0, m_lWidth, m_lHeight, hdc, 0, 0, SRCCOPY);
+
     return 0;
 }
 
@@ -89,30 +99,44 @@ LRESULT CozyCaptureWindow::OnLeftButtonDown(UINT uMsg, WPARAM wParam, LPARAM lPa
     }
     else if (m_ThisStatus == CaptureStatus::S_Selected)
     {
-        SendImageToClipboard();
+        RECT ActRect;
+        Point2Rect(m_BeginPoint, m_CurrPoint, &ActRect);
+
+        CImage OutputImg;
+        OutputImg.Create(ActRect.right - ActRect.left, ActRect.bottom - ActRect.top, m_CaptureImg.GetBPP());
+
+        {
+            CImageDC outputDc(OutputImg);
+            m_CaptureImg.BitBlt(outputDc, 0, 0, ActRect.right - ActRect.left, ActRect.bottom - ActRect.top, ActRect.left, ActRect.top);
+        }
+        if (m_IsSaveToFile)
+        {
+            if (SendImageToFile(OutputImg))
+            {
+                *m_lpResultState |= RET_FILE;
+            }
+        }
+        if (m_IsSaveToClipboard)
+        {
+            if (SendImageToClipboard(OutputImg))
+            {
+                *m_lpResultState |= RET_CLIP;
+            }
+        }
+        SetWindowPos(HWND_BOTTOM, 0, 0, 0, 0, SWP_HIDEWINDOW);
+        Exit();
     }
     return 0;
 }
 
-void CozyCaptureWindow::SendImageToClipboard()
+bool CozyCaptureWindow::SendImageToClipboard(CImage &Img)
 {
-    RECT ActRect;
-    Point2Rect(m_BeginPoint, m_CurrPoint, &ActRect);
-
-    CImage OutputImg;
-    OutputImg.Create(ActRect.right - ActRect.left, ActRect.bottom - ActRect.top, m_CaptureImg.GetBPP());
-
-    {
-        CImageDC outputDc(OutputImg);
-        m_CaptureImg.BitBlt(outputDc, 0, 0, ActRect.right - ActRect.left, ActRect.bottom - ActRect.top, ActRect.left, ActRect.top);
-    }
-    
     if (OpenClipboard())
     {
-        HBITMAP hbitmap_dib = OutputImg.Detach();
+        HBITMAP hbitmap_dib = Img.Detach();
         if (!hbitmap_dib)
         {
-            goto Exit0;
+            return false;
         }
 
         DIBSECTION ds;
@@ -126,10 +150,18 @@ void CozyCaptureWindow::SendImageToClipboard()
         ::EmptyClipboard();
         ::SetClipboardData(CF_BITMAP, hbitmap_ddb);
         ::CloseClipboard();
+        return true;
     }
+    return false;
+}
 
-Exit0:
-    Exit();
+bool CozyCaptureWindow::SendImageToFile(const CImage &Img)
+{
+    if (m_lpFileName != nullptr)
+    {
+        return Img.Save(m_lpFileName) == S_OK;
+    }
+    return false;
 }
 
 LRESULT CozyCaptureWindow::OnRightButtonClicked(UINT uMsg, WPARAM  wParam, LPARAM lParam, BOOL& bHandled)

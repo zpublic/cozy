@@ -5,7 +5,6 @@
 #include "atlbase.h"
 #include "atlwin.h"
 #include "atlimage.h"
-
 enum class CaptureStatus
 {
     S_None,
@@ -16,7 +15,15 @@ enum class CaptureStatus
 class CozyCaptureWindow : public CWindowImpl<CozyCaptureWindow, CWindow, CWinTraits<WS_DLGFRAME, 0>>
 {
 public:
-    CozyCaptureWindow();
+    static const DWORD FLG_TOCLIP = 1;
+    static const DWORD FLG_TOFILE = 2;
+
+    static const DWORD RET_FAILED   = 0;
+    static const DWORD RET_CLIP     = 1;
+    static const DWORD RET_FILE     = 2;
+
+public:
+    CozyCaptureWindow(DWORD dwFlags, LPCTSTR lpFilePath, LPDWORD lpResultState);
     ~CozyCaptureWindow();
 
 private:
@@ -49,7 +56,8 @@ private:
 
     void Exit();
     void BlendImage();
-    void SendImageToClipboard();
+    bool SendImageToFile(const CImage &Img);
+    bool SendImageToClipboard(CImage &Img);
 
     static void Point2Rect(const POINT &pa, const POINT &pb, RECT * rect);
     static LPARAM Point2LPARAM(const POINT &p);
@@ -66,6 +74,12 @@ private:
 
     LONG m_lWidth;
     LONG m_lHeight;
+
+private:
+    bool m_IsSaveToFile;
+    bool m_IsSaveToClipboard;
+    LPCTSTR m_lpFileName;
+    LPDWORD m_lpResultState;
 };
 
 #endif // __COZY_CAPTURE_WINDOW__
