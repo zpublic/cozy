@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CozyCapture.Base", "..\src\Practice\CozyCapture.Base\CozyCapture.Base.vcxproj", "{22E78FEF-ED72-4C82-B776-0AA8FDB109C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCapture.Exe", "..\src\Practice\CozyCapture.Exe\CozyCapture.Exe.csproj", "{4A1920C6-52FA-4BCF-A00D-63DE79B64305}"
+	ProjectSection(ProjectDependencies) = postProject
+		{22E78FEF-ED72-4C82-B776-0AA8FDB109C5} = {22E78FEF-ED72-4C82-B776-0AA8FDB109C5}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
