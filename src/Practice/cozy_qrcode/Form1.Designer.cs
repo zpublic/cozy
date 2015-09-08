@@ -49,7 +49,6 @@
             // qrCodeImgControl1
             // 
             this.qrCodeImgControl1.ErrorCorrectLevel = Gma.QrCodeNet.Encoding.ErrorCorrectionLevel.M;
-            this.qrCodeImgControl1.Image = ((System.Drawing.Image)(resources.GetObject("qrCodeImgControl1.Image")));
             this.qrCodeImgControl1.Location = new System.Drawing.Point(13, 98);
             this.qrCodeImgControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.qrCodeImgControl1.Name = "qrCodeImgControl1";
