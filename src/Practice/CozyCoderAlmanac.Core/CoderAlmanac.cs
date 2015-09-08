@@ -9,6 +9,7 @@ namespace CozyCoderAlmanac.Core
     public class CoderAlmanac
     {
         ActivityData data = new ActivityData();
+        DateResource datar = new DateResource();
         DateTime today;
         int iday;
         List<ActivityDesc> goodList;
@@ -137,11 +138,11 @@ namespace CozyCoderAlmanac.Core
                 var name = activities.Data[i].Name;
                 if (name.IndexOf(@"%v") != -1)
                 {
-                    activities.Data[i].Name = name.Replace(@"%v", data.varNames[random(iday, 12) % data.varNames.Count]);
+                    activities.Data[i].Name = name.Replace(@"%v", datar.varNames[random(iday, 12) % datar.varNames.Count]);
                 }
                 if (name.IndexOf(@"%t") != -1)
                 {
-                    activities.Data[i].Name = name.Replace(@"%t", data.tools[random(iday, 11) % data.tools.Count]);
+                    activities.Data[i].Name = name.Replace(@"%t", datar.tools[random(iday, 11) % datar.tools.Count]);
                 }
                 if (name.IndexOf(@"%l") != -1)
                 {
@@ -152,9 +153,9 @@ namespace CozyCoderAlmanac.Core
 
         private void PickSpecials(ActivityData activities)
         {
-            for (var i = 0; i < activities.specials.Count; i++)
+            for (var i = 0; i < datar.specials.Count; i++)
             {
-                var special = activities.specials[i];
+                var special = datar.specials[i];
 
                 if (iday == toIDay(special.Date))
                 {
@@ -180,7 +181,7 @@ namespace CozyCoderAlmanac.Core
         public string GetDrink()
         {
             StringBuilder sb = new StringBuilder();
-            var ds = pickRandom(data.drinks, 2);
+            var ds = pickRandom(datar.drinks, 2);
             sb.Append("今日宜饮：");
             foreach (var obj in ds)
             {
