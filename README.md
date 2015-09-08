@@ -89,6 +89,10 @@ Cozy
 >>
 >> [CozyPoker - 可联机的扑克游戏集](doc/CozyPoker.md)  
 >>
+>> CozyCoderAlmanac - 程序员老黄历  
+>
+>> CozyQRCode - 二维码相关
+>>
 
 
 玩法一览
