@@ -45,6 +45,8 @@
     <Compile Include="ActivityDesc.cs" />
     <Compile Include="CoderAlmanac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DateResource.cs" />
+    <Compile Include="Special.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
