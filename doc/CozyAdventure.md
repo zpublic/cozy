@@ -49,7 +49,7 @@ CozyAdventure - 冒险与编程
         2.1.7 Package 包（包含道具、金币、经验等）
 
     2.2 Logic 游戏逻辑
-        -2.2.1 UserLogic 注册和登陆
+        2.2.1 UserLogic 注册和登陆
         2.2.2 FightLogic 战斗逻辑
         2.2.3 FollowerLogic 佣兵攻击计算、升级
 
