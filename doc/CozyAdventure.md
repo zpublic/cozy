@@ -52,9 +52,11 @@ CozyAdventure - 冒险与编程
         2.2.1 UserLogic 注册和登陆
         2.2.2 FightLogic 战斗逻辑
         2.2.3 FollowerLogic 佣兵攻击计算、升级
+        2.2.4 FollowerCollectLogic 佣兵组逻辑
 
     2.3 Object 游戏对象
         2.3.1 PlayerObject 玩家对象
+        2.3.2 BagObject 我的背包
     
     
 3、Public 公共内容
