@@ -91,7 +91,9 @@ Cozy
 >>
 >> CozyCoderAlmanac - 程序员老黄历  
 >
->> CozyQRCode - 二维码相关
+>> CozyQrcode - 二维码相关
+>>
+>> [CozyAdventure - 冒险与编程](doc/CozyAdventure.md)
 >>
 
 
