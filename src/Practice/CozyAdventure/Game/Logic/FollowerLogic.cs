@@ -24,11 +24,14 @@ namespace CozyAdventure.Game.Logic
 
         public static Package UpgradeLevelRequire(Follower f)
         {
-            return null;
+            var p = new Package();
+            p.Exp = 100;
+            return p;
         }
 
         public static bool UpgradeLevel(Follower f)
         {
+            f.CurLevel++;
             return true;
         }
 

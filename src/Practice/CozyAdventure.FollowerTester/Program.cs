@@ -35,6 +35,9 @@ namespace CozyAdventure.FollowerTester
                 Console.WriteLine(p2.Exp);
                 Console.WriteLine(p2.Money);
             }
+
+            FollowerLogic.UpgradeLevel(f1);
+            Console.WriteLine(FollowerLogic.GetAttack(f1));
         }
     }
 }
