@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPlugin.cs" />
+    <Compile Include="PluginManager.cs" />
+    <Compile Include="PluginManager.IO.cs" />
+    <Compile Include="PluginManager.Reflection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
