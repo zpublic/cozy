@@ -104,13 +104,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Game\Logic\User.cs" />
+    <Compile Include="Game\Model\Player.cs" />
     <Compile Include="Public\Controls\BaseButton.cs" />
     <Compile Include="Public\Controls\CozySampleListViewItemNode.cs" />
     <Compile Include="Public\Controls\Enum\ButtonStatus.cs" />
     <Compile Include="Public\Controls\CozyColorSampleButton.cs" />
     <Compile Include="Public\Controls\CozyControl.cs" />
     <Compile Include="Public\Controls\CozySampleButton.cs" />
-    <Compile Include="IntroLayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Public\Controls\CozySampleListView.cs" />
     <Compile Include="Public\Controls\CozySampleListViewItem.cs" />
@@ -120,10 +121,11 @@
     <Compile Include="Public\Controls\Events\ItemRemoveEventArgs.cs" />
     <Compile Include="View\Scene\BgLayer.cs" />
     <Compile Include="View\Scene\HomePageScene.cs" />
+    <Compile Include="View\Scene\CampScene.cs" />
+    <Compile Include="View\Scene\LoadingScene.cs" />
+    <Compile Include="View\Scene\RegistScene.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Game\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

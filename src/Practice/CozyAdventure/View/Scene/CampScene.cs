@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace CozyAdventure.View.Scene
 {
-    public class HomePageScene : CCScene
+    public class CampScene : CCScene
     {
-        public HomePageScene() : base(AppDelegate.SharedWindow)
+        public CampScene() : base(AppDelegate.SharedWindow)
         {
-            AddChild(new BgLayer(@"pic\1.png"));
         }
     }
 }
