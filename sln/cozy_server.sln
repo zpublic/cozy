@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lidgren.Network", "..\src\P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyServer.Helper", "..\src\Public\CozyServer.Helper\CozyServer.Helper.csproj", "{A00017AD-1878-460B-9F37-E1C56D4FC554}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyClient.Core", "..\src\Public\CozyClient.Core\CozyClient.Core.csproj", "{1E97D586-051A-457F-8034-297C5559292F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A00017AD-1878-460B-9F37-E1C56D4FC554}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A00017AD-1878-460B-9F37-E1C56D4FC554}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A00017AD-1878-460B-9F37-E1C56D4FC554}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E97D586-051A-457F-8034-297C5559292F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E97D586-051A-457F-8034-297C5559292F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E97D586-051A-457F-8034-297C5559292F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E97D586-051A-457F-8034-297C5559292F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
