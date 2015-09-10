@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAdventure", "..\src\Pra
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Public", "Public", "{6109D03C-0E6B-41F9-848A-DF80D5E9AE66}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{597ED48E-ABEB-4977-B0EF-935CCE93F18E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAdventure.FollowerTester", "..\src\Practice\CozyAdventure.FollowerTester\CozyAdventure.FollowerTester.csproj", "{87C0BD02-1B12-49C1-971E-BD10E5BA1A6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,8 +23,15 @@ Global
 		{45043E36-00A0-4798-B3A8-79D8BC073F9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45043E36-00A0-4798-B3A8-79D8BC073F9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45043E36-00A0-4798-B3A8-79D8BC073F9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87C0BD02-1B12-49C1-971E-BD10E5BA1A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87C0BD02-1B12-49C1-971E-BD10E5BA1A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87C0BD02-1B12-49C1-971E-BD10E5BA1A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87C0BD02-1B12-49C1-971E-BD10E5BA1A6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{87C0BD02-1B12-49C1-971E-BD10E5BA1A6C} = {597ED48E-ABEB-4977-B0EF-935CCE93F18E}
 	EndGlobalSection
 EndGlobal

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CozyAdventure.Game.Logic
 {
-    public class User
+    public class UserLogic
     {
         public async Task<bool> Login(string user, string pass)
         {

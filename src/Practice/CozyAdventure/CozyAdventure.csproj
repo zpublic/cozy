@@ -104,8 +104,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Game\Logic\User.cs" />
+    <Compile Include="Game\Logic\FollowerLogic.cs" />
+    <Compile Include="Game\Logic\UserLogic.cs" />
+    <Compile Include="Game\Model\Follower.cs" />
+    <Compile Include="Game\Model\FollowerCollect.cs" />
+    <Compile Include="Game\Model\Package.cs" />
     <Compile Include="Game\Model\Player.cs" />
+    <Compile Include="Game\Model\Prop.cs" />
+    <Compile Include="Game\Model\PropCollect.cs" />
+    <Compile Include="Game\Object\PlayerObject.cs" />
     <Compile Include="Public\Controls\BaseButton.cs" />
     <Compile Include="Public\Controls\CozySampleListViewItemNode.cs" />
     <Compile Include="Public\Controls\Enum\ButtonStatus.cs" />

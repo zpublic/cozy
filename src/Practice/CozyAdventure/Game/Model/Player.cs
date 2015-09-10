@@ -8,9 +8,14 @@ namespace CozyAdventure.Game.Model
 {
     public class Player
     {
-        private Player() { }
-        public static readonly Player Instance = new Player();
-
-        public int Token { get; set; } = 0;
+        public string User { get; set; }
+        public string Nickname { get; set; }
+        public int AdventureLevel { get; set; }
+        public int FollowerMaximum { get; set; }
+        public int PropMaximum { get; set; }
+        public long Money { get; set; }
+        public long Exp { get; set; }
+        public FollowerCollect AllFollower { get; set; }
+        public FollowerCollect FightFollower { get; set; }
     }
 }
