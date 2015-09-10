@@ -109,6 +109,7 @@
     <Compile Include="Game\Logic\Fight\NormalFight.cs" />
     <Compile Include="Game\Logic\FollowerCollectLogic.cs" />
     <Compile Include="Game\Logic\FollowerLogic.cs" />
+    <Compile Include="Game\Logic\FollowerStarLogic.cs" />
     <Compile Include="Game\Logic\UserLogic.cs" />
     <Compile Include="Game\Model\Follower.cs" />
     <Compile Include="Game\Model\FollowerCollect.cs" />

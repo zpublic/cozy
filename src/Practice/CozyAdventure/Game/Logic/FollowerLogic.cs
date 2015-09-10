@@ -11,7 +11,10 @@ namespace CozyAdventure.Game.Logic
     {
         public static int GetAttack(Follower f)
         {
-            return 1;
+            // 基础战力 + (觉醒基础战力 + 觉醒战力成长 * 等级) * 成长细数
+            int attack = f.BasicAttack;
+            attack += (int)(FollowerStarLogic.GetAttack(f.CurStar, f.CurLevel) * f.GrowRatio);
+            return attack;
         }
 
         public static bool CanUpgradeLevel(Follower f)
