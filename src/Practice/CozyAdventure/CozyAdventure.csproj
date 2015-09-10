@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{45043E36-00A0-4798-B3A8-79D8BC073F9D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CozyAdventure</RootNamespace>
+    <AssemblyName>CozyAdventure</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin\CozyAdventure\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\bin\CozyAdventure\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="BitMiracle.LibTiff.NET, Version=2.3.624.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\BitMiracle.LibTiff.NET.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="box2d, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\box2d.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CocosSharp, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\CocosSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lidgren.Network, Version=2012.1.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\Lidgren.Network.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MonoGame.Framework, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\MonoGame.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MonoGame.Framework.Net, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\MonoGame.Framework.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\SharpDX.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.Direct2D1, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\SharpDX.Direct2D1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D11, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\SharpDX.Direct3D11.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D9, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\SharpDX.Direct3D9.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.DXGI, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\SharpDX.DXGI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.MediaFoundation, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\SharpDX.MediaFoundation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.RawInput, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\SharpDX.RawInput.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.XAudio2, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\SharpDX.XAudio2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.XInput, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\net40\SharpDX.XInput.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Public\Controls\BaseButton.cs" />
+    <Compile Include="Public\Controls\CozySampleListViewItemNode.cs" />
+    <Compile Include="Public\Controls\Enum\ButtonStatus.cs" />
+    <Compile Include="Public\Controls\CozyColorSampleButton.cs" />
+    <Compile Include="Public\Controls\CozyControl.cs" />
+    <Compile Include="Public\Controls\CozySampleButton.cs" />
+    <Compile Include="IntroLayer.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Public\Controls\CozySampleListView.cs" />
+    <Compile Include="Public\Controls\CozySampleListViewItem.cs" />
+    <Compile Include="Public\Controls\CozySampleListViewItemSprite.cs" />
+    <Compile Include="Public\Controls\Events\ItemAddEventArgs.cs" />
+    <Compile Include="Public\Controls\Enum\ControlOrientation.cs" />
+    <Compile Include="Public\Controls\Events\ItemRemoveEventArgs.cs" />
+    <Compile Include="View\Scene\BgLayer.cs" />
+    <Compile Include="View\Scene\HomePageScene.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Game\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
