@@ -25,7 +25,7 @@ namespace CozyAdventure
 
             application.ContentRootDirectory = "Content";
 
-            CCScene scene = new HomePageScene();
+            CCScene scene = new LoginScene();
             mainWindow.RunWithScene(scene);
         }
     }

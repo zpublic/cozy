@@ -7,7 +7,7 @@ namespace CozyAdventure
     {
         static void Main()
         {
-            CCApplication application = new CCApplication(false, new CCSize(1024f, 768f));
+            CCApplication application = new CCApplication(false, new CCSize(800f, 450f));
             application.ApplicationDelegate = new AppDelegate();
             application.StartGame();
         }

@@ -11,10 +11,10 @@ CozyAdventure - 冒险与编程
 1、View 展现层
 
     1.1 Sence 场景页面
-        -1.1.1 HomePageScene 首页（登陆）
-        -1.1.2 注册页
-        -1.1.3 加载过程页
-        -1.1.4 个人首页（营地）
+        -1.1.1 LoginScene 首页（登陆）
+        -1.1.2 RegistScene 注册页
+        -1.1.3 LoadingScene 加载过程页
+        -1.1.4 CampScene 个人首页（营地）
         1.1.5 冒险页面
         1.1.6 佣兵管理页面
         1.1.7 佣兵列表

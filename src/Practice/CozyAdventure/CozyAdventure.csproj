@@ -120,7 +120,7 @@
     <Compile Include="Public\Controls\Enum\ControlOrientation.cs" />
     <Compile Include="Public\Controls\Events\ItemRemoveEventArgs.cs" />
     <Compile Include="View\Scene\BgLayer.cs" />
-    <Compile Include="View\Scene\HomePageScene.cs" />
+    <Compile Include="View\Scene\LoginScene.cs" />
     <Compile Include="View\Scene\CampScene.cs" />
     <Compile Include="View\Scene\LoadingScene.cs" />
     <Compile Include="View\Scene\RegistScene.cs" />
