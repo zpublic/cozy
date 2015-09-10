@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cozy_qrcode", "..\src\Practice\cozy_qrcode\cozy_qrcode.csproj", "{0C1D39B1-A92E-4DA8-AA57-26FE74C298F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyQrcode", "..\src\Practice\CozyQrcode\CozyQrcode.csproj", "{0C1D39B1-A92E-4DA8-AA57-26FE74C298F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

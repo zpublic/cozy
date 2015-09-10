@@ -1,4 +1,4 @@
-﻿namespace cozy_qrcode
+﻿namespace CozyQrcode
 {
     partial class MainForm
     {

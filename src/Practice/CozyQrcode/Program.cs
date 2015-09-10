@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace cozy_qrcode
+namespace CozyQrcode
 {
     static class Program
     {
