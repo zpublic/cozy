@@ -130,6 +130,7 @@
     <Compile Include="View\Scene\LoginScene.cs" />
     <Compile Include="View\Scene\CampScene.cs" />
     <Compile Include="View\Scene\LoadingScene.cs" />
+    <Compile Include="View\Scene\LoginUiLayer.cs" />
     <Compile Include="View\Scene\RegistScene.cs" />
   </ItemGroup>
   <ItemGroup />

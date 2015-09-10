@@ -11,7 +11,11 @@ namespace CozyAdventure.View.Scene
     {
         public LoginScene() : base(AppDelegate.SharedWindow)
         {
-            AddChild(new BgLayer(@"pic\1.png"));
+            var bg = new BgLayer(@"pic\1.png");
+            AddChild(bg);
+
+            var ui = new LoginUiLayer();
+            AddChild(ui);
         }
     }
 }
