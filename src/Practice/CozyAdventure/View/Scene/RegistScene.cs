@@ -11,6 +11,7 @@ namespace CozyAdventure.View.Scene
     {
         public RegistScene() : base(AppDelegate.SharedWindow)
         {
+            AddChild(new RegistUiLayer());
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CocosSharp;
+using CocosSharpExt;
 using CozyAdventure.Public.Controls;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,19 @@ namespace CozyAdventure.View.Scene
     {
         public LoginUiLayer()
         {
-            var title = new CCLabel("冒险与编程", "Consolas", 72)
+            var title = new CCLabel("冒险与编程", "微软雅黑", 72)
             {
                 Position = new CCPoint(400, 320),
                 Color = CCColor3B.Yellow
             };
             AddChild(title, 100);
+
+            var edit = new CocosSharpExt.CCTextField("aaaaaaa", "微软雅黑", 22)
+            {
+                Position = new CCPoint(100, 120),
+                Color = CCColor3B.Yellow
+            };
+            AddChild(edit, 100);
 
             var begin = new BaseButton(300, 100, 200, 80)
             {
@@ -31,6 +39,7 @@ namespace CozyAdventure.View.Scene
                 Text = "注册帐号",
                 FontSize = 18
             };
+            AddEventListener(reg.EventListener);
             reg.OnClick += () =>
             {
                 AppDelegate.SharedWindow.DefaultDirector.PushScene(new RegistScene());
