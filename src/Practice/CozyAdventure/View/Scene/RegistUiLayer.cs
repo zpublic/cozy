@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CozyAdventure.View.Scene
 {
-    public class LoginUiLayer : CCLayer
+    public class RegistUiLayer : CCLayer
     {
-        public LoginUiLayer()
+        public RegistUiLayer()
         {
             var title = new CCLabel("冒险与编程", "Consolas", 72)
             {
@@ -23,19 +23,9 @@ namespace CozyAdventure.View.Scene
             {
                 Text = "开始游戏",
                 FontSize = 24
+
             };
             AddChild(begin, 100);
-
-            var reg = new BaseButton(690, 0, 100, 50)
-            {
-                Text = "注册帐号",
-                FontSize = 18
-            };
-            reg.OnClick += () =>
-            {
-                AppDelegate.SharedWindow.DefaultDirector.PushScene(new RegistScene());
-            };
-            AddChild(reg, 100);
         }
     }
 }
