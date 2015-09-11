@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Lidgren.Network;
 using CozyServer.Plugin;
 using System.Threading;
+using System.IO;
 
 namespace CozyServer.Core
 {
@@ -14,6 +15,18 @@ namespace CozyServer.Core
         public const int MaxBlockSize = 8192;
 
         private NetServer InnerServer { get; set; } 
+
+        public Predicate<string> PluginFilter
+        {
+            get
+            {
+                return PluginMgr.PluginFilter;
+            }
+            set
+            {
+                PluginMgr.PluginFilter = value;
+            }
+        }
 
         public int MaximumConnections
         {
@@ -65,6 +78,7 @@ namespace CozyServer.Core
 
         private void Init()
         {
+            InitFilter();
             LoadPlugin();
 
             IsInitComplete = true;
@@ -72,7 +86,15 @@ namespace CozyServer.Core
 
         private void LoadPlugin()
         {
-            PluginMgr.LoadPlugins("@./Plugins/");
+            PluginMgr.LoadPlugins(@"Plugins/");
+        }
+
+        private void InitFilter()
+        {
+            PluginMgr.PluginFilter = (name) =>
+            {
+                return Path.GetFileNameWithoutExtension(name).StartsWith("CozyAdventure");
+            };
         }
 
         public void Listen()

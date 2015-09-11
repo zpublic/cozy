@@ -76,17 +76,17 @@ namespace CozyClient.Core
 
         private void OnDataMessage(CozyClient cozyClient, NetIncomingMessage msg)
         {
-            if(StatusMessage != null)
+            if(DataMessage != null)
             {
-                StatusMessage(this, new ClienEventArgs(cozyClient.InnerClient, msg));
+                DataMessage(this, new ClienEventArgs(cozyClient.InnerClient, msg));
             }
         }
 
         private void OnStatusMessage(CozyClient cozyClient, NetIncomingMessage msg)
         {
-            if(DataMessage != null)
+            if(StatusMessage != null)
             {
-                DataMessage(this, new ClienEventArgs(cozyClient.InnerClient, msg));
+                StatusMessage(this, new ClienEventArgs(cozyClient.InnerClient, msg));
             }
         }
     }

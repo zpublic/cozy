@@ -11,6 +11,8 @@ namespace CozyServer.Plugin
         private List<IPlugin> PluginSet { get; set; } = new List<IPlugin>();
         private object objLocker = new object();
 
+        public Predicate<string> PluginFilter { get; set; }
+
         public void NotifyData(object server, object msg)
         {
             lock (objLocker)
