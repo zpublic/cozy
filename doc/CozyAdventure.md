@@ -28,16 +28,17 @@ CozyAdventure - 冒险与编程
         1.1.16 战斗力排行榜
         1.1.17 礼包领取页面
 
-    1.2 ViewObject 可视对象
-        1.2.1 佣兵卡牌
-        1.2.2 物品
-        1.2.3 对话
+    1.2 Sprite 可视对象
+        1.2.1 FollowerSprite 佣兵卡牌
+        1.2.2 PropSprite 物品
 
     1.3 Fight 战斗过程
         1.3.1 Farm 刷怪
         1.3.2 Boss 打boss
         1.3.3 Versus 对战
-        1.3.4 Team 组队副本 
+        1.3.4 Team 组队副本
+
+    1.4 Layer 层
 
 2、Game 游戏内容
 

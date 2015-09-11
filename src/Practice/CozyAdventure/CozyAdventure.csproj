@@ -142,13 +142,15 @@
     <Compile Include="Public\Controls\text_input_node\ICCIMEDelegate.cs" />
     <Compile Include="Public\Controls\text_input_node\ICCTextFieldDelegate.cs" />
     <Compile Include="Public\Controls\text_input_node\IMEKeyboardImpl.cs" />
-    <Compile Include="View\Scene\BgLayer.cs" />
+    <Compile Include="View\Layer\BgLayer.cs" />
     <Compile Include="View\Scene\LoginScene.cs" />
     <Compile Include="View\Scene\CampScene.cs" />
     <Compile Include="View\Scene\LoadingScene.cs" />
-    <Compile Include="View\Scene\RegistUiLayer.cs" />
-    <Compile Include="View\Scene\LoginUiLayer.cs" />
+    <Compile Include="View\Layer\RegistUiLayer.cs" />
+    <Compile Include="View\Layer\LoginUiLayer.cs" />
     <Compile Include="View\Scene\RegistScene.cs" />
+    <Compile Include="View\Sprite\FollowerSprite.cs" />
+    <Compile Include="View\Sprite\PropSprite.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

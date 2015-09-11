@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyAdventure.View.Scene
+namespace CozyAdventure.View.Layer
 {
     public class LoginUiLayer : CCLayer
     {

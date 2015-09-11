@@ -314,9 +314,9 @@ namespace CocosSharpExt
         // by users.
 
         CCKeyboardState keyState;
-        bool capsLock;
-        bool numLock;
-        bool scrollLock;
+        bool capsLock = false;
+        bool numLock = false;
+        bool scrollLock = false;
 
         public bool AltDown
         {
