@@ -14,9 +14,9 @@ CozyAdventure - 冒险与编程
         1.1.2 RegistScene 注册页
         1.1.3 LoadingScene 加载过程页
         1.1.4 CampScene 个人首页（营地）
-        1.1.5 冒险页面
+        1.1.5 AdventureScene 冒险页面
         1.1.6 佣兵管理页面
-        1.1.7 佣兵列表
+        1.1.7 FollowerListScene 佣兵列表
         1.1.8 招募页面（抽卡）
         1.1.9 Boss战页面
         1.1.10 冒险地图选择页
