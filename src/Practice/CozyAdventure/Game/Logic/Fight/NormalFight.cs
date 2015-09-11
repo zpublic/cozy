@@ -41,19 +41,24 @@ namespace CozyAdventure.Game.Logic.Fight
         {
             if (!FightOver())
             {
+                FightAttackEvent e = new FightAttackEvent();
+                e.AllHp = AllHp;
+                e.CurHp = CurHp;
+                e.AttackParty = CurAttack;
                 if (CurAttack == 0)
                 {
+                    e.Damage = Damage[0];
                     CurHp[1] -= Damage[0];
                     if (CurHp[1] < 0)
                         CurHp[1] = 0;
                 }
                 else
                 {
+                    e.Damage = Damage[1];
                     CurHp[0] -= Damage[1];
                     if (CurHp[0] < 0)
                         CurHp[0] = 0;
                 }
-                FightAttackEvent e = new FightAttackEvent();
                 ProcessFightEvent(EnumFightEvent.Attack, e);
                 CurAttack = (CurAttack == 0) ? 1 : 0;
             }
