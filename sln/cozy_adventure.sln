@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLua.Core", "..\src\Prac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLua.Core.Tester", "..\src\Practice\CozyLua.Core.Tester\CozyLua.Core.Tester.csproj", "{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAdventure.ServerPlugin", "..\src\Practice\CozyAdventure.ServerPlugin\CozyAdventure.ServerPlugin.csproj", "{64165693-5138-4C29-833D-74D87830FCF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64165693-5138-4C29-833D-74D87830FCF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64165693-5138-4C29-833D-74D87830FCF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64165693-5138-4C29-833D-74D87830FCF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64165693-5138-4C29-833D-74D87830FCF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,5 +51,6 @@ Global
 		{87C0BD02-1B12-49C1-971E-BD10E5BA1A6C} = {597ED48E-ABEB-4977-B0EF-935CCE93F18E}
 		{5FBF2C89-021C-4297-A408-D856A5288829} = {6109D03C-0E6B-41F9-848A-DF80D5E9AE66}
 		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20} = {6109D03C-0E6B-41F9-848A-DF80D5E9AE66}
+		{64165693-5138-4C29-833D-74D87830FCF0} = {6109D03C-0E6B-41F9-848A-DF80D5E9AE66}
 	EndGlobalSection
 EndGlobal

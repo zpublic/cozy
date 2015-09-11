@@ -21,8 +21,16 @@ namespace CozyServer.Plugin
 
             if(filename != null && filename.Length > 0)
             {
-                if(Path.GetExtension(filename) == @"dll")
+                if(Path.GetExtension(filename) == @".dll")
                 {
+                    if (PluginFilter != null )
+                    {
+                        if(!PluginFilter(filename))
+                        {
+                            return false;
+                        }
+                    }
+
                     Assembly assembly = Assembly.LoadFrom(filename);
                     if(assembly != null)
                     {

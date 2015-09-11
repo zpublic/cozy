@@ -4,29 +4,27 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F2108E7B-E2BA-4B95-A581-9739CEE4A6EA}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{64165693-5138-4C29-833D-74D87830FCF0}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyServer.Console</RootNamespace>
-    <AssemblyName>CozyServer.Console</AssemblyName>
+    <RootNamespace>CozyAdventure.ServerPlugin</RootNamespace>
+    <AssemblyName>CozyAdventure.ServerPlugin</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\bin\CozyServer\</OutputPath>
+    <OutputPath>..\..\..\bin\CozyServer\Plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\bin\CozyServer\</OutputPath>
+    <OutputPath>..\..\..\bin\CozyServer\Plugins\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -42,16 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="AdventurePlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Public\CozyServer.Core\CozyServer.Core.csproj">
-      <Project>{6481b838-3a18-4b67-b2bf-1fd7288888a6}</Project>
-      <Name>CozyServer.Core</Name>
+    <ProjectReference Include="..\..\Public\CozyServer.Plugin\CozyServer.Plugin.csproj">
+      <Project>{5776da72-892c-41cd-be8e-0d7e4e5ccec4}</Project>
+      <Name>CozyServer.Plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Public\Lidgren.Network\Lidgren.Network.csproj">
+      <Project>{49ba1c69-6104-41ac-a5d8-b54fa9f696e8}</Project>
+      <Name>Lidgren.Network</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
