@@ -19,24 +19,24 @@ namespace CozyAdventure.FollowerTester
             Follower f1 = new Follower();
             Console.WriteLine(FollowerLogic.GetAttack(f1));
 
-            var p = FollowerLogic.UpgradeLevelRequire(f1);
+            var p = FollowerLevelLogic.UpgradeRequire(f1);
             if (p != null)
             {
                 Console.WriteLine(p.Exp);
                 Console.WriteLine(p.Money);
             }
 
-            FollowerLogic.UpgradeLevel(f1);
+            FollowerLevelLogic.Upgrade(f1);
             Console.WriteLine(FollowerLogic.GetAttack(f1));
 
-            var p2 = FollowerLogic.UpgradeLevelRequire(f1);
+            var p2 = FollowerLevelLogic.UpgradeRequire(f1);
             if (p2 != null)
             {
                 Console.WriteLine(p2.Exp);
                 Console.WriteLine(p2.Money);
             }
 
-            FollowerLogic.UpgradeLevel(f1);
+            FollowerLevelLogic.Upgrade(f1);
             Console.WriteLine(FollowerLogic.GetAttack(f1));
         }
     }

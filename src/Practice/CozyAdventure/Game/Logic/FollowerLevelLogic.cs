@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CozyAdventure.Game.Logic
 {
-    class FollowerStarLogic
+    public class FollowerLevelLogic
     {
         public static bool CanUpgrade(Follower f)
         {
@@ -16,11 +16,14 @@ namespace CozyAdventure.Game.Logic
 
         public static Package UpgradeRequire(Follower f)
         {
-            return null;
+            var p = new Package();
+            p.Exp = 100;
+            return p;
         }
 
         public static bool Upgrade(Follower f)
         {
+            f.CurLevel++;
             return true;
         }
     }

@@ -53,6 +53,8 @@ CozyAdventure - 冒险与编程
         2.2.2 FightLogic 战斗逻辑
         2.2.3 FollowerLogic 佣兵攻击计算、升级
         2.2.4 FollowerCollectLogic 佣兵组逻辑
+        2.2.5 FollowerLevelLogic 佣兵升级逻辑
+        2.2.6 FollowerStarLogic 佣兵升星逻辑
 
     2.3 Object 游戏对象
         2.3.1 PlayerObject 玩家对象

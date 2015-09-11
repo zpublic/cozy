@@ -8,14 +8,12 @@ namespace CozyAdventure.Game.Logic
 {
     public class UserLogic
     {
-        public async Task<bool> Login(string user, string pass)
+        public void Login(string user, string pass)
         {
-            return false;
         }
 
-        public async Task<bool> Regist(string user, string pass)
+        public void Regist(string user, string pass, string nickname)
         {
-            return false;
         }
     }
 }

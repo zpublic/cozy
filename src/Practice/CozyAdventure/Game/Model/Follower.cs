@@ -8,6 +8,8 @@ namespace CozyAdventure.Game.Model
 {
     public class Follower
     {
+        public int Id { get; set; }
+
         // 名字
         public string Name { get; set; }
 
