@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyServer.Core", "..\src\Public\CozyServer.Core\CozyServer.Core.csproj", "{6481B838-3A18-4B67-B2BF-1FD7288888A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyServer.Console", "..\src\Practice\CozyServer.Console\CozyServer.Console.csproj", "{F2108E7B-E2BA-4B95-A581-9739CEE4A6EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyServer.Plugin", "..\src\Public\CozyServer.Plugin\CozyServer.Plugin.csproj", "{5776DA72-892C-41CD-BE8E-0D7E4E5CCEC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lidgren.Network", "..\src\Public\Lidgren.Network\Lidgren.Network.csproj", "{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyServer.Helper", "..\src\Public\CozyServer.Helper\CozyServer.Helper.csproj", "{A00017AD-1878-460B-9F37-E1C56D4FC554}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyClient.Core", "..\src\Public\CozyClient.Core\CozyClient.Core.csproj", "{1E97D586-051A-457F-8034-297C5559292F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6481B838-3A18-4B67-B2BF-1FD7288888A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6481B838-3A18-4B67-B2BF-1FD7288888A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6481B838-3A18-4B67-B2BF-1FD7288888A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6481B838-3A18-4B67-B2BF-1FD7288888A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2108E7B-E2BA-4B95-A581-9739CEE4A6EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2108E7B-E2BA-4B95-A581-9739CEE4A6EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2108E7B-E2BA-4B95-A581-9739CEE4A6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2108E7B-E2BA-4B95-A581-9739CEE4A6EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5776DA72-892C-41CD-BE8E-0D7E4E5CCEC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5776DA72-892C-41CD-BE8E-0D7E4E5CCEC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5776DA72-892C-41CD-BE8E-0D7E4E5CCEC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5776DA72-892C-41CD-BE8E-0D7E4E5CCEC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A00017AD-1878-460B-9F37-E1C56D4FC554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A00017AD-1878-460B-9F37-E1C56D4FC554}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A00017AD-1878-460B-9F37-E1C56D4FC554}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A00017AD-1878-460B-9F37-E1C56D4FC554}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E97D586-051A-457F-8034-297C5559292F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E97D586-051A-457F-8034-297C5559292F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E97D586-051A-457F-8034-297C5559292F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E97D586-051A-457F-8034-297C5559292F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
