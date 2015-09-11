@@ -39,6 +39,9 @@ CozyAdventure - 冒险与编程
         1.3.4 Team 组队副本
 
     1.4 Layer 层
+        1.4.1 BackgroundLayer 背景层
+        1.4.2 LoginUiLayer 登录页基本UI层
+        1.4.3 RegistUiLayer 注册页基本UI层
 
 2、Game 游戏内容
 

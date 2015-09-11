@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CozyAdventure.View.Layer
 {
-    public class BgLayer : CCLayer
+    public class BackgroundLayer : CCLayer
     {
-        public BgLayer(string bgPic)
+        public BackgroundLayer(string bgPic)
         {
             var sprite = new CCSprite(bgPic);
             AddChild(sprite, 0);
