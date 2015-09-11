@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyServer.Helper", "..\src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyClient.Core", "..\src\Public\CozyClient.Core\CozyClient.Core.csproj", "{1E97D586-051A-457F-8034-297C5559292F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAdventure.ServerPlugin", "..\src\Practice\CozyAdventure.ServerPlugin\CozyAdventure.ServerPlugin.csproj", "{64165693-5138-4C29-833D-74D87830FCF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyClient.Tester", "..\src\Practice\CozyClient.Tester\CozyClient.Tester.csproj", "{FC900079-B483-4978-9C03-75460F2323BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{1E97D586-051A-457F-8034-297C5559292F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E97D586-051A-457F-8034-297C5559292F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E97D586-051A-457F-8034-297C5559292F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64165693-5138-4C29-833D-74D87830FCF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64165693-5138-4C29-833D-74D87830FCF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64165693-5138-4C29-833D-74D87830FCF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64165693-5138-4C29-833D-74D87830FCF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC900079-B483-4978-9C03-75460F2323BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC900079-B483-4978-9C03-75460F2323BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC900079-B483-4978-9C03-75460F2323BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC900079-B483-4978-9C03-75460F2323BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

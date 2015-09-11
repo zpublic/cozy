@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CozyServer.IO.cs" />
     <Compile Include="CozyServer.Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

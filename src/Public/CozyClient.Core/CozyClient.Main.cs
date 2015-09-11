@@ -16,6 +16,7 @@ namespace CozyClient.Core
             NetPeerConfiguration config = new NetPeerConfiguration(ClientName);
             config.EnableMessageType(NetIncomingMessageType.DiscoveryResponse);
             InnerClient = new NetClient(config);
+            InnerClient.RegisterReceivedCallback(RecivePacket);
         }
 
         public void Connect(String ip, int port)
@@ -61,9 +62,7 @@ namespace CozyClient.Core
                         InnerClient.Connect(msg.SenderEndPoint);
                         break;
                     case NetIncomingMessageType.StatusChanged:
-                        NetConnectionStatus status = (NetConnectionStatus)msg.ReadByte();
-                        string reason = msg.ReadString();
-                        OnStatusMessage(this, status, reason, msg.SenderConnection);
+                        OnStatusMessage(this, msg);
                         break;
                     case NetIncomingMessageType.Data:
                         OnDataMessage(this, msg);
@@ -72,17 +71,23 @@ namespace CozyClient.Core
             }
         }
 
+        public event EventHandler<ClienEventArgs> StatusMessage;
+        public event EventHandler<ClienEventArgs> DataMessage;
+
         private void OnDataMessage(CozyClient cozyClient, NetIncomingMessage msg)
         {
-            throw new NotImplementedException();
+            if(StatusMessage != null)
+            {
+                StatusMessage(this, new ClienEventArgs(cozyClient.InnerClient, msg));
+            }
         }
 
-        private void OnStatusMessage(CozyClient cozyClient, NetConnectionStatus status)
+        private void OnStatusMessage(CozyClient cozyClient, NetIncomingMessage msg)
         {
-            throw new NotImplementedException();
+            if(DataMessage != null)
+            {
+                DataMessage(this, new ClienEventArgs(cozyClient.InnerClient, msg));
+            }
         }
-
-        public event EventHandler<NetIncomingMessage> StatusMessage;
-        public event EventHandler<NetIncomingMessage> DataMessage;
     }
 }

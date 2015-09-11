@@ -33,11 +33,11 @@ namespace CozyServer.Plugin
             }
         }
 
-        public bool LoadPlugins()
+        public bool LoadPlugins(string path)
         {
             lock (objLocker)
             {
-                return TryLoadPlugins(@"./Plugins/") != 0;
+                return TryLoadPlugins(path) != 0;
             }
         }
     }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Lidgren.Network;
 using CozyServer.Plugin;
+using System.Threading;
 
 namespace CozyServer.Core
 {
@@ -69,6 +70,11 @@ namespace CozyServer.Core
             IsInitComplete = true;
         }
 
+        private void LoadPlugin()
+        {
+            PluginMgr.LoadPlugins("@./Plugins/");
+        }
+
         public void Listen()
         {
             if(IsInitComplete && IsRunning)
@@ -118,6 +124,15 @@ namespace CozyServer.Core
                     default:
                         break;
                 }
+            }
+        }
+
+        public void EnterMainLoop()
+        {
+            while(InnerServer.Status == NetPeerStatus.Running)
+            {
+                RecivePacket();
+                Thread.Sleep(0);
             }
         }
 
