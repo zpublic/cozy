@@ -5,7 +5,7 @@ CozyAdventure - 冒险与编程
 游戏设计与计划
 ===============================
 
-    ~ 表示基本已完成
+    ~~*~~ 表示基本已完成
 
 1、View 展现层
 
@@ -26,6 +26,7 @@ CozyAdventure - 冒险与编程
         1.1.14 出战阵容调整页
         1.1.15 好友管理页
         1.1.16 战斗力排行榜
+        1.1.17 礼包领取页面
 
     1.2 ViewObject 可视对象
         1.2.1 佣兵卡牌
@@ -52,11 +53,13 @@ CozyAdventure - 冒险与编程
     2.2 Logic 游戏逻辑
         2.2.1 UserLogic 注册和登陆
         2.2.2 FightLogic 战斗逻辑
-        2.2.3 FollowerLogic 佣兵攻击计算、升级
+            ~~2.2.2.1 NormalFight 常规1v1战斗~~
+        ~~2.2.3 FollowerLogic 佣兵战斗力计算~~
         2.2.4 FollowerCollectLogic 佣兵组逻辑
         2.2.5 FollowerLevelLogic 佣兵升级逻辑
         2.2.6 FollowerStarLogic 佣兵升星逻辑
         2.2.7 RankingListLogic 排行榜逻辑
+        2.2.8 FramMapLogic 刷怪逻辑
 
     2.3 Object 游戏对象
         2.3.1 PlayerObject 玩家对象
