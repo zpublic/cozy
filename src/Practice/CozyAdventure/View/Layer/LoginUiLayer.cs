@@ -1,6 +1,7 @@
 ﻿using CocosSharp;
 using CocosSharpExt;
 using CozyAdventure.Public.Controls;
+using CozyAdventure.View.Scene;
 using System;
 using System.Collections.Generic;
 using System.Linq;

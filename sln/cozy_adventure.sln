@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyServer.Console", "..\sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyClient.Tester", "..\src\Public\CozyClient.Tester\CozyClient.Tester.csproj", "{FC900079-B483-4978-9C03-75460F2323BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAdventure.Protocol", "..\src\Practice\CozyAdventure.Protocol\CozyAdventure.Protocol.csproj", "{37AC07A8-D75A-4EC9-AA48-9FAAA3161A5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{FC900079-B483-4978-9C03-75460F2323BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC900079-B483-4978-9C03-75460F2323BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC900079-B483-4978-9C03-75460F2323BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37AC07A8-D75A-4EC9-AA48-9FAAA3161A5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37AC07A8-D75A-4EC9-AA48-9FAAA3161A5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37AC07A8-D75A-4EC9-AA48-9FAAA3161A5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37AC07A8-D75A-4EC9-AA48-9FAAA3161A5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,5 +108,6 @@ Global
 		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8} = {EDBC32C7-B381-451B-AB3C-9BCAAAD4F592}
 		{F2108E7B-E2BA-4B95-A581-9739CEE4A6EA} = {EDBC32C7-B381-451B-AB3C-9BCAAAD4F592}
 		{FC900079-B483-4978-9C03-75460F2323BC} = {EDBC32C7-B381-451B-AB3C-9BCAAAD4F592}
+		{37AC07A8-D75A-4EC9-AA48-9FAAA3161A5F} = {EDBC32C7-B381-451B-AB3C-9BCAAAD4F592}
 	EndGlobalSection
 EndGlobal
