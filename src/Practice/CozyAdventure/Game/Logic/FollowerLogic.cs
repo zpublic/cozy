@@ -9,8 +9,9 @@ namespace CozyAdventure.Game.Logic
 {
     public class FollowerLogic
     {
-        static List<int> baseAttack = new List<int>() { 0, 730, 2200, 8120, 17000 };
-        static List<int> growAttack = new List<int>() { 20, 45, 180, 400, 1200 };
+        static List<int> baseAttack = new List<int>() { 0, 300, 1000, 2500, 5000, 9000 };
+        static List<int> growAttack = new List<int>() { 10, 20, 30, 50, 100, 150 };
+        // 每个星级最多可以升级20级，对应满级攻击力为：200、700、1600、3500、7000、12000
 
         static int GetGrowAttack(int star, int level)
         {
