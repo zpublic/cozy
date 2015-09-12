@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CozyAdventure.Protocol.Msg
 {
-    public class HeartMessage : IMessage
+    public class HeartMessage : MessageBase
     {
         public override uint Id { get { return (uint)MessageId.Core.HeartMessage; } }
     }

@@ -27,29 +27,29 @@ namespace CozyNetworkHelper
         }
 
         public static void RegisterMessage<T>()
-            where T : IMessage, new()
+            where T : MessageBase, new()
         {
             var instance = new T();
             RegisterMessage(instance.Id, typeof(T));
         }
 
-        public static void RegisterTypeWithAssembly(string Ass, string Ns)
+        public static void RegisterTypeWithAssembly(string Ass)
         {
             Assembly asm = Assembly.Load(Ass);
             if (asm != null)
             {
                 foreach (Type type in asm.GetTypes())
                 {
-                    if (type.Namespace == Ns)
+                    if (type.BaseType == typeof(MessageBase))
                     {
-                        uint id = ((IMessage)Activator.CreateInstance(type)).Id;
+                        uint id = ((MessageBase)Activator.CreateInstance(type)).Id;
                         RegisterMessage(id, type);
                     }
                 }
             }
         }
 
-        public static IMessage GetMessageInstance(uint id, NetBuffer msg)
+        public static MessageBase GetMessageInstance(uint id, NetBuffer msg)
         {
             Type instanceType = null;
             lock (objLocker)
@@ -63,7 +63,7 @@ namespace CozyNetworkHelper
 
             if (instanceType != null)
             {
-                var instance = (IMessage)Activator.CreateInstance(instanceType);
+                var instance = (MessageBase)Activator.CreateInstance(instanceType);
                 instance.Read(msg);
                 return instance;
             }

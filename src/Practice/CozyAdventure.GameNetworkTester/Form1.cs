@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CozyClient.Core;
 using Lidgren.Network;
+using CozyNetworkHelper;
 
 using ClientType = CozyClient.Core.CozyClient;
 
@@ -23,13 +24,29 @@ namespace CozyAdventure.GameNetworkTester
             InitializeComponent();
         }
 
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            client = new ClientType("CozyAdventure");
-            client.DataMessage      += OnData;
-            client.StatusMessage    += OnStatus;
-
+            Init();
             client.Connect("127.0.0.1", 44360);
+        }
+
+        private void Init()
+        {
+            InitMessage();
+            InitNetwork();
+        }
+
+        private void InitMessage()
+        {
+            MessageReader.RegisterTypeWithAssembly("CozyAdventure.Protocol.dll");
+        }
+
+        private void InitNetwork()
+        {
+            client = new ClientType("CozyAdventure");
+            client.DataMessage += OnData;
+            client.StatusMessage += OnStatus;
         }
 
         private void OnStatus(object sender, ClienEventArgs e)

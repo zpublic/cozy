@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CozyAdventure.Protocol.Msg
 {
-    public class UpgradeMessage : IMessage
+    public class UpgradeMessage : MessageBase
     {
         public override uint Id { get { return (uint)MessageId.Mercenary.UpgradeMessage; } }
     }

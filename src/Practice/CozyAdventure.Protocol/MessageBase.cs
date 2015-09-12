@@ -7,7 +7,7 @@ using Lidgren.Network;
 
 namespace CozyAdventure.Protocol
 {
-    public abstract class IMessage
+    public abstract class MessageBase
     {
         public abstract uint Id { get; }
 
