@@ -10,5 +10,7 @@ namespace CozyServer.Plugin
     {
         void StatusCallback(object server, object msg);
         void DataCallback(object server, object msg);
+
+        void OnEnter();
     }
 }

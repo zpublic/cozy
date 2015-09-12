@@ -10,6 +10,11 @@ namespace CozyAdventure.ServerPlugin
 {
     public class AdventurePlugin : IPlugin
     {
+        public void OnEnter()
+        {
+
+        }
+
         public void StatusCallback(object server, object msg)
         {
             var tempSrv = server as NetServer;
