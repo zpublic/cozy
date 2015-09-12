@@ -8,6 +8,6 @@ namespace CozyAdventure.Protocol.Msg
 {
     public class GetGiftMessage : IMessage
     {
-        public uint Id { get { return (uint)MessageId.Gift.GetGiftMessage; } }
+        public override uint Id { get { return (uint)MessageId.Gift.GetGiftMessage; } }
     }
 }

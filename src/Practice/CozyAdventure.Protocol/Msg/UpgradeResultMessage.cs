@@ -8,6 +8,6 @@ namespace CozyAdventure.Protocol.Msg
 {
     public class UpgradeResultMessage : IMessage
     {
-        public uint Id { get { return (uint)MessageId.Mercenary.UpgradeResultMessage; } }
+        public override uint Id { get { return (uint)MessageId.Mercenary.UpgradeResultMessage; } }
     }
 }

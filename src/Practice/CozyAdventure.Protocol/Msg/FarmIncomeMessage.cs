@@ -8,6 +8,6 @@ namespace CozyAdventure.Protocol.Msg
 {
     public class FarmIncomeMessage : IMessage
     {
-        public uint Id { get { return (uint)MessageId.Farm.FarmIncomeMessage; } }
+        public override uint Id { get { return (uint)MessageId.Farm.FarmIncomeMessage; } }
     }
 }

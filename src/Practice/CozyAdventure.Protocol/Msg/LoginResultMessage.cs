@@ -8,6 +8,6 @@ namespace CozyAdventure.Protocol.Msg
 {
     public class LoginResultMessage : IMessage
     {
-        public uint Id { get { return (uint)MessageId.Inner.LoginResultMessage; } }
+        public override uint Id { get { return (uint)MessageId.Inner.LoginResultMessage; } }
     }
 }

@@ -8,6 +8,6 @@ namespace CozyAdventure.Protocol.Msg
 {
     public class RegisterResultMessage : IMessage
     {
-        public uint Id { get { return (uint)MessageId.Inner.RegisterResultMessage; } }
+        public override uint Id { get { return (uint)MessageId.Inner.RegisterResultMessage; } }
     }
 }

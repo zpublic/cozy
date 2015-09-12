@@ -8,6 +8,6 @@ namespace CozyAdventure.Protocol.Msg
 {
     public class HeartMessage : IMessage
     {
-        public uint Id { get { return (uint)MessageId.Core.HeartMessage; } }
+        public override uint Id { get { return (uint)MessageId.Core.HeartMessage; } }
     }
 }

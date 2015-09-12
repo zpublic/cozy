@@ -40,10 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MessageReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Practice\CozyAdventure.Protocol\CozyAdventure.Protocol.csproj">
+      <Project>{37ac07a8-d75a-4ec9-aa48-9faaa3161a5f}</Project>
+      <Name>CozyAdventure.Protocol</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lidgren.Network\Lidgren.Network.csproj">
       <Project>{49ba1c69-6104-41ac-a5d8-b54fa9f696e8}</Project>
       <Name>Lidgren.Network</Name>

@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CozyClient.Core;
+using Lidgren.Network;
 
 using ClientType = CozyClient.Core.CozyClient;
-using Lidgren.Network;
 
 namespace CozyAdventure.GameNetworkTester
 {

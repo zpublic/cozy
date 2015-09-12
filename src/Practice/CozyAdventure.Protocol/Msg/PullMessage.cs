@@ -8,6 +8,6 @@ namespace CozyAdventure.Protocol.Msg
 {
     public class PullMessage : IMessage
     {
-        public uint Id { get { return (uint)MessageId.User.PullMessage; } }
+        public override uint Id { get { return (uint)MessageId.User.PullMessage; } }
     }
 }
