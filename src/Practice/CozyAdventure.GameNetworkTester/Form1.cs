@@ -39,7 +39,7 @@ namespace CozyAdventure.GameNetworkTester
 
         private void InitMessage()
         {
-            MessageReader.RegisterTypeWithAssembly("CozyAdventure.Protocol.dll");
+            MessageReader.RegisterTypeWithAssembly("CozyAdventure.Protocol");
         }
 
         private void InitNetwork()
