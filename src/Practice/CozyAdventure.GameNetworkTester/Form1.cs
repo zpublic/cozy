@@ -37,9 +37,11 @@ namespace CozyAdventure.GameNetworkTester
             NetConnectionStatus status = (NetConnectionStatus)e.Message.ReadByte();
             if (status == NetConnectionStatus.Connected)
             {
+
             }
             else if (status == NetConnectionStatus.Disconnected)
             {
+
             }
         }
 

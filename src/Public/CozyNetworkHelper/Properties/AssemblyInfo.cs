@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("CozyServer.Helper")]
+[assembly: AssemblyTitle("CozyNetworkHelper")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CozyServer.Helper")]
+[assembly: AssemblyProduct("CozyNetworkHelper")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("a00017ad-1878-460b-9f37-e1c56d4fc554")]
+[assembly: Guid("f2a8beea-3ed3-4bda-a24f-94774f96d1cb")]
 
 // 程序集的版本信息由下列四个值组成: 
 //
