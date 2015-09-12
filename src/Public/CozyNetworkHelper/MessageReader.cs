@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CozyAdventure.Protocol;
+using CozyNetworkProtocol;
 using System.Reflection;
 using Lidgren.Network;
 
