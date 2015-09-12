@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using CozyClient.Core;
 using Lidgren.Network;
 using CozyNetworkHelper;
+using CozyAdventure.Protocol;
+using CozyAdventure.Protocol.Msg;
 
 using ClientType = CozyClient.Core.CozyClient;
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CozyServer.Plugin;
 using Lidgren.Network;
+using CozyNetworkHelper;
 
 namespace CozyAdventure.ServerPlugin
 {
@@ -12,7 +13,7 @@ namespace CozyAdventure.ServerPlugin
     {
         public void OnEnter()
         {
-
+            MessageReader.RegisterTypeWithAssembly("CozyAdventure.Protocol");
         }
 
         public void StatusCallback(object server, object msg)
