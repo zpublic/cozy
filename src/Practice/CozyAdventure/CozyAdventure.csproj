@@ -152,7 +152,12 @@
     <Compile Include="View\Sprite\FollowerSprite.cs" />
     <Compile Include="View\Sprite\PropSprite.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Public\CozyClient.Core\CozyClient.Core.csproj">
+      <Project>{1e97d586-051a-457f-8034-297c5559292f}</Project>
+      <Name>CozyClient.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

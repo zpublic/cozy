@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyClient.Tester", "..\src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAdventure.Protocol", "..\src\Practice\CozyAdventure.Protocol\CozyAdventure.Protocol.csproj", "{37AC07A8-D75A-4EC9-AA48-9FAAA3161A5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAdventure.GameNetworkTester", "..\src\Practice\CozyAdventure.GameNetworkTester\CozyAdventure.GameNetworkTester.csproj", "{1560B058-3124-4207-A2FC-E681A9BF8043}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{37AC07A8-D75A-4EC9-AA48-9FAAA3161A5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37AC07A8-D75A-4EC9-AA48-9FAAA3161A5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37AC07A8-D75A-4EC9-AA48-9FAAA3161A5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1560B058-3124-4207-A2FC-E681A9BF8043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1560B058-3124-4207-A2FC-E681A9BF8043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1560B058-3124-4207-A2FC-E681A9BF8043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1560B058-3124-4207-A2FC-E681A9BF8043}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,5 +114,6 @@ Global
 		{49BA1C69-6104-41AC-A5D8-B54FA9F696E8} = {EDBC32C7-B381-451B-AB3C-9BCAAAD4F592}
 		{F2108E7B-E2BA-4B95-A581-9739CEE4A6EA} = {EDBC32C7-B381-451B-AB3C-9BCAAAD4F592}
 		{FC900079-B483-4978-9C03-75460F2323BC} = {EDBC32C7-B381-451B-AB3C-9BCAAAD4F592}
+		{1560B058-3124-4207-A2FC-E681A9BF8043} = {597ED48E-ABEB-4977-B0EF-935CCE93F18E}
 	EndGlobalSection
 EndGlobal
