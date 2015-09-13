@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CozyAdventure.GameNetworkTester</RootNamespace>
     <AssemblyName>CozyAdventure.GameNetworkTester</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\bin\CozyServer\</OutputPath>
+    <OutputPath>..\..\..\bin\CozyAdventure\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -27,7 +27,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\bin\CozyServer\</OutputPath>
+    <OutputPath>..\..\..\bin\CozyAdventure\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -88,6 +88,10 @@
     <ProjectReference Include="..\..\Public\CozyNetworkHelper\CozyNetworkHelper.csproj">
       <Project>{f2a8beea-3ed3-4bda-a24f-94774f96d1cb}</Project>
       <Name>CozyNetworkHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Public\CozyNetworkProtocol\CozyNetworkProtocol.csproj">
+      <Project>{114e6003-1cf5-4d68-a59c-2bcc80734107}</Project>
+      <Name>CozyNetworkProtocol</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Public\Lidgren.Network\Lidgren.Network.csproj">
       <Project>{49ba1c69-6104-41ac-a5d8-b54fa9f696e8}</Project>

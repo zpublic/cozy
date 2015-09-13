@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\CozyServer\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\..\bin\CozyServer\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -45,6 +45,10 @@
     <Compile Include="ServerHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Practice\CozyAdventure.Protocol\CozyAdventure.Protocol.csproj">
+      <Project>{37ac07a8-d75a-4ec9-aa48-9faaa3161a5f}</Project>
+      <Name>CozyAdventure.Protocol</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyNetworkProtocol\CozyNetworkProtocol.csproj">
       <Project>{114e6003-1cf5-4d68-a59c-2bcc80734107}</Project>
       <Name>CozyNetworkProtocol</Name>

@@ -40,12 +40,13 @@ namespace CozyAdventure.ServerPlugin
 
         public void StatusCallbackImpl(NetServer server, NetIncomingMessage msg)
         {
-
+            
         }
 
         public void DataCallbackImpl(NetServer server, NetIncomingMessage msg)
         {
-
+            uint id = msg.ReadUInt32();
+            var m = MessageReader.GetMessageInstance(id, msg);
         }
     }
 }
