@@ -14,7 +14,7 @@ namespace CozyServer.Console
         static ServerType server { get; set; }
         static void Main(string[] args)
         {
-            server = new ServerType("CozyServerTester",1000, 44360);
+            server = new ServerType("CozyAdventure", 1000, 44360);
             server.Listen();
             server.EnterMainLoop();
         }

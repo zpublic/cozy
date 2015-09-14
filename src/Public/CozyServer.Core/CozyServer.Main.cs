@@ -86,7 +86,7 @@ namespace CozyServer.Core
 
         private void LoadPlugin()
         {
-            PluginMgr.LoadPlugins(@"Plugins/");
+            PluginMgr.LoadPlugins(@"./");
         }
 
         private void InitFilter()

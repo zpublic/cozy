@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CozyNetworkProtocol;
 
 namespace CozyAdventure.Protocol.Msg
 {
-    public class GotoMapMessage : IMessage
+    public class GotoMapMessage : MessageBase
     {
-        public uint Id { get { return (uint)MessageId.Farm.GotoMapMessage; } }
+        public override uint Id { get { return (uint)MessageId.Farm.GotoMapMessage; } }
     }
 }

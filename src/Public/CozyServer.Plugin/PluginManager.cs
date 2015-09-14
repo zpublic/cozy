@@ -37,10 +37,17 @@ namespace CozyServer.Plugin
 
         public bool LoadPlugins(string path)
         {
+            bool result = false;
             lock (objLocker)
             {
-                return TryLoadPlugins(path) != 0;
+                result = (TryLoadPlugins(path) != 0);
             }
+
+            foreach(var obj in PluginSet)
+            {
+                obj.OnEnter();
+            }
+            return false;
         }
     }
 }
