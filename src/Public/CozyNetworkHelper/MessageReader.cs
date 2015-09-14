@@ -49,9 +49,11 @@ namespace CozyNetworkHelper
             }
         }
 
-        public static MessageBase GetMessageInstance(uint id, NetBuffer msg)
+        public static MessageBase GetMessageInstance(NetBuffer msg)
         {
-            Type instanceType = null;
+            Type instanceType   = null;
+            uint id             = msg.ReadUInt32();
+
             lock (objLocker)
             {
                 if (!MessageMapping.ContainsKey(id))
