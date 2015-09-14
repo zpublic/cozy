@@ -42,6 +42,7 @@ namespace CozyAdventure.GameNetworkTester
         private void InitMessage()
         {
             MessageReader.RegisterTypeWithAssembly("CozyAdventure.Protocol");
+            MessageCallbackManager.RegisterCallback(this);
         }
 
         private void InitNetwork()
@@ -56,13 +57,7 @@ namespace CozyAdventure.GameNetworkTester
             NetConnectionStatus status = (NetConnectionStatus)e.Message.ReadByte();
             if (status == NetConnectionStatus.Connected)
             {
-                var msg = new RegisterMessage()
-                {
-                    Name = "kingwl",
-                    Pass = "123456",
-                };
-
-                client.SendMessage(msg);
+                
 
             }
             else if (status == NetConnectionStatus.Disconnected)
@@ -74,7 +69,36 @@ namespace CozyAdventure.GameNetworkTester
         private void OnData(object sender, ClienEventArgs e)
         {
             var r = MessageReader.GetMessageInstance(e.Message);
-            var rm = (RegisterResultMessage)r;
+            MessageCallbackManager.ShellCallback(r, e.Client, e.Message);
+        }
+
+        private void Register_Click(object sender, EventArgs e)
+        {
+            if(user.Text.Length > 0 && nickname.Text.Length > 0 && pass.Text.Length > 0)
+            {
+                var msg = new RegisterMessage()
+                {
+                    Name = user.Text,
+                    Pass = nickname.Text,
+                    NickName = pass.Text,
+                };
+
+                client.SendMessage(msg);
+            }
+        }
+
+        private void Login_Click(object sender, EventArgs e)
+        {
+            if (user.Text.Length > 0 && nickname.Text.Length > 0 && pass.Text.Length > 0)
+            {
+                var msg = new LoginMessage()
+                {
+                    Name = user.Text,
+                    Pass = nickname.Text,
+                };
+
+                client.SendMessage(msg);
+            }
         }
     }
 }

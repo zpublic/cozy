@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using CozyServer.Plugin;
 using Lidgren.Network;
 using CozyNetworkHelper;
-using CozyNetworkProtocol;
-using CozyAdventure.Protocol.Msg;
 
 namespace CozyAdventure.ServerPlugin
 {
@@ -17,11 +15,6 @@ namespace CozyAdventure.ServerPlugin
         {
             MessageReader.RegisterTypeWithAssembly("CozyAdventure.Protocol");
             MessageCallbackManager.RegisterCallback(this);
-        }
-
-        private void RegisterCallback()
-        {
-
         }
 
         public void StatusCallback(object server, object msg)
@@ -55,27 +48,6 @@ namespace CozyAdventure.ServerPlugin
         {
             var m = MessageReader.GetMessageInstance(msg);
             MessageCallbackManager.ShellCallback(m, server, msg);
-        }
-
-        [CallBack(typeof(RegisterMessage))]
-        public void OnRegisterMessage(NetPeer server, NetBuffer buff, MessageBase msg)
-        {
-            var srv = server as NetServer;
-            var im  = buff as NetIncomingMessage;
-
-            if(srv != null && im != null)
-            {
-                RegisterMessageImpl(srv, im, msg);
-            }
-        }
-
-        private void RegisterMessageImpl(NetServer server, NetIncomingMessage im, MessageBase msg)
-        {
-            var r = new RegisterResultMessage()
-            {
-                Result = "OK",
-            };
-            server.SendMessage(r, im.SenderConnection);
         }
     }
 }

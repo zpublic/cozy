@@ -7,7 +7,7 @@ using CozyAdventure.ServerPlugin.Storgae;
 
 namespace CozyAdventure.ServerPlugin
 {
-    public partial class AdventurePlugin
+    public static class AdventurePluginDB
     {
         public static readonly UserDB User = new UserDB();
     }

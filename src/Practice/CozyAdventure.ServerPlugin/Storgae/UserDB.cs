@@ -45,17 +45,19 @@ namespace CozyAdventure.ServerPlugin.Storgae
             return col.FindById(id);
         }
 
-        public bool Check(string Name, string Pass)
+        public UserInfo Get(string name, string pass)
         {
-            var r = col.FindOne(x => x.Name == Name);
-            if(r != null)
+            return col.FindOne(x => x.Name == name && x.Pass == pass);
+        }
+
+        public int GetId(string name)
+        {
+            var p = col.FindOne(x => x.Name == name);
+            if (p != null)
             {
-                if(r.Pass == Pass)
-                {
-                    return true;
-                }
+                return p.id;
             }
-            return false;
+            return -1;
         }
     }
 }

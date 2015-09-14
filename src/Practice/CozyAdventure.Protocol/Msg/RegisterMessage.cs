@@ -13,6 +13,8 @@ namespace CozyAdventure.Protocol.Msg
 
         public string Name { get; set; }
 
+        public string NickName { get; set; }
+
         public string Pass { get; set; }
     }
 }
