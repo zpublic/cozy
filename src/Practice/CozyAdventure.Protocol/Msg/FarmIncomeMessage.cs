@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CozyNetworkProtocol;
 
 namespace CozyAdventure.Protocol.Msg
 {
-    public class FarmIncomeMessage : IMessage
+    public class FarmIncomeMessage : MessageBase
     {
-        public uint Id { get { return (uint)MessageId.Farm.FarmIncomeMessage; } }
+        public override uint Id { get { return (uint)MessageId.Farm.FarmIncomeMessage; } }
     }
 }

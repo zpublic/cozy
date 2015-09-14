@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lidgren.Network;
+using CozyNetworkProtocol;
 
 namespace CozyClient.Core
 {
@@ -36,6 +37,13 @@ namespace CozyClient.Core
                 InnerClient.Disconnect("Disconnect");
                 InnerClient.Shutdown("Shutdown");
             }
+        }
+
+        public void SendMessage(MessageBase msg)
+        {
+            var om = InnerClient.CreateMessage();
+            msg.Write(om);
+            SendMessage(om);
         }
 
         public void SendMessage(NetOutgoingMessage msg)
