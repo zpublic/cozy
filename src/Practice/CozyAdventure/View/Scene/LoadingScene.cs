@@ -1,5 +1,6 @@
 ﻿using CocosSharp;
 using System;
+using CozyAdventure.View.Layer;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,10 @@ namespace CozyAdventure.View.Scene
     {
         public LoadingScene() : base(AppDelegate.SharedWindow)
         {
+            var bg = new BackgroundLayer(@"pic\1.png");
+            AddChild(bg);
+            var ui = new LoadingUiLayer();
+            AddChild(ui);
         }
     }
 }
