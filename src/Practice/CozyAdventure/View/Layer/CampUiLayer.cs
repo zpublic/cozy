@@ -17,7 +17,7 @@ namespace CozyAdventure.View.Layer
         public CampUiLayer()
         {
             
-            var edit = new CocosSharpExt.CCTextField("战斗力:"+Fighting+"金币"+Gold+"经验"+Exper, "微软雅黑", 22)
+            var edit = new CCLabel("战斗力:"+Fighting+"金币"+Gold+"经验"+Exper, "微软雅黑", 22)
             {
                 Position = new CCPoint(100, 120),
                 Color = CCColor3B.Blue
