@@ -56,7 +56,12 @@ namespace CozyAdventure.GameNetworkTester
             NetConnectionStatus status = (NetConnectionStatus)e.Message.ReadByte();
             if (status == NetConnectionStatus.Connected)
             {
-                var msg = new RegisterMessage();
+                var msg = new RegisterMessage()
+                {
+                    Name = "kingwl",
+                    Pass = "123456",
+                };
+
                 client.SendMessage(msg);
 
             }
@@ -68,7 +73,8 @@ namespace CozyAdventure.GameNetworkTester
 
         private void OnData(object sender, ClienEventArgs e)
         {
-            
+            var r = MessageReader.GetMessageInstance(e.Message);
+            var rm = (RegisterResultMessage)r;
         }
     }
 }

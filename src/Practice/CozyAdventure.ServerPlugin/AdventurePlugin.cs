@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CozyServer.Plugin;
 using Lidgren.Network;
 using CozyNetworkHelper;
+using CozyAdventure.Protocol.Msg;
 
 namespace CozyAdventure.ServerPlugin
 {
@@ -45,8 +46,13 @@ namespace CozyAdventure.ServerPlugin
 
         public void DataCallbackImpl(NetServer server, NetIncomingMessage msg)
         {
-            uint id = msg.ReadUInt32();
-            var m = MessageReader.GetMessageInstance(id, msg);
+            var m = MessageReader.GetMessageInstance(msg);
+
+            var r = new RegisterResultMessage()
+            {
+                Result = "OK",
+            };
+            server.SendMessage(r, msg.SenderConnection);
         }
     }
 }
