@@ -143,9 +143,11 @@
     <Compile Include="Public\Controls\text_input_node\ICCIMEDelegate.cs" />
     <Compile Include="Public\Controls\text_input_node\ICCTextFieldDelegate.cs" />
     <Compile Include="Public\Controls\text_input_node\IMEKeyboardImpl.cs" />
+    <Compile Include="View\Layer\AdventureUiLayer.cs" />
     <Compile Include="View\Layer\BackgroundLayer.cs" />
     <Compile Include="View\Layer\CampUiLayer.cs" />
     <Compile Include="View\Layer\LoadingUiLayer.cs" />
+    <Compile Include="View\Scene\AdventureScene.cs" />
     <Compile Include="View\Scene\LoginScene.cs" />
     <Compile Include="View\Scene\CampScene.cs" />
     <Compile Include="View\Scene\LoadingScene.cs" />
