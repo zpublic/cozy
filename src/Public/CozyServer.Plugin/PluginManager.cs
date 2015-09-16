@@ -15,39 +15,28 @@ namespace CozyServer.Plugin
 
         public void NotifyData(object server, object msg)
         {
-            lock (objLocker)
+            foreach (var obj in PluginSet)
             {
-                foreach (var obj in PluginSet)
-                {
-                    obj.DataCallback(server, msg);
-                }
+                obj.DataCallback(server, msg);
             }
         }
 
         public void NotifyStatus(object server, object msg)
         {
-            lock (objLocker)
+            foreach (var obj in PluginSet)
             {
-                foreach (var obj in PluginSet)
-                {
-                    obj.StatusCallback(server, msg);
-                }
+                obj.StatusCallback(server, msg);
             }
         }
 
         public bool LoadPlugins(string path)
         {
-            bool result = false;
-            lock (objLocker)
-            {
-                result = (TryLoadPlugins(path) != 0);
-            }
-
-            foreach(var obj in PluginSet)
+            bool result = (TryLoadPlugins(path) != 0);
+            foreach (var obj in PluginSet)
             {
                 obj.OnEnter();
             }
-            return false;
+            return result;
         }
     }
 }

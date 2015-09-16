@@ -63,6 +63,10 @@ namespace CozyServer.Core
 
         public PluginManager PluginMgr { get; set; } = new PluginManager();
 
+        private CozyMessageQueue MessageQueue { get; set; } = new CozyMessageQueue();
+
+        private CozyWorkerSet WorkerSet { get; set; }
+
         public CozyServer(string ServerName, int MaxConnect, int port)
         {
             if(ServerName == null || ServerName.Length == 0)
@@ -80,8 +84,14 @@ namespace CozyServer.Core
         {
             InitFilter();
             LoadPlugin();
+            InitWorkers();
 
             IsInitComplete = true;
+        }
+
+        private void InitWorkers()
+        {
+            WorkerSet = new CozyWorkerSet(MessageCallback, 4);
         }
 
         private void LoadPlugin()
@@ -103,7 +113,9 @@ namespace CozyServer.Core
             {
                 throw new Exception("Server is already running");
             }
+            WorkerSet.WorkStart();
             InnerServer.Start();
+
         }
 
         public void Connect(string ip, int port)
@@ -119,6 +131,25 @@ namespace CozyServer.Core
             if(IsInitComplete && IsRunning)
             {
                 InnerServer.Shutdown("ShutDown");
+                WorkerSet.WorkStop();
+            }
+        }
+
+        public void MessageCallback(NetIncomingMessage msg)
+        {
+            if(msg != null)
+            {
+                switch (msg.MessageType)
+                {
+                    case NetIncomingMessageType.StatusChanged:
+                        OnStatusMessage(msg);
+                        break;
+                    case NetIncomingMessageType.Data:
+                        OnDataMessage(msg);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -138,10 +169,8 @@ namespace CozyServer.Core
                     case NetIncomingMessageType.ErrorMessage:
                         break;
                     case NetIncomingMessageType.StatusChanged:
-                        OnStatusMessage(msg);
-                        break;
                     case NetIncomingMessageType.Data:
-                        OnDataMessage(msg);
+                        WorkerSet.PushMessage(msg);
                         break;
                     default:
                         break;

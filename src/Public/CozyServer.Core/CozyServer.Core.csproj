@@ -40,8 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CozyMessageQueue.cs" />
     <Compile Include="CozyServer.Main.cs" />
+    <Compile Include="CozyWorker.cs" />
+    <Compile Include="CozyWorkerSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThreadSafeQueue.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CozyServer.Plugin\CozyServer.Plugin.csproj">
