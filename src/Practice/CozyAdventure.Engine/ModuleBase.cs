@@ -16,6 +16,9 @@ namespace CozyAdventure.Engine
 
         public virtual bool Init(string script)
         {
+            lua.LoadCLRPackage();
+            lua.DoString("import ('CozyAdventure.Engine', 'CozyPoker.CozyAdventure.Util')");
+
             lua.DoFile(PathTransform.LuaScript(script));
             var methods = lua.GetTable("methods");
 
