@@ -1,0 +1,4 @@
+methods = {
+    'GetGrowAttackFunc'£¬
+	'GetAttackFunc'
+}

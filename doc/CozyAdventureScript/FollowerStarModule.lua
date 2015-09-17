@@ -1,0 +1,5 @@
+methods = {
+    'CanUpgradeFunc'£¬
+	'UpgradeRequireFunc'
+    'UpgradeFunc'
+}
