@@ -44,7 +44,6 @@ namespace CozyAdventure.ServerPlugin
             {
                 r.Result = "Error";
             }
-            
             server.SendMessage(r, im.SenderConnection);
         }
 
@@ -75,7 +74,6 @@ namespace CozyAdventure.ServerPlugin
             {
                 r.Result = "Error";
             }
-
             server.SendMessage(r, im.SenderConnection);
         }
     }
