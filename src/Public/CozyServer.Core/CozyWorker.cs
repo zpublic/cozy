@@ -14,12 +14,8 @@ namespace CozyServer.Core
 
         private Thread InnerThread { get; set; }
 
-        private long clientId;
-        public long ClientId
-        {
-            get { return Interlocked.Read(ref clientId); }
-            set { Interlocked.Exchange(ref clientId, value); }
-        }
+        private Dictionary<long, int> ClientIdSet { get; set; } = new Dictionary<long, int>();
+        private object Locker { get; set; } = new object();
 
         private bool IsRunning { get; set; } = true;
 
@@ -36,6 +32,14 @@ namespace CozyServer.Core
             get
             {
                 return MsgQueue.Count;
+            }
+        }
+
+        public bool ContainsId(long id)
+        {
+            lock(Locker)
+            {
+                return ClientIdSet.ContainsKey(id);
             }
         }
 
@@ -56,15 +60,19 @@ namespace CozyServer.Core
                 var msg = MsgQueue.Dequeue();
                 if (msg != null)
                 {
-                    ClientId = msg.SenderConnection.RemoteUniqueIdentifier;
+                    var id = msg.SenderConnection.RemoteUniqueIdentifier;
                     if (MessageCallback != null)
                     {
                         MessageCallback(msg);
                     }
 
-                    if (MsgQueue.Count == 0)
+                    lock (Locker)
                     {
-                        ClientId = 0;
+                        ClientIdSet[id]--;
+                        if (ClientIdSet[id] <= 0)
+                        {
+                            ClientIdSet.Remove(id);
+                        }
                     }
                     Thread.Sleep(0);
                 }
@@ -73,7 +81,11 @@ namespace CozyServer.Core
 
         public void AddMessage(NetIncomingMessage msg)
         {
-            MsgQueue.Enqueue(msg);
+            lock (Locker)
+            {
+                MsgQueue.Enqueue(msg);
+                ClientIdSet[msg.SenderConnection.RemoteUniqueIdentifier]++;
+            }
         }
     }
 }

@@ -68,7 +68,7 @@ namespace CozyServer.Core
             CozyWorker MinWorker = null;
             foreach (var worker in Workers)
             {
-                if (worker.ClientId == id)
+                if (worker.ContainsId(id))
                 {
                     return worker;
                 }
