@@ -10,7 +10,7 @@ namespace CozyAdventure.Engine.Util
     {
         public static string LuaScript(string name)
         {
-            return "../../doc/CozyAdventureScript/" + name + ".lua";
+            return "../doc/CozyAdventureScript/" + name + ".lua";
         }
     }
 }

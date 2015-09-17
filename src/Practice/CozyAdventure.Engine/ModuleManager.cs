@@ -21,13 +21,9 @@ namespace CozyAdventure.Engine
 
         private Dictionary<string, ModuleBase> Modules { get; set; }
 
-        private ModuleManager()
+        public void Init()
         {
-            Init();
-        }
 
-        private void Init()
-        {
             Modules = new Dictionary<string, ModuleBase>();
 
             var types = Assembly.GetExecutingAssembly().GetTypes();
