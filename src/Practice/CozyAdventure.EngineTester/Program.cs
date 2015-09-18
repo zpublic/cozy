@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyAdventure.Engine;
+using CozyAdventure.Game.Model;
 
 namespace CozyAdventure.EngineTester
 {
@@ -13,11 +14,43 @@ namespace CozyAdventure.EngineTester
         {
             ModuleManager.Instance.Init();
 
-            var module = ModuleManager.Instance.GetModule("FollowerLevelModule");
+            var FollowerLevelModule = ModuleManager.Instance.GetModule("FollowerLevelModule");
+            var FollowerModule = ModuleManager.Instance.GetModule("FollowerModule");
+            var FollowerStarModule = ModuleManager.Instance.GetModule("FollowerStarModule");
+            var FollowerCollectModule = ModuleManager.Instance.GetModule("FollowerCollectModule");
 
-            var resule = module.CallFunc("CanUpgrade")[0];
+            var follower = new Follower()
+            {
+                CurStar = 1,
+                CurLevel = 2,
+            };
 
-            Console.WriteLine(resule.ToString());
+            //-------------------------FollowerLevelModule-------------------------------
+            Console.WriteLine((FollowerLevelModule.CallFunc("CanUpgrade", follower)[0].ToString()));
+            Console.WriteLine(((Package)FollowerLevelModule.CallFunc("UpgradeRequire", follower)[0]).Exp);
+            Console.WriteLine(FollowerLevelModule.CallFunc("Upgrade", follower)[0].ToString());
+            Console.WriteLine(((Package)FollowerLevelModule.CallFunc("UpgradeRequire", follower)[0]).Exp);
+
+            //-------------------------FollowerModule------------------------------------
+            Console.WriteLine(FollowerModule.CallFunc("GetAttack", follower)[0].ToString());
+
+            //-------------------------FollowerModule------------------------------------
+            Console.WriteLine(follower.CurStar + " " + follower.CurLevel);
+            Console.WriteLine(FollowerStarModule.CallFunc("CanUpgrade", follower)[0].ToString());
+            follower.CurLevel = 31;
+            Console.WriteLine(FollowerStarModule.CallFunc("CanUpgrade", follower)[0].ToString());
+            Console.WriteLine(((Package)FollowerStarModule.CallFunc("UpgradeRequire", follower)[0]).Exp);
+            Console.WriteLine(((Package)FollowerStarModule.CallFunc("UpgradeRequire", follower)[0]).Money);
+            Console.WriteLine(FollowerStarModule.CallFunc("Upgrade", follower)[0].ToString());
+            Console.WriteLine(follower.CurStar + " " + follower.CurLevel);
+
+            FollowerCollect fc = new FollowerCollect()
+            {
+                Followers = new List<Follower>()
+            };
+            fc.Followers.Add(follower);
+            Console.WriteLine(FollowerCollectModule.CallFunc("GetAttack", fc)[0].ToString());
+
             Console.ReadKey();
         }
     }

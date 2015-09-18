@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,6 +53,10 @@
     <ProjectReference Include="..\CozyAdventure.Engine\CozyAdventure.Engine.csproj">
       <Project>{57a59c3d-c8d9-47ec-b6e3-85c34b22b825}</Project>
       <Name>CozyAdventure.Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyAdventure\CozyAdventure.csproj">
+      <Project>{45043e36-00a0-4798-b3a8-79d8bc073f9d}</Project>
+      <Name>CozyAdventure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

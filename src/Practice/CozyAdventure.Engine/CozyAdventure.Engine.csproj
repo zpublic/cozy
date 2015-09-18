@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ext\LuaExt.cs" />
     <Compile Include="ModuleBase.cs" />
     <Compile Include="ModuleManager.cs" />
+    <Compile Include="Module\FollowerCollectModule.cs" />
     <Compile Include="Module\FollowerLevelModule.cs" />
     <Compile Include="Module\FollowerModule.cs" />
     <Compile Include="Module\FollowerStarModule.cs" />
