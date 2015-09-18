@@ -8,9 +8,11 @@ namespace CozyAdventure.Engine.Util
 {
     public static class PathTransform
     {
+        public static string PackagePath { get; } = @"../doc/CozyAdventureScript/";
+
         public static string LuaScript(string name)
         {
-            return "../doc/CozyAdventureScript/" + name + ".lua";
+            return PackagePath + name + ".lua";
         }
     }
 }

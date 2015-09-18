@@ -1,7 +1,3 @@
-local p = '../doc/CozyAdventureScript/'
-local m_package_path = package.path
-package.path = string.format("%s;%s?.lua;%s?/init.lua", m_package_path, p, p)
-
 require('FollowerModule')
 
 methods = {
