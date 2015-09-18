@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace CozyAdventure.Engine
 {
@@ -14,8 +15,12 @@ namespace CozyAdventure.Engine
 
         private CozyLuaCore lua = new CozyLuaCore();
 
+        private string ModuleName { get; set; }
+
         public virtual bool Init(string script)
         {
+            ModuleName = this.GetType().Name;
+
             lua.LoadCLRPackage();
             lua.DoString("import ('CozyAdventure.Engine', 'CozyPoker.CozyAdventure.Util')");
             lua.DoString("import ('CozyAdventure', 'CozyAdventure.Game.Model')");
@@ -25,16 +30,17 @@ namespace CozyAdventure.Engine
 
             for(var em = methods.GetEnumerator(); em.MoveNext();)
             {
-                mapMethod.Add((string)em.Value, lua.GetFunction((string)em.Value));
+                var funcName = ModuleName + '.' + (string)em.Value;
+                mapMethod.Add(funcName, lua.GetFunction(funcName));
             }
             return true;
         }
 
         public CozyLuaFunction GetTableFunction(string funcName)
         {
-            if(mapMethod.ContainsKey(funcName))
+            if (mapMethod.ContainsKey(ModuleName + '.' + funcName))
             {
-                return mapMethod[funcName];
+                return mapMethod[ModuleName + '.' + funcName];
             }
             return null;
         }

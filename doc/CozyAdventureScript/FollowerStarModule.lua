@@ -4,22 +4,24 @@ methods = {
     'Upgrade',
 }
 
-ExpCost = { 200, 1000, 5000 }
+FollowerStarModule = {}
 
-GoldCost = { 20, 100, 500 }
+FollowerStarModule.ExpCost = { 200, 1000, 5000 }
 
-function CanUpgrade(follower)
+FollowerStarModule.GoldCost = { 20, 100, 500 }
+
+function FollowerStarModule.CanUpgrade(follower)
 	return follower.CurLevel >= 30
 end
 
-function UpgradeRequire(follower)
+function FollowerStarModule.UpgradeRequire(follower)
 	pack = Package()
-	pack.Exp = ExpCost[follower.CurStar + 1]
-	pack.Money = GoldCost[follower.CurStar + 1]
+	pack.Exp = FollowerStarModule.ExpCost[follower.CurStar + 1]
+	pack.Money = FollowerStarModule.GoldCost[follower.CurStar + 1]
     return pack
 end
 
-function Upgrade(follower)
+function FollowerStarModule.Upgrade(follower)
 	follower.CurStar = follower.CurStar + 1
 	follower.CurLevel = follower.CurLevel - 30
     return true

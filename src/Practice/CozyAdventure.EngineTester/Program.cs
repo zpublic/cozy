@@ -17,6 +17,7 @@ namespace CozyAdventure.EngineTester
             var FollowerLevelModule = ModuleManager.Instance.GetModule("FollowerLevelModule");
             var FollowerModule = ModuleManager.Instance.GetModule("FollowerModule");
             var FollowerStarModule = ModuleManager.Instance.GetModule("FollowerStarModule");
+            var FollowerCollectModule = ModuleManager.Instance.GetModule("FollowerCollectModule");
 
             var follower = new Follower()
             {
@@ -41,8 +42,14 @@ namespace CozyAdventure.EngineTester
             Console.WriteLine(((Package)FollowerStarModule.CallFunc("UpgradeRequire", follower)[0]).Exp);
             Console.WriteLine(((Package)FollowerStarModule.CallFunc("UpgradeRequire", follower)[0]).Money);
             Console.WriteLine(FollowerStarModule.CallFunc("Upgrade", follower)[0].ToString());
-
             Console.WriteLine(follower.CurStar + " " + follower.CurLevel);
+
+            FollowerCollect fc = new FollowerCollect()
+            {
+                Followers = new List<Follower>()
+            };
+            fc.Followers.Add(follower);
+            Console.WriteLine(FollowerCollectModule.CallFunc("GetAttack", fc)[0].ToString());
 
             Console.ReadKey();
         }
