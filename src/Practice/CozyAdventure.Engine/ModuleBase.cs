@@ -18,6 +18,7 @@ namespace CozyAdventure.Engine
         {
             lua.LoadCLRPackage();
             lua.DoString("import ('CozyAdventure.Engine', 'CozyPoker.CozyAdventure.Util')");
+            lua.DoString("import ('CozyAdventure', 'CozyAdventure.Game.Model')");
 
             lua.DoFile(PathTransform.LuaScript(script));
             var methods = lua.GetTable("methods");
