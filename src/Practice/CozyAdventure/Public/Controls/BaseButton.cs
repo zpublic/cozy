@@ -8,7 +8,7 @@ using CozyAdventure.Public.Controls.Enum;
 
 namespace CozyAdventure.Public.Controls
 {
-    public class BaseButton : CozyControl
+    public abstract class BaseButton : CozyControl
     {
         #region Text
 

@@ -12,6 +12,14 @@ namespace CozyClient.Core
     {
         private NetClient InnerClient { get; set; }
 
+        public bool IsRunning
+        {
+            get
+            {
+                return InnerClient.Status == NetPeerStatus.Running;
+            }
+        }
+
         public CozyClient(string ClientName)
         {
             NetPeerConfiguration config = new NetPeerConfiguration(ClientName);

@@ -31,19 +31,19 @@ namespace CozyAdventure.View.Layer
                 Color = CCColor3B.Black
             };
             AddChild(edit1, 100);
-            var Details = new BaseButton(542, 38, 78, 36)
+            var Details = new CozySampleButton(542, 38, 78, 36)
             {
                 Text = "详情",
                 FontSize = 14
             };
             AddChild(Details,100);
-            var DoCamp = new BaseButton(630,38,78,36)
+            var DoCamp = new CozySampleButton(630,38,78,36)
             {
                 Text = "安营",
                 FontSize = 14
             };
             AddChild(DoCamp, 100);
-            var Leave = new BaseButton(718,38,78,36)
+            var Leave = new CozySampleButton(718,38,78,36)
             {
                 Text = "离开",
                 FontSize = 14
