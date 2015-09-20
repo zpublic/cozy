@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CozyAdventure.View.Layer
 {
-   public class CampUiLayer:CCLabel
+   public class CampUiLayer : CCLayer
     {
             int Fighting=0;
             int Gold=0;
@@ -23,25 +23,25 @@ namespace CozyAdventure.View.Layer
                 Color = CCColor3B.Blue
             };
             AddChild(edit, 100);
-            var Goon = new BaseButton(631, 86, 78, 36)
+            var Goon = new CozySampleButton(631, 86, 78, 36)
             {
                 Text = "继续冒险",
                 FontSize = 14
             };
             AddChild(Goon, 100);
-            var MercMange = new BaseButton(631, 160, 78, 36)
+            var MercMange = new CozySampleButton(631, 160, 78, 36)
             {
                 Text = "佣兵管理",
                 FontSize = 14
             };
             AddChild(MercMange, 100);
-            var MyGoods = new BaseButton(631, 227, 78, 36)
+            var MyGoods = new CozySampleButton(631, 227, 78, 36)
             {
                 Text = "我的物品",
                 FontSize = 14
             };
             AddChild(MyGoods, 100);
-            var MyFriends = new BaseButton(631, 299, 78, 36)
+            var MyFriends = new CozySampleButton(631, 299, 78, 36)
             {
                 Text = "我的好友",
                 FontSize = 14

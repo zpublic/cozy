@@ -12,26 +12,58 @@ namespace CozyAdventure.View.Layer
 {
     public class LoadingUiLayer : CCLayer
     {
+        public CCSprite logo { get; set; }
+
+        public CCLabel label { get; set; }
+
+        public CCLabel load { get; set; }
+
+        public int DotNumber { get; set; }
+
         public LoadingUiLayer()
         {
+            //logo = new CCSprite("@face.png")
+            //{
+            //    Position = new CCPoint(381, 154),
+            //};
+            //AddChild(logo);
 
-            var logo = new CCSprite("@face.png")
+            label = new CCLabel("加载中", "微软雅黑", 24)
             {
-                Position = new CCPoint(381, 154),
+                Position = new CCPoint(381, 220),
             };
-            AddChild(logo);
+            AddChild(label, 100);
 
-            var lable = new CCLabel("加载中", "微软雅黑", 72)
+            load = new CCLabel("程序员正在加班写代码", "微软雅黑", 20)
             {
-                Position = new CCPoint(381, 260),
+                AnchorPoint = CCPoint.Zero,
+                Position = new CCPoint(250, 150),
             };
-            AddChild(lable, 100);
-            var lable1 = new CCLabel("程序员正在加班写代码。。。", "微软雅黑", 72)
+            AddChild(load, 100);
+
+            Schedule(OnChangeText, 1.0f);
+            Schedule(OnTimeOut, 10.0f);
+        }
+
+        private void OnChangeText(float dt)
+        {
+            DotNumber = (DotNumber + 1) % 4;
+            RefreshDot();
+        }
+
+        private void RefreshDot()
+        {
+            var result = "程序员正在加班写代码";
+            for(int i = 0; i < DotNumber; ++i)
             {
-                Position = new CCPoint(306, 314),
-                Color = CCColor3B.Yellow
-            };
-            AddChild(lable1, 100);
+                result += '.';
+            }
+            load.Text = result;
+        }
+
+        private void OnTimeOut(float dt)
+        {
+            AppDelegate.SharedWindow.DefaultDirector.PopScene();
         }
     }
 }

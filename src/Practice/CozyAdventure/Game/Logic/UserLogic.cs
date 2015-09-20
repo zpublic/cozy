@@ -8,11 +8,11 @@ namespace CozyAdventure.Game.Logic
 {
     public class UserLogic
     {
-        public void Login(string user, string pass)
+        public static void Login(string user, string pass)
         {
         }
 
-        public void Regist(string user, string pass, string nickname)
+        public static void Regist(string user, string pass, string nickname)
         {
         }
     }

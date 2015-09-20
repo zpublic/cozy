@@ -12,13 +12,6 @@ namespace CozyAdventure.View.Layer
     {
         public FollowerListUiLayer()
         {
-            var title = new CCLabel("冒险与编程", "微软雅黑", 72)
-            {
-                Position = new CCPoint(400, 320),
-                Color = CCColor3B.Yellow
-            };
-            AddChild(title, 100);
-
             var listlable = new CCLabel("佣兵列表", "微软雅黑", 14)
             {
                 Position = new CCPoint(92, 20),
@@ -31,7 +24,7 @@ namespace CozyAdventure.View.Layer
                 {
                     for (int b = 52; b <= 289; b += 119)
                     {
-                        var Follower = new BaseButton(a, b, 120, 100)
+                        var Follower = new CozySampleButton(a, b, 120, 100)
                         {
                             Text = "佣兵" + i,
                             FontSize = 14
@@ -56,13 +49,13 @@ namespace CozyAdventure.View.Layer
                 Color = CCColor3B.Black
             };
             AddChild(PageNumber, 100);
-            var LastPage = new BaseButton(473, 410, 78, 36)
+            var LastPage = new CozySampleButton(473, 410, 78, 36)
             {
                 Text = "上一页",
                 FontSize = 14
             };
             AddChild(LastPage, 100);
-            var NextPage = new BaseButton(585, 410, 78, 36)
+            var NextPage = new CozySampleButton(585, 410, 78, 36)
             {
                 Text = "下一页",
                 FontSize = 14
