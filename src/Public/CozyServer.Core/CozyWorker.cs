@@ -84,7 +84,11 @@ namespace CozyServer.Core
             lock (Locker)
             {
                 MsgQueue.Enqueue(msg);
-                ClientIdSet[msg.SenderConnection.RemoteUniqueIdentifier]++;
+                if(ClientIdSet.ContainsKey(msg.SenderConnection.RemoteUniqueIdentifier))
+                {
+                    ClientIdSet[msg.SenderConnection.RemoteUniqueIdentifier]++;
+                }
+                ClientIdSet[msg.SenderConnection.RemoteUniqueIdentifier] = 0;
             }
         }
     }

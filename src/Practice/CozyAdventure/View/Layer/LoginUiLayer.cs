@@ -2,7 +2,6 @@
 using CocosSharpExt;
 using CozyAdventure.Public.Controls;
 using CozyAdventure.View.Scene;
-using CozyAdventure.Game.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,12 +43,12 @@ namespace CozyAdventure.View.Layer
         public void OnBeginButtonDown()
         {
             AppDelegate.SharedWindow.DefaultDirector.PushScene(new LoadingScene());
-            UserLogic.Login("kingwl", "123456");
         }
 
         public void OnRegisterButton()
         {
             AppDelegate.SharedWindow.DefaultDirector.PushScene(new RegistScene());
         }
+
     }
 }
