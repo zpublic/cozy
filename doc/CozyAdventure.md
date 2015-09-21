@@ -2,6 +2,12 @@ CozyAdventure - 冒险与编程
 ===============================
 
 
+游戏资源仓库
+===============================
+https://git.oschina.net/zapline/cozy_res_adventure.git  
+clone 到 bin\CozyAdventureContent
+
+
 游戏设计与计划
 ===============================
 
