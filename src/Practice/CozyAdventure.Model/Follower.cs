@@ -31,5 +31,8 @@ namespace CozyAdventure.Model
 
         // 阶层
         public int CurRank { get; set; } = 0;
+
+        // 头像
+        public string Avatar { get; set; }
     }
 }
