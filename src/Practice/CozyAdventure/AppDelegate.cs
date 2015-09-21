@@ -28,7 +28,7 @@ namespace CozyAdventure
                 application.MainWindow.WindowSizeInPixels.Width,
                 application.MainWindow.WindowSizeInPixels.Height);
 
-            application.ContentRootDirectory = "Content";
+            application.ContentRootDirectory = "CozyAdventureContent";
 
             ModuleManager.Instance.Init();
             InitNetwork();
