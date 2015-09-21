@@ -1,33 +1,42 @@
-﻿using CozyLua.Core;
+﻿using CozyAdventure.Model;
+using CozyLua.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyAdventure.Engine.Module
+namespace CozyAdventure.Engine.Module.Logic
 {
     public class FollowerLevelModule : ModuleBase
     {
+        public override ModuleTypeEnum ModuleType
+        {
+            get
+            {
+                return ModuleTypeEnum.Logic;
+            }
+        }
+
         #region LuaFunc
 
         private CozyLuaFunction CanUpgradeFunc { get; set; }
         private CozyLuaFunction UpgradeRequireFunc { get; set; }
         private CozyLuaFunction UpgradeFunc { get; set; }
 
-        public object CanUpgrade(object Follower)
+        public bool CanUpgrade(Follower follower)
         {
-            return CanUpgradeFunc.Call(Follower)[0];
+            return (bool)CanUpgradeFunc.Call(follower)[0];
         }
 
-        public object UpgradeRequire(object Follower)
+        public Package UpgradeRequire(Follower follower)
         {
-            return UpgradeRequireFunc.Call(Follower)[0];
+            return (Package)UpgradeRequireFunc.Call(follower)[0];
         }
 
-        public object Upgrade(object Follower)
+        public bool Upgrade(Follower follower)
         {
-            return UpgradeFunc.Call(Follower)[0];
+            return (bool)UpgradeFunc.Call(follower)[0];
         }
 
         #endregion

@@ -51,6 +51,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CozyAdventure.Model\CozyAdventure.Model.csproj">
+      <Project>{a0265ed4-fa94-4fab-8c42-9222d56f16e1}</Project>
+      <Name>CozyAdventure.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyAdventure\CozyAdventure.csproj">
       <Project>{45043e36-00a0-4798-b3a8-79d8bc073f9d}</Project>
       <Name>CozyAdventure</Name>

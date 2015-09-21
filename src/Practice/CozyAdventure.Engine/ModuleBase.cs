@@ -10,20 +10,23 @@ using CozyAdventure.Engine.Ext;
 
 namespace CozyAdventure.Engine
 {
+    public enum ModuleTypeEnum : uint
+    {
+        Logic = 0,
+        Data,
+    }
+
     public abstract class ModuleBase
     {
+        public abstract ModuleTypeEnum ModuleType { get; }
+
         protected Dictionary<string, CozyLuaFunction> mapMethod = new Dictionary<string, CozyLuaFunction>();
 
         private CozyLuaCore lua = new CozyLuaCore();
 
-        private string ModuleName { get; set; }
-
         public virtual bool Init(string script)
         {
-            ModuleName = this.GetType().Name;
-
             lua.InitEnvironment();
-            lua.InitPath();
 
             lua.DoFile(PathTransform.LuaScript(script));
 
@@ -31,7 +34,7 @@ namespace CozyAdventure.Engine
 
             for(var em = methods.GetEnumerator(); em.MoveNext();)
             {
-                var funcName = ModuleName + '.' + (string)em.Value;
+                var funcName = (string)em.Value;
                 mapMethod.Add(funcName, lua.GetFunction(funcName));
             }
             return true;
@@ -39,10 +42,9 @@ namespace CozyAdventure.Engine
 
         public CozyLuaFunction GetTableFunction(string funcName)
         {
-            var readName = ModuleName + '.' + funcName;
-            if (mapMethod.ContainsKey(readName))
+            if (mapMethod.ContainsKey(funcName))
             {
-                return mapMethod[readName];
+                return mapMethod[funcName];
             }
             return null;
         }

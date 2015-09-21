@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyAdventure.Game.Model
+namespace CozyAdventure.Model
 {
-    public class FramMap
+    public class Prop
     {
         public int Id { get; set; }
-        public int Level { get; set; }
         public string Name { get; set; }
         public string Desc { get; set; }
     }

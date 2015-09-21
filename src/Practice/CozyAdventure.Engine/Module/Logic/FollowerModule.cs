@@ -1,27 +1,35 @@
-﻿using CozyLua.Core;
+﻿using CozyAdventure.Model;
+using CozyLua.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyAdventure.Engine.Module
+namespace CozyAdventure.Engine.Module.Logic
 {
     public class FollowerModule : ModuleBase
     {
+        public override ModuleTypeEnum ModuleType
+        {
+            get
+            {
+                return ModuleTypeEnum.Logic;
+            }
+        }
         #region LuaFunc
         CozyLuaFunction GetGrowAttackFunc { get; set; }
 
         CozyLuaFunction GetAttackFunc { get; set; }
 
-        public object GetGrowAttack(object star, object level)
+        public int GetGrowAttack(int star, int level)
         {
-            return GetGrowAttackFunc.Call(star, level)[0];
+            return (int)(double)GetGrowAttackFunc.Call(star, level)[0];
         }
 
-        public object GetAttack(object f)
+        public int GetAttack(Follower f)
         {
-            return GetAttackFunc.Call(f)[0];
+            return (int)(double)GetAttackFunc.Call(f)[0];
         }
 
         #endregion
