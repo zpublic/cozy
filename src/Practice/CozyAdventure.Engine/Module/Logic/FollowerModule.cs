@@ -1,4 +1,5 @@
-﻿using CozyLua.Core;
+﻿using CozyAdventure.Model;
+using CozyLua.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,14 @@ namespace CozyAdventure.Engine.Module.Logic
 
         CozyLuaFunction GetAttackFunc { get; set; }
 
-        public object GetGrowAttack(object star, object level)
+        public int GetGrowAttack(int star, int level)
         {
-            return GetGrowAttackFunc.Call(star, level)[0];
+            return (int)GetGrowAttackFunc.Call(star, level)[0];
         }
 
-        public object GetAttack(object f)
+        public int GetAttack(Follower f)
         {
-            return GetAttackFunc.Call(f)[0];
+            return (int)GetAttackFunc.Call(f)[0];
         }
 
         #endregion

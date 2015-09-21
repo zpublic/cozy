@@ -1,4 +1,5 @@
-﻿using CozyLua.Core;
+﻿using CozyAdventure.Model;
+using CozyLua.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +23,14 @@ namespace CozyAdventure.Engine.Module.Logic
 
         CozyLuaFunction GetHpFunc { get; set; }
 
-        public object GetAttack(object fc)
+        public int GetAttack(FollowerCollect fc)
         {
-            return GetAttackFunc.Call(fc)[0];
+            return (int)GetAttackFunc.Call(fc)[0];
         }
 
-        public object GetHp(object fc)
+        public int GetHp(FollowerCollect fc)
         {
-            return GetHpFunc.Call(fc)[0];
+            return (int)GetHpFunc.Call(fc)[0];
         }
 
         #endregion
