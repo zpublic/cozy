@@ -6,7 +6,22 @@ using System.Threading.Tasks;
 
 namespace CozyAdventure.Game.Model
 {
-    class FollowerPackage
+    public class FollowerPackage
     {
+        public List<Follower> Followers = new List<Follower>();
+
+        public string Name;
+        public int Count
+        {
+            get
+            {
+                return Followers.Count;
+            }
+        }
+
+        public void AddFollower(Follower f)
+        {
+            Followers.Add(f);
+        }
     }
 }
