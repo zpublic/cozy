@@ -29,10 +29,10 @@ namespace CozyAdventure.Engine
             var types = Assembly.GetExecutingAssembly().GetTypes();
             foreach(var type in types)
             {
-                if(type.BaseType == typeof(ModuleBase) && type.Namespace == @"CozyAdventure.Engine.Module")
+                if(type.BaseType == typeof(ModuleBase) && type != typeof(ModuleBase))
                 {
                     var instance = (ModuleBase)Activator.CreateInstance(type);
-                    if(instance.Init(type.Name))
+                    if(instance.Init(instance.ModuleType.ToString() + "/" + type.Name))
                     {
                         Modules[type.Name] = instance;
                     }

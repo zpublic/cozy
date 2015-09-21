@@ -5,10 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyAdventure.Engine.Module
+namespace CozyAdventure.Engine.Module.Logic
 {
-    public class FollowerStarModule : ModuleBase
+    public class FollowerLevelModule : ModuleBase
     {
+        public override ModuleTypeEnum ModuleType
+        {
+            get
+            {
+                return ModuleTypeEnum.Logic;
+            }
+        }
+
         #region LuaFunc
 
         private CozyLuaFunction CanUpgradeFunc { get; set; }
@@ -34,16 +42,16 @@ namespace CozyAdventure.Engine.Module
 
         public override bool Init(string script)
         {
-            if (!base.Init(script))
+            if(!base.Init(script))
             {
                 return false;
             }
 
-            CanUpgradeFunc = GetTableFunction("CanUpgrade");
-            UpgradeRequireFunc = GetTableFunction("UpgradeRequire");
-            UpgradeFunc = GetTableFunction("Upgrade");
+            CanUpgradeFunc      = GetTableFunction("CanUpgrade");
+            UpgradeRequireFunc  = GetTableFunction("UpgradeRequire");
+            UpgradeFunc         = GetTableFunction("Upgrade");
 
-            if (CanUpgradeFunc == null || UpgradeRequireFunc == null || UpgradeFunc == null)
+            if(CanUpgradeFunc == null || UpgradeRequireFunc == null || UpgradeFunc == null)
             {
                 return false;
             }

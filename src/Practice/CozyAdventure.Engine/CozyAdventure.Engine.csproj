@@ -43,10 +43,10 @@
     <Compile Include="Ext\LuaExt.cs" />
     <Compile Include="ModuleBase.cs" />
     <Compile Include="ModuleManager.cs" />
-    <Compile Include="Module\FollowerCollectModule.cs" />
-    <Compile Include="Module\FollowerLevelModule.cs" />
-    <Compile Include="Module\FollowerModule.cs" />
-    <Compile Include="Module\FollowerStarModule.cs" />
+    <Compile Include="Module\Logic\FollowerCollectModule.cs" />
+    <Compile Include="Module\Logic\FollowerLevelModule.cs" />
+    <Compile Include="Module\Logic\FollowerModule.cs" />
+    <Compile Include="Module\Logic\FollowerStarModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\PathTransform.cs" />
   </ItemGroup>
@@ -55,6 +55,9 @@
       <Project>{5fbf2c89-021c-4297-a408-d856a5288829}</Project>
       <Name>CozyLua.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Module\Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,10 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyAdventure.Engine.Module
+namespace CozyAdventure.Engine.Module.Logic
 {
     public class FollowerCollectModule : ModuleBase
     {
+        public override ModuleTypeEnum ModuleType
+        {
+            get
+            {
+                return ModuleTypeEnum.Logic;
+            }
+        }
+
         #region LuaFunc
         CozyLuaFunction GetAttackFunc { get; set; }
 
