@@ -115,14 +115,6 @@
     <Compile Include="Game\Logic\FollowerStarLogic.cs" />
     <Compile Include="Game\Logic\FramMapLogic.cs" />
     <Compile Include="Game\Logic\UserLogic.cs" />
-    <Compile Include="Game\Model\Follower.cs" />
-    <Compile Include="Game\Model\FollowerCollect.cs" />
-    <Compile Include="Game\Model\FollowerPackage.cs" />
-    <Compile Include="Game\Model\FramMap.cs" />
-    <Compile Include="Game\Model\Package.cs" />
-    <Compile Include="Game\Model\Player.cs" />
-    <Compile Include="Game\Model\Prop.cs" />
-    <Compile Include="Game\Model\PropCollect.cs" />
     <Compile Include="Game\Object\BagObject.cs" />
     <Compile Include="Game\Object\PlayerObject.cs" />
     <Compile Include="Public\Controls\BaseButton.cs" />
@@ -178,11 +170,16 @@
       <Project>{57a59c3d-c8d9-47ec-b6e3-85c34b22b825}</Project>
       <Name>CozyAdventure.Engine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyAdventure.Model\CozyAdventure.Model.csproj">
+      <Project>{a0265ed4-fa94-4fab-8c42-9222d56f16e1}</Project>
+      <Name>CozyAdventure.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyAdventure.Protocol\CozyAdventure.Protocol.csproj">
       <Project>{37ac07a8-d75a-4ec9-aa48-9faaa3161a5f}</Project>
       <Name>CozyAdventure.Protocol</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

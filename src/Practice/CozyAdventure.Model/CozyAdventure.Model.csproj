@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F022B02-E891-4999-BCB5-6917D11F8456}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{A0265ED4-FA94-4FAB-8C42-9222D56F16E1}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyAdventure.EngineTester</RootNamespace>
-    <AssemblyName>CozyAdventure.EngineTester</AssemblyName>
+    <RootNamespace>CozyAdventure.Model</RootNamespace>
+    <AssemblyName>CozyAdventure.Model</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -21,10 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\..\bin\</OutputPath>
@@ -43,25 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Follower.cs" />
+    <Compile Include="FollowerCollect.cs" />
+    <Compile Include="FollowerPackage.cs" />
+    <Compile Include="FramMap.cs" />
+    <Compile Include="Package.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Prop.cs" />
+    <Compile Include="PropCollect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CozyAdventure.Engine\CozyAdventure.Engine.csproj">
-      <Project>{57a59c3d-c8d9-47ec-b6e3-85c34b22b825}</Project>
-      <Name>CozyAdventure.Engine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyAdventure.Model\CozyAdventure.Model.csproj">
-      <Project>{a0265ed4-fa94-4fab-8c42-9222d56f16e1}</Project>
-      <Name>CozyAdventure.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyAdventure\CozyAdventure.csproj">
-      <Project>{45043e36-00a0-4798-b3a8-79d8bc073f9d}</Project>
-      <Name>CozyAdventure</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

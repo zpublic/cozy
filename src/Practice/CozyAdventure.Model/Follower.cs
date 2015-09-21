@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyAdventure.Game.Model
+namespace CozyAdventure.Model
 {
     public class Follower
     {

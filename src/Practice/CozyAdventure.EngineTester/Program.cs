@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyAdventure.Engine;
-using CozyAdventure.Game.Model;
+using CozyAdventure.Model;
 
 namespace CozyAdventure.EngineTester
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CozyAdventure.Game.Model;
+using CozyAdventure.Model;
 using CozyAdventure.Game.Logic;
 using CozyAdventure.Game.Object;
 

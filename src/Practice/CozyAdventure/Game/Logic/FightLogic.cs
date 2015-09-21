@@ -1,5 +1,5 @@
 ﻿using CozyAdventure.Game.Logic.Fight;
-using CozyAdventure.Game.Model;
+using CozyAdventure.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
