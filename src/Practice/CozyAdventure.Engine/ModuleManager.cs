@@ -23,16 +23,15 @@ namespace CozyAdventure.Engine
 
         public void Init()
         {
-
             Modules = new Dictionary<string, ModuleBase>();
 
             var types = Assembly.GetExecutingAssembly().GetTypes();
-            foreach(var type in types)
+            foreach (var type in types)
             {
-                if(type.BaseType == typeof(ModuleBase) && type != typeof(ModuleBase))
+                if (type.BaseType == typeof(ModuleBase) && type != typeof(ModuleBase))
                 {
                     var instance = (ModuleBase)Activator.CreateInstance(type);
-                    if(instance.Init(instance.ModuleType.ToString() + "/" + type.Name))
+                    if (instance.Init(instance.ModuleType.ToString() + "/" + type.Name))
                     {
                         Modules[type.Name] = instance;
                     }
@@ -42,7 +41,7 @@ namespace CozyAdventure.Engine
 
         public ModuleBase GetModule(string name)
         {
-            if(Modules.ContainsKey(name))
+            if (Modules.ContainsKey(name))
             {
                 return Modules[name];
             }

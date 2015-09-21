@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CozyAdventure.Engine;
 using CozyAdventure.Model;
+using CozyAdventure.Engine.Module.Data;
 
 namespace CozyAdventure.EngineTester
 {
@@ -14,10 +15,10 @@ namespace CozyAdventure.EngineTester
         {
             ModuleManager.Instance.Init();
 
-            var FollowerLevelModule = ModuleManager.Instance.GetModule("FollowerLevelModule");
-            var FollowerModule = ModuleManager.Instance.GetModule("FollowerModule");
-            var FollowerStarModule = ModuleManager.Instance.GetModule("FollowerStarModule");
-            var FollowerCollectModule = ModuleManager.Instance.GetModule("FollowerCollectModule");
+            var FollowerLevelModule     = ModuleManager.Instance.GetModule("FollowerLevelModule");
+            var FollowerModule          = ModuleManager.Instance.GetModule("FollowerModule");
+            var FollowerStarModule      = ModuleManager.Instance.GetModule("FollowerStarModule");
+            var FollowerCollectModule   = ModuleManager.Instance.GetModule("FollowerCollectModule");
 
             var follower = new Follower()
             {
@@ -50,6 +51,8 @@ namespace CozyAdventure.EngineTester
             };
             fc.Followers.Add(follower);
             Console.WriteLine(FollowerCollectModule.CallFunc("GetAttack", fc)[0].ToString());
+
+            var packages = FollowerPackageModule.GetFollowerPackages();
 
             Console.ReadKey();
         }

@@ -25,12 +25,12 @@ namespace CozyAdventure.Engine.Module.Logic
 
         public int GetAttack(FollowerCollect fc)
         {
-            return (int)GetAttackFunc.Call(fc)[0];
+            return (int)(double)GetAttackFunc.Call(fc)[0];
         }
 
         public int GetHp(FollowerCollect fc)
         {
-            return (int)GetHpFunc.Call(fc)[0];
+            return (int)(double)GetHpFunc.Call(fc)[0];
         }
 
         #endregion

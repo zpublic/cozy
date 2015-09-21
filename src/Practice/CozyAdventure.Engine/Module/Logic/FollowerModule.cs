@@ -24,12 +24,12 @@ namespace CozyAdventure.Engine.Module.Logic
 
         public int GetGrowAttack(int star, int level)
         {
-            return (int)GetGrowAttackFunc.Call(star, level)[0];
+            return (int)(double)GetGrowAttackFunc.Call(star, level)[0];
         }
 
         public int GetAttack(Follower f)
         {
-            return (int)GetAttackFunc.Call(f)[0];
+            return (int)(double)GetAttackFunc.Call(f)[0];
         }
 
         #endregion

@@ -1,3 +1,3 @@
-import ('CozyAdventure', 'CozyAdventure.Game.Model')
-import ('CozyAdventure.Engine', 'CozyPoker.CozyAdventure')
-import ('CozyAdventure.Engine', 'CozyPoker.CozyAdventure.Util')
+import ('CozyAdventure.Model', 'CozyAdventure.Model')
+import ('CozyAdventure.Engine', 'CozyAdventure.Engine')
+import ('CozyAdventure.Engine', 'CozyAdventure.Engine.Module.Logic')
