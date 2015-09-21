@@ -117,6 +117,7 @@
     <Compile Include="Game\Logic\UserLogic.cs" />
     <Compile Include="Game\Model\Follower.cs" />
     <Compile Include="Game\Model\FollowerCollect.cs" />
+    <Compile Include="Game\Model\FollowerPackage.cs" />
     <Compile Include="Game\Model\FramMap.cs" />
     <Compile Include="Game\Model\Package.cs" />
     <Compile Include="Game\Model\Player.cs" />
