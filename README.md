@@ -95,6 +95,8 @@ Cozy
 >>
 >> [CozyAdventure - 冒险与编程](doc/CozyAdventure.md)
 >>
+>> CozyLog - 山寨this.Log，实现了以log4net为内核的日志功能  
+>>
 
 
 玩法一览
