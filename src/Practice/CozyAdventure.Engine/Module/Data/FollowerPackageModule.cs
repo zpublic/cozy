@@ -18,17 +18,17 @@ namespace CozyAdventure.Engine.Module.Data
             var result = new FollowerPackage();
 
             int i = 1;
-            while (File.Exists(name + i))
+            while (File.Exists(PathTransform.LuaScript(name + i)))
             {
                 var lua = new CozyLua.Core.CozyLuaCore();
                 lua.InitEnvironment();
 
                 lua.DoFile(PathTransform.LuaScript(name + i));
-                var retVal = (FollowerPackage)lua.DoString("GetFollowerPackage")[0];
+                var retVal = (FollowerPackage)lua.GetFunction("GetFollowerPackage").Call()[0];
                 result.Followers.AddRange(retVal.Followers);
                 ++i;
             }
-            return null;
+            return result;
         }
     }
 }
