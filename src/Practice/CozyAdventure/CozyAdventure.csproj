@@ -114,6 +114,7 @@
     <Compile Include="Game\Logic\FollowerStarLogic.cs" />
     <Compile Include="Game\Logic\FramMapLogic.cs" />
     <Compile Include="Game\Logic\UserLogic.cs" />
+    <Compile Include="Game\Manager\Manager.cs" />
     <Compile Include="Game\Model\Follower.cs" />
     <Compile Include="Game\Model\FollowerCollect.cs" />
     <Compile Include="Game\Model\FramMap.cs" />
