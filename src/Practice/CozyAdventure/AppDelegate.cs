@@ -1,18 +1,14 @@
 ﻿using CocosSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CozyAdventure.Public.Controls;
-using CozyAdventure.Public.Controls.Enum;
+using CozyAdventure.Engine;
+using CozyAdventure.Game.Manager;
 using CozyAdventure.View.Scene;
 using CozyClient.Core;
-using CozyAdventure.Engine;
 using CozyNetworkHelper;
+using System;
 
 namespace CozyAdventure
 {
-    class AppDelegate : CCApplicationDelegate
+    internal class AppDelegate : CCApplicationDelegate
     {
         public static CCWindow SharedWindow { get; set; }
 
@@ -32,7 +28,8 @@ namespace CozyAdventure
 
             ModuleManager.Instance.Init();
             InitNetwork();
-            
+            InitManager();
+
             SharedClient.Connect("127.0.0.1", 44360);
 
             CCScene scene = new LoginScene();
@@ -47,9 +44,16 @@ namespace CozyAdventure
             SharedClient.StatusMessage += OnStatusMessage;
         }
 
+        /// <summary>
+        /// Manager这里初始化
+        /// </summary>
+        private void InitManager()
+        {
+            StringManager.Init();
+        }
+
         private void OnStatusMessage(object sender, ClienEventArgs e)
         {
-             
         }
 
         public static event EventHandler<Events.MessageReceiveEventArgs> MessageReceiveEventHandler;
