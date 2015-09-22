@@ -116,6 +116,7 @@
     <Compile Include="Game\Logic\FramMapLogic.cs" />
     <Compile Include="Game\Logic\UserLogic.cs" />
     <Compile Include="Game\Manager\MessageManager.cs" />
+    <Compile Include="Game\Manager\StringManager.cs" />
     <Compile Include="Game\Object\BagObject.cs" />
     <Compile Include="Game\Object\PlayerObject.cs" />
     <Compile Include="Public\Controls\BaseButton.cs" />

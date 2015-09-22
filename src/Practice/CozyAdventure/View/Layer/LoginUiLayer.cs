@@ -1,5 +1,6 @@
 ﻿using CocosSharp;
 using CocosSharpExt;
+using CozyAdventure.Game.Manager;
 using CozyAdventure.Public.Controls;
 using CozyAdventure.View.Scene;
 using System;
@@ -23,7 +24,9 @@ namespace CozyAdventure.View.Layer
 
             var begin = new CozySampleButton(300, 100, 200, 80)
             {
-                Text        = "开始游戏",
+                // 测试代码
+                // Text        = "开始游戏",
+                Text = StringManager.GetText("str3"),
                 FontSize    = 24,
                 OnClick     = new Action(OnBeginButtonDown),
             };
