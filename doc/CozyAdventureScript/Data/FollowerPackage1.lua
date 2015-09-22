@@ -8,6 +8,7 @@
     f1.Name = "路人甲"
     f1.BasicAttack = 5
     f1.GrowRatio = 1.1
+	f1.Avator = 'D001fighter01'
     fp:AddFollower(f1)
 
     i = i+1

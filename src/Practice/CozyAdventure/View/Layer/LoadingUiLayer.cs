@@ -11,7 +11,8 @@ using CozyAdventure.Game.Logic;
 using CozyAdventure.Events;
 using CozyAdventure.Protocol;
 using CozyAdventure.Protocol.Msg;
-
+using CozyAdventure.View.Sprite;
+using CozyAdventure.Model;
 
 namespace CozyAdventure.View.Layer
 {
@@ -27,11 +28,20 @@ namespace CozyAdventure.View.Layer
 
         public LoadingUiLayer()
         {
-            //logo = new CCSprite("@face.png")
-            //{
-            //    Position = new CCPoint(381, 154),
-            //};
-            //AddChild(logo);
+            var follower = new Follower()
+            {
+                Name = "hehe",
+                CurStar = 1,
+                MaxStar = 3,
+                CurLevel = 10,
+                Avatar = "D001fighter01",
+            };
+
+            var node = new FollowerSprite(follower, true)
+            {
+                Position = new CCPoint(10, 200)
+            };
+            this.AddChild(node, 201);
 
             label = new CCLabel("加载中", "微软雅黑", 24)
             {
