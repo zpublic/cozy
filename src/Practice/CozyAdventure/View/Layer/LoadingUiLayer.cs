@@ -34,7 +34,7 @@ namespace CozyAdventure.View.Layer
                 CurStar = 1,
                 MaxStar = 3,
                 CurLevel = 10,
-                Avatar = "D001fighter01",
+                Avatar = "lurenjia",
             };
 
             var node = new FollowerSprite(follower, true)
