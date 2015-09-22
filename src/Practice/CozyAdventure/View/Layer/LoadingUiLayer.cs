@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CocosSharpExt;
-using CozyAdventure.Public.Controls;
 using CozyAdventure.View.Scene;
 using CozyAdventure.Game.Logic;
-using CozyAdventure.Events;
 using CozyAdventure.Protocol;
 using CozyAdventure.Protocol.Msg;
 using CozyAdventure.View.Sprite;
 using CozyAdventure.Model;
+using Cozy.Game.Manager;
+using CozyNetworkProtocol;
 
 namespace CozyAdventure.View.Layer
 {
@@ -59,7 +59,7 @@ namespace CozyAdventure.View.Layer
             Schedule(OnChangeText, 1.0f);
             Schedule(OnTimeOut, 10.0f);
 
-            AppDelegate.MessageReceiveEventHandler += OnMessage;
+            MessageManager.RegisterMessage("Client.Data", OnMessage);
 
             UserLogic.Login("kingwl", "123456");
         }
@@ -80,11 +80,12 @@ namespace CozyAdventure.View.Layer
             load.Text = result;
         }
 
-        private void OnMessage(object sender, MessageReceiveEventArgs e)
+        private void OnMessage(object obj)
         {
-            if(e.Id == (uint)MessageId.Inner.LoginResultMessage)
+            var msg = (MessageBase)obj;
+            if(msg.Id == (uint)MessageId.Inner.LoginResultMessage)
             {
-                var rsp = (LoginResultMessage)e.Msg;
+                var rsp = (LoginResultMessage)msg;
                 if (rsp.Result == "OK")
                 {
                     OnSuccess();
@@ -116,8 +117,9 @@ namespace CozyAdventure.View.Layer
 
         private void CleanUp()
         {
-            AppDelegate.MessageReceiveEventHandler -= OnMessage;
+            MessageManager.UnRegisterMessage("Client.Data", OnMessage);
             Unschedule(OnTimeOut);
+            Unschedule(OnChangeText);
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using CocosSharp;
+using Cozy.Game.Manager;
 using CozyAdventure.Engine;
 using CozyAdventure.Game.Manager;
 using CozyAdventure.View.Scene;
 using CozyClient.Core;
 using CozyNetworkHelper;
+using CozyNetworkProtocol;
 using System;
 
 namespace CozyAdventure
@@ -14,7 +16,7 @@ namespace CozyAdventure
 
         public static CCSize DefaultResolution;
 
-        public static CozyClient.Core.CozyClient SharedClient { get; set; }
+        private CozyClient.Core.CozyClient SharedClient { get; set; }
 
         public override void ApplicationDidFinishLaunching(CCApplication application, CCWindow mainWindow)
         {
@@ -42,6 +44,7 @@ namespace CozyAdventure
             SharedClient = new CozyClient.Core.CozyClient("CozyAdventure");
             SharedClient.DataMessage += OnDataMessage;
             SharedClient.StatusMessage += OnStatusMessage;
+            MessageManager.RegisterMessage("Client.Send", OnSend);
         }
 
         /// <summary>
@@ -56,16 +59,16 @@ namespace CozyAdventure
         {
         }
 
-        public static event EventHandler<Events.MessageReceiveEventArgs> MessageReceiveEventHandler;
-
         private void OnDataMessage(object sender, ClienEventArgs e)
         {
             var msg = MessageReader.GetMessageInstance(e.Message);
 
-            if (MessageReceiveEventHandler != null)
-            {
-                MessageReceiveEventHandler(this, new Events.MessageReceiveEventArgs(msg.Id, msg));
-            }
+            MessageManager.SendMessage("Client.Data", msg);
+        }
+
+        private void OnSend(object obj)
+        {
+            SharedClient.SendMessage((MessageBase)obj);
         }
     }
 }

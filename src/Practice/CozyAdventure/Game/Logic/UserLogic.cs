@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyAdventure.Protocol.Msg;
+using Cozy.Game.Manager;
 
 namespace CozyAdventure.Game.Logic
 {
@@ -16,7 +17,7 @@ namespace CozyAdventure.Game.Logic
                 Name = user,
                 Pass = pass,
             };
-            AppDelegate.SharedClient.SendMessage(msg);
+            MessageManager.SendMessage("Client.Send", msg);
         }
 
         public static void Regist(string user, string pass, string nickname)
