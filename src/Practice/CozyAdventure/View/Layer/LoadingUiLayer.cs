@@ -13,6 +13,7 @@ using CozyAdventure.View.Sprite;
 using CozyAdventure.Model;
 using Cozy.Game.Manager;
 using CozyNetworkProtocol;
+using CozyAdventure.Engine.Module.Data;
 
 namespace CozyAdventure.View.Layer
 {
@@ -28,16 +29,9 @@ namespace CozyAdventure.View.Layer
 
         public LoadingUiLayer()
         {
-            var follower = new Follower()
-            {
-                Name = "hehe",
-                CurStar = 1,
-                MaxStar = 3,
-                CurLevel = 10,
-                Avatar = "lurenjia",
-            };
 
-            var node = new FollowerSprite(follower, true)
+            var res = FollowerPackageModule.GetFollowerPackages();
+            var node = new FollowerSprite(res.Followers[0], true)
             {
                 Position = new CCPoint(10, 200)
             };
