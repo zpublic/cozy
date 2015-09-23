@@ -17,5 +17,11 @@ namespace CozyAdventure.Model
         public long Exp { get; set; }
         public FollowerCollect AllFollower { get; set; }
         public FollowerCollect FightFollower { get; set; }
+
+        public Player()
+        {
+            AllFollower = new FollowerCollect();
+            FightFollower = new FollowerCollect();
+        }
     }
 }

@@ -14,6 +14,7 @@ using CozyAdventure.Model;
 using Cozy.Game.Manager;
 using CozyNetworkProtocol;
 using CozyAdventure.Engine.Module.Data;
+using CozyAdventure.Game.Object;
 
 namespace CozyAdventure.View.Layer
 {
@@ -79,15 +80,11 @@ namespace CozyAdventure.View.Layer
             var msg = (MessageBase)obj;
             if(msg.Id == (uint)MessageId.Inner.LoginResultMessage)
             {
-                var rsp = (LoginResultMessage)msg;
-                if (rsp.Result == "OK")
-                {
-                    OnSuccess();
-                }
-                else if(rsp.Result == "Error")
-                {
-                    OnFailed();
-                }
+                OnLoginRspMessage((LoginResultMessage)msg);
+            }
+            else if(msg.Id == (uint)MessageId.User.PushMessage)
+            {
+                OnPushMessage((PushMessage)msg);
             }
         }
 
@@ -97,16 +94,26 @@ namespace CozyAdventure.View.Layer
             AppDelegate.SharedWindow.DefaultDirector.PopScene();
         }
 
-        private void OnSuccess()
+        private void OnLoginRspMessage(LoginResultMessage msg)
         {
-            CleanUp();
-            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new AdventureScene());
+            if (msg.Result == "OK")
+            {
+                var sendMsg = new PullMessage();
+                MessageManager.SendMessage("Client.Send", sendMsg);
+            }
+            else if (msg.Result == "Error")
+            {
+                CleanUp();
+                AppDelegate.SharedWindow.DefaultDirector.PopScene();
+            }
         }
 
-        private void OnFailed()
+        private void OnPushMessage(PushMessage msg)
         {
+            PlayerObject.Instance.Self.AllFollower.Followers = msg.FollowerList;
+
             CleanUp();
-            AppDelegate.SharedWindow.DefaultDirector.PopScene();
+            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new FollowerListScene());
         }
 
         private void CleanUp()

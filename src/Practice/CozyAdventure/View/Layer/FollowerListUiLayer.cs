@@ -1,6 +1,5 @@
 ﻿using System;
 using CocosSharp;
-using CozyAdventure.View.Layer;
 using CozyAdventure.Public.Controls;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +9,7 @@ using Cozy.Game.Manager;
 using CozyNetworkProtocol;
 using CozyAdventure.Protocol;
 using CozyAdventure.Protocol.Msg;
+using CozyAdventure.Game.Object;
 
 namespace CozyAdventure.View.Layer
 {
@@ -66,25 +66,6 @@ namespace CozyAdventure.View.Layer
                 FontSize = 14
             };
             AddChild(NextPage, 100);
-
-            MessageManager.RegisterMessage("Client.Data", OnData);
-            var msg = new PullMessage();
-            MessageManager.SendMessage("Client.Send", msg);
-        }
-
-        private void OnData(object obj)
-        {
-            var msg = (MessageBase)obj;
-            if(msg.Id == (uint)MessageId.User.PushMessage)
-            {
-                var listMsg = (PushMessage)msg;
-                int i = 42;
-            }
-        }
-
-        private void CleanUp()
-        {
-            MessageManager.UnRegisterMessage("Client.Data", OnData);
         }
     }
 }
