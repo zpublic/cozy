@@ -34,7 +34,7 @@ namespace CozyAdventure
 
             SharedClient.Connect("127.0.0.1", 44360);
 
-            CCScene scene = new LoginScene();
+            CCScene scene = new FollowerListScene();
             mainWindow.RunWithScene(scene);
         }
 
