@@ -105,7 +105,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Events\MessageReceiveEventArgs.cs" />
     <Compile Include="Game\Logic\FightLogic.cs" />
     <Compile Include="Game\Logic\Fight\FightEvent.cs" />
     <Compile Include="Game\Logic\Fight\NormalFight.cs" />
@@ -152,6 +151,7 @@
     <Compile Include="View\Layer\RegistUiLayer.cs" />
     <Compile Include="View\Layer\LoginUiLayer.cs" />
     <Compile Include="View\Scene\RegistScene.cs" />
+    <Compile Include="View\Sprite\BorderNode.cs" />
     <Compile Include="View\Sprite\FollowerSprite.cs" />
     <Compile Include="View\Sprite\PropSprite.cs" />
   </ItemGroup>
