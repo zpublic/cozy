@@ -2,6 +2,7 @@
 using Cozy.Game.Manager;
 using CozyAdventure.Engine;
 using CozyAdventure.Game.Manager;
+using CozyAdventure.Protocol;
 using CozyAdventure.View.Scene;
 using CozyClient.Core;
 using CozyNetworkHelper;
@@ -28,7 +29,7 @@ namespace CozyAdventure
 
             application.ContentRootDirectory = "CozyAdventureContent";
 
-            ModuleManager.Instance.Init();
+            InitModule();
             InitNetwork();
             InitManager();
 
@@ -55,14 +56,23 @@ namespace CozyAdventure
             StringManager.Init();
         }
 
+        /// <summary>
+        /// Module这里初始化
+        /// </summary>
+        private void InitModule()
+        {
+            ModuleManager.Instance.Init();
+        }
+
         private void OnStatusMessage(object sender, ClienEventArgs e)
         {
+            var status = e.Message.ReadByte();
+            MessageManager.SendMessage("Client.Status", status);
         }
 
         private void OnDataMessage(object sender, ClienEventArgs e)
         {
             var msg = MessageReader.GetMessageInstance(e.Message);
-
             MessageManager.SendMessage("Client.Data", msg);
         }
 

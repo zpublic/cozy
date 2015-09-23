@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyAdventure.ServerPlugin.Model;
+using CozyAdventure.Model;
 
 namespace CozyAdventure.ServerPlugin
 {
@@ -74,6 +75,33 @@ namespace CozyAdventure.ServerPlugin
             {
                 r.Result = "Error";
             }
+            server.SendMessage(r, im.SenderConnection);
+        }
+
+        [CallBack(typeof(PullMessage))]
+        public void OnPullMessage(NetPeer server, NetBuffer buff, MessageBase msg)
+        {
+            var srv = server as NetServer;
+            var im = buff as NetIncomingMessage;
+
+            if (srv != null && im != null)
+            {
+                PullMessageImpl(srv, im, msg);
+            }
+        }
+
+        private void PullMessageImpl(NetServer server, NetIncomingMessage im, MessageBase msg)
+        {
+            var registerMsg = msg as PullMessage;
+            var r           = new PushMessage();
+            r.FollowerList.Add(new Follower()
+            {
+                Avatar = "lurenjia",
+                CurStar = 1,
+                CurLevel = 25,
+                MaxStar = 3,
+                Name = "hehe"
+            });
             server.SendMessage(r, im.SenderConnection);
         }
     }

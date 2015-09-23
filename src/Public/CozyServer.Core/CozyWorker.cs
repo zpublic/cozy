@@ -37,7 +37,7 @@ namespace CozyServer.Core
 
         public bool ContainsId(long id)
         {
-            lock(Locker)
+            lock (Locker)
             {
                 return ClientIdSet.ContainsKey(id);
             }
@@ -55,7 +55,7 @@ namespace CozyServer.Core
 
         private void ThreadProc()
         {
-            while(IsRunning)
+            while (IsRunning)
             {
                 var msg = MsgQueue.Dequeue();
                 if (msg != null)
@@ -74,8 +74,8 @@ namespace CozyServer.Core
                             ClientIdSet.Remove(id);
                         }
                     }
-                    Thread.Sleep(0);
                 }
+                Thread.Sleep(0);
             }
         }
 
@@ -84,11 +84,12 @@ namespace CozyServer.Core
             lock (Locker)
             {
                 MsgQueue.Enqueue(msg);
-                if(ClientIdSet.ContainsKey(msg.SenderConnection.RemoteUniqueIdentifier))
+                if (!ClientIdSet.ContainsKey(msg.SenderConnection.RemoteUniqueIdentifier))
                 {
-                    ClientIdSet[msg.SenderConnection.RemoteUniqueIdentifier]++;
+                    ClientIdSet[msg.SenderConnection.RemoteUniqueIdentifier] = 0;
                 }
-                ClientIdSet[msg.SenderConnection.RemoteUniqueIdentifier] = 0;
+
+                ClientIdSet[msg.SenderConnection.RemoteUniqueIdentifier]++;
             }
         }
     }

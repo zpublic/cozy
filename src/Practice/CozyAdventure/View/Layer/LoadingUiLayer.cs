@@ -13,6 +13,8 @@ using CozyAdventure.View.Sprite;
 using CozyAdventure.Model;
 using Cozy.Game.Manager;
 using CozyNetworkProtocol;
+using CozyAdventure.Engine.Module.Data;
+using CozyAdventure.Game.Object;
 
 namespace CozyAdventure.View.Layer
 {
@@ -28,16 +30,9 @@ namespace CozyAdventure.View.Layer
 
         public LoadingUiLayer()
         {
-            var follower = new Follower()
-            {
-                Name = "hehe",
-                CurStar = 1,
-                MaxStar = 3,
-                CurLevel = 10,
-                Avatar = "lurenjia",
-            };
 
-            var node = new FollowerSprite(follower, true)
+            var res = FollowerPackageModule.GetFollowerPackages();
+            var node = new FollowerSprite(res.Followers[0], true)
             {
                 Position = new CCPoint(10, 200)
             };
@@ -85,15 +80,11 @@ namespace CozyAdventure.View.Layer
             var msg = (MessageBase)obj;
             if(msg.Id == (uint)MessageId.Inner.LoginResultMessage)
             {
-                var rsp = (LoginResultMessage)msg;
-                if (rsp.Result == "OK")
-                {
-                    OnSuccess();
-                }
-                else if(rsp.Result == "Error")
-                {
-                    OnFailed();
-                }
+                OnLoginRspMessage((LoginResultMessage)msg);
+            }
+            else if(msg.Id == (uint)MessageId.User.PushMessage)
+            {
+                OnPushMessage((PushMessage)msg);
             }
         }
 
@@ -103,16 +94,26 @@ namespace CozyAdventure.View.Layer
             AppDelegate.SharedWindow.DefaultDirector.PopScene();
         }
 
-        private void OnSuccess()
+        private void OnLoginRspMessage(LoginResultMessage msg)
         {
-            CleanUp();
-            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new AdventureScene());
+            if (msg.Result == "OK")
+            {
+                var sendMsg = new PullMessage();
+                MessageManager.SendMessage("Client.Send", sendMsg);
+            }
+            else if (msg.Result == "Error")
+            {
+                CleanUp();
+                AppDelegate.SharedWindow.DefaultDirector.PopScene();
+            }
         }
 
-        private void OnFailed()
+        private void OnPushMessage(PushMessage msg)
         {
+            PlayerObject.Instance.Self.AllFollower.Followers = msg.FollowerList;
+
             CleanUp();
-            AppDelegate.SharedWindow.DefaultDirector.PopScene();
+            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new FollowerListScene());
         }
 
         private void CleanUp()

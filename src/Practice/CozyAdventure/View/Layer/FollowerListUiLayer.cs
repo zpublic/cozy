@@ -1,11 +1,16 @@
 ﻿using System;
 using CocosSharp;
-using CozyAdventure.View.Layer;
 using CozyAdventure.Public.Controls;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Cozy.Game.Manager;
+using CozyNetworkProtocol;
+using CozyAdventure.Protocol;
+using CozyAdventure.Protocol.Msg;
+using CozyAdventure.Game.Object;
+
 namespace CozyAdventure.View.Layer
 {
     public class FollowerListUiLayer : CCLayer
