@@ -5,16 +5,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Cozy.Game.Manager;
-using CozyNetworkProtocol;
-using CozyAdventure.Protocol;
-using CozyAdventure.Protocol.Msg;
 using CozyAdventure.Game.Object;
+using CozyAdventure.Model;
+using CozyAdventure.View.Sprite;
 
 namespace CozyAdventure.View.Layer
 {
     public class FollowerListUiLayer : CCLayer
     {
+        private FollowerCollect FollowerList { get; set; }
+
+        private int Page { get; set; }
+
+        private int CurPage { get; set; }
+
+        private List<FollowerSprite> SpriteList { get; set; } = new List<FollowerSprite>();
+
+        private CCLabel AllFollower { get; set; }
+
+        private CCLabel PageNumber { get; set; }
+
+        private CozySampleButton LastPageButton { get; set; }
+
+        private CozySampleButton NextPageButton { get; set; }
+
         public FollowerListUiLayer()
         {
             var listlable = new CCLabel("佣兵列表", "微软雅黑", 14)
@@ -22,50 +36,95 @@ namespace CozyAdventure.View.Layer
                 Position = new CCPoint(92, 20),
                 Color = CCColor3B.Black
             };
+
+            FollowerList    = PlayerObject.Instance.Self.AllFollower;
+            Page            = (FollowerList.Followers.Count + 8) / 9;
+
             AddChild(listlable, 100);
-            for (int i = 1; i <= 12; i++)
+
+            foreach(var obj in FollowerList.Followers)
             {
-                for (int a = 92; a <= 543; a += 148)
+                var fs = new FollowerSprite(obj, true)
                 {
-                    for (int b = 52; b <= 289; b += 119)
-                    {
-                        var Follower = new CozySampleButton(a, b, 120, 100)
-                        {
-                            Text = "佣兵" + i,
-                            FontSize = 14
-                        };
-                        AddChild(Follower, 100);
-                    }
-                }
+                    Visible = false,
+                };
+                this.AddChild(fs);
+                SpriteList.Add(fs);
             }
-            int c = 20;
-            int d = 30;
-            var AllFollower = new CCLabel("总数" + c + "/" + d, "微软雅黑", 14)
+
+            AllFollower = new CCLabel("总数" + 20 + "/" + FollowerList.Followers.Count, "微软雅黑", 14)
             {
-                Position = new CCPoint(92, 420),
-                Color = CCColor3B.White,
+                Position    = new CCPoint(92, 47),
+                Color       = CCColor3B.White,
             };
             AddChild(AllFollower, 100);
-            int e = 20;
-            int f = 30;
-            var PageNumber = new CCLabel(e + "/" + f, "微软雅黑", 14)
+
+            PageNumber = new CCLabel((CurPage + 1) + "/" + Page, "微软雅黑", 14)
             {
-                Position = new CCPoint(389, 420),
-                Color = CCColor3B.Black
+                Position    = new CCPoint(389, 47),
+                Color       = CCColor3B.White
             };
             AddChild(PageNumber, 100);
-            var LastPage = new CozySampleButton(473, 410, 78, 36)
+            LastPageButton = new CozySampleButton(473, 27, 78, 36)
             {
-                Text = "上一页",
-                FontSize = 14
+                Text        = "上一页",
+                FontSize    = 14,
+                OnClick     = () =>
+                {
+                    PrevPage();
+                },
             };
-            AddChild(LastPage, 100);
-            var NextPage = new CozySampleButton(585, 410, 78, 36)
+            NextPageButton = new CozySampleButton(585, 27, 78, 36)
             {
-                Text = "下一页",
-                FontSize = 14
+                Text        = "下一页",
+                FontSize    = 14,
+                OnClick     = () => 
+                {
+                    NextPage();
+                },
             };
-            AddChild(NextPage, 100);
+            AddChild(NextPageButton, 100);
+            AddChild(LastPageButton, 100);
+            this.AddEventListener(LastPageButton.EventListener);
+            this.AddEventListener(NextPageButton.EventListener);
+
+            RefreshPage();
+        }
+
+        private void RefreshPage()
+        {
+            foreach(var obj in SpriteList)
+            {
+                obj.Visible = false;
+                obj.Position = CCPoint.Zero;
+            }
+
+            int count = CurPage * 9;
+            for (int i = 0; i < 3; ++i)
+            {
+                for (int j = 0; j < 3; ++j)
+                {
+                    if (count < FollowerList.Followers.Count)
+                    {
+                        SpriteList[count].Position  = new CCPoint(100 + j * (200 + 10), i * (100 + 10) + 100);
+                        SpriteList[count].Visible   = true;
+                    }
+                    count++;
+                }
+            }
+            PageNumber.Text = (CurPage + 1) + "/" + Page;
+        }
+
+        private void NextPage()
+        {
+            CurPage = CurPage == Page - 1 ? Page - 1 : CurPage + 1;
+            RefreshPage(); 
+        }
+
+        private void PrevPage()
+        {
+            CurPage = CurPage == 0 ? 0 : CurPage - 1;
+            RefreshPage();
         }
     }
 }

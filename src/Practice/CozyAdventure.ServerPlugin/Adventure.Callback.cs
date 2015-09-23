@@ -94,14 +94,18 @@ namespace CozyAdventure.ServerPlugin
         {
             var registerMsg = msg as PullMessage;
             var r           = new PushMessage();
-            r.FollowerList.Add(new Follower()
+            for(int i = 0; i < 10; ++i)
             {
-                Avatar = "lurenjia",
-                CurStar = 1,
-                CurLevel = 25,
-                MaxStar = 3,
-                Name = "hehe"
-            });
+                r.FollowerList.Add(new Follower()
+                {
+                    Avatar = "lurenjia",
+                    CurStar = 1,
+                    CurLevel = 25,
+                    MaxStar = 3,
+                    Name = "hehe"
+                });
+            }
+           
             server.SendMessage(r, im.SenderConnection);
         }
     }
