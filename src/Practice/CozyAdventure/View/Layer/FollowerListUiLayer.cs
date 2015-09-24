@@ -35,8 +35,8 @@ namespace CozyAdventure.View.Layer
         {
             var listlable = new CCLabel("佣兵列表", "微软雅黑", 14)
             {
-                Position    = new CCPoint(92, 20),
-                Color       = CCColor3B.Black
+                Position    = new CCPoint(100, 420),
+                Color       = CCColor3B.White
             };
 
             FollowerList    = PlayerObject.Instance.Self.AllFollower;
@@ -55,7 +55,7 @@ namespace CozyAdventure.View.Layer
             {
                 ContentSize = new CCSize(600, 330),
                 HasBorder   = true,
-                Position    = new CCPoint(100, 100)
+                Position    = new CCPoint(100, 60)
             };
             this.AddChild(listview);
 
@@ -72,18 +72,18 @@ namespace CozyAdventure.View.Layer
 
             AllFollower = new CCLabel("总数" + 20 + "/" + FollowerList.Followers.Count, "微软雅黑", 14)
             {
-                Position    = new CCPoint(92, 47),
+                Position    = new CCPoint(92, 37),
                 Color       = CCColor3B.White,
             };
             AddChild(AllFollower, 100);
 
             PageNumber = new CCLabel((CurPage + 1) + "/" + Page, "微软雅黑", 14)
             {
-                Position    = new CCPoint(389, 47),
+                Position    = new CCPoint(389, 37),
                 Color       = CCColor3B.White
             };
             AddChild(PageNumber, 100);
-            LastPageButton = new CozySampleButton(473, 27, 78, 36)
+            LastPageButton = new CozySampleButton(473, 17, 78, 36)
             {
                 Text        = "上一页",
                 FontSize    = 14,
@@ -92,7 +92,7 @@ namespace CozyAdventure.View.Layer
                     PrevPage();
                 },
             };
-            NextPageButton = new CozySampleButton(585, 27, 78, 36)
+            NextPageButton = new CozySampleButton(585, 17, 78, 36)
             {
                 Text        = "下一页",
                 FontSize    = 14,
