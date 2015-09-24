@@ -33,6 +33,8 @@ namespace CozyAdventure.View.Layer
 
         private FollowerDetailSprite ShowDetail { get; set; }
 
+        private List<CCEventListenerTouchOneByOne> ListenerList { get; set; } = new List<CCEventListenerTouchOneByOne>();
+
         public FollowerListUiLayer()
         {
             var listlable = new CCLabel("佣兵列表", "微软雅黑", 14)
@@ -130,6 +132,11 @@ namespace CozyAdventure.View.Layer
             {
                 list.Clear();
             }
+            foreach(var obj in ListenerList)
+            {
+                this.RemoveEventListener(obj);
+            }
+            ListenerList.Clear();
 
             int count = CurPage * 9;
             for (int i = 0; i < 3; ++i)
@@ -138,25 +145,30 @@ namespace CozyAdventure.View.Layer
                 {
                     if (count < FollowerList.Followers.Count)
                     {
-                        var item = new CozySampleListViewItemNode(SpriteList[count])
+                        int index = count;
+
+                        var item = new CozySampleListViewItemNode(SpriteList[index])
                         {
                             MarginTop       = 5,
                             MarginBottom    = 5,
                         };
 
-                        int index   = count;
                         var button  = new CozySampleButton(item.ContentSize.Width, item.ContentSize.Height)
                         {
                             OnClick = () =>
                             {
-                                ShowDetail.CurrFollower = SpriteList[index].BindFollower;
-                                ShowDetail.Visible      = true;
-                            }
+                                if(!ShowDetail.Visible)
+                                {
+                                    ShowDetail.CurrFollower = SpriteList[index].BindFollower;
+                                    ShowDetail.Visible      = true;
+                                }
+                            },
                         };
                         item.AddChild(button);
                         this.AddEventListener(button.EventListener);
+                        ListenerList.Add(button.EventListener);
 
-                        SpriteList[count].Visible = true;
+                        SpriteList[index].Visible = true;
                         InnerList[i].AddItem(item);
                     }
                     count++;
