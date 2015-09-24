@@ -30,15 +30,6 @@ namespace CozyAdventure.View.Layer
 
         public LoadingUiLayer()
         {
-            var res     = FollowerPackageModule.GetFollowerPackages();
-            var node    = new FollowerDetailSprite()
-            {
-                CurrFollower    = res.Followers.Last(),
-                Position        = new CCPoint(100, 100),
-                AnchorPoint     = CCPoint.Zero,
-            };
-            this.AddChild(node, 201);
-
             label = new CCLabel("加载中", "微软雅黑", 24)
             {
                 Position = new CCPoint(381, 220),
@@ -111,7 +102,8 @@ namespace CozyAdventure.View.Layer
 
         private void OnPushMessage(PushMessage msg)
         {
-            PlayerObject.Instance.Self.AllFollower.Followers = msg.FollowerList;
+            var res = FollowerPackageModule.GetFollowerPackages();
+            PlayerObject.Instance.Self.AllFollower.Followers = res.Followers;
 
             CleanUp();
             AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new FollowerListScene());

@@ -31,6 +31,8 @@ namespace CozyAdventure.View.Layer
 
         private CozySampleListView[] InnerList { get; set; }
 
+        private FollowerDetailSprite ShowDetail { get; set; }
+
         public FollowerListUiLayer()
         {
             var listlable = new CCLabel("佣兵列表", "微软雅黑", 14)
@@ -44,7 +46,7 @@ namespace CozyAdventure.View.Layer
 
             AddChild(listlable, 100);
 
-            foreach(var obj in FollowerList.Followers)
+            foreach (var obj in FollowerList.Followers)
             {
                 var fs = new FollowerSprite(obj, true);
                 this.AddChild(fs);
@@ -83,23 +85,32 @@ namespace CozyAdventure.View.Layer
                 Color       = CCColor3B.White
             };
             AddChild(PageNumber, 100);
+
+            ShowDetail = new FollowerDetailSprite()
+            {
+                Position    = new CCPoint(100, 100),
+                AnchorPoint = CCPoint.Zero,
+                Visible     = false,
+            };
+            this.AddChild(ShowDetail, 201);
+
             LastPageButton = new CozySampleButton(473, 17, 78, 36)
             {
                 Text        = "上一页",
                 FontSize    = 14,
                 OnClick     = () =>
-                {
-                    PrevPage();
-                },
+                            {
+                                PrevPage();
+                            },
             };
             NextPageButton = new CozySampleButton(585, 17, 78, 36)
             {
                 Text        = "下一页",
                 FontSize    = 14,
-                OnClick     = () => 
-                {
-                    NextPage();
-                },
+                OnClick     = () =>
+                            {
+                                NextPage();
+                            },
             };
             AddChild(NextPageButton, 100);
             AddChild(LastPageButton, 100);
@@ -111,11 +122,11 @@ namespace CozyAdventure.View.Layer
 
         private void RefreshPage()
         {
-            foreach(var obj in SpriteList)
+            foreach (var obj in SpriteList)
             {
                 obj.Visible = false;
             }
-            foreach(var list in InnerList)
+            foreach (var list in InnerList)
             {
                 list.Clear();
             }
@@ -127,12 +138,26 @@ namespace CozyAdventure.View.Layer
                 {
                     if (count < FollowerList.Followers.Count)
                     {
-                        SpriteList[count].Visible = true;
-                        InnerList[i].AddItem(new CozySampleListViewItemNode(SpriteList[count])
+                        var item = new CozySampleListViewItemNode(SpriteList[count])
                         {
                             MarginTop       = 5,
                             MarginBottom    = 5,
-                        });
+                        };
+
+                        int index   = count;
+                        var button  = new CozySampleButton(item.ContentSize.Width, item.ContentSize.Height)
+                        {
+                            OnClick = () =>
+                            {
+                                ShowDetail.CurrFollower = SpriteList[index].BindFollower;
+                                ShowDetail.Visible      = true;
+                            }
+                        };
+                        item.AddChild(button);
+                        this.AddEventListener(button.EventListener);
+
+                        SpriteList[count].Visible = true;
+                        InnerList[i].AddItem(item);
                     }
                     count++;
                 }
@@ -143,7 +168,7 @@ namespace CozyAdventure.View.Layer
         private void NextPage()
         {
             CurPage = CurPage == Page - 1 ? Page - 1 : CurPage + 1;
-            RefreshPage(); 
+            RefreshPage();
         }
 
         private void PrevPage()
