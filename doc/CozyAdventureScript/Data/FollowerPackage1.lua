@@ -89,8 +89,22 @@
     f10.Name = "路人癸"
     f10.BasicAttack = 1
     f10.GrowRatio = 0.8
-	f10.Avatar = 'D001fighter09'
+	f10.Avatar = 'D009lancer01'
     fp:AddFollower(f10)
+
+	i = i+1
+    f11 = Follower()
+    f11.Id = i
+    f11.Name = "李文超"
+    f11.BasicAttack = 65535
+    f11.GrowRatio = 1.0
+	f11.Desc = '大家叫他愤怒的泡面。给Xamarin提交过代码。'
+	f11.Avatar = 'D010lancer02'
+	f11.CurStar = 0
+	f11.MaxStar = 3
+	f11.CurLevel = 11
+
+    fp:AddFollower(f11)
 
     return fp
 end

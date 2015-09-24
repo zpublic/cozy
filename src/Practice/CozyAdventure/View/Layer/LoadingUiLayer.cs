@@ -30,11 +30,12 @@ namespace CozyAdventure.View.Layer
 
         public LoadingUiLayer()
         {
-
-            var res = FollowerPackageModule.GetFollowerPackages();
-            var node = new FollowerSprite(res.Followers[0], true)
+            var res     = FollowerPackageModule.GetFollowerPackages();
+            var node    = new FollowerDetailSprite()
             {
-                Position = new CCPoint(10, 200)
+                CurrFollower    = res.Followers.Last(),
+                Position        = new CCPoint(100, 100),
+                AnchorPoint     = CCPoint.Zero,
             };
             this.AddChild(node, 201);
 
@@ -47,7 +48,7 @@ namespace CozyAdventure.View.Layer
             load = new CCLabel("程序员正在加班写代码", "微软雅黑", 20)
             {
                 AnchorPoint = CCPoint.Zero,
-                Position = new CCPoint(250, 150),
+                Position    = new CCPoint(250, 150),
             };
             AddChild(load, 100);
 
