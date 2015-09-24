@@ -29,12 +29,14 @@ namespace CozyAdventure.View.Layer
 
         private CozySampleButton NextPageButton { get; set; }
 
+        private CozySampleListView[] InnerList { get; set; }
+
         public FollowerListUiLayer()
         {
             var listlable = new CCLabel("佣兵列表", "微软雅黑", 14)
             {
-                Position = new CCPoint(92, 20),
-                Color = CCColor3B.Black
+                Position    = new CCPoint(92, 20),
+                Color       = CCColor3B.Black
             };
 
             FollowerList    = PlayerObject.Instance.Self.AllFollower;
@@ -44,12 +46,28 @@ namespace CozyAdventure.View.Layer
 
             foreach(var obj in FollowerList.Followers)
             {
-                var fs = new FollowerSprite(obj, true)
-                {
-                    Visible = false,
-                };
+                var fs = new FollowerSprite(obj, true);
                 this.AddChild(fs);
                 SpriteList.Add(fs);
+            }
+
+            var listview = new CozySampleListView()
+            {
+                ContentSize = new CCSize(600, 330),
+                HasBorder   = true,
+                Position    = new CCPoint(100, 100)
+            };
+            this.AddChild(listview);
+
+            InnerList = new CozySampleListView[3];
+            for (int i = 0; i < 3; ++i)
+            {
+                InnerList[i] = new CozySampleListView()
+                {
+                    ContentSize = new CCSize(200, 330),
+                    Orientation = Public.Controls.Enum.ControlOrientation.Vertical,
+                };
+                listview.AddItem(new CozySampleListViewItemNode(InnerList[i]));
             }
 
             AllFollower = new CCLabel("总数" + 20 + "/" + FollowerList.Followers.Count, "微软雅黑", 14)
@@ -96,7 +114,10 @@ namespace CozyAdventure.View.Layer
             foreach(var obj in SpriteList)
             {
                 obj.Visible = false;
-                obj.Position = CCPoint.Zero;
+            }
+            foreach(var list in InnerList)
+            {
+                list.Clear();
             }
 
             int count = CurPage * 9;
@@ -106,8 +127,12 @@ namespace CozyAdventure.View.Layer
                 {
                     if (count < FollowerList.Followers.Count)
                     {
-                        SpriteList[count].Position  = new CCPoint(100 + j * (200 + 10), i * (100 + 10) + 100);
-                        SpriteList[count].Visible   = true;
+                        SpriteList[count].Visible = true;
+                        InnerList[i].AddItem(new CozySampleListViewItemNode(SpriteList[count])
+                        {
+                            MarginTop       = 5,
+                            MarginBottom    = 5,
+                        });
                     }
                     count++;
                 }
