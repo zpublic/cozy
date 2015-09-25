@@ -26,7 +26,7 @@
     f3.Name = "路人丙"
 	f3.BasicAttack = 1
     f3.GrowRatio = 0.8
-	f3.Avatar = 'D001fighter02'
+	f3.Avatar = 'D002fighter02'
     fp:AddFollower(f3)
 
 	i = i+1
@@ -35,7 +35,7 @@
     f4.Name = "路人丁"
     f4.BasicAttack = 1
     f4.GrowRatio = 0.8
-	f4.Avatar = 'D001fighter03'
+	f4.Avatar = 'D003fighter03'
     fp:AddFollower(f4)
 
 	i = i+1
@@ -44,7 +44,7 @@
     f5.Name = "路人戊"
     f5.BasicAttack = 1
     f5.GrowRatio = 0.8
-	f5.Avatar = 'D001fighter04'
+	f5.Avatar = 'D004fighter04'
     fp:AddFollower(f5)
 
 	i = i+1
@@ -53,7 +53,7 @@
     f6.Name = "路人己"
     f6.BasicAttack = 1
     f6.GrowRatio = 0.8
-	f6.Avatar = 'D001fighter05'
+	f6.Avatar = 'D005fighter05'
     fp:AddFollower(f6)
 
 	i = i+1
@@ -62,7 +62,7 @@
     f7.Name = "路人庚"
     f7.BasicAttack = 1
     f7.GrowRatio = 0.8
-	f7.Avatar = 'D001fighter06'
+	f7.Avatar = 'D006fighter06'
     fp:AddFollower(f7)
 
 	i = i+1
@@ -71,7 +71,7 @@
     f8.Name = "路人辛"
     f8.BasicAttack = 1
     f8.GrowRatio = 0.8
-	f8.Avatar = 'D001fighter07'
+	f8.Avatar = 'D007fighter07'
     fp:AddFollower(f8)
 
 	i = i+1
@@ -80,7 +80,7 @@
     f9.Name = "路人壬"
     f9.BasicAttack = 1
     f9.GrowRatio = 0.8
-	f9.Avatar = 'D001fighter08'
+	f9.Avatar = 'D008fighter08'
     fp:AddFollower(f9)
 
 	i = i+1
@@ -89,8 +89,22 @@
     f10.Name = "路人癸"
     f10.BasicAttack = 1
     f10.GrowRatio = 0.8
-	f10.Avatar = 'D001fighter09'
+	f10.Avatar = 'D009lancer01'
     fp:AddFollower(f10)
+
+	i = i+1
+    f11 = Follower()
+    f11.Id = i
+    f11.Name = "李文超"
+    f11.BasicAttack = 65535
+    f11.GrowRatio = 1.0
+	f11.Desc = '大家叫他愤怒的泡面。给Xamarin提交过代码。'
+	f11.Avatar = 'D010lancer02'
+	f11.CurStar = 0
+	f11.MaxStar = 3
+	f11.CurLevel = 11
+
+    fp:AddFollower(f11)
 
     return fp
 end

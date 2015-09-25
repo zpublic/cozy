@@ -35,6 +35,13 @@ namespace CozyAdventure.Public.Controls
             }
         }
 
+        public void Clear()
+        {
+            this.RemoveAllChildren();
+            Items.Clear();
+            RefreshItems();
+        }
+
         private void RefreshItems()
         {
             if (Orientation == ControlOrientation.Horizontal)
@@ -53,7 +60,7 @@ namespace CozyAdventure.Public.Controls
             float y = ContentSize.Height;
             foreach (var item in Items)
             {
-                if (y - item.MarginTop - item.ContentSize.Height <= 0)
+                if (y - item.MarginTop - item.ContentSize.Height < 0)
                 {
                     item.Visible = false;
                 }

@@ -13,12 +13,12 @@ namespace CozyAdventure.View.Scene
     {
         public FollowerListScene() : base(AppDelegate.SharedWindow)
         {
+
+            var bg = new BackgroundLayer(@"pic\1.png");
+            AddChild(bg);
+
             var ui = new FollowerListUiLayer();
             AddChild(ui);
-
-            //var bg = new BackgroundLayer(@"pic\1.png");
-            //AddChild(bg);
-            
         }
     }
 }
