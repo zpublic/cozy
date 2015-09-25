@@ -100,19 +100,13 @@ namespace CozyAdventure.View.Layer
             {
                 Text        = "上一页",
                 FontSize    = 14,
-                OnClick     = () =>
-                            {
-                                PrevPage();
-                            },
+                OnClick     = () => PrevPage(),
             };
             NextPageButton = new CozySampleButton(585, 17, 78, 36)
             {
                 Text        = "下一页",
                 FontSize    = 14,
-                OnClick     = () =>
-                            {
-                                NextPage();
-                            },
+                OnClick     = () => NextPage(),
             };
             AddChild(NextPageButton, 100);
             AddChild(LastPageButton, 100);
@@ -147,7 +141,7 @@ namespace CozyAdventure.View.Layer
                     {
                         int index = count;
 
-                        var item = new CozySampleListViewItemNode(SpriteList[index])
+                        var item = new CozySampleListViewItemNode(SpriteList[index])    
                         {
                             MarginTop       = 5,
                             MarginBottom    = 5,
