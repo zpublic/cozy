@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace CozyAdventure.Game.Logic
 {
@@ -14,19 +15,20 @@ namespace CozyAdventure.Game.Logic
         // 战斗力需求
         public static int Requirement(int level)
         {
-            return (int)(double)ModuleManager.Instance.GetModule("FramMapModule").CallFunc("Requirement", level)[0];
+            return (int)(double)LogicHelper.CallThisFunc("FramMapModule", MethodBase.GetCurrentMethod(), level)[0];
         }
 
         // 每分钟经验
         public static int Exp(int level)
         {
-            return (int)(double)ModuleManager.Instance.GetModule("FramMapModule").CallFunc("Exp", level)[0];
+            return (int)(double)LogicHelper.CallThisFunc("FramMapModule", MethodBase.GetCurrentMethod(), level)[0];
+
         }
 
         // 每分钟金币
         public static int Money(int level)
         {
-            return (int)(double)ModuleManager.Instance.GetModule("FramMapModule").CallFunc("Money", level)[0];
+            return (int)(double)LogicHelper.CallThisFunc("FramMapModule", MethodBase.GetCurrentMethod(), level)[0];
         }
 
         // 进入地图

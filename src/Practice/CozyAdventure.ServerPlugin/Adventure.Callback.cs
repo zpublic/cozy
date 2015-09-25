@@ -26,28 +26,6 @@ namespace CozyAdventure.ServerPlugin
             }
         }
 
-        private void RegisterMessageImpl(NetServer server, NetIncomingMessage im, MessageBase msg)
-        {
-            var registerMsg = msg as RegisterMessage;
-            var r = new RegisterResultMessage();
-
-            if (AdventurePluginDB.User.Get(registerMsg.Name, registerMsg.Pass) == null)
-            {
-                var user = new UserInfo
-                {
-                    Name = registerMsg.Name,
-                    Pass = registerMsg.Pass,
-                };
-                AdventurePluginDB.User.Create(user);
-                r.Result = "OK";
-            }
-            else
-            {
-                r.Result = "Error";
-            }
-            server.SendMessage(r, im.SenderConnection);
-        }
-
         [CallBack(typeof(LoginMessage))]
         public void OnLoginMessage(NetPeer server, NetBuffer buff, MessageBase msg)
         {
@@ -58,24 +36,6 @@ namespace CozyAdventure.ServerPlugin
             {
                 LoginMessageImpl(srv, im, msg);
             }
-        }
-
-        private void LoginMessageImpl(NetServer server, NetIncomingMessage im, MessageBase msg)
-        {
-            var registerMsg = msg as LoginMessage;
-            var r = new LoginResultMessage();
-
-            var user = AdventurePluginDB.User.Get(registerMsg.Name, registerMsg.Pass);
-            if (user != null)
-            {
-                r.Result = "OK";
-                r.UserId = user.id;
-            }
-            else
-            {
-                r.Result = "Error";
-            }
-            server.SendMessage(r, im.SenderConnection);
         }
 
         [CallBack(typeof(PullMessage))]
@@ -90,23 +50,28 @@ namespace CozyAdventure.ServerPlugin
             }
         }
 
-        private void PullMessageImpl(NetServer server, NetIncomingMessage im, MessageBase msg)
+        [CallBack(typeof(GotoMapMessage))]
+        public void OnGotoMapMessage(NetPeer server, NetBuffer buff, MessageBase msg)
         {
-            var registerMsg = msg as PullMessage;
-            var r           = new PushMessage();
-            for(int i = 0; i < 10; ++i)
+            var srv = server as NetServer;
+            var im = buff as NetIncomingMessage;
+
+            if (srv != null && im != null)
             {
-                r.FollowerList.Add(new Follower()
-                {
-                    Avatar = "lurenjia",
-                    CurStar = 1,
-                    CurLevel = 25,
-                    MaxStar = 3,
-                    Name = "hehe"
-                });
+                GotoMapMessageImpl(srv, im, msg);
             }
-           
-            server.SendMessage(r, im.SenderConnection);
+        }
+
+        [CallBack(typeof(GotoHomeMessage))]
+        public void OnGotoHomeMessage(NetPeer server, NetBuffer buff, MessageBase msg)
+        {
+            var srv = server as NetServer;
+            var im = buff as NetIncomingMessage;
+
+            if (srv != null && im != null)
+            {
+                GotoHomeMessageImpl(srv, im, msg);
+            }
         }
     }
 }
