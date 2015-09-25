@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CozyAdventure.Public.Controls;
 
 namespace CozyAdventure.View.Sprite
 {
@@ -23,22 +24,36 @@ namespace CozyAdventure.View.Sprite
 
         private CCLabel CurrAttack { get; set; }
 
+        private CozySampleButton CloseButton { get; set; }
+
         public FollowerDetailSprite()
         {
             ContentSize = new CCSize(435, 280);
-            HasBorder = true;
+            HasBorder   = true;
 
             CurrName    = new CCLabel("", "Consolas", 14);
             CurrDesc    = new CCLabel("", "Consolas", 14);
             CurrStar    = new CCLabel("", "Consolas", 14);
             CurrLevel   = new CCLabel("", "Consolas", 14);
             CurrAttack  = new CCLabel("", "Consolas", 14);
+            CloseButton = new CozySampleButton(20, 20)
+            {
+                Text        = "X",
+                FontSize    = 20,
+                HasBorder   = true,
+                OnClick     = () =>
+                {
+                    this.Visible = false;
+                }
+            };
 
             this.AddChild(CurrName);
             this.AddChild(CurrDesc);
             this.AddChild(CurrStar);
             this.AddChild(CurrLevel);
             this.AddChild(CurrAttack);
+            this.AddChild(CloseButton);
+            this.AddEventListener(CloseButton.EventListener);
         }
 
         private Follower currFollower;
@@ -72,11 +87,11 @@ namespace CozyAdventure.View.Sprite
                 this.AddChild(CurrAvatar);
 
                 CurrDesc.Dimensions = new CCSize(250, 100);
-                CurrDesc.Text = CurrFollower.Desc;
-                CurrName.Text = CurrFollower.Name + "王者";
-                CurrStar.Text = string.Format("星级 : {0} / {1}", CurrFollower.CurStar, CurrFollower.MaxStar);
-                CurrLevel.Text = string.Format("等级 : {0} / 30", CurrFollower.CurLevel);
-                CurrAttack.Text = string.Format("战斗力 : {0}", FollowerLogic.GetAttack(CurrFollower));
+                CurrDesc.Text       = CurrFollower.Desc;
+                CurrName.Text       = CurrFollower.Name + "王者";
+                CurrStar.Text       = string.Format("星级 : {0} / {1}", CurrFollower.CurStar, CurrFollower.MaxStar);
+                CurrLevel.Text      = string.Format("等级 : {0} / 30", CurrFollower.CurLevel);
+                CurrAttack.Text     = string.Format("战斗力 : {0}", FollowerLogic.GetAttack(CurrFollower));
                 RefreshPos();
             }
         }
@@ -86,24 +101,26 @@ namespace CozyAdventure.View.Sprite
 
             if(CurrAvatar != null)
             {
-                CurrAvatar.AnchorPoint = CCPoint.Zero;
-                CurrAvatar.Position = new CCPoint(50, 125);
+                CurrAvatar.AnchorPoint  = CCPoint.Zero;
+                CurrAvatar.Position     = new CCPoint(50, 125);
             }
+            CurrName.AnchorPoint    = CCPoint.Zero;
+            CurrName.Position       = new CCPoint(50, 200);
 
-            CurrName.AnchorPoint = CCPoint.Zero;
-            CurrName.Position = new CCPoint(50, 200);
+            CurrDesc.AnchorPoint    = CCPoint.Zero;
+            CurrDesc.Position       = new CCPoint(200, 150);
 
-            CurrDesc.AnchorPoint = CCPoint.Zero;
-            CurrDesc.Position = new CCPoint(200, 150);
+            CurrStar.AnchorPoint    = CCPoint.Zero;
+            CurrStar.Position       = new CCPoint(200, 125);
 
-            CurrStar.AnchorPoint = CCPoint.Zero;
-            CurrStar.Position = new CCPoint(200, 125);
+            CurrLevel.AnchorPoint   = CCPoint.Zero;
+            CurrLevel.Position      = new CCPoint(200, 75);
 
-            CurrLevel.AnchorPoint = CCPoint.Zero;
-            CurrLevel.Position = new CCPoint(200, 75);
+            CurrAttack.AnchorPoint  = CCPoint.Zero;
+            CurrAttack.Position     = new CCPoint(200, 25);
 
-            CurrAttack.AnchorPoint = CCPoint.Zero;
-            CurrAttack.Position = new CCPoint(200, 25);
+            CloseButton.AnchorPoint = CCPoint.Zero;
+            CloseButton.Position    = new CCPoint(400, 250);
         }
     }
 }
