@@ -96,7 +96,7 @@ namespace CozyServer.Core
 
         private void LoadPlugin()
         {
-            PluginMgr.LoadPlugins(@"./");
+            PluginMgr.LoadPlugins(@"./", InnerServer);
         }
 
         private void InitFilter()
@@ -189,12 +189,12 @@ namespace CozyServer.Core
 
         private void OnStatusMessage(NetIncomingMessage buff)
         {
-            PluginMgr.NotifyStatus(InnerServer, buff);
+            PluginMgr.NotifyStatus(buff);
         }
 
         private void OnDataMessage(NetIncomingMessage buff)
         {
-            PluginMgr.NotifyData(InnerServer, buff);
+            PluginMgr.NotifyData(buff);
         }
     }
 }

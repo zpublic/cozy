@@ -29,14 +29,28 @@ namespace CozyAdventure.GameNetworkTester
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Init();
-            client.Connect("127.0.0.1", 44360);
+            // Init();
+            var r = new GotoMapMessage()
+            {
+                Exp = 1,
+                Money = 3,
+            };
+
+            var buff = new NetBuffer();
+            r.Write(buff);
+
+            var w = new GotoMapMessage();
+
+            w.Read(buff);
+
+
+            //client.Connect("127.0.0.1", 44360);
         }
 
         private void Init()
         {
-            InitMessage();
-            InitNetwork();
+            //InitMessage();
+            //InitNetwork();
         }
 
         private void InitMessage()
@@ -69,7 +83,7 @@ namespace CozyAdventure.GameNetworkTester
         private void OnData(object sender, ClienEventArgs e)
         {
             var r = MessageReader.GetMessageInstance(e.Message);
-            MessageCallbackManager.ShellCallback(r, e.Client, e.Message);
+            MessageCallbackManager.ShellCallback(r, e.Message);
         }
 
         private void Register_Click(object sender, EventArgs e)

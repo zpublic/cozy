@@ -7,70 +7,63 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CozyAdventure.ServerPlugin.Model;
-using CozyAdventure.Model;
 
 namespace CozyAdventure.ServerPlugin
 {
     public partial class AdventurePlugin
     {
         [CallBack(typeof(RegisterMessage))]
-        public void OnRegisterMessage(NetPeer server, NetBuffer buff, MessageBase msg)
+        public void OnRegisterMessage(NetBuffer buff, MessageBase msg)
         {
-            var srv = server as NetServer;
             var im = buff as NetIncomingMessage;
 
-            if (srv != null && im != null)
+            if (im != null)
             {
-                RegisterMessageImpl(srv, im, msg);
+                RegisterMessageImpl(im, msg);
             }
         }
 
         [CallBack(typeof(LoginMessage))]
-        public void OnLoginMessage(NetPeer server, NetBuffer buff, MessageBase msg)
+        public void OnLoginMessage(NetBuffer buff, MessageBase msg)
         {
-            var srv = server as NetServer;
             var im = buff as NetIncomingMessage;
 
-            if (srv != null && im != null)
+            if (im != null)
             {
-                LoginMessageImpl(srv, im, msg);
+                LoginMessageImpl(im, msg);
             }
         }
 
         [CallBack(typeof(PullMessage))]
-        public void OnPullMessage(NetPeer server, NetBuffer buff, MessageBase msg)
+        public void OnPullMessage(NetBuffer buff, MessageBase msg)
         {
-            var srv = server as NetServer;
             var im = buff as NetIncomingMessage;
 
-            if (srv != null && im != null)
+            if (im != null)
             {
-                PullMessageImpl(srv, im, msg);
+                PullMessageImpl(im, msg);
             }
         }
 
         [CallBack(typeof(GotoMapMessage))]
-        public void OnGotoMapMessage(NetPeer server, NetBuffer buff, MessageBase msg)
+        public void OnGotoMapMessage(NetBuffer buff, MessageBase msg)
         {
-            var srv = server as NetServer;
             var im = buff as NetIncomingMessage;
 
-            if (srv != null && im != null)
+            if (im != null)
             {
-                GotoMapMessageImpl(srv, im, msg);
+                GotoMapMessageImpl(im, msg);
             }
         }
 
         [CallBack(typeof(GotoHomeMessage))]
-        public void OnGotoHomeMessage(NetPeer server, NetBuffer buff, MessageBase msg)
+        public void OnGotoHomeMessage(NetBuffer buff, MessageBase msg)
         {
-            var srv = server as NetServer;
             var im = buff as NetIncomingMessage;
 
-            if (srv != null && im != null)
+            if (im != null)
             {
-                GotoHomeMessageImpl(srv, im, msg);
+                GotoHomeMessageImpl(im, msg);
             }
         }
     }

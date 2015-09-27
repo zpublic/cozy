@@ -36,7 +36,9 @@ namespace CozyAdventure.Game.Logic
         {
             var msg = new GotoMapMessage()
             {
-                Level = level,
+                Level   = level,
+                Exp     = Exp(level),
+                Money   = Money(level),
             };
 
             MessageManager.SendMessage("Client.Send", msg);

@@ -8,9 +8,9 @@ namespace CozyServer.Plugin
 {
     public interface IPlugin
     {
-        void StatusCallback(object server, object msg);
-        void DataCallback(object server, object msg);
+        void StatusCallback(object msg);
+        void DataCallback(object msg);
 
-        void OnEnter();
+        void OnEnter(object server);
     }
 }

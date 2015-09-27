@@ -33,7 +33,7 @@ namespace CozyNetworkHelper
 
     public static class MessageCallbackManager
     {
-        public delegate void CallbackAction(NetPeer peer, NetBuffer buff, MessageBase msg);
+        public delegate void CallbackAction(NetBuffer buff, MessageBase msg);
 
         private static Dictionary<uint, CallbackAction> CallbackMapping 
             = new Dictionary<uint, CallbackAction>();
@@ -52,11 +52,11 @@ namespace CozyNetworkHelper
             }
         }
 
-        public static void ShellCallback(MessageBase msg, NetPeer peer, NetBuffer buff)
+        public static void ShellCallback(MessageBase msg, NetBuffer buff)
         {
             if(CallbackMapping.ContainsKey(msg.Id))
             {
-                CallbackMapping[msg.Id](peer, buff, msg);
+                CallbackMapping[msg.Id](buff, msg);
             }
         }
     }
