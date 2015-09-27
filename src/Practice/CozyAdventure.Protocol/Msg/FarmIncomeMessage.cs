@@ -17,25 +17,5 @@ namespace CozyAdventure.Protocol.Msg
         public int Exp { get; set; }
 
         public int Item { get; set; }
-
-        public override void Read(NetBuffer im)
-        {
-            im.Position = 0;
-            base.Read(im);
-            //im.ReadUInt32();
-            //Money = im.ReadInt32();
-            //Exp = im.ReadInt32();
-            //Item = im.ReadInt32();
-        }
-
-        public override void Write(NetBuffer om)
-        {
-            om.Position = 0;
-            base.Write(om);
-            //om.Write(Id);
-            //om.Write(Money);
-            //om.Write(Exp);
-            //om.Write(Item);
-        }
     }
 }

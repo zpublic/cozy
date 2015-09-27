@@ -21,7 +21,7 @@ namespace CozyAdventure.ServerPlugin
         private void InitFarm()
         {
             FarmTimer.Elapsed += new ElapsedEventHandler(OnFarmEvent);
-            FarmTimer.Interval = 10000;
+            FarmTimer.Interval = 60000;
         }
 
         public bool AddFarmObj(NetConnection conn, int money, int exp)
