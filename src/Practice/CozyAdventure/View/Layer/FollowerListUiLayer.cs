@@ -1,5 +1,4 @@
-﻿using System;
-using CocosSharp;
+﻿using CocosSharp;
 using CozyAdventure.Public.Controls;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +7,6 @@ using System.Threading.Tasks;
 using CozyAdventure.Game.Object;
 using CozyAdventure.Model;
 using CozyAdventure.View.Sprite;
-using CozyAdventure.Game.Logic;
-using CozyAdventure.Protocol.Msg;
-using Cozy.Game.Manager;
-using CozyNetworkProtocol;
-using CozyAdventure.Protocol;
 
 namespace CozyAdventure.View.Layer
 {
@@ -119,9 +113,6 @@ namespace CozyAdventure.View.Layer
             this.AddEventListener(NextPageButton.EventListener);
 
             RefreshPage();
-
-            MessageManager.RegisterMessage("Client.Data", OnMessage);
-            FramMapLogic.EnterMap(1);
         }
 
         private void RefreshPage()
@@ -189,30 +180,6 @@ namespace CozyAdventure.View.Layer
         {
             CurPage = CurPage == 0 ? 0 : CurPage - 1;
             RefreshPage();
-        }
-
-        private void OnMessage(object obj)
-        {
-            var msg = (MessageBase)obj;
-            if (msg.Id == (uint)MessageId.Farm.FarmIncomeMessage)
-            {
-                OnFarmIncommingMessage((FarmIncomeMessage)msg);
-            }
-            else if (msg.Id == (uint)MessageId.Farm.GotoResultMessage)
-            {
-                OnGotoResultMessage((GotoResultMessage)msg);
-            }
-
-        }
-
-        private void OnFarmIncommingMessage(FarmIncomeMessage msg)
-        {
-            int i = 42;
-        }
-
-        private void OnGotoResultMessage(GotoResultMessage msg)
-        {
-            int i = 42;
         }
     }
 }

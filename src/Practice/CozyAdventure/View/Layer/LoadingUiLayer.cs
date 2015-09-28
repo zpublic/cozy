@@ -106,7 +106,7 @@ namespace CozyAdventure.View.Layer
             PlayerObject.Instance.Self.AllFollower.Followers = res.Followers;
 
             CleanUp();
-            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new FollowerListScene());
+            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new FarmScene(2));
         }
 
         private void CleanUp()

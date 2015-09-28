@@ -144,9 +144,11 @@
     <Compile Include="View\Layer\AdventureUiLayer.cs" />
     <Compile Include="View\Layer\BackgroundLayer.cs" />
     <Compile Include="View\Layer\CampUiLayer.cs" />
+    <Compile Include="View\Layer\FarmUiLayer.cs" />
     <Compile Include="View\Layer\FollowerListUiLayer.cs" />
     <Compile Include="View\Layer\LoadingUiLayer.cs" />
     <Compile Include="View\Scene\AdventureScene.cs" />
+    <Compile Include="View\Scene\FarmScene.cs" />
     <Compile Include="View\Scene\FollowerListScene.cs" />
     <Compile Include="View\Scene\LoginScene.cs" />
     <Compile Include="View\Scene\CampScene.cs" />
