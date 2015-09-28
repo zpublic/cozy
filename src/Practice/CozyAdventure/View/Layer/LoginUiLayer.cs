@@ -1,8 +1,15 @@
 ﻿using CocosSharp;
 using CocosSharpExt;
+using Cozy.Game.Manager;
+using CozyAdventure.Engine.Module.Data;
+using CozyAdventure.Game.Logic;
 using CozyAdventure.Game.Manager;
+using CozyAdventure.Game.Object;
+using CozyAdventure.Protocol;
+using CozyAdventure.Protocol.Msg;
 using CozyAdventure.Public.Controls;
 using CozyAdventure.View.Scene;
+using CozyNetworkProtocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +52,8 @@ namespace CozyAdventure.View.Layer
 
         public void OnBeginButtonDown()
         {
-            AppDelegate.SharedWindow.DefaultDirector.PushScene(new LoadingScene());
+            AppDelegate.SharedWindow.DefaultDirector.PushScene(new LoadingScene(OnMessage, OnTimeOut));
+            UserLogic.Login("kingwl", "123456");
         }
 
         public void OnRegisterButton()
@@ -53,5 +61,45 @@ namespace CozyAdventure.View.Layer
             AppDelegate.SharedWindow.DefaultDirector.PushScene(new RegistScene());
         }
 
+        private bool OnMessage(MessageBase msg)
+        {
+            if (msg.Id == (uint)MessageId.Inner.LoginResultMessage)
+            {
+                return OnLoginRspMessage((LoginResultMessage)msg);
+            }
+            else if (msg.Id == (uint)MessageId.User.PushMessage)
+            {
+                return OnPushMessage((PushMessage)msg);
+            }
+            return false;
+        }
+
+        private bool OnLoginRspMessage(LoginResultMessage msg)
+        {
+            if (msg.Result == "OK")
+            {
+                var sendMsg = new PullMessage();
+                MessageManager.SendMessage("Client.Send", sendMsg);
+            }
+            else if (msg.Result == "Error")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool OnPushMessage(PushMessage msg)
+        {
+            var res = FollowerPackageModule.GetFollowerPackages();
+            PlayerObject.Instance.Self.AllFollower.Followers = res.Followers;
+
+            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new FarmScene(2));
+            return true;
+        }
+
+        private void OnTimeOut()
+        {
+            AppDelegate.SharedWindow.DefaultDirector.PopScene();
+        }
     }
 }

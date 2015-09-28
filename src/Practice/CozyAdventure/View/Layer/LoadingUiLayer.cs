@@ -4,17 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CocosSharpExt;
-using CozyAdventure.View.Scene;
-using CozyAdventure.Game.Logic;
-using CozyAdventure.Protocol;
-using CozyAdventure.Protocol.Msg;
-using CozyAdventure.View.Sprite;
-using CozyAdventure.Model;
 using Cozy.Game.Manager;
 using CozyNetworkProtocol;
-using CozyAdventure.Engine.Module.Data;
-using CozyAdventure.Game.Object;
 
 namespace CozyAdventure.View.Layer
 {
@@ -28,8 +19,16 @@ namespace CozyAdventure.View.Layer
 
         public int DotNumber { get; set; }
 
-        public LoadingUiLayer()
+        // true -> cleanUp
+        public Func<MessageBase, bool> MessageCallback { get; set; }
+
+        public Action TimeOutCallback { get; set; }
+
+        public LoadingUiLayer(Func<MessageBase, bool> msgCallback, Action timeoutCallback = null)
         {
+            MessageCallback = msgCallback;
+            TimeOutCallback = timeoutCallback;
+
             label = new CCLabel("加载中", "微软雅黑", 24)
             {
                 Position = new CCPoint(381, 220),
@@ -47,8 +46,6 @@ namespace CozyAdventure.View.Layer
             Schedule(OnTimeOut, 10.0f);
 
             MessageManager.RegisterMessage("Client.Data", OnMessage);
-
-            UserLogic.Login("kingwl", "123456");
         }
 
         private void OnChangeText(float dt)
@@ -70,43 +67,22 @@ namespace CozyAdventure.View.Layer
         private void OnMessage(object obj)
         {
             var msg = (MessageBase)obj;
-            if(msg.Id == (uint)MessageId.Inner.LoginResultMessage)
+            if(MessageCallback != null)
             {
-                OnLoginRspMessage((LoginResultMessage)msg);
-            }
-            else if(msg.Id == (uint)MessageId.User.PushMessage)
-            {
-                OnPushMessage((PushMessage)msg);
+                if(MessageCallback(msg))
+                {
+                    CleanUp();
+                }
             }
         }
 
         private void OnTimeOut(float dt)
         {
-            CleanUp();
-            AppDelegate.SharedWindow.DefaultDirector.PopScene();
-        }
-
-        private void OnLoginRspMessage(LoginResultMessage msg)
-        {
-            if (msg.Result == "OK")
+            if(TimeOutCallback != null)
             {
-                var sendMsg = new PullMessage();
-                MessageManager.SendMessage("Client.Send", sendMsg);
+                TimeOutCallback();
             }
-            else if (msg.Result == "Error")
-            {
-                CleanUp();
-                AppDelegate.SharedWindow.DefaultDirector.PopScene();
-            }
-        }
-
-        private void OnPushMessage(PushMessage msg)
-        {
-            var res = FollowerPackageModule.GetFollowerPackages();
-            PlayerObject.Instance.Self.AllFollower.Followers = res.Followers;
-
             CleanUp();
-            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new FarmScene(2));
         }
 
         private void CleanUp()

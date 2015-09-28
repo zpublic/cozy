@@ -5,16 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CozyNetworkProtocol;
 
 namespace CozyAdventure.View.Scene
 {
     public class LoadingScene : CCScene
     {
-        public LoadingScene() : base(AppDelegate.SharedWindow)
+        public LoadingScene(Func<MessageBase, bool> msgCallback, Action timeoutCallback = null) : base(AppDelegate.SharedWindow)
         {
             var bg = new BackgroundLayer(@"pic\1.png");
             AddChild(bg);
-            var ui = new LoadingUiLayer();
+            var ui = new LoadingUiLayer(msgCallback, timeoutCallback);
             AddChild(ui);
         }
     }
