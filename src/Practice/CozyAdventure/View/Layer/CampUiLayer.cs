@@ -6,18 +6,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CozyAdventure.Game.Object;
+using CozyAdventure.Game.Logic;
 
 namespace CozyAdventure.View.Layer
 {
     public class CampUiLayer : CCLayer
     {
-        int Fighting    = 0;
-        int Gold        = 0;
-        int Exper       = 0;
         public CampUiLayer()
         {
-
-            var edit = new CCLabel("战斗力:" + Fighting + "金币" + Gold + "经验" + Exper, "微软雅黑", 22)
+            
+            var Fighting    = FollowerCollectLogic.GetAttack(PlayerObject.Instance.Self.FightFollower);
+            var Money       = PlayerObject.Instance.Self.Money;
+            var Exp         = PlayerObject.Instance.Self.Exp;
+            var edit = new CCLabel(string.Format("战斗力: + {0} +  金币 + {1} + 经验 + {2}", Fighting, Money, Exp), "微软雅黑", 22)
             {
                 Position    = new CCPoint(100, 120),
                 AnchorPoint = CCPoint.Zero,

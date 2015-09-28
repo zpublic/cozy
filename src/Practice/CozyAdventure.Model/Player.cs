@@ -20,8 +20,8 @@ namespace CozyAdventure.Model
 
         public Player()
         {
-            AllFollower = new FollowerCollect();
-            FightFollower = new FollowerCollect();
+            AllFollower     = new FollowerCollect();
+            FightFollower   = new FollowerCollect();
         }
     }
 }
