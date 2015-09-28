@@ -99,7 +99,7 @@ namespace CozyAdventure.View.Layer
             PlayerMoneyNode.Text    = "Money : " + CurrMoney;
         }
 
-        private void Cleanup()
+        private void CleanUp()
         {
             Unschedule(OnTimerAnimation);
         }

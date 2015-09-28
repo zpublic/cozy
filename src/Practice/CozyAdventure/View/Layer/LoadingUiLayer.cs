@@ -9,6 +9,9 @@ using CozyNetworkProtocol;
 
 namespace CozyAdventure.View.Layer
 {
+    /// <summary>
+    /// 管理注册的消息的生命周期
+    /// </summary>
     public class LoadingUiLayer : CCLayer
     {
         public CCSprite logo { get; set; }
@@ -19,12 +22,17 @@ namespace CozyAdventure.View.Layer
 
         public int DotNumber { get; set; }
 
-        // true -> cleanUp
+        /// <summary>
+        /// RetVal -> true 完成回调 清理现场
+        /// </summary>
         public Func<MessageBase, bool> MessageCallback { get; set; }
 
+        /// <summary>
+        /// 超时
+        /// </summary>
         public Action TimeOutCallback { get; set; }
 
-        public LoadingUiLayer(Func<MessageBase, bool> msgCallback, Action timeoutCallback = null)
+        public LoadingUiLayer(Func<MessageBase, bool> msgCallback, Action timeoutCallback = null, int timeout = 10)
         {
             MessageCallback = msgCallback;
             TimeOutCallback = timeoutCallback;
@@ -43,7 +51,7 @@ namespace CozyAdventure.View.Layer
             AddChild(load, 100);
 
             Schedule(OnChangeText, 1.0f);
-            Schedule(OnTimeOut, 10.0f);
+            Schedule(OnTimeOut, timeout);
 
             MessageManager.RegisterMessage("Client.Data", OnMessage);
         }

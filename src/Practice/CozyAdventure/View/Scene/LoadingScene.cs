@@ -11,11 +11,11 @@ namespace CozyAdventure.View.Scene
 {
     public class LoadingScene : CCScene
     {
-        public LoadingScene(Func<MessageBase, bool> msgCallback, Action timeoutCallback = null) : base(AppDelegate.SharedWindow)
+        public LoadingScene(Func<MessageBase, bool> msgCallback, Action timeoutCallback = null, int timeout = 10) : base(AppDelegate.SharedWindow)
         {
             var bg = new BackgroundLayer(@"pic\1.png");
             AddChild(bg);
-            var ui = new LoadingUiLayer(msgCallback, timeoutCallback);
+            var ui = new LoadingUiLayer(msgCallback, timeoutCallback, timeout);
             AddChild(ui);
         }
     }

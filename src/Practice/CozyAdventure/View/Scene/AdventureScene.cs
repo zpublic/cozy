@@ -14,8 +14,8 @@ namespace CozyAdventure.View.Scene
         {
             var bg = new BackgroundLayer(@"pic\1.png");
             AddChild(bg);
-            var ui = new LoadingUiLayer();
-            AddChild(ui);
+            //var ui = new LoadingUiLayer();
+            //AddChild(ui);
         }
     }
 }

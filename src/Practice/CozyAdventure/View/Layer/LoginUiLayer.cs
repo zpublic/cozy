@@ -52,7 +52,7 @@ namespace CozyAdventure.View.Layer
 
         public void OnBeginButtonDown()
         {
-            AppDelegate.SharedWindow.DefaultDirector.PushScene(new LoadingScene(OnMessage, OnTimeOut));
+            AppDelegate.SharedWindow.DefaultDirector.PushScene(new LoadingScene(OnMessage, OnTimeOut, 10));
             UserLogic.Login("kingwl", "123456");
         }
 
@@ -93,7 +93,7 @@ namespace CozyAdventure.View.Layer
             var res = FollowerPackageModule.GetFollowerPackages();
             PlayerObject.Instance.Self.AllFollower.Followers = res.Followers;
 
-            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new FarmScene(2));
+            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new CampScene());
             return true;
         }
 
