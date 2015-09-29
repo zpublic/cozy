@@ -26,6 +26,10 @@ namespace CozyAdventure.View.Sprite
 
         private CozySampleButton CloseButton { get; set; }
 
+        private CozySampleButton StatusChangeButton { get; set; }
+
+        public Action<object> FightStatusChangeCallback { get; set; }
+
         public FollowerDetailSprite()
         {
             ContentSize = new CCSize(435, 280);
@@ -46,6 +50,18 @@ namespace CozyAdventure.View.Sprite
                     this.Visible = false;
                 }
             };
+            StatusChangeButton = new CozySampleButton(40, 20)
+            {
+                Text        = "Rest",
+                HasBorder   = true,
+                OnClick     = () =>
+                {
+                    if(FightStatusChangeCallback != null)
+                    {
+                        FightStatusChangeCallback(this);
+                    }
+                }
+            };
 
             this.AddChild(CurrName);
             this.AddChild(CurrDesc);
@@ -53,7 +69,9 @@ namespace CozyAdventure.View.Sprite
             this.AddChild(CurrLevel);
             this.AddChild(CurrAttack);
             this.AddChild(CloseButton);
-            this.AddEventListener(CloseButton.EventListener);
+            this.AddChild(StatusChangeButton);
+            this.AddEventListener(CloseButton.EventListener, 1);
+            this.AddEventListener(StatusChangeButton.EventListener);
         }
 
         private Follower currFollower;
@@ -121,6 +139,9 @@ namespace CozyAdventure.View.Sprite
 
             CloseButton.AnchorPoint = CCPoint.Zero;
             CloseButton.Position    = new CCPoint(400, 250);
+
+            StatusChangeButton.AnchorPoint = CCPoint.Zero;
+            StatusChangeButton.Position = new CCPoint(50, 25);
         }
     }
 }

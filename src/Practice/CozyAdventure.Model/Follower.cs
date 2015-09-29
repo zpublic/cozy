@@ -34,5 +34,10 @@ namespace CozyAdventure.Model
 
         // 头像
         public string Avatar { get; set; }
+
+        /// <summary>
+        /// 是否在战斗中
+        /// </summary>
+        public bool IsFighting { get; set; }
     }
 }

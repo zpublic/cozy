@@ -158,7 +158,7 @@ namespace CozyAdventure.View.Layer
                             },
                         };
                         item.AddChild(button);
-                        this.AddEventListener(button.EventListener);
+                        this.AddEventListener(button.EventListener, 2);
                         ListenerList.Add(button.EventListener);
 
                         SpriteList[index].Visible = true;
