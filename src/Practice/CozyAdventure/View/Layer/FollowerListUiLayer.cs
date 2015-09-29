@@ -1,4 +1,5 @@
-﻿using CocosSharp;
+﻿using System;
+using CocosSharp;
 using CozyAdventure.Public.Controls;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,6 +93,7 @@ namespace CozyAdventure.View.Layer
                 Position    = new CCPoint(100, 100),
                 AnchorPoint = CCPoint.Zero,
                 Visible     = false,
+                FightStatusChangeCallback = new Action<object>(OnStatusChange),
             };
             this.AddChild(ShowDetail, 201);
 
@@ -180,6 +182,23 @@ namespace CozyAdventure.View.Layer
         {
             CurPage = CurPage == 0 ? 0 : CurPage - 1;
             RefreshPage();
+        }
+
+        private void OnStatusChange(object obj)
+        {
+            var follower    = (Follower)obj;
+            if(follower.IsFighting)
+            {
+                if(PlayerObject.Instance.Self.FightFollower.Followers.Contains(follower))
+                {
+                    PlayerObject.Instance.Self.FightFollower.Followers.Remove(follower);
+                }
+            }
+            else
+            {
+                PlayerObject.Instance.Self.FightFollower.Followers.Add(follower);
+            }
+            follower.IsFighting = !follower.IsFighting;
         }
     }
 }

@@ -52,14 +52,15 @@ namespace CozyAdventure.View.Sprite
             };
             StatusChangeButton = new CozySampleButton(40, 20)
             {
-                Text        = "Rest",
+                Text        = "",
                 HasBorder   = true,
                 OnClick     = () =>
                 {
                     if(FightStatusChangeCallback != null)
                     {
-                        FightStatusChangeCallback(this);
+                        FightStatusChangeCallback(currFollower);
                     }
+                    RefreshInfo();
                 }
             };
 
@@ -110,6 +111,8 @@ namespace CozyAdventure.View.Sprite
                 CurrStar.Text       = string.Format("星级 : {0} / {1}", CurrFollower.CurStar, CurrFollower.MaxStar);
                 CurrLevel.Text      = string.Format("等级 : {0} / 30", CurrFollower.CurLevel);
                 CurrAttack.Text     = string.Format("战斗力 : {0}", FollowerLogic.GetAttack(CurrFollower));
+
+                StatusChangeButton.Text = currFollower.IsFighting ? "Rest" : "Fight";
                 RefreshPos();
             }
         }
@@ -143,5 +146,6 @@ namespace CozyAdventure.View.Sprite
             StatusChangeButton.AnchorPoint = CCPoint.Zero;
             StatusChangeButton.Position = new CCPoint(50, 25);
         }
+
     }
 }
