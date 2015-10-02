@@ -48,9 +48,13 @@
     <Compile Include="Adventure.CallbackImpl.cs" />
     <Compile Include="Adventure.Farm.cs" />
     <Compile Include="AdventurePlugin.cs" />
+    <Compile Include="Model\CustomerInfo.cs" />
     <Compile Include="Model\FarmStorage.cs" />
+    <Compile Include="Model\PlayerFollowerInfo.cs" />
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Storgae\CustomerInfoDB.cs" />
+    <Compile Include="Storgae\PlayerFollowerDB.cs" />
     <Compile Include="Storgae\UserDB.cs" />
   </ItemGroup>
   <ItemGroup>

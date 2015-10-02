@@ -11,7 +11,7 @@ namespace CozyAdventure.Protocol.Msg
     {
         public override uint Id { get { return (uint)MessageId.Inner.LoginResultMessage; } }
 
-        public int UserId { get; set; }
+        public int PlayerId { get; set; }
 
         public string Result { get; set; }
     }

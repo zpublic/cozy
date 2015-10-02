@@ -1,4 +1,5 @@
-﻿using CozyAdventure.Model;
+﻿using CozyAdventure.Game.Object;
+using CozyAdventure.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

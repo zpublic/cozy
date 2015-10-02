@@ -8,6 +8,8 @@ namespace CozyAdventure.Model
 {
     public class Player
     {
+        public int PlayerId { get; set; }
+
         public string User { get; set; }
         public string Nickname { get; set; }
         public int AdventureLevel { get; set; }

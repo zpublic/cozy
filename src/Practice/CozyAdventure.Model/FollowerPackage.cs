@@ -23,5 +23,10 @@ namespace CozyAdventure.Model
         {
             Followers.Add(f);
         }
+
+        public Follower GetFollowerById(int id)
+        {
+            return Followers.Where(x => x.Id == id).First();
+        }
     }
 }

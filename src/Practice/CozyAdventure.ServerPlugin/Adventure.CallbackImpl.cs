@@ -45,7 +45,7 @@ namespace CozyAdventure.ServerPlugin
             if (user != null)
             {
                 r.Result = "OK";
-                r.UserId = user.id;
+                r.PlayerId = user.id;
             }
             else
             {
@@ -58,16 +58,11 @@ namespace CozyAdventure.ServerPlugin
         {
             var pullMsg     = msg as PullMessage;
             var r           = new PushMessage();
-            for (int i = 0; i < 10; ++i)
+
+            if (AdventurePluginDB.PlayerFollower.IsPlayerExist(pullMsg.PlayerId))
             {
-                r.FollowerList.Add(new Follower()
-                {
-                    Avatar      = "lurenjia",
-                    CurStar     = 1,
-                    CurLevel    = 25,
-                    MaxStar     = 3,
-                    Name        = "hehe"
-                });
+                var follower = AdventurePluginDB.PlayerFollower.GetPlayerFollower(pullMsg.PlayerId);
+                r.FollowerList.AddRange(follower.FollowerList);
             }
 
             SharedServer.SendMessage(r, im.SenderConnection);

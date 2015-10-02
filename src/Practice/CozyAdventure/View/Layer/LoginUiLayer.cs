@@ -78,7 +78,12 @@ namespace CozyAdventure.View.Layer
         {
             if (msg.Result == "OK")
             {
-                var sendMsg = new PullMessage();
+                PlayerObject.Instance.Self.PlayerId = msg.PlayerId;
+                var sendMsg = new PullMessage()
+                {
+                    PlayerId = msg.PlayerId,
+                };
+
                 MessageManager.SendMessage("Client.Send", sendMsg);
             }
             else if (msg.Result == "Error")
@@ -90,8 +95,22 @@ namespace CozyAdventure.View.Layer
 
         private bool OnPushMessage(PushMessage msg)
         {
-            var res = FollowerPackageModule.GetFollowerPackages();
-            PlayerObject.Instance.Self.AllFollower.Followers = res.Followers;
+            var res     = FollowerPackageModule.GetFollowerPackages();
+            var resId   = res.Followers.Select(x => x.Id);
+            var result  = msg.FollowerList.Where(x => resId.Contains(x)).Select(x => res.GetFollowerById(x));
+            var ftres   = msg.FightFollowerList.Where(x => resId.Contains(x));
+
+            PlayerObject.Instance.Self.AllFollower.Followers = result.ToList();
+
+            PlayerObject.Instance.Self.FightFollower.Followers.Clear();
+            foreach (var obj in PlayerObject.Instance.Self.AllFollower.Followers)
+            {
+                if(ftres.Contains(obj.Id))
+                {
+                    obj.IsFighting = true;
+                    PlayerObject.Instance.Self.FightFollower.Followers.Add(obj);
+                }
+            }
 
             AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new CampScene());
             return true;

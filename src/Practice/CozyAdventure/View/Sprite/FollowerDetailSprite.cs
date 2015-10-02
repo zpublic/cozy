@@ -146,6 +146,5 @@ namespace CozyAdventure.View.Sprite
             StatusChangeButton.AnchorPoint = CCPoint.Zero;
             StatusChangeButton.Position = new CCPoint(50, 25);
         }
-
     }
 }

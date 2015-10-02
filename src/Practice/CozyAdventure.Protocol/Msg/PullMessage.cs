@@ -10,5 +10,7 @@ namespace CozyAdventure.Protocol.Msg
     public class PullMessage : MessageBase
     {
         public override uint Id { get { return (uint)MessageId.User.PullMessage; } }
+
+        public int PlayerId { get; set; }
     }
 }
