@@ -24,7 +24,7 @@ namespace CozyAdventure.ServerPlugin
             FarmTimer.Interval = 60000;
         }
 
-        public bool AddFarmObj(NetConnection conn, int money, int exp)
+        public bool AddFarmObj(NetConnection conn, int playerid, int money, int exp)
         {
             lock(Locker)
             {
@@ -34,6 +34,7 @@ namespace CozyAdventure.ServerPlugin
                     CurrTime    = DateTime.Now,
                     Exp         = exp,
                     Money       = money,
+                    PlayerId    = playerid,
                 };
                 if (!FarmTimer.Enabled) FarmTimer.Enabled = true;
             }
@@ -52,6 +53,7 @@ namespace CozyAdventure.ServerPlugin
                     var e = obj.Exp * (int)(now - obj.CurrTime).TotalSeconds;
                     var m = obj.Money * (int)(now - obj.CurrTime).TotalSeconds;
                     SendFarmIncomeMsg(conn, e, m);
+                    SyncPlayerInfo(obj.PlayerId, e, m);
                     FarmList.Remove(conn);
                     if (FarmList.Count == 0)
                     {
@@ -78,6 +80,7 @@ namespace CozyAdventure.ServerPlugin
                     var m = obj.Value.Money * (int)(now - obj.Value.CurrTime).TotalSeconds;
 
                     SendFarmIncomeMsg(obj.Key, e, m);
+                    SyncPlayerInfo(obj.Value.PlayerId, e, m);
                     obj.Value.CurrTime = now;
                 }
             }
@@ -91,6 +94,17 @@ namespace CozyAdventure.ServerPlugin
                 Money   = money,
             };
             SharedServer.SendMessage(msg, conn);
+        }
+
+        private void SyncPlayerInfo(int playerid, int exp, int money)
+        {
+            var customer = AdventurePluginDB.Customer.GetPlayerCustomer(playerid);
+            if(customer != null)
+            {
+                customer.Money  += money;
+                customer.Exp    += exp;
+                AdventurePluginDB.Customer.Update(customer);
+            }
         }
     }
 }

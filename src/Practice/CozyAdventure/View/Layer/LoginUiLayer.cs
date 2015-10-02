@@ -104,7 +104,9 @@ namespace CozyAdventure.View.Layer
             var result  = msg.FollowerList.Where(x => resId.Contains(x)).Select(x => res.GetFollowerById(x));
             var ftres   = msg.FightFollowerList.Where(x => resId.Contains(x));
 
-            PlayerObject.Instance.Self.AllFollower.Followers = result.ToList();
+            PlayerObject.Instance.Self.AllFollower.Followers    = result.ToList();
+            PlayerObject.Instance.Self.Money                    = msg.Money;
+            PlayerObject.Instance.Self.Exp                      = msg.Exp;
 
             PlayerObject.Instance.Self.FightFollower.Followers.Clear();
             foreach (var obj in PlayerObject.Instance.Self.AllFollower.Followers)

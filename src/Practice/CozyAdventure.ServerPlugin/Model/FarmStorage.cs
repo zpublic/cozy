@@ -10,6 +10,8 @@ namespace CozyAdventure.ServerPlugin.Model
     {
         public DateTime CurrTime { get; set; }
 
+        public int PlayerId { get; set; }
+
         public int Exp { get; set; }
 
         public int Money { get; set; }

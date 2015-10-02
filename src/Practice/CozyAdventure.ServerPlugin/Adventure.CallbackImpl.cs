@@ -66,6 +66,14 @@ namespace CozyAdventure.ServerPlugin
             {
                 var follower = AdventurePluginDB.PlayerFollower.GetPlayerFollower(pullMsg.PlayerId);
                 r.FollowerList.AddRange(follower.FollowerList);
+                r.FightFollowerList.AddRange(follower.FightingFollowerList);
+
+                var customer = AdventurePluginDB.Customer.GetPlayerCustomer(pullMsg.PlayerId);
+                if(customer != null)
+                {
+                    r.Exp   = customer.Exp;
+                    r.Money = customer.Money;
+                }
             }
 
             SharedServer.SendMessage(r, im.SenderConnection);
@@ -76,7 +84,7 @@ namespace CozyAdventure.ServerPlugin
             var mapMsg      = msg as GotoMapMessage;
             var r           = new GotoResultMessage();
 
-            if(AddFarmObj(im.SenderConnection, mapMsg.Money, mapMsg.Exp))
+            if(AddFarmObj(im.SenderConnection, mapMsg.PlayerId, mapMsg.Money, mapMsg.Exp))
             {
                 r.Result = "Ok";
             }

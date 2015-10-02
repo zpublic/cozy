@@ -75,7 +75,7 @@ namespace CozyAdventure.View.Layer
 
         private void OnGotoResultMessage(GotoResultMessage msg)
         {
-            int i = 42;
+            //int i = 42;
         }
 
         private void OnTimerAnimation(float dt)

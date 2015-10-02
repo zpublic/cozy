@@ -13,14 +13,18 @@ namespace CozyAdventure.Protocol.Msg
     {
         public override uint Id { get { return (uint)MessageId.User.PushMessage; } }
 
+        public int Exp { get; set; }
+
+        public int Money { get; set; }
+
         public List<int> FollowerList { get; set; }
 
         public List<int> FightFollowerList { get; set; }
 
         public PushMessage()
         {
-            FollowerList = new List<int>();
-            FightFollowerList = new List<int>();
+            FollowerList        = new List<int>();
+            FightFollowerList   = new List<int>();
         }
 
         public override void Write(NetBuffer om)

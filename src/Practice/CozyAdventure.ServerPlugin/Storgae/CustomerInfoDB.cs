@@ -49,7 +49,7 @@ namespace CozyAdventure.ServerPlugin.Storgae
             return col.FindById(id);
         }
 
-        public CustomerInfo GetPlayerFollower(int playerid)
+        public CustomerInfo GetPlayerCustomer(int playerid)
         {
             return col.FindOne(x => x.PlayerId == playerid);
         }

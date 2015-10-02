@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using CozyAdventure.Game.Object;
 
 namespace CozyAdventure.Game.Logic
 {
@@ -36,9 +37,10 @@ namespace CozyAdventure.Game.Logic
         {
             var msg = new GotoMapMessage()
             {
-                Level   = level,
-                Exp     = Exp(level),
-                Money   = Money(level),
+                PlayerId    = PlayerObject.Instance.Self.PlayerId,
+                Level       = level,
+                Exp         = Exp(level),
+                Money       = Money(level),
             };
 
             MessageManager.SendMessage("Client.Send", msg);
