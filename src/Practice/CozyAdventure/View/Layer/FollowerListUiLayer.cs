@@ -75,7 +75,8 @@ namespace CozyAdventure.View.Layer
                 listview.AddItem(new CozySampleListViewItemNode(InnerList[i]));
             }
 
-            AllFollower = new CCLabel("总数" + 20 + "/" + FollowerList.Followers.Count, "微软雅黑", 14)
+            int fight = PlayerObject.Instance.Self.FightFollower.Followers.Count;
+            AllFollower = new CCLabel("总数" + fight + "/" + FollowerList.Followers.Count, "微软雅黑", 14)
             {
                 Position    = new CCPoint(92, 37),
                 Color       = CCColor3B.White,
