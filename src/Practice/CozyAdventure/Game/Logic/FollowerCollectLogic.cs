@@ -1,5 +1,7 @@
-﻿using CozyAdventure.Game.Object;
+﻿using Cozy.Game.Manager;
+using CozyAdventure.Game.Object;
 using CozyAdventure.Model;
+using CozyAdventure.Protocol.Msg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +42,26 @@ namespace CozyAdventure.Game.Logic
                 PlayerObject.Instance.Self.FightFollower.Followers.Add(follower);
             }
             follower.IsFighting = !follower.IsFighting;
+        }
+
+        public static void HireFollower(Follower follower)
+        {
+            var msg = new HireFollowerMessage()
+            {
+                PlayerId    = PlayerObject.Instance.Self.PlayerId,
+                FollowerId  = { follower.Id },
+            };
+            MessageManager.SendMessage("Client.Send", msg);
+        }
+
+        public static void HireFollower(List<Follower> follower)
+        {
+            var msg = new HireFollowerMessage()
+            {
+                PlayerId    = PlayerObject.Instance.Self.PlayerId,
+                FollowerId  = follower.Select(x => x.Id).ToList(),
+            };
+            MessageManager.SendMessage("Client.Send", msg);
         }
     }
 }

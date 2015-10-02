@@ -22,6 +22,13 @@ namespace CozyAdventure.Game.Logic
 
         public static void Regist(string user, string pass, string nickname)
         {
+            var msg = new RegisterMessage()
+            {
+                Name        = user,
+                NickName    = nickname,
+                Pass        = pass,
+            };
+            MessageManager.SendMessage("Client.Send", msg);
         }
     }
 }

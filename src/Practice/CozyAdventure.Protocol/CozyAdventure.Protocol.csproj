@@ -48,6 +48,8 @@
     <Compile Include="Msg\GotoMapMessage.cs" />
     <Compile Include="Msg\GotoResultMessage.cs" />
     <Compile Include="Msg\HeartMessage.cs" />
+    <Compile Include="Msg\HireFollowerMessage.cs" />
+    <Compile Include="Msg\HireResultMessage.cs" />
     <Compile Include="Msg\LoginMessage.cs" />
     <Compile Include="Msg\LoginResultMessage.cs" />
     <Compile Include="Msg\PullMessage.cs" />

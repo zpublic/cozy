@@ -33,7 +33,7 @@ namespace CozyAdventure.View.Layer
             {
                 // 测试代码
                 // Text        = "开始游戏",
-                Text = StringManager.GetText("str3"),
+                Text        = StringManager.GetText("str3"),
                 FontSize    = 24,
                 OnClick     = new Action(OnBeginButtonDown),
             };
@@ -58,7 +58,9 @@ namespace CozyAdventure.View.Layer
 
         public void OnRegisterButton()
         {
-            AppDelegate.SharedWindow.DefaultDirector.PushScene(new RegistScene());
+            UserLogic.Regist("kingwl", "123456", "hehe");
+
+            //AppDelegate.SharedWindow.DefaultDirector.PushScene(new RegistScene());
         }
 
         private bool OnMessage(MessageBase msg)
@@ -79,6 +81,7 @@ namespace CozyAdventure.View.Layer
             if (msg.Result == "OK")
             {
                 PlayerObject.Instance.Self.PlayerId = msg.PlayerId;
+
                 var sendMsg = new PullMessage()
                 {
                     PlayerId = msg.PlayerId,
@@ -88,6 +91,7 @@ namespace CozyAdventure.View.Layer
             }
             else if (msg.Result == "Error")
             {
+                AppDelegate.SharedWindow.DefaultDirector.PopScene();
                 return true;
             }
             return false;

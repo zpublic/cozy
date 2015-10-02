@@ -1,5 +1,4 @@
-﻿using CozyAdventure.Model;
-using CozyAdventure.Protocol.Msg;
+﻿using CozyAdventure.Protocol.Msg;
 using CozyAdventure.ServerPlugin.Model;
 using CozyNetworkHelper;
 using CozyNetworkProtocol;
@@ -26,7 +25,11 @@ namespace CozyAdventure.ServerPlugin
                     Name = registerMsg.Name,
                     Pass = registerMsg.Pass,
                 };
-                AdventurePluginDB.User.Create(user);
+                var id = AdventurePluginDB.User.Create(user);
+
+                AdventurePluginDB.Customer.Create(new CustomerInfo() { PlayerId = id, });
+                AdventurePluginDB.PlayerFollower.Create(new PlayerFollowerInfo() { PlayerId = id, });
+
                 r.Result = "OK";
             }
             else
@@ -99,6 +102,26 @@ namespace CozyAdventure.ServerPlugin
                 r.Result = "Error";
             }
 
+            SharedServer.SendMessage(r, im.SenderConnection);
+        }
+
+        private void HireFollowerMessageImpl(NetIncomingMessage im, MessageBase msg)
+        {
+            var hireMsg     = msg as HireFollowerMessage;
+            var r           = new HireResultMessage();
+
+            if(AdventurePluginDB.User.Get(hireMsg.PlayerId) != null)
+            {
+                r.Result = "Ok";
+
+                var follower = AdventurePluginDB.PlayerFollower.GetPlayerFollower(hireMsg.PlayerId);
+                follower.FollowerList.AddRange(hireMsg.FollowerId);
+                AdventurePluginDB.PlayerFollower.Update(follower);
+            }
+            else
+            {
+                r.Result = "Error";
+            }
             SharedServer.SendMessage(r, im.SenderConnection);
         }
     }

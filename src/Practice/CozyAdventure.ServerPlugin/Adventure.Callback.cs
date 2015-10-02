@@ -66,5 +66,16 @@ namespace CozyAdventure.ServerPlugin
                 GotoHomeMessageImpl(im, msg);
             }
         }
+
+        [CallBack(typeof(HireFollowerMessage))]
+        public void OnHireFollowerMessage(NetBuffer buff, MessageBase msg)
+        {
+            var im = buff as NetIncomingMessage;
+
+            if(im != null)
+            {
+                HireFollowerMessageImpl(im, msg);
+            }
+        }
     }
 }

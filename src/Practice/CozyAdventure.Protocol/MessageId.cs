@@ -45,6 +45,8 @@ namespace CozyAdventure.Protocol
         {
             UpgradeMessage = 10301,
             UpgradeResultMessage,
+            HireFollowerMessage,
+            HireResultMessage,
         }
 
         // - 10401-10500 礼物和彩蛋
