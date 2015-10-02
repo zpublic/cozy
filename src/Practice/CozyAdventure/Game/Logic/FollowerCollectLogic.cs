@@ -24,5 +24,21 @@ namespace CozyAdventure.Game.Logic
         {
             return GetAttack(fc);
         }
+
+        public static void GoFight(Follower follower)
+        {
+            if (follower.IsFighting)
+            {
+                if (PlayerObject.Instance.Self.FightFollower.Followers.Contains(follower))
+                {
+                    PlayerObject.Instance.Self.FightFollower.Followers.Remove(follower);
+                }
+            }
+            else
+            {
+                PlayerObject.Instance.Self.FightFollower.Followers.Add(follower);
+            }
+            follower.IsFighting = !follower.IsFighting;
+        }
     }
 }
