@@ -12,5 +12,9 @@ namespace CozyAdventure.Protocol.Msg
         public override uint Id { get { return (uint)MessageId.Mercenary.FightResultMessage; } }
 
         public string Result { get; set; }
+
+        public byte StatusNow { get; set; }
+
+        public int ObjectId { get; set; }
     }
 }

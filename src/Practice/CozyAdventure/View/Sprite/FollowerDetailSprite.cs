@@ -28,7 +28,7 @@ namespace CozyAdventure.View.Sprite
 
         private CozySampleButton StatusChangeButton { get; set; }
 
-        public Action<object> FightStatusChangeCallback { get; set; }
+        public Action<Follower> FightStatusChangeCallback { get; set; }
 
         public FollowerDetailSprite()
         {

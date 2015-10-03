@@ -153,8 +153,37 @@ namespace CozyAdventure.ServerPlugin
 
         private void FightMessageImpl(NetIncomingMessage im, MessageBase msg)
         {
-            var fightMsg = msg as FightMessage;
-            var r = new FightResultMessage();
+            var fightMsg    = msg as FightMessage;
+            var r           = new FightResultMessage();
+
+            if (AdventurePluginDB.User.Get(fightMsg.PlayerId) != null)
+            {
+                r.Result        = "Ok";
+                r.ObjectId      = fightMsg.ObjectId;
+                var follower    = AdventurePluginDB.PlayerFollower.GetPlayerFollower(fightMsg.PlayerId);
+
+                if(follower.FollowerList.Contains(fightMsg.ObjectId))
+                {
+                    if(fightMsg.FightType == FightMessage.GoToFight)
+                    {
+                        follower.FightingFollowerList.Add(fightMsg.ObjectId);
+                        r.StatusNow = FightMessage.GoToFight;
+                    }
+                    else
+                    {
+                        if(follower.FightingFollowerList.Contains(fightMsg.ObjectId))
+                        {
+                            follower.FightingFollowerList.Remove(fightMsg.ObjectId);
+                            r.StatusNow = FightMessage.GoToRest;
+                        }
+                    }
+                }
+                AdventurePluginDB.PlayerFollower.Update(follower);
+            }
+            else
+            {
+                r.Result = "Error";
+            }
         }
     }
 }

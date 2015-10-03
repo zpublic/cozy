@@ -108,7 +108,9 @@ namespace CozyAdventure.View.Layer
             {
                 foreach (var obj in msg.Followers)
                 {
-                    PlayerObject.Instance.Self.AllFollower.Followers.Add(res.GetFollowerById(obj.Value, obj.Key));
+                    var follower = res.GetFollowerById(obj.Value, obj.Key);
+                    PlayerObject.Instance.Self.AllFollower.Followers.Add(follower);
+                    FollowerObjectManager.Instance.AddObj(follower.ObjectId, follower);
                 }
             }
             return false;
@@ -133,6 +135,11 @@ namespace CozyAdventure.View.Layer
                     obj.IsFighting = true;
                     PlayerObject.Instance.Self.FightFollower.Followers.Add(obj);
                 }
+            }
+
+            foreach (var obj in PlayerObject.Instance.Self.AllFollower.Followers)
+            {
+                FollowerObjectManager.Instance.AddObj(obj.ObjectId, obj);
             }
 
             AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new CampScene());

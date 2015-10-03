@@ -9,6 +9,10 @@ using CozyAdventure.Game.Object;
 using CozyAdventure.Model;
 using CozyAdventure.View.Sprite;
 using CozyAdventure.Game.Logic;
+using CozyAdventure.Protocol.Msg;
+using CozyNetworkProtocol;
+using CozyAdventure.Protocol;
+using CozyAdventure.Game.Manager;
 
 namespace CozyAdventure.View.Layer
 {
@@ -95,7 +99,7 @@ namespace CozyAdventure.View.Layer
                 Position    = new CCPoint(100, 100),
                 AnchorPoint = CCPoint.Zero,
                 Visible     = false,
-                FightStatusChangeCallback = new Action<object>(OnStatusChange),
+                FightStatusChangeCallback = new Action<Follower>(OnStatusChange),
             };
             this.AddChild(ShowDetail, 201);
 
@@ -186,9 +190,46 @@ namespace CozyAdventure.View.Layer
             RefreshPage();
         }
 
-        private void OnStatusChange(object obj)
+        private void OnStatusChange(Follower obj)
         {
-            FollowerCollectLogic.GoFight((Follower)obj);
+            if (obj.IsFighting)
+            {
+                FollowerCollectLogic.GoRest(obj);
+            }
+            else
+            {
+                FollowerCollectLogic.GoFight(obj);
+            }
+        }
+
+        private void OnMessage(object obj)
+        {
+            var msg = (MessageBase)obj;
+            if (msg.Id == (uint)MessageId.Mercenary.FightResultMessage)
+            {
+                OnFightMessage((FightResultMessage)msg);
+            }
+        }
+
+        private void OnFightMessage(FightResultMessage msg)
+        {
+            if(msg.Result == "Ok")
+            {
+                var follower = (Follower)FollowerObjectManager.Instance.GetObj(msg.ObjectId);
+                if (msg.StatusNow == FightMessage.GoToFight)
+                {
+                    PlayerObject.Instance.Self.FightFollower.Followers.Add(follower);
+                    follower.IsFighting = true;
+                }
+                else
+                {
+                    if(PlayerObject.Instance.Self.FightFollower.Followers.Contains(follower))
+                    {
+                        PlayerObject.Instance.Self.FightFollower.Followers.Remove(follower);
+                        follower.IsFighting = false;
+                    }
+                }
+            }
         }
     }
 }

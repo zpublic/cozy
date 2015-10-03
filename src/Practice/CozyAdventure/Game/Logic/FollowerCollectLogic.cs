@@ -30,18 +30,24 @@ namespace CozyAdventure.Game.Logic
 
         public static void GoFight(Follower follower)
         {
-            if (follower.IsFighting)
+            var msg = new FightMessage()
             {
-                if (PlayerObject.Instance.Self.FightFollower.Followers.Contains(follower))
-                {
-                    PlayerObject.Instance.Self.FightFollower.Followers.Remove(follower);
-                }
-            }
-            else
+                PlayerId    = PlayerObject.Instance.Self.PlayerId,
+                ObjectId    = follower.ObjectId,
+                FightType   = FightMessage.GoToFight,
+            };
+            MessageManager.SendMessage("Client.Send", msg);
+        }
+
+        public static void GoRest(Follower follower)
+        {
+            var msg = new FightMessage()
             {
-                PlayerObject.Instance.Self.FightFollower.Followers.Add(follower);
-            }
-            follower.IsFighting = !follower.IsFighting;
+                PlayerId    = PlayerObject.Instance.Self.PlayerId,
+                ObjectId    = follower.ObjectId,
+                FightType   = FightMessage.GoToRest,
+            };
+            MessageManager.SendMessage("Client.Send", msg);
         }
 
         public static void HireFollower(Follower follower)
