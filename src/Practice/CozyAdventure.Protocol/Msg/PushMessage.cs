@@ -17,13 +17,13 @@ namespace CozyAdventure.Protocol.Msg
 
         public int Money { get; set; }
 
-        public List<int> FollowerList { get; set; }
+        public List<KeyValuePair<int, int>> FollowerList { get; set; }
 
         public List<int> FightFollowerList { get; set; }
 
         public PushMessage()
         {
-            FollowerList        = new List<int>();
+            FollowerList        = new List<KeyValuePair<int, int>>();
             FightFollowerList   = new List<int>();
         }
 
@@ -33,7 +33,8 @@ namespace CozyAdventure.Protocol.Msg
             om.Write(FollowerList.Count);
             foreach(var obj in FollowerList)
             {
-                om.Write(obj);
+                om.Write(obj.Key);
+                om.Write(obj.Value);
             }
             om.Write(FightFollowerList.Count);
             foreach (var obj in FightFollowerList)
@@ -48,8 +49,9 @@ namespace CozyAdventure.Protocol.Msg
             int c = im.ReadInt32();
             for(int i = 0; i < c; ++i)
             {
-                var follower = im.ReadInt32();
-                FollowerList.Add(follower);
+                var objid       = im.ReadInt32();
+                var followerid  = im.ReadInt32();
+                FollowerList.Add(new KeyValuePair<int, int>(objid, followerid));
             }
             c = im.ReadInt32();
             for (int i = 0; i < c; ++i)

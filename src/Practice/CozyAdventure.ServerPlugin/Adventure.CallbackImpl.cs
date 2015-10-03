@@ -65,7 +65,10 @@ namespace CozyAdventure.ServerPlugin
             if (AdventurePluginDB.PlayerFollower.IsPlayerExist(pullMsg.PlayerId))
             {
                 var follower = AdventurePluginDB.PlayerFollower.GetPlayerFollower(pullMsg.PlayerId);
-                r.FollowerList.AddRange(follower.FollowerList);
+                r.FollowerList.AddRange(follower.FollowerList.Select(x =>
+                    {
+                        return new KeyValuePair<int, int>(x, AdventurePluginDB.Follower.GetWithObjectId(x));
+                    }));
                 r.FightFollowerList.AddRange(follower.FightingFollowerList);
 
                 var customer = AdventurePluginDB.Customer.GetPlayerCustomer(pullMsg.PlayerId);
@@ -120,10 +123,25 @@ namespace CozyAdventure.ServerPlugin
 
             if(AdventurePluginDB.User.Get(hireMsg.PlayerId) != null)
             {
-                r.Result = "Ok";
+                r.Result        = "Ok";
+                var follower    = AdventurePluginDB.PlayerFollower.GetPlayerFollower(hireMsg.PlayerId);
 
-                var follower = AdventurePluginDB.PlayerFollower.GetPlayerFollower(hireMsg.PlayerId);
-                follower.FollowerList.AddRange(hireMsg.FollowerId);
+                var ObjectIdList = new List<int>();
+                foreach (var id in hireMsg.FollowerId)
+                {
+                    var objId   = ObjectId;
+                    r.Followers.Add(new KeyValuePair<int, int>(objId, id));
+                    ObjectIdList.Add(objId);
+
+                    var info = new FollowerInfo()
+                    {
+                        FollowerID  = id,
+                        ObjectID    = objId,
+                    };
+                    AdventurePluginDB.Follower.Create(info);
+                }
+
+                follower.FollowerList.AddRange(ObjectIdList);
                 AdventurePluginDB.PlayerFollower.Update(follower);
             }
             else
@@ -131,6 +149,12 @@ namespace CozyAdventure.ServerPlugin
                 r.Result = "Error";
             }
             SharedServer.SendMessage(r, im.SenderConnection);
+        }
+
+        private void FightMessageImpl(NetIncomingMessage im, MessageBase msg)
+        {
+            var fightMsg = msg as FightMessage;
+            var r = new FightResultMessage();
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using CozyAdventure.Game.Object;
 using CozyAdventure.Game.Logic;
 using CozyAdventure.View.Scene;
+using CozyAdventure.Engine.Module.Data;
 
 namespace CozyAdventure.View.Layer
 {

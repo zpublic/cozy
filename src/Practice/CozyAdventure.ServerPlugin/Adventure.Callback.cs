@@ -77,5 +77,16 @@ namespace CozyAdventure.ServerPlugin
                 HireFollowerMessageImpl(im, msg);
             }
         }
+
+        [CallBack(typeof(FightMessage))]
+        public void OnFightMessage(NetBuffer buff, MessageBase msg)
+        {
+            var im = buff as NetIncomingMessage;
+
+            if (im != null)
+            {
+                FightMessageImpl(im, msg);
+            }
+        }
     }
 }

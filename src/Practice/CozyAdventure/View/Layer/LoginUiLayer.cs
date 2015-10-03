@@ -73,6 +73,10 @@ namespace CozyAdventure.View.Layer
             {
                 return OnPushMessage((PushMessage)msg);
             }
+            else if(msg.Id == (uint)MessageId.Mercenary.HireResultMessage)
+            {
+                return OnHireResultMessage((HireResultMessage)msg);
+            }
             return false;
         }
 
@@ -97,11 +101,24 @@ namespace CozyAdventure.View.Layer
             return false;
         }
 
+        private bool OnHireResultMessage(HireResultMessage msg)
+        {
+            var res = FollowerPackageModule.GetFollowerPackages();
+            if (msg.Result == "Ok")
+            {
+                foreach (var obj in msg.Followers)
+                {
+                    PlayerObject.Instance.Self.AllFollower.Followers.Add(res.GetFollowerById(obj.Value, obj.Key));
+                }
+            }
+            return false;
+        }
+
         private bool OnPushMessage(PushMessage msg)
         {
             var res     = FollowerPackageModule.GetFollowerPackages();
             var resId   = res.Followers.Select(x => x.Id);
-            var result  = msg.FollowerList.Where(x => resId.Contains(x)).Select(x => res.GetFollowerById(x));
+            var result  = msg.FollowerList.Where(x => resId.Contains(x.Value)).Select(x => res.GetFollowerById(x.Value, x.Key));
             var ftres   = msg.FightFollowerList.Where(x => resId.Contains(x));
 
             PlayerObject.Instance.Self.AllFollower.Followers    = result.ToList();

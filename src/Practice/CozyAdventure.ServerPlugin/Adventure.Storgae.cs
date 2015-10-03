@@ -14,5 +14,7 @@ namespace CozyAdventure.ServerPlugin
         public static readonly CustomerInfoDB Customer = new CustomerInfoDB();
 
         public static readonly PlayerFollowerDB PlayerFollower = new PlayerFollowerDB();
+
+        public static readonly FollowerDB Follower = new FollowerDB();
     }
 }
