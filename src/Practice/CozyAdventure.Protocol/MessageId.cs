@@ -47,6 +47,8 @@ namespace CozyAdventure.Protocol
             UpgradeResultMessage,
             HireFollowerMessage,
             HireResultMessage,
+            FightMessage,
+            FightResultMessage,
         }
 
         // - 10401-10500 礼物和彩蛋

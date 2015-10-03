@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="MessageId.cs" />
     <Compile Include="Msg\FarmIncomeMessage.cs" />
+    <Compile Include="Msg\FightMessage.cs" />
+    <Compile Include="Msg\FightResultMessage.cs" />
     <Compile Include="Msg\GetGiftMessage.cs" />
     <Compile Include="Msg\GetGiftResultMessage.cs" />
     <Compile Include="Msg\GotoHomeMessage.cs" />
