@@ -1,5 +1,4 @@
 ﻿using Cozy.Game.Manager;
-using CozyAdventure.Engine;
 using CozyAdventure.Protocol.Msg;
 using System;
 using System.Collections.Generic;
@@ -35,6 +34,10 @@ namespace CozyAdventure.Game.Logic
         // 进入地图
         public static void EnterMap(int level)
         {
+            var need    = Requirement(level);
+            var attget  = FollowerCollectLogic.GetAttack(PlayerObject.Instance.Self.FightFollower);
+            if (need > attget) return;
+
             var msg = new GotoMapMessage()
             {
                 PlayerId    = PlayerObject.Instance.Self.PlayerId,
