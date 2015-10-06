@@ -29,7 +29,7 @@ namespace CozyAdventure.View.Layer
             };
             AddChild(title, 100);
 
-            var begin = new CozySampleButton(300, 100, 200, 80)
+            var begin = new CozySampleButton(200, 100, 200, 80)
             {
                 // 测试代码
                 // Text        = "开始游戏",
@@ -52,8 +52,8 @@ namespace CozyAdventure.View.Layer
 
         public void OnBeginButtonDown()
         {
-            AppDelegate.SharedWindow.DefaultDirector.PushScene(new LoadingScene(OnMessage, OnTimeOut, 10));
-            UserLogic.Login("kingwl", "123456");
+            //AppDelegate.SharedWindow.DefaultDirector.PushScene(new LoadingScene(OnMessage, OnTimeOut, 10));
+            //UserLogic.Login("kingwl", "123456");
         }
 
         public void OnRegisterButton()
