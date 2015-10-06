@@ -123,7 +123,6 @@
     <Compile Include="Game\Object\BagObject.cs" />
     <Compile Include="Game\Object\PlayerObject.cs" />
     <Compile Include="Public\Controls\BaseButton.cs" />
-    <Compile Include="Public\Controls\CozySampleListViewItemNode.cs" />
     <Compile Include="Public\Controls\Enum\ButtonStatus.cs" />
     <Compile Include="Public\Controls\CozyColorSampleButton.cs" />
     <Compile Include="Public\Controls\CozyControl.cs" />
@@ -131,7 +130,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Public\Controls\CozySampleListView.cs" />
     <Compile Include="Public\Controls\CozySampleListViewItem.cs" />
-    <Compile Include="Public\Controls\CozySampleListViewItemSprite.cs" />
     <Compile Include="Public\Controls\Events\ItemAddEventArgs.cs" />
     <Compile Include="Public\Controls\Enum\ControlOrientation.cs" />
     <Compile Include="Public\Controls\Events\ItemRemoveEventArgs.cs" />

@@ -76,7 +76,7 @@ namespace CozyAdventure.View.Layer
                     ContentSize = new CCSize(200, 330),
                     Orientation = Public.Controls.Enum.ControlOrientation.Vertical,
                 };
-                listview.AddItem(new CozySampleListViewItemNode(InnerList[i]));
+                listview.AddItem(new CozySampleListViewItem(InnerList[i]));
             }
 
             int fight = PlayerObject.Instance.Self.FightFollower.Followers.Count;
@@ -148,7 +148,7 @@ namespace CozyAdventure.View.Layer
                     {
                         int index = count;
 
-                        var item = new CozySampleListViewItemNode(SpriteList[index])    
+                        var item = new CozySampleListViewItem(SpriteList[index])    
                         {
                             MarginTop       = 5,
                             MarginBottom    = 5,
