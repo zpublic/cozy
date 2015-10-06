@@ -6,48 +6,55 @@ using System.Threading.Tasks;
 using CozyServer.Plugin;
 using Lidgren.Network;
 using CozyNetworkHelper;
+using System.Timers;
 
 namespace CozyAdventure.ServerPlugin
 {
     public partial class AdventurePlugin : IPlugin
     {
-        public void OnEnter()
+        public NetServer SharedServer { get; set; }
+
+        public AdventurePlugin()
         {
+            InitFarm();
+        }
+
+        public void OnEnter(object server)
+        {
+            SharedServer = (NetServer)server;
             MessageReader.RegisterTypeWithAssembly("CozyAdventure.Protocol");
             MessageCallbackManager.RegisterCallback(this);
         }
 
-        public void StatusCallback(object server, object msg)
+        public void StatusCallback(object msg)
         {
-            var tempSrv = server as NetServer;
             var tempMsg = msg as NetIncomingMessage;
-            if(tempMsg == null || tempSrv == null)
+            if(tempMsg == null)
             {
                 throw new ArgumentNullException("server or msg is null");
             }
-            StatusCallbackImpl(tempSrv, tempMsg);
+            StatusCallbackImpl(SharedServer, tempMsg);
         }
 
-        public void DataCallback(object server, object msg)
+        public void DataCallback(object msg)
         {
-            var tempSrv = server as NetServer;
             var tempMsg = msg as NetIncomingMessage;
-            if (tempMsg == null || tempSrv == null)
+            if (tempMsg == null)
             {
                 throw new ArgumentNullException("server or msg is null");
             }
-            DataCallbackImpl(tempSrv, tempMsg);
+            DataCallbackImpl(SharedServer, tempMsg);
         }
 
         public void StatusCallbackImpl(NetServer server, NetIncomingMessage msg)
         {
-            
+            RemoveFarmObj(msg.SenderConnection);
         }
 
         public void DataCallbackImpl(NetServer server, NetIncomingMessage msg)
         {
             var m = MessageReader.GetMessageInstance(msg);
-            MessageCallbackManager.ShellCallback(m, server, msg);
+            MessageCallbackManager.ShellCallback(m, msg);
         }
     }
 }

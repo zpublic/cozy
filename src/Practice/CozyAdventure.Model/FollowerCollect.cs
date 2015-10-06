@@ -8,6 +8,6 @@ namespace CozyAdventure.Model
 {
     public class FollowerCollect
     {
-        public List<Follower> Followers;
+        public List<Follower> Followers { get; set; } = new List<Follower>();
     }
 }

@@ -111,6 +111,7 @@ namespace CozyAdventure.Public.Controls
             }
 
             OnKeyDown();
+            e.StopPropogation();
             return true;
         }
 

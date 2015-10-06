@@ -13,28 +13,28 @@ namespace CozyServer.Plugin
 
         public Predicate<string> PluginFilter { get; set; }
 
-        public void NotifyData(object server, object msg)
+        public void NotifyData(object msg)
         {
             foreach (var obj in PluginSet)
             {
-                obj.DataCallback(server, msg);
+                obj.DataCallback(msg);
             }
         }
 
-        public void NotifyStatus(object server, object msg)
+        public void NotifyStatus(object msg)
         {
             foreach (var obj in PluginSet)
             {
-                obj.StatusCallback(server, msg);
+                obj.StatusCallback(msg);
             }
         }
 
-        public bool LoadPlugins(string path)
+        public bool LoadPlugins(string path, object server)
         {
             bool result = (TryLoadPlugins(path) != 0);
             foreach (var obj in PluginSet)
             {
-                obj.OnEnter();
+                obj.OnEnter(server);
             }
             return result;
         }

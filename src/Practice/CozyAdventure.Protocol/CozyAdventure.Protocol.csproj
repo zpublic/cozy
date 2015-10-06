@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\bin\Release\</OutputPath>
+    <OutputPath>..\..\..\bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -42,12 +42,16 @@
   <ItemGroup>
     <Compile Include="MessageId.cs" />
     <Compile Include="Msg\FarmIncomeMessage.cs" />
+    <Compile Include="Msg\FightMessage.cs" />
+    <Compile Include="Msg\FightResultMessage.cs" />
     <Compile Include="Msg\GetGiftMessage.cs" />
     <Compile Include="Msg\GetGiftResultMessage.cs" />
     <Compile Include="Msg\GotoHomeMessage.cs" />
     <Compile Include="Msg\GotoMapMessage.cs" />
     <Compile Include="Msg\GotoResultMessage.cs" />
     <Compile Include="Msg\HeartMessage.cs" />
+    <Compile Include="Msg\HireFollowerMessage.cs" />
+    <Compile Include="Msg\HireResultMessage.cs" />
     <Compile Include="Msg\LoginMessage.cs" />
     <Compile Include="Msg\LoginResultMessage.cs" />
     <Compile Include="Msg\PullMessage.cs" />

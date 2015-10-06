@@ -1,4 +1,7 @@
-﻿using CozyAdventure.Model;
+﻿using Cozy.Game.Manager;
+using CozyAdventure.Game.Object;
+using CozyAdventure.Model;
+using CozyAdventure.Protocol.Msg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +26,48 @@ namespace CozyAdventure.Game.Logic
         public static int GetHp(FollowerCollect fc)
         {
             return GetAttack(fc);
+        }
+
+        public static void GoFight(Follower follower)
+        {
+            var msg = new FightMessage()
+            {
+                PlayerId    = PlayerObject.Instance.Self.PlayerId,
+                ObjectId    = follower.ObjectId,
+                FightType   = FightMessage.GoToFight,
+            };
+            MessageManager.SendMessage("Client.Send", msg);
+        }
+
+        public static void GoRest(Follower follower)
+        {
+            var msg = new FightMessage()
+            {
+                PlayerId    = PlayerObject.Instance.Self.PlayerId,
+                ObjectId    = follower.ObjectId,
+                FightType   = FightMessage.GoToRest,
+            };
+            MessageManager.SendMessage("Client.Send", msg);
+        }
+
+        public static void HireFollower(Follower follower)
+        {
+            var msg = new HireFollowerMessage()
+            {
+                PlayerId    = PlayerObject.Instance.Self.PlayerId,
+                FollowerId  = { follower.Id },
+            };
+            MessageManager.SendMessage("Client.Send", msg);
+        }
+
+        public static void HireFollower(List<Follower> follower)
+        {
+            var msg = new HireFollowerMessage()
+            {
+                PlayerId    = PlayerObject.Instance.Self.PlayerId,
+                FollowerId  = follower.Select(x => x.Id).ToList(),
+            };
+            MessageManager.SendMessage("Client.Send", msg);
         }
     }
 }

@@ -13,11 +13,18 @@ namespace CozyAdventure.Protocol.Msg
     {
         public override uint Id { get { return (uint)MessageId.User.PushMessage; } }
 
-        public List<Follower> FollowerList { get; set; }
+        public int Exp { get; set; }
+
+        public int Money { get; set; }
+
+        public List<KeyValuePair<int, int>> FollowerList { get; set; }
+
+        public List<int> FightFollowerList { get; set; }
 
         public PushMessage()
         {
-            FollowerList = new List<Follower>();
+            FollowerList        = new List<KeyValuePair<int, int>>();
+            FightFollowerList   = new List<int>();
         }
 
         public override void Write(NetBuffer om)
@@ -26,7 +33,13 @@ namespace CozyAdventure.Protocol.Msg
             om.Write(FollowerList.Count);
             foreach(var obj in FollowerList)
             {
-                om.WriteAllProperties(obj);
+                om.Write(obj.Key);
+                om.Write(obj.Value);
+            }
+            om.Write(FightFollowerList.Count);
+            foreach (var obj in FightFollowerList)
+            {
+                om.Write(obj);
             }
         }
 
@@ -36,9 +49,15 @@ namespace CozyAdventure.Protocol.Msg
             int c = im.ReadInt32();
             for(int i = 0; i < c; ++i)
             {
-                var follower = new Follower();
-                im.ReadAllProperties(follower);
-                FollowerList.Add(follower);
+                var objid       = im.ReadInt32();
+                var followerid  = im.ReadInt32();
+                FollowerList.Add(new KeyValuePair<int, int>(objid, followerid));
+            }
+            c = im.ReadInt32();
+            for (int i = 0; i < c; ++i)
+            {
+                var follower = im.ReadInt32();
+                FightFollowerList.Add(follower);
             }
         }
     }

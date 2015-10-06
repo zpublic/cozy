@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 using CozyAdventure.Game.Object;
 using CozyAdventure.Model;
 using CozyAdventure.View.Sprite;
+using CozyAdventure.Game.Logic;
+using CozyAdventure.Protocol.Msg;
+using CozyNetworkProtocol;
+using CozyAdventure.Protocol;
+using CozyAdventure.Game.Manager;
 
 namespace CozyAdventure.View.Layer
 {
@@ -74,7 +79,8 @@ namespace CozyAdventure.View.Layer
                 listview.AddItem(new CozySampleListViewItemNode(InnerList[i]));
             }
 
-            AllFollower = new CCLabel("总数" + 20 + "/" + FollowerList.Followers.Count, "微软雅黑", 14)
+            int fight = PlayerObject.Instance.Self.FightFollower.Followers.Count;
+            AllFollower = new CCLabel("总数" + fight + "/" + FollowerList.Followers.Count, "微软雅黑", 14)
             {
                 Position    = new CCPoint(92, 37),
                 Color       = CCColor3B.White,
@@ -93,6 +99,7 @@ namespace CozyAdventure.View.Layer
                 Position    = new CCPoint(100, 100),
                 AnchorPoint = CCPoint.Zero,
                 Visible     = false,
+                FightStatusChangeCallback = new Action<Follower>(OnStatusChange),
             };
             this.AddChild(ShowDetail, 201);
 
@@ -100,19 +107,13 @@ namespace CozyAdventure.View.Layer
             {
                 Text        = "上一页",
                 FontSize    = 14,
-                OnClick     = () =>
-                            {
-                                PrevPage();
-                            },
+                OnClick     = () => PrevPage(),
             };
             NextPageButton = new CozySampleButton(585, 17, 78, 36)
             {
                 Text        = "下一页",
                 FontSize    = 14,
-                OnClick     = () =>
-                            {
-                                NextPage();
-                            },
+                OnClick     = () => NextPage(),
             };
             AddChild(NextPageButton, 100);
             AddChild(LastPageButton, 100);
@@ -147,7 +148,7 @@ namespace CozyAdventure.View.Layer
                     {
                         int index = count;
 
-                        var item = new CozySampleListViewItemNode(SpriteList[index])
+                        var item = new CozySampleListViewItemNode(SpriteList[index])    
                         {
                             MarginTop       = 5,
                             MarginBottom    = 5,
@@ -165,7 +166,7 @@ namespace CozyAdventure.View.Layer
                             },
                         };
                         item.AddChild(button);
-                        this.AddEventListener(button.EventListener);
+                        this.AddEventListener(button.EventListener, 2);
                         ListenerList.Add(button.EventListener);
 
                         SpriteList[index].Visible = true;
@@ -187,6 +188,48 @@ namespace CozyAdventure.View.Layer
         {
             CurPage = CurPage == 0 ? 0 : CurPage - 1;
             RefreshPage();
+        }
+
+        private void OnStatusChange(Follower obj)
+        {
+            if (obj.IsFighting)
+            {
+                FollowerCollectLogic.GoRest(obj);
+            }
+            else
+            {
+                FollowerCollectLogic.GoFight(obj);
+            }
+        }
+
+        private void OnMessage(object obj)
+        {
+            var msg = (MessageBase)obj;
+            if (msg.Id == (uint)MessageId.Mercenary.FightResultMessage)
+            {
+                OnFightMessage((FightResultMessage)msg);
+            }
+        }
+
+        private void OnFightMessage(FightResultMessage msg)
+        {
+            if(msg.Result == "Ok")
+            {
+                var follower = (Follower)FollowerObjectManager.Instance.GetObj(msg.ObjectId);
+                if (msg.StatusNow == FightMessage.GoToFight)
+                {
+                    PlayerObject.Instance.Self.FightFollower.Followers.Add(follower);
+                    follower.IsFighting = true;
+                }
+                else
+                {
+                    if(PlayerObject.Instance.Self.FightFollower.Followers.Contains(follower))
+                    {
+                        PlayerObject.Instance.Self.FightFollower.Followers.Remove(follower);
+                        follower.IsFighting = false;
+                    }
+                }
+            }
         }
     }
 }

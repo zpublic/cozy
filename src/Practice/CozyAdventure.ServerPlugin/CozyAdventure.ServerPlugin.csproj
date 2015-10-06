@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\bin\Release\</OutputPath>
+    <OutputPath>..\..\..\bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -45,9 +45,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adventure.Callback.cs" />
+    <Compile Include="Adventure.CallbackImpl.cs" />
+    <Compile Include="Adventure.Farm.cs" />
+    <Compile Include="Adventure.Manager.cs" />
     <Compile Include="AdventurePlugin.cs" />
+    <Compile Include="Model\CustomerInfo.cs" />
+    <Compile Include="Model\FarmStorage.cs" />
+    <Compile Include="Model\FollowerInfo.cs" />
+    <Compile Include="Model\PlayerFollowerInfo.cs" />
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Storgae\CustomerInfoDB.cs" />
+    <Compile Include="Storgae\FollowerDB.cs" />
+    <Compile Include="Storgae\PlayerFollowerDB.cs" />
     <Compile Include="Storgae\UserDB.cs" />
   </ItemGroup>
   <ItemGroup>

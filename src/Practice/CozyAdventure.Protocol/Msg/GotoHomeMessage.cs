@@ -10,5 +10,7 @@ namespace CozyAdventure.Protocol.Msg
     public class GotoHomeMessage : MessageBase
     {
         public override uint Id { get { return (uint)MessageId.Farm.GotoHomeMessage; } }
+
+        public int Level { get; set; }
     }
 }

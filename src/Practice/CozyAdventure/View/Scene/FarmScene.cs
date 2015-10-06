@@ -1,21 +1,20 @@
 ﻿using CocosSharp;
-using System;
 using CozyAdventure.View.Layer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CozyNetworkProtocol;
 
 namespace CozyAdventure.View.Scene
 {
-    public class LoadingScene : CCScene
+    public class FarmScene : CCScene
     {
-        public LoadingScene(Func<MessageBase, bool> msgCallback, Action timeoutCallback = null, int timeout = 10) : base(AppDelegate.SharedWindow)
+        public FarmScene(int level) : base(AppDelegate.SharedWindow)
         {
             var bg = new BackgroundLayer(@"pic\1.png");
             AddChild(bg);
-            var ui = new LoadingUiLayer(msgCallback, timeoutCallback, timeout);
+            var ui = new FarmUiLayer(level);
             AddChild(ui);
         }
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CozyAdventure.Game.Logic
 {
-    class FollowerStarLogic
+    public class FollowerStarLogic
     {
         public static bool CanUpgrade(Follower f)
         {

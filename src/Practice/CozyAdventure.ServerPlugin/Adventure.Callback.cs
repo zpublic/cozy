@@ -7,106 +7,86 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CozyAdventure.ServerPlugin.Model;
-using CozyAdventure.Model;
 
 namespace CozyAdventure.ServerPlugin
 {
     public partial class AdventurePlugin
     {
         [CallBack(typeof(RegisterMessage))]
-        public void OnRegisterMessage(NetPeer server, NetBuffer buff, MessageBase msg)
+        public void OnRegisterMessage(NetBuffer buff, MessageBase msg)
         {
-            var srv = server as NetServer;
             var im = buff as NetIncomingMessage;
 
-            if (srv != null && im != null)
+            if (im != null)
             {
-                RegisterMessageImpl(srv, im, msg);
+                RegisterMessageImpl(im, msg);
             }
-        }
-
-        private void RegisterMessageImpl(NetServer server, NetIncomingMessage im, MessageBase msg)
-        {
-            var registerMsg = msg as RegisterMessage;
-            var r = new RegisterResultMessage();
-
-            if (AdventurePluginDB.User.Get(registerMsg.Name, registerMsg.Pass) == null)
-            {
-                var user = new UserInfo
-                {
-                    Name = registerMsg.Name,
-                    Pass = registerMsg.Pass,
-                };
-                AdventurePluginDB.User.Create(user);
-                r.Result = "OK";
-            }
-            else
-            {
-                r.Result = "Error";
-            }
-            server.SendMessage(r, im.SenderConnection);
         }
 
         [CallBack(typeof(LoginMessage))]
-        public void OnLoginMessage(NetPeer server, NetBuffer buff, MessageBase msg)
+        public void OnLoginMessage(NetBuffer buff, MessageBase msg)
         {
-            var srv = server as NetServer;
             var im = buff as NetIncomingMessage;
 
-            if (srv != null && im != null)
+            if (im != null)
             {
-                LoginMessageImpl(srv, im, msg);
+                LoginMessageImpl(im, msg);
             }
-        }
-
-        private void LoginMessageImpl(NetServer server, NetIncomingMessage im, MessageBase msg)
-        {
-            var registerMsg = msg as LoginMessage;
-            var r = new LoginResultMessage();
-
-            var user = AdventurePluginDB.User.Get(registerMsg.Name, registerMsg.Pass);
-            if (user != null)
-            {
-                r.Result = "OK";
-                r.UserId = user.id;
-            }
-            else
-            {
-                r.Result = "Error";
-            }
-            server.SendMessage(r, im.SenderConnection);
         }
 
         [CallBack(typeof(PullMessage))]
-        public void OnPullMessage(NetPeer server, NetBuffer buff, MessageBase msg)
+        public void OnPullMessage(NetBuffer buff, MessageBase msg)
         {
-            var srv = server as NetServer;
             var im = buff as NetIncomingMessage;
 
-            if (srv != null && im != null)
+            if (im != null)
             {
-                PullMessageImpl(srv, im, msg);
+                PullMessageImpl(im, msg);
             }
         }
 
-        private void PullMessageImpl(NetServer server, NetIncomingMessage im, MessageBase msg)
+        [CallBack(typeof(GotoMapMessage))]
+        public void OnGotoMapMessage(NetBuffer buff, MessageBase msg)
         {
-            var registerMsg = msg as PullMessage;
-            var r           = new PushMessage();
-            for(int i = 0; i < 10; ++i)
+            var im = buff as NetIncomingMessage;
+
+            if (im != null)
             {
-                r.FollowerList.Add(new Follower()
-                {
-                    Avatar = "lurenjia",
-                    CurStar = 1,
-                    CurLevel = 25,
-                    MaxStar = 3,
-                    Name = "hehe"
-                });
+                GotoMapMessageImpl(im, msg);
             }
-           
-            server.SendMessage(r, im.SenderConnection);
+        }
+
+        [CallBack(typeof(GotoHomeMessage))]
+        public void OnGotoHomeMessage(NetBuffer buff, MessageBase msg)
+        {
+            var im = buff as NetIncomingMessage;
+
+            if (im != null)
+            {
+                GotoHomeMessageImpl(im, msg);
+            }
+        }
+
+        [CallBack(typeof(HireFollowerMessage))]
+        public void OnHireFollowerMessage(NetBuffer buff, MessageBase msg)
+        {
+            var im = buff as NetIncomingMessage;
+
+            if(im != null)
+            {
+                HireFollowerMessageImpl(im, msg);
+            }
+        }
+
+        [CallBack(typeof(FightMessage))]
+        public void OnFightMessage(NetBuffer buff, MessageBase msg)
+        {
+            var im = buff as NetIncomingMessage;
+
+            if (im != null)
+            {
+                FightMessageImpl(im, msg);
+            }
         }
     }
 }
