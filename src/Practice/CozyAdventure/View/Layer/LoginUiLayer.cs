@@ -52,14 +52,13 @@ namespace CozyAdventure.View.Layer
 
         public void OnBeginButtonDown()
         {
-            //AppDelegate.SharedWindow.DefaultDirector.PushScene(new LoadingScene(OnMessage, OnTimeOut, 10));
-            //UserLogic.Login("kingwl", "123456");
+            AppDelegate.SharedWindow.DefaultDirector.PushScene(new LoadingScene(OnMessage, OnTimeOut, 10));
+            UserLogic.Login("kingwl", "123456");
         }
 
         public void OnRegisterButton()
         {
             UserLogic.Regist("kingwl", "123456", "hehe");
-
             //AppDelegate.SharedWindow.DefaultDirector.PushScene(new RegistScene());
         }
 

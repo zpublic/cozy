@@ -60,6 +60,61 @@ namespace CozyAdventure.Public.Controls
         private CCScaleTo m_scaleForm;
         private CCCallFuncN m_scaleFunc;
 
+        private float scaleTo;
+        private float scaleFrom;
+        private float scaleDuration;
+
+        public float ScaleTo
+        {
+            get
+            {
+                return scaleTo;
+            }
+            set
+            {
+                if (Math.Abs(value - scaleTo) > float.Epsilon)
+                {
+                    scaleTo = value;
+
+                    m_scaleForm = new CCScaleTo(ScaleDuration, scaleTo);
+                }
+            }
+        }
+
+        public float ScaleFrom
+        {
+            get
+            {
+                return scaleFrom;
+            }
+            set
+            {
+                if (Math.Abs(value - scaleFrom) > float.Epsilon)
+                {
+                    scaleFrom   = value;
+                    m_scaleForm = new CCScaleTo(ScaleDuration, scaleFrom);
+                }
+            }
+        }
+
+        public float ScaleDuration
+        {
+            get
+            {
+                return scaleDuration;
+            }
+            set
+            {
+                if(Math.Abs(value - scaleDuration) > float.Epsilon)
+                {
+                    scaleDuration   = value;
+
+                    m_scaleTo       = new CCScaleTo(scaleDuration, ScaleTo);
+                    m_scaleForm     = new CCScaleTo(scaleDuration, ScaleFrom);
+                }
+            }
+        }
+
         #endregion 缩放用
 
         #endregion Text
@@ -76,8 +131,9 @@ namespace CozyAdventure.Public.Controls
         {
             m_scaleFunc = new CCCallFuncN(node => ((CozySampleButton)node).ScaleComplete());
 
-            m_scaleTo = new CCScaleTo(_duration, _scaleTo);
-            m_scaleForm = new CCScaleTo(_duration, _scaleForm);
+            ScaleTo         = _scaleTo;
+            ScaleFrom       = _scaleForm;
+            ScaleDuration   = _duration;
         }
 
         public BaseButton(float width, float height)
