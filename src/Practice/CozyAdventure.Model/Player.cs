@@ -17,6 +17,7 @@ namespace CozyAdventure.Model
         public int PropMaximum { get; set; }
         public long Money { get; set; }
         public long Exp { get; set; }
+        public int CurrLevel { get; set; }
         public FollowerCollect AllFollower { get; set; }
         public FollowerCollect FightFollower { get; set; }
 

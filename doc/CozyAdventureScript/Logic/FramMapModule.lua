@@ -9,13 +9,13 @@ local ExpList = {1, 3, 5, 7, 9, 20, 32, 44, 56, 68, 80, 100, 105, 110, 115, 120,
 local MoneyList = {1, 1, 1, 2, 2, 3, 4.4, 5.8, 7.2, 8.6, 15, 16.5, 18, 19.5, 21, 22.5, 24, 25.5, 27, 28.5, 30, 35, 36.5, 38, 39.5, 41, 42.5, 44, 45.5, 47, 48.5, 50, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100}
 
 function Requirement(level)
-	return FightList[level]
+	return FightList[level + 1]
 end
 
 function Exp(level)
-	return ExpList[level]
+	return ExpList[level + 1]
 end
 
 function Money(level)
-	return MoneyList[level]
+	return MoneyList[level + 1]
 end
