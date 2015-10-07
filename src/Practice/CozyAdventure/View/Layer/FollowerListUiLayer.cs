@@ -13,6 +13,7 @@ using CozyAdventure.Protocol.Msg;
 using CozyNetworkProtocol;
 using CozyAdventure.Protocol;
 using CozyAdventure.Game.Manager;
+using Cozy.Game.Manager;
 
 namespace CozyAdventure.View.Layer
 {
@@ -176,6 +177,8 @@ namespace CozyAdventure.View.Layer
                 }
             }
             PageNumber.Text = (CurPage + 1) + "/" + Page;
+
+            MessageManager.RegisterMessage("Client.Data", OnMessage);
         }
 
         private void NextPage()
@@ -229,6 +232,7 @@ namespace CozyAdventure.View.Layer
                         follower.IsFighting = false;
                     }
                 }
+                ShowDetail.RefreshInfo();
             }
         }
     }

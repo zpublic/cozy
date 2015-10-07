@@ -60,7 +60,6 @@ namespace CozyAdventure.View.Sprite
                     {
                         FightStatusChangeCallback(currFollower);
                     }
-                    RefreshInfo();
                 }
             };
 
@@ -98,7 +97,7 @@ namespace CozyAdventure.View.Sprite
             this.RemoveChild(CurrAvatar);
         }
 
-        private void RefreshInfo()
+        public void RefreshInfo()
         {
             if(CurrFollower != null)
             {
