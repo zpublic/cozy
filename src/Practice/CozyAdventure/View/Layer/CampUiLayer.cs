@@ -32,7 +32,7 @@ namespace CozyAdventure.View.Layer
                 FontSize    = 14,
                 OnClick     = () =>
                 {
-                    AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new FarmScene(2));
+                    AppDelegate.SharedWindow.DefaultDirector.PushScene(new FarmScene(2));
                 }
             };
             this.AddEventListener(Goon.EventListener);
@@ -44,7 +44,7 @@ namespace CozyAdventure.View.Layer
                 FontSize    = 14,
                 OnClick     = () =>
                 {
-                    AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new FollowerListScene());
+                    AppDelegate.SharedWindow.DefaultDirector.PushScene(new FollowerListScene());
                 }
             };
             this.AddEventListener(MercMange.EventListener);

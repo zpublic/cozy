@@ -37,6 +37,20 @@ namespace CozyAdventure.View.Layer
             MessageCallback = msgCallback;
             TimeOutCallback = timeoutCallback;
 
+            InitUI();
+            RegisterEvent(timeout);
+        }
+
+        private void RegisterEvent(int timeout)
+        {
+            Schedule(OnChangeText, 1.0f);
+            Schedule(OnTimeOut, timeout);
+
+            MessageManager.RegisterMessage("Client.Data", OnMessage);
+        }
+
+        private void InitUI()
+        {
             label = new CCLabel("加载中", "微软雅黑", 24)
             {
                 Position = new CCPoint(381, 220),
@@ -46,14 +60,9 @@ namespace CozyAdventure.View.Layer
             load = new CCLabel("程序员正在加班写代码", "微软雅黑", 20)
             {
                 AnchorPoint = CCPoint.Zero,
-                Position    = new CCPoint(250, 150),
+                Position = new CCPoint(250, 150),
             };
             AddChild(load, 100);
-
-            Schedule(OnChangeText, 1.0f);
-            Schedule(OnTimeOut, timeout);
-
-            MessageManager.RegisterMessage("Client.Data", OnMessage);
         }
 
         private void OnChangeText(float dt)
@@ -79,7 +88,7 @@ namespace CozyAdventure.View.Layer
             {
                 if(MessageCallback(msg))
                 {
-                    CleanUp();
+                    UnregisterEvent();
                 }
             }
         }
@@ -90,10 +99,10 @@ namespace CozyAdventure.View.Layer
             {
                 TimeOutCallback();
             }
-            CleanUp();
+            UnregisterEvent();
         }
 
-        private void CleanUp()
+        private void UnregisterEvent()
         {
             MessageManager.UnRegisterMessage("Client.Data", OnMessage);
             Unschedule(OnTimeOut);

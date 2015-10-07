@@ -43,14 +43,23 @@ namespace CozyAdventure.View.Layer
 
         public FollowerListUiLayer()
         {
+            InitUI();
+
+            MessageManager.RegisterMessage("Client.Data", OnMessage);
+        }
+
+        #region UI
+
+        private void InitUI()
+        {
             var listlable = new CCLabel("佣兵列表", "微软雅黑", 14)
             {
-                Position    = new CCPoint(100, 420),
-                Color       = CCColor3B.White
+                Position = new CCPoint(100, 420),
+                Color = CCColor3B.White
             };
 
-            FollowerList    = PlayerObject.Instance.Self.AllFollower;
-            Page            = (FollowerList.Followers.Count + 8) / 9;
+            FollowerList = PlayerObject.Instance.Self.AllFollower;
+            Page = (FollowerList.Followers.Count + 8) / 9;
 
             AddChild(listlable, 100);
 
@@ -64,8 +73,8 @@ namespace CozyAdventure.View.Layer
             var listview = new CozySampleListView()
             {
                 ContentSize = new CCSize(600, 330),
-                HasBorder   = true,
-                Position    = new CCPoint(100, 60)
+                HasBorder = true,
+                Position = new CCPoint(100, 60)
             };
             this.AddChild(listview);
 
@@ -83,38 +92,38 @@ namespace CozyAdventure.View.Layer
             int fight = PlayerObject.Instance.Self.FightFollower.Followers.Count;
             AllFollower = new CCLabel("总数" + fight + "/" + FollowerList.Followers.Count, "微软雅黑", 14)
             {
-                Position    = new CCPoint(92, 37),
-                Color       = CCColor3B.White,
+                Position = new CCPoint(92, 37),
+                Color = CCColor3B.White,
             };
             AddChild(AllFollower, 100);
 
             PageNumber = new CCLabel((CurPage + 1) + "/" + Page, "微软雅黑", 14)
             {
-                Position    = new CCPoint(389, 37),
-                Color       = CCColor3B.White
+                Position = new CCPoint(389, 37),
+                Color = CCColor3B.White
             };
             AddChild(PageNumber, 100);
 
             ShowDetail = new FollowerDetailSprite()
             {
-                Position    = new CCPoint(100, 100),
+                Position = new CCPoint(100, 100),
                 AnchorPoint = CCPoint.Zero,
-                Visible     = false,
+                Visible = false,
                 FightStatusChangeCallback = new Action<Follower>(OnStatusChange),
             };
             this.AddChild(ShowDetail, 201);
 
             LastPageButton = new CozySampleButton(473, 17, 78, 36)
             {
-                Text        = "上一页",
-                FontSize    = 14,
-                OnClick     = () => PrevPage(),
+                Text = "上一页",
+                FontSize = 14,
+                OnClick = () => PrevPage(),
             };
             NextPageButton = new CozySampleButton(585, 17, 78, 36)
             {
-                Text        = "下一页",
-                FontSize    = 14,
-                OnClick     = () => NextPage(),
+                Text = "下一页",
+                FontSize = 14,
+                OnClick = () => NextPage(),
             };
             AddChild(NextPageButton, 100);
             AddChild(LastPageButton, 100);
@@ -124,22 +133,10 @@ namespace CozyAdventure.View.Layer
             RefreshPage();
         }
 
-        private void RefreshPage()
-        {
-            foreach (var obj in SpriteList)
-            {
-                obj.Visible = false;
-            }
-            foreach (var list in InnerList)
-            {
-                list.Clear();
-            }
-            foreach(var obj in ListenerList)
-            {
-                this.RemoveEventListener(obj);
-            }
-            ListenerList.Clear();
+        #endregion
 
+        private void PatternFollower()
+        {
             int count = CurPage * 9;
             for (int i = 0; i < 3; ++i)
             {
@@ -149,20 +146,20 @@ namespace CozyAdventure.View.Layer
                     {
                         int index = count;
 
-                        var item = new CozySampleListViewItem(SpriteList[index])    
+                        var item = new CozySampleListViewItem(SpriteList[index])
                         {
-                            MarginTop       = 5,
-                            MarginBottom    = 5,
+                            MarginTop = 5,
+                            MarginBottom = 5,
                         };
 
-                        var button  = new CozySampleButton(item.ContentSize.Width, item.ContentSize.Height)
+                        var button = new CozySampleButton(item.ContentSize.Width, item.ContentSize.Height)
                         {
                             OnClick = () =>
                             {
-                                if(!ShowDetail.Visible)
+                                if (!ShowDetail.Visible)
                                 {
                                     ShowDetail.CurrFollower = SpriteList[index].BindFollower;
-                                    ShowDetail.Visible      = true;
+                                    ShowDetail.Visible = true;
                                 }
                             },
                         };
@@ -176,9 +173,31 @@ namespace CozyAdventure.View.Layer
                     count++;
                 }
             }
-            PageNumber.Text = (CurPage + 1) + "/" + Page;
+        }
 
-            MessageManager.RegisterMessage("Client.Data", OnMessage);
+        private void ResetUIElement()
+        {
+            foreach (var obj in SpriteList)
+            {
+                obj.Visible = false;
+            }
+            foreach (var list in InnerList)
+            {
+                list.Clear();
+            }
+            foreach (var obj in ListenerList)
+            {
+                this.RemoveEventListener(obj);
+            }
+            ListenerList.Clear();
+        }
+
+        private void RefreshPage()
+        {
+            ResetUIElement();
+            PatternFollower();
+
+            PageNumber.Text = (CurPage + 1) + "/" + Page;
         }
 
         private void NextPage()
@@ -189,7 +208,7 @@ namespace CozyAdventure.View.Layer
 
         private void PrevPage()
         {
-            CurPage = CurPage == 0 ? 0 : CurPage - 1;
+            CurPage = CurPage <= 1 ? 0 : CurPage - 1;
             RefreshPage();
         }
 

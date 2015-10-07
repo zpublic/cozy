@@ -37,7 +37,19 @@ namespace CozyAdventure.View.Layer
             CurrExp     = PlayerObject.Instance.Self.Exp;
             CurrMoney   = PlayerObject.Instance.Self.Money;
 
-            PlayerExpNode   = new CCLabel(CurrExp.ToString(), "Consolas", 14)
+            InitUI();
+
+            MessageManager.RegisterMessage("Client.Data", OnMessage);
+            FramMapLogic.EnterMap(level);
+
+            Schedule(OnTimerAnimation, 1.0f);
+        }
+
+        #region UI
+
+        private void InitUI()
+        {
+            PlayerExpNode = new CCLabel(CurrExp.ToString(), "Consolas", 14)
             {
                 Position = new CCPoint(100, 100),
             };
@@ -48,12 +60,9 @@ namespace CozyAdventure.View.Layer
 
             this.AddChild(PlayerExpNode);
             this.AddChild(PlayerMoneyNode);
-
-            MessageManager.RegisterMessage("Client.Data", OnMessage);
-            FramMapLogic.EnterMap(level);
-
-            Schedule(OnTimerAnimation, 1.0f);
         }
+
+        #endregion
 
         private void OnMessage(object obj)
         {

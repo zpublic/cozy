@@ -1,6 +1,5 @@
 ﻿using System;
 using CocosSharp;
-using CozyAdventure.View.Layer;
 using CozyAdventure.Public.Controls;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +11,11 @@ namespace CozyAdventure.View.Layer
     class AdventureUiLayer:CCLabel
     {
         public AdventureUiLayer()
+        {
+            InitUI();
+        }
+
+        private void InitUI()
         {
             int Fighting = 0;
             int Gold = 0;
@@ -36,20 +40,19 @@ namespace CozyAdventure.View.Layer
                 Text = "详情",
                 FontSize = 14
             };
-            AddChild(Details,100);
-            var DoCamp = new CozySampleButton(630,38,78,36)
+            AddChild(Details, 100);
+            var DoCamp = new CozySampleButton(630, 38, 78, 36)
             {
                 Text = "安营",
                 FontSize = 14
             };
             AddChild(DoCamp, 100);
-            var Leave = new CozySampleButton(718,38,78,36)
+            var Leave = new CozySampleButton(718, 38, 78, 36)
             {
                 Text = "离开",
                 FontSize = 14
             };
-            AddChild(Leave,100);
-
+            AddChild(Leave, 100);
         }
     }
 }

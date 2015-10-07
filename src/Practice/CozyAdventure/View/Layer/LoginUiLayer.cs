@@ -22,6 +22,13 @@ namespace CozyAdventure.View.Layer
     {
         public LoginUiLayer()
         {
+            InitUI();
+        }
+
+        #region UI
+
+        private void InitUI()
+        {
             var title = new CCLabel("冒险与编程", "微软雅黑", 72)
             {
                 Position = new CCPoint(400, 320),
@@ -33,22 +40,26 @@ namespace CozyAdventure.View.Layer
             {
                 // 测试代码
                 // Text        = "开始游戏",
-                Text        = StringManager.GetText("str3"),
-                FontSize    = 24,
-                OnClick     = new Action(OnBeginButtonDown),
+                Text = StringManager.GetText("str3"),
+                FontSize = 24,
+                OnClick = new Action(OnBeginButtonDown),
             };
             AddEventListener(begin.EventListener);
             AddChild(begin, 100);
 
             var reg = new CozySampleButton(690, 0, 100, 50)
             {
-                Text        = "注册帐号",
-                FontSize    = 18,
-                OnClick     = new Action(OnRegisterButton),
+                Text = "注册帐号",
+                FontSize = 18,
+                OnClick = new Action(OnRegisterButton),
             };
             AddEventListener(reg.EventListener);
             AddChild(reg, 100);
         }
+
+        #endregion
+
+        #region Callback
 
         public void OnBeginButtonDown()
         {
@@ -122,19 +133,7 @@ namespace CozyAdventure.View.Layer
             var result  = msg.FollowerList.Where(x => resId.Contains(x.Value)).Select(x => res.GetFollowerById(x.Value, x.Key));
             var ftres   = msg.FightFollowerList.Where(x => resId.Contains(x));
 
-            PlayerObject.Instance.Self.AllFollower.Followers    = result.ToList();
-            PlayerObject.Instance.Self.Money                    = msg.Money;
-            PlayerObject.Instance.Self.Exp                      = msg.Exp;
-
-            PlayerObject.Instance.Self.FightFollower.Followers.Clear();
-            foreach (var obj in PlayerObject.Instance.Self.AllFollower.Followers)
-            {
-                if(ftres.Contains(obj.Id))
-                {
-                    obj.IsFighting = true;
-                    PlayerObject.Instance.Self.FightFollower.Followers.Add(obj);
-                }
-            }
+            SyncPlayerInfo(result.ToList(), ftres.ToList(), msg.Exp, msg.Money);
 
             foreach (var obj in PlayerObject.Instance.Self.AllFollower.Followers)
             {
@@ -145,9 +144,28 @@ namespace CozyAdventure.View.Layer
             return true;
         }
 
+        private void SyncPlayerInfo(List<Model.Follower> followers, List<int> fightId, int Exp, int Money)
+        {
+            PlayerObject.Instance.Self.AllFollower.Followers    = followers;
+            PlayerObject.Instance.Self.Money                    = Money;
+            PlayerObject.Instance.Self.Exp                      = Exp;
+
+            PlayerObject.Instance.Self.FightFollower.Followers.Clear();
+            foreach (var obj in PlayerObject.Instance.Self.AllFollower.Followers)
+            {
+                if (fightId.Contains(obj.Id))
+                {
+                    obj.IsFighting = true;
+                    PlayerObject.Instance.Self.FightFollower.Followers.Add(obj);
+                }
+            }
+        }
+
         private void OnTimeOut()
         {
             AppDelegate.SharedWindow.DefaultDirector.PopScene();
         }
+
+        #endregion
     }
 }
