@@ -36,7 +36,7 @@ namespace CozyAdventure.View.Layer
         {
             InitUI();
             RegisterEvent();
-            FramMapLogic.EnterMap(Level);
+            FarmMapLogic.EnterMap(Level);
         }
 
         #region UI
@@ -107,8 +107,8 @@ namespace CozyAdventure.View.Layer
         private void RefreshMapInfo()
         {
             Level           = PlayerObject.Instance.Self.CurrLevel;
-            MoneyAdd        = FramMapLogic.Money(Level);
-            ExpAdd          = FramMapLogic.Exp(Level);
+            MoneyAdd        = FarmMapLogic.Money(Level);
+            ExpAdd          = FarmMapLogic.Exp(Level);
 
             MapInfoLabel.Text = string.Format("当前地点 : {0} 金币速度 ： {1} 经验 : {2}", Level, MoneyAdd, ExpAdd);
         }
