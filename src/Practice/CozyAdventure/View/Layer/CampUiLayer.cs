@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using CozyAdventure.Game.Object;
 using CozyAdventure.Game.Logic;
 using CozyAdventure.View.Scene;
-using CozyAdventure.Engine.Module.Data;
+using CozyAdventure.Game.Manager;
 
 namespace CozyAdventure.View.Layer
 {
@@ -18,7 +18,7 @@ namespace CozyAdventure.View.Layer
 
         public CampUiLayer()
         {
-            EditNode = new CCLabel("", "微软雅黑", 22)
+            EditNode = new CCLabel("", StringManager.GetText("GlobalFont"), 22)
             {
                 Position    = new CCPoint(100, 120),
                 AnchorPoint = CCPoint.Zero,

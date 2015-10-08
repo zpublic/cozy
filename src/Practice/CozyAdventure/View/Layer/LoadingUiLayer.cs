@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cozy.Game.Manager;
 using CozyNetworkProtocol;
+using CozyAdventure.Game.Manager;
 
 namespace CozyAdventure.View.Layer
 {
@@ -51,13 +52,13 @@ namespace CozyAdventure.View.Layer
 
         private void InitUI()
         {
-            label = new CCLabel("加载中", "微软雅黑", 24)
+            label = new CCLabel("加载中", StringManager.GetText("GlobalFont"), 24)
             {
                 Position = new CCPoint(381, 220),
             };
             AddChild(label, 100);
 
-            load = new CCLabel("程序员正在加班写代码", "微软雅黑", 20)
+            load = new CCLabel("程序员正在加班写代码", StringManager.GetText("GlobalFont"), 20)
             {
                 AnchorPoint = CCPoint.Zero,
                 Position = new CCPoint(250, 150),

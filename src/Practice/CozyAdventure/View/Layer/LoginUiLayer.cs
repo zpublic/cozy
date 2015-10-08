@@ -29,7 +29,7 @@ namespace CozyAdventure.View.Layer
 
         private void InitUI()
         {
-            var title = new CCLabel("冒险与编程", "微软雅黑", 72)
+            var title = new CCLabel("冒险与编程", StringManager.GetText("GlobalFont"), 72)
             {
                 Position = new CCPoint(400, 320),
                 Color = CCColor3B.Yellow

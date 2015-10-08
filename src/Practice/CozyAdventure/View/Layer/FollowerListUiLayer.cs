@@ -52,7 +52,7 @@ namespace CozyAdventure.View.Layer
 
         private void InitUI()
         {
-            var listlable = new CCLabel("佣兵列表", "微软雅黑", 14)
+            var listlable = new CCLabel("佣兵列表", StringManager.GetText("GlobalFont"), 14)
             {
                 Position = new CCPoint(100, 420),
                 Color = CCColor3B.White
@@ -90,14 +90,14 @@ namespace CozyAdventure.View.Layer
             }
 
             int fight = PlayerObject.Instance.Self.FightFollower.Followers.Count;
-            AllFollower = new CCLabel("总数" + fight + "/" + FollowerList.Followers.Count, "微软雅黑", 14)
+            AllFollower = new CCLabel("总数" + fight + "/" + FollowerList.Followers.Count, StringManager.GetText("GlobalFont"), 14)
             {
                 Position = new CCPoint(92, 37),
                 Color = CCColor3B.White,
             };
             AddChild(AllFollower, 100);
 
-            PageNumber = new CCLabel((CurPage + 1) + "/" + Page, "微软雅黑", 14)
+            PageNumber = new CCLabel((CurPage + 1) + "/" + Page, StringManager.GetText("GlobalFont"), 14)
             {
                 Position = new CCPoint(389, 37),
                 Color = CCColor3B.White

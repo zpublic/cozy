@@ -1,4 +1,5 @@
 ﻿using CocosSharp;
+using CozyAdventure.Game.Manager;
 using CozyAdventure.Public.Controls.Enum;
 using System;
 
@@ -49,7 +50,7 @@ namespace CozyAdventure.Public.Controls
             {
                 this.RemoveChild(DisplayText);
             }
-            DisplayText = new CCLabel(text, "微软雅黑", FontSize);
+            DisplayText = new CCLabel(text, StringManager.GetText("GlobalFont"), FontSize);
             DisplayText.Position = new CCPoint(ContentSize.Width / 2, ContentSize.Height / 2);
             this.AddChild(DisplayText, 2);
         }
