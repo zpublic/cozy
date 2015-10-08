@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CocosSharp;
+﻿using CocosSharp;
+using CozyAdventure.Game.Manager;
 using CozyAdventure.Public.Controls.Enum;
+using System;
 
 namespace CozyAdventure.Public.Controls
 {
@@ -15,6 +12,7 @@ namespace CozyAdventure.Public.Controls
         private CCLabel DisplayText { get; set; }
 
         private string text;
+
         public string Text
         {
             get
@@ -32,6 +30,7 @@ namespace CozyAdventure.Public.Controls
         }
 
         private int fontSize = 12;
+
         public int FontSize
         {
             get
@@ -51,22 +50,104 @@ namespace CozyAdventure.Public.Controls
             {
                 this.RemoveChild(DisplayText);
             }
-            DisplayText = new CCLabel(text, "微软雅黑", FontSize);
+            DisplayText = new CCLabel(text, StringManager.GetText("GlobalFont"), FontSize);
             DisplayText.Position = new CCPoint(ContentSize.Width / 2, ContentSize.Height / 2);
             this.AddChild(DisplayText, 2);
         }
 
-        #endregion
+        #region 缩放用
+
+        private CCScaleTo m_scaleTo;
+        private CCScaleTo m_scaleForm;
+        private CCCallFuncN m_scaleFunc;
+
+        private float scaleTo;
+        private float scaleFrom;
+        private float scaleDuration;
+
+        public float ScaleTo
+        {
+            get
+            {
+                return scaleTo;
+            }
+            set
+            {
+                if (Math.Abs(value - scaleTo) > float.Epsilon)
+                {
+                    scaleTo = value;
+
+                    m_scaleForm = new CCScaleTo(ScaleDuration, scaleTo);
+                }
+            }
+        }
+
+        public float ScaleFrom
+        {
+            get
+            {
+                return scaleFrom;
+            }
+            set
+            {
+                if (Math.Abs(value - scaleFrom) > float.Epsilon)
+                {
+                    scaleFrom   = value;
+                    m_scaleForm = new CCScaleTo(ScaleDuration, scaleFrom);
+                }
+            }
+        }
+
+        public float ScaleDuration
+        {
+            get
+            {
+                return scaleDuration;
+            }
+            set
+            {
+                if(Math.Abs(value - scaleDuration) > float.Epsilon)
+                {
+                    scaleDuration   = value;
+
+                    m_scaleTo       = new CCScaleTo(scaleDuration, ScaleTo);
+                    m_scaleForm     = new CCScaleTo(scaleDuration, ScaleFrom);
+                }
+            }
+        }
+
+        #endregion 缩放用
+
+        #endregion Text
 
         #region Constructors
 
+        /// <summary>
+        /// 初始化缩放
+        /// </summary>
+        /// <param name="_scaleForm"></param>
+        /// <param name="_scaleTo"></param>
+        /// <param name="_duration"></param>
+        private void InitScale(float _scaleForm = 1.0f, float _scaleTo = 1.1f, float _duration = 0.1f)
+        {
+            m_scaleFunc = new CCCallFuncN(node => ((CozySampleButton)node).ScaleComplete());
+
+            ScaleTo         = _scaleTo;
+            ScaleFrom       = _scaleForm;
+            ScaleDuration   = _duration;
+        }
+
         public BaseButton(float width, float height)
         {
+            InitScale();
+
             Init(width, height);
         }
 
         public BaseButton(float x, float y, float width, float height)
         {
+            InitScale();
+
             InitWithRect(x, y, width, height);
         }
 
@@ -84,10 +165,10 @@ namespace CozyAdventure.Public.Controls
         {
             Init(width, height);
 
-            Position    = new CCPoint(x, y);
+            Position = new CCPoint(x, y);
         }
 
-        #endregion
+        #endregion Constructors
 
         #region Event
 
@@ -128,9 +209,20 @@ namespace CozyAdventure.Public.Controls
 
         protected virtual void OnKeyUp()
         {
+            // 缩放
+            this.RunActions(m_scaleTo, m_scaleFunc);
+
             Status = ButtonStatus.Released;
         }
 
-        #endregion
+        /// <summary>
+        /// 缩放结束后弹回
+        /// </summary>
+        private void ScaleComplete()
+        {
+            this.RunAction(m_scaleForm);
+        }
+
+        #endregion Event
     }
 }

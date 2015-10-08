@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CozyAdventure.Engine.Module.Logic
 {
-    public class FramMapModule : ModuleBase
+    public class FarmMapModule : ModuleBase
     {
         public override ModuleTypeEnum ModuleType
         {

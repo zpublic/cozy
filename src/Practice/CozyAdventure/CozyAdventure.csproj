@@ -115,7 +115,7 @@
     <Compile Include="Game\Logic\FollowerLevelLogic.cs" />
     <Compile Include="Game\Logic\FollowerLogic.cs" />
     <Compile Include="Game\Logic\FollowerStarLogic.cs" />
-    <Compile Include="Game\Logic\FramMapLogic.cs" />
+    <Compile Include="Game\Logic\FarmMapLogic.cs" />
     <Compile Include="Game\Logic\UserLogic.cs" />
     <Compile Include="Game\Manager\MessageManager.cs" />
     <Compile Include="Game\Manager\FollowerObjectManager.cs" />
@@ -123,7 +123,6 @@
     <Compile Include="Game\Object\BagObject.cs" />
     <Compile Include="Game\Object\PlayerObject.cs" />
     <Compile Include="Public\Controls\BaseButton.cs" />
-    <Compile Include="Public\Controls\CozySampleListViewItemNode.cs" />
     <Compile Include="Public\Controls\Enum\ButtonStatus.cs" />
     <Compile Include="Public\Controls\CozyColorSampleButton.cs" />
     <Compile Include="Public\Controls\CozyControl.cs" />
@@ -131,7 +130,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Public\Controls\CozySampleListView.cs" />
     <Compile Include="Public\Controls\CozySampleListViewItem.cs" />
-    <Compile Include="Public\Controls\CozySampleListViewItemSprite.cs" />
     <Compile Include="Public\Controls\Events\ItemAddEventArgs.cs" />
     <Compile Include="Public\Controls\Enum\ControlOrientation.cs" />
     <Compile Include="Public\Controls\Events\ItemRemoveEventArgs.cs" />
@@ -145,11 +143,9 @@
     <Compile Include="View\Layer\AdventureUiLayer.cs" />
     <Compile Include="View\Layer\BackgroundLayer.cs" />
     <Compile Include="View\Layer\CampUiLayer.cs" />
-    <Compile Include="View\Layer\FarmUiLayer.cs" />
     <Compile Include="View\Layer\FollowerListUiLayer.cs" />
     <Compile Include="View\Layer\LoadingUiLayer.cs" />
     <Compile Include="View\Scene\AdventureScene.cs" />
-    <Compile Include="View\Scene\FarmScene.cs" />
     <Compile Include="View\Scene\FollowerListScene.cs" />
     <Compile Include="View\Scene\LoginScene.cs" />
     <Compile Include="View\Scene\CampScene.cs" />

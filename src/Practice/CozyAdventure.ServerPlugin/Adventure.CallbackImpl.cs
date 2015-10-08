@@ -184,6 +184,7 @@ namespace CozyAdventure.ServerPlugin
             {
                 r.Result = "Error";
             }
+            SharedServer.SendMessage(r, im.SenderConnection);
         }
     }
 }

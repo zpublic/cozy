@@ -10,25 +10,25 @@ using CozyAdventure.Game.Object;
 
 namespace CozyAdventure.Game.Logic
 {
-    public class FramMapLogic
+    public class FarmMapLogic
     {
         // 战斗力需求
         public static int Requirement(int level)
         {
-            return (int)(double)LogicHelper.CallThisFunc("FramMapModule", MethodBase.GetCurrentMethod(), level)[0];
+            return (int)(double)LogicHelper.CallThisFunc("FarmMapModule", MethodBase.GetCurrentMethod(), level)[0];
         }
 
         // 每分钟经验
         public static int Exp(int level)
         {
-            return (int)(double)LogicHelper.CallThisFunc("FramMapModule", MethodBase.GetCurrentMethod(), level)[0];
+            return (int)(double)LogicHelper.CallThisFunc("FarmMapModule", MethodBase.GetCurrentMethod(), level)[0];
 
         }
 
         // 每分钟金币
         public static int Money(int level)
         {
-            return (int)(double)LogicHelper.CallThisFunc("FramMapModule", MethodBase.GetCurrentMethod(), level)[0];
+            return (int)(double)LogicHelper.CallThisFunc("FarmMapModule", MethodBase.GetCurrentMethod(), level)[0];
         }
 
         // 进入地图
