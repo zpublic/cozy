@@ -147,7 +147,6 @@ namespace CozyAdventure.Public.Controls
         protected virtual void OnKeyDown()
         {
             Status = ButtonStatus.Pressed;
-            OnClick();
         }
 
         protected virtual void OnKeyUp()
@@ -164,6 +163,9 @@ namespace CozyAdventure.Public.Controls
         private void ScaleComplete()
         {
             this.RunAction(m_scaleForm);
+
+            // 弹起之后再执行
+            OnClick();
         }
 
         #endregion Event
