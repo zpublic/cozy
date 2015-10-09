@@ -92,7 +92,7 @@ namespace CozyAdventure.Public.Controls
             {
                 if (Math.Abs(value - scaleFrom) > float.Epsilon)
                 {
-                    scaleFrom   = value;
+                    scaleFrom = value;
                     m_scaleForm = new CCScaleTo(ScaleDuration, scaleFrom);
                 }
             }
@@ -106,12 +106,12 @@ namespace CozyAdventure.Public.Controls
             }
             set
             {
-                if(Math.Abs(value - scaleDuration) > float.Epsilon)
+                if (Math.Abs(value - scaleDuration) > float.Epsilon)
                 {
-                    scaleDuration   = value;
+                    scaleDuration = value;
 
-                    m_scaleTo       = new CCScaleTo(scaleDuration, ScaleTo);
-                    m_scaleForm     = new CCScaleTo(scaleDuration, ScaleFrom);
+                    m_scaleTo = new CCScaleTo(scaleDuration, ScaleTo);
+                    m_scaleForm = new CCScaleTo(scaleDuration, ScaleFrom);
                 }
             }
         }
@@ -132,9 +132,9 @@ namespace CozyAdventure.Public.Controls
         {
             m_scaleFunc = new CCCallFuncN(node => ((CozySampleButton)node).ScaleComplete());
 
-            ScaleTo         = _scaleTo;
-            ScaleFrom       = _scaleForm;
-            ScaleDuration   = _duration;
+            ScaleTo = _scaleTo;
+            ScaleFrom = _scaleForm;
+            ScaleDuration = _duration;
         }
 
         public BaseButton(float width, float height)
@@ -204,7 +204,6 @@ namespace CozyAdventure.Public.Controls
         protected virtual void OnKeyDown()
         {
             Status = ButtonStatus.Pressed;
-            OnClick();
         }
 
         protected virtual void OnKeyUp()
@@ -221,6 +220,9 @@ namespace CozyAdventure.Public.Controls
         private void ScaleComplete()
         {
             this.RunAction(m_scaleForm);
+
+            // 弹起后响应这样更符合操作.
+            OnClick();
         }
 
         #endregion Event

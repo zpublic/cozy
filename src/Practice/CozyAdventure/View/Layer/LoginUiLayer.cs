@@ -70,7 +70,7 @@ namespace CozyAdventure.View.Layer
         public void OnRegisterButton()
         {
             UserLogic.Regist("kingwl", "123456", "hehe");
-            //AppDelegate.SharedWindow.DefaultDirector.PushScene(new RegistScene());
+            AppDelegate.SharedWindow.DefaultDirector.PushScene(new RegistScene());
         }
 
         private bool OnMessage(MessageBase msg)
