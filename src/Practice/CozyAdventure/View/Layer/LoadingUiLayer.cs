@@ -24,30 +24,34 @@ namespace CozyAdventure.View.Layer
         public int DotNumber { get; set; }
 
         /// <summary>
-        /// RetVal -> true 完成回调 清理现场
-        /// </summary>
-        public Func<MessageBase, bool> MessageCallback { get; set; }
-
-        /// <summary>
         /// 超时
         /// </summary>
         public Action TimeOutCallback { get; set; }
 
-        public LoadingUiLayer(Func<MessageBase, bool> msgCallback, Action timeoutCallback = null, int timeout = 10)
+        public override void OnEnter()
         {
-            MessageCallback = msgCallback;
-            TimeOutCallback = timeoutCallback;
-
+            base.OnEnter();
             InitUI();
-            RegisterEvent(timeout);
         }
 
-        private void RegisterEvent(int timeout)
+        public override void OnExit()
+        {
+            base.OnExit();
+            Unschedule(OnTimeOut);
+            Unschedule(OnChangeText);
+        }
+
+        public LoadingUiLayer(Action timeoutCallback = null, int timeout = 10)
+        {
+            TimeOutCallback = timeoutCallback;
+
+            RegisterSchedule(timeout);
+        }
+
+        private void RegisterSchedule(int timeout)
         {
             Schedule(OnChangeText, 1.0f);
             Schedule(OnTimeOut, timeout);
-
-            MessageManager.RegisterMessage("Client.Data", OnMessage);
         }
 
         private void InitUI()
@@ -61,7 +65,7 @@ namespace CozyAdventure.View.Layer
             load = new CCLabel("程序员正在加班写代码", StringManager.GetText("GlobalFont"), 20)
             {
                 AnchorPoint = CCPoint.Zero,
-                Position = new CCPoint(250, 150),
+                Position    = new CCPoint(250, 150),
             };
             AddChild(load, 100);
         }
@@ -82,32 +86,17 @@ namespace CozyAdventure.View.Layer
             load.Text = result;
         }
 
-        private void OnMessage(object obj)
-        {
-            var msg = (MessageBase)obj;
-            if(MessageCallback != null)
-            {
-                if(MessageCallback(msg))
-                {
-                    UnregisterEvent();
-                }
-            }
-        }
-
+        /// <summary>
+        /// 自动popScene 执行callback
+        /// </summary>
+        /// <param name="dt"></param>
         private void OnTimeOut(float dt)
         {
             if(TimeOutCallback != null)
             {
                 TimeOutCallback();
+                AppDelegate.SharedWindow.DefaultDirector.PopScene();
             }
-            UnregisterEvent();
-        }
-
-        private void UnregisterEvent()
-        {
-            MessageManager.UnRegisterMessage("Client.Data", OnMessage);
-            Unschedule(OnTimeOut);
-            Unschedule(OnChangeText);
         }
     }
 }

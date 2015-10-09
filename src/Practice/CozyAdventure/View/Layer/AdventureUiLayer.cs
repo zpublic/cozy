@@ -8,9 +8,6 @@ using System.Threading.Tasks;
 using CozyAdventure.Game.Logic;
 using CozyAdventure.Game.Object;
 using Cozy.Game.Manager;
-using CozyAdventure.Protocol.Msg;
-using CozyNetworkProtocol;
-using CozyAdventure.Protocol;
 
 namespace CozyAdventure.View.Layer
 {
@@ -32,11 +29,22 @@ namespace CozyAdventure.View.Layer
 
         private int Fighting { get; set; }
 
-        public AdventureUiLayer()
+        public override void OnEnter()
         {
+            base.OnEnter();
             InitUI();
+
+            RefreshPlayerInfo();
+            RefreshMapInfo();
             RegisterEvent();
+
             FarmMapLogic.EnterMap(Level);
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            UnregisterEvent();
         }
 
         #region UI
@@ -45,14 +53,14 @@ namespace CozyAdventure.View.Layer
         {
             PlayerInfoLabel = new CCLabel("", "Consolas", 14)
             {
-                Position = new CCPoint(37, 36),
-                Color = CCColor3B.White,
+                Position    = new CCPoint(37, 36),
+                Color       = CCColor3B.White,
             };
 
             MapInfoLabel = new CCLabel("", "Consolas", 14)
             {
-                Position = new CCPoint(37, 55),
-                Color = CCColor3B.White,
+                Position    = new CCPoint(37, 55),
+                Color       = CCColor3B.White,
             };
 
             this.AddChild(PlayerInfoLabel, 100);
@@ -77,22 +85,20 @@ namespace CozyAdventure.View.Layer
             };
             AddChild(Leave, 100);
 
-            RefreshPlayerInfo();
-            RefreshMapInfo();
         }
 
         #endregion
 
         private void RegisterEvent()
         {
-            MessageManager.RegisterMessage("Client.Data", OnMessage);
+            MessageManager.RegisterMessage("Message.FarmIncoming.Data", OnFarmIncomingMessage);
             Schedule(OnTimerAnimation, 1.0f);
         }
 
-        private void UnRegisterEvent()
+        private void UnregisterEvent()
         {
             Unschedule(OnTimerAnimation);
-            MessageManager.UnRegisterMessage("Client.Data", OnMessage);
+            MessageManager.UnRegisterMessage("Message.FarmIncoming.Data", OnFarmIncomingMessage);
         }
 
         private void RefreshPlayerInfo()
@@ -113,26 +119,10 @@ namespace CozyAdventure.View.Layer
             MapInfoLabel.Text = string.Format("当前地点 : {0} 金币速度 ： {1} 经验 : {2}", Level, MoneyAdd, ExpAdd);
         }
 
-        private void OnMessage(object obj)
+        private void OnFarmIncomingMessage()
         {
-            var msg = (MessageBase)obj;
-            if (msg.Id == (uint)MessageId.Farm.FarmIncomeMessage)
-            {
-                OnFarmIncommingMessage((FarmIncomeMessage)msg);
-            }
-            else if (msg.Id == (uint)MessageId.Farm.GotoResultMessage)
-            {
-                OnGotoResultMessage((GotoResultMessage)msg);
-            }
-        }
-
-        private void OnFarmIncommingMessage(FarmIncomeMessage msg)
-        {
-            SyncPlayerInfo(msg.Exp, msg.Money);
-        }
-
-        private void OnGotoResultMessage(GotoResultMessage msg)
-        {
+            CurrExp     = PlayerObject.Instance.Self.Exp;
+            CurrMoney   = PlayerObject.Instance.Self.Money;
         }
 
         private void OnTimerAnimation(float dt)
@@ -141,18 +131,6 @@ namespace CozyAdventure.View.Layer
             CurrMoney   += ExpAdd;
 
             PlayerInfoLabel.Text = string.Format("战斗力 : {0} 金币 : {1} 经验 : {2}", Fighting, CurrMoney, CurrExp);
-        }
-
-        private void SyncPlayerInfo(int money, int exp)
-        {
-            CurrExp     = PlayerObject.Instance.Self.Exp + exp;
-            CurrMoney   = PlayerObject.Instance.Self.Money + money;
-            PlayerObject.Instance.Self.Exp      = CurrExp;
-            PlayerObject.Instance.Self.Money    = CurrMoney;
-        }
-
-        private void CleanUp()
-        {
         }
     }
 }
