@@ -54,6 +54,7 @@ namespace CozyAdventure
         private void InitManager()
         {
             StringManager.Init();
+            NetworkMessageManager.Instance.Init();
         }
 
         /// <summary>

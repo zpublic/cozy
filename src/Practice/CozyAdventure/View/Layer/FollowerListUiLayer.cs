@@ -9,9 +9,6 @@ using CozyAdventure.Game.Object;
 using CozyAdventure.Model;
 using CozyAdventure.View.Sprite;
 using CozyAdventure.Game.Logic;
-using CozyAdventure.Protocol.Msg;
-using CozyNetworkProtocol;
-using CozyAdventure.Protocol;
 using CozyAdventure.Game.Manager;
 using Cozy.Game.Manager;
 
@@ -41,11 +38,17 @@ namespace CozyAdventure.View.Layer
 
         private List<CCEventListenerTouchOneByOne> ListenerList { get; set; } = new List<CCEventListenerTouchOneByOne>();
 
-        public FollowerListUiLayer()
+        public override void OnEnter()
         {
+            base.OnEnter();
             InitUI();
+            MessageManager.RegisterMessage("Message.FollowerFight.Success", OnFightStatusSwitch);
+        }
 
-            MessageManager.RegisterMessage("Client.Data", OnMessage);
+        public override void OnExit()
+        {
+            base.OnExit();
+            MessageManager.UnRegisterMessage("Message.FollowerFight.Success", OnFightStatusSwitch);
         }
 
         #region UI
@@ -54,12 +57,12 @@ namespace CozyAdventure.View.Layer
         {
             var listlable = new CCLabel("佣兵列表", StringManager.GetText("GlobalFont"), 14)
             {
-                Position = new CCPoint(100, 420),
-                Color = CCColor3B.White
+                Position    = new CCPoint(100, 420),
+                Color       = CCColor3B.White
             };
 
-            FollowerList = PlayerObject.Instance.Self.AllFollower;
-            Page = (FollowerList.Followers.Count + 8) / 9;
+            FollowerList    = PlayerObject.Instance.Self.AllFollower;
+            Page            = (FollowerList.Followers.Count + 8) / 9;
 
             AddChild(listlable, 100);
 
@@ -73,8 +76,8 @@ namespace CozyAdventure.View.Layer
             var listview = new CozySampleListView()
             {
                 ContentSize = new CCSize(600, 330),
-                HasBorder = true,
-                Position = new CCPoint(100, 60)
+                HasBorder   = true,
+                Position    = new CCPoint(100, 60)
             };
             this.AddChild(listview);
 
@@ -92,38 +95,38 @@ namespace CozyAdventure.View.Layer
             int fight = PlayerObject.Instance.Self.FightFollower.Followers.Count;
             AllFollower = new CCLabel("总数" + fight + "/" + FollowerList.Followers.Count, StringManager.GetText("GlobalFont"), 14)
             {
-                Position = new CCPoint(92, 37),
-                Color = CCColor3B.White,
+                Position    = new CCPoint(92, 37),
+                Color       = CCColor3B.White,
             };
             AddChild(AllFollower, 100);
 
             PageNumber = new CCLabel((CurPage + 1) + "/" + Page, StringManager.GetText("GlobalFont"), 14)
             {
-                Position = new CCPoint(389, 37),
-                Color = CCColor3B.White
+                Position    = new CCPoint(389, 37),
+                Color       = CCColor3B.White
             };
             AddChild(PageNumber, 100);
 
             ShowDetail = new FollowerDetailSprite()
             {
-                Position = new CCPoint(100, 100),
+                Position    = new CCPoint(100, 100),
                 AnchorPoint = CCPoint.Zero,
-                Visible = false,
+                Visible     = false,
                 FightStatusChangeCallback = new Action<Follower>(OnStatusChange),
             };
             this.AddChild(ShowDetail, 201);
 
             LastPageButton = new CozySampleButton(473, 17, 78, 36)
             {
-                Text = "上一页",
-                FontSize = 14,
-                OnClick = () => PrevPage(),
+                Text        = "上一页",
+                FontSize    = 14,
+                OnClick     = () => PrevPage(),
             };
             NextPageButton = new CozySampleButton(585, 17, 78, 36)
             {
-                Text = "下一页",
-                FontSize = 14,
-                OnClick = () => NextPage(),
+                Text        = "下一页",
+                FontSize    = 14,
+                OnClick     = () => NextPage(),
             };
             AddChild(NextPageButton, 100);
             AddChild(LastPageButton, 100);
@@ -224,35 +227,9 @@ namespace CozyAdventure.View.Layer
             }
         }
 
-        private void OnMessage(object obj)
+        private void OnFightStatusSwitch()
         {
-            var msg = (MessageBase)obj;
-            if (msg.Id == (uint)MessageId.Mercenary.FightResultMessage)
-            {
-                OnFightMessage((FightResultMessage)msg);
-            }
-        }
-
-        private void OnFightMessage(FightResultMessage msg)
-        {
-            if(msg.Result == "Ok")
-            {
-                var follower = (Follower)FollowerObjectManager.Instance.GetObj(msg.ObjectId);
-                if (msg.StatusNow == FightMessage.GoToFight)
-                {
-                    PlayerObject.Instance.Self.FightFollower.Followers.Add(follower);
-                    follower.IsFighting = true;
-                }
-                else
-                {
-                    if(PlayerObject.Instance.Self.FightFollower.Followers.Contains(follower))
-                    {
-                        PlayerObject.Instance.Self.FightFollower.Followers.Remove(follower);
-                        follower.IsFighting = false;
-                    }
-                }
-                ShowDetail.RefreshInfo();
-            }
+            ShowDetail.RefreshInfo();
         }
     }
 }
