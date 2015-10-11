@@ -9,6 +9,7 @@ using CozyAdventure.Game.Object;
 using CozyAdventure.Game.Logic;
 using CozyAdventure.View.Scene;
 using CozyAdventure.Game.Manager;
+using Cozy.Game.Manager;
 
 namespace CozyAdventure.View.Layer
 {
@@ -16,7 +17,37 @@ namespace CozyAdventure.View.Layer
     {
         private CCLabel EditNode { get; set; }
 
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            RegisterEvent();
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            UnregisterEvent();
+        }
+
+        private void RegisterEvent()
+        {
+            MessageManager.RegisterMessage("Message.GotoMap.Success", OnGotoMapSuccess);
+            MessageManager.RegisterMessage("Message.GotoMap.Failed", OnGotoMapFailed);
+        }
+
+        private void UnregisterEvent()
+        {
+            MessageManager.UnRegisterMessage("Message.GotoMap.Failed", OnGotoMapFailed);
+            MessageManager.UnRegisterMessage("Message.GotoMap.Success", OnGotoMapSuccess);
+        }
+
         public CampUiLayer()
+        {
+            InitUI();
+            RefreshPlayerInfo();
+        }
+
+        private void InitUI()
         {
             EditNode = new CCLabel("", StringManager.GetText("GlobalFont"), 22)
             {
@@ -32,7 +63,7 @@ namespace CozyAdventure.View.Layer
                 FontSize    = 14,
                 OnClick     = () =>
                 {
-                    AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new AdventureScene());
+                    FarmMapLogic.EnterMap(PlayerObject.Instance.Self.CurrLevel);
                 }
             };
             this.AddEventListener(Goon.EventListener);
@@ -65,8 +96,6 @@ namespace CozyAdventure.View.Layer
             };
             this.AddEventListener(MyFriends.EventListener);
             AddChild(MyFriends, 100);
-
-            RefreshPlayerInfo();
         }
 
         private void RefreshPlayerInfo()
@@ -76,6 +105,16 @@ namespace CozyAdventure.View.Layer
             var Exp         = PlayerObject.Instance.Self.Exp;
 
             EditNode.Text = string.Format("战斗力: + {0} +  金币 + {1} + 经验 + {2}", Fighting, Money, Exp);
+        }
+
+        private void OnGotoMapFailed()
+        {
+
+        }
+
+        private void OnGotoMapSuccess()
+        {
+            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new AdventureScene());
         }
     }
 }

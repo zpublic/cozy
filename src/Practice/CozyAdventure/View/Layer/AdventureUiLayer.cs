@@ -39,8 +39,6 @@ namespace CozyAdventure.View.Layer
             RefreshMapInfo();
             RegisterEvent();
             Schedule(OnTimerAnimation, 1.0f);
-
-            FarmMapLogic.EnterMap(Level);
         }
 
         public override void OnExit()
