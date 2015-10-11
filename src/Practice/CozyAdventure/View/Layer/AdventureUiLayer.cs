@@ -134,7 +134,7 @@ namespace CozyAdventure.View.Layer
             MoneyAdd        = FarmMapLogic.Money(Level);
             ExpAdd          = FarmMapLogic.Exp(Level);
 
-            MapInfoLabel.Text = string.Format("当前地点 : {0} 金币速度 ： {1} 经验 : {2}", Level, MoneyAdd, ExpAdd);
+            MapInfoLabel.Text = string.Format("当前地点 : {0} 金币速度 : {1} 经验 : {2}", Level, MoneyAdd, ExpAdd);
         }
 
         private void OnFarmIncomingMessage()
@@ -146,7 +146,7 @@ namespace CozyAdventure.View.Layer
         private void OnTimerAnimation(float dt)
         {
             CurrExp     += ExpAdd;
-            CurrMoney   += ExpAdd;
+            CurrMoney   += MoneyAdd;
 
             PlayerInfoLabel.Text = string.Format("战斗力 : {0} 金币 : {1} 经验 : {2}", Fighting, CurrMoney, CurrExp);
         }

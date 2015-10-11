@@ -76,8 +76,8 @@ namespace CozyAdventure.Public.Controls
         public CozyColorSampleButton(float width, float height, CCColor4B normal, CCColor4B clicked)
             :base(width, height)
         {
-            NormalColor = normal;
-            ClickedColor = clicked;
+            NormalColor     = normal;
+            ClickedColor    = clicked;
         }
 
         public override void Init(float width, float height)
