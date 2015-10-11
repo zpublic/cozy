@@ -13,9 +13,9 @@ namespace CozyAdventure.Protocol.Msg
     {
         public override uint Id { get { return (uint)MessageId.User.PushMessage; } }
 
-        public int Exp { get; set; }
+        public long Exp { get; set; }
 
-        public int Money { get; set; }
+        public long Money { get; set; }
 
         public List<KeyValuePair<int, int>> FollowerList { get; set; }
 

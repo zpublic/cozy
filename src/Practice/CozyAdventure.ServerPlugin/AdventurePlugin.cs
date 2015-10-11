@@ -48,7 +48,11 @@ namespace CozyAdventure.ServerPlugin
 
         public void StatusCallbackImpl(NetServer server, NetIncomingMessage msg)
         {
-            RemoveFarmObj(msg.SenderConnection);
+            NetConnectionStatus status = (NetConnectionStatus)msg.ReadByte();
+            if (status == NetConnectionStatus.Disconnected)
+            {
+                RemoveFarmObj(msg.SenderConnection);
+            }
         }
 
         public void DataCallbackImpl(NetServer server, NetIncomingMessage msg)
