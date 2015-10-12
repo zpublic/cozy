@@ -13,6 +13,9 @@ namespace CozyAdventure.ServerPlugin
 {
     public partial class AdventurePlugin
     {
+        public const string OkTag       = "Ok";
+        public const string ErrorTag    = "Error";
+
         private void RegisterMessageImpl(NetIncomingMessage im, MessageBase msg)
         {
             var registerMsg = msg as RegisterMessage;
@@ -45,11 +48,11 @@ namespace CozyAdventure.ServerPlugin
                 });
 
                 r.PlayerId  = id;
-                r.Result    = "OK";
+                r.Result    = OkTag;
             }
             else
             {
-                r.Result = "Error";
+                r.Result = ErrorTag;
             }
             SharedServer.SendMessage(r, im.SenderConnection);
         }
@@ -62,12 +65,12 @@ namespace CozyAdventure.ServerPlugin
             var user = AdventurePluginDB.User.Get(loginMsg.Name, loginMsg.Pass);
             if (user != null)
             {
-                r.Result = "OK";
+                r.Result = OkTag;
                 r.PlayerId = user.id;
             }
             else
             {
-                r.Result = "Error";
+                r.Result = ErrorTag;
             }
             SharedServer.SendMessage(r, im.SenderConnection);
         }
@@ -104,12 +107,12 @@ namespace CozyAdventure.ServerPlugin
 
             if(AddFarmObj(im.SenderConnection, mapMsg.PlayerId, mapMsg.Money, mapMsg.Exp))
             {
-                r.Result    = "Ok";
+                r.Result    = OkTag;
                 r.GoToType  = GotoResultMessage.ToMap;
             }
             else
             {
-                r.Result = "Error";
+                r.Result = ErrorTag;
             }
 
             SharedServer.SendMessage(r, im.SenderConnection);
@@ -122,7 +125,7 @@ namespace CozyAdventure.ServerPlugin
 
             if (RemoveFarmObj(im.SenderConnection))
             {
-                r.Result        = "Ok";
+                r.Result        = OkTag;
                 r.GoToType      = GotoResultMessage.ToHome;
                 r.UserData      = homeMsg.UserData;
                 var customer    = AdventurePluginDB.Customer.GetPlayerCustomer(homeMsg.PlayerId);
@@ -134,7 +137,7 @@ namespace CozyAdventure.ServerPlugin
             }
             else
             {
-                r.Result = "Error";
+                r.Result = ErrorTag;
             }
 
             SharedServer.SendMessage(r, im.SenderConnection);
@@ -147,7 +150,7 @@ namespace CozyAdventure.ServerPlugin
 
             if(AdventurePluginDB.User.Get(hireMsg.PlayerId) != null)
             {
-                r.Result        = "Ok";
+                r.Result        = OkTag;
                 var follower    = AdventurePluginDB.PlayerFollower.GetPlayerFollower(hireMsg.PlayerId);
 
                 var ObjectIdList = new List<int>();
@@ -170,7 +173,7 @@ namespace CozyAdventure.ServerPlugin
             }
             else
             {
-                r.Result = "Error";
+                r.Result = ErrorTag;
             }
             SharedServer.SendMessage(r, im.SenderConnection);
         }
@@ -182,7 +185,7 @@ namespace CozyAdventure.ServerPlugin
 
             if (AdventurePluginDB.User.Get(fightMsg.PlayerId) != null)
             {
-                r.Result        = "Ok";
+                r.Result        = OkTag;
                 r.ObjectId      = fightMsg.ObjectId;
                 var follower    = AdventurePluginDB.PlayerFollower.GetPlayerFollower(fightMsg.PlayerId);
 
@@ -206,7 +209,7 @@ namespace CozyAdventure.ServerPlugin
             }
             else
             {
-                r.Result = "Error";
+                r.Result = ErrorTag;
             }
             SharedServer.SendMessage(r, im.SenderConnection);
         }
