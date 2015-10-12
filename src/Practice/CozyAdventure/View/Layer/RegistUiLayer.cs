@@ -21,6 +21,8 @@ namespace CozyAdventure.View.Layer
 
         private List<CCTextField> FiledList { get; set; } = new List<CCTextField>();
 
+        private CozySampleButton CurrButton { get; set; }
+
         public override void OnEnter()
         {
             base.OnEnter();
@@ -82,14 +84,14 @@ namespace CozyAdventure.View.Layer
             AddChild(NickNameText, 100);
             FiledList.Add(NickNameText);
 
-            var begin = new CozySampleButton(s.Width / 2, 100, 200, 80)
+            CurrButton = new CozySampleButton(s.Width / 2, 100, 200, 80)
             {
                 Text = "注册账号",
                 FontSize = 24,
                 OnClick = () => OnRegister()
             };
-            AddChild(begin, 100);
-            this.AddEventListener(begin.EventListener);
+            AddChild(CurrButton, 100);
+            this.AddEventListener(CurrButton.EventListener);
         }
 
         protected override void AddedToScene()
@@ -175,11 +177,18 @@ namespace CozyAdventure.View.Layer
 
         private void OnRegisterSuccess()
         {
-            AppDelegate.SharedWindow.DefaultDirector.PopScene();
+            CurrButton.Text     = "已注册成功，点击返回";
+            CurrButton.OnClick  = new Action(OnRetButton);
         }
 
         private void OnRegisterFailed()
         {
+            
+        }
+
+        public void OnRetButton()
+        {
+            AppDelegate.SharedWindow.DefaultDirector.PopScene();
         }
     }
 }
