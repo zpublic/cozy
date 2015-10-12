@@ -1,4 +1,6 @@
 ﻿using CocosSharp;
+using Cozy.Game.Manager;
+using CozyAdventure.Game.Logic;
 using CozyAdventure.Public.Controls;
 using System;
 using System.Collections.Generic;
@@ -10,26 +12,174 @@ namespace CozyAdventure.View.Layer
 {
     public class RegistUiLayer : CCLayer
     {
-        public RegistUiLayer()
+        private CCPoint beginPosition;
+
+        private CCTextField NameText { get; set; }
+        private CCTextField PassText { get; set; }
+        private CCTextField PassRepeatText { get; set; }
+        private CCTextField NickNameText { get; set; }
+
+        private List<CCTextField> FiledList { get; set; } = new List<CCTextField>();
+
+        public override void OnEnter()
         {
+            base.OnEnter();
             InitUI();
+            RegisterEvent();
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            UnregisterEvent();
+        }
+
+        private void RegisterEvent()
+        {
+            MessageManager.RegisterMessage("Message.Register.Success", OnRegisterSuccess);
+            MessageManager.RegisterMessage("Message.Register.Failed", OnRegisterFailed);
+        }
+
+        private void UnregisterEvent()
+        {
+            MessageManager.UnRegisterMessage("Message.Register.Failed", OnRegisterFailed);
+            MessageManager.UnRegisterMessage("Message.Register.Success", OnRegisterSuccess);
         }
 
         private void InitUI()
         {
-            var title = new CCLabel("冒险与编程", "Consolas", 72)
-            {
-                Position = new CCPoint(400, 320),
-                Color = CCColor3B.Yellow
-            };
-            AddChild(title, 100);
+            var s = VisibleBoundsWorldspace.Size;
 
-            var begin = new CozySampleButton(300, 100, 200, 80)
+            NameText = new CCTextField("[Name]", "Consolas", 16)
             {
-                Text = "开始游戏",
-                FontSize = 24
+                Position = new CCPoint(s.Width / 2, 400),
+                AutoEdit = true,
+            };
+            AddChild(NameText, 100);
+            FiledList.Add(NameText);
+
+            PassText = new CCTextField("[Pass]", "Consolas", 16)
+            {
+                Position = new CCPoint(s.Width / 2, 350),
+                AutoEdit = true,
+            };
+            AddChild(PassText, 100);
+            FiledList.Add(PassText);
+
+            PassRepeatText = new CCTextField("[Pass Repeat]", "Consolas", 16)
+            {
+                Position = new CCPoint(s.Width / 2, 300),
+                AutoEdit = true,
+            };
+            AddChild(PassRepeatText, 100);
+            FiledList.Add(PassRepeatText);
+
+            NickNameText = new CCTextField("[NickName]", "Consolas", 16)
+            {
+                Position = new CCPoint(s.Width / 2, 250),
+                AutoEdit = true,
+            };
+            AddChild(NickNameText, 100);
+            FiledList.Add(NickNameText);
+
+            var begin = new CozySampleButton(s.Width / 2, 100, 200, 80)
+            {
+                Text = "注册账号",
+                FontSize = 24,
+                OnClick = () => OnRegister()
             };
             AddChild(begin, 100);
+            this.AddEventListener(begin.EventListener);
+        }
+
+        protected override void AddedToScene()
+        {
+            base.AddedToScene();
+            var touchListener               = new CCEventListenerTouchOneByOne();
+
+            touchListener.OnTouchBegan = OnTouchBegan;
+            touchListener.OnTouchEnded = OnTouchEnded;
+
+            AddEventListener(touchListener);
+        }
+
+        private void OnTouchEnded(CCTouch arg1, CCEvent arg2)
+        {
+            var endPos = arg1.Location;
+
+            foreach (var TrackNode in FiledList)
+            {
+                OnClickTrackNode(TrackNode, false);
+            }
+
+            foreach (var TrackNode in FiledList)
+            {
+                if (TrackNode.BoundingBox.ContainsPoint(beginPosition) && TrackNode.BoundingBox.ContainsPoint(endPos))
+                {
+                    OnClickTrackNode(TrackNode, true);
+                }
+            }
+        }
+
+        private void OnClickTrackNode(CCTextField node,bool v)
+        {
+            if (v && node != null)
+            {
+                node.Edit();
+            }
+            else
+            {
+                if (node != null)
+                {
+                    node.EndEdit();
+                }
+            }
+        }
+
+        private bool OnTouchBegan(CCTouch arg1, CCEvent arg2)
+        {
+            beginPosition = arg1.Location;
+            return true;
+        }
+
+        private void OnRegister()
+        {
+            string name         = NameText.Text.Trim();
+            string pass         = PassText.Text.Trim();
+            string passrepeat   = PassRepeatText.Text.Trim();
+            string nickname     = NickNameText.Text.Trim();
+
+            if (pass == passrepeat)
+            {
+                if (CheckInput(name, pass, nickname))
+                {
+                    UserLogic.Regist(name, pass, nickname);
+                    return;
+                }
+            }
+
+            // TODO check failed
+        }
+
+        /// <summary>
+        /// 名字与昵称长度大于0 两次密码长度大于6且相等
+        /// </summary>
+        private bool CheckInput(string name, string pass, string nickname)
+        {
+            if (pass.Length >= 6 && name.Length > 0 && nickname.Length > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void OnRegisterSuccess()
+        {
+            AppDelegate.SharedWindow.DefaultDirector.PopScene();
+        }
+
+        private void OnRegisterFailed()
+        {
         }
     }
 }

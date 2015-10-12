@@ -46,6 +46,9 @@ namespace CozyAdventure.Game.Manager
                 case (uint)MessageId.Farm.GotoResultMessage:
                     OnGotoResultMessage((GotoResultMessage)msg);
                     break;
+                case (uint)MessageId.Inner.RegisterResultMessage:
+                    OnRegisterResultMessage((RegisterResultMessage)msg);
+                    break;
                 default:
                     break;
             }
@@ -189,6 +192,18 @@ namespace CozyAdventure.Game.Manager
                 {
                     MessageManager.SendMessage("Message.GotoMap.Failed");
                 }
+            }
+        }
+
+        private void OnRegisterResultMessage(RegisterResultMessage msg)
+        {
+            if (msg.Result == "OK")
+            {
+                MessageManager.SendMessage("Message.Register.Success");
+            }
+            else
+            {
+                MessageManager.SendMessage("Message.Register.Failed");
             }
         }
     }

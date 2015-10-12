@@ -50,14 +50,19 @@ namespace CozyAdventure.Game.Logic
             MessageManager.SendMessage("Client.Send", msg);
         }
 
-        public static void HireFollower(Follower follower)
+        public static void HireFollower(int followerId, int playerid)
         {
             var msg = new HireFollowerMessage()
             {
-                PlayerId    = PlayerObject.Instance.Self.PlayerId,
-                FollowerId  = { follower.Id },
+                PlayerId    = playerid,
+                FollowerId  = { followerId },
             };
             MessageManager.SendMessage("Client.Send", msg);
+        }
+
+        public static void HireFollower(Follower follower)
+        {
+            HireFollower(follower.Id, PlayerObject.Instance.Self.PlayerId);
         }
 
         public static void HireFollower(List<Follower> follower)

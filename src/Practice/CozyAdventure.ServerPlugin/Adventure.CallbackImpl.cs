@@ -27,10 +27,25 @@ namespace CozyAdventure.ServerPlugin
                 };
                 var id = AdventurePluginDB.User.Create(user);
 
-                AdventurePluginDB.Customer.Create(new CustomerInfo() { PlayerId = id, });
-                AdventurePluginDB.PlayerFollower.Create(new PlayerFollowerInfo() { PlayerId = id, });
+                const int FreeId = 2; // 赠送路人乙
 
-                r.Result = "OK";
+                var objid   = ObjectId;
+                var info    = new FollowerInfo()
+                {
+                    FollowerID  = FreeId,
+                    ObjectID    = objid,
+                };
+                AdventurePluginDB.Follower.Create(info);
+
+                AdventurePluginDB.Customer.Create(new CustomerInfo() { PlayerId = id, });
+                AdventurePluginDB.PlayerFollower.Create(new PlayerFollowerInfo()
+                {
+                    PlayerId        = id,
+                    FollowerList    = { objid }
+                });
+
+                r.PlayerId  = id;
+                r.Result    = "OK";
             }
             else
             {
