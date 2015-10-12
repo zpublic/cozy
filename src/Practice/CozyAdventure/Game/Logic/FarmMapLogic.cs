@@ -50,11 +50,26 @@ namespace CozyAdventure.Game.Logic
         }
 
         // 离开地图
-        public static void ExitMap(int level)
+        public static void ExitMap()
         {
             var msg = new GotoHomeMessage()
             {
-                Level = level,
+                UserData = "Leave",
+                PlayerId = PlayerObject.Instance.Self.PlayerId,
+            };
+
+            MessageManager.SendMessage("Client.Send", msg);
+        }
+
+        /// <summary>
+        /// 扎营
+        /// </summary>
+        public static void GoToCamp()
+        {
+            var msg = new GotoHomeMessage()
+            {
+                UserData = "Camp",
+                PlayerId = PlayerObject.Instance.Self.PlayerId,
             };
 
             MessageManager.SendMessage("Client.Send", msg);

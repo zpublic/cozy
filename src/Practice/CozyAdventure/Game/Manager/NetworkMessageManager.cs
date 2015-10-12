@@ -86,21 +86,24 @@ namespace CozyAdventure.Game.Manager
             MessageManager.SendMessage("MessageManager.Login.Success");
         }
 
-        private void SyncPlayerInfo(List<Model.Follower> followers, List<int> fightId, int Exp, int Money)
+        private void SyncPlayerInfo(List<Follower> followers, List<int> fightId, long Exp, long Money)
         {
-            PlayerObject.Instance.Self.AllFollower.Followers    = followers;
-            PlayerObject.Instance.Self.Money                    = Money;
-            PlayerObject.Instance.Self.Exp                      = Exp;
-
-            PlayerObject.Instance.Self.FightFollower.Followers.Clear();
-            foreach (var obj in PlayerObject.Instance.Self.AllFollower.Followers)
+            if (followers != null)
             {
-                if (fightId.Contains(obj.Id))
+                PlayerObject.Instance.Self.AllFollower.Followers = followers;
+                PlayerObject.Instance.Self.FightFollower.Followers.Clear();
+                foreach (var obj in PlayerObject.Instance.Self.AllFollower.Followers)
                 {
-                    obj.IsFighting = true;
-                    PlayerObject.Instance.Self.FightFollower.Followers.Add(obj);
+                    if (fightId.Contains(obj.Id))
+                    {
+                        obj.IsFighting = true;
+                        PlayerObject.Instance.Self.FightFollower.Followers.Add(obj);
+                    }
                 }
             }
+
+            PlayerObject.Instance.Self.Money    = Money;
+            PlayerObject.Instance.Self.Exp      = Exp;
         }
 
         private void OnHireResultMessage(HireResultMessage msg)
@@ -150,18 +153,43 @@ namespace CozyAdventure.Game.Manager
 
         private void OnFarmIncommingMessage(FarmIncomeMessage msg)
         {
-            SyncPlayerInfo(msg.Exp, msg.Money);
+            SyncPlayerInfo(null, null, msg.Exp, msg.Money);
             MessageManager.SendMessage("Message.FarmIncoming.Data");
-        }
-
-        private void SyncPlayerInfo(int money, int exp)
-        {
-            PlayerObject.Instance.Self.Exp      += exp;
-            PlayerObject.Instance.Self.Money    += money;
         }
 
         private void OnGotoResultMessage(GotoResultMessage msg)
         {
+            if(msg.GoToType == GotoResultMessage.ToHome)
+            {
+                if (msg.Result == "Ok")
+                {
+                    SyncPlayerInfo(null, null, msg.Exp, msg.Money);
+
+                    if (msg.UserData == "Leave")
+                    {
+                        MessageManager.SendMessage("Message.GotoHome.Leave");
+                    }
+                    else if(msg.UserData == "Camp")
+                    {
+                        MessageManager.SendMessage("Message.GotoHome.Camp");
+                    }
+                }
+                else
+                {
+                    MessageManager.SendMessage("Message.GotoHome.Failed");
+                }
+            }
+            else if(msg.GoToType == GotoResultMessage.ToMap)
+            {
+                if(msg.Result == "Ok")
+                {
+                    MessageManager.SendMessage("Message.GotoMap.Success");
+                }
+                else
+                {
+                    MessageManager.SendMessage("Message.GotoMap.Failed");
+                }
+            }
         }
     }
 }
