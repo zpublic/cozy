@@ -134,13 +134,6 @@
     <Compile Include="Public\Controls\Events\ItemAddEventArgs.cs" />
     <Compile Include="Public\Controls\Enum\ControlOrientation.cs" />
     <Compile Include="Public\Controls\Events\ItemRemoveEventArgs.cs" />
-    <Compile Include="Public\Controls\text_input_node\CCIMEKeyboardEventArgs.cs" />
-    <Compile Include="Public\Controls\text_input_node\CCIMEKeyboardNotificationInfo.cs" />
-    <Compile Include="Public\Controls\text_input_node\CCTextField.cs" />
-    <Compile Include="Public\Controls\text_input_node\CCTextFieldTTF.cs" />
-    <Compile Include="Public\Controls\text_input_node\ICCIMEDelegate.cs" />
-    <Compile Include="Public\Controls\text_input_node\ICCTextFieldDelegate.cs" />
-    <Compile Include="Public\Controls\text_input_node\IMEKeyboardImpl.cs" />
     <Compile Include="View\Layer\AdventureUiLayer.cs" />
     <Compile Include="View\Layer\BackgroundLayer.cs" />
     <Compile Include="View\Layer\CampUiLayer.cs" />
