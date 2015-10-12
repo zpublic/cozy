@@ -24,12 +24,19 @@ namespace CozyAdventure.View.Layer
             };
             AddChild(title, 100);
 
-            var begin = new CozySampleButton(300, 100, 200, 80)
+            var begin = new CozySampleButton(200, 100, 400, 80)
             {
-                Text = "开始游戏",
-                FontSize = 24
+                Text = "已注册成功，点击返回",
+                FontSize = 24,
+                OnClick = new Action(OnRetButton),
             };
             AddChild(begin, 100);
+            AddEventListener(begin.EventListener);
+        }
+
+        public void OnRetButton()
+        {
+            AppDelegate.SharedWindow.DefaultDirector.PopScene();
         }
     }
 }
