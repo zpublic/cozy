@@ -130,7 +130,7 @@ namespace CozyAdventure.Public.Controls
         /// <param name="_duration"></param>
         private void InitScale(float _scaleForm = 1.0f, float _scaleTo = 1.1f, float _duration = 0.1f)
         {
-            m_scaleFunc = new CCCallFuncN(node => ((CozySampleButton)node).ScaleComplete());
+            m_scaleFunc = new CCCallFuncN(node => ((BaseButton)node).ScaleComplete());
 
             ScaleTo = _scaleTo;
             ScaleFrom = _scaleForm;

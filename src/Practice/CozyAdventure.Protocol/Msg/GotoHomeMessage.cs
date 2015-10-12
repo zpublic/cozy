@@ -11,6 +11,8 @@ namespace CozyAdventure.Protocol.Msg
     {
         public override uint Id { get { return (uint)MessageId.Farm.GotoHomeMessage; } }
 
-        public int Level { get; set; }
+        public int PlayerId { get; set; }
+
+        public string UserData { get; set; }
     }
 }

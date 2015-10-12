@@ -14,6 +14,8 @@ namespace CozyAdventure.View.Layer
 {
     public class LoginUiLayer : CCLayer
     {
+        private bool IsExit { get; set; }
+
         public override void OnEnter()
         {
             base.OnEnter();
@@ -24,7 +26,11 @@ namespace CozyAdventure.View.Layer
         public override void OnExit()
         {
             base.OnExit();
-            UnregisterEvent();
+            if(IsExit)
+            {
+                UnregisterEvent();
+                IsExit = false;
+            }
         }
 
         private void InitUI()
@@ -36,9 +42,11 @@ namespace CozyAdventure.View.Layer
             };
             AddChild(title, 100);
 
-            var begin = new CozySampleButton(200, 100, 400, 80)
+            var begin = new CozySampleButton(200, 100, 200, 80)
             {
-                Text        = "开始游戏",
+                // 测试代码
+                // Text        = "开始游戏",
+                Text        = StringManager.GetText("str3"),
                 FontSize    = 24,
                 OnClick     = new Action(OnBeginButtonDown),
             };
@@ -75,17 +83,20 @@ namespace CozyAdventure.View.Layer
 
         public void OnRegisterButton()
         {
+            IsExit = true;
             UserLogic.Regist("kingwl", "123456", "hehe");
-            AppDelegate.SharedWindow.DefaultDirector.PushScene(new RegistScene());
+            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new RegistScene());
         }
 
         private void OnLoginSuccess()
         {
-            AppDelegate.SharedWindow.DefaultDirector.PushScene(new CampScene());
+            IsExit = true;
+            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new CampScene());
         }
 
         private void OnLoginFailed()
         {
+            IsExit = true;
             AppDelegate.SharedWindow.DefaultDirector.PopScene();
         }
 

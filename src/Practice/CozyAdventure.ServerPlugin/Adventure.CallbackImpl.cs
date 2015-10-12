@@ -89,7 +89,8 @@ namespace CozyAdventure.ServerPlugin
 
             if(AddFarmObj(im.SenderConnection, mapMsg.PlayerId, mapMsg.Money, mapMsg.Exp))
             {
-                r.Result = "Ok";
+                r.Result    = "Ok";
+                r.GoToType  = GotoResultMessage.ToMap;
             }
             else
             {
@@ -106,7 +107,15 @@ namespace CozyAdventure.ServerPlugin
 
             if (RemoveFarmObj(im.SenderConnection))
             {
-                r.Result = "Ok";
+                r.Result        = "Ok";
+                r.GoToType      = GotoResultMessage.ToHome;
+                r.UserData      = homeMsg.UserData;
+                var customer    = AdventurePluginDB.Customer.GetPlayerCustomer(homeMsg.PlayerId);
+                if(customer != null)
+                {
+                    r.Exp   = customer.Exp;
+                    r.Money = customer.Money;
+                }
             }
             else
             {
