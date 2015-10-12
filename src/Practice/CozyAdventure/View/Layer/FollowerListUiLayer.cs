@@ -133,6 +133,18 @@ namespace CozyAdventure.View.Layer
             this.AddEventListener(LastPageButton.EventListener);
             this.AddEventListener(NextPageButton.EventListener);
 
+            var backButton = new CozySampleButton(650, 17, 78, 36)
+            {
+                Text = "返回",
+                FontSize = 14,
+                OnClick = () =>
+                {
+                    AppDelegate.SharedWindow.DefaultDirector.PopScene();
+                }
+            };
+            AddChild(backButton, 100);
+            this.AddEventListener(backButton.EventListener);
+
             RefreshPage();
         }
 
