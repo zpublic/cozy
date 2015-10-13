@@ -103,16 +103,15 @@ namespace CozyAdventure.ServerPlugin
         private void GotoMapMessageImpl(NetIncomingMessage im, MessageBase msg)
         {
             var mapMsg      = msg as GotoMapMessage;
-            var r           = new GotoResultMessage();
+            var r           = new GotoResultMessage()
+            {
+                Level       = mapMsg.Level,
+                GoToType    = GotoResultMessage.ToMap,
+            };
 
-            if(AddFarmObj(im.SenderConnection, mapMsg.PlayerId, mapMsg.Money, mapMsg.Exp))
+            if(mapMsg.Attact >= mapMsg.AttactNeed)
             {
-                r.Result    = OkTag;
-                r.GoToType  = GotoResultMessage.ToMap;
-            }
-            else
-            {
-                r.Result = ErrorTag;
+                AddFarmObj(im.SenderConnection, mapMsg.PlayerId, mapMsg.Money, mapMsg.Exp);
             }
 
             SharedServer.SendMessage(r, im.SenderConnection);
@@ -121,23 +120,18 @@ namespace CozyAdventure.ServerPlugin
         private void GotoHomeMessageImpl(NetIncomingMessage im, MessageBase msg)
         {
             var homeMsg     = msg as GotoHomeMessage;
-            var r           = new GotoResultMessage();
+            var r           = new GotoResultMessage()
+            {
+                GoToType = GotoResultMessage.ToHome,
+            };
 
-            if (RemoveFarmObj(im.SenderConnection))
+            RemoveFarmObj(im.SenderConnection);
+            r.UserData      = homeMsg.UserData;
+            var customer    = AdventurePluginDB.Customer.GetPlayerCustomer(homeMsg.PlayerId);
+            if (customer != null)
             {
-                r.Result        = OkTag;
-                r.GoToType      = GotoResultMessage.ToHome;
-                r.UserData      = homeMsg.UserData;
-                var customer    = AdventurePluginDB.Customer.GetPlayerCustomer(homeMsg.PlayerId);
-                if(customer != null)
-                {
-                    r.Exp   = customer.Exp;
-                    r.Money = customer.Money;
-                }
-            }
-            else
-            {
-                r.Result = ErrorTag;
+                r.Exp   = customer.Exp;
+                r.Money = customer.Money;
             }
 
             SharedServer.SendMessage(r, im.SenderConnection);

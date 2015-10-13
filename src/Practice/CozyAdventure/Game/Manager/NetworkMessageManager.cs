@@ -167,34 +167,20 @@ namespace CozyAdventure.Game.Manager
         {
             if(msg.GoToType == GotoResultMessage.ToHome)
             {
-                if (msg.Result == OkTag)
-                {
-                    SyncPlayerInfo(null, null, msg.Exp, msg.Money);
+                SyncPlayerInfo(null, null, msg.Exp, msg.Money);
 
-                    if (msg.UserData == "Leave")
-                    {
-                        MessageManager.SendMessage("Message.GotoHome.Leave");
-                    }
-                    else if(msg.UserData == "Camp")
-                    {
-                        MessageManager.SendMessage("Message.GotoHome.Camp");
-                    }
-                }
-                else
+                if (msg.UserData == "Leave")
                 {
-                    MessageManager.SendMessage("Message.GotoHome.Failed");
+                    MessageManager.SendMessage("Message.GotoHome.Leave");
+                }
+                else if (msg.UserData == "Camp")
+                {
+                    MessageManager.SendMessage("Message.GotoHome.Camp");
                 }
             }
-            else if(msg.GoToType == GotoResultMessage.ToMap)
+            else if (msg.GoToType == GotoResultMessage.ToMap)
             {
-                if(msg.Result == OkTag)
-                {
-                    MessageManager.SendMessage("Message.GotoMap.Success");
-                }
-                else
-                {
-                    MessageManager.SendMessage("Message.GotoMap.Failed");
-                }
+                MessageManager.SendMessage("Message.GotoMap.Success", msg.Level);
             }
         }
 

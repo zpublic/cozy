@@ -124,6 +124,7 @@
     <Compile Include="Game\Object\BagObject.cs" />
     <Compile Include="Game\Object\PlayerObject.cs" />
     <Compile Include="Public\Controls\BaseButton.cs" />
+    <Compile Include="Public\Controls\ButtonEventDispatcher.cs" />
     <Compile Include="Public\Controls\Enum\ButtonStatus.cs" />
     <Compile Include="Public\Controls\CozyColorSampleButton.cs" />
     <Compile Include="Public\Controls\CozyControl.cs" />

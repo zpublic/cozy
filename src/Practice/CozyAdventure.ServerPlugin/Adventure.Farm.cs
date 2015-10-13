@@ -24,11 +24,11 @@ namespace CozyAdventure.ServerPlugin
             FarmTimer.Interval = 60000;
         }
 
-        public bool AddFarmObj(NetConnection conn, int playerid, int money, int exp)
+        public void AddFarmObj(NetConnection conn, int playerid, int money, int exp)
         {
             lock(Locker)
             {
-                if (FarmList.ContainsKey(conn)) return false;
+                if (FarmList.ContainsKey(conn)) return;
                 FarmList[conn] = new FarmStorage()
                 {
                     CurrTime    = DateTime.Now,
@@ -38,10 +38,10 @@ namespace CozyAdventure.ServerPlugin
                 };
                 if (!FarmTimer.Enabled) FarmTimer.Enabled = true;
             }
-            return true;
+            return;
         }
 
-        public bool RemoveFarmObj(NetConnection conn)
+        public void RemoveFarmObj(NetConnection conn)
         {
             var now = DateTime.Now;
             lock (Locker)
@@ -60,12 +60,7 @@ namespace CozyAdventure.ServerPlugin
                         FarmTimer.Enabled = false;
                     }
                 }
-                else
-                {
-                    return false;
-                }
             }
-            return true;
         }
 
 

@@ -18,10 +18,10 @@ namespace CozyAdventure.Protocol.Msg
 
         public string UserData { get; set; }
 
-        public string Result { get; set; }
-
         public long Exp { get; set; }
 
         public long Money { get; set; }
+
+        public int Level { get; set; }
     }
 }

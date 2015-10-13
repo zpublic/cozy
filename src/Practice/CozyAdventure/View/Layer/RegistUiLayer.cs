@@ -23,6 +23,8 @@ namespace CozyAdventure.View.Layer
 
         private CozySampleButton CurrButton { get; set; }
 
+        private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
+
         public override void OnEnter()
         {
             base.OnEnter();
@@ -40,10 +42,12 @@ namespace CozyAdventure.View.Layer
         {
             MessageManager.RegisterMessage("Message.Register.Success", OnRegisterSuccess);
             MessageManager.RegisterMessage("Message.Register.Failed", OnRegisterFailed);
+            dispatcher.AttachListener(this);
         }
 
         private void UnregisterEvent()
         {
+            dispatcher.DetachListener(this);
             MessageManager.UnRegisterMessage("Message.Register.Failed", OnRegisterFailed);
             MessageManager.UnRegisterMessage("Message.Register.Success", OnRegisterSuccess);
         }
@@ -91,7 +95,7 @@ namespace CozyAdventure.View.Layer
                 OnClick = () => OnRegister()
             };
             AddChild(CurrButton, 100);
-            this.AddEventListener(CurrButton.EventListener);
+            dispatcher.Add(CurrButton);
         }
 
         protected override void AddedToScene()

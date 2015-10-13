@@ -16,20 +16,29 @@ namespace CozyAdventure.View.Layer
     {
         private bool IsExit { get; set; } = true;
 
+        private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
+
+        protected override void AddedToScene()
+        {
+            base.AddedToScene();
+            InitUI();
+        }
+
         public override void OnEnter()
         {
             base.OnEnter();
-            InitUI();
             if(IsExit)
             {
                 RegisterEvent();
                 IsExit = false;
             }
+            dispatcher.AttachListener(this);
         }
 
         public override void OnExit()
         {
             base.OnExit();
+            dispatcher.DetachListener(this);
             if(IsExit)
             {
                 UnregisterEvent();
@@ -54,8 +63,8 @@ namespace CozyAdventure.View.Layer
                 FontSize    = 24,
                 OnClick     = new Action(OnBeginButtonDown),
             };
-            AddEventListener(begin.EventListener);
             AddChild(begin, 100);
+            dispatcher.Add(begin);
 
             var reg = new CozySampleButton(690, 0, 100, 50)
             {
@@ -63,8 +72,9 @@ namespace CozyAdventure.View.Layer
                 FontSize    = 18,
                 OnClick     = new Action(OnRegisterButton),
             };
-            AddEventListener(reg.EventListener);
             AddChild(reg, 100);
+            dispatcher.Add(reg);
+
         }
 
         private void RegisterEvent()
