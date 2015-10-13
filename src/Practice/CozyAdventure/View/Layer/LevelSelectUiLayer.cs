@@ -16,10 +16,15 @@ namespace CozyAdventure.View.Layer
     {
         private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
 
+        protected override void AddedToScene()
+        {
+            base.AddedToScene();
+            InitUI();
+        }
+
         public override void OnEnter()
         {
             base.OnEnter();
-            InitUI();
             RegisterEvent();
         }
 
@@ -31,11 +36,13 @@ namespace CozyAdventure.View.Layer
 
         private void RegisterEvent()
         {
+            dispatcher.AttachListener(this);
             MessageManager.RegisterMessage("Message.GotoMap.Success", OnGotoMapSuccess);
         }
 
         private void UnregisterEvent()
         {
+            dispatcher.DetachListener(this);
             MessageManager.UnRegisterMessage("Message.GotoMap.Success", OnGotoMapSuccess);
         }
 
@@ -64,7 +71,6 @@ namespace CozyAdventure.View.Layer
                     }
                 }
             }
-            dispatcher.AttachListener(this);
         }
 
         private void OnGotoMapSuccess(object level)

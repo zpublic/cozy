@@ -48,13 +48,18 @@ namespace CozyAdventure.View.Layer
         public override void OnEnter()
         {
             base.OnEnter();
+            RefreshPage();
             MessageManager.RegisterMessage("Message.FollowerFight.Success", OnFightStatusSwitch);
+            dispatcher.AttachListener(this);
+            uidispatcher.AttachListener(this);
         }
 
         public override void OnExit()
         {
             base.OnExit();
             MessageManager.UnRegisterMessage("Message.FollowerFight.Success", OnFightStatusSwitch);
+            dispatcher.DetachListener(this);
+            uidispatcher.DetachListener(this);
         }
 
         #region UI
@@ -150,10 +155,6 @@ namespace CozyAdventure.View.Layer
             };
             AddChild(backButton, 100);
             uidispatcher.Add(backButton);
-
-            RefreshPage();
-            dispatcher.AttachListener(this);
-            uidispatcher.AttachListener(this);
         }
 
         #endregion

@@ -52,6 +52,7 @@ namespace CozyAdventure.View.Layer
             {
                 Schedule(OnTimerAnimation, 1.0f);
             }
+            dispatcher.AttachListener(this);
         }
 
         public override void OnExit()
@@ -59,6 +60,7 @@ namespace CozyAdventure.View.Layer
             base.OnExit();
             UnregisterEvent();
             Unschedule(OnTimerAnimation);
+            dispatcher.DetachListener(this);
         }
 
         #region UI
@@ -111,8 +113,6 @@ namespace CozyAdventure.View.Layer
             };
             AddChild(Leave, 100);
             dispatcher.Add(Leave);
-
-            dispatcher.AttachListener(this);
         }
 
         #endregion

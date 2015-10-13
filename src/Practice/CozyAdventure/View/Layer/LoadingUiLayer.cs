@@ -28,10 +28,15 @@ namespace CozyAdventure.View.Layer
         /// </summary>
         public Action TimeOutCallback { get; set; }
 
+        protected override void AddedToScene()
+        {
+            base.AddedToScene();
+            InitUI();
+        }
+
         public override void OnEnter()
         {
             base.OnEnter();
-            InitUI();
         }
 
         public override void OnExit()

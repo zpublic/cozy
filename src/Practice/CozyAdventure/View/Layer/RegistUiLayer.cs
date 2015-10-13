@@ -42,10 +42,12 @@ namespace CozyAdventure.View.Layer
         {
             MessageManager.RegisterMessage("Message.Register.Success", OnRegisterSuccess);
             MessageManager.RegisterMessage("Message.Register.Failed", OnRegisterFailed);
+            dispatcher.AttachListener(this);
         }
 
         private void UnregisterEvent()
         {
+            dispatcher.DetachListener(this);
             MessageManager.UnRegisterMessage("Message.Register.Failed", OnRegisterFailed);
             MessageManager.UnRegisterMessage("Message.Register.Success", OnRegisterSuccess);
         }
@@ -94,8 +96,6 @@ namespace CozyAdventure.View.Layer
             };
             AddChild(CurrButton, 100);
             dispatcher.Add(CurrButton);
-
-            dispatcher.AttachListener(this);
         }
 
         protected override void AddedToScene()

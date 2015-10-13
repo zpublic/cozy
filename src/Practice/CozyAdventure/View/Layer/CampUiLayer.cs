@@ -18,16 +18,25 @@ namespace CozyAdventure.View.Layer
         private CCLabel EditNode { get; set; }
         private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
 
+        protected override void AddedToScene()
+        {
+            base.AddedToScene();
+            InitUI();
+        }
+
         public override void OnEnter()
         {
             base.OnEnter();
             RegisterEvent();
+            RefreshPlayerInfo();
+            dispatcher.AttachListener(this);
         }
 
         public override void OnExit()
         {
             base.OnExit();
             UnregisterEvent();
+            dispatcher.DetachListener(this);
         }
 
         private void RegisterEvent()
@@ -38,12 +47,6 @@ namespace CozyAdventure.View.Layer
         private void UnregisterEvent()
         {
             MessageManager.UnRegisterMessage("Message.GotoMap.Success", OnGotoMapSuccess);
-        }
-
-        public CampUiLayer()
-        {
-            InitUI();
-            RefreshPlayerInfo();
         }
 
         private void InitUI()
@@ -95,8 +98,6 @@ namespace CozyAdventure.View.Layer
             };
             AddChild(MyFriends, 100);
             dispatcher.Add(MyFriends);
-
-            dispatcher.AttachListener(this);
         }
 
         private void RefreshPlayerInfo()

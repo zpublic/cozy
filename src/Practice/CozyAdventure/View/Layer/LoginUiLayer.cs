@@ -18,20 +18,27 @@ namespace CozyAdventure.View.Layer
 
         private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
 
+        protected override void AddedToScene()
+        {
+            base.AddedToScene();
+            InitUI();
+        }
+
         public override void OnEnter()
         {
             base.OnEnter();
-            InitUI();
             if(IsExit)
             {
                 RegisterEvent();
                 IsExit = false;
             }
+            dispatcher.AttachListener(this);
         }
 
         public override void OnExit()
         {
             base.OnExit();
+            dispatcher.DetachListener(this);
             if(IsExit)
             {
                 UnregisterEvent();
@@ -68,7 +75,6 @@ namespace CozyAdventure.View.Layer
             AddChild(reg, 100);
             dispatcher.Add(reg);
 
-            dispatcher.AttachListener(this);
         }
 
         private void RegisterEvent()
