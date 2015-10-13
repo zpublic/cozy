@@ -14,13 +14,17 @@ namespace CozyAdventure.View.Layer
 {
     public class LoginUiLayer : CCLayer
     {
-        private bool IsExit { get; set; }
+        private bool IsExit { get; set; } = true;
 
         public override void OnEnter()
         {
             base.OnEnter();
             InitUI();
-            RegisterEvent();
+            if(IsExit)
+            {
+                RegisterEvent();
+                IsExit = false;
+            }
         }
 
         public override void OnExit()
@@ -83,9 +87,7 @@ namespace CozyAdventure.View.Layer
 
         public void OnRegisterButton()
         {
-            IsExit = true;
-            UserLogic.Regist("kingwl", "123456", "hehe");
-            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new RegistScene());
+            AppDelegate.SharedWindow.DefaultDirector.PushScene(new RegistScene());
         }
 
         private void OnLoginSuccess()
@@ -96,7 +98,6 @@ namespace CozyAdventure.View.Layer
 
         private void OnLoginFailed()
         {
-            IsExit = true;
             AppDelegate.SharedWindow.DefaultDirector.PopScene();
         }
 
