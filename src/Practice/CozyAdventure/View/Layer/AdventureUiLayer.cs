@@ -30,6 +30,8 @@ namespace CozyAdventure.View.Layer
 
         private int Fighting { get; set; }
 
+        private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
+
         public override void OnEnter()
         {
             base.OnEnter();
@@ -72,7 +74,7 @@ namespace CozyAdventure.View.Layer
                 FontSize    = 14
             };
             AddChild(Details, 100);
-            this.AddEventListener(Details.EventListener);
+            dispatcher.Add(Details);
 
             var DoCamp = new CozySampleButton(630, 38, 78, 36)
             {
@@ -84,7 +86,7 @@ namespace CozyAdventure.View.Layer
                 },
             };
             AddChild(DoCamp, 100);
-            this.AddEventListener(DoCamp.EventListener);
+            dispatcher.Add(DoCamp);
 
             var Leave = new CozySampleButton(718, 38, 78, 36)
             {
@@ -96,7 +98,9 @@ namespace CozyAdventure.View.Layer
                 },
             };
             AddChild(Leave, 100);
-            this.AddEventListener(Leave.EventListener);
+            dispatcher.Add(Leave);
+
+            dispatcher.AttachListener(this);
         }
 
         #endregion

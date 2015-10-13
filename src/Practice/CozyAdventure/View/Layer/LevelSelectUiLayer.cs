@@ -14,6 +14,8 @@ namespace CozyAdventure.View.Layer
 {
     public class LevelSelectUiLayer : CCLayer
     {
+        private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
+
         public override void OnEnter()
         {
             base.OnEnter();
@@ -60,11 +62,12 @@ namespace CozyAdventure.View.Layer
                             }
                         };
                         this.AddChild(bt);
-                        this.AddEventListener(bt.EventListener);
+                        dispatcher.Add(bt);
                         ++count;
                     }
                 }
             }
+            dispatcher.AttachListener(this);
         }
 
         private void OnGotoMapSuccess()

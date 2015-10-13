@@ -23,6 +23,8 @@ namespace CozyAdventure.View.Layer
 
         private CozySampleButton CurrButton { get; set; }
 
+        private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
+
         public override void OnEnter()
         {
             base.OnEnter();
@@ -91,7 +93,9 @@ namespace CozyAdventure.View.Layer
                 OnClick = () => OnRegister()
             };
             AddChild(CurrButton, 100);
-            this.AddEventListener(CurrButton.EventListener);
+            dispatcher.Add(CurrButton);
+
+            dispatcher.AttachListener(this);
         }
 
         protected override void AddedToScene()

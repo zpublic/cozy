@@ -16,6 +16,7 @@ namespace CozyAdventure.View.Layer
     public class CampUiLayer : CCLayer
     {
         private CCLabel EditNode { get; set; }
+        private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
 
         public override void OnEnter()
         {
@@ -66,8 +67,8 @@ namespace CozyAdventure.View.Layer
                     FarmMapLogic.EnterMap(PlayerObject.Instance.Self.CurrLevel);
                 }
             };
-            this.AddEventListener(Goon.EventListener);
             AddChild(Goon, 100);
+            dispatcher.Add(Goon);
 
             var MercMange = new CozySampleButton(631, 160, 78, 36)
             {
@@ -78,24 +79,26 @@ namespace CozyAdventure.View.Layer
                     AppDelegate.SharedWindow.DefaultDirector.PushScene(new FollowerListScene());
                 }
             };
-            this.AddEventListener(MercMange.EventListener);
             AddChild(MercMange, 100);
+            dispatcher.Add(MercMange);
 
             var MyGoods = new CozySampleButton(631, 227, 78, 36)
             {
                 Text        = "我的物品",
                 FontSize    = 14
             };
-            this.AddEventListener(MyGoods.EventListener);
             AddChild(MyGoods, 100);
+            dispatcher.Add(MyGoods);
 
             var MyFriends = new CozySampleButton(631, 299, 78, 36)
             {
                 Text        = "我的好友",
                 FontSize    = 14
             };
-            this.AddEventListener(MyFriends.EventListener);
             AddChild(MyFriends, 100);
+            dispatcher.Add(MyFriends);
+
+            dispatcher.AttachListener(this);
         }
 
         private void RefreshPlayerInfo()

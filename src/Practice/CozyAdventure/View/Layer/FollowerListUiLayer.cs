@@ -36,12 +36,18 @@ namespace CozyAdventure.View.Layer
 
         private FollowerDetailSprite ShowDetail { get; set; }
 
-        private List<CCEventListenerTouchOneByOne> ListenerList { get; set; } = new List<CCEventListenerTouchOneByOne>();
+        private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
+        private ButtonEventDispatcher uidispatcher { get; set; } = new ButtonEventDispatcher();
+
+        protected override void AddedToScene()
+        {
+            base.AddedToScene();
+            InitUI();
+        }
 
         public override void OnEnter()
         {
             base.OnEnter();
-            InitUI();
             MessageManager.RegisterMessage("Message.FollowerFight.Success", OnFightStatusSwitch);
         }
 
@@ -130,8 +136,8 @@ namespace CozyAdventure.View.Layer
             };
             AddChild(NextPageButton, 100);
             AddChild(LastPageButton, 100);
-            this.AddEventListener(LastPageButton.EventListener);
-            this.AddEventListener(NextPageButton.EventListener);
+            uidispatcher.Add(NextPageButton);
+            uidispatcher.Add(LastPageButton);
 
             var backButton = new CozySampleButton(650, 17, 78, 36)
             {
@@ -143,9 +149,11 @@ namespace CozyAdventure.View.Layer
                 }
             };
             AddChild(backButton, 100);
-            this.AddEventListener(backButton.EventListener);
+            uidispatcher.Add(backButton);
 
             RefreshPage();
+            dispatcher.AttachListener(this);
+            uidispatcher.AttachListener(this);
         }
 
         #endregion
@@ -179,8 +187,7 @@ namespace CozyAdventure.View.Layer
                             },
                         };
                         item.AddChild(button);
-                        this.AddEventListener(button.EventListener, 2);
-                        ListenerList.Add(button.EventListener);
+                        dispatcher.Add(button);
 
                         SpriteList[index].Visible = true;
                         InnerList[i].AddItem(item);
@@ -200,11 +207,7 @@ namespace CozyAdventure.View.Layer
             {
                 list.Clear();
             }
-            foreach (var obj in ListenerList)
-            {
-                this.RemoveEventListener(obj);
-            }
-            ListenerList.Clear();
+            dispatcher.Clear();
         }
 
         private void RefreshPage()

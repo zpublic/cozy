@@ -28,6 +28,8 @@ namespace CozyAdventure.View.Sprite
 
         private CozySampleButton StatusChangeButton { get; set; }
 
+        private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
+
         public Action<Follower> FightStatusChangeCallback { get; set; }
 
         public FollowerDetailSprite()
@@ -70,8 +72,10 @@ namespace CozyAdventure.View.Sprite
             this.AddChild(CurrAttack);
             this.AddChild(CloseButton);
             this.AddChild(StatusChangeButton);
-            this.AddEventListener(CloseButton.EventListener, 1);
-            this.AddEventListener(StatusChangeButton.EventListener);
+            dispatcher.Add(CloseButton);
+            dispatcher.Add(StatusChangeButton);
+
+            dispatcher.AttachListener(this);
         }
 
         private Follower currFollower;
