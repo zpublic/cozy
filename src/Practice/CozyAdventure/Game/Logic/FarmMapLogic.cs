@@ -36,7 +36,6 @@ namespace CozyAdventure.Game.Logic
         {
             var need    = Requirement(level);
             var attget  = FollowerCollectLogic.GetAttack(PlayerObject.Instance.Self.FightFollower);
-            if (need > attget) return;
 
             var msg = new GotoMapMessage()
             {
@@ -44,6 +43,8 @@ namespace CozyAdventure.Game.Logic
                 Level       = level,
                 Exp         = Exp(level),
                 Money       = Money(level),
+                Attact      = attget,
+                AttactNeed  = need,
             };
 
             MessageManager.SendMessage("Client.Send", msg);

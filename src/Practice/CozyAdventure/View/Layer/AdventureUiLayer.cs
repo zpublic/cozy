@@ -32,21 +32,33 @@ namespace CozyAdventure.View.Layer
 
         private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
 
+        protected override void AddedToScene()
+        {
+            base.AddedToScene();
+            InitUI();
+        }
+
         public override void OnEnter()
         {
             base.OnEnter();
-            InitUI();
 
             RefreshPlayerInfo();
             RefreshMapInfo();
             RegisterEvent();
-            Schedule(OnTimerAnimation, 1.0f);
+
+            var need    = FarmMapLogic.Requirement(PlayerObject.Instance.Self.CurrLevel);
+            var attget  = FollowerCollectLogic.GetAttack(PlayerObject.Instance.Self.FightFollower);
+            if(need <= attget)
+            {
+                Schedule(OnTimerAnimation, 1.0f);
+            }
         }
 
         public override void OnExit()
         {
             base.OnExit();
             UnregisterEvent();
+            Unschedule(OnTimerAnimation);
         }
 
         #region UI
@@ -155,13 +167,11 @@ namespace CozyAdventure.View.Layer
 
         private void OnLeave()
         {
-            Unschedule(OnTimerAnimation);
-            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new LevelSelectScene());
+            AppDelegate.SharedWindow.DefaultDirector.PushScene(new LevelSelectScene());
         }
 
         private void OnCamp()
         {
-            Unschedule(OnTimerAnimation);
             AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new CampScene());
         }
 

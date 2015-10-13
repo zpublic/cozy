@@ -33,12 +33,10 @@ namespace CozyAdventure.View.Layer
         private void RegisterEvent()
         {
             MessageManager.RegisterMessage("Message.GotoMap.Success", OnGotoMapSuccess);
-            MessageManager.RegisterMessage("Message.GotoMap.Failed", OnGotoMapFailed);
         }
 
         private void UnregisterEvent()
         {
-            MessageManager.UnRegisterMessage("Message.GotoMap.Failed", OnGotoMapFailed);
             MessageManager.UnRegisterMessage("Message.GotoMap.Success", OnGotoMapSuccess);
         }
 
@@ -110,13 +108,9 @@ namespace CozyAdventure.View.Layer
             EditNode.Text = string.Format("战斗力: + {0} +  金币 + {1} + 经验 + {2}", Fighting, Money, Exp);
         }
 
-        private void OnGotoMapFailed()
+        private void OnGotoMapSuccess(object level)
         {
-
-        }
-
-        private void OnGotoMapSuccess()
-        {
+            PlayerObject.Instance.Self.CurrLevel = (int)level;
             AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new AdventureScene());
         }
     }
