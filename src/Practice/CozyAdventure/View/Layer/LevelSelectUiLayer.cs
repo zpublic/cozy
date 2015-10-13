@@ -14,10 +14,17 @@ namespace CozyAdventure.View.Layer
 {
     public class LevelSelectUiLayer : CCLayer
     {
+        private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
+
+        protected override void AddedToScene()
+        {
+            base.AddedToScene();
+            InitUI();
+        }
+
         public override void OnEnter()
         {
             base.OnEnter();
-            InitUI();
             RegisterEvent();
         }
 
@@ -29,13 +36,13 @@ namespace CozyAdventure.View.Layer
 
         private void RegisterEvent()
         {
+            dispatcher.AttachListener(this);
             MessageManager.RegisterMessage("Message.GotoMap.Success", OnGotoMapSuccess);
-            MessageManager.RegisterMessage("Message.GotoMap.Failed", OnGotoMapFailed);
         }
 
         private void UnregisterEvent()
         {
-            MessageManager.UnRegisterMessage("Message.GotoMap.Failed", OnGotoMapFailed);
+            dispatcher.DetachListener(this);
             MessageManager.UnRegisterMessage("Message.GotoMap.Success", OnGotoMapSuccess);
         }
 
@@ -55,26 +62,21 @@ namespace CozyAdventure.View.Layer
                             Position    = new CCPoint(i * (100 + 10), j * (100 + 10)),
                             OnClick     = () =>
                             {
-                                PlayerObject.Instance.Self.CurrLevel = index;
-                                FarmMapLogic.EnterMap(PlayerObject.Instance.Self.CurrLevel);
+                                FarmMapLogic.EnterMap(index);
                             }
                         };
                         this.AddChild(bt);
-                        this.AddEventListener(bt.EventListener);
+                        dispatcher.Add(bt);
                         ++count;
                     }
                 }
             }
         }
 
-        private void OnGotoMapSuccess()
+        private void OnGotoMapSuccess(object level)
         {
-            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new AdventureScene());
-        }
-
-        private void OnGotoMapFailed()
-        {
-
+            PlayerObject.Instance.Self.CurrLevel = (int)level;
+            AppDelegate.SharedWindow.DefaultDirector.PopScene();
         }
     }
 }

@@ -153,11 +153,6 @@ namespace CozyAdventure.Public.Controls
 
         public virtual void Init(float width, float height)
         {
-            EventListener = new CCEventListenerTouchOneByOne()
-            {
-                OnTouchBegan = OnTouchBegan,
-                OnTouchEnded = OnTouchEnded,
-            };
             ContentSize = new CCSize(width, height);
         }
 
@@ -172,32 +167,37 @@ namespace CozyAdventure.Public.Controls
 
         #region Event
 
+        private CCPoint StartPoint { get; set; }
+
         public Action OnClick { get; set; }
 
         public ButtonStatus Status { get; set; }
 
-        public CCEventListenerTouchOneByOne EventListener { get; set; }
+        public bool OnTouchBegan(CCTouch touch, CCEvent e)
+        {
+            StartPoint = touch.Location;
+            OnKeyDown();
+            return true;
+        }
 
-        private bool OnTouchBegan(CCTouch touch, CCEvent e)
+        public void OnTouchEnded(CCTouch touch, CCEvent e)
         {
             if (!Visible)
             {
-                return false;
+                return;
+            }
+
+            var beginrect = new CCRect(StartPoint.X, StartPoint.Y, ContentSize.Width, ContentSize.Height);
+            if(!beginrect.ContainsPoint(touch.Location))
+            {
+                return;
             }
 
             var rect = new CCRect(PositionWorldspace.X, PositionWorldspace.Y, ContentSize.Width, ContentSize.Height);
             if (!rect.ContainsPoint(touch.Location))
             {
-                return false;
+                return;
             }
-
-            OnKeyDown();
-            e.StopPropogation();
-            return true;
-        }
-
-        private void OnTouchEnded(CCTouch touch, CCEvent e)
-        {
             OnKeyUp();
         }
 

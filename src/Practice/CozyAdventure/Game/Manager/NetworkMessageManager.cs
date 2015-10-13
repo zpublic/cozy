@@ -18,6 +18,9 @@ namespace CozyAdventure.Game.Manager
         private static NetworkMessageManager _Instance = new NetworkMessageManager();
         public static NetworkMessageManager Instance { get { return _Instance; } }
 
+        public const string OkTag       = "Ok";
+        public const string ErrorTag    = "Error";
+
         public void Init()
         {
             MessageManager.RegisterMessage("Client.Data", OnMessage);
@@ -46,6 +49,9 @@ namespace CozyAdventure.Game.Manager
                 case (uint)MessageId.Farm.GotoResultMessage:
                     OnGotoResultMessage((GotoResultMessage)msg);
                     break;
+                case (uint)MessageId.Inner.RegisterResultMessage:
+                    OnRegisterResultMessage((RegisterResultMessage)msg);
+                    break;
                 default:
                     break;
             }
@@ -53,7 +59,7 @@ namespace CozyAdventure.Game.Manager
 
         private void OnLoginRspMessage(LoginResultMessage msg)
         {
-            if (msg.Result == "OK")
+            if (msg.Result == OkTag)
             {
                 PlayerObject.Instance.Self.PlayerId = msg.PlayerId;
 
@@ -64,7 +70,7 @@ namespace CozyAdventure.Game.Manager
 
                 MessageManager.SendMessage("Client.Send", sendMsg);
             }
-            else if (msg.Result == "Error")
+            else if (msg.Result == ErrorTag)
             {
                 MessageManager.SendMessage("Message.Login.Failed");
             }
@@ -109,7 +115,7 @@ namespace CozyAdventure.Game.Manager
         private void OnHireResultMessage(HireResultMessage msg)
         {
             var res = FollowerPackageModule.GetFollowerPackages();
-            if (msg.Result == "Ok")
+            if (msg.Result == OkTag)
             {
                 foreach (var obj in msg.Followers)
                 {
@@ -127,7 +133,7 @@ namespace CozyAdventure.Game.Manager
 
         private void OnFightMessage(FightResultMessage msg)
         {
-            if (msg.Result == "Ok")
+            if (msg.Result == OkTag)
             {
                 var follower = (Follower)FollowerObjectManager.Instance.GetObj(msg.ObjectId);
                 if (msg.StatusNow == FightMessage.GoToFight)
@@ -161,34 +167,32 @@ namespace CozyAdventure.Game.Manager
         {
             if(msg.GoToType == GotoResultMessage.ToHome)
             {
-                if (msg.Result == "Ok")
-                {
-                    SyncPlayerInfo(null, null, msg.Exp, msg.Money);
+                SyncPlayerInfo(null, null, msg.Exp, msg.Money);
 
-                    if (msg.UserData == "Leave")
-                    {
-                        MessageManager.SendMessage("Message.GotoHome.Leave");
-                    }
-                    else if(msg.UserData == "Camp")
-                    {
-                        MessageManager.SendMessage("Message.GotoHome.Camp");
-                    }
-                }
-                else
+                if (msg.UserData == "Leave")
                 {
-                    MessageManager.SendMessage("Message.GotoHome.Failed");
+                    MessageManager.SendMessage("Message.GotoHome.Leave");
+                }
+                else if (msg.UserData == "Camp")
+                {
+                    MessageManager.SendMessage("Message.GotoHome.Camp");
                 }
             }
-            else if(msg.GoToType == GotoResultMessage.ToMap)
+            else if (msg.GoToType == GotoResultMessage.ToMap)
             {
-                if(msg.Result == "Ok")
-                {
-                    MessageManager.SendMessage("Message.GotoMap.Success");
-                }
-                else
-                {
-                    MessageManager.SendMessage("Message.GotoMap.Failed");
-                }
+                MessageManager.SendMessage("Message.GotoMap.Success", msg.Level);
+            }
+        }
+
+        private void OnRegisterResultMessage(RegisterResultMessage msg)
+        {
+            if (msg.Result == OkTag)
+            {
+                MessageManager.SendMessage("Message.Register.Success");
+            }
+            else
+            {
+                MessageManager.SendMessage("Message.Register.Failed");
             }
         }
     }

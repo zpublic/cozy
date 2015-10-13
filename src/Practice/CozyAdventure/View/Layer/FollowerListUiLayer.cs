@@ -36,19 +36,30 @@ namespace CozyAdventure.View.Layer
 
         private FollowerDetailSprite ShowDetail { get; set; }
 
-        private List<CCEventListenerTouchOneByOne> ListenerList { get; set; } = new List<CCEventListenerTouchOneByOne>();
+        private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
+        private ButtonEventDispatcher uidispatcher { get; set; } = new ButtonEventDispatcher();
+
+        protected override void AddedToScene()
+        {
+            base.AddedToScene();
+            InitUI();
+        }
 
         public override void OnEnter()
         {
             base.OnEnter();
-            InitUI();
+            RefreshPage();
             MessageManager.RegisterMessage("Message.FollowerFight.Success", OnFightStatusSwitch);
+            dispatcher.AttachListener(this);
+            uidispatcher.AttachListener(this);
         }
 
         public override void OnExit()
         {
             base.OnExit();
             MessageManager.UnRegisterMessage("Message.FollowerFight.Success", OnFightStatusSwitch);
+            dispatcher.DetachListener(this);
+            uidispatcher.DetachListener(this);
         }
 
         #region UI
@@ -130,10 +141,20 @@ namespace CozyAdventure.View.Layer
             };
             AddChild(NextPageButton, 100);
             AddChild(LastPageButton, 100);
-            this.AddEventListener(LastPageButton.EventListener);
-            this.AddEventListener(NextPageButton.EventListener);
+            uidispatcher.Add(NextPageButton);
+            uidispatcher.Add(LastPageButton);
 
-            RefreshPage();
+            var backButton = new CozySampleButton(650, 17, 78, 36)
+            {
+                Text = "返回",
+                FontSize = 14,
+                OnClick = () =>
+                {
+                    AppDelegate.SharedWindow.DefaultDirector.PopScene();
+                }
+            };
+            AddChild(backButton, 100);
+            uidispatcher.Add(backButton);
         }
 
         #endregion
@@ -167,8 +188,7 @@ namespace CozyAdventure.View.Layer
                             },
                         };
                         item.AddChild(button);
-                        this.AddEventListener(button.EventListener, 2);
-                        ListenerList.Add(button.EventListener);
+                        dispatcher.Add(button);
 
                         SpriteList[index].Visible = true;
                         InnerList[i].AddItem(item);
@@ -188,11 +208,7 @@ namespace CozyAdventure.View.Layer
             {
                 list.Clear();
             }
-            foreach (var obj in ListenerList)
-            {
-                this.RemoveEventListener(obj);
-            }
-            ListenerList.Clear();
+            dispatcher.Clear();
         }
 
         private void RefreshPage()

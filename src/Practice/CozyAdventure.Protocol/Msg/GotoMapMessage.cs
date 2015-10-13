@@ -19,5 +19,9 @@ namespace CozyAdventure.Protocol.Msg
         public int Exp { get; set; }
 
         public int Money { get; set; }
+
+        public int Attact { get; set; }
+
+        public int AttactNeed { get; set; }
     }
 }

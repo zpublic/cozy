@@ -30,21 +30,37 @@ namespace CozyAdventure.View.Layer
 
         private int Fighting { get; set; }
 
+        private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
+
+        protected override void AddedToScene()
+        {
+            base.AddedToScene();
+            InitUI();
+        }
+
         public override void OnEnter()
         {
             base.OnEnter();
-            InitUI();
 
             RefreshPlayerInfo();
             RefreshMapInfo();
             RegisterEvent();
-            Schedule(OnTimerAnimation, 1.0f);
+
+            var need    = FarmMapLogic.Requirement(PlayerObject.Instance.Self.CurrLevel);
+            var attget  = FollowerCollectLogic.GetAttack(PlayerObject.Instance.Self.FightFollower);
+            if(need <= attget)
+            {
+                Schedule(OnTimerAnimation, 1.0f);
+            }
+            dispatcher.AttachListener(this);
         }
 
         public override void OnExit()
         {
             base.OnExit();
             UnregisterEvent();
+            Unschedule(OnTimerAnimation);
+            dispatcher.DetachListener(this);
         }
 
         #region UI
@@ -72,7 +88,7 @@ namespace CozyAdventure.View.Layer
                 FontSize    = 14
             };
             AddChild(Details, 100);
-            this.AddEventListener(Details.EventListener);
+            dispatcher.Add(Details);
 
             var DoCamp = new CozySampleButton(630, 38, 78, 36)
             {
@@ -84,7 +100,7 @@ namespace CozyAdventure.View.Layer
                 },
             };
             AddChild(DoCamp, 100);
-            this.AddEventListener(DoCamp.EventListener);
+            dispatcher.Add(DoCamp);
 
             var Leave = new CozySampleButton(718, 38, 78, 36)
             {
@@ -96,7 +112,7 @@ namespace CozyAdventure.View.Layer
                 },
             };
             AddChild(Leave, 100);
-            this.AddEventListener(Leave.EventListener);
+            dispatcher.Add(Leave);
         }
 
         #endregion
@@ -151,13 +167,11 @@ namespace CozyAdventure.View.Layer
 
         private void OnLeave()
         {
-            Unschedule(OnTimerAnimation);
-            AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new LevelSelectScene());
+            AppDelegate.SharedWindow.DefaultDirector.PushScene(new LevelSelectScene());
         }
 
         private void OnCamp()
         {
-            Unschedule(OnTimerAnimation);
             AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new CampScene());
         }
 

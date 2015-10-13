@@ -49,7 +49,10 @@ namespace CozyServer.Core
                 {
                     t = null;
                 }
-                t = InnerQueue.Dequeue();
+                else
+                {
+                    t = InnerQueue.Dequeue();
+                }
             }
         }
 

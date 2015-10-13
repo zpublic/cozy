@@ -16,35 +16,37 @@ namespace CozyAdventure.View.Layer
     public class CampUiLayer : CCLayer
     {
         private CCLabel EditNode { get; set; }
+        private ButtonEventDispatcher dispatcher { get; set; } = new ButtonEventDispatcher();
+
+        protected override void AddedToScene()
+        {
+            base.AddedToScene();
+            InitUI();
+        }
 
         public override void OnEnter()
         {
             base.OnEnter();
             RegisterEvent();
+            RefreshPlayerInfo();
+            dispatcher.AttachListener(this);
         }
 
         public override void OnExit()
         {
             base.OnExit();
             UnregisterEvent();
+            dispatcher.DetachListener(this);
         }
 
         private void RegisterEvent()
         {
             MessageManager.RegisterMessage("Message.GotoMap.Success", OnGotoMapSuccess);
-            MessageManager.RegisterMessage("Message.GotoMap.Failed", OnGotoMapFailed);
         }
 
         private void UnregisterEvent()
         {
-            MessageManager.UnRegisterMessage("Message.GotoMap.Failed", OnGotoMapFailed);
             MessageManager.UnRegisterMessage("Message.GotoMap.Success", OnGotoMapSuccess);
-        }
-
-        public CampUiLayer()
-        {
-            InitUI();
-            RefreshPlayerInfo();
         }
 
         private void InitUI()
@@ -66,8 +68,8 @@ namespace CozyAdventure.View.Layer
                     FarmMapLogic.EnterMap(PlayerObject.Instance.Self.CurrLevel);
                 }
             };
-            this.AddEventListener(Goon.EventListener);
             AddChild(Goon, 100);
+            dispatcher.Add(Goon);
 
             var MercMange = new CozySampleButton(631, 160, 78, 36)
             {
@@ -75,27 +77,27 @@ namespace CozyAdventure.View.Layer
                 FontSize    = 14,
                 OnClick     = () =>
                 {
-                    AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new FollowerListScene());
+                    AppDelegate.SharedWindow.DefaultDirector.PushScene(new FollowerListScene());
                 }
             };
-            this.AddEventListener(MercMange.EventListener);
             AddChild(MercMange, 100);
+            dispatcher.Add(MercMange);
 
             var MyGoods = new CozySampleButton(631, 227, 78, 36)
             {
                 Text        = "我的物品",
                 FontSize    = 14
             };
-            this.AddEventListener(MyGoods.EventListener);
             AddChild(MyGoods, 100);
+            dispatcher.Add(MyGoods);
 
             var MyFriends = new CozySampleButton(631, 299, 78, 36)
             {
                 Text        = "我的好友",
                 FontSize    = 14
             };
-            this.AddEventListener(MyFriends.EventListener);
             AddChild(MyFriends, 100);
+            dispatcher.Add(MyFriends);
         }
 
         private void RefreshPlayerInfo()
@@ -107,13 +109,9 @@ namespace CozyAdventure.View.Layer
             EditNode.Text = string.Format("战斗力: + {0} +  金币 + {1} + 经验 + {2}", Fighting, Money, Exp);
         }
 
-        private void OnGotoMapFailed()
+        private void OnGotoMapSuccess(object level)
         {
-
-        }
-
-        private void OnGotoMapSuccess()
-        {
+            PlayerObject.Instance.Self.CurrLevel = (int)level;
             AppDelegate.SharedWindow.DefaultDirector.ReplaceScene(new AdventureScene());
         }
     }
