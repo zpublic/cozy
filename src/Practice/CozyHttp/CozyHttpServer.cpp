@@ -1,12 +1,18 @@
 #include "CozyHttpServer.h"
 #include "CozyConnection.h"
 
+const char* rspData =
+"HTTP/1.1 200 OK\n"
+"Content-Length: 10\n\n"
+"Hello Tcp!";
+
 void CozyHttpServer::alloc_buffer(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf)
 {
     *buf = :: uv_buf_init(new char[suggested_size], suggested_size);
 }
 
 CozyHttpServer::CozyHttpServer()
+    :m_work_cb(nullptr)
 {
     m_loop = ::uv_loop_new();
 }
@@ -64,7 +70,7 @@ void CozyHttpServer::_OnRead(uv_stream_t* client, ssize_t nread, const uv_buf_t*
     {
         CozyConnection* conn = reinterpret_cast<CozyConnection*>(client->data);
 
-        conn->Set(buf->base, nread); // TEST
+        conn->Set(rspData, strlen(rspData));
 
         if (conn->m_buff.len > 0)
         {
@@ -87,4 +93,9 @@ void CozyHttpServer::_OnClose(uv_handle_t* handle)
 {
     delete reinterpret_cast<CozyConnection*>(handle->data);
     delete handle;
+}
+
+void CozyHttpServer::SetCallback(work_cb cb)
+{
+    m_work_cb = cb;
 }

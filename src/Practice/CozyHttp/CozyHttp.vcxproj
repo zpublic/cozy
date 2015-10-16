@@ -71,22 +71,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\AngelC\Documents\cozy\src\Public\3rd\libuv-1.x\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\AngelC\Documents\cozy\src\Public\3rd\libuv-1.x\include;C:\Users\AngelC\Documents\cozy\src\Public\3rd\http-parser;$(IncludePath)</IncludePath>
     <OutDir>..\..\..\bin\CozyHttpServer\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\AngelC\Documents\cozy\src\Public\3rd\libuv-1.x\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\AngelC\Documents\cozy\src\Public\3rd\libuv-1.x\include;C:\Users\AngelC\Documents\cozy\src\Public\3rd\http-parser;$(IncludePath)</IncludePath>
     <OutDir>..\..\..\bin\CozyHttpServer\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\AngelC\Documents\cozy\src\Public\3rd\libuv-1.x\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\AngelC\Documents\cozy\src\Public\3rd\libuv-1.x\include;C:\Users\AngelC\Documents\cozy\src\Public\3rd\http-parser;$(IncludePath)</IncludePath>
     <OutDir>..\..\..\bin\CozyHttpServer\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\AngelC\Documents\cozy\src\Public\3rd\libuv-1.x\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\AngelC\Documents\cozy\src\Public\3rd\libuv-1.x\include;C:\Users\AngelC\Documents\cozy\src\Public\3rd\http-parser;$(IncludePath)</IncludePath>
     <OutDir>..\..\..\bin\CozyHttpServer\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -161,12 +161,14 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Public\3rd\http-parser\http_parser.h" />
     <ClInclude Include="CozyConnection.h" />
     <ClInclude Include="CozyHttpServer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Public\3rd\http-parser\http_parser.c" />
     <ClCompile Include="CozyConnection.cpp" />
     <ClCompile Include="CozyHttp.cpp" />
     <ClCompile Include="CozyHttpServer.cpp" />
