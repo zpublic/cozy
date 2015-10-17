@@ -18,12 +18,12 @@ public:
     void SetContextLength(unsigned long long len);
     void SetBody(const std::string& body);
 
-    bool GetFiled(const std::string& filed, std::string& output);
-    std::string GetLastFiled();
-    std::string GetUrl();
-    std::string GetBody();
-    void GetHttpVersion(short* major, short* minor);
-    unsigned long long GetContextLength();
+    bool GetFiled(const std::string& filed, std::string& output) const;
+    std::string GetLastFiled() const;
+    std::string GetUrl() const;
+    std::string GetBody() const;
+    void GetHttpVersion(short* major, short* minor) const;
+    unsigned long long GetContextLength() const;
 
 private:
     std::unordered_map<std::string, std::string>    m_http_header;

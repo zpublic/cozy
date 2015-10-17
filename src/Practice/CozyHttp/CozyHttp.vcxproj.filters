@@ -21,6 +21,7 @@
       <Filter>3rd</Filter>
     </ClInclude>
     <ClInclude Include="CozyHttpRequest.h" />
+    <ClInclude Include="CozyHttpResponse.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CozyHttp.cpp" />
@@ -31,5 +32,6 @@
       <Filter>3rd</Filter>
     </ClCompile>
     <ClCompile Include="CozyHttpRequest.cpp" />
+    <ClCompile Include="CozyHttpResponse.cpp" />
   </ItemGroup>
 </Project>

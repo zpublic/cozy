@@ -25,16 +25,17 @@ void CozyHttpRequest::SetValue(const std::string& filed, const std::string& valu
     m_http_header[filed] = value;
 }
 
-std::string CozyHttpRequest::GetLastFiled()
+std::string CozyHttpRequest::GetLastFiled() const
 {
     return m_last_filed;
 }
 
-bool CozyHttpRequest::GetFiled(const std::string& filed, std::string& output)
+bool CozyHttpRequest::GetFiled(const std::string& filed, std::string& output) const
 {
-    if (m_http_header.find(filed) == m_http_header.end()) return false;
+    auto iter = m_http_header.find(filed);
+    if (iter == m_http_header.end()) return false;
 
-    output = m_http_header[filed];
+    output = iter->second;
     return true;
 }
 
@@ -43,7 +44,7 @@ void CozyHttpRequest::SetUrl(const std::string& url)
     m_url = url;
 }
 
-std::string CozyHttpRequest::GetUrl()
+std::string CozyHttpRequest::GetUrl() const
 {
     return m_url;
 }
@@ -58,7 +59,7 @@ void CozyHttpRequest::SetHttpVersion(short major, short minor)
     m_http_version = ((major << 16) | minor);
 }
 
-void CozyHttpRequest::GetHttpVersion(short* major, short* minor)
+void CozyHttpRequest::GetHttpVersion(short* major, short* minor) const
 {
     *major = (m_http_version >> 16);
     *minor = (m_http_version & 0x0000FFFF);
@@ -69,12 +70,12 @@ void CozyHttpRequest::SetContextLength(unsigned long long len)
     m_context_length = len;
 }
 
-unsigned long long CozyHttpRequest::GetContextLength()
+unsigned long long CozyHttpRequest::GetContextLength() const
 {
     return m_context_length;
 }
 
-std::string CozyHttpRequest::GetBody()
+std::string CozyHttpRequest::GetBody() const
 {
     return m_body;
 }

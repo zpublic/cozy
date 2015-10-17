@@ -1,7 +1,7 @@
 #include "CozyHttpServer.h"
 #include "CozyConnection.h"
 #include "CozyHttpRequest.h"
-#include <iostream>
+#include "CozyHttpResponse.h"
 
 const char* rspData =
 "HTTP/1.1 200 OK\n"
@@ -87,17 +87,22 @@ void CozyHttpServer::_OnRead(uv_stream_t* client, ssize_t nread, const uv_buf_t*
     {
         CozyConnection* conn        = reinterpret_cast<CozyConnection*>(client->data);
         http_parser* parser         = conn->m_instance->m_parser;
-        CozyHttpRequest request    = CozyHttpRequest();
+        CozyHttpRequest request     = CozyHttpRequest();
+        CozyHttpResponse response   = CozyHttpResponse();
         parser->data                = &request;
 
         ssize_t nparsed         = http_parser_execute(parser, &conn->m_instance->m_settings, buf->base, buf->len);
         
-        if (nparsed != buf->len)
+        if (nparsed != nread)
         {
             ::uv_close(reinterpret_cast<uv_handle_t*>(client), _OnClose);
             goto Exit0;
         }
 
+        if (conn->m_instance->m_work_cb != nullptr)
+        {
+            conn->m_instance->m_work_cb(request, response);
+        }
         conn->Set(rspData, strlen(rspData));
 
         if (conn->m_buff.base != nullptr && conn->m_buff.len > 0)

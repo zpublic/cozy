@@ -1,16 +1,17 @@
-#ifndef __COZY__HTTP_SERVER__
-#define __COZY__HTTP_SERVER__
+#ifndef __COZY_HTTP_SERVER__
+#define __COZY_HTTP_SERVER__
 
 #include "uv.h"
 #include <string>
 #include "http_parser.h"
 
 class CozyConnection;
+class CozyHttpRequest;
+class CozyHttpResponse;
 
 class CozyHttpServer
 {
-    typedef void(*work_cb)(CozyConnection* conn);
-
+    typedef void(*work_cb)(const CozyHttpRequest& req, CozyHttpResponse& rsp);
 public:
 
     CozyHttpServer();
@@ -39,15 +40,15 @@ protected:
     static void alloc_buffer(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf);
 
 private:
-    uv_loop_t*      m_loop;
-    uv_tcp_t        m_server;
-    int             m_maxConn;
-    sockaddr_in     m_addr;
-    work_cb         m_work_cb;
+    uv_loop_t*              m_loop;
+    uv_tcp_t                m_server;
+    int                     m_maxConn;
+    sockaddr_in             m_addr;
+    work_cb                 m_work_cb;
 
 private:
     http_parser*            m_parser;
     http_parser_settings    m_settings;
 };
 
-#endif // __COZY__HTTP_SERVER__
+#endif // __COZY_HTTP_SERVER__

@@ -164,6 +164,7 @@
     <ClInclude Include="..\..\Public\3rd\http-parser\http_parser.h" />
     <ClInclude Include="CozyConnection.h" />
     <ClInclude Include="CozyHttpRequest.h" />
+    <ClInclude Include="CozyHttpResponse.h" />
     <ClInclude Include="CozyHttpServer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -173,6 +174,7 @@
     <ClCompile Include="CozyConnection.cpp" />
     <ClCompile Include="CozyHttp.cpp" />
     <ClCompile Include="CozyHttpRequest.cpp" />
+    <ClCompile Include="CozyHttpResponse.cpp" />
     <ClCompile Include="CozyHttpServer.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
