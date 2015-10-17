@@ -20,6 +20,7 @@
     <ClInclude Include="..\..\Public\3rd\http-parser\http_parser.h">
       <Filter>3rd</Filter>
     </ClInclude>
+    <ClInclude Include="CozyHttpRequest.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CozyHttp.cpp" />
@@ -29,5 +30,6 @@
     <ClCompile Include="..\..\Public\3rd\http-parser\http_parser.c">
       <Filter>3rd</Filter>
     </ClCompile>
+    <ClCompile Include="CozyHttpRequest.cpp" />
   </ItemGroup>
 </Project>

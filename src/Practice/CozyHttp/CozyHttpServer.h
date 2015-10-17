@@ -3,6 +3,7 @@
 
 #include "uv.h"
 #include <string>
+#include "http_parser.h"
 
 class CozyConnection;
 
@@ -20,6 +21,14 @@ public:
     void Stop();
 
     void SetCallback(work_cb cb);
+protected:
+    void InitParser();
+    static int OnHeaderFiled(http_parser* parser, const char* at, size_t length);
+    static int OnHeaderValue(http_parser* parser, const char* at, size_t length);
+    static int OnUrl(http_parser* parser, const char* at, size_t length);
+    static int OnComplete(http_parser* parser);
+    static int OnHeaderComplete(http_parser* parser);
+    static int OnBody(http_parser* parser, const char* at, size_t length);
 
 protected:
     static void _OnConnect(uv_stream_t* handle, int status);
@@ -35,6 +44,10 @@ private:
     int             m_maxConn;
     sockaddr_in     m_addr;
     work_cb         m_work_cb;
+
+private:
+    http_parser*            m_parser;
+    http_parser_settings    m_settings;
 };
 
 #endif // __COZY__HTTP_SERVER__

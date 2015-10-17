@@ -16,8 +16,9 @@ public:
 private:
     void buf_clear();
 
-    uv_tcp_t*   m_server;
-    uv_buf_t    m_buff;
+    CozyHttpServer*     m_instance;
+    uv_tcp_t*           m_server;
+    uv_buf_t            m_buff;
 };
 
 #endif // __COZY_CONNECTION__
