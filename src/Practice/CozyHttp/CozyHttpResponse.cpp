@@ -2,12 +2,12 @@
 
 std::map<unsigned int, std::string> ReasonDict {
     { 200, "OK" },
-    { 400, "Bad_Request" },
+    { 400, "Bad Request" },
     { 401, "Unauthorized" },
     { 403, "Forbidden" },
-    { 404, "Not_Found" },
-    { 500, "Internal_Server_Error" },
-    { 503, "Server_Unavailable" },
+    { 404, "Not Found" },
+    { 500, "Internal Server Error" },
+    { 503, "Server Unavailable" },
 };
 
 CozyHttpResponse::CozyHttpResponse()
