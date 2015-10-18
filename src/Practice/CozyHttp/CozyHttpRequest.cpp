@@ -1,5 +1,6 @@
 #include "CozyHttpRequest.h"
 
+
 CozyHttpRequest::CozyHttpRequest()
 {
     m_status        = 0;

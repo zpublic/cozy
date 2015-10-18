@@ -3,11 +3,6 @@
 #include "CozyHttpRequest.h"
 #include "CozyHttpResponse.h"
 
-const char* rspData =
-"HTTP/1.1 200 OK\n"
-"Content-Length: 10\n\n"
-"Hello Tcp!";
-
 void CozyHttpServer::alloc_buffer(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf)
 {
     *buf = :: uv_buf_init(new char[suggested_size], suggested_size);

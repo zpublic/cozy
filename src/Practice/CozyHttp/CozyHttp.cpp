@@ -13,8 +13,7 @@ void OnWork(const CozyHttpRequest& req, CozyHttpResponse& rsp)
     short major = 0;
     short minor = 0;
 
-    rsp.SetStatusCode(404);
-    rsp.SetReasonPhrase("Not Found");
+    rsp.SetStatusCode(Status_Code::OK);
 
     req.GetHttpVersion(&major, &minor);
     rsp.SetHttpVersion(major, minor);

@@ -1,8 +1,22 @@
 #ifndef __COZY_HTTP_RESPONSE__
 #define __COZY_HTTP_RESPONSE__
 
+#include <map>
 #include <unordered_map>
 #include <sstream>
+
+enum class Status_Code : unsigned int
+{
+    OK                      = 200,
+    Bad_Request             = 400,
+    Unauthorized            = 401,
+    Forbidden               = 403,
+    Not_Found               = 404,
+    Internal_Server_Error   = 500,
+    Server_Unavailable      = 503,
+};
+
+extern std::map<unsigned int, std::string> ReasonDict;
 
 class CozyHttpResponse
 {
@@ -17,6 +31,8 @@ public:
 
     void SetReasonPhrase(const std::string& reason);
     void SetStatusCode(unsigned int code);
+    void SetStatusCode(Status_Code code);
+
     void SetHttpVersion(short major, short minor);
     void SetContext(const std::string& body);
 

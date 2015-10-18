@@ -1,5 +1,15 @@
 #include "CozyHttpResponse.h"
 
+std::map<unsigned int, std::string> ReasonDict {
+    { 200, "OK" },
+    { 400, "Bad_Request" },
+    { 401, "Unauthorized" },
+    { 403, "Forbidden" },
+    { 404, "Not_Found" },
+    { 500, "Internal_Server_Error" },
+    { 503, "Server_Unavailable" },
+};
+
 CozyHttpResponse::CozyHttpResponse()
 {
     m_status_code   = 0;
@@ -30,6 +40,13 @@ void CozyHttpResponse::SetStatusCode(unsigned int code)
     m_is_data_dirty = true;
 }
 
+void CozyHttpResponse::SetStatusCode(Status_Code code)
+{
+    int c = (unsigned int)code;
+    SetStatusCode(c);
+    SetReasonPhrase(ReasonDict[c]);
+}
+
 void CozyHttpResponse::SetHttpVersion(short major, short minor)
 {
     m_http_version  = ((major << 16) | minor);
@@ -41,7 +58,7 @@ void CozyHttpResponse::SetContext(const std::string& body)
     m_context = body;
 
     char c[256];
-    std::sprintf(c, "%u", m_context.size());
+    ::sprintf_s(c, "%u", m_context.size());
 
     m_http_hander["Content-Length"] = std::string(c);
     m_is_data_dirty = true;
