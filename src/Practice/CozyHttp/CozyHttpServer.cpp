@@ -21,6 +21,7 @@ CozyHttpServer::CozyHttpServer()
 
 CozyHttpServer::~CozyHttpServer()
 {
+    delete m_parser;
     ::uv_loop_delete(m_loop);
 }
 
@@ -43,10 +44,9 @@ void CozyHttpServer::InitParser()
     m_settings.on_header_value      = OnHeaderValue;
     m_settings.on_url               = OnUrl;
     m_settings.on_message_complete  = OnComplete;
-    m_settings.on_body = OnBody;
+    m_settings.on_body              = OnBody;
 
     m_parser = new http_parser();
-    http_parser_init(m_parser, HTTP_REQUEST);
 }
 
 void CozyHttpServer::Start()
@@ -67,9 +67,9 @@ void CozyHttpServer::_OnConnect(uv_stream_t* server, int status)
     uv_tcp_t* client            = new uv_tcp_t();
     ::uv_tcp_init(server_ptr->m_loop, client);
 
-    CozyConnection* conn    = new CozyConnection(reinterpret_cast<uv_tcp_t*>(server));
-    conn->m_instance        = server_ptr;
-    client->data            = conn;
+    CozyConnection* conn        = new CozyConnection(reinterpret_cast<uv_tcp_t*>(server));
+    conn->m_instance            = server_ptr;
+    client->data                = conn;
 
     if (!::uv_accept(server, reinterpret_cast<uv_stream_t*>(client)))
     {
@@ -85,16 +85,19 @@ void CozyHttpServer::_OnRead(uv_stream_t* client, ssize_t nread, const uv_buf_t*
 {
     if (nread > 0)
     {
+        CozyHttpRequest request;
+        CozyHttpResponse response;
         CozyConnection* conn        = reinterpret_cast<CozyConnection*>(client->data);
+        
         http_parser* parser         = conn->m_instance->m_parser;
-        CozyHttpRequest request     = CozyHttpRequest();
-        CozyHttpResponse response   = CozyHttpResponse();
+        http_parser_init(parser, HTTP_REQUEST);
         parser->data                = &request;
 
-        ssize_t nparsed         = http_parser_execute(parser, &conn->m_instance->m_settings, buf->base, buf->len);
+        ssize_t nparsed             = http_parser_execute(parser, &conn->m_instance->m_settings, buf->base, buf->len);
         
         if (nparsed != nread)
         {
+            
             ::uv_close(reinterpret_cast<uv_handle_t*>(client), _OnClose);
             goto Exit0;
         }
@@ -103,7 +106,10 @@ void CozyHttpServer::_OnRead(uv_stream_t* client, ssize_t nread, const uv_buf_t*
         {
             conn->m_instance->m_work_cb(request, response);
         }
-        conn->Set(rspData, strlen(rspData));
+
+        std::string output;
+        response.GetResponseData(output);
+        conn->Set(output.c_str(), output.size());
 
         if (conn->m_buff.base != nullptr && conn->m_buff.len > 0)
         {

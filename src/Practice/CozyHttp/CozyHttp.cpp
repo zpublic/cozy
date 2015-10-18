@@ -5,11 +5,22 @@
 #include "uv.h"
 #include "CozyHttpServer.h"
 #include "CozyHttpRequest.h"
+#include "CozyHttpResponse.h"
 #include <iostream>
 
 void OnWork(const CozyHttpRequest& req, CozyHttpResponse& rsp)
 {
-    std::cout << req.GetUrl() << std::endl;
+    short major = 0;
+    short minor = 0;
+
+    rsp.SetStatusCode(404);
+    rsp.SetReasonPhrase("Not Found");
+
+    req.GetHttpVersion(&major, &minor);
+    rsp.SetHttpVersion(major, minor);
+
+    rsp.AddHeader("Content-Type", "text/html");
+    rsp.SetContext(req.GetUrl());
 }
 
 int main()

@@ -9,6 +9,10 @@ public:
     CozyHttpRequest();
     ~CozyHttpRequest();
 
+    CozyHttpRequest(const CozyHttpRequest& o)               = default;
+    CozyHttpRequest& operator=(const CozyHttpRequest& o)    = default;
+
+
     bool AddFiled(const std::string& filed);
 
     void SetValue(const std::string& filed, const std::string& value);
