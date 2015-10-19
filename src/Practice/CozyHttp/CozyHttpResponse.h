@@ -36,8 +36,10 @@ public:
     void SetHttpVersion(short major, short minor);
     void SetContext(const std::string& body);
 
+    // RVO »ò NRVO
     std::string GetReasonPhrase() const;
     std::string GetContext() const;
+
     unsigned int GetStatusCode() const;
     void GetHttpVersion(short* major, short* minor) const;
 
