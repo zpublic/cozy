@@ -105,6 +105,8 @@ Cozy
 >>
 >> CozyFkeyes - 找不同字的游戏，瞎眼系列
 >>
+>> CozyHttp - 基于libuv和http_parser实现http服务器  
+>>
 
 玩法一览
 --------------------------------
