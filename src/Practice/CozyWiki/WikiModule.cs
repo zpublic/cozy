@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using CozyWiki.Responses;
 
 namespace CozyWiki
 {
@@ -19,63 +20,31 @@ namespace CozyWiki
                 return "hello world!";
             };
 
-            Get["/p/{path}"] = (x) =>
+            Get["/p/{path}"] = x =>
             {
                 var p = Path.Combine(Setting.Instance.RootDir, x.path + ".md");
                 if (File.Exists(p))
                 {
-                    using (var fs = new FileStream(p, FileMode.Open, FileAccess.Read))
-                    {
-                        using (var reader = new StreamReader(fs, Encoding.UTF8))
-                        {
-                            var context = reader.ReadToEnd();
-                            return CommonMarkConverter.Convert(context);
-                        }
-                    }
+                    return new PageResponse(p);
                 }
                 else
                 {
-                    return Get404Page();
+                    return new NotFoundResponse();
                 }
             };
+
             Get["/m/{path}"] = x =>
             {
                 var p = Path.Combine(Setting.Instance.RootDir, x.path + ".md");
                 if (File.Exists(p))
                 {
-                    using (var fs = new FileStream(p, FileMode.Open, FileAccess.Read))
-                    {
-                        using (var reader = new StreamReader(fs, Encoding.UTF8))
-                        {
-                            var context = reader.ReadToEnd();
-                            return context;
-                        }
-                    }
+                    return new MardDownResponse(p);
                 }
                 else
                 {
-                    return Get404Page();
+                    return new NotFoundResponse();
                 }
             };
-        }
-
-        public string Get404Page()
-        {
-            var p = Path.Combine(Setting.Instance.RootDir, "404.html");
-            if (File.Exists(p))
-            {
-                using (var fs = new FileStream(p, FileMode.Open, FileAccess.Read))
-                {
-                    using (var reader = new StreamReader(fs))
-                    {
-                        return reader.ReadToEnd();
-                    }
-                }
-            }
-            else
-            {
-                return "404 fot found";
-            }
         }
     }
 }
