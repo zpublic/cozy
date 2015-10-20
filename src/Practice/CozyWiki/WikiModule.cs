@@ -1,6 +1,4 @@
 ﻿using Nancy;
-using CommonMark;
-using Nancy.Hosting.Self;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +27,7 @@ namespace CozyWiki
                 }
                 else
                 {
-                    return new NotFoundResponse();
+                    return new PageNotFoundResponse();
                 }
             };
 
@@ -42,7 +40,7 @@ namespace CozyWiki
                 }
                 else
                 {
-                    return new NotFoundResponse();
+                    return new PageNotFoundResponse();
                 }
             };
         }

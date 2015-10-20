@@ -12,7 +12,10 @@ namespace CozyWiki.Responses
     {
         public PageNotFoundResponse()
         {
-            Contents = stream =>
+            StatusCode  = HttpStatusCode.NotFound;
+            ContentType = "text/plain; charset=utf-8";
+
+            Contents    = stream =>
             {
                 using (var writer = new StreamWriter(stream))
                 {

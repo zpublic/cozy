@@ -1,5 +1,4 @@
-﻿using CommonMark;
-using Nancy;
+﻿using Nancy;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,9 +12,10 @@ namespace CozyWiki.Responses
     {
         public MardDownResponse(string path)
         {
+            StatusCode  = HttpStatusCode.OK;
             ContentType = "text/plain; charset=utf-8";
 
-            Contents = stream =>
+            Contents    = stream =>
             {
                 using (var writer = new StreamWriter(stream))
                 {

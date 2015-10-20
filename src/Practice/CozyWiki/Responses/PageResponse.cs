@@ -13,9 +13,10 @@ namespace CozyWiki.Responses
     {
         public PageResponse(string path)
         {
+            StatusCode  = HttpStatusCode.OK;
             ContentType = "text/html; charset=utf-8";
 
-            Contents = stream =>
+            Contents    = stream =>
             {
                 using (var writer = new StreamWriter(stream))
                 {
