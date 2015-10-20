@@ -19,13 +19,28 @@ namespace CozyWiki.Responses
             {
                 using (var writer = new StreamWriter(stream))
                 {
+                    FileInfo fi = new FileInfo(path);
+                    var cache   = CacheManager.Instance.MarkdownCache.GetCache(path);
+
+                    if (cache != null && cache.Item2 >= fi.LastWriteTime)
+                    {
+                        // Using Cache
+                        writer.Write(cache.Item1);
+                        return;
+                    }
+
+                    var now         = DateTime.Now;
+                    string context  = null;
                     using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
                     {
                         using (var reader = new StreamReader(fs, Encoding.UTF8))
                         {
-                            writer.Write(reader.ReadToEnd());
+                            context = reader.ReadToEnd();
+                            writer.Write(context);
                         }
                     }
+                    fi.LastWriteTime = now;
+                    CacheManager.Instance.MarkdownCache.Update(path, context, now);
                 }
             };
         }
