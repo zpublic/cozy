@@ -21,7 +21,6 @@ namespace CozyWiki.Responses
                 {
                     FileInfo fi = new FileInfo(path);
                     var cache   = CacheManager.Instance.MarkdownCache.GetCache(path);
-
                     if (cache != null && cache.Item2 >= fi.LastWriteTime)
                     {
                         // Using Cache

@@ -15,10 +15,31 @@ namespace CozyWiki
         {
             Get["/"] = x =>
             {
-                return "hello world!";
+                var p = Path.Combine(Setting.Instance.RootDir, "index.html");
+                if(File.Exists(p))
+                {
+                    return new PageResponse(p);
+                }
+                else
+                {
+                    return new PageNotFoundResponse();
+                }
             };
 
-            Get["/p/{path}"] = x =>
+            Get["/Inner/404"] = x =>
+            {
+                var p = Path.Combine(Setting.Instance.RootDir, "404.html");
+                if (File.Exists(p))
+                {
+                    return new PageResponse(p);
+                }
+                else
+                {
+                    return "404 Not Found";
+                }
+            };
+
+            Get["/p/{path}/"] = x =>
             {
                 var p = Path.Combine(Setting.Instance.RootDir, x.path + ".md");
                 if (File.Exists(p))
@@ -31,7 +52,7 @@ namespace CozyWiki
                 }
             };
 
-            Get["/m/{path}"] = x =>
+            Get["/m/{path}/"] = x =>
             {
                 var p = Path.Combine(Setting.Instance.RootDir, x.path + ".md");
                 if (File.Exists(p))
