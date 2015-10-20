@@ -1,14 +1,14 @@
 ﻿@{
-ViewBag.Title = "Index";
-Layout = "Views/_Layout.cshtml";
+    Layout = "Layout.cshtml";
 }
+
 <header class="intro-header animated bounceInDown" style="background-image: url('/Content/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>Blog</h1>
-                    <span class="subheading">Cozy,最屌的开源项目</span>
+                    <h1>Cozy's Bolg</h1>
+                    <span class="subheading">各种屌炸天</span>
                 </div>
             </div>
         </div>
@@ -18,20 +18,22 @@ Layout = "Views/_Layout.cshtml";
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            @for (int i = 0; i < Model.Count; i++) {
-            <div class="post-preview animated @(i % 2 == 0 ? " bounceInLeft":"bounceInRight" )">
+
+            @for (int i = 0; i < 5; i++) {
+            <div class="post-preview animated @(i % 2 == 0 ? " bounceInLeft" : "bounceInRight" )">
                 <a href="#">
                     <h2 class="post-title">
-                        @Model[i].Title
+                        @string.Format("测试文章标题{0}",i)
                     </h2>
                     <h3 class="post-subtitle">
-                        @Model[i].SubTitle
+                        @string.Format("测试副文章标题{0}",i)
                     </h3>
                 </a>
-                <p class="post-meta">Posted by @Model[i].CreateDate.ToString("yyyy-MM-dd")</p>
+                <p class="post-meta">@DateTime.Now.ToString("yyyy-MM-dd")</p>
             </div>
             <hr>
             }
+  
             <ul class="pager">
                 <li class="next">
                     <a href="#">Older Posts &rarr;</a>
@@ -40,4 +42,3 @@ Layout = "Views/_Layout.cshtml";
         </div>
     </div>
 </div>
-
