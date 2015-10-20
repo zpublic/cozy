@@ -22,10 +22,11 @@ public:
     void SetContextLength(unsigned long long len);
     void SetBody(const std::string& body);
 
-    bool GetFiled(const std::string& filed, std::string& output) const;
+    // RVO »ò NRVO
     std::string GetLastFiled() const;
     std::string GetUrl() const;
     std::string GetBody() const;
+    bool GetFiled(const std::string& filed, std::string& output) const;
     void GetHttpVersion(short* major, short* minor) const;
     unsigned long long GetContextLength() const;
 
