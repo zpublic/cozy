@@ -7,7 +7,7 @@ namespace CozyMarkdown.WebStie.Module {
         public Home() {
 
             Get["/"] = x => {
-                return View["Home", new { Message = "hello,CozyMarkdown! " }];
+                return View["Home/Index", new { Message = "hello,CozyMarkdown! " }];
             };
 
         }
