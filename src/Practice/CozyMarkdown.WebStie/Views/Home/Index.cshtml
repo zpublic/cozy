@@ -19,17 +19,17 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-            @for (int i = 0; i < 5; i++) {
+            @for (int i = 0; i < @Model.Count; i++) {
             <div class="post-preview animated @(i % 2 == 0 ? " bounceInLeft" : "bounceInRight" )">
                 <a href="#">
                     <h2 class="post-title">
-                        @string.Format("测试文章标题{0}",i)
+                        @Model[i].Title
                     </h2>
                     <h3 class="post-subtitle">
-                        @string.Format("测试副文章标题{0}",i)
+                        @Model[i].SubTitle
                     </h3>
                 </a>
-                <p class="post-meta">@DateTime.Now.ToString("yyyy-MM-dd")</p>
+                <p class="post-meta">@Model[i].UpdateDate.ToString("yyyy-MM-dd")</p>
             </div>
             <hr>
             }

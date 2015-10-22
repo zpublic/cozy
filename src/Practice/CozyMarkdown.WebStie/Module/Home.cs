@@ -1,13 +1,18 @@
 ﻿using Nancy;
+using CozyMarkdown.Data.Models;
+using System.Linq;
 
 namespace CozyMarkdown.WebStie.Module {
 
-    public class Home : NancyModule {
+    public class Home : BaseModule {
 
         public Home() {
 
             Get["/"] = x => {
-                return View["Home/Index", new { Message = "hello,CozyMarkdown! " }];
+                var list = db.GetContent<Articlecs>();
+                var models = list.FindAll().ToList();
+                
+                return View["Home/Index", models];
             };
 
         }

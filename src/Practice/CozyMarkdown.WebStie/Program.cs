@@ -9,6 +9,25 @@ namespace CozyMarkdown.WebStie {
 
         static void Main(string[] args) {
 
+#if DEBUG
+            var db = CozyMarkdown.Data.DbContent.GetInstance();
+            var articlecs = db.GetContent<CozyMarkdown.Data.Models.Articlecs>();
+            if (articlecs.Count() < 1) {
+                var ariclecsContent = System.IO.File.ReadAllText("Test.md");
+                for (int i = 0; i < 5; i++) {
+                    db.GetContent<CozyMarkdown.Data.Models.Articlecs>()
+                        .Insert(new Data.Models.Articlecs {
+                            Id = Guid.NewGuid(),
+                            Title = $"Cozy{i}",
+                            SubTitle = $"Cozy-readme{i}",
+                            Content = ariclecsContent,
+                            CreateDate = DateTime.Now,
+                            UpdateDate = DateTime.Now
+                        });
+                }
+            }
+#endif
+
             var baseUrl = "http://localhost:1024/";
 
             HostConfiguration hostconfig = new HostConfiguration() {
