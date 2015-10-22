@@ -21,7 +21,7 @@
 
             @for (int i = 0; i < @Model.Count; i++) {
             <div class="post-preview animated @(i % 2 == 0 ? " bounceInLeft" : "bounceInRight" )">
-                <a href="#">
+                <a href="@("/Article/" + Model[i].Title)">
                     <h2 class="post-title">
                         @Model[i].Title
                     </h2>

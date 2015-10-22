@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbContent.cs" />
-    <Compile Include="Models\Articlecs.cs" />
+    <Compile Include="Models\ArticlecModel.cs" />
     <Compile Include="Models\IEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

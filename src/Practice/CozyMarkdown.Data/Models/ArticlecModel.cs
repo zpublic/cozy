@@ -2,7 +2,7 @@
 
 namespace CozyMarkdown.Data.Models {
 
-    public class Articlecs : IEntityModel {
+    public class ArticlecModel : IEntityModel {
 
         public Guid Id { get; set; }
         public string Title { get; set; }

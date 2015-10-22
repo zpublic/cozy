@@ -11,12 +11,12 @@ namespace CozyMarkdown.WebStie {
 
 #if DEBUG
             var db = CozyMarkdown.Data.DbContent.GetInstance();
-            var articlecs = db.GetContent<CozyMarkdown.Data.Models.Articlecs>();
+            var articlecs = db.GetContent<CozyMarkdown.Data.Models.ArticlecModel>();
             if (articlecs.Count() < 1) {
                 var ariclecsContent = System.IO.File.ReadAllText("Test.md");
                 for (int i = 0; i < 5; i++) {
-                    db.GetContent<CozyMarkdown.Data.Models.Articlecs>()
-                        .Insert(new Data.Models.Articlecs {
+                    db.GetContent<CozyMarkdown.Data.Models.ArticlecModel>()
+                        .Insert(new Data.Models.ArticlecModel {
                             Id = Guid.NewGuid(),
                             Title = $"Cozy{i}",
                             SubTitle = $"Cozy-readme{i}",
