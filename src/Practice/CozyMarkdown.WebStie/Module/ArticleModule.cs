@@ -2,9 +2,9 @@
 using CommonMark;
 namespace CozyMarkdown.WebStie.Module {
 
-    public class ArticleModel : BaseModule {
+    public class ArticleModule : BaseModule {
 
-        public ArticleModel() {
+        public ArticleModule() {
 
             Get["Article/{title}"] = param => {
                 string title = param.title;
