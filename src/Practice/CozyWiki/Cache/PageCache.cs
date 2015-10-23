@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyWiki
+namespace CozyWiki.Cache
 {
     public class PageCache
     {
-        private Dictionary<string, Tuple<string, DateTime>> CachePool { get; set; } 
-            = new Dictionary<string, Tuple<string, DateTime>>();
+        private Dictionary<string, CacheBlock> CachePool { get; set; } 
+            = new Dictionary<string, CacheBlock>();
         private readonly object Locker = new object();
 
         public void Remove(string key)
@@ -23,7 +23,7 @@ namespace CozyWiki
             }
         }
 
-        public Tuple<string, DateTime> GetCache(string key)
+        public CacheBlock GetCache(string key)
         {
             lock(Locker)
             {
@@ -43,11 +43,11 @@ namespace CozyWiki
             }
         }
 
-        public void Update(string key, string value, DateTime change)
+        public void Update(string key, CacheBlock block)
         {
             lock(Locker)
             {
-                CachePool[key] = Tuple.Create(value, change);
+                CachePool[key] = block;
             }
         }
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyWiki
+namespace CozyWiki.Cache
 {
     public class CacheManager
     {
