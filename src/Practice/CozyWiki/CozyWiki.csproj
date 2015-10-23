@@ -64,9 +64,9 @@
     <Compile Include="PageCache.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Responses\MardDownResponse.cs" />
+    <Compile Include="Responses\HtmlResponse.cs" />
     <Compile Include="Responses\PageNotFoundResponse.cs" />
-    <Compile Include="Responses\PageResponse.cs" />
+    <Compile Include="Responses\MarkdownResponse.cs" />
     <Compile Include="Setting.cs" />
     <Compile Include="WikiModule.cs" />
   </ItemGroup>

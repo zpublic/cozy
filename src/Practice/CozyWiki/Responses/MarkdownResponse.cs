@@ -9,9 +9,9 @@ using CommonMark;
 
 namespace CozyWiki.Responses
 {
-    public class PageResponse : Response
+    public class MarkdownResponse : Response
     {
-        public PageResponse(string path)
+        public MarkdownResponse(string path)
         {
             StatusCode  = HttpStatusCode.OK;
             ContentType = "text/html; charset=utf-8";
@@ -23,7 +23,7 @@ namespace CozyWiki.Responses
                     FileInfo fi = new FileInfo(path);
                     var cache   = CacheManager.Instance.HtmlCache.GetCache(path);
 
-                    if (cache != null && cache.Item2 >= fi.LastWriteTime)
+                    if (cache != null && cache.Item2 != fi.LastWriteTime)
                     {
                         // Using Cache
                         writer.Write(cache.Item1);

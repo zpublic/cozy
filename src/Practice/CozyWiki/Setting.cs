@@ -1,16 +1,11 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CozyWiki
 {
     public class Setting
     {
-        public string RootDir { get; set; } = @".\";
+        public string RootDir { get; set; } = System.Environment.CurrentDirectory;
 
         public int Port { get; set; } = 80;
 

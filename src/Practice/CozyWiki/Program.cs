@@ -18,7 +18,7 @@ namespace CozyWiki
                 host.Start();
                 try
                 {
-                    Process.Start("http://localhost:" + Setting.Instance.Port + "/m/CozyNote111");
+                    Process.Start("http://localhost:" + Setting.Instance.Port + "/m/readme");
                 }
                 catch (Exception)
                 {

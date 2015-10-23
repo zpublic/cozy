@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CozyWiki.Responses
 {
-    public class MardDownResponse : Response
+    public class HtmlResponse : Response
     {
-        public MardDownResponse(string path)
+        public HtmlResponse(string path)
         {
             StatusCode  = HttpStatusCode.OK;
             ContentType = "text/plain; charset=utf-8";
@@ -21,7 +21,7 @@ namespace CozyWiki.Responses
                 {
                     FileInfo fi = new FileInfo(path);
                     var cache   = CacheManager.Instance.MarkdownCache.GetCache(path);
-                    if (cache != null && cache.Item2 >= fi.LastWriteTime)
+                    if (cache != null && cache.Item2 != fi.LastWriteTime)
                     {
                         // Using Cache
                         writer.Write(cache.Item1);
