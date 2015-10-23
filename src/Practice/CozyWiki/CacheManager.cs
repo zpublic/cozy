@@ -11,7 +11,7 @@ namespace CozyWiki
         private static CacheManager instance { get; set; } = new CacheManager();
         public static CacheManager Instance { get { return instance; } }
 
-        public PageCache MarkdownCache { get; set; } = new PageCache();
         public PageCache HtmlCache { get; set; } = new PageCache();
+        public PageCache MarkdownCache { get; set; } = new PageCache();
     }
 }

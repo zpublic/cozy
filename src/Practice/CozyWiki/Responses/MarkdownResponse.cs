@@ -21,7 +21,7 @@ namespace CozyWiki.Responses
                 using (var writer = new StreamWriter(stream))
                 {
                     FileInfo fi = new FileInfo(path);
-                    var cache   = CacheManager.Instance.HtmlCache.GetCache(path);
+                    var cache   = CacheManager.Instance.MarkdownCache.GetCache(path);
 
                     if (cache != null && cache.Item2 != fi.LastWriteTime)
                     {
@@ -42,7 +42,7 @@ namespace CozyWiki.Responses
                         }
                     }
                     fi.LastWriteTime    = now;
-                    CacheManager.Instance.HtmlCache.Update(path, context, now);
+                    CacheManager.Instance.MarkdownCache.Update(path, context, now);
                 }
             };
         }
