@@ -64,6 +64,19 @@ namespace CozyWiki
                     return new PageNotFoundResponse();
                 }
             };
+
+            Get["/test"] = x =>
+            {
+                var model = new
+                {
+                    Name = "zapline",
+                    User = new
+                    {
+                        Age = 100
+                    }
+                };
+                return View["test", model];
+            };
         }
     }
 }

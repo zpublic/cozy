@@ -1,0 +1,7 @@
+﻿@Master['master.sshtml']
+
+@Section['Content']
+    <p>This content from the index page<p>
+    <h3>Partials</h3>
+    <p>Hello @Model.Name, your age is @Model.User.Age</p>
+@EndSection

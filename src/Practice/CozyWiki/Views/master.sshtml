@@ -1,0 +1,5 @@
+﻿<html>
+<body>
+@Section['Content'];
+</body>
+</html>

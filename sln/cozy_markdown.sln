@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyMarkdown.WebStie", "..\src\Practice\CozyMarkdown.WebStie\CozyMarkdown.WebStie.csproj", "{82073B8B-CE1C-45A6-B898-BEDE2B73DD0B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C1DA5722-8DF4-40C3-A2A3-AA0CA0CDDE92} = {C1DA5722-8DF4-40C3-A2A3-AA0CA0CDDE92}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyMarkdown.Data", "..\src\Practice\CozyMarkdown.Data\CozyMarkdown.Data.csproj", "{C1DA5722-8DF4-40C3-A2A3-AA0CA0CDDE92}"
 EndProject
