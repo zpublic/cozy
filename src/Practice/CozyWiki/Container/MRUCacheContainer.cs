@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace CozyWiki.Container
 {
-    public class MRUContainer<K, T>
-        where T : class
+    public class MRUContainer<K, V> : ICacheContainer<K, V>
+        where V : class
     {
-        private T[] ObjectList;
+        private V[] ObjectList;
         private BitArray BitFlag;
         private Dictionary<K, int> ObjectSet { get; set; } = new Dictionary<K, int>();
 
@@ -31,7 +31,7 @@ namespace CozyWiki.Container
             Clear();
         }
 
-        public T Get(K k)
+        public V Get(K k)
         {
             if(ObjectSet.ContainsKey(k))
             {
@@ -41,7 +41,7 @@ namespace CozyWiki.Container
             return null;
         }
 
-        public void Update(K k, T v)
+        public void Update(K k, V v)
         {
             if (ObjectSet.ContainsKey(k))
             {
@@ -85,10 +85,10 @@ namespace CozyWiki.Container
         {
             BitFlag.SetAll(false);
             ObjectSet.Clear();
-            ObjectList = new T[MaxSize];
+            ObjectList = new V[MaxSize];
         }
 
-        public void RemoveAll(Predicate<T> p)
+        public void RemoveAll(Predicate<V> p)
         {
             List<K> RemoveList = new List<K>();
 
