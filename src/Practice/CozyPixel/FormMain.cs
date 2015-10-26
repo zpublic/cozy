@@ -15,6 +15,13 @@ namespace CozyPixel
         public FormMain()
         {
             InitializeComponent();
+
+            Bitmap b = new Bitmap(@"g:\1.bmp");
+
+            Model.PixelMap pm = new Model.PixelMap();
+            pm.data = b;
+            pm.PixelWidth = 10;
+            pictureBox1.Image = Draw.BitmapGenerate.Draw(pm);
         }
     }
 }
