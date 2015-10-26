@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace CozyWiki.Cache
 {
@@ -14,18 +15,17 @@ namespace CozyWiki.Cache
         public PageCache HtmlCache { get; set; } = new PageCache();
         public PageCache MarkdownCache { get; set; } = new PageCache();
 
-        private int timeout { get; set; }
-        public int Timeout
+        Timer InnerTimer { get; set; } = new Timer();
+
+        public double Timeout
         {
             get
             {
-                return timeout;
+                return InnerTimer.Interval;
             }
             set
             {
-                timeout                 = value;
-                HtmlCache.Timeout       = value;
-                MarkdownCache.Timeout   = value;
+                InnerTimer.Interval = value;
             }
         }
 
@@ -42,6 +42,39 @@ namespace CozyWiki.Cache
                 HtmlCache.MaxSize       = value;
                 MarkdownCache.MaxSize   = value;
             }
+        }
+
+        public bool CleanEnable
+        {
+            get
+            {
+                return InnerTimer.Enabled;
+            }
+            set
+            {
+                InnerTimer.Enabled = value;
+            }
+        }
+
+        public CacheManager()
+        {
+            InnerTimer.Elapsed += new ElapsedEventHandler(OnTimerProcess);
+        }
+
+        private void OnTimerProcess(object sender, ElapsedEventArgs e)
+        {
+            DateTime now = DateTime.Now;
+            Predicate<CacheBlock> pre = x =>
+            {
+                if ((now - x.CacheTime).TotalMilliseconds > Timeout)
+                {
+                    return true;
+                }
+                return false;
+            };
+
+            HtmlCache.RemoveAll(pre);
+            MarkdownCache.RemoveAll(pre);
         }
     }
 }

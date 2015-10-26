@@ -13,8 +13,9 @@ namespace CozyWiki
     {
         static void Main(string[] args)
         {
-            CacheManager.Instance.MaxSize = 128;
-            CacheManager.Instance.Timeout = 10000;
+            CacheManager.Instance.MaxSize       = 128;
+            CacheManager.Instance.Timeout       = 10000;
+            CacheManager.Instance.CleanEnable   = true;
 
             Setting.Instance.Init();
             using (var host = new NancyHost(new Uri("http://localhost:" + Setting.Instance.Port)))
