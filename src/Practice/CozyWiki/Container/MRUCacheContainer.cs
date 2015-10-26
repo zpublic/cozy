@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CozyWiki.Container
 {
-    public class MRUContainer<K, V> : ICacheContainer<K, V>
+    public class MRUCacheContainer<K, V> : ICacheContainer<K, V>
         where V : class
     {
         private V[] ObjectList;
@@ -17,7 +17,7 @@ namespace CozyWiki.Container
         public int MaxSize { get; set; }
         public int FreeNode { get; set; }
 
-        public MRUContainer(int maxSize = 64)
+        public MRUCacheContainer(int maxSize = 64)
         {
             SetMaxSize(maxSize);
         }

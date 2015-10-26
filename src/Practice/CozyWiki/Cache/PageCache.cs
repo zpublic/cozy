@@ -29,7 +29,7 @@ namespace CozyWiki.Cache
                 maxSize = value;
                 if (value > 0)
                 {
-                    CachePool = new MRUContainer<string, CacheBlock>(MaxSize);
+                    CachePool = new MRUCacheContainer<string, CacheBlock>(MaxSize);
                 }
                 else if (value <= 0)
                 {
