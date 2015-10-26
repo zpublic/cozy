@@ -11,6 +11,8 @@ namespace CozyWiki.Cache
     {
         public string Data { get; set; }
 
+        public DateTime CacheTime { get; set; }
+
         public DateTime LastWriteTime { get; set; }
 
         public DateTime CreateTime { get; set; }

@@ -59,8 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cache\CacheEntry.cs" />
+    <Compile Include="Cache\CacheBlock.cs" />
     <Compile Include="Cache\CacheManager.cs" />
+    <Compile Include="Container\MRUCacheContainer.cs" />
     <Compile Include="Cozy404Handler.cs" />
     <Compile Include="Cache\PageCache.cs" />
     <Compile Include="Program.cs" />
