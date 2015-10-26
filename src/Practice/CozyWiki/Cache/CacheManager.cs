@@ -12,11 +12,14 @@ namespace CozyWiki.Cache
         private static CacheManager instance { get; set; } = new CacheManager();
         public static CacheManager Instance { get { return instance; } }
 
-        public PageCache HtmlCache { get; set; } = new PageCache();
-        public PageCache MarkdownCache { get; set; } = new PageCache();
+        public PageCache HtmlCache { get; set; }            = new PageCache();
+        public PageCache MarkdownCache { get; set; }        = new PageCache();
 
         Timer InnerTimer { get; set; } = new Timer();
 
+        /// <summary>
+        /// 缓存有效期
+        /// </summary>
         public double Timeout
         {
             get
@@ -29,6 +32,9 @@ namespace CozyWiki.Cache
             }
         }
 
+        /// <summary>
+        /// 缓存最大数量
+        /// </summary>
         private int maxSize { get; set; }
         public int MaxSize
         {
@@ -44,6 +50,9 @@ namespace CozyWiki.Cache
             }
         }
 
+        /// <summary>
+        /// 是否开启定时自动清理无效缓存
+        /// </summary>
         public bool CleanEnable
         {
             get

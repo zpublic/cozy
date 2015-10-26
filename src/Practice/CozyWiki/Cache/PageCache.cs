@@ -13,7 +13,11 @@ namespace CozyWiki.Cache
 
         private readonly object Locker = new object();
 
+        
         private int maxSize { get; set; }
+        /// <summary>
+        /// 如果value为0 则不限制缓存数量
+        /// </summary>
         public int MaxSize
         {
             get
