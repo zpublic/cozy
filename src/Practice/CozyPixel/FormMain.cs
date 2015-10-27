@@ -20,14 +20,14 @@ namespace CozyPixel
 
         private void OpenMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog OpenDlg  = new OpenFileDialog();
-            OpenDlg.Filter          = @"(*.jpg,*.png,*.jpeg,*.bmp,*.gif)| *.jgp; *.png; *.jpeg; *.bmp; *.gif | All files(*.*) | *.* ";
+            OpenFileDialog OpenDlg = new OpenFileDialog();
+            OpenDlg.Filter = @"(*.jpg,*.png,*.jpeg,*.bmp,*.gif)| *.jgp; *.png; *.jpeg; *.bmp; *.gif | All files(*.*) | *.* ";
 
             if (OpenDlg.ShowDialog() == DialogResult.OK)
             {
                 Bitmap b            = new Bitmap(OpenDlg.FileName);
                 Model.PixelMap pm   = new Model.PixelMap();
-                pm.ShowGrid         = false;
+                pm.ShowGrid         = true;
                 pm.data             = b;
                 pm.PixelWidth       = 10;
                 PictureBox.Image    = Draw.BitmapGenerate.Draw(pm);
@@ -43,6 +43,20 @@ namespace CozyPixel
         {
             var about = new AboutForm();
             about.ShowDialog();
+        }
+
+        private void SaveMenuItem_Click(object sender, EventArgs e)
+        {
+            if(PictureBox.Image != null)
+            {
+                SaveFileDialog SaveDlg = new SaveFileDialog();
+                SaveDlg.Filter = @"位图(*.bmp)|*.bmp|All Files|*.*";
+
+                if (SaveDlg.ShowDialog() == DialogResult.OK)
+                {
+                    PictureBox.Image.Save(SaveDlg.FileName);
+                }
+            }
         }
     }
 }
