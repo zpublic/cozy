@@ -13,12 +13,6 @@ namespace CozyPixel
 {
     public partial class FormMain : Form
     {
-        public Bitmap SourceImage { get; set; }
-
-        public Graphics ShowGraphics { get; set; }
-
-        public Model.PixelMap CurrPixelMap { get; set; }
-
         public FormMain()
         {
             InitializeComponent();
@@ -31,15 +25,14 @@ namespace CozyPixel
 
             if (OpenDlg.ShowDialog() == DialogResult.OK)
             {
-                SourceImage                     = new Bitmap(OpenDlg.FileName);
-                CurrPixelMap                    = new Model.PixelMap();
+                var CurrPixelMap                = new Model.PixelMap();
                 CurrPixelMap.ShowGrid           = false;
-                CurrPixelMap.data               = SourceImage;
+                CurrPixelMap.data               = new Bitmap(OpenDlg.FileName);
                 CurrPixelMap.PixelWidth         = 10;
                 CurrPixelMap.GridWidth          = 1;
                 CurrPixelMap.GridColor          = Color.WhiteSmoke;
-                PictureBox.Image                = Draw.BitmapGenerate.Draw(CurrPixelMap);
-                ShowGraphics                    = PictureBox.CreateGraphics();
+
+                PixelPainter.SourceImage          = CurrPixelMap;
             }
         }
 
@@ -56,14 +49,14 @@ namespace CozyPixel
 
         private void SaveMenuItem_Click(object sender, EventArgs e)
         {
-            if(PictureBox.Image != null)
+            if(PixelPainter.Image != null)
             {
                 SaveFileDialog SaveDlg = new SaveFileDialog();
                 SaveDlg.Filter = @"位图(*.bmp)|*.bmp|All Files|*.*";
 
                 if (SaveDlg.ShowDialog() == DialogResult.OK)
                 {
-                    SourceImage.Save(SaveDlg.FileName);
+                    PixelPainter.Save(SaveDlg.FileName);
                 }
             }
         }
@@ -71,7 +64,6 @@ namespace CozyPixel
         private void FormMain_Load(object sender, EventArgs e)
         {
             TestColor();
-            
         }
 
         private void TestColor()
@@ -87,42 +79,9 @@ namespace CozyPixel
             ColorList.AddColor(Color.Purple);
         }
 
-        private void PictureBox_MouseUp(object sender, MouseEventArgs e)
-        {
-
-        }
-
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if(CurrPixelMap != null)
-            {
-                var p = e.Location;
-                var b = new SolidBrush(ColorList.SelectedColor);
-                int w = 0;
-
-                if (CurrPixelMap.ShowGrid)
-                {
-                    w = (CurrPixelMap.PixelWidth + CurrPixelMap.GridWidth);
-                }
-                else
-                {
-                    w = CurrPixelMap.PixelWidth;
-                }
-
-                int x   = p.X / w;
-                int y   = p.Y / w;
-
-                if(x < SourceImage.Width && y < SourceImage.Height)
-                {
-                    SourceImage.SetPixel(x, y, ColorList.SelectedColor);
-
-                    int fx  = x * w;
-                    int fy  = y * w;
-                    fx      = Math.Min(fx, PictureBox.Image.Width);
-                    fy      = Math.Min(fy, PictureBox.Image.Height);
-                    ShowGraphics.FillRectangle(b, fx, fy, w, w);
-                }
-            }
+            PixelPainter.DrawPixel(e.Location, ColorList.SelectedColor);
         }
     }
 }

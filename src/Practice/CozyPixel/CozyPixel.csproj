@@ -50,6 +50,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\ControlEventArgs\ColorEventAgs.cs" />
+    <Compile Include="Controls\PixelPaintControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Draw\BitmapGenerate.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -66,6 +69,9 @@
     <Compile Include="Model\PixelMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\PixelPaintControl.resx">
+      <DependentUpon>PixelPaintControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

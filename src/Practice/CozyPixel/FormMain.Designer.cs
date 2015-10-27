@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.PictureBox = new System.Windows.Forms.PictureBox();
             this.MainStripMenu = new System.Windows.Forms.MenuStrip();
             this.FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,19 +36,10 @@
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ColorList = new CozyPixel.Controls.ColorListView();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
+            this.PixelPainter = new CozyPixel.Controls.PixelPaintControl();
             this.MainStripMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).BeginInit();
             this.SuspendLayout();
-            // 
-            // PictureBox
-            // 
-            this.PictureBox.Location = new System.Drawing.Point(150, 99);
-            this.PictureBox.Name = "PictureBox";
-            this.PictureBox.Size = new System.Drawing.Size(480, 360);
-            this.PictureBox.TabIndex = 0;
-            this.PictureBox.TabStop = false;
-            this.PictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseDown);
-            this.PictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseUp);
             // 
             // MainStripMenu
             // 
@@ -118,13 +108,24 @@
             this.ColorList.Size = new System.Drawing.Size(480, 48);
             this.ColorList.TabIndex = 2;
             // 
+            // PixelPainter
+            // 
+            this.PixelPainter.Location = new System.Drawing.Point(150, 119);
+            this.PixelPainter.Name = "PixelPainter";
+            this.PixelPainter.ShowGraphics = null;
+            this.PixelPainter.Size = new System.Drawing.Size(480, 360);
+            this.PixelPainter.SourceImage = null;
+            this.PixelPainter.TabIndex = 3;
+            this.PixelPainter.TabStop = false;
+            this.PixelPainter.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseDown);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.PixelPainter);
             this.Controls.Add(this.ColorList);
-            this.Controls.Add(this.PictureBox);
             this.Controls.Add(this.MainStripMenu);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -132,17 +133,15 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CozyPixel";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox PictureBox;
         private System.Windows.Forms.MenuStrip MainStripMenu;
         private System.Windows.Forms.ToolStripMenuItem FileMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HelpMenuItem;
@@ -151,6 +150,7 @@
         private System.Windows.Forms.ToolStripMenuItem AboutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SaveMenuItem;
         private Controls.ColorListView ColorList;
+        private Controls.PixelPaintControl PixelPainter;
     }
 }
 
