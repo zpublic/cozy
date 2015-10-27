@@ -62,6 +62,7 @@ namespace CozyPixel.Controls
             bt.BackColor                    = c;
             bt.FlatStyle                    = FlatStyle.Flat;
             bt.FlatAppearance.BorderSize    = 0;
+            bt.Cursor                       = Cursors.Hand;
             bt.Click                        += OnColorButtonClick;
         }
 

@@ -12,6 +12,11 @@ namespace CozyPixel.Controls
 {
     public class PixelPaintControl : PictureBox
     {
+        public PixelPaintControl()
+        {
+            Cursor = Cursors.Cross;
+        }
+
         private PixelMap sourceImage;
         public PixelMap SourceImage
         {
