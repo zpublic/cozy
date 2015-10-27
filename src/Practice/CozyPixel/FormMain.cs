@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CozyPixel.Forms;
 
 namespace CozyPixel
 {
@@ -15,13 +16,33 @@ namespace CozyPixel
         public FormMain()
         {
             InitializeComponent();
+        }
 
-            Bitmap b = new Bitmap(@"g:\1.bmp");
+        private void OpenMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog OpenDlg  = new OpenFileDialog();
+            OpenDlg.Filter          = @"(*.jpg,*.png,*.jpeg,*.bmp,*.gif)| *.jgp; *.png; *.jpeg; *.bmp; *.gif | All files(*.*) | *.* ";
 
-            Model.PixelMap pm = new Model.PixelMap();
-            pm.data = b;
-            pm.PixelWidth = 10;
-            pictureBox1.Image = Draw.BitmapGenerate.Draw(pm);
+            if (OpenDlg.ShowDialog() == DialogResult.OK)
+            {
+                Bitmap b            = new Bitmap(OpenDlg.FileName);
+                Model.PixelMap pm   = new Model.PixelMap();
+                pm.ShowGrid         = false;
+                pm.data             = b;
+                pm.PixelWidth       = 10;
+                PictureBox.Image    = Draw.BitmapGenerate.Draw(pm);
+            }
+        }
+
+        private void ExitMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void AboutMenuItem_Click(object sender, EventArgs e)
+        {
+            var about = new AboutForm();
+            about.ShowDialog();
         }
     }
 }
