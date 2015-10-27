@@ -1,4 +1,5 @@
 #include "CozyConnection.h"
+#include "vector"
 
 CozyConnection::CozyConnection(uv_tcp_t* server)
     :m_server(server)
@@ -9,6 +10,8 @@ CozyConnection::CozyConnection(uv_tcp_t* server)
 
 CozyConnection::~CozyConnection()
 {
+    std::vector<int> s();
+    s.push_back();
     buf_clear();
 }
 

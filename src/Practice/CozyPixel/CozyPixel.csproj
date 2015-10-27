@@ -53,6 +53,9 @@
     <Compile Include="Controls\PixelPaintControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\VerticalTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Draw\BitmapGenerate.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
