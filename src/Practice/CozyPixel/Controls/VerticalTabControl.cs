@@ -19,9 +19,9 @@ namespace CozyPixel.Controls
 
         private void On_TabControl_DrawItem(object sender, DrawItemEventArgs e)
         {
-            var g = e.Graphics;
-            var font = Font;
-            var brush = new SolidBrush(Color.Black);
+            var g           = e.Graphics;
+            var font        = e.Font;
+            var brush       = new SolidBrush(Color.Black);
             var tabTextArea = (RectangleF)GetTabRect(e.Index);
             g.DrawString(Controls[e.Index].Text, font, brush, tabTextArea);
         }

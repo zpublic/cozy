@@ -1,6 +1,6 @@
 ﻿namespace CozyPixel
 {
-    partial class FormMain
+    partial class CozyPixelForm
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -37,10 +37,16 @@
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalTabControl1 = new CozyPixel.Controls.VerticalTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ShowGridCheckBox = new System.Windows.Forms.CheckBox();
+            this.GridColorButton = new System.Windows.Forms.Button();
+            this.ColorLabel = new System.Windows.Forms.Label();
             this.PixelPainter = new CozyPixel.Controls.PixelPaintControl();
             this.ColorList = new CozyPixel.Controls.ColorListView();
+            this.GridWidthBox = new System.Windows.Forms.TextBox();
+            this.GridWidthLabel = new System.Windows.Forms.Label();
             this.MainStripMenu.SuspendLayout();
             this.verticalTabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,6 +121,11 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.GridWidthLabel);
+            this.tabPage1.Controls.Add(this.GridWidthBox);
+            this.tabPage1.Controls.Add(this.ShowGridCheckBox);
+            this.tabPage1.Controls.Add(this.GridColorButton);
+            this.tabPage1.Controls.Add(this.ColorLabel);
             this.tabPage1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabPage1.Location = new System.Drawing.Point(22, 4);
             this.tabPage1.Name = "tabPage1";
@@ -123,6 +134,37 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "网格选项";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ShowGridCheckBox
+            // 
+            this.ShowGridCheckBox.AutoSize = true;
+            this.ShowGridCheckBox.Location = new System.Drawing.Point(57, 64);
+            this.ShowGridCheckBox.Name = "ShowGridCheckBox";
+            this.ShowGridCheckBox.Size = new System.Drawing.Size(72, 16);
+            this.ShowGridCheckBox.TabIndex = 2;
+            this.ShowGridCheckBox.Text = "显示网格";
+            this.ShowGridCheckBox.UseVisualStyleBackColor = true;
+            this.ShowGridCheckBox.CheckedChanged += new System.EventHandler(this.ShowGridCheckBox_CheckedChanged);
+            // 
+            // GridColorButton
+            // 
+            this.GridColorButton.FlatAppearance.BorderSize = 0;
+            this.GridColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.GridColorButton.Location = new System.Drawing.Point(57, 147);
+            this.GridColorButton.Name = "GridColorButton";
+            this.GridColorButton.Size = new System.Drawing.Size(48, 48);
+            this.GridColorButton.TabIndex = 1;
+            this.GridColorButton.UseVisualStyleBackColor = true;
+            this.GridColorButton.Click += new System.EventHandler(this.GridColorButton_Click);
+            // 
+            // ColorLabel
+            // 
+            this.ColorLabel.AutoSize = true;
+            this.ColorLabel.Location = new System.Drawing.Point(55, 119);
+            this.ColorLabel.Name = "ColorLabel";
+            this.ColorLabel.Size = new System.Drawing.Size(53, 12);
+            this.ColorLabel.TabIndex = 0;
+            this.ColorLabel.Text = "网格颜色";
             // 
             // PixelPainter
             // 
@@ -146,7 +188,24 @@
             this.ColorList.Size = new System.Drawing.Size(480, 48);
             this.ColorList.TabIndex = 2;
             // 
-            // FormMain
+            // GridWidthBox
+            // 
+            this.GridWidthBox.Location = new System.Drawing.Point(57, 210);
+            this.GridWidthBox.Name = "GridWidthBox";
+            this.GridWidthBox.Size = new System.Drawing.Size(100, 21);
+            this.GridWidthBox.TabIndex = 3;
+            this.GridWidthBox.TextChanged += new System.EventHandler(this.GridWidthBox_TextChanged);
+            // 
+            // GridWidthLabel
+            // 
+            this.GridWidthLabel.AutoSize = true;
+            this.GridWidthLabel.Location = new System.Drawing.Point(57, 195);
+            this.GridWidthLabel.Name = "GridWidthLabel";
+            this.GridWidthLabel.Size = new System.Drawing.Size(53, 12);
+            this.GridWidthLabel.TabIndex = 4;
+            this.GridWidthLabel.Text = "网格宽度";
+            // 
+            // CozyPixelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -157,13 +216,15 @@
             this.Controls.Add(this.MainStripMenu);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FormMain";
+            this.Name = "CozyPixelForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CozyPixel";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();
             this.verticalTabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -182,6 +243,11 @@
         private Controls.PixelPaintControl PixelPainter;
         private Controls.VerticalTabControl verticalTabControl1;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button GridColorButton;
+        private System.Windows.Forms.Label ColorLabel;
+        private System.Windows.Forms.CheckBox ShowGridCheckBox;
+        private System.Windows.Forms.Label GridWidthLabel;
+        private System.Windows.Forms.TextBox GridWidthBox;
     }
 }
 

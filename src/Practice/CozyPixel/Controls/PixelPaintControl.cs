@@ -27,17 +27,7 @@ namespace CozyPixel.Controls
             set
             {
                 sourceImage = value;
-
-                if (ShowGraphics != null)
-                {
-                    ShowGraphics.Dispose();
-                }
-
-                if (value != null)
-                {
-                    Image = BitmapGenerate.Draw(value);
-                    ShowGraphics = CreateGraphics();
-                }
+                RefreshPixel();
             }
         }
 
@@ -45,7 +35,10 @@ namespace CozyPixel.Controls
 
         public void Save(string filename)
         {
-            SourceImage.data.Save(filename);
+            if(SourceImage != null)
+            {
+                SourceImage.data.Save(filename);
+            }
         }
 
         public void DrawPixel(Point p, Color c)
@@ -53,15 +46,11 @@ namespace CozyPixel.Controls
             if (SourceImage != null)
             {
                 var b = new SolidBrush(c);
-                int w = 0;
+                int w = SourceImage.PixelWidth;
 
                 if (SourceImage.ShowGrid)
                 {
-                    w = (SourceImage.PixelWidth + SourceImage.GridWidth);
-                }
-                else
-                {
-                    w = SourceImage.PixelWidth;
+                    w += SourceImage.GridWidth;
                 }
 
                 int x = p.X / w;
@@ -77,6 +66,29 @@ namespace CozyPixel.Controls
                     fy = Math.Min(fy, Image.Height);
                     ShowGraphics.FillRectangle(b, fx, fy, w, w);
                 }
+            }
+        }
+
+        public void RefreshGrid()
+        {
+            if (SourceImage != null && SourceImage.ShowGrid)
+            {
+                BitmapGenerate.DrawGrid(SourceImage, ShowGraphics);
+            }
+        }
+
+        public void RefreshPixel()
+        {
+            if (ShowGraphics != null)
+            {
+                ShowGraphics.Dispose();
+                ShowGraphics = null;
+            }
+
+            if (SourceImage != null)
+            {
+                Image = BitmapGenerate.Draw(SourceImage);
+                ShowGraphics = CreateGraphics();
             }
         }
     }

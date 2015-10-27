@@ -8,12 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CozyPixel.Forms;
+using CozyPixel.Model;
 
 namespace CozyPixel
 {
-    public partial class FormMain : Form
+    public partial class CozyPixelForm : Form
     {
-        public FormMain()
+        private PixelMap CurrPixelMap { get; set; }
+
+        public CozyPixelForm()
         {
             InitializeComponent();
         }
@@ -25,14 +28,14 @@ namespace CozyPixel
 
             if (OpenDlg.ShowDialog() == DialogResult.OK)
             {
-                var CurrPixelMap                = new Model.PixelMap();
-                CurrPixelMap.ShowGrid           = false;
+                CurrPixelMap                    = new PixelMap();
+                CurrPixelMap.ShowGrid           = ShowGridCheckBox.Checked;
                 CurrPixelMap.data               = new Bitmap(OpenDlg.FileName);
                 CurrPixelMap.PixelWidth         = 10;
                 CurrPixelMap.GridWidth          = 1;
-                CurrPixelMap.GridColor          = Color.WhiteSmoke;
+                CurrPixelMap.GridColor          = GridColorButton.BackColor;
 
-                PixelPainter.SourceImage          = CurrPixelMap;
+                PixelPainter.SourceImage        = CurrPixelMap;
             }
         }
 
@@ -82,6 +85,38 @@ namespace CozyPixel
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             PixelPainter.DrawPixel(e.Location, ColorList.SelectedColor);
+        }
+
+        private void GridColorButton_Click(object sender, EventArgs e)
+        {
+            GridColorButton.BackColor   = ColorList.SelectedColor;
+            if(CurrPixelMap != null)
+            {
+                CurrPixelMap.GridColor = ColorList.SelectedColor;
+                PixelPainter.RefreshGrid();
+            }
+        }
+
+        private void ShowGridCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CurrPixelMap != null)
+            {
+                CurrPixelMap.ShowGrid = ShowGridCheckBox.Checked;
+                PixelPainter.RefreshPixel();
+            }
+        }
+
+        private void GridWidthBox_TextChanged(object sender, EventArgs e)
+        {
+            int w = 0;
+            if(int.TryParse(GridWidthBox.Text, out w))
+            {
+                if (CurrPixelMap != null)
+                {
+                    CurrPixelMap.GridWidth = w;
+                    PixelPainter.RefreshPixel();
+                }
+            }
         }
     }
 }
