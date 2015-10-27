@@ -32,20 +32,24 @@
             this.MainStripMenu = new System.Windows.Forms.MenuStrip();
             this.FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ColorList = new CozyPixel.Controls.ColorListView();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.MainStripMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // PictureBox
             // 
-            this.PictureBox.Location = new System.Drawing.Point(0, 28);
+            this.PictureBox.Location = new System.Drawing.Point(150, 99);
             this.PictureBox.Name = "PictureBox";
-            this.PictureBox.Size = new System.Drawing.Size(784, 535);
+            this.PictureBox.Size = new System.Drawing.Size(480, 360);
             this.PictureBox.TabIndex = 0;
             this.PictureBox.TabStop = false;
+            this.PictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseDown);
+            this.PictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseUp);
             // 
             // MainStripMenu
             // 
@@ -62,6 +66,7 @@
             // 
             this.FileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpenMenuItem,
+            this.SaveMenuItem,
             this.ExitMenuItem});
             this.FileMenuItem.Name = "FileMenuItem";
             this.FileMenuItem.Size = new System.Drawing.Size(44, 21);
@@ -70,14 +75,21 @@
             // OpenMenuItem
             // 
             this.OpenMenuItem.Name = "OpenMenuItem";
-            this.OpenMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.OpenMenuItem.Size = new System.Drawing.Size(100, 22);
             this.OpenMenuItem.Text = "打开";
             this.OpenMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
+            // 
+            // SaveMenuItem
+            // 
+            this.SaveMenuItem.Name = "SaveMenuItem";
+            this.SaveMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.SaveMenuItem.Text = "保存";
+            this.SaveMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
             // 
             // ExitMenuItem
             // 
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(100, 22);
             this.ExitMenuItem.Text = "退出";
             this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
@@ -92,21 +104,33 @@
             // AboutMenuItem
             // 
             this.AboutMenuItem.Name = "AboutMenuItem";
-            this.AboutMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AboutMenuItem.Size = new System.Drawing.Size(100, 22);
             this.AboutMenuItem.Text = "关于";
             this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
+            // 
+            // ColorList
+            // 
+            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.ColorList.ColorItemSize = new System.Drawing.Size(48, 48);
+            this.ColorList.Location = new System.Drawing.Point(150, 28);
+            this.ColorList.Name = "ColorList";
+            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
+            this.ColorList.Size = new System.Drawing.Size(480, 48);
+            this.ColorList.TabIndex = 2;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.ColorList);
             this.Controls.Add(this.PictureBox);
             this.Controls.Add(this.MainStripMenu);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormMain";
             this.Text = "CozyPixel";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();
@@ -124,6 +148,8 @@
         private System.Windows.Forms.ToolStripMenuItem OpenMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ExitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveMenuItem;
+        private Controls.ColorListView ColorList;
     }
 }
 

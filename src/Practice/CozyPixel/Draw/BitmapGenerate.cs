@@ -21,32 +21,41 @@ namespace CozyPixel.Draw
             Bitmap b = new Bitmap(w, h);
             using (Graphics g = Graphics.FromImage(b))
             {
-                var GridPen = new Pen(pm.GridColor);
 
                 for (int i = 0; i < pm.data.Width; ++i)
                 {
-                    int GridX = i * (pm.PixelWidth + pm.GridWidth);
-
                     for (int j = 0; j < pm.data.Height; ++j)
                     {
-                        g.FillRectangle(
+                        if(pm.ShowGrid)
+                        {
+                            g.FillRectangle(
                                 new SolidBrush(pm.GetPixel(i, j)),
-                                pm.GridWidth + GridX,
+                                pm.GridWidth + i * (pm.PixelWidth + pm.GridWidth),
                                 pm.GridWidth + j * (pm.PixelWidth + pm.GridWidth),
                                 pm.PixelWidth,
                                 pm.PixelWidth);
-                    }
-                    if(pm.ShowGrid)
-                    {
-                        g.DrawLine(GridPen, GridX, 0, GridX, h);
+                        }
+                        else
+                        {
+                            g.FillRectangle(
+                                new SolidBrush(pm.GetPixel(i, j)),
+                                i * pm.PixelWidth,
+                                j * pm.PixelWidth,
+                                pm.PixelWidth,
+                                pm.PixelWidth);
+                        }
                     }
                 }
-                if(pm.ShowGrid)
+
+                if (pm.ShowGrid)
                 {
-                    g.DrawLine(GridPen, pm.data.Width * (pm.PixelWidth + pm.GridWidth), 0, pm.data.Width * (pm.PixelWidth + pm.GridWidth), h);
-                    for (int i = 0; i <= pm.data.Height; ++i)
+                    var GridPen = new Pen(pm.GridColor, pm.GridWidth);
+                    int BlockWidth = pm.PixelWidth + pm.GridWidth;
+
+                    for (int i = 0; i < pm.data.Width; ++i)
                     {
-                        g.DrawLine(GridPen, 0, i * (pm.PixelWidth + pm.GridWidth), w, i * (pm.PixelWidth + pm.GridWidth));
+                        g.DrawLine(GridPen, 0, i * BlockWidth, w, i * BlockWidth);
+                        g.DrawLine(GridPen, i * BlockWidth, 0, i * BlockWidth, h);
                     }
                 }
             }

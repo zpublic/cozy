@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ColorListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ControlEventArgs\ColorEventAgs.cs" />
     <Compile Include="Draw\BitmapGenerate.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>

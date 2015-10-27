@@ -13,6 +13,12 @@ namespace CozyPixel
 {
     public partial class FormMain : Form
     {
+        public Bitmap SourceImage { get; set; }
+
+        public Graphics ShowGraphics { get; set; }
+
+        public Model.PixelMap CurrPixelMap { get; set; }
+
         public FormMain()
         {
             InitializeComponent();
@@ -20,17 +26,20 @@ namespace CozyPixel
 
         private void OpenMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog OpenDlg  = new OpenFileDialog();
-            OpenDlg.Filter          = @"(*.jpg,*.png,*.jpeg,*.bmp,*.gif)| *.jgp; *.png; *.jpeg; *.bmp; *.gif | All files(*.*) | *.* ";
+            OpenFileDialog OpenDlg = new OpenFileDialog();
+            OpenDlg.Filter = @"(*.jpg,*.png,*.jpeg,*.bmp,*.gif)| *.jgp; *.png; *.jpeg; *.bmp; *.gif | All files(*.*) | *.* ";
 
             if (OpenDlg.ShowDialog() == DialogResult.OK)
             {
-                Bitmap b            = new Bitmap(OpenDlg.FileName);
-                Model.PixelMap pm   = new Model.PixelMap();
-                pm.ShowGrid         = false;
-                pm.data             = b;
-                pm.PixelWidth       = 10;
-                PictureBox.Image    = Draw.BitmapGenerate.Draw(pm);
+                SourceImage                     = new Bitmap(OpenDlg.FileName);
+                CurrPixelMap                    = new Model.PixelMap();
+                CurrPixelMap.ShowGrid           = false;
+                CurrPixelMap.data               = SourceImage;
+                CurrPixelMap.PixelWidth         = 10;
+                CurrPixelMap.GridWidth          = 1;
+                CurrPixelMap.GridColor          = Color.WhiteSmoke;
+                PictureBox.Image                = Draw.BitmapGenerate.Draw(CurrPixelMap);
+                ShowGraphics                    = PictureBox.CreateGraphics();
             }
         }
 
@@ -43,6 +52,70 @@ namespace CozyPixel
         {
             var about = new AboutForm();
             about.ShowDialog();
+        }
+
+        private void SaveMenuItem_Click(object sender, EventArgs e)
+        {
+            if(PictureBox.Image != null)
+            {
+                SaveFileDialog SaveDlg = new SaveFileDialog();
+                SaveDlg.Filter = @"位图(*.bmp)|*.bmp|All Files|*.*";
+
+                if (SaveDlg.ShowDialog() == DialogResult.OK)
+                {
+                    SourceImage.Save(SaveDlg.FileName);
+                }
+            }
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            TestColor();
+            
+        }
+
+        private void TestColor()
+        {
+            ColorList.AddColor(Color.Red);
+            ColorList.AddColor(Color.Orange);
+            ColorList.AddColor(Color.Yellow);
+            ColorList.AddColor(Color.Green);
+            ColorList.AddColor(Color.Blue);
+            ColorList.AddColor(Color.White);
+            ColorList.AddColor(Color.Black);
+            ColorList.AddColor(Color.Pink);
+            ColorList.AddColor(Color.Purple);
+        }
+
+        private void PictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void PictureBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(CurrPixelMap != null)
+            {
+                var p = e.Location;
+                var b = new SolidBrush(ColorList.SelectedColor);
+                int x = 0;
+                int y = 0;
+                int w = 0;
+
+                if (CurrPixelMap.ShowGrid)
+                {
+                    w = (CurrPixelMap.PixelWidth + CurrPixelMap.GridWidth);
+                }
+                else
+                {
+                    w = CurrPixelMap.PixelWidth;
+                }
+
+                x = p.X / w;
+                y = p.Y / w;
+                SourceImage.SetPixel(x, y, ColorList.SelectedColor);
+                ShowGraphics.FillRectangle(b, x * w, y * w, w, w);
+            }
         }
     }
 }
