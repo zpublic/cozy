@@ -98,8 +98,6 @@ namespace CozyPixel
             {
                 var p = e.Location;
                 var b = new SolidBrush(ColorList.SelectedColor);
-                int x = 0;
-                int y = 0;
                 int w = 0;
 
                 if (CurrPixelMap.ShowGrid)
@@ -111,10 +109,19 @@ namespace CozyPixel
                     w = CurrPixelMap.PixelWidth;
                 }
 
-                x = p.X / w;
-                y = p.Y / w;
-                SourceImage.SetPixel(x, y, ColorList.SelectedColor);
-                ShowGraphics.FillRectangle(b, x * w, y * w, w, w);
+                int x   = p.X / w;
+                int y   = p.Y / w;
+
+                if(x < SourceImage.Width && y < SourceImage.Height)
+                {
+                    SourceImage.SetPixel(x, y, ColorList.SelectedColor);
+
+                    int fx  = x * w;
+                    int fy  = y * w;
+                    fx      = Math.Min(fx, PictureBox.Image.Width);
+                    fy      = Math.Min(fy, PictureBox.Image.Height);
+                    ShowGraphics.FillRectangle(b, fx, fy, w, w);
+                }
             }
         }
     }
