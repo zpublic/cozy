@@ -8,18 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CozyPixel.Forms;
+using CozyPixel.Model;
 
 namespace CozyPixel
 {
-    public partial class FormMain : Form
+    public partial class CozyPixelForm : Form
     {
-        public Bitmap SourceImage { get; set; }
+        private PixelMap CurrPixelMap { get; set; }
 
-        public Graphics ShowGraphics { get; set; }
-
-        public Model.PixelMap CurrPixelMap { get; set; }
-
-        public FormMain()
+        public CozyPixelForm()
         {
             InitializeComponent();
         }
@@ -31,15 +28,14 @@ namespace CozyPixel
 
             if (OpenDlg.ShowDialog() == DialogResult.OK)
             {
-                SourceImage                     = new Bitmap(OpenDlg.FileName);
-                CurrPixelMap                    = new Model.PixelMap();
-                CurrPixelMap.ShowGrid           = false;
-                CurrPixelMap.data               = SourceImage;
+                CurrPixelMap                    = new PixelMap();
+                CurrPixelMap.ShowGrid           = ShowGridCheckBox.Checked;
+                CurrPixelMap.data               = new Bitmap(OpenDlg.FileName);
                 CurrPixelMap.PixelWidth         = 10;
                 CurrPixelMap.GridWidth          = 1;
-                CurrPixelMap.GridColor          = Color.WhiteSmoke;
-                PictureBox.Image                = Draw.BitmapGenerate.Draw(CurrPixelMap);
-                ShowGraphics                    = PictureBox.CreateGraphics();
+                CurrPixelMap.GridColor          = GridColorButton.BackColor;
+
+                PixelPainter.SourceImage        = CurrPixelMap;
             }
         }
 
@@ -56,14 +52,14 @@ namespace CozyPixel
 
         private void SaveMenuItem_Click(object sender, EventArgs e)
         {
-            if(PictureBox.Image != null)
+            if(PixelPainter.Image != null)
             {
                 SaveFileDialog SaveDlg = new SaveFileDialog();
                 SaveDlg.Filter = @"位图(*.bmp)|*.bmp|All Files|*.*";
 
                 if (SaveDlg.ShowDialog() == DialogResult.OK)
                 {
-                    SourceImage.Save(SaveDlg.FileName);
+                    PixelPainter.Save(SaveDlg.FileName);
                 }
             }
         }
@@ -71,7 +67,6 @@ namespace CozyPixel
         private void FormMain_Load(object sender, EventArgs e)
         {
             TestColor();
-            
         }
 
         private void TestColor()
@@ -87,34 +82,40 @@ namespace CozyPixel
             ColorList.AddColor(Color.Purple);
         }
 
-        private void PictureBox_MouseUp(object sender, MouseEventArgs e)
-        {
-
-        }
-
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
+            PixelPainter.DrawPixel(e.Location, ColorList.SelectedColor);
+        }
+
+        private void GridColorButton_Click(object sender, EventArgs e)
+        {
+            GridColorButton.BackColor   = ColorList.SelectedColor;
             if(CurrPixelMap != null)
             {
-                var p = e.Location;
-                var b = new SolidBrush(ColorList.SelectedColor);
-                int x = 0;
-                int y = 0;
-                int w = 0;
+                CurrPixelMap.GridColor = ColorList.SelectedColor;
+                PixelPainter.RefreshGrid();
+            }
+        }
 
-                if (CurrPixelMap.ShowGrid)
-                {
-                    w = (CurrPixelMap.PixelWidth + CurrPixelMap.GridWidth);
-                }
-                else
-                {
-                    w = CurrPixelMap.PixelWidth;
-                }
+        private void ShowGridCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CurrPixelMap != null)
+            {
+                CurrPixelMap.ShowGrid = ShowGridCheckBox.Checked;
+                PixelPainter.RefreshPixel();
+            }
+        }
 
-                x = p.X / w;
-                y = p.Y / w;
-                SourceImage.SetPixel(x, y, ColorList.SelectedColor);
-                ShowGraphics.FillRectangle(b, x * w, y * w, w, w);
+        private void GridWidthBox_TextChanged(object sender, EventArgs e)
+        {
+            int w = 0;
+            if(int.TryParse(GridWidthBox.Text, out w))
+            {
+                if (CurrPixelMap != null)
+                {
+                    CurrPixelMap.GridWidth = w;
+                    PixelPainter.RefreshPixel();
+                }
             }
         }
     }

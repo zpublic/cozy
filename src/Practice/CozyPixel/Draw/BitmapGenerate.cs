@@ -18,6 +18,7 @@ namespace CozyPixel.Draw
                 w += pm.GridWidth * (pm.data.Width + 1);
                 h += pm.GridWidth * (pm.data.Height + 1);
             }
+
             Bitmap b = new Bitmap(w, h);
             using (Graphics g = Graphics.FromImage(b))
             {
@@ -46,21 +47,29 @@ namespace CozyPixel.Draw
                         }
                     }
                 }
-
                 if (pm.ShowGrid)
                 {
-                    var GridPen = new Pen(pm.GridColor, pm.GridWidth);
-                    int BlockWidth = pm.PixelWidth + pm.GridWidth;
-
-                    for (int i = 0; i < pm.data.Width; ++i)
-                    {
-                        g.DrawLine(GridPen, 0, i * BlockWidth, w, i * BlockWidth);
-                        g.DrawLine(GridPen, i * BlockWidth, 0, i * BlockWidth, h);
-                    }
+                    DrawGrid(pm, g);
                 }
             }
 
             return b;
+        }
+
+        public static void DrawGrid(Model.PixelMap pm, Graphics g)
+        {
+            int x = (pm.PixelWidth + 1) + pm.GridWidth;
+            var w = pm.data.Width * x;
+            var h = pm.data.Height * x;
+
+            var GridPen = new Pen(pm.GridColor, pm.GridWidth);
+            int BlockWidth = pm.PixelWidth + pm.GridWidth;
+
+            for (int i = 0; i < pm.data.Width; ++i)
+            {
+                g.DrawLine(GridPen, 0, i * BlockWidth, w, i * BlockWidth);
+                g.DrawLine(GridPen, i * BlockWidth, 0, i * BlockWidth, h);
+            }
         }
     }
 }
