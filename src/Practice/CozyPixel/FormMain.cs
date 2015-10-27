@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CozyPixel.Forms;
 
 namespace CozyPixel
 {
@@ -31,6 +32,17 @@ namespace CozyPixel
                 pm.PixelWidth       = 10;
                 PictureBox.Image    = Draw.BitmapGenerate.Draw(pm);
             }
+        }
+
+        private void ExitMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void AboutMenuItem_Click(object sender, EventArgs e)
+        {
+            var about = new AboutForm();
+            about.ShowDialog();
         }
     }
 }

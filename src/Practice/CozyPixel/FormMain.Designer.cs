@@ -31,22 +31,19 @@
             this.PictureBox = new System.Windows.Forms.PictureBox();
             this.MainStripMenu = new System.Windows.Forms.MenuStrip();
             this.FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.EditMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.NewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CloseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.MainStripMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // PictureBox
             // 
-            this.PictureBox.Location = new System.Drawing.Point(54, 45);
+            this.PictureBox.Location = new System.Drawing.Point(0, 28);
             this.PictureBox.Name = "PictureBox";
-            this.PictureBox.Size = new System.Drawing.Size(560, 391);
+            this.PictureBox.Size = new System.Drawing.Size(784, 535);
             this.PictureBox.TabIndex = 0;
             this.PictureBox.TabStop = false;
             // 
@@ -54,8 +51,6 @@
             // 
             this.MainStripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileMenuItem,
-            this.EditMenuItem,
-            this.ViewMenuItem,
             this.HelpMenuItem});
             this.MainStripMenu.Location = new System.Drawing.Point(0, 0);
             this.MainStripMenu.Name = "MainStripMenu";
@@ -66,37 +61,11 @@
             // FileMenuItem
             // 
             this.FileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.NewMenuItem,
             this.OpenMenuItem,
-            this.SaveMenuItem,
-            this.CloseMenuItem});
+            this.ExitMenuItem});
             this.FileMenuItem.Name = "FileMenuItem";
             this.FileMenuItem.Size = new System.Drawing.Size(44, 21);
             this.FileMenuItem.Text = "文件";
-            // 
-            // EditMenuItem
-            // 
-            this.EditMenuItem.Name = "EditMenuItem";
-            this.EditMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.EditMenuItem.Text = "编辑";
-            // 
-            // ViewMenuItem
-            // 
-            this.ViewMenuItem.Name = "ViewMenuItem";
-            this.ViewMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.ViewMenuItem.Text = "视图";
-            // 
-            // HelpMenuItem
-            // 
-            this.HelpMenuItem.Name = "HelpMenuItem";
-            this.HelpMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.HelpMenuItem.Text = "帮助";
-            // 
-            // NewMenuItem
-            // 
-            this.NewMenuItem.Name = "NewMenuItem";
-            this.NewMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.NewMenuItem.Text = "新建";
             // 
             // OpenMenuItem
             // 
@@ -105,17 +74,27 @@
             this.OpenMenuItem.Text = "打开";
             this.OpenMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
             // 
-            // SaveMenuItem
+            // ExitMenuItem
             // 
-            this.SaveMenuItem.Name = "SaveMenuItem";
-            this.SaveMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.SaveMenuItem.Text = "保存";
+            this.ExitMenuItem.Name = "ExitMenuItem";
+            this.ExitMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ExitMenuItem.Text = "退出";
+            this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
-            // CloseMenuItem
+            // HelpMenuItem
             // 
-            this.CloseMenuItem.Name = "CloseMenuItem";
-            this.CloseMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.CloseMenuItem.Text = "关闭";
+            this.HelpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AboutMenuItem});
+            this.HelpMenuItem.Name = "HelpMenuItem";
+            this.HelpMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.HelpMenuItem.Text = "帮助";
+            // 
+            // AboutMenuItem
+            // 
+            this.AboutMenuItem.Name = "AboutMenuItem";
+            this.AboutMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AboutMenuItem.Text = "关于";
+            this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
             // 
             // FormMain
             // 
@@ -141,13 +120,10 @@
         private System.Windows.Forms.PictureBox PictureBox;
         private System.Windows.Forms.MenuStrip MainStripMenu;
         private System.Windows.Forms.ToolStripMenuItem FileMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem EditMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ViewMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HelpMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem NewMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OpenMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem SaveMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem CloseMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExitMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AboutMenuItem;
     }
 }
 
