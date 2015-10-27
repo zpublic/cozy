@@ -67,7 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Module\ArticleModel.cs" />
+    <Compile Include="Module\ArticleModule.cs" />
     <Compile Include="Module\BaseModule.cs" />
     <Compile Include="Module\HomeModule.cs" />
     <Compile Include="Program.cs" />
