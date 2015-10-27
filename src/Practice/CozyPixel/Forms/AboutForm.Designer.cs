@@ -55,11 +55,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(202, 115);
+            this.ClientSize = new System.Drawing.Size(204, 111);
             this.Controls.Add(this.AboutLabel);
             this.Controls.Add(this.OkButton);
             this.Name = "AboutForm";
             this.Text = "About Cozy";
+            this.Load += new System.EventHandler(this.AboutForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
