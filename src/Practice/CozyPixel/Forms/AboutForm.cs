@@ -21,12 +21,5 @@ namespace CozyPixel.Forms
         {
             Close();
         }
-
-        private void AboutForm_Load(object sender, EventArgs e)
-        {
-            Location = new Point(
-                Screen.PrimaryScreen.Bounds.Width / 2, 
-                Screen.PrimaryScreen.Bounds.Height / 2);
-        }
     }
 }

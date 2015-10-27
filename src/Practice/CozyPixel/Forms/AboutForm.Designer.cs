@@ -59,8 +59,8 @@
             this.Controls.Add(this.AboutLabel);
             this.Controls.Add(this.OkButton);
             this.Name = "AboutForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "About Cozy";
-            this.Load += new System.EventHandler(this.AboutForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
