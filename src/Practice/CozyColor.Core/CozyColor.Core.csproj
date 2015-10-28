@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Color\DradientColor.cs" />
     <Compile Include="Color\RandomColor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

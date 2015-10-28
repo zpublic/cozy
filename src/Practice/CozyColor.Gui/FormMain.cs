@@ -61,5 +61,79 @@ namespace CozyColor.Gui
                 }
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 12; ++i)
+            {
+                Color f = RandomColor.Generate();
+                Color t = RandomColor.Generate();
+                Color[] arr = DradientColor.Generate(f, t, 7);
+                for (int j = 0; j < 7; ++j)
+                {
+                    Bitmap b = new Bitmap(64, 64);
+                    Graphics g = Graphics.FromImage(b);
+                    g.FillRectangle(
+                        new SolidBrush(arr[j]),
+                        0,
+                        0,
+                        64,
+                        64);
+                    pbs[i * 7 + j].Image = b;
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Color c1 = RandomColor.Generate();
+            Color c2 = RandomColor.Generate();
+            Color c3 = Color.White;
+            Color c4 = Color.Black;
+            Color[] arr1 = DradientColor.Generate(c1, c4, 12);
+            Color[] arr2 = DradientColor.Generate(c3, c2, 12);
+            for (int i = 0; i < 12; ++i)
+            {
+                Color[] arr = DradientColor.Generate(arr1[i], arr2[i], 7);
+                for (int j = 0; j < 7; ++j)
+                {
+                    Bitmap b = new Bitmap(64, 64);
+                    Graphics g = Graphics.FromImage(b);
+                    g.FillRectangle(
+                        new SolidBrush(arr[j]),
+                        0,
+                        0,
+                        64,
+                        64);
+                    pbs[i * 7 + j].Image = b;
+                }
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Color c1 = RandomColor.Generate();
+            Color c2 = RandomColor.Generate();
+            Color c3 = RandomColor.Generate();
+            Color c4 = RandomColor.Generate();
+            Color[] arr1 = DradientColor.Generate(c1, c4, 12);
+            Color[] arr2 = DradientColor.Generate(c3, c2, 12);
+            for (int i = 0; i < 12; ++i)
+            {
+                Color[] arr = DradientColor.Generate(arr1[i], arr2[i], 7);
+                for (int j = 0; j < 7; ++j)
+                {
+                    Bitmap b = new Bitmap(64, 64);
+                    Graphics g = Graphics.FromImage(b);
+                    g.FillRectangle(
+                        new SolidBrush(arr[j]),
+                        0,
+                        0,
+                        64,
+                        64);
+                    pbs[i * 7 + j].Image = b;
+                }
+            }
+        }
     }
 }
