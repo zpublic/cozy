@@ -31,8 +31,8 @@ namespace CozyPixel
                 CurrPixelMap                    = new PixelMap();
                 CurrPixelMap.ShowGrid           = ShowGridCheckBox.Checked;
                 CurrPixelMap.data               = new Bitmap(OpenDlg.FileName);
-                CurrPixelMap.PixelWidth         = 10;
-                CurrPixelMap.GridWidth          = 1;
+                CurrPixelMap.PixelWidth         = 18;
+                CurrPixelMap.GridWidth          = 2;
                 CurrPixelMap.GridColor          = GridColorButton.BackColor;
 
                 PixelPainter.SourceImage        = CurrPixelMap;
@@ -102,6 +102,14 @@ namespace CozyPixel
             if (CurrPixelMap != null)
             {
                 CurrPixelMap.ShowGrid = ShowGridCheckBox.Checked;
+                if (CurrPixelMap.ShowGrid)
+                {
+                    CurrPixelMap.PixelWidth = 16;
+                }
+                else
+                {
+                    CurrPixelMap.PixelWidth = 18;
+                }
                 PixelPainter.RefreshPixel();
             }
         }
