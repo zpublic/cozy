@@ -31,7 +31,7 @@ namespace CozyPixel.Controls
             }
         }
 
-        public Graphics ShowGraphics { get; set; }
+        private Graphics ShowGraphics { get; set; }
 
         public void Save(string filename)
         {
@@ -59,9 +59,10 @@ namespace CozyPixel.Controls
                 if (x < SourceImage.data.Width && y < SourceImage.data.Height)
                 {
                     SourceImage.SetPixel(x, y, c);
-                    RefreshPixel();
+                    BitmapGenerate.DrawPixel(SourceImage, ShowGraphics, x, y, c);
                 }
             }
+            Invalidate();
         }
 
         public void RefreshGrid()
@@ -69,6 +70,7 @@ namespace CozyPixel.Controls
             if (SourceImage != null && SourceImage.ShowGrid)
             {
                 BitmapGenerate.DrawGrid(SourceImage, ShowGraphics);
+                Invalidate();
             }
         }
 
@@ -85,8 +87,9 @@ namespace CozyPixel.Controls
             if (SourceImage != null)
             {
                 Image = BitmapGenerate.Draw(SourceImage);
-                ShowGraphics = CreateGraphics();
+                ShowGraphics = Graphics.FromImage(Image);
             }
+            Invalidate();
         }
     }
 }

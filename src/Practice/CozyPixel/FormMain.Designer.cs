@@ -212,7 +212,6 @@
             this.PixelPainter.Cursor = System.Windows.Forms.Cursors.Cross;
             this.PixelPainter.Location = new System.Drawing.Point(316, 188);
             this.PixelPainter.Name = "PixelPainter";
-            this.PixelPainter.ShowGraphics = null;
             this.PixelPainter.Size = new System.Drawing.Size(640, 512);
             this.PixelPainter.SourceImage = null;
             this.PixelPainter.TabIndex = 3;
