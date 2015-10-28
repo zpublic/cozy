@@ -34,7 +34,7 @@
             // 
             // OkButton
             // 
-            this.OkButton.Location = new System.Drawing.Point(50, 76);
+            this.OkButton.Location = new System.Drawing.Point(61, 76);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(87, 23);
             this.OkButton.TabIndex = 0;
@@ -60,7 +60,7 @@
             this.Controls.Add(this.OkButton);
             this.Name = "AboutForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "About Cozy";
+            this.Text = "关于我们";
             this.ResumeLayout(false);
             this.PerformLayout();
 
