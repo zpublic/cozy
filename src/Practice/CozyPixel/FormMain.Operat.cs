@@ -30,6 +30,9 @@ namespace CozyPixel
                 {
                     PixelPainter.Save(SaveDlg.FileName);
                     IsModified = false;
+
+                    SetCurrPathStatusLabel(SaveDlg.FileName);
+                    IsModified = false;
                     return true;
                 }
             }
@@ -53,6 +56,8 @@ namespace CozyPixel
                 }
 
                 ChangePixelPainterImage(bmp);
+                SetCurrPathStatusLabel(OpenDlg.FileName);
+                IsModified = false;
                 return true;
             }
             return false;
@@ -73,6 +78,8 @@ namespace CozyPixel
             }
 
             ChangePixelPainterImage(bmp);
+            SetCurrPathStatusLabel("未命名");
+            IsModified = true;
         }
 
         private void CloseFile()
@@ -80,6 +87,8 @@ namespace CozyPixel
             CurrPixelMap                = null;
             PixelPainter.SourceImage    = null;
             IsModified                  = false;
+
+            SetCurrPathStatusLabel("无");
         }
     }
 }

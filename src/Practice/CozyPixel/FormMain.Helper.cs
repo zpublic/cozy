@@ -26,7 +26,7 @@ namespace CozyPixel
         private void ChangePixelPainterImage(Bitmap bmp)
         {
             int gw = RefreshCurrGridWidth();
-
+            
             CurrPixelMap = new PixelMap()
             {
                 ShowGrid    = ShowGridCheckBox.Checked,
@@ -37,7 +37,6 @@ namespace CozyPixel
             };
 
             PixelPainter.SourceImage    = CurrPixelMap;
-            IsModified                  = false;
         }
 
         private bool ShowSaveDialog()
@@ -64,6 +63,11 @@ namespace CozyPixel
             {
                 ColorList.AddColor(c);
             }
+        }
+
+        private void SetCurrPathStatusLabel(string label)
+        {
+            CurrPathStatusLabel.Text    = "当前文件 ： " + (label ?? string.Empty);
         }
     }
 }

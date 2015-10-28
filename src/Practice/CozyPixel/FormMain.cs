@@ -46,6 +46,7 @@ namespace CozyPixel
                 }
             }
 
+            CloseFile();
             OpenFile();
         }
 
@@ -180,6 +181,7 @@ namespace CozyPixel
             {
                 var bmp = new Bitmap(bmpPath);
                 ChangePixelPainterImage(bmp);
+                SetCurrPathStatusLabel(bmpPath);
             }
         }
     }

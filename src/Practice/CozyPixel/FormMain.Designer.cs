@@ -38,11 +38,13 @@
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ColorPage = new System.Windows.Forms.TabPage();
-            this.ColorList = new CozyPixel.Controls.ColorListView();
             this.SelectedColorButton = new System.Windows.Forms.Button();
             this.MainTopTab = new System.Windows.Forms.TabControl();
             this.ThumbMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.OpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
+            this.CurrPathStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ColorList = new CozyPixel.Controls.ColorListView();
             this.MainLeftTab = new CozyPixel.Controls.VerticalTabControl();
             this.GridOpeionPage = new System.Windows.Forms.TabPage();
             this.GridWidthLabel = new System.Windows.Forms.Label();
@@ -58,6 +60,7 @@
             this.ColorPage.SuspendLayout();
             this.MainTopTab.SuspendLayout();
             this.ThumbMenuStrip.SuspendLayout();
+            this.MainStatusStrip.SuspendLayout();
             this.MainLeftTab.SuspendLayout();
             this.GridOpeionPage.SuspendLayout();
             this.FileSelectPage.SuspendLayout();
@@ -141,16 +144,6 @@
             this.ColorPage.Text = "颜色";
             this.ColorPage.UseVisualStyleBackColor = true;
             // 
-            // ColorList
-            // 
-            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
-            this.ColorList.ColorItemSize = new System.Drawing.Size(46, 20);
-            this.ColorList.Location = new System.Drawing.Point(195, 22);
-            this.ColorList.Name = "ColorList";
-            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
-            this.ColorList.Size = new System.Drawing.Size(400, 72);
-            this.ColorList.TabIndex = 2;
-            // 
             // SelectedColorButton
             // 
             this.SelectedColorButton.FlatAppearance.BorderSize = 0;
@@ -175,14 +168,40 @@
             this.ThumbMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpenToolStripMenuItem});
             this.ThumbMenuStrip.Name = "contextMenuStrip1";
-            this.ThumbMenuStrip.Size = new System.Drawing.Size(153, 48);
+            this.ThumbMenuStrip.Size = new System.Drawing.Size(101, 26);
             // 
             // OpenToolStripMenuItem
             // 
             this.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem";
-            this.OpenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.OpenToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.OpenToolStripMenuItem.Text = "打开";
             this.OpenToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
+            // 
+            // MainStatusStrip
+            // 
+            this.MainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CurrPathStatusLabel});
+            this.MainStatusStrip.Location = new System.Drawing.Point(0, 707);
+            this.MainStatusStrip.Name = "MainStatusStrip";
+            this.MainStatusStrip.Size = new System.Drawing.Size(1008, 22);
+            this.MainStatusStrip.TabIndex = 8;
+            this.MainStatusStrip.Text = "statusStrip1";
+            // 
+            // CurrPathStatusLabel
+            // 
+            this.CurrPathStatusLabel.Name = "CurrPathStatusLabel";
+            this.CurrPathStatusLabel.Size = new System.Drawing.Size(88, 17);
+            this.CurrPathStatusLabel.Text = "当前文件 ： 无";
+            // 
+            // ColorList
+            // 
+            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
+            this.ColorList.ColorItemSize = new System.Drawing.Size(46, 20);
+            this.ColorList.Location = new System.Drawing.Point(195, 22);
+            this.ColorList.Name = "ColorList";
+            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
+            this.ColorList.Size = new System.Drawing.Size(400, 72);
+            this.ColorList.TabIndex = 2;
             // 
             // MainLeftTab
             // 
@@ -314,6 +333,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.MainStatusStrip);
             this.Controls.Add(this.MainTopTab);
             this.Controls.Add(this.MainLeftTab);
             this.Controls.Add(this.PixelPainter);
@@ -329,6 +349,8 @@
             this.ColorPage.ResumeLayout(false);
             this.MainTopTab.ResumeLayout(false);
             this.ThumbMenuStrip.ResumeLayout(false);
+            this.MainStatusStrip.ResumeLayout(false);
+            this.MainStatusStrip.PerformLayout();
             this.MainLeftTab.ResumeLayout(false);
             this.GridOpeionPage.ResumeLayout(false);
             this.GridOpeionPage.PerformLayout();
@@ -365,6 +387,8 @@
         private Controls.ImageListView ThumbListView;
         private System.Windows.Forms.ContextMenuStrip ThumbMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem OpenToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip MainStatusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel CurrPathStatusLabel;
     }
 }
 
