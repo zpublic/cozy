@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CozyPixel.Controls.ControlEventArgs;
 using CozyPixel.Forms;
 using CozyPixel.Model;
+using CozyPixel.Controls.Other;
 
 namespace CozyPixel
 {
@@ -21,6 +23,17 @@ namespace CozyPixel
         public CozyPixelForm()
         {
             InitializeComponent();
+            RegisterEvent();
+        }
+
+        private void RegisterEvent()
+        {
+            ColorList.ColorSelectedEventHandler += OnColorSelected;
+        }
+
+        private void OnColorSelected(object sender, ColorEventAgs e)
+        {
+            SelectedColorButton.BackColor = e.SelectedColor;
         }
 
         private void OpenMenuItem_Click(object sender, EventArgs e)
@@ -82,15 +95,11 @@ namespace CozyPixel
 
         private void TestColor()
         {
-            ColorList.AddColor(Color.Red);
-            ColorList.AddColor(Color.Orange);
-            ColorList.AddColor(Color.Yellow);
-            ColorList.AddColor(Color.Green);
-            ColorList.AddColor(Color.Blue);
-            ColorList.AddColor(Color.White);
-            ColorList.AddColor(Color.Black);
-            ColorList.AddColor(Color.Pink);
-            ColorList.AddColor(Color.Purple);
+            var list = OstwaldColor.GetColor();
+            foreach(var c in list)
+            {
+                ColorList.AddColor(c);
+            }
         }
 
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
@@ -104,12 +113,16 @@ namespace CozyPixel
 
         private void GridColorButton_Click(object sender, EventArgs e)
         {
-            GridColorButton.BackColor   = ColorList.SelectedColor;
-            if(CurrPixelMap != null)
+            var selectForm = new ColorSelectForm( c => 
             {
-                CurrPixelMap.GridColor = ColorList.SelectedColor;
-                PixelPainter.RefreshGrid();
-            }
+                GridColorButton.BackColor = c;
+                if (CurrPixelMap != null)
+                {
+                    CurrPixelMap.GridColor = c;
+                    PixelPainter.RefreshGrid();
+                }
+            });
+            selectForm.ShowDialog();
         }
 
         private void ShowGridCheckBox_CheckedChanged(object sender, EventArgs e)
