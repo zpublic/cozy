@@ -17,6 +17,8 @@ namespace CozyPixel.Controls
 
         private List<string> PathList { get; set; } = new List<string>();
 
+        public int MaxNameLength { get; set; } = 12;
+
         public string SelectedImagePath
         {
             get
@@ -33,7 +35,7 @@ namespace CozyPixel.Controls
         public ImageListView()
         {
             LargeImageList      = ImgList;
-            int w               = Width - SystemInformation.VerticalScrollBarWidth;
+            int w               = Width - SystemInformation.VerticalScrollBarWidth * 2;
             ImgList.ImageSize   = new Size(w, w);
         }
 
@@ -58,7 +60,10 @@ namespace CozyPixel.Controls
             PathList.Add(path);
             ImgList.Images.Add(img);
 
-            Items.Add(Path.GetFileNameWithoutExtension(path), i);
+            var filename        = Path.GetFileNameWithoutExtension(path);
+            int maxNameLength   = MaxNameLength < filename.Length ? MaxNameLength : filename.Length;
+
+            Items.Add(filename.Substring(0, maxNameLength) + "...", i);
             Items[i].ImageIndex = i;
 
             return true;

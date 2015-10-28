@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Drawing.StringFormat stringFormat1 = new System.Drawing.StringFormat();
             this.MainStripMenu = new System.Windows.Forms.MenuStrip();
             this.FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,6 +54,7 @@
             this.GridColorButton = new System.Windows.Forms.Button();
             this.ColorLabel = new System.Windows.Forms.Label();
             this.FileSelectPage = new System.Windows.Forms.TabPage();
+            this.RefreshThumbListButton = new System.Windows.Forms.Button();
             this.ThumbListView = new CozyPixel.Controls.ImageListView();
             this.DirectorySelectButton = new System.Windows.Forms.Button();
             this.PixelPainter = new CozyPixel.Controls.PixelPaintControl();
@@ -210,6 +212,11 @@
             this.MainLeftTab.Controls.Add(this.FileSelectPage);
             this.MainLeftTab.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.MainLeftTab.ItemSize = new System.Drawing.Size(18, 20);
+            stringFormat1.Alignment = System.Drawing.StringAlignment.Center;
+            stringFormat1.HotkeyPrefix = System.Drawing.Text.HotkeyPrefix.None;
+            stringFormat1.LineAlignment = System.Drawing.StringAlignment.Center;
+            stringFormat1.Trimming = System.Drawing.StringTrimming.Character;
+            this.MainLeftTab.ItemTextFormat = stringFormat1;
             this.MainLeftTab.Location = new System.Drawing.Point(12, 28);
             this.MainLeftTab.Multiline = true;
             this.MainLeftTab.Name = "MainLeftTab";
@@ -287,6 +294,7 @@
             // 
             // FileSelectPage
             // 
+            this.FileSelectPage.Controls.Add(this.RefreshThumbListButton);
             this.FileSelectPage.Controls.Add(this.ThumbListView);
             this.FileSelectPage.Controls.Add(this.DirectorySelectButton);
             this.FileSelectPage.Location = new System.Drawing.Point(24, 4);
@@ -297,12 +305,22 @@
             this.FileSelectPage.Text = "文件选择";
             this.FileSelectPage.UseVisualStyleBackColor = true;
             // 
+            // RefreshThumbListButton
+            // 
+            this.RefreshThumbListButton.Location = new System.Drawing.Point(26, 47);
+            this.RefreshThumbListButton.Name = "RefreshThumbListButton";
+            this.RefreshThumbListButton.Size = new System.Drawing.Size(155, 23);
+            this.RefreshThumbListButton.TabIndex = 3;
+            this.RefreshThumbListButton.Text = "刷新";
+            this.RefreshThumbListButton.UseVisualStyleBackColor = true;
+            this.RefreshThumbListButton.Click += new System.EventHandler(this.RefreshThumbListButton_Click);
+            // 
             // ThumbListView
             // 
             this.ThumbListView.ContextMenuStrip = this.ThumbMenuStrip;
-            this.ThumbListView.Location = new System.Drawing.Point(26, 63);
+            this.ThumbListView.Location = new System.Drawing.Point(26, 76);
             this.ThumbListView.Name = "ThumbListView";
-            this.ThumbListView.Size = new System.Drawing.Size(155, 566);
+            this.ThumbListView.Size = new System.Drawing.Size(155, 553);
             this.ThumbListView.TabIndex = 2;
             this.ThumbListView.UseCompatibleStateImageBehavior = false;
             // 
@@ -342,7 +360,7 @@
             this.MinimizeBox = false;
             this.Name = "CozyPixelForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CozyPixel 0.4";
+            this.Text = "CozyPixel 0.5";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();
@@ -389,6 +407,7 @@
         private System.Windows.Forms.ToolStripMenuItem OpenToolStripMenuItem;
         private System.Windows.Forms.StatusStrip MainStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel CurrPathStatusLabel;
+        private System.Windows.Forms.Button RefreshThumbListButton;
     }
 }
 

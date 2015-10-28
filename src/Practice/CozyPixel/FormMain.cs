@@ -152,7 +152,7 @@ namespace CozyPixel
 
         private void RefreshThumb()
         {
-            ThumbListView.Clear();
+            ThumbListView.ImageClear();
 
             DirectoryInfo di    = new DirectoryInfo(CurrDire);
             var fs              = di.GetFiles("*.*", SearchOption.TopDirectoryOnly);
@@ -183,6 +183,11 @@ namespace CozyPixel
                 ChangePixelPainterImage(bmp);
                 SetCurrPathStatusLabel(bmpPath);
             }
+        }
+
+        private void RefreshThumbListButton_Click(object sender, EventArgs e)
+        {
+            RefreshThumb();
         }
     }
 }
