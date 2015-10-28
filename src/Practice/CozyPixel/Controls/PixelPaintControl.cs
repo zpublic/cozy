@@ -59,7 +59,7 @@ namespace CozyPixel.Controls
                 if (x < SourceImage.data.Width && y < SourceImage.data.Height)
                 {
                     SourceImage.SetPixel(x, y, c);
-                    RefreshPixel();
+                    BitmapGenerate.DrawPixel(SourceImage, ShowGraphics, x, y, c);
                 }
             }
         }

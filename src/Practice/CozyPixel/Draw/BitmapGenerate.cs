@@ -4,12 +4,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CozyPixel.Model;
 
 namespace CozyPixel.Draw
 {
     public class BitmapGenerate
     {
-        public static Bitmap Draw(Model.PixelMap pm)
+        public static Bitmap Draw(PixelMap pm)
         {
             int w = pm.PixelWidth * pm.data.Width;
             int h = pm.PixelWidth * pm.data.Height;
@@ -27,24 +28,7 @@ namespace CozyPixel.Draw
                 {
                     for (int j = 0; j < pm.data.Height; ++j)
                     {
-                        if(pm.ShowGrid)
-                        {
-                            g.FillRectangle(
-                                new SolidBrush(pm.GetPixel(i, j)),
-                                pm.GridWidth / 2.0f + i * (pm.PixelWidth + pm.GridWidth),
-                                pm.GridWidth / 2.0f + j * (pm.PixelWidth + pm.GridWidth),
-                                pm.PixelWidth,
-                                pm.PixelWidth);
-                        }
-                        else
-                        {
-                            g.FillRectangle(
-                                new SolidBrush(pm.GetPixel(i, j)),
-                                i * pm.PixelWidth,
-                                j * pm.PixelWidth,
-                                pm.PixelWidth,
-                                pm.PixelWidth);
-                        }
+                        DrawPixel(pm, g, i, j, pm.GetPixel(i, j));
                     }
                 }
                 if (pm.ShowGrid)
@@ -56,7 +40,7 @@ namespace CozyPixel.Draw
             return b;
         }
 
-        public static void DrawGrid(Model.PixelMap pm, Graphics g)
+        public static void DrawGrid(PixelMap pm, Graphics g)
         {
             int x = pm.PixelWidth + pm.GridWidth;
             var w = pm.data.Width * x;
@@ -69,6 +53,29 @@ namespace CozyPixel.Draw
             {
                 g.DrawLine(GridPen, 0, i * BlockWidth, w, i * BlockWidth);
                 g.DrawLine(GridPen, i * BlockWidth, 0, i * BlockWidth, h);
+            }
+        }
+
+        public static void DrawPixel(PixelMap pm, Graphics g, int x, int y, Color c)
+        {
+            var brush = new SolidBrush(c);
+            if (pm.ShowGrid)
+            {
+                g.FillRectangle(
+                    brush,
+                    pm.GridWidth / 2.0f + x * (pm.PixelWidth + pm.GridWidth),
+                    pm.GridWidth / 2.0f + y * (pm.PixelWidth + pm.GridWidth),
+                    pm.PixelWidth,
+                    pm.PixelWidth);
+            }
+            else
+            {
+                g.FillRectangle(
+                    brush,
+                    x * pm.PixelWidth,
+                    y * pm.PixelWidth,
+                    pm.PixelWidth,
+                    pm.PixelWidth);
             }
         }
     }
