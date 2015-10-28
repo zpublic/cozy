@@ -39,7 +39,7 @@ namespace CozyPixel
             if(IsModified)
             {
                 var r = MessageBox.Show("是否保存", "", MessageBoxButtons.YesNoCancel);
-                if (r == DialogResult.OK)
+                if (r == DialogResult.Yes)
                 {
                     if (!SaveFile())
                     {
@@ -59,7 +59,7 @@ namespace CozyPixel
             if(IsModified)
             {
                 var r = MessageBox.Show("是否保存", "", MessageBoxButtons.YesNoCancel);
-                if (r == DialogResult.OK)
+                if (r == DialogResult.Yes)
                 {
                     if(!SaveFile())
                     {
@@ -160,7 +160,7 @@ namespace CozyPixel
             if(IsModified)
             {
                 var r = MessageBox.Show("是否保存", "", MessageBoxButtons.YesNoCancel);
-                if (r == DialogResult.OK)
+                if (r == DialogResult.Yes)
                 {
                     if (!SaveFile())
                     {
@@ -173,7 +173,12 @@ namespace CozyPixel
                 }
             }
 
-            var createDlg = new CreateNewForm(CreateFile);
+
+            var createDlg = new CreateNewForm((w, h) => 
+            {
+                CloseFile();
+                CreateFile(w, h);
+            });
             createDlg.ShowDialog();
         }
     }
