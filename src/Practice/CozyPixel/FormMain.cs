@@ -16,6 +16,8 @@ namespace CozyPixel
     {
         private PixelMap CurrPixelMap { get; set; }
 
+        public bool IsModified { get; set; }
+
         public CozyPixelForm()
         {
             InitializeComponent();
@@ -23,24 +25,42 @@ namespace CozyPixel
 
         private void OpenMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog OpenDlg = new OpenFileDialog();
-            OpenDlg.Filter = @"(*.jpg,*.png,*.jpeg,*.bmp,*.gif)| *.jpg; *.png; *.jpeg; *.bmp; *.gif | All files(*.*) | *.* ";
-
-            if (OpenDlg.ShowDialog() == DialogResult.OK)
+            if(IsModified)
             {
-                CurrPixelMap                    = new PixelMap();
-                CurrPixelMap.ShowGrid           = ShowGridCheckBox.Checked;
-                CurrPixelMap.data               = new Bitmap(OpenDlg.FileName);
-                CurrPixelMap.PixelWidth         = 18;
-                CurrPixelMap.GridWidth          = 2;
-                CurrPixelMap.GridColor          = GridColorButton.BackColor;
-
-                PixelPainter.SourceImage        = CurrPixelMap;
+                var r = MessageBox.Show("是否保存", "", MessageBoxButtons.YesNoCancel);
+                if (r == DialogResult.OK)
+                {
+                    if (!SaveFile())
+                    {
+                        return;
+                    }
+                }
+                else if (r == DialogResult.Cancel)
+                {
+                    return;
+                }
             }
+            OpenFile();
         }
 
         private void ExitMenuItem_Click(object sender, EventArgs e)
         {
+            if(IsModified)
+            {
+                var r = MessageBox.Show("是否保存", "", MessageBoxButtons.YesNoCancel);
+                if (r == DialogResult.OK)
+                {
+                    if(!SaveFile())
+                    {
+                        return;
+                    }
+                }
+                else if(r == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+
             Close();
         }
 
@@ -52,16 +72,7 @@ namespace CozyPixel
 
         private void SaveMenuItem_Click(object sender, EventArgs e)
         {
-            if(PixelPainter.Image != null)
-            {
-                SaveFileDialog SaveDlg = new SaveFileDialog();
-                SaveDlg.Filter = @"位图(*.bmp)|*.bmp|All Files|*.*";
-
-                if (SaveDlg.ShowDialog() == DialogResult.OK)
-                {
-                    PixelPainter.Save(SaveDlg.FileName);
-                }
-            }
+            SaveFile();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -85,6 +96,10 @@ namespace CozyPixel
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             PixelPainter.DrawPixel(e.Location, ColorList.SelectedColor);
+            if(!IsModified)
+            {
+                IsModified = true;
+            }
         }
 
         private void GridColorButton_Click(object sender, EventArgs e)

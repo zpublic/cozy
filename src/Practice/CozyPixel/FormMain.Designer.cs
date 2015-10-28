@@ -37,13 +37,13 @@
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalTabControl1 = new CozyPixel.Controls.VerticalTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.GridWidthLabel = new System.Windows.Forms.Label();
+            this.GridWidthBox = new System.Windows.Forms.TextBox();
             this.ShowGridCheckBox = new System.Windows.Forms.CheckBox();
             this.GridColorButton = new System.Windows.Forms.Button();
             this.ColorLabel = new System.Windows.Forms.Label();
             this.PixelPainter = new CozyPixel.Controls.PixelPaintControl();
             this.ColorList = new CozyPixel.Controls.ColorListView();
-            this.GridWidthBox = new System.Windows.Forms.TextBox();
-            this.GridWidthLabel = new System.Windows.Forms.Label();
             this.MainStripMenu.SuspendLayout();
             this.verticalTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -135,6 +135,24 @@
             this.tabPage1.Text = "网格选项";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // GridWidthLabel
+            // 
+            this.GridWidthLabel.AutoSize = true;
+            this.GridWidthLabel.Location = new System.Drawing.Point(57, 195);
+            this.GridWidthLabel.Name = "GridWidthLabel";
+            this.GridWidthLabel.Size = new System.Drawing.Size(53, 12);
+            this.GridWidthLabel.TabIndex = 4;
+            this.GridWidthLabel.Text = "网格宽度";
+            // 
+            // GridWidthBox
+            // 
+            this.GridWidthBox.Location = new System.Drawing.Point(57, 210);
+            this.GridWidthBox.Name = "GridWidthBox";
+            this.GridWidthBox.Size = new System.Drawing.Size(100, 21);
+            this.GridWidthBox.TabIndex = 3;
+            this.GridWidthBox.Text = "2";
+            this.GridWidthBox.TextChanged += new System.EventHandler(this.GridWidthBox_TextChanged);
+            // 
             // ShowGridCheckBox
             // 
             this.ShowGridCheckBox.AutoSize = true;
@@ -188,23 +206,6 @@
             this.ColorList.Size = new System.Drawing.Size(480, 48);
             this.ColorList.TabIndex = 2;
             // 
-            // GridWidthBox
-            // 
-            this.GridWidthBox.Location = new System.Drawing.Point(57, 210);
-            this.GridWidthBox.Name = "GridWidthBox";
-            this.GridWidthBox.Size = new System.Drawing.Size(100, 21);
-            this.GridWidthBox.TabIndex = 3;
-            this.GridWidthBox.TextChanged += new System.EventHandler(this.GridWidthBox_TextChanged);
-            // 
-            // GridWidthLabel
-            // 
-            this.GridWidthLabel.AutoSize = true;
-            this.GridWidthLabel.Location = new System.Drawing.Point(57, 195);
-            this.GridWidthLabel.Name = "GridWidthLabel";
-            this.GridWidthLabel.Size = new System.Drawing.Size(53, 12);
-            this.GridWidthLabel.TabIndex = 4;
-            this.GridWidthLabel.Text = "网格宽度";
-            // 
             // CozyPixelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -218,7 +219,7 @@
             this.MinimizeBox = false;
             this.Name = "CozyPixelForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CozyPixel " + Program.Version;
+            this.Text = "CozyPixel 0.3";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();
