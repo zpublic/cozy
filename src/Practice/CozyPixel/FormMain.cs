@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using CozyPixel.Controls.ControlEventArgs;
 using CozyPixel.Forms;
 using System.IO;
+using CozyPixel.Model;
+using CozyPixel.Controls.Other;
+using CozyColor.Core.Color;
 
 namespace CozyPixel
 {
@@ -188,6 +191,18 @@ namespace CozyPixel
         private void RefreshThumbListButton_Click(object sender, EventArgs e)
         {
             RefreshThumb();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var arr     = DradientColor.Generate(RandomColor.Generate(), RandomColor.Generate(), 10);
+            Bitmap b    = new Bitmap(500, 80);
+            var g       = Graphics.FromImage(b);
+            for (int i = 0; i < 10; ++i)
+            {
+                g.FillRectangle(new SolidBrush(arr[i]), i * 50, 0, i * 50 + 50, 80);
+            }
+            pictureBox1.Image = b;
         }
     }
 }

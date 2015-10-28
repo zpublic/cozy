@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5ACD7921-0802-4D2B-85AE-21ABF82C1087}</ProjectGuid>
+    <ProjectGuid>{F41F4532-F669-49CE-B71E-BC1A82E18D3A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyPixel</RootNamespace>
-    <AssemblyName>CozyPixel</AssemblyName>
+    <RootNamespace>CozyColor.Gui</RootNamespace>
+    <AssemblyName>CozyColor.Gui</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -35,7 +35,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Messaging" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,68 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\ColorListView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\ControlEventArgs\ColorEventAgs.cs" />
-    <Compile Include="Controls\ImageListView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Other\OstwaldColor.cs" />
-    <Compile Include="Controls\PixelPaintControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\VerticalTabControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Draw\BitmapGenerate.cs" />
-    <Compile Include="FormMain.Callback.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMain.Helper.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AboutForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AboutForm.Designer.cs">
-      <DependentUpon>AboutForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ColorSelectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ColorSelectForm.Designer.cs">
-      <DependentUpon>ColorSelectForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\CreateNewForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\CreateNewForm.Designer.cs">
-      <DependentUpon>CreateNewForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Model\PixelMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Controls\PixelPaintControl.resx">
-      <DependentUpon>PixelPaintControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AboutForm.resx">
-      <DependentUpon>AboutForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ColorSelectForm.resx">
-      <DependentUpon>ColorSelectForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CreateNewForm.resx">
-      <DependentUpon>CreateNewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -118,9 +65,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="FormMain.Operat.cs">
-      <SubType>Form</SubType>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
