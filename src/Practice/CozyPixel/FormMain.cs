@@ -9,9 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CozyPixel.Controls.ControlEventArgs;
 using CozyPixel.Forms;
-using CozyPixel.Controls.Other;
 using System.IO;
-using CozyPixel.Model;
 
 namespace CozyPixel
 {
@@ -25,12 +23,12 @@ namespace CozyPixel
         {
             InitializeComponent();
             RegisterEvent();
+            RefreshThumb();
         }
 
         private void RegisterEvent()
         {
             ColorList.ColorSelectedEventHandler += OnColorSelected;
-
         }
 
         private void OnColorSelected(object sender, ColorEventAgs e)
@@ -80,15 +78,6 @@ namespace CozyPixel
             TestColor();
         }
 
-        private void TestColor()
-        {
-            var list = OstwaldColor.GetColor();
-            foreach(var c in list)
-            {
-                ColorList.AddColor(c);
-            }
-        }
-
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             PixelPainter.DrawPixel(e.Location, ColorList.SelectedColor);
@@ -100,15 +89,7 @@ namespace CozyPixel
 
         private void GridColorButton_Click(object sender, EventArgs e)
         {
-            var selectForm = new ColorSelectForm( c => 
-            {
-                GridColorButton.BackColor = c;
-                if (CurrPixelMap != null)
-                {
-                    CurrPixelMap.GridColor = c;
-                    PixelPainter.RefreshGrid();
-                }
-            });
+            var selectForm = new ColorSelectForm(ColorSelectCallback);
             selectForm.ShowDialog();
         }
 
@@ -116,14 +97,12 @@ namespace CozyPixel
         {
             if (CurrPixelMap != null)
             {
-                CurrPixelMap.ShowGrid = ShowGridCheckBox.Checked;
+                CurrPixelMap.ShowGrid   = ShowGridCheckBox.Checked;
+                CurrPixelMap.PixelWidth = DefaultPixelWidth;
+
                 if (CurrPixelMap.ShowGrid)
                 {
-                    CurrPixelMap.PixelWidth = DefaultPixelWidth - CurrPixelMap.GridWidth;
-                }
-                else
-                {
-                    CurrPixelMap.PixelWidth = DefaultPixelWidth;
+                    CurrPixelMap.PixelWidth -= CurrPixelMap.GridWidth;
                 }
                 PixelPainter.RefreshPixel();
             }
@@ -154,18 +133,14 @@ namespace CozyPixel
                 }
             }
 
-            var createDlg = new CreateNewForm((w, h) => 
-            {
-                CloseFile();
-                CreateFile(w, h);
-            });
+            var createDlg = new CreateNewForm(CreateNewCallback);
             createDlg.ShowDialog();
         }
 
         private void DirectorySelectButton_Click(object sender, EventArgs e)
         {
             var direDlg = new FolderBrowserDialog();
-            var r = direDlg.ShowDialog();
+            var r       = direDlg.ShowDialog();
             if(r == DialogResult.OK)
             {
                 CurrDire = direDlg.SelectedPath;
@@ -178,8 +153,9 @@ namespace CozyPixel
         {
             ThumbListView.Clear();
 
-            DirectoryInfo di = new DirectoryInfo(CurrDire);
-            var fs = di.GetFiles("*.*", SearchOption.TopDirectoryOnly);
+            DirectoryInfo di    = new DirectoryInfo(CurrDire);
+            var fs              = di.GetFiles("*.*", SearchOption.TopDirectoryOnly);
+
             foreach (var file in fs)
             {
                 if (file.Extension == ".bmp" || file.Extension == ".jpg" || file.Extension == ".png")
@@ -202,37 +178,9 @@ namespace CozyPixel
             var bmpPath = ThumbListView.SelectedImagePath;
             if(bmpPath != null &&　File.Exists(bmpPath))
             {
-                int gw = RefreshCurrGridWidth();
-
-                var CurrPixelMap = new PixelMap()
-                {
-                    ShowGrid = ShowGridCheckBox.Checked,
-                    data = new Bitmap(bmpPath),
-                    PixelWidth = DefaultPixelWidth,
-                    GridWidth = gw,
-                    GridColor = GridColorButton.BackColor,
-                };
-
-                PixelPainter.SourceImage = CurrPixelMap;
-                IsModified = false;
+                var bmp = new Bitmap(bmpPath);
+                ChangePixelPainterImage(bmp);
             }
-        }
-
-        private bool ShowSaveDialog()
-        {
-            var r = MessageBox.Show("是否保存", "", MessageBoxButtons.YesNoCancel);
-            if (r == DialogResult.Yes)
-            {
-                if (!SaveFile())
-                {
-                    return false;
-                }
-            }
-            else if (r == DialogResult.Cancel)
-            {
-                return false;
-            }
-            return true;
         }
     }
 }

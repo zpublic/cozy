@@ -16,12 +16,15 @@ namespace CozyPixel
         public const int DefaultPixelWidth = 18;
         public const int DefaultGridWidth = 2;
 
+        public const string OpenDlgFilter = @"(*.jpg,*.png,*.jpeg,*.bmp,*.gif)| *.jpg; *.png; *.jpeg; *.bmp; *.gif | All files(*.*) | *.* ";
+        public const string SaveDlgFilter = @"位图(*.bmp)|*.bmp|All Files|*.*";
+
         private bool SaveFile()
         {
             if (PixelPainter.Image != null)
             {
-                SaveFileDialog SaveDlg = new SaveFileDialog();
-                SaveDlg.Filter = @"位图(*.bmp)|*.bmp|All Files|*.*";
+                SaveFileDialog SaveDlg  = new SaveFileDialog();
+                SaveDlg.Filter          = SaveDlgFilter;
 
                 if (SaveDlg.ShowDialog() == DialogResult.OK)
                 {
@@ -35,10 +38,9 @@ namespace CozyPixel
 
         private bool OpenFile()
         {
-            int gw = RefreshCurrGridWidth();
-
-            OpenFileDialog OpenDlg = new OpenFileDialog();
-            OpenDlg.Filter = @"(*.jpg,*.png,*.jpeg,*.bmp,*.gif)| *.jpg; *.png; *.jpeg; *.bmp; *.gif | All files(*.*) | *.* ";
+            int gw                  = RefreshCurrGridWidth();
+            OpenFileDialog OpenDlg  = new OpenFileDialog();
+            OpenDlg.Filter          = OpenDlgFilter;
 
             if (OpenDlg.ShowDialog() == DialogResult.OK)
             {
@@ -50,17 +52,7 @@ namespace CozyPixel
                     return false;
                 }
 
-                CurrPixelMap = new PixelMap()
-                {
-                    ShowGrid    = ShowGridCheckBox.Checked,
-                    data        = bmp,
-                    PixelWidth  = DefaultPixelWidth,
-                    GridWidth   = gw,
-                    GridColor   = GridColorButton.BackColor,
-                };
-
-                PixelPainter.SourceImage    = CurrPixelMap;
-                IsModified                  = false;
+                ChangePixelPainterImage(bmp);
                 return true;
             }
             return false;
@@ -74,35 +66,13 @@ namespace CozyPixel
                 return;
             }
 
-            int gw  = RefreshCurrGridWidth();
             var bmp = new Bitmap(w, h);
-
             using (var g = Graphics.FromImage(bmp))
             {
                 g.FillRectangle(Brushes.White, new Rectangle(0 ,0, w, h));
             }
 
-            CurrPixelMap = new PixelMap()
-            {
-                ShowGrid    = ShowGridCheckBox.Checked,
-                data        = bmp,
-                PixelWidth  = DefaultPixelWidth - gw,
-                GridWidth   = gw,
-                GridColor   = GridColorButton.BackColor,
-            };
-            PixelPainter.SourceImage    = CurrPixelMap;
-            IsModified                  = true;
-        }
-
-        private int RefreshCurrGridWidth()
-        {
-            int gw = 0;
-            if (!int.TryParse(GridWidthBox.Text, out gw))
-            {
-                gw                  = DefaultGridWidth;
-                GridWidthBox.Text   = DefaultGridWidth.ToString();
-            }
-            return gw;
+            ChangePixelPainterImage(bmp);
         }
 
         private void CloseFile()
