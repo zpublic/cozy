@@ -8,7 +8,7 @@ namespace CozyPixel
 {
     static class Program
     {
-        public const string Version = "0.3";
+        public const string Version = "0.4";
 
         /// <summary>
         /// 应用程序的主入口点。
