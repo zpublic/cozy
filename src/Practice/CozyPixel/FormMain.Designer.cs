@@ -36,6 +36,7 @@
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectedColorButton = new System.Windows.Forms.Button();
+            this.CreateMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalTabControl1 = new CozyPixel.Controls.VerticalTabControl();
             this.GridOpeionPage = new System.Windows.Forms.TabPage();
             this.GridWidthLabel = new System.Windows.Forms.Label();
@@ -65,6 +66,7 @@
             // FileMenuItem
             // 
             this.FileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CreateMenuItem,
             this.OpenMenuItem,
             this.SaveMenuItem,
             this.ExitMenuItem});
@@ -117,6 +119,13 @@
             this.SelectedColorButton.Size = new System.Drawing.Size(72, 72);
             this.SelectedColorButton.TabIndex = 5;
             this.SelectedColorButton.UseVisualStyleBackColor = true;
+            // 
+            // CreateMenuItem
+            // 
+            this.CreateMenuItem.Name = "CreateMenuItem";
+            this.CreateMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.CreateMenuItem.Text = "新建";
+            this.CreateMenuItem.Click += new System.EventHandler(this.CreateMenuItem_Click);
             // 
             // verticalTabControl1
             // 
@@ -197,6 +206,7 @@
             // 
             // PixelPainter
             // 
+            this.PixelPainter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PixelPainter.Cursor = System.Windows.Forms.Cursors.Cross;
             this.PixelPainter.Location = new System.Drawing.Point(262, 149);
             this.PixelPainter.Name = "PixelPainter";
@@ -262,6 +272,7 @@
         private System.Windows.Forms.Label GridWidthLabel;
         private System.Windows.Forms.TextBox GridWidthBox;
         private System.Windows.Forms.Button SelectedColorButton;
+        private System.Windows.Forms.ToolStripMenuItem CreateMenuItem;
     }
 }
 

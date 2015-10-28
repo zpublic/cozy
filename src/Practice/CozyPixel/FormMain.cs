@@ -16,8 +16,6 @@ namespace CozyPixel
 {
     public partial class CozyPixelForm : Form
     {
-        private PixelMap CurrPixelMap { get; set; }
-
         public bool IsModified { get; set; }
 
         public CozyPixelForm()
@@ -153,6 +151,28 @@ namespace CozyPixel
                     PixelPainter.RefreshPixel();
                 }
             }
+        }
+
+        private void CreateMenuItem_Click(object sender, EventArgs e)
+        {
+            if(IsModified)
+            {
+                var r = MessageBox.Show("是否保存", "", MessageBoxButtons.YesNoCancel);
+                if (r == DialogResult.OK)
+                {
+                    if (!SaveFile())
+                    {
+                        return;
+                    }
+                }
+                else if (r == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+
+            var createDlg = new CreateNewForm(CreateFile);
+            createDlg.ShowDialog();
         }
     }
 }

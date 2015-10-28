@@ -11,7 +11,10 @@ namespace CozyPixel
 {
     public partial class CozyPixelForm
     {
-        public int DefaultPixelWidth = 18;
+        private PixelMap CurrPixelMap { get; set; }
+
+        public const int DefaultPixelWidth = 18;
+        public const int DefaultGridWidth = 2;
 
         private bool SaveFile()
         {
@@ -32,12 +35,7 @@ namespace CozyPixel
 
         private bool OpenFile()
         {
-            int w = 0;
-            if(!int.TryParse(GridWidthBox.Text, out w))
-            {
-                w                   = 2;
-                GridWidthBox.Text   = "2";
-            }
+            int gw = RefreshCurrGridWidth();
 
             OpenFileDialog OpenDlg = new OpenFileDialog();
             OpenDlg.Filter = @"(*.jpg,*.png,*.jpeg,*.bmp,*.gif)| *.jpg; *.png; *.jpeg; *.bmp; *.gif | All files(*.*) | *.* ";
@@ -49,12 +47,12 @@ namespace CozyPixel
                     ShowGrid    = ShowGridCheckBox.Checked,
                     data        = new Bitmap(OpenDlg.FileName),
                     PixelWidth  = DefaultPixelWidth,
-                    GridWidth   = w,
+                    GridWidth   = gw,
                     GridColor   = GridColorButton.BackColor,
                 };
 
-                PixelPainter.SourceImage = CurrPixelMap;
-                IsModified = false;
+                PixelPainter.SourceImage    = CurrPixelMap;
+                IsModified                  = false;
                 return true;
             }
             return false;
@@ -62,7 +60,29 @@ namespace CozyPixel
 
         private void CreateFile(int w, int h)
         {
+            int gw = RefreshCurrGridWidth();
 
+            CurrPixelMap = new PixelMap()
+            {
+                ShowGrid    = ShowGridCheckBox.Checked,
+                data        = new Bitmap(w, h),
+                PixelWidth  = DefaultPixelWidth,
+                GridWidth   = gw,
+                GridColor   = GridColorButton.BackColor,
+            };
+            PixelPainter.SourceImage    = CurrPixelMap;
+            IsModified                  = true;
+        }
+
+        private int RefreshCurrGridWidth()
+        {
+            int gw = 0;
+            if (!int.TryParse(GridWidthBox.Text, out gw))
+            {
+                gw                  = DefaultGridWidth;
+                GridWidthBox.Text   = DefaultGridWidth.ToString();
+            }
+            return gw;
         }
     }
 }
