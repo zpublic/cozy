@@ -15,6 +15,7 @@ namespace CozyPixel.Forms
         public AboutForm()
         {
             InitializeComponent();
+            AboutLabel.Text = "CozyPixel " + Program.Version;
         }
 
         private void OkButton_Click(object sender, EventArgs e)

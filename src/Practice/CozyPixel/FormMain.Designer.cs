@@ -218,7 +218,7 @@
             this.MinimizeBox = false;
             this.Name = "CozyPixelForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CozyPixel";
+            this.Text = "CozyPixel " + Program.Version;
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();

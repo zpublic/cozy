@@ -47,9 +47,9 @@
             this.AboutLabel.AutoSize = true;
             this.AboutLabel.Location = new System.Drawing.Point(48, 40);
             this.AboutLabel.Name = "AboutLabel";
-            this.AboutLabel.Size = new System.Drawing.Size(89, 12);
+            this.AboutLabel.Size = new System.Drawing.Size(59, 12);
             this.AboutLabel.TabIndex = 1;
-            this.AboutLabel.Text = "CozyPixel v0.2";
+            this.AboutLabel.Text = "CozyPixel";
             // 
             // AboutForm
             // 
