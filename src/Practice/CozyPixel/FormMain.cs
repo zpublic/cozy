@@ -9,14 +9,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CozyPixel.Controls.ControlEventArgs;
 using CozyPixel.Forms;
-using CozyPixel.Model;
 using CozyPixel.Controls.Other;
+using System.IO;
+using CozyPixel.Model;
 
 namespace CozyPixel
 {
     public partial class CozyPixelForm : Form
     {
         public bool IsModified { get; set; }
+
+        public string CurrDire { get; set; } = Application.StartupPath;
 
         public CozyPixelForm()
         {
@@ -27,6 +30,7 @@ namespace CozyPixel
         private void RegisterEvent()
         {
             ColorList.ColorSelectedEventHandler += OnColorSelected;
+
         }
 
         private void OnColorSelected(object sender, ColorEventAgs e)
@@ -36,37 +40,22 @@ namespace CozyPixel
 
         private void OpenMenuItem_Click(object sender, EventArgs e)
         {
-            if(IsModified)
+            if (IsModified)
             {
-                var r = MessageBox.Show("是否保存", "", MessageBoxButtons.YesNoCancel);
-                if (r == DialogResult.Yes)
-                {
-                    if (!SaveFile())
-                    {
-                        return;
-                    }
-                }
-                else if (r == DialogResult.Cancel)
+                if (!ShowSaveDialog())
                 {
                     return;
                 }
             }
+
             OpenFile();
         }
 
         private void ExitMenuItem_Click(object sender, EventArgs e)
         {
-            if(IsModified)
+            if (IsModified)
             {
-                var r = MessageBox.Show("是否保存", "", MessageBoxButtons.YesNoCancel);
-                if (r == DialogResult.Yes)
-                {
-                    if(!SaveFile())
-                    {
-                        return;
-                    }
-                }
-                else if(r == DialogResult.Cancel)
+                if (!ShowSaveDialog())
                 {
                     return;
                 }
@@ -157,22 +146,13 @@ namespace CozyPixel
 
         private void CreateMenuItem_Click(object sender, EventArgs e)
         {
-            if(IsModified)
+            if (IsModified)
             {
-                var r = MessageBox.Show("是否保存", "", MessageBoxButtons.YesNoCancel);
-                if (r == DialogResult.Yes)
-                {
-                    if (!SaveFile())
-                    {
-                        return;
-                    }
-                }
-                else if (r == DialogResult.Cancel)
+                if (!ShowSaveDialog())
                 {
                     return;
                 }
             }
-
 
             var createDlg = new CreateNewForm((w, h) => 
             {
@@ -180,6 +160,79 @@ namespace CozyPixel
                 CreateFile(w, h);
             });
             createDlg.ShowDialog();
+        }
+
+        private void DirectorySelectButton_Click(object sender, EventArgs e)
+        {
+            var direDlg = new FolderBrowserDialog();
+            var r = direDlg.ShowDialog();
+            if(r == DialogResult.OK)
+            {
+                CurrDire = direDlg.SelectedPath;
+
+                RefreshThumb();
+            }
+        }
+
+        private void RefreshThumb()
+        {
+            ThumbListView.Clear();
+
+            DirectoryInfo di = new DirectoryInfo(CurrDire);
+            var fs = di.GetFiles("*.*", SearchOption.TopDirectoryOnly);
+            foreach (var file in fs)
+            {
+                if (file.Extension == ".bmp" || file.Extension == ".jpg" || file.Extension == ".png")
+                {
+                    ThumbListView.TryAddImage(file.FullName);
+                }
+            }
+        }
+
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (IsModified)
+            {
+                if(!ShowSaveDialog())
+                {
+                    return;
+                }
+            }
+
+            var bmpPath = ThumbListView.SelectedImagePath;
+            if(bmpPath != null &&　File.Exists(bmpPath))
+            {
+                int gw = RefreshCurrGridWidth();
+
+                var CurrPixelMap = new PixelMap()
+                {
+                    ShowGrid = ShowGridCheckBox.Checked,
+                    data = new Bitmap(bmpPath),
+                    PixelWidth = DefaultPixelWidth,
+                    GridWidth = gw,
+                    GridColor = GridColorButton.BackColor,
+                };
+
+                PixelPainter.SourceImage = CurrPixelMap;
+                IsModified = false;
+            }
+        }
+
+        private bool ShowSaveDialog()
+        {
+            var r = MessageBox.Show("是否保存", "", MessageBoxButtons.YesNoCancel);
+            if (r == DialogResult.Yes)
+            {
+                if (!SaveFile())
+                {
+                    return false;
+                }
+            }
+            else if (r == DialogResult.Cancel)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

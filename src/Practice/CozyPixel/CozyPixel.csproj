@@ -51,6 +51,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\ControlEventArgs\ColorEventAgs.cs" />
+    <Compile Include="Controls\ImageListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\Other\OstwaldColor.cs" />
     <Compile Include="Controls\PixelPaintControl.cs">
       <SubType>Component</SubType>

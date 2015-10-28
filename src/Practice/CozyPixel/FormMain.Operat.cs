@@ -42,10 +42,18 @@ namespace CozyPixel
 
             if (OpenDlg.ShowDialog() == DialogResult.OK)
             {
+                var bmp = new Bitmap(OpenDlg.FileName);
+
+                if(bmp.Width > 128 || bmp.Height > 128)
+                {
+                    MessageBox.Show("不支持超过128 * 128的文件", "打开失败");
+                    return false;
+                }
+
                 CurrPixelMap = new PixelMap()
                 {
                     ShowGrid    = ShowGridCheckBox.Checked,
-                    data        = new Bitmap(OpenDlg.FileName),
+                    data        = bmp,
                     PixelWidth  = DefaultPixelWidth,
                     GridWidth   = gw,
                     GridColor   = GridColorButton.BackColor,
@@ -60,6 +68,12 @@ namespace CozyPixel
 
         private void CreateFile(int w, int h)
         {
+            if(w > 128 || h > 128)
+            {
+                MessageBox.Show("不支持超过128 * 128的文件", "创建失败");
+                return;
+            }
+
             int gw  = RefreshCurrGridWidth();
             var bmp = new Bitmap(w, h);
 
