@@ -1,4 +1,5 @@
 ﻿using CozyColor.Core.Color;
+using CozyColor.Core.ColorScheme;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -121,6 +122,78 @@ namespace CozyColor.Gui
             for (int i = 0; i < 12; ++i)
             {
                 Color[] arr = DradientColor.Generate(arr1[i], arr2[i], 7);
+                for (int j = 0; j < 7; ++j)
+                {
+                    Bitmap b = new Bitmap(64, 64);
+                    Graphics g = Graphics.FromImage(b);
+                    g.FillRectangle(
+                        new SolidBrush(arr[j]),
+                        0,
+                        0,
+                        64,
+                        64);
+                    pbs[i * 7 + j].Image = b;
+                }
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 12; ++i)
+            {
+                pbs[i * 7].Image = null;
+
+                Color[] arr = ColorPair.RandomComplementaryColor();
+                Bitmap b = new Bitmap(64, 64);
+                Graphics g = Graphics.FromImage(b);
+                g.FillRectangle(
+                    new SolidBrush(arr[0]),
+                    0,
+                    0,
+                    64,
+                    64);
+                pbs[i * 7 + 1].Image = b;
+                b = new Bitmap(64, 64);
+                g = Graphics.FromImage(b);
+                g.FillRectangle(
+                    new SolidBrush(arr[1]),
+                    0,
+                    0,
+                    64,
+                    64);
+                pbs[i * 7 + 2].Image = b;
+
+                pbs[i * 7 + 3].Image = null;
+
+                arr = ColorPair.RandomComplementaryColor();
+                b = new Bitmap(64, 64);
+                g = Graphics.FromImage(b);
+                g.FillRectangle(
+                    new SolidBrush(arr[0]),
+                    0,
+                    0,
+                    64,
+                    64);
+                pbs[i * 7 + 4].Image = b;
+                b = new Bitmap(64, 64);
+                g = Graphics.FromImage(b);
+                g.FillRectangle(
+                    new SolidBrush(arr[1]),
+                    0,
+                    0,
+                    64,
+                    64);
+                pbs[i * 7 + 5].Image = b;
+
+                pbs[i * 7 + 6].Image = null;
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 12; ++i)
+            {
+                Color[] arr = ColorList.RandomColorLine();
                 for (int j = 0; j < 7; ++j)
                 {
                     Bitmap b = new Bitmap(64, 64);

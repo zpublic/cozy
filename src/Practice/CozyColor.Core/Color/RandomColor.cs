@@ -8,14 +8,12 @@ namespace CozyColor.Core.Color
 {
     public class RandomColor
     {
-        private static Random r = new Random();
-
         public static System.Drawing.Color Generate()
         {
             return System.Drawing.Color.FromArgb(
-                r.Next(256),
-                r.Next(256),
-                r.Next(256));
+                Definition.R.Next(256),
+                Definition.R.Next(256),
+                Definition.R.Next(256));
         }
     }
 }
