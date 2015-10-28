@@ -24,7 +24,7 @@ namespace CozyPixel
         private void OpenMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog OpenDlg = new OpenFileDialog();
-            OpenDlg.Filter = @"(*.jpg,*.png,*.jpeg,*.bmp,*.gif)| *.jgp; *.png; *.jpeg; *.bmp; *.gif | All files(*.*) | *.* ";
+            OpenDlg.Filter = @"(*.jpg,*.png,*.jpeg,*.bmp,*.gif)| *.jpg; *.png; *.jpeg; *.bmp; *.gif | All files(*.*) | *.* ";
 
             if (OpenDlg.ShowDialog() == DialogResult.OK)
             {
