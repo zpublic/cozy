@@ -74,6 +74,8 @@ namespace CozyPixel.Controls
 
         public void RefreshPixel()
         {
+            Image = null;
+
             if (ShowGraphics != null)
             {
                 ShowGraphics.Dispose();

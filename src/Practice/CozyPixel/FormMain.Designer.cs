@@ -30,13 +30,13 @@
         {
             this.MainStripMenu = new System.Windows.Forms.MenuStrip();
             this.FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectedColorButton = new System.Windows.Forms.Button();
-            this.CreateMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalTabControl1 = new CozyPixel.Controls.VerticalTabControl();
             this.GridOpeionPage = new System.Windows.Forms.TabPage();
             this.GridWidthLabel = new System.Windows.Forms.Label();
@@ -73,6 +73,13 @@
             this.FileMenuItem.Name = "FileMenuItem";
             this.FileMenuItem.Size = new System.Drawing.Size(44, 21);
             this.FileMenuItem.Text = "文件";
+            // 
+            // CreateMenuItem
+            // 
+            this.CreateMenuItem.Name = "CreateMenuItem";
+            this.CreateMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.CreateMenuItem.Text = "新建";
+            this.CreateMenuItem.Click += new System.EventHandler(this.CreateMenuItem_Click);
             // 
             // OpenMenuItem
             // 
@@ -119,13 +126,6 @@
             this.SelectedColorButton.Size = new System.Drawing.Size(72, 72);
             this.SelectedColorButton.TabIndex = 5;
             this.SelectedColorButton.UseVisualStyleBackColor = true;
-            // 
-            // CreateMenuItem
-            // 
-            this.CreateMenuItem.Name = "CreateMenuItem";
-            this.CreateMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.CreateMenuItem.Text = "新建";
-            this.CreateMenuItem.Click += new System.EventHandler(this.CreateMenuItem_Click);
             // 
             // verticalTabControl1
             // 
@@ -176,6 +176,8 @@
             // ShowGridCheckBox
             // 
             this.ShowGridCheckBox.AutoSize = true;
+            this.ShowGridCheckBox.Checked = true;
+            this.ShowGridCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ShowGridCheckBox.Location = new System.Drawing.Point(57, 64);
             this.ShowGridCheckBox.Name = "ShowGridCheckBox";
             this.ShowGridCheckBox.Size = new System.Drawing.Size(72, 16);
@@ -241,7 +243,7 @@
             this.MinimizeBox = false;
             this.Name = "CozyPixelForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CozyPixel " + Program.Version;
+            this.Text = "CozyPixel 0.4";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();

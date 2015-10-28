@@ -84,5 +84,12 @@ namespace CozyPixel
             }
             return gw;
         }
+
+        private void CloseFile()
+        {
+            CurrPixelMap                = null;
+            PixelPainter.SourceImage    = null;
+            IsModified                  = false;
+        }
     }
 }
