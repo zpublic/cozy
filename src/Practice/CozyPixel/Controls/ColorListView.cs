@@ -15,7 +15,7 @@ namespace CozyPixel.Controls
 
         public Padding ColorItemMargin { get; set; } = new Padding(3, 0, 3, 0);
 
-        public Color SelectedColor { get; set; }
+        public Color SelectedColor { get; set; } = Color.Empty;
         private Button SelectedButton { get; set; }
 
         public Size ColorItemSize { get; set; }

@@ -51,6 +51,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\ControlEventArgs\ColorEventAgs.cs" />
+    <Compile Include="Controls\Other\OstwaldColor.cs" />
     <Compile Include="Controls\PixelPaintControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -70,6 +71,18 @@
     <Compile Include="Forms\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ColorSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ColorSelectForm.Designer.cs">
+      <DependentUpon>ColorSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreateNewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateNewForm.Designer.cs">
+      <DependentUpon>CreateNewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\PixelMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,6 +95,12 @@
     <EmbeddedResource Include="Forms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ColorSelectForm.resx">
+      <DependentUpon>ColorSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreateNewForm.resx">
+      <DependentUpon>CreateNewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -90,6 +109,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.Operat.cs">
+      <SubType>Form</SubType>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

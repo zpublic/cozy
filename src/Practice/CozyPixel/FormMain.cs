@@ -7,40 +7,71 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CozyPixel.Controls.ControlEventArgs;
 using CozyPixel.Forms;
 using CozyPixel.Model;
+using CozyPixel.Controls.Other;
 
 namespace CozyPixel
 {
     public partial class CozyPixelForm : Form
     {
-        private PixelMap CurrPixelMap { get; set; }
+        public bool IsModified { get; set; }
 
         public CozyPixelForm()
         {
             InitializeComponent();
+            RegisterEvent();
+        }
+
+        private void RegisterEvent()
+        {
+            ColorList.ColorSelectedEventHandler += OnColorSelected;
+        }
+
+        private void OnColorSelected(object sender, ColorEventAgs e)
+        {
+            SelectedColorButton.BackColor = e.SelectedColor;
         }
 
         private void OpenMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog OpenDlg = new OpenFileDialog();
-            OpenDlg.Filter = @"(*.jpg,*.png,*.jpeg,*.bmp,*.gif)| *.jpg; *.png; *.jpeg; *.bmp; *.gif | All files(*.*) | *.* ";
-
-            if (OpenDlg.ShowDialog() == DialogResult.OK)
+            if(IsModified)
             {
-                CurrPixelMap                    = new PixelMap();
-                CurrPixelMap.ShowGrid           = ShowGridCheckBox.Checked;
-                CurrPixelMap.data               = new Bitmap(OpenDlg.FileName);
-                CurrPixelMap.PixelWidth         = 18;
-                CurrPixelMap.GridWidth          = 2;
-                CurrPixelMap.GridColor          = GridColorButton.BackColor;
-
-                PixelPainter.SourceImage        = CurrPixelMap;
+                var r = MessageBox.Show("是否保存", "", MessageBoxButtons.YesNoCancel);
+                if (r == DialogResult.OK)
+                {
+                    if (!SaveFile())
+                    {
+                        return;
+                    }
+                }
+                else if (r == DialogResult.Cancel)
+                {
+                    return;
+                }
             }
+            OpenFile();
         }
 
         private void ExitMenuItem_Click(object sender, EventArgs e)
         {
+            if(IsModified)
+            {
+                var r = MessageBox.Show("是否保存", "", MessageBoxButtons.YesNoCancel);
+                if (r == DialogResult.OK)
+                {
+                    if(!SaveFile())
+                    {
+                        return;
+                    }
+                }
+                else if(r == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+
             Close();
         }
 
@@ -52,16 +83,7 @@ namespace CozyPixel
 
         private void SaveMenuItem_Click(object sender, EventArgs e)
         {
-            if(PixelPainter.Image != null)
-            {
-                SaveFileDialog SaveDlg = new SaveFileDialog();
-                SaveDlg.Filter = @"位图(*.bmp)|*.bmp|All Files|*.*";
-
-                if (SaveDlg.ShowDialog() == DialogResult.OK)
-                {
-                    PixelPainter.Save(SaveDlg.FileName);
-                }
-            }
+            SaveFile();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -71,30 +93,34 @@ namespace CozyPixel
 
         private void TestColor()
         {
-            ColorList.AddColor(Color.Red);
-            ColorList.AddColor(Color.Orange);
-            ColorList.AddColor(Color.Yellow);
-            ColorList.AddColor(Color.Green);
-            ColorList.AddColor(Color.Blue);
-            ColorList.AddColor(Color.White);
-            ColorList.AddColor(Color.Black);
-            ColorList.AddColor(Color.Pink);
-            ColorList.AddColor(Color.Purple);
+            var list = OstwaldColor.GetColor();
+            foreach(var c in list)
+            {
+                ColorList.AddColor(c);
+            }
         }
 
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             PixelPainter.DrawPixel(e.Location, ColorList.SelectedColor);
+            if(!IsModified)
+            {
+                IsModified = true;
+            }
         }
 
         private void GridColorButton_Click(object sender, EventArgs e)
         {
-            GridColorButton.BackColor   = ColorList.SelectedColor;
-            if(CurrPixelMap != null)
+            var selectForm = new ColorSelectForm( c => 
             {
-                CurrPixelMap.GridColor = ColorList.SelectedColor;
-                PixelPainter.RefreshGrid();
-            }
+                GridColorButton.BackColor = c;
+                if (CurrPixelMap != null)
+                {
+                    CurrPixelMap.GridColor = c;
+                    PixelPainter.RefreshGrid();
+                }
+            });
+            selectForm.ShowDialog();
         }
 
         private void ShowGridCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -104,11 +130,11 @@ namespace CozyPixel
                 CurrPixelMap.ShowGrid = ShowGridCheckBox.Checked;
                 if (CurrPixelMap.ShowGrid)
                 {
-                    CurrPixelMap.PixelWidth = 16;
+                    CurrPixelMap.PixelWidth = DefaultPixelWidth - CurrPixelMap.GridWidth;
                 }
                 else
                 {
-                    CurrPixelMap.PixelWidth = 18;
+                    CurrPixelMap.PixelWidth = DefaultPixelWidth;
                 }
                 PixelPainter.RefreshPixel();
             }
@@ -121,10 +147,34 @@ namespace CozyPixel
             {
                 if (CurrPixelMap != null)
                 {
+                    if (w == 0) w = 1;
+
                     CurrPixelMap.GridWidth = w;
                     PixelPainter.RefreshPixel();
                 }
             }
+        }
+
+        private void CreateMenuItem_Click(object sender, EventArgs e)
+        {
+            if(IsModified)
+            {
+                var r = MessageBox.Show("是否保存", "", MessageBoxButtons.YesNoCancel);
+                if (r == DialogResult.OK)
+                {
+                    if (!SaveFile())
+                    {
+                        return;
+                    }
+                }
+                else if (r == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+
+            var createDlg = new CreateNewForm(CreateFile);
+            createDlg.ShowDialog();
         }
     }
 }

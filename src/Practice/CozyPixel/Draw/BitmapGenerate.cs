@@ -31,8 +31,8 @@ namespace CozyPixel.Draw
                         {
                             g.FillRectangle(
                                 new SolidBrush(pm.GetPixel(i, j)),
-                                pm.GridWidth + i * (pm.PixelWidth + pm.GridWidth),
-                                pm.GridWidth + j * (pm.PixelWidth + pm.GridWidth),
+                                pm.GridWidth / 2.0f + i * (pm.PixelWidth + pm.GridWidth),
+                                pm.GridWidth / 2.0f + j * (pm.PixelWidth + pm.GridWidth),
                                 pm.PixelWidth,
                                 pm.PixelWidth);
                         }
@@ -58,14 +58,14 @@ namespace CozyPixel.Draw
 
         public static void DrawGrid(Model.PixelMap pm, Graphics g)
         {
-            int x = (pm.PixelWidth + 1) + pm.GridWidth;
+            int x = pm.PixelWidth + pm.GridWidth;
             var w = pm.data.Width * x;
             var h = pm.data.Height * x;
 
-            var GridPen = new Pen(pm.GridColor, pm.GridWidth);
-            int BlockWidth = pm.PixelWidth + pm.GridWidth;
+            var GridPen     = new Pen(pm.GridColor, pm.GridWidth);
+            int BlockWidth  = pm.PixelWidth + pm.GridWidth;
 
-            for (int i = 0; i < pm.data.Width; ++i)
+            for (int i = 0; i <= pm.data.Width; ++i)
             {
                 g.DrawLine(GridPen, 0, i * BlockWidth, w, i * BlockWidth);
                 g.DrawLine(GridPen, i * BlockWidth, 0, i * BlockWidth, h);
