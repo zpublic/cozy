@@ -59,12 +59,7 @@ namespace CozyPixel.Controls
                 if (x < SourceImage.data.Width && y < SourceImage.data.Height)
                 {
                     SourceImage.SetPixel(x, y, c);
-
-                    int fx = x * w;
-                    int fy = y * w;
-                    fx = Math.Min(fx, Image.Width);
-                    fy = Math.Min(fy, Image.Height);
-                    ShowGraphics.FillRectangle(b, fx, fy, w, w);
+                    RefreshPixel();
                 }
             }
         }
