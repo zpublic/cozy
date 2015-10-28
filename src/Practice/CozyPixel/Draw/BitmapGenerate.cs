@@ -18,55 +18,57 @@ namespace CozyPixel.Draw
                 w += pm.GridWidth * (pm.data.Width + 1);
                 h += pm.GridWidth * (pm.data.Height + 1);
             }
+
             Bitmap b = new Bitmap(w, h);
-            for (int i = 0; i < pm.data.Width; ++i)
+            using (Graphics g = Graphics.FromImage(b))
             {
-                DrawVerticalLine(b, i * (pm.PixelWidth + pm.GridWidth), pm.GridColor);
-                for (int j = 0; j < pm.data.Height; ++j)
+
+                for (int i = 0; i < pm.data.Width; ++i)
                 {
-                    DrawRectangle(
-                        b,
-                        new Point(
-                            pm.GridWidth + i * (pm.PixelWidth + pm.GridWidth),
-                            pm.GridWidth + j * (pm.PixelWidth + pm.GridWidth)),
-                        new Point(
-                            pm.GridWidth + pm.PixelWidth + i * (pm.PixelWidth + pm.GridWidth),
-                            pm.GridWidth + pm.PixelWidth + j * (pm.PixelWidth + pm.GridWidth)),
-                        pm.GetPixel(i, j));
+                    for (int j = 0; j < pm.data.Height; ++j)
+                    {
+                        if(pm.ShowGrid)
+                        {
+                            g.FillRectangle(
+                                new SolidBrush(pm.GetPixel(i, j)),
+                                pm.GridWidth + i * (pm.PixelWidth + pm.GridWidth),
+                                pm.GridWidth + j * (pm.PixelWidth + pm.GridWidth),
+                                pm.PixelWidth,
+                                pm.PixelWidth);
+                        }
+                        else
+                        {
+                            g.FillRectangle(
+                                new SolidBrush(pm.GetPixel(i, j)),
+                                i * pm.PixelWidth,
+                                j * pm.PixelWidth,
+                                pm.PixelWidth,
+                                pm.PixelWidth);
+                        }
+                    }
+                }
+                if (pm.ShowGrid)
+                {
+                    DrawGrid(pm, g);
                 }
             }
-            DrawVerticalLine(b, pm.data.Width * (pm.PixelWidth + pm.GridWidth), pm.GridColor);
-            for (int i = 0; i <= pm.data.Height; ++i)
-            {
-                DrawHorizonLine(b, i * (pm.PixelWidth + pm.GridWidth), pm.GridColor);
-            }
+
             return b;
         }
 
-        public static void DrawHorizonLine(Bitmap b, int y, Color c)
+        public static void DrawGrid(Model.PixelMap pm, Graphics g)
         {
-            for (int i = 0; i < b.Width - 1; ++i)
-            {
-                b.SetPixel(i, y, c);
-            }
-        }
+            int x = (pm.PixelWidth + 1) + pm.GridWidth;
+            var w = pm.data.Width * x;
+            var h = pm.data.Height * x;
 
-        public static void DrawVerticalLine(Bitmap b, int x, Color c)
-        {
-            for (int i = 0; i < b.Height - 1; ++i)
-            {
-                b.SetPixel(x, i, c);
-            }
-        }
+            var GridPen = new Pen(pm.GridColor, pm.GridWidth);
+            int BlockWidth = pm.PixelWidth + pm.GridWidth;
 
-        public static void DrawRectangle(Bitmap b, Point leftUp, Point rightDown, Color c)
-        {
-            for (int x = leftUp.X; x < rightDown.X; ++x)
+            for (int i = 0; i < pm.data.Width; ++i)
             {
-                for (int y = leftUp.Y; y < rightDown.Y; ++y)
-                {
-                    b.SetPixel(x, y, c);
-                }
+                g.DrawLine(GridPen, 0, i * BlockWidth, w, i * BlockWidth);
+                g.DrawLine(GridPen, i * BlockWidth, 0, i * BlockWidth, h);
             }
         }
     }

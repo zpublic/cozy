@@ -8,6 +8,8 @@ namespace CozyPixel
 {
     static class Program
     {
+        public const string Version = "0.3";
+
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -16,7 +18,7 @@ namespace CozyPixel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            Application.Run(new CozyPixelForm());
         }
     }
 }
