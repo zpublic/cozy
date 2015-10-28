@@ -11,6 +11,8 @@ namespace CozyPixel
 {
     public partial class CozyPixelForm
     {
+        public int DefaultPixelWidth = 18;
+
         private bool SaveFile()
         {
             if (PixelPainter.Image != null)
@@ -46,7 +48,7 @@ namespace CozyPixel
                 {
                     ShowGrid    = ShowGridCheckBox.Checked,
                     data        = new Bitmap(OpenDlg.FileName),
-                    PixelWidth  = 18,
+                    PixelWidth  = DefaultPixelWidth,
                     GridWidth   = w,
                     GridColor   = GridColorButton.BackColor,
                 };
@@ -56,6 +58,11 @@ namespace CozyPixel
                 return true;
             }
             return false;
+        }
+
+        private void CreateFile(int w, int h)
+        {
+
         }
     }
 }

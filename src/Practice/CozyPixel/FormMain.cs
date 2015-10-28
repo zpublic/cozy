@@ -132,11 +132,11 @@ namespace CozyPixel
                 CurrPixelMap.ShowGrid = ShowGridCheckBox.Checked;
                 if (CurrPixelMap.ShowGrid)
                 {
-                    CurrPixelMap.PixelWidth = 16;
+                    CurrPixelMap.PixelWidth = DefaultPixelWidth - CurrPixelMap.GridWidth;
                 }
                 else
                 {
-                    CurrPixelMap.PixelWidth = 18;
+                    CurrPixelMap.PixelWidth = DefaultPixelWidth;
                 }
                 PixelPainter.RefreshPixel();
             }
