@@ -109,6 +109,10 @@ Cozy
 >>
 >> CozyWiki - 基于CommonMark和Nancy的wiki博客网站  
 >>
+>> CozyColor - 生成颜色
+>>
+>> CozyPixel - 画像素画的软件
+>>
 
 玩法一览
 --------------------------------

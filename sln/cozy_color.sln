@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyColor.Core", "..\src\Practice\CozyColor.Core\CozyColor.Core.csproj", "{896BD16C-2781-4B42-8472-D8C964B9BB86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyColor.Gui", "..\src\Practice\CozyColor.Gui\CozyColor.Gui.csproj", "{F41F4532-F669-49CE-B71E-BC1A82E18D3A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{896BD16C-2781-4B42-8472-D8C964B9BB86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{896BD16C-2781-4B42-8472-D8C964B9BB86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{896BD16C-2781-4B42-8472-D8C964B9BB86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{896BD16C-2781-4B42-8472-D8C964B9BB86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F41F4532-F669-49CE-B71E-BC1A82E18D3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F41F4532-F669-49CE-B71E-BC1A82E18D3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F41F4532-F669-49CE-B71E-BC1A82E18D3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F41F4532-F669-49CE-B71E-BC1A82E18D3A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
