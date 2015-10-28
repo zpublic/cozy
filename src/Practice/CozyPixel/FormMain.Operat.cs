@@ -26,9 +26,9 @@ namespace CozyPixel
                 if (SaveDlg.ShowDialog() == DialogResult.OK)
                 {
                     PixelPainter.Save(SaveDlg.FileName);
+                    IsModified = false;
+                    return true;
                 }
-                IsModified = false;
-                return true;
             }
             return false;
         }

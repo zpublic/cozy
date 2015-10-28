@@ -173,8 +173,12 @@ namespace CozyPixel
                 }
             }
 
-            CloseFile();
-            var createDlg = new CreateNewForm(CreateFile);
+
+            var createDlg = new CreateNewForm((w, h) => 
+            {
+                CloseFile();
+                CreateFile(w, h);
+            });
             createDlg.ShowDialog();
         }
     }
