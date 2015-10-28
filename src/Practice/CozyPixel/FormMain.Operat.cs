@@ -72,7 +72,7 @@ namespace CozyPixel
             {
                 ShowGrid    = ShowGridCheckBox.Checked,
                 data        = bmp,
-                PixelWidth  = DefaultPixelWidth,
+                PixelWidth  = DefaultPixelWidth - gw,
                 GridWidth   = gw,
                 GridColor   = GridColorButton.BackColor,
             };
