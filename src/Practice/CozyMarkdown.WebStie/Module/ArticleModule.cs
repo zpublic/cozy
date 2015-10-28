@@ -1,5 +1,7 @@
 ﻿using CozyMarkdown.Data.Models;
 using CommonMark;
+using Nancy.ModelBinding;
+
 namespace CozyMarkdown.WebStie.Module {
 
     public class ArticleModule : BaseModule {
@@ -15,6 +17,15 @@ namespace CozyMarkdown.WebStie.Module {
                     html = CommonMarkConverter.Convert(article.Content)
                 };
                 return View["Article/Index", model];
+            };
+
+            Get["Article/Insert"] = param => {
+                return View["Article/Insert"];
+            };
+
+            Post["Article/Insert"] = param => {
+                var model = this.Bind<ArticlecModel>();
+                return model;
             };
         }
     }

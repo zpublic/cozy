@@ -36,7 +36,7 @@ namespace CozyMarkdown.WebStie {
 
             using (var host = new NancyHost(new Url(baseUrl), new DefaultNancyBootstrapper(), hostconfig)) {
                 host.Start();
-                Process.Start(baseUrl);
+                //Process.Start(baseUrl);
                 Console.WriteLine("CozyMarkdown is runing , Press enter to stop");
                 Console.ReadKey();
 
