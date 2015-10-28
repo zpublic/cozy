@@ -36,11 +36,6 @@
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SelectedColorButton = new System.Windows.Forms.Button();
-            this.ColorPage = new System.Windows.Forms.TabPage();
-            this.MainTopTab = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.ColorList = new CozyPixel.Controls.ColorListView();
             this.MainLeftTab = new CozyPixel.Controls.VerticalTabControl();
             this.GridOpeionPage = new System.Windows.Forms.TabPage();
             this.GridWidthLabel = new System.Windows.Forms.Label();
@@ -49,12 +44,16 @@
             this.GridColorButton = new System.Windows.Forms.Button();
             this.ColorLabel = new System.Windows.Forms.Label();
             this.PixelPainter = new CozyPixel.Controls.PixelPaintControl();
+            this.ColorPage = new System.Windows.Forms.TabPage();
+            this.SelectedColorButton = new System.Windows.Forms.Button();
+            this.ColorList = new CozyPixel.Controls.ColorListView();
+            this.MainTopTab = new System.Windows.Forms.TabControl();
             this.MainStripMenu.SuspendLayout();
-            this.ColorPage.SuspendLayout();
-            this.MainTopTab.SuspendLayout();
             this.MainLeftTab.SuspendLayout();
             this.GridOpeionPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).BeginInit();
+            this.ColorPage.SuspendLayout();
+            this.MainTopTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainStripMenu
@@ -121,57 +120,6 @@
             this.AboutMenuItem.Size = new System.Drawing.Size(100, 22);
             this.AboutMenuItem.Text = "关于";
             this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
-            // 
-            // SelectedColorButton
-            // 
-            this.SelectedColorButton.FlatAppearance.BorderSize = 0;
-            this.SelectedColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SelectedColorButton.Location = new System.Drawing.Point(67, 22);
-            this.SelectedColorButton.Name = "SelectedColorButton";
-            this.SelectedColorButton.Size = new System.Drawing.Size(72, 72);
-            this.SelectedColorButton.TabIndex = 5;
-            this.SelectedColorButton.UseVisualStyleBackColor = true;
-            // 
-            // ColorPage
-            // 
-            this.ColorPage.Controls.Add(this.ColorList);
-            this.ColorPage.Controls.Add(this.SelectedColorButton);
-            this.ColorPage.Location = new System.Drawing.Point(4, 22);
-            this.ColorPage.Name = "ColorPage";
-            this.ColorPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ColorPage.Size = new System.Drawing.Size(632, 114);
-            this.ColorPage.TabIndex = 0;
-            this.ColorPage.Text = "颜色";
-            this.ColorPage.UseVisualStyleBackColor = true;
-            // 
-            // MainTopTab
-            // 
-            this.MainTopTab.Controls.Add(this.ColorPage);
-            this.MainTopTab.Controls.Add(this.tabPage1);
-            this.MainTopTab.Location = new System.Drawing.Point(316, 28);
-            this.MainTopTab.Name = "MainTopTab";
-            this.MainTopTab.SelectedIndex = 0;
-            this.MainTopTab.Size = new System.Drawing.Size(640, 140);
-            this.MainTopTab.TabIndex = 7;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(632, 114);
-            this.tabPage1.TabIndex = 1;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // ColorList
-            // 
-            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
-            this.ColorList.ColorItemSize = new System.Drawing.Size(46, 20);
-            this.ColorList.Location = new System.Drawing.Point(195, 22);
-            this.ColorList.Name = "ColorList";
-            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
-            this.ColorList.Size = new System.Drawing.Size(400, 72);
-            this.ColorList.TabIndex = 2;
             // 
             // MainLeftTab
             // 
@@ -266,6 +214,47 @@
             this.PixelPainter.TabStop = false;
             this.PixelPainter.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseDown);
             // 
+            // ColorPage
+            // 
+            this.ColorPage.Controls.Add(this.ColorList);
+            this.ColorPage.Controls.Add(this.SelectedColorButton);
+            this.ColorPage.Location = new System.Drawing.Point(4, 22);
+            this.ColorPage.Name = "ColorPage";
+            this.ColorPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ColorPage.Size = new System.Drawing.Size(632, 114);
+            this.ColorPage.TabIndex = 0;
+            this.ColorPage.Text = "颜色";
+            this.ColorPage.UseVisualStyleBackColor = true;
+            // 
+            // SelectedColorButton
+            // 
+            this.SelectedColorButton.FlatAppearance.BorderSize = 0;
+            this.SelectedColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SelectedColorButton.Location = new System.Drawing.Point(67, 22);
+            this.SelectedColorButton.Name = "SelectedColorButton";
+            this.SelectedColorButton.Size = new System.Drawing.Size(72, 72);
+            this.SelectedColorButton.TabIndex = 5;
+            this.SelectedColorButton.UseVisualStyleBackColor = true;
+            // 
+            // ColorList
+            // 
+            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
+            this.ColorList.ColorItemSize = new System.Drawing.Size(46, 20);
+            this.ColorList.Location = new System.Drawing.Point(195, 22);
+            this.ColorList.Name = "ColorList";
+            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
+            this.ColorList.Size = new System.Drawing.Size(400, 72);
+            this.ColorList.TabIndex = 2;
+            // 
+            // MainTopTab
+            // 
+            this.MainTopTab.Controls.Add(this.ColorPage);
+            this.MainTopTab.Location = new System.Drawing.Point(316, 28);
+            this.MainTopTab.Name = "MainTopTab";
+            this.MainTopTab.SelectedIndex = 0;
+            this.MainTopTab.Size = new System.Drawing.Size(640, 140);
+            this.MainTopTab.TabIndex = 7;
+            // 
             // CozyPixelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -283,12 +272,12 @@
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();
-            this.ColorPage.ResumeLayout(false);
-            this.MainTopTab.ResumeLayout(false);
             this.MainLeftTab.ResumeLayout(false);
             this.GridOpeionPage.ResumeLayout(false);
             this.GridOpeionPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).EndInit();
+            this.ColorPage.ResumeLayout(false);
+            this.MainTopTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,7 +291,6 @@
         private System.Windows.Forms.ToolStripMenuItem ExitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SaveMenuItem;
-        private Controls.ColorListView ColorList;
         private Controls.PixelPaintControl PixelPainter;
         private Controls.VerticalTabControl MainLeftTab;
         private System.Windows.Forms.TabPage GridOpeionPage;
@@ -311,11 +299,11 @@
         private System.Windows.Forms.CheckBox ShowGridCheckBox;
         private System.Windows.Forms.Label GridWidthLabel;
         private System.Windows.Forms.TextBox GridWidthBox;
-        private System.Windows.Forms.Button SelectedColorButton;
         private System.Windows.Forms.ToolStripMenuItem CreateMenuItem;
         private System.Windows.Forms.TabPage ColorPage;
+        private Controls.ColorListView ColorList;
+        private System.Windows.Forms.Button SelectedColorButton;
         private System.Windows.Forms.TabControl MainTopTab;
-        private System.Windows.Forms.TabPage tabPage1;
     }
 }
 

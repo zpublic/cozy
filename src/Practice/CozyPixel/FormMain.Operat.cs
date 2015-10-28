@@ -60,12 +60,18 @@ namespace CozyPixel
 
         private void CreateFile(int w, int h)
         {
-            int gw = RefreshCurrGridWidth();
+            int gw  = RefreshCurrGridWidth();
+            var bmp = new Bitmap(w, h);
+
+            using (var g = Graphics.FromImage(bmp))
+            {
+                g.FillRectangle(Brushes.White, new Rectangle(0 ,0, w, h));
+            }
 
             CurrPixelMap = new PixelMap()
             {
                 ShowGrid    = ShowGridCheckBox.Checked,
-                data        = new Bitmap(w, h),
+                data        = bmp,
                 PixelWidth  = DefaultPixelWidth,
                 GridWidth   = gw,
                 GridColor   = GridColorButton.BackColor,
