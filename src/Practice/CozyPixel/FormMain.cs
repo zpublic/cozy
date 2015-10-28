@@ -147,6 +147,8 @@ namespace CozyPixel
             {
                 if (CurrPixelMap != null)
                 {
+                    if (w == 0) w = 1;
+
                     CurrPixelMap.GridWidth = w;
                     PixelPainter.RefreshPixel();
                 }
