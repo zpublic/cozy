@@ -82,6 +82,40 @@ namespace CozyPixel.Controls
             return SourceImage.GetPixel(mapp.X, mapp.Y);
         }
 
+        public bool Fill(Point p, Color c)
+        {
+            var mapp    = ConvertSceneToMap(p);
+            var src     = SourceImage.GetPixel(mapp.X, mapp.Y);
+            if(src == c)
+            {
+                return false;
+            }
+
+            return SearchAndFillPixel(mapp, src, c) != 0;
+        }
+
+        private int SearchAndFillPixel(Point p, Color src, Color dest)
+        {
+            if (p.X < 0 || p.Y < 0 || p.X >= SourceImage.data.Width || p.Y >= SourceImage.data.Height)
+            {
+                return 0;
+            }
+
+            if (SourceImage.GetPixel(p.X, p.Y) != src)
+            {
+                return 0;
+            }
+
+            int count = 1;
+            DrawPixel(p, dest, ShowGraphics, true);
+
+            count += SearchAndFillPixel(new Point(p.X, p.Y + 1), src, dest);
+            count += SearchAndFillPixel(new Point(p.X, p.Y - 1), src, dest);
+            count += SearchAndFillPixel(new Point(p.X + 1, p.Y), src, dest);
+            count += SearchAndFillPixel(new Point(p.X - 1, p.Y), src, dest);
+            return count;
+        }
+
         /// <summary>
         /// 绘制像素块
         /// </summary>

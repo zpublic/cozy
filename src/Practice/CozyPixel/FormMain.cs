@@ -214,7 +214,7 @@ namespace CozyPixel
         {
             if(CurrPixelTool.GetType() != typeof(PixelPencil))
             {
-                CurrPixelTool               = new PixelPencil(this);
+                CurrPixelTool = new PixelPencil(this);
             }
         }
 
@@ -222,7 +222,7 @@ namespace CozyPixel
         {
             if (CurrPixelTool.GetType() != typeof(PixelLine))
             {
-                CurrPixelTool               = new PixelLine(this);
+                CurrPixelTool = new PixelLine(this);
             }
         }
 
@@ -230,8 +230,7 @@ namespace CozyPixel
         {
             if (CurrPixelTool.GetType() != typeof(PixelEraser))
             {
-                CurrPixelTool               = new PixelEraser();
-                CurrPixelTool.ColorHolder   = this;
+                CurrPixelTool = new PixelEraser();
             }
         }
 
@@ -239,8 +238,15 @@ namespace CozyPixel
         {
             if (CurrPixelTool.GetType() != typeof(PixelStraw))
             {
-                CurrPixelTool               = new PixelStraw(this);
-                CurrPixelTool.ColorHolder   = this;
+                CurrPixelTool = new PixelStraw(this);
+            }
+        }
+
+        private void FillToolButton_Click(object sender, EventArgs e)
+        {
+            if (CurrPixelTool.GetType() != typeof(PixelFill))
+            {
+                CurrPixelTool = new PixelFill(this);
             }
         }
     }

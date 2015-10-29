@@ -51,6 +51,8 @@
             this.CurrPathStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainLeftTab = new CozyPixel.Controls.VerticalTabControl();
             this.SelectToolPage = new System.Windows.Forms.TabPage();
+            this.FillToolButton = new System.Windows.Forms.Button();
+            this.StrawToolButton = new System.Windows.Forms.Button();
             this.EarserToolButton = new System.Windows.Forms.Button();
             this.LineToolButton = new System.Windows.Forms.Button();
             this.PencilToolButton = new System.Windows.Forms.Button();
@@ -65,7 +67,6 @@
             this.GridColorButton = new System.Windows.Forms.Button();
             this.ColorLabel = new System.Windows.Forms.Label();
             this.PixelPainter = new CozyPixel.Controls.PixelPaintControl();
-            this.StrawToolButton = new System.Windows.Forms.Button();
             this.MainStripMenu.SuspendLayout();
             this.MainTopTab.SuspendLayout();
             this.ColorPage.SuspendLayout();
@@ -268,6 +269,7 @@
             // 
             // SelectToolPage
             // 
+            this.SelectToolPage.Controls.Add(this.FillToolButton);
             this.SelectToolPage.Controls.Add(this.StrawToolButton);
             this.SelectToolPage.Controls.Add(this.EarserToolButton);
             this.SelectToolPage.Controls.Add(this.LineToolButton);
@@ -278,6 +280,26 @@
             this.SelectToolPage.TabIndex = 2;
             this.SelectToolPage.Text = "工具选择";
             this.SelectToolPage.UseVisualStyleBackColor = true;
+            // 
+            // FillToolButton
+            // 
+            this.FillToolButton.Location = new System.Drawing.Point(45, 228);
+            this.FillToolButton.Name = "FillToolButton";
+            this.FillToolButton.Size = new System.Drawing.Size(75, 23);
+            this.FillToolButton.TabIndex = 4;
+            this.FillToolButton.Text = "填充工具";
+            this.FillToolButton.UseVisualStyleBackColor = true;
+            this.FillToolButton.Click += new System.EventHandler(this.FillToolButton_Click);
+            // 
+            // StrawToolButton
+            // 
+            this.StrawToolButton.Location = new System.Drawing.Point(45, 184);
+            this.StrawToolButton.Name = "StrawToolButton";
+            this.StrawToolButton.Size = new System.Drawing.Size(75, 23);
+            this.StrawToolButton.TabIndex = 3;
+            this.StrawToolButton.Text = "吸取工具";
+            this.StrawToolButton.UseVisualStyleBackColor = true;
+            this.StrawToolButton.Click += new System.EventHandler(this.StrawToolButton_Click);
             // 
             // EarserToolButton
             // 
@@ -438,16 +460,6 @@
             this.PixelPainter.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseMove);
             this.PixelPainter.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseUp);
             // 
-            // StrawToolButton
-            // 
-            this.StrawToolButton.Location = new System.Drawing.Point(45, 184);
-            this.StrawToolButton.Name = "StrawToolButton";
-            this.StrawToolButton.Size = new System.Drawing.Size(75, 23);
-            this.StrawToolButton.TabIndex = 3;
-            this.StrawToolButton.Text = "吸取工具";
-            this.StrawToolButton.UseVisualStyleBackColor = true;
-            this.StrawToolButton.Click += new System.EventHandler(this.StrawToolButton_Click);
-            // 
             // CozyPixelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -521,6 +533,7 @@
         private System.Windows.Forms.Button LineToolButton;
         private System.Windows.Forms.Button EarserToolButton;
         private System.Windows.Forms.Button StrawToolButton;
+        private System.Windows.Forms.Button FillToolButton;
     }
 }
 

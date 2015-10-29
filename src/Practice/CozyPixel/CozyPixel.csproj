@@ -100,6 +100,7 @@
     <Compile Include="Tools\IPixelDrawable.cs" />
     <Compile Include="Tools\IPixelTool.cs" />
     <Compile Include="Tools\PixelEraser.cs" />
+    <Compile Include="Tools\PixelFill.cs" />
     <Compile Include="Tools\PixelLine.cs" />
     <Compile Include="Tools\PixelPencil.cs" />
     <Compile Include="Tools\PixelStraw.cs" />

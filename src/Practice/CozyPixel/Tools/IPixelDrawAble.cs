@@ -54,6 +54,13 @@ namespace CozyPixel.Tools
         void UpdateDrawable();
 
         /// <summary>
+        /// 以给定点为中心填充
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        bool Fill(Point p, Color c);
+
+        /// <summary>
         /// 读取像素块的颜色
         /// </summary>
         /// <param name="p"></param>
