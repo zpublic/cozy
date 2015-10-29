@@ -10,8 +10,7 @@ namespace CozyMarkdown.WebStie.Module {
         public HomeModule() {
 
             Get["/"] = x => {
-                var q = db.GetContent<ArticlecModel>();
-                var model = q.FindAll().ToList();
+                var model = db.GetAll<ArticlecModel>().ToList();
                 return View["Home/Index", model];
             };
 
