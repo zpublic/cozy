@@ -23,18 +23,26 @@ namespace CozyPixel
         {
             if (PixelPainter.Image != null)
             {
-                SaveFileDialog SaveDlg  = new SaveFileDialog();
-                SaveDlg.Filter          = SaveDlgFilter;
-
-                if (SaveDlg.ShowDialog() == DialogResult.OK)
+                if(SelectedImagePath == string.Empty)
                 {
-                    PixelPainter.Save(SaveDlg.FileName);
-                    IsModified = false;
+                    SaveFileDialog SaveDlg  = new SaveFileDialog();
+                    SaveDlg.Filter          = SaveDlgFilter;
 
-                    SetCurrPathStatusLabel(SaveDlg.FileName);
-                    IsModified = false;
-                    return true;
+                    if (SaveDlg.ShowDialog() == DialogResult.OK)
+                    {
+                        SelectedImagePath   = SaveDlg.FileName;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
+
+                SetCurrPathStatusLabel(SelectedImagePath);
+                PixelPainter.Save(SelectedImagePath);
+                IsModified = false;
+
+                return true;
             }
             return false;
         }
@@ -47,17 +55,17 @@ namespace CozyPixel
 
             if (OpenDlg.ShowDialog() == DialogResult.OK)
             {
-                var bmp = new Bitmap(OpenDlg.FileName);
+                Bitmap res = CozyPixelHelper.ReadBitmapFromFile(OpenDlg.FileName);
 
-                if(bmp.Width > 128 || bmp.Height > 128)
+                if (res.Width > 128 || res.Height > 128)
                 {
                     MessageBox.Show("不支持超过128 * 128的文件", "打开失败");
                     return false;
                 }
 
-                ChangePixelPainterImage(bmp);
+                ChangePixelPainterImage(res);
                 SetCurrPathStatusLabel(OpenDlg.FileName);
-                IsModified = false;
+                SelectedImagePath = OpenDlg.FileName;
                 return true;
             }
             return false;
@@ -74,12 +82,13 @@ namespace CozyPixel
             var bmp = new Bitmap(w, h);
             using (var g = Graphics.FromImage(bmp))
             {
-                g.FillRectangle(Brushes.White, new Rectangle(0 ,0, w, h));
+                g.FillRectangle(Brushes.White, new Rectangle(0, 0, w, h));
             }
 
             ChangePixelPainterImage(bmp);
             SetCurrPathStatusLabel("未命名");
-            IsModified = true;
+            IsModified          = true;
+            SelectedImagePath   = string.Empty;
         }
 
         private void CloseFile()
@@ -87,6 +96,7 @@ namespace CozyPixel
             CurrPixelMap                = null;
             PixelPainter.SourceImage    = null;
             IsModified                  = false;
+            SelectedImagePath           = string.Empty;
 
             SetCurrPathStatusLabel("无");
         }

@@ -40,11 +40,15 @@
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectedColorButton = new System.Windows.Forms.Button();
             this.MainTopTab = new System.Windows.Forms.TabControl();
+            this.ColorPage = new System.Windows.Forms.TabPage();
+            this.ColorList = new CozyPixel.Controls.ColorListView();
+            this.CozyColorPage = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.ThumbMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.OpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.CurrPathStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ColorList = new CozyPixel.Controls.ColorListView();
             this.MainLeftTab = new CozyPixel.Controls.VerticalTabControl();
             this.GridOpeionPage = new System.Windows.Forms.TabPage();
             this.GridWidthLabel = new System.Windows.Forms.Label();
@@ -57,22 +61,17 @@
             this.ThumbListView = new CozyPixel.Controls.ImageListView();
             this.DirectorySelectButton = new System.Windows.Forms.Button();
             this.PixelPainter = new CozyPixel.Controls.PixelPaintControl();
-            this.ColorPage = new System.Windows.Forms.TabPage();
-            this.CozyColorPage = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.MainStripMenu.SuspendLayout();
             this.MainTopTab.SuspendLayout();
+            this.ColorPage.SuspendLayout();
+            this.CozyColorPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.ThumbMenuStrip.SuspendLayout();
             this.MainStatusStrip.SuspendLayout();
             this.MainLeftTab.SuspendLayout();
             this.GridOpeionPage.SuspendLayout();
             this.FileSelectPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).BeginInit();
-            this.ColorPage.SuspendLayout();
-            this.MainTopTab.SuspendLayout();
-            this.CozyColorPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // MainStripMenu
@@ -140,6 +139,78 @@
             this.AboutMenuItem.Text = "关于";
             this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
             // 
+            // SelectedColorButton
+            // 
+            this.SelectedColorButton.FlatAppearance.BorderSize = 0;
+            this.SelectedColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SelectedColorButton.Location = new System.Drawing.Point(67, 22);
+            this.SelectedColorButton.Name = "SelectedColorButton";
+            this.SelectedColorButton.Size = new System.Drawing.Size(72, 72);
+            this.SelectedColorButton.TabIndex = 5;
+            this.SelectedColorButton.UseVisualStyleBackColor = true;
+            // 
+            // MainTopTab
+            // 
+            this.MainTopTab.Controls.Add(this.ColorPage);
+            this.MainTopTab.Controls.Add(this.CozyColorPage);
+            this.MainTopTab.Location = new System.Drawing.Point(316, 28);
+            this.MainTopTab.Name = "MainTopTab";
+            this.MainTopTab.SelectedIndex = 0;
+            this.MainTopTab.Size = new System.Drawing.Size(640, 140);
+            this.MainTopTab.TabIndex = 7;
+            // 
+            // ColorPage
+            // 
+            this.ColorPage.Controls.Add(this.ColorList);
+            this.ColorPage.Controls.Add(this.SelectedColorButton);
+            this.ColorPage.Location = new System.Drawing.Point(4, 22);
+            this.ColorPage.Name = "ColorPage";
+            this.ColorPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ColorPage.Size = new System.Drawing.Size(632, 114);
+            this.ColorPage.TabIndex = 0;
+            this.ColorPage.Text = "24色";
+            this.ColorPage.UseVisualStyleBackColor = true;
+            // 
+            // ColorList
+            // 
+            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
+            this.ColorList.ColorItemSize = new System.Drawing.Size(46, 20);
+            this.ColorList.Location = new System.Drawing.Point(195, 22);
+            this.ColorList.Name = "ColorList";
+            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
+            this.ColorList.Size = new System.Drawing.Size(400, 72);
+            this.ColorList.TabIndex = 2;
+            this.ColorList.ColorSelectedEventHandler += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorList_ColorSelectedEventHandler);
+            // 
+            // CozyColorPage
+            // 
+            this.CozyColorPage.Controls.Add(this.pictureBox1);
+            this.CozyColorPage.Controls.Add(this.button1);
+            this.CozyColorPage.Location = new System.Drawing.Point(4, 22);
+            this.CozyColorPage.Name = "CozyColorPage";
+            this.CozyColorPage.Size = new System.Drawing.Size(632, 114);
+            this.CozyColorPage.TabIndex = 1;
+            this.CozyColorPage.Text = "CozyColor";
+            this.CozyColorPage.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(108, 17);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(500, 80);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(15, 17);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(87, 80);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "生成";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ThumbMenuStrip
             // 
             this.ThumbMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -152,7 +223,6 @@
             this.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem";
             this.OpenToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.OpenToolStripMenuItem.Text = "打开";
-            this.OpenToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // MainStatusStrip
             // 
@@ -284,10 +354,14 @@
             // 
             this.ThumbListView.ContextMenuStrip = this.ThumbMenuStrip;
             this.ThumbListView.Location = new System.Drawing.Point(26, 76);
+            this.ThumbListView.MaxNameLength = 12;
+            this.ThumbListView.MultiSelect = false;
             this.ThumbListView.Name = "ThumbListView";
+            this.ThumbListView.ShowItemToolTips = true;
             this.ThumbListView.Size = new System.Drawing.Size(155, 553);
             this.ThumbListView.TabIndex = 2;
             this.ThumbListView.UseCompatibleStateImageBehavior = false;
+            this.ThumbListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ThumbListView_ItemSelectionChanged);
             // 
             // DirectorySelectButton
             // 
@@ -311,77 +385,6 @@
             this.PixelPainter.TabStop = false;
             this.PixelPainter.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseDown);
             // 
-            // ColorPage
-            // 
-            this.ColorPage.Controls.Add(this.ColorList);
-            this.ColorPage.Controls.Add(this.SelectedColorButton);
-            this.ColorPage.Location = new System.Drawing.Point(4, 22);
-            this.ColorPage.Name = "ColorPage";
-            this.ColorPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ColorPage.Size = new System.Drawing.Size(632, 114);
-            this.ColorPage.TabIndex = 0;
-            this.ColorPage.Text = "24色";
-            this.ColorPage.UseVisualStyleBackColor = true;
-            // 
-            // ColorList
-            // 
-            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
-            this.ColorList.ColorItemSize = new System.Drawing.Size(46, 20);
-            this.ColorList.Location = new System.Drawing.Point(195, 22);
-            this.ColorList.Name = "ColorList";
-            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
-            this.ColorList.Size = new System.Drawing.Size(400, 72);
-            this.ColorList.TabIndex = 2;
-            // 
-            // SelectedColorButton
-            // 
-            this.SelectedColorButton.FlatAppearance.BorderSize = 0;
-            this.SelectedColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SelectedColorButton.Location = new System.Drawing.Point(67, 22);
-            this.SelectedColorButton.Name = "SelectedColorButton";
-            this.SelectedColorButton.Size = new System.Drawing.Size(72, 72);
-            this.SelectedColorButton.TabIndex = 5;
-            this.SelectedColorButton.UseVisualStyleBackColor = true;
-            // 
-            // MainTopTab
-            // 
-            this.MainTopTab.Controls.Add(this.ColorPage);
-            this.MainTopTab.Controls.Add(this.CozyColorPage);
-            this.MainTopTab.Location = new System.Drawing.Point(316, 28);
-            this.MainTopTab.Name = "MainTopTab";
-            this.MainTopTab.SelectedIndex = 0;
-            this.MainTopTab.Size = new System.Drawing.Size(640, 140);
-            this.MainTopTab.TabIndex = 7;
-            // 
-            // CozyColorPage
-            // 
-            this.CozyColorPage.Controls.Add(this.pictureBox1);
-            this.CozyColorPage.Controls.Add(this.button1);
-            this.CozyColorPage.Location = new System.Drawing.Point(4, 22);
-            this.CozyColorPage.Name = "CozyColorPage";
-            this.CozyColorPage.Size = new System.Drawing.Size(632, 114);
-            this.CozyColorPage.TabIndex = 1;
-            this.CozyColorPage.Text = "CozyColor";
-            this.CozyColorPage.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(15, 17);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 80);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "生成";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(108, 17);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(500, 80);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // CozyPixelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -400,8 +403,10 @@
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();
-            this.ColorPage.ResumeLayout(false);
             this.MainTopTab.ResumeLayout(false);
+            this.ColorPage.ResumeLayout(false);
+            this.CozyColorPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ThumbMenuStrip.ResumeLayout(false);
             this.MainStatusStrip.ResumeLayout(false);
             this.MainStatusStrip.PerformLayout();
@@ -410,10 +415,6 @@
             this.GridOpeionPage.PerformLayout();
             this.FileSelectPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).EndInit();
-            this.ColorPage.ResumeLayout(false);
-            this.MainTopTab.ResumeLayout(false);
-            this.CozyColorPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

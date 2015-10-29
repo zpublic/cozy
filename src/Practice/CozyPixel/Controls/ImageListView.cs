@@ -34,6 +34,9 @@ namespace CozyPixel.Controls
 
         public ImageListView()
         {
+            MultiSelect         = false;
+            ShowItemToolTips    = true;
+
             LargeImageList      = ImgList;
             int w               = Width - SystemInformation.VerticalScrollBarWidth * 2;
             ImgList.ImageSize   = new Size(w, w);
@@ -48,7 +51,7 @@ namespace CozyPixel.Controls
 
         public bool TryAddImage(string path)
         {
-            var img = Image.FromFile(path);
+            var img = CozyPixelHelper.ReadBitmapFromFile(path);
 
             if(img.Width > 128 ||img.Height > 128)
             {
@@ -60,11 +63,11 @@ namespace CozyPixel.Controls
             PathList.Add(path);
             ImgList.Images.Add(img);
 
-            var filename        = Path.GetFileNameWithoutExtension(path);
-            int maxNameLength   = MaxNameLength < filename.Length ? MaxNameLength : filename.Length;
+            var filename = Path.GetFileNameWithoutExtension(path);
 
-            Items.Add(filename.Substring(0, maxNameLength) + "...", i);
-            Items[i].ImageIndex = i;
+            Items.Add(filename.Substring(0, (filename.Length < MaxNameLength ? filename.Length : MaxNameLength)), i);
+            Items[i].ImageIndex     = i;
+            Items[i].ToolTipText    = filename;
 
             return true;
         }

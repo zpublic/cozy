@@ -3,6 +3,7 @@ using CozyPixel.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,6 +69,23 @@ namespace CozyPixel
         private void SetCurrPathStatusLabel(string label)
         {
             CurrPathStatusLabel.Text    = "当前文件 ： " + (label ?? string.Empty);
+        }
+
+
+        private void RefreshThumb()
+        {
+            ThumbListView.ImageClear();
+
+            DirectoryInfo di = new DirectoryInfo(CurrDire);
+            var fs = di.GetFiles("*.*", SearchOption.TopDirectoryOnly);
+
+            foreach (var file in fs)
+            {
+                if (file.Extension == ".bmp" || file.Extension == ".jpg" || file.Extension == ".png")
+                {
+                    ThumbListView.TryAddImage(file.FullName);
+                }
+            }
         }
     }
 }
