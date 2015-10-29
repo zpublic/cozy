@@ -1,7 +1,7 @@
 ﻿using System;
 using Nancy;
 using Nancy.Hosting.Self;
-using System.Diagnostics;
+using System.Linq;
 
 namespace CozyMarkdown.WebStie {
 
@@ -10,20 +10,18 @@ namespace CozyMarkdown.WebStie {
         static void Main(string[] args) {
 
 #if DEBUG
-            var db = CozyMarkdown.Data.DbContent.GetInstance();
-            var articlecs = db.GetContent<CozyMarkdown.Data.Models.ArticlecModel>();
-            if (articlecs.Count() < 1) {
+            var db = Data.DbContent.GetInstance();
+            if (db.GetAll<Data.Models.ArticlecModel>().Count() < 1) {
                 var ariclecsContent = System.IO.File.ReadAllText("Test.md");
                 for (int i = 0; i < 5; i++) {
-                    db.GetContent<CozyMarkdown.Data.Models.ArticlecModel>()
-                        .Insert(new Data.Models.ArticlecModel {
-                            Id = Guid.NewGuid(),
-                            Title = $"Cozy{i}",
-                            SubTitle = $"Cozy-readme{i}",
-                            Content = ariclecsContent,
-                            CreateDate = DateTime.Now,
-                            UpdateDate = DateTime.Now
-                        });
+                    db.Insert(new Data.Models.ArticlecModel {
+                        Id = Guid.NewGuid(),
+                        Title = $"Cozy{i}",
+                        SubTitle = $"Cozy-readme{i}",
+                        Content = ariclecsContent,
+                        CreateDate = DateTime.Now,
+                        UpdateDate = DateTime.Now
+                    });
                 }
             }
 #endif
@@ -36,7 +34,7 @@ namespace CozyMarkdown.WebStie {
 
             using (var host = new NancyHost(new Url(baseUrl), new DefaultNancyBootstrapper(), hostconfig)) {
                 host.Start();
-                Process.Start(baseUrl);
+                //Process.Start(baseUrl);
                 Console.WriteLine("CozyMarkdown is runing , Press enter to stop");
                 Console.ReadKey();
 
