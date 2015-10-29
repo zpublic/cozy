@@ -44,10 +44,36 @@ namespace CozyPixel.Controls
 
         public bool DrawPixel(Point p, Color c)
         {
-            return DrawPixel(p, c, true);
+            return DrawPixel(p, c, ShowGraphics, true);
         }
 
-        public bool DrawPixel(Point p, Color c, bool IsInvalidate)
+        public bool DrawLine(Point begin, Point end, Color c)
+        {
+            return DrawLine(begin, end, c, ShowGraphics, true);
+        }
+
+        public bool FakeDrawPixel(Point p, Color c)
+        {
+            using (var g = CreateGraphics())
+            {
+                return DrawPixel(p, c, g, false);
+            }
+        }
+
+        public bool FakeDrawLine(Point begin, Point end, Color c)
+        {
+            using (var g = CreateGraphics())
+            {
+                return DrawLine(begin, end, c, g, false);
+            }
+        }
+
+        public void PixelRefresh()
+        {
+            Invalidate();
+        }
+
+        private bool DrawPixel(Point p, Color c, Graphics g, bool SaveToMap)
         {
             if (SourceImage != null)
             {
@@ -59,13 +85,11 @@ namespace CozyPixel.Controls
 
                 if (x >= 0 && y >= 0 && x < SourceImage.data.Width && y < SourceImage.data.Height)
                 {
-                    SourceImage.SetPixel(x, y, c);
-                    BitmapGenerate.DrawPixel(SourceImage, ShowGraphics, x, y, c);
-                }
-
-                if (IsInvalidate)
-                {
-                    Invalidate();
+                    if(SaveToMap)
+                    {
+                        SourceImage.SetPixel(x, y, c);
+                    }
+                    BitmapGenerate.DrawPixel(SourceImage, g, x, y, c);
                 }
                 return true;
             }
@@ -79,11 +103,11 @@ namespace CozyPixel.Controls
         /// <param name="end"></param>
         /// <param name="c"></param>
         /// <returns></returns>
-        public bool DrawLine(Point begin, Point end, Color c)
+        private bool DrawLine(Point begin, Point end, Color c, Graphics g, bool SaveToMap)
         {
             if(begin == end)
             {
-                return DrawPixel(begin, c);
+                return DrawPixel(begin, c, g, SaveToMap);
             }
 
             Point left  = begin.X < end.X ? begin : end;
@@ -97,7 +121,7 @@ namespace CozyPixel.Controls
 
             for(int i = 0; i <= dx; ++i)
             {
-                DrawPixel(new Point(x, y), c, false);
+                DrawPixel(new Point(x, y), c, g, SaveToMap);
                 x++;
                 e = e + 2 * dy;
                 if(e >= 0)
@@ -106,8 +130,6 @@ namespace CozyPixel.Controls
                     e = e - 2 * dx;
                 }
             }
-
-            Invalidate();
             return true;
         }
 

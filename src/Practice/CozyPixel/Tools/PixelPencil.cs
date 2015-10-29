@@ -18,31 +18,57 @@ namespace CozyPixel.Tools
 
         private Point LastPoint { get; set; }
 
+        private List<Point> DrawPoints { get; set; } = new List<Point>();
+
         public void Begin(IPixelDrawAble paint, Point p)
         {
+            DrawPoints.Add(p);
             Target      = paint;
             LastPoint   = p;
         }
 
-        public bool Move(Point p)
+        public void Move(Point p)
         {
             if(Target != null)
             {
-                bool r = Target.DrawLine(LastPoint, p, DrawColor);
+                DrawPoints.Add(p);
+                Target.FakeDrawLine(LastPoint, p, DrawColor);
                 LastPoint = p;
-                return r;
             }
-            return false;
         }
 
         public bool End(Point p)
         {
             if(Target != null)
             {
-                bool r      = Target.DrawLine(LastPoint, p, DrawColor);
+                DrawPoints.Add(p);
+                Target.FakeDrawLine(LastPoint, p, DrawColor);
+
                 LastPoint   = p;
+                var ret     = SavePointsToMap();
                 Target      = null;
-                return r;
+                return ret;
+            }
+            return false;
+        }
+
+        private bool SavePointsToMap()
+        {
+            if(DrawPoints.Count > 0)
+            {
+                bool IsModified = false;
+                Target.DrawPixel(DrawPoints[0], DrawColor);
+
+                for (int i = 1; i < DrawPoints.Count; ++i)
+                {
+                    if (Target.DrawLine(DrawPoints[i - 1], DrawPoints[i], DrawColor))
+                    {
+                        IsModified = true;
+                    }
+                }
+                DrawPoints.Clear();
+                Target.PixelRefresh();
+                return IsModified;
             }
             return false;
         }

@@ -11,6 +11,12 @@ namespace CozyPixel.Tools
     {
         bool DrawPixel(Point p, Color c);
 
+        bool FakeDrawPixel(Point p, Color c);
+
         bool DrawLine(Point start, Point end, Color c);
+
+        bool FakeDrawLine(Point start, Point end, Color c);
+
+        void PixelRefresh();
     }
 }

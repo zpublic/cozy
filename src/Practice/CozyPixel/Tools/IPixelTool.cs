@@ -16,7 +16,7 @@ namespace CozyPixel.Tools
 
         void Begin(IPixelDrawAble paint, Point p);
 
-        bool Move(Point p);
+        void Move(Point p);
 
         bool End(Point p);
     }
