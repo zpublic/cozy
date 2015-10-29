@@ -43,7 +43,7 @@ namespace CozyMarkdown.Data {
 
         public T Update<T>(T model) where T : BaseModel, new() {
             var collection = liteDatabase.GetCollection<T>(nameof(T));
-            if (!collection.Update(model)) {
+            if (collection.Update(model)) {
                 return collection.FindById(model.Id);
             }
             return null;
