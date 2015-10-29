@@ -36,9 +36,9 @@ namespace CozyPixel.Controls
                         throw new KeyNotFoundException("Cannot find color");
                     }
 
-                    var bt = ColorButtonMap[value];
-                    SelectedButton = bt;
-                    SelectedButton.FlatAppearance.BorderSize = 1;
+                    var bt                                      = ColorButtonMap[value];
+                    SelectedButton                              = bt;
+                    SelectedButton.FlatAppearance.BorderSize    = 1;
                 }
 
                 if (ColorSelectedEventHandler != null)

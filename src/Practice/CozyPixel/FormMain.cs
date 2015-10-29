@@ -10,8 +10,6 @@ using System.Windows.Forms;
 using CozyPixel.Controls.ControlEventArgs;
 using CozyPixel.Forms;
 using System.IO;
-using CozyPixel.Model;
-using CozyPixel.Controls.Other;
 using CozyColor.Core.Color;
 
 namespace CozyPixel
@@ -22,21 +20,17 @@ namespace CozyPixel
 
         public string CurrDire { get; set; } = Application.StartupPath;
 
+        public string SelectedImagePath { get; set; } = string.Empty;
+
         public CozyPixelForm()
         {
             InitializeComponent();
-            RegisterEvent();
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            TestColor();
             RefreshThumb();
-        }
-
-        private void RegisterEvent()
-        {
-            ColorList.ColorSelectedEventHandler += OnColorSelected;
-        }
-
-        private void OnColorSelected(object sender, ColorEventAgs e)
-        {
-            SelectedColorButton.BackColor = e.SelectedColor;
         }
 
         private void OpenMenuItem_Click(object sender, EventArgs e)
@@ -75,11 +69,6 @@ namespace CozyPixel
         private void SaveMenuItem_Click(object sender, EventArgs e)
         {
             SaveFile();
-        }
-
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-            TestColor();
         }
 
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
@@ -153,41 +142,6 @@ namespace CozyPixel
             }
         }
 
-        private void RefreshThumb()
-        {
-            ThumbListView.ImageClear();
-
-            DirectoryInfo di    = new DirectoryInfo(CurrDire);
-            var fs              = di.GetFiles("*.*", SearchOption.TopDirectoryOnly);
-
-            foreach (var file in fs)
-            {
-                if (file.Extension == ".bmp" || file.Extension == ".jpg" || file.Extension == ".png")
-                {
-                    ThumbListView.TryAddImage(file.FullName);
-                }
-            }
-        }
-
-        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (IsModified)
-            {
-                if(!ShowSaveDialog())
-                {
-                    return;
-                }
-            }
-
-            var bmpPath = ThumbListView.SelectedImagePath;
-            if(bmpPath != null &&　File.Exists(bmpPath))
-            {
-                var bmp = new Bitmap(bmpPath);
-                ChangePixelPainterImage(bmp);
-                SetCurrPathStatusLabel(bmpPath);
-            }
-        }
-
         private void RefreshThumbListButton_Click(object sender, EventArgs e)
         {
             RefreshThumb();
@@ -203,6 +157,37 @@ namespace CozyPixel
                 g.FillRectangle(new SolidBrush(arr[i]), i * 50, 0, i * 50 + 50, 80);
             }
             pictureBox1.Image = b;
+        }
+
+        private void ColorList_ColorSelectedEventHandler(object sender, ColorEventAgs e)
+        {
+            SelectedColorButton.BackColor = e.SelectedColor;
+        }
+
+        private void ThumbListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (e.IsSelected)
+            {
+                if (IsModified)
+                {
+                    if (!ShowSaveDialog())
+                    {
+                        return;
+                    }
+                }
+
+                CloseFile();
+
+                var bmpPath = ThumbListView.SelectedImagePath;
+                if (bmpPath != null && File.Exists(bmpPath))
+                {
+                    Bitmap res          = CozyPixelHelper.ReadBitmapFromFile(bmpPath);
+                    SelectedImagePath   = bmpPath;
+
+                    ChangePixelPainterImage(res);
+                    SetCurrPathStatusLabel(bmpPath);
+                }
+            }
         }
     }
 }

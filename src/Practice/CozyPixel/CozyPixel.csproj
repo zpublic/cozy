@@ -61,6 +61,7 @@
     <Compile Include="Controls\VerticalTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CozyPixelHelper.cs" />
     <Compile Include="Draw\BitmapGenerate.cs" />
     <Compile Include="FormMain.Callback.cs">
       <SubType>Form</SubType>
@@ -95,6 +96,9 @@
     <Compile Include="Model\PixelMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\ImageListView.resx">
+      <DependentUpon>ImageListView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\PixelPaintControl.resx">
       <DependentUpon>PixelPaintControl.cs</DependentUpon>
     </EmbeddedResource>
