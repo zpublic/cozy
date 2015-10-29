@@ -15,14 +15,13 @@ namespace CozyMarkdown.WebStie.Module {
                     x.Id = Guid.NewGuid();
                     x.CreateDate = DateTime.Now;
                     x.UpdateDate = DateTime.Now;
-                    db.Insert(x);
+                    return db.Insert(x);
                 }
                 else {
+                    x = db.Get<ArticlecModel>(y => y.Id == x.Id);
                     x.UpdateDate = DateTime.Now;
-                    db.Update(x);
+                    return db.Update(x);
                 }
-                x = db.Get<ArticlecModel>(y => y.Id == x.Id);
-                return x;
             };
 
             Func<ArticlecModel, dynamic> ConvertViewModel = x => {
@@ -59,6 +58,9 @@ namespace CozyMarkdown.WebStie.Module {
             Post["Article/Insert"] = param => {
                 var model = this.Bind<ArticlecModel>();
                 model = Save(model);
+                if (model == null) {
+                    throw new Exception("程序炸了");
+                }
                 return View["Article/Index", ConvertViewModel(model)];
             };
         }
