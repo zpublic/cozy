@@ -14,13 +14,13 @@ namespace CozyPixel.Tools
 
         public Color DrawColor { get; set; }
 
-        private IPixelDrawAble Target { get; set; }
+        private IPixelDrawable Target { get; set; }
 
         private Point LastPoint { get; set; }
 
         private List<Point> DrawPoints { get; set; } = new List<Point>();
 
-        public void Begin(IPixelDrawAble paint, Point p)
+        public void Begin(IPixelDrawable paint, Point p)
         {
             DrawPoints.Add(p);
             Target      = paint;
@@ -67,7 +67,7 @@ namespace CozyPixel.Tools
                     }
                 }
                 DrawPoints.Clear();
-                Target.PixelRefresh();
+                Target.UpdateDrawable();
                 return IsModified;
             }
             return false;

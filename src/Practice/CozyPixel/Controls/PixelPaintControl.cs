@@ -11,11 +11,12 @@ using CozyPixel.Tools;
 
 namespace CozyPixel.Controls
 {
-    public class PixelPaintControl : PictureBox, IPixelDrawAble
+    public class PixelPaintControl : PictureBox, IPixelDrawable
     {
         public PixelPaintControl()
         {
             Cursor = Cursors.Cross;
+            DoubleBuffered = true;
         }
 
         private PixelMap sourceImage;
@@ -74,9 +75,9 @@ namespace CozyPixel.Controls
             }
         }
 
-        public void PixelRefresh()
+        public void UpdateDrawable()
         {
-            Invalidate();
+            Refresh();
         }
 
         /// <summary>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CozyPixel.Tools
 {
-    public interface IPixelDrawAble
+    public interface IPixelDrawable
     {
         /// <summary>
         /// 绘制到像素块
@@ -46,6 +46,6 @@ namespace CozyPixel.Tools
         /// <summary>
         /// 刷新 没有保存到像素块的图像
         /// </summary>
-        void PixelRefresh();
+        void UpdateDrawable();
     }
 }

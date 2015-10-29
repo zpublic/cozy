@@ -13,11 +13,11 @@ namespace CozyPixel.Tools
 
         public bool WillModify { get { return true; } }
 
-        private IPixelDrawAble Target { get; set; }
+        private IPixelDrawable Target { get; set; }
 
         private Point BeginPoint { get; set; }
 
-        public void Begin(IPixelDrawAble paint, Point p)
+        public void Begin(IPixelDrawable paint, Point p)
         {
             Target = paint;
             BeginPoint = p;
@@ -27,7 +27,7 @@ namespace CozyPixel.Tools
         {
             if(Target != null)
             {
-                Target.PixelRefresh();
+                Target.UpdateDrawable();
                 Target.FakeDrawLine(BeginPoint, p, DrawColor);
             }
         }
@@ -37,7 +37,7 @@ namespace CozyPixel.Tools
             Target.FakeDrawLine(BeginPoint, p, DrawColor);
 
             bool ret = Target.DrawLine(BeginPoint, p, DrawColor);
-            Target.PixelRefresh();
+            Target.UpdateDrawable();
             Target = null;
             return ret;
         }
