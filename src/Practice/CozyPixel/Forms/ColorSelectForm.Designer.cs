@@ -28,20 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ColorSelectList = new CozyPixel.Controls.ColorListView();
             this.OkButton = new System.Windows.Forms.Button();
             this.CancleButton = new System.Windows.Forms.Button();
+            this.ColorSelectList = new CozyPixel.Controls.ColorListView();
             this.SuspendLayout();
-            // 
-            // ColorSelectList
-            // 
-            this.ColorSelectList.ColorItemMargin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.ColorSelectList.ColorItemSize = new System.Drawing.Size(46, 20);
-            this.ColorSelectList.Location = new System.Drawing.Point(26, 26);
-            this.ColorSelectList.Name = "ColorSelectList";
-            this.ColorSelectList.SelectedColor = System.Drawing.Color.Empty;
-            this.ColorSelectList.Size = new System.Drawing.Size(400, 72);
-            this.ColorSelectList.TabIndex = 0;
             // 
             // OkButton
             // 
@@ -62,6 +52,16 @@
             this.CancleButton.Text = "取消";
             this.CancleButton.UseVisualStyleBackColor = true;
             this.CancleButton.Click += new System.EventHandler(this.CancleButton_Click);
+            // 
+            // ColorSelectList
+            // 
+            this.ColorSelectList.ColorItemMargin = new System.Windows.Forms.Padding(2);
+            this.ColorSelectList.ColorItemSize = new System.Drawing.Size(46, 20);
+            this.ColorSelectList.Location = new System.Drawing.Point(26, 26);
+            this.ColorSelectList.Name = "ColorSelectList";
+            this.ColorSelectList.SelectedColor = System.Drawing.Color.Empty;
+            this.ColorSelectList.Size = new System.Drawing.Size(400, 72);
+            this.ColorSelectList.TabIndex = 0;
             // 
             // ColorSelectForm
             // 

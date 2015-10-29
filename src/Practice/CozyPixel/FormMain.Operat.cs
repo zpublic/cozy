@@ -16,16 +16,22 @@ namespace CozyPixel
         public const int DefaultPixelWidth = 18;
         public const int DefaultGridWidth = 2;
 
+        public const string OpenDlgFilter = @"(*.jpg,*.png,*.jpeg,*.bmp,*.gif)| *.jpg; *.png; *.jpeg; *.bmp; *.gif | All files(*.*) | *.* ";
+        public const string SaveDlgFilter = @"位图(*.bmp)|*.bmp|All Files|*.*";
+
         private bool SaveFile()
         {
             if (PixelPainter.Image != null)
             {
-                SaveFileDialog SaveDlg = new SaveFileDialog();
-                SaveDlg.Filter = @"位图(*.bmp)|*.bmp|All Files|*.*";
+                SaveFileDialog SaveDlg  = new SaveFileDialog();
+                SaveDlg.Filter          = SaveDlgFilter;
 
                 if (SaveDlg.ShowDialog() == DialogResult.OK)
                 {
                     PixelPainter.Save(SaveDlg.FileName);
+                    IsModified = false;
+
+                    SetCurrPathStatusLabel(SaveDlg.FileName);
                     IsModified = false;
                     return true;
                 }
@@ -35,24 +41,23 @@ namespace CozyPixel
 
         private bool OpenFile()
         {
-            int gw = RefreshCurrGridWidth();
-
-            OpenFileDialog OpenDlg = new OpenFileDialog();
-            OpenDlg.Filter = @"(*.jpg,*.png,*.jpeg,*.bmp,*.gif)| *.jpg; *.png; *.jpeg; *.bmp; *.gif | All files(*.*) | *.* ";
+            int gw                  = RefreshCurrGridWidth();
+            OpenFileDialog OpenDlg  = new OpenFileDialog();
+            OpenDlg.Filter          = OpenDlgFilter;
 
             if (OpenDlg.ShowDialog() == DialogResult.OK)
             {
-                CurrPixelMap = new PixelMap()
-                {
-                    ShowGrid    = ShowGridCheckBox.Checked,
-                    data        = new Bitmap(OpenDlg.FileName),
-                    PixelWidth  = DefaultPixelWidth,
-                    GridWidth   = gw,
-                    GridColor   = GridColorButton.BackColor,
-                };
+                var bmp = new Bitmap(OpenDlg.FileName);
 
-                PixelPainter.SourceImage    = CurrPixelMap;
-                IsModified                  = false;
+                if(bmp.Width > 128 || bmp.Height > 128)
+                {
+                    MessageBox.Show("不支持超过128 * 128的文件", "打开失败");
+                    return false;
+                }
+
+                ChangePixelPainterImage(bmp);
+                SetCurrPathStatusLabel(OpenDlg.FileName);
+                IsModified = false;
                 return true;
             }
             return false;
@@ -60,35 +65,21 @@ namespace CozyPixel
 
         private void CreateFile(int w, int h)
         {
-            int gw  = RefreshCurrGridWidth();
-            var bmp = new Bitmap(w, h);
+            if(w > 128 || h > 128)
+            {
+                MessageBox.Show("不支持超过128 * 128的文件", "创建失败");
+                return;
+            }
 
+            var bmp = new Bitmap(w, h);
             using (var g = Graphics.FromImage(bmp))
             {
                 g.FillRectangle(Brushes.White, new Rectangle(0 ,0, w, h));
             }
 
-            CurrPixelMap = new PixelMap()
-            {
-                ShowGrid    = ShowGridCheckBox.Checked,
-                data        = bmp,
-                PixelWidth  = DefaultPixelWidth - gw,
-                GridWidth   = gw,
-                GridColor   = GridColorButton.BackColor,
-            };
-            PixelPainter.SourceImage    = CurrPixelMap;
-            IsModified                  = true;
-        }
-
-        private int RefreshCurrGridWidth()
-        {
-            int gw = 0;
-            if (!int.TryParse(GridWidthBox.Text, out gw))
-            {
-                gw                  = DefaultGridWidth;
-                GridWidthBox.Text   = DefaultGridWidth.ToString();
-            }
-            return gw;
+            ChangePixelPainterImage(bmp);
+            SetCurrPathStatusLabel("未命名");
+            IsModified = true;
         }
 
         private void CloseFile()
@@ -96,6 +87,8 @@ namespace CozyPixel
             CurrPixelMap                = null;
             PixelPainter.SourceImage    = null;
             IsModified                  = false;
+
+            SetCurrPathStatusLabel("无");
         }
     }
 }

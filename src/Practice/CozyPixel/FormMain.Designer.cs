@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Drawing.StringFormat stringFormat1 = new System.Drawing.StringFormat();
             this.MainStripMenu = new System.Windows.Forms.MenuStrip();
             this.FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,6 +38,13 @@
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SelectedColorButton = new System.Windows.Forms.Button();
+            this.MainTopTab = new System.Windows.Forms.TabControl();
+            this.ThumbMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.OpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
+            this.CurrPathStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ColorList = new CozyPixel.Controls.ColorListView();
             this.MainLeftTab = new CozyPixel.Controls.VerticalTabControl();
             this.GridOpeionPage = new System.Windows.Forms.TabPage();
             this.GridWidthLabel = new System.Windows.Forms.Label();
@@ -43,17 +52,22 @@
             this.ShowGridCheckBox = new System.Windows.Forms.CheckBox();
             this.GridColorButton = new System.Windows.Forms.Button();
             this.ColorLabel = new System.Windows.Forms.Label();
+            this.FileSelectPage = new System.Windows.Forms.TabPage();
+            this.RefreshThumbListButton = new System.Windows.Forms.Button();
+            this.ThumbListView = new CozyPixel.Controls.ImageListView();
+            this.DirectorySelectButton = new System.Windows.Forms.Button();
             this.PixelPainter = new CozyPixel.Controls.PixelPaintControl();
             this.ColorPage = new System.Windows.Forms.TabPage();
-            this.ColorList = new CozyPixel.Controls.ColorListView();
-            this.SelectedColorButton = new System.Windows.Forms.Button();
-            this.MainTopTab = new System.Windows.Forms.TabControl();
             this.CozyColorPage = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.MainStripMenu.SuspendLayout();
+            this.MainTopTab.SuspendLayout();
+            this.ThumbMenuStrip.SuspendLayout();
+            this.MainStatusStrip.SuspendLayout();
             this.MainLeftTab.SuspendLayout();
             this.GridOpeionPage.SuspendLayout();
+            this.FileSelectPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).BeginInit();
             this.ColorPage.SuspendLayout();
             this.MainTopTab.SuspendLayout();
@@ -126,11 +140,48 @@
             this.AboutMenuItem.Text = "关于";
             this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
             // 
+            // ThumbMenuStrip
+            // 
+            this.ThumbMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpenToolStripMenuItem});
+            this.ThumbMenuStrip.Name = "contextMenuStrip1";
+            this.ThumbMenuStrip.Size = new System.Drawing.Size(101, 26);
+            // 
+            // OpenToolStripMenuItem
+            // 
+            this.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem";
+            this.OpenToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.OpenToolStripMenuItem.Text = "打开";
+            this.OpenToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
+            // 
+            // MainStatusStrip
+            // 
+            this.MainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CurrPathStatusLabel});
+            this.MainStatusStrip.Location = new System.Drawing.Point(0, 707);
+            this.MainStatusStrip.Name = "MainStatusStrip";
+            this.MainStatusStrip.Size = new System.Drawing.Size(1008, 22);
+            this.MainStatusStrip.TabIndex = 8;
+            this.MainStatusStrip.Text = "statusStrip1";
+            // 
+            // CurrPathStatusLabel
+            // 
+            this.CurrPathStatusLabel.Name = "CurrPathStatusLabel";
+            this.CurrPathStatusLabel.Size = new System.Drawing.Size(88, 17);
+            this.CurrPathStatusLabel.Text = "当前文件 ： 无";
+            // 
             // MainLeftTab
             // 
             this.MainLeftTab.Alignment = System.Windows.Forms.TabAlignment.Left;
             this.MainLeftTab.Controls.Add(this.GridOpeionPage);
+            this.MainLeftTab.Controls.Add(this.FileSelectPage);
             this.MainLeftTab.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.MainLeftTab.ItemSize = new System.Drawing.Size(18, 20);
+            stringFormat1.Alignment = System.Drawing.StringAlignment.Center;
+            stringFormat1.HotkeyPrefix = System.Drawing.Text.HotkeyPrefix.None;
+            stringFormat1.LineAlignment = System.Drawing.StringAlignment.Center;
+            stringFormat1.Trimming = System.Drawing.StringTrimming.Character;
+            this.MainLeftTab.ItemTextFormat = stringFormat1;
             this.MainLeftTab.Location = new System.Drawing.Point(12, 28);
             this.MainLeftTab.Multiline = true;
             this.MainLeftTab.Name = "MainLeftTab";
@@ -146,10 +197,10 @@
             this.GridOpeionPage.Controls.Add(this.GridColorButton);
             this.GridOpeionPage.Controls.Add(this.ColorLabel);
             this.GridOpeionPage.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.GridOpeionPage.Location = new System.Drawing.Point(22, 4);
+            this.GridOpeionPage.Location = new System.Drawing.Point(24, 4);
             this.GridOpeionPage.Name = "GridOpeionPage";
             this.GridOpeionPage.Padding = new System.Windows.Forms.Padding(3);
-            this.GridOpeionPage.Size = new System.Drawing.Size(217, 664);
+            this.GridOpeionPage.Size = new System.Drawing.Size(215, 664);
             this.GridOpeionPage.TabIndex = 0;
             this.GridOpeionPage.Text = "网格选项";
             this.GridOpeionPage.UseVisualStyleBackColor = true;
@@ -205,6 +256,48 @@
             this.ColorLabel.Size = new System.Drawing.Size(53, 12);
             this.ColorLabel.TabIndex = 0;
             this.ColorLabel.Text = "网格颜色";
+            // 
+            // FileSelectPage
+            // 
+            this.FileSelectPage.Controls.Add(this.RefreshThumbListButton);
+            this.FileSelectPage.Controls.Add(this.ThumbListView);
+            this.FileSelectPage.Controls.Add(this.DirectorySelectButton);
+            this.FileSelectPage.Location = new System.Drawing.Point(24, 4);
+            this.FileSelectPage.Name = "FileSelectPage";
+            this.FileSelectPage.Padding = new System.Windows.Forms.Padding(3);
+            this.FileSelectPage.Size = new System.Drawing.Size(215, 664);
+            this.FileSelectPage.TabIndex = 1;
+            this.FileSelectPage.Text = "文件选择";
+            this.FileSelectPage.UseVisualStyleBackColor = true;
+            // 
+            // RefreshThumbListButton
+            // 
+            this.RefreshThumbListButton.Location = new System.Drawing.Point(26, 47);
+            this.RefreshThumbListButton.Name = "RefreshThumbListButton";
+            this.RefreshThumbListButton.Size = new System.Drawing.Size(155, 23);
+            this.RefreshThumbListButton.TabIndex = 3;
+            this.RefreshThumbListButton.Text = "刷新";
+            this.RefreshThumbListButton.UseVisualStyleBackColor = true;
+            this.RefreshThumbListButton.Click += new System.EventHandler(this.RefreshThumbListButton_Click);
+            // 
+            // ThumbListView
+            // 
+            this.ThumbListView.ContextMenuStrip = this.ThumbMenuStrip;
+            this.ThumbListView.Location = new System.Drawing.Point(26, 76);
+            this.ThumbListView.Name = "ThumbListView";
+            this.ThumbListView.Size = new System.Drawing.Size(155, 553);
+            this.ThumbListView.TabIndex = 2;
+            this.ThumbListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // DirectorySelectButton
+            // 
+            this.DirectorySelectButton.Location = new System.Drawing.Point(26, 18);
+            this.DirectorySelectButton.Name = "DirectorySelectButton";
+            this.DirectorySelectButton.Size = new System.Drawing.Size(155, 23);
+            this.DirectorySelectButton.TabIndex = 0;
+            this.DirectorySelectButton.Text = "更换当前目录";
+            this.DirectorySelectButton.UseVisualStyleBackColor = true;
+            this.DirectorySelectButton.Click += new System.EventHandler(this.DirectorySelectButton_Click);
             // 
             // PixelPainter
             // 
@@ -294,6 +387,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.MainStatusStrip);
             this.Controls.Add(this.MainTopTab);
             this.Controls.Add(this.MainLeftTab);
             this.Controls.Add(this.PixelPainter);
@@ -302,13 +396,19 @@
             this.MinimizeBox = false;
             this.Name = "CozyPixelForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CozyPixel 0.4";
+            this.Text = "CozyPixel 0.5";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();
+            this.ColorPage.ResumeLayout(false);
+            this.MainTopTab.ResumeLayout(false);
+            this.ThumbMenuStrip.ResumeLayout(false);
+            this.MainStatusStrip.ResumeLayout(false);
+            this.MainStatusStrip.PerformLayout();
             this.MainLeftTab.ResumeLayout(false);
             this.GridOpeionPage.ResumeLayout(false);
             this.GridOpeionPage.PerformLayout();
+            this.FileSelectPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).EndInit();
             this.ColorPage.ResumeLayout(false);
             this.MainTopTab.ResumeLayout(false);
@@ -340,6 +440,14 @@
         private Controls.ColorListView ColorList;
         private System.Windows.Forms.Button SelectedColorButton;
         private System.Windows.Forms.TabControl MainTopTab;
+        private System.Windows.Forms.TabPage FileSelectPage;
+        private System.Windows.Forms.Button DirectorySelectButton;
+        private Controls.ImageListView ThumbListView;
+        private System.Windows.Forms.ContextMenuStrip ThumbMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem OpenToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip MainStatusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel CurrPathStatusLabel;
+        private System.Windows.Forms.Button RefreshThumbListButton;
         private System.Windows.Forms.TabPage CozyColorPage;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
