@@ -23,7 +23,7 @@ namespace CozyPixel
 
         public string SelectedImagePath { get; set; } = string.Empty;
 
-        public IPixelTool CurrPixelTool { get; set; } = new PixelPencil();
+        public IPixelTool CurrPixelTool { get; set; } = new PixelLine();
 
         public CozyPixelForm()
         {
@@ -206,6 +206,16 @@ namespace CozyPixel
             if(CurrPixelTool.GetType() != typeof(PixelPencil))
             {
                 CurrPixelTool = new PixelPencil();
+                CurrPixelTool.DrawColor = ColorList.SelectedColor;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (CurrPixelTool.GetType() != typeof(PixelLine))
+            {
+                CurrPixelTool = new PixelLine();
+                CurrPixelTool.DrawColor = ColorList.SelectedColor;
             }
         }
     }

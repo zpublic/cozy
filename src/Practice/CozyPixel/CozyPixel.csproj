@@ -98,6 +98,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\IPixelDrawAble.cs" />
     <Compile Include="Tools\IPixelTool.cs" />
+    <Compile Include="Tools\PixelLine.cs" />
     <Compile Include="Tools\PixelPencil.cs" />
     <EmbeddedResource Include="Controls\ImageListView.resx">
       <DependentUpon>ImageListView.cs</DependentUpon>

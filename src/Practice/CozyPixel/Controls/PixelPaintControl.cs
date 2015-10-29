@@ -44,16 +44,20 @@ namespace CozyPixel.Controls
 
         public bool DrawPixel(Point p, Color c)
         {
-            return DrawPixel(p, c, ShowGraphics, true);
+            var mapp = ConvertSceneToMap(p);
+            return DrawPixel(mapp, c, ShowGraphics, true);
         }
 
         public bool DrawLine(Point begin, Point end, Color c)
         {
-            return DrawLine(begin, end, c, ShowGraphics, true);
+            var mapBegin    = ConvertSceneToMap(begin);
+            var mapEnd      = ConvertSceneToMap(end);
+            return DrawLine(mapBegin, mapEnd, c, ShowGraphics, true);
         }
 
         public bool FakeDrawPixel(Point p, Color c)
         {
+            var mapp = ConvertSceneToMap(p);
             using (var g = CreateGraphics())
             {
                 return DrawPixel(p, c, g, false);
@@ -62,9 +66,11 @@ namespace CozyPixel.Controls
 
         public bool FakeDrawLine(Point begin, Point end, Color c)
         {
+            var mapBegin    = ConvertSceneToMap(begin);
+            var mapEnd      = ConvertSceneToMap(end);
             using (var g = CreateGraphics())
             {
-                return DrawLine(begin, end, c, g, false);
+                return DrawLine(mapBegin, mapEnd, c, g, false);
             }
         }
 
@@ -73,15 +79,21 @@ namespace CozyPixel.Controls
             Invalidate();
         }
 
+        /// <summary>
+        /// 绘制像素块
+        /// </summary>
+        /// <param name="p">要绘制的像素块的坐标</param>
+        /// <param name="c">绘制颜色</param>
+        /// <param name="g">目标设备</param>
+        /// <param name="SaveToMap">是否将改动保存到内存中</param>
+        /// <returns></returns>
         private bool DrawPixel(Point p, Color c, Graphics g, bool SaveToMap)
         {
             if (SourceImage != null)
             {
-                var b = new SolidBrush(c);
-                int w = SourceImage.PixelWidth + (SourceImage.ShowGrid ? SourceImage.GridWidth : 0);
-
-                int x = p.X / w;
-                int y = p.Y / w;
+                var b       = new SolidBrush(c);
+                int x       = p.X;
+                int y       = p.Y;
 
                 if (x >= 0 && y >= 0 && x < SourceImage.data.Width && y < SourceImage.data.Height)
                 {
@@ -96,41 +108,61 @@ namespace CozyPixel.Controls
             return false;
         }
 
+        // 转换屏幕坐标到像素块坐标
+        private Point ConvertSceneToMap(Point p)
+        {
+            if (SourceImage != null)
+            {
+                int w = SourceImage.PixelWidth + (SourceImage.ShowGrid ? SourceImage.GridWidth : 0);
+                return new Point(p.X / w, p.Y / w);
+            }
+            return Point.Empty;
+        }
+
         /// <summary>
-        /// Bresenham算法
+        /// DDA算法绘制直线
         /// </summary>
-        /// <param name="begin"></param>
-        /// <param name="end"></param>
-        /// <param name="c"></param>
+        /// <param name="begin">线的起点</param>
+        /// <param name="end">线的重点</param>
+        /// <param name="c">颜色</param>
+        /// <param name="g">目标设备</param>
+        /// <param name="SaveToMap">是否将改动保存到内存中</param>
         /// <returns></returns>
         private bool DrawLine(Point begin, Point end, Color c, Graphics g, bool SaveToMap)
         {
-            if(begin == end)
+            DrawPixel(end, c, g, SaveToMap);
+
+            int n   = 0;
+            int k   = 0;
+            int dx  = end.X - begin.X;
+            int dy  = end.Y - begin.Y;
+
+            if (Math.Abs(dx) > Math.Abs(dy))
             {
-                return DrawPixel(begin, c, g, SaveToMap);
+                n = Math.Abs(dx);
+            }
+            else
+            {
+                n = Math.Abs(dy);
             }
 
-            Point left  = begin.X < end.X ? begin : end;
-            Point right = begin == left ? end : begin;
+            float xinc  = (float)dx / n;
+            float yinc  = (float)dy / n;
+            float x     = begin.X;
+            float y     = begin.Y;
 
-            int dx  = right.X - left.X;
-            int dy  = right.Y - left.Y;
-            int e   = -dx;
-            int x   = left.X;
-            int y   = left.Y;
-
-            for(int i = 0; i <= dx; ++i)
+            bool ret = false;
+            for (k = 1; k <= n; k++)
             {
-                DrawPixel(new Point(x, y), c, g, SaveToMap);
-                x++;
-                e = e + 2 * dy;
-                if(e >= 0)
+                if(DrawPixel(new Point((int)(x + 0.5f), (int)(y + 0.5f)), c, g, SaveToMap))
                 {
-                    y++;
-                    e = e - 2 * dx;
+                    ret = true;
                 }
+
+                x += xinc;
+                y += yinc;
             }
-            return true;
+            return ret;
         }
 
         public void RefreshGrid()

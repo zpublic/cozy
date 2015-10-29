@@ -50,20 +50,21 @@
             this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.CurrPathStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainLeftTab = new CozyPixel.Controls.VerticalTabControl();
+            this.SelectToolPage = new System.Windows.Forms.TabPage();
+            this.PencilToolButton = new System.Windows.Forms.Button();
+            this.FileSelectPage = new System.Windows.Forms.TabPage();
+            this.RefreshThumbListButton = new System.Windows.Forms.Button();
+            this.ThumbListView = new CozyPixel.Controls.ImageListView();
+            this.DirectorySelectButton = new System.Windows.Forms.Button();
             this.GridOpeionPage = new System.Windows.Forms.TabPage();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.GridWidthLabel = new System.Windows.Forms.Label();
             this.GridWidthBox = new System.Windows.Forms.TextBox();
             this.ShowGridCheckBox = new System.Windows.Forms.CheckBox();
             this.GridColorButton = new System.Windows.Forms.Button();
             this.ColorLabel = new System.Windows.Forms.Label();
-            this.FileSelectPage = new System.Windows.Forms.TabPage();
-            this.RefreshThumbListButton = new System.Windows.Forms.Button();
-            this.ThumbListView = new CozyPixel.Controls.ImageListView();
-            this.DirectorySelectButton = new System.Windows.Forms.Button();
             this.PixelPainter = new CozyPixel.Controls.PixelPaintControl();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.SelectToolPage = new System.Windows.Forms.TabPage();
-            this.PencilToolButton = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.MainStripMenu.SuspendLayout();
             this.MainTopTab.SuspendLayout();
             this.ColorPage.SuspendLayout();
@@ -72,10 +73,10 @@
             this.ThumbMenuStrip.SuspendLayout();
             this.MainStatusStrip.SuspendLayout();
             this.MainLeftTab.SuspendLayout();
-            this.GridOpeionPage.SuspendLayout();
-            this.FileSelectPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).BeginInit();
             this.SelectToolPage.SuspendLayout();
+            this.FileSelectPage.SuspendLayout();
+            this.GridOpeionPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).BeginInit();
             this.SuspendLayout();
             // 
             // MainStripMenu
@@ -264,6 +265,73 @@
             this.MainLeftTab.Size = new System.Drawing.Size(243, 672);
             this.MainLeftTab.TabIndex = 6;
             // 
+            // SelectToolPage
+            // 
+            this.SelectToolPage.Controls.Add(this.button2);
+            this.SelectToolPage.Controls.Add(this.PencilToolButton);
+            this.SelectToolPage.Location = new System.Drawing.Point(24, 4);
+            this.SelectToolPage.Name = "SelectToolPage";
+            this.SelectToolPage.Size = new System.Drawing.Size(215, 664);
+            this.SelectToolPage.TabIndex = 2;
+            this.SelectToolPage.Text = "工具选择";
+            this.SelectToolPage.UseVisualStyleBackColor = true;
+            // 
+            // PencilToolButton
+            // 
+            this.PencilToolButton.Location = new System.Drawing.Point(45, 40);
+            this.PencilToolButton.Name = "PencilToolButton";
+            this.PencilToolButton.Size = new System.Drawing.Size(75, 23);
+            this.PencilToolButton.TabIndex = 0;
+            this.PencilToolButton.Text = "铅笔";
+            this.PencilToolButton.UseVisualStyleBackColor = true;
+            this.PencilToolButton.Click += new System.EventHandler(this.PencilToolButton_Click);
+            // 
+            // FileSelectPage
+            // 
+            this.FileSelectPage.Controls.Add(this.RefreshThumbListButton);
+            this.FileSelectPage.Controls.Add(this.ThumbListView);
+            this.FileSelectPage.Controls.Add(this.DirectorySelectButton);
+            this.FileSelectPage.Location = new System.Drawing.Point(24, 4);
+            this.FileSelectPage.Name = "FileSelectPage";
+            this.FileSelectPage.Padding = new System.Windows.Forms.Padding(3);
+            this.FileSelectPage.Size = new System.Drawing.Size(215, 664);
+            this.FileSelectPage.TabIndex = 1;
+            this.FileSelectPage.Text = "文件选择";
+            this.FileSelectPage.UseVisualStyleBackColor = true;
+            // 
+            // RefreshThumbListButton
+            // 
+            this.RefreshThumbListButton.Location = new System.Drawing.Point(26, 47);
+            this.RefreshThumbListButton.Name = "RefreshThumbListButton";
+            this.RefreshThumbListButton.Size = new System.Drawing.Size(155, 23);
+            this.RefreshThumbListButton.TabIndex = 3;
+            this.RefreshThumbListButton.Text = "刷新";
+            this.RefreshThumbListButton.UseVisualStyleBackColor = true;
+            this.RefreshThumbListButton.Click += new System.EventHandler(this.RefreshThumbListButton_Click);
+            // 
+            // ThumbListView
+            // 
+            this.ThumbListView.ContextMenuStrip = this.ThumbMenuStrip;
+            this.ThumbListView.Location = new System.Drawing.Point(26, 76);
+            this.ThumbListView.MaxNameLength = 12;
+            this.ThumbListView.MultiSelect = false;
+            this.ThumbListView.Name = "ThumbListView";
+            this.ThumbListView.ShowItemToolTips = true;
+            this.ThumbListView.Size = new System.Drawing.Size(155, 553);
+            this.ThumbListView.TabIndex = 2;
+            this.ThumbListView.UseCompatibleStateImageBehavior = false;
+            this.ThumbListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ThumbListView_ItemSelectionChanged);
+            // 
+            // DirectorySelectButton
+            // 
+            this.DirectorySelectButton.Location = new System.Drawing.Point(26, 18);
+            this.DirectorySelectButton.Name = "DirectorySelectButton";
+            this.DirectorySelectButton.Size = new System.Drawing.Size(155, 23);
+            this.DirectorySelectButton.TabIndex = 0;
+            this.DirectorySelectButton.Text = "更换当前目录";
+            this.DirectorySelectButton.UseVisualStyleBackColor = true;
+            this.DirectorySelectButton.Click += new System.EventHandler(this.DirectorySelectButton_Click);
+            // 
             // GridOpeionPage
             // 
             this.GridOpeionPage.Controls.Add(this.toolStrip1);
@@ -280,6 +348,14 @@
             this.GridOpeionPage.TabIndex = 0;
             this.GridOpeionPage.Text = "网格选项";
             this.GridOpeionPage.UseVisualStyleBackColor = true;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(209, 25);
+            this.toolStrip1.TabIndex = 5;
+            this.toolStrip1.Text = "toolStrip1";
             // 
             // GridWidthLabel
             // 
@@ -333,52 +409,6 @@
             this.ColorLabel.TabIndex = 0;
             this.ColorLabel.Text = "网格颜色";
             // 
-            // FileSelectPage
-            // 
-            this.FileSelectPage.Controls.Add(this.RefreshThumbListButton);
-            this.FileSelectPage.Controls.Add(this.ThumbListView);
-            this.FileSelectPage.Controls.Add(this.DirectorySelectButton);
-            this.FileSelectPage.Location = new System.Drawing.Point(24, 4);
-            this.FileSelectPage.Name = "FileSelectPage";
-            this.FileSelectPage.Padding = new System.Windows.Forms.Padding(3);
-            this.FileSelectPage.Size = new System.Drawing.Size(215, 664);
-            this.FileSelectPage.TabIndex = 1;
-            this.FileSelectPage.Text = "文件选择";
-            this.FileSelectPage.UseVisualStyleBackColor = true;
-            // 
-            // RefreshThumbListButton
-            // 
-            this.RefreshThumbListButton.Location = new System.Drawing.Point(26, 47);
-            this.RefreshThumbListButton.Name = "RefreshThumbListButton";
-            this.RefreshThumbListButton.Size = new System.Drawing.Size(155, 23);
-            this.RefreshThumbListButton.TabIndex = 3;
-            this.RefreshThumbListButton.Text = "刷新";
-            this.RefreshThumbListButton.UseVisualStyleBackColor = true;
-            this.RefreshThumbListButton.Click += new System.EventHandler(this.RefreshThumbListButton_Click);
-            // 
-            // ThumbListView
-            // 
-            this.ThumbListView.ContextMenuStrip = this.ThumbMenuStrip;
-            this.ThumbListView.Location = new System.Drawing.Point(26, 76);
-            this.ThumbListView.MaxNameLength = 12;
-            this.ThumbListView.MultiSelect = false;
-            this.ThumbListView.Name = "ThumbListView";
-            this.ThumbListView.ShowItemToolTips = true;
-            this.ThumbListView.Size = new System.Drawing.Size(155, 553);
-            this.ThumbListView.TabIndex = 2;
-            this.ThumbListView.UseCompatibleStateImageBehavior = false;
-            this.ThumbListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ThumbListView_ItemSelectionChanged);
-            // 
-            // DirectorySelectButton
-            // 
-            this.DirectorySelectButton.Location = new System.Drawing.Point(26, 18);
-            this.DirectorySelectButton.Name = "DirectorySelectButton";
-            this.DirectorySelectButton.Size = new System.Drawing.Size(155, 23);
-            this.DirectorySelectButton.TabIndex = 0;
-            this.DirectorySelectButton.Text = "更换当前目录";
-            this.DirectorySelectButton.UseVisualStyleBackColor = true;
-            this.DirectorySelectButton.Click += new System.EventHandler(this.DirectorySelectButton_Click);
-            // 
             // PixelPainter
             // 
             this.PixelPainter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -393,33 +423,15 @@
             this.PixelPainter.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseMove);
             this.PixelPainter.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseUp);
             // 
-            // toolStrip1
+            // button2
             // 
-            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(209, 25);
-            this.toolStrip1.TabIndex = 5;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // SelectToolPage
-            // 
-            this.SelectToolPage.Controls.Add(this.PencilToolButton);
-            this.SelectToolPage.Location = new System.Drawing.Point(24, 4);
-            this.SelectToolPage.Name = "SelectToolPage";
-            this.SelectToolPage.Size = new System.Drawing.Size(215, 664);
-            this.SelectToolPage.TabIndex = 2;
-            this.SelectToolPage.Text = "工具选择";
-            this.SelectToolPage.UseVisualStyleBackColor = true;
-            // 
-            // PencilToolButton
-            // 
-            this.PencilToolButton.Location = new System.Drawing.Point(45, 40);
-            this.PencilToolButton.Name = "PencilToolButton";
-            this.PencilToolButton.Size = new System.Drawing.Size(75, 23);
-            this.PencilToolButton.TabIndex = 0;
-            this.PencilToolButton.Text = "铅笔";
-            this.PencilToolButton.UseVisualStyleBackColor = true;
-            this.PencilToolButton.Click += new System.EventHandler(this.PencilToolButton_Click);
+            this.button2.Location = new System.Drawing.Point(45, 88);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "画线";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // CozyPixelForm
             // 
@@ -447,11 +459,11 @@
             this.MainStatusStrip.ResumeLayout(false);
             this.MainStatusStrip.PerformLayout();
             this.MainLeftTab.ResumeLayout(false);
+            this.SelectToolPage.ResumeLayout(false);
+            this.FileSelectPage.ResumeLayout(false);
             this.GridOpeionPage.ResumeLayout(false);
             this.GridOpeionPage.PerformLayout();
-            this.FileSelectPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).EndInit();
-            this.SelectToolPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -492,6 +504,7 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.TabPage SelectToolPage;
         private System.Windows.Forms.Button PencilToolButton;
+        private System.Windows.Forms.Button button2;
     }
 }
 
