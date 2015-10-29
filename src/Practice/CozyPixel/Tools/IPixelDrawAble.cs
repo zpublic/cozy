@@ -10,6 +10,11 @@ namespace CozyPixel.Tools
     public interface IPixelDrawable
     {
         /// <summary>
+        /// 默认绘制颜色
+        /// </summary>
+        Color DefaultDrawColor { get; set; }
+
+        /// <summary>
         /// 绘制到像素块
         /// </summary>
         /// <param name="p">屏幕坐标点</param>

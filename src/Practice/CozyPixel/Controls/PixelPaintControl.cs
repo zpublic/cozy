@@ -13,12 +13,6 @@ namespace CozyPixel.Controls
 {
     public class PixelPaintControl : PictureBox, IPixelDrawable
     {
-        public PixelPaintControl()
-        {
-            Cursor = Cursors.Cross;
-            DoubleBuffered = true;
-        }
-
         private PixelMap sourceImage;
         public PixelMap SourceImage
         {
@@ -32,6 +26,8 @@ namespace CozyPixel.Controls
                 RefreshPixel();
             }
         }
+
+        public Color DefaultDrawColor { get; set; } = Color.White;
 
         private Graphics ShowGraphics { get; set; }
 

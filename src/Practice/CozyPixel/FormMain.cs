@@ -205,17 +205,25 @@ namespace CozyPixel
         {
             if(CurrPixelTool.GetType() != typeof(PixelPencil))
             {
-                CurrPixelTool = new PixelPencil();
+                CurrPixelTool           = new PixelPencil();
                 CurrPixelTool.DrawColor = ColorList.SelectedColor;
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void LineToolButton_Click(object sender, EventArgs e)
         {
             if (CurrPixelTool.GetType() != typeof(PixelLine))
             {
-                CurrPixelTool = new PixelLine();
+                CurrPixelTool           = new PixelLine();
                 CurrPixelTool.DrawColor = ColorList.SelectedColor;
+            }
+        }
+
+        private void EarserToolButton_Click(object sender, EventArgs e)
+        {
+            if (CurrPixelTool.GetType() != typeof(PixelEraser))
+            {
+                CurrPixelTool = new PixelEraser();
             }
         }
     }
