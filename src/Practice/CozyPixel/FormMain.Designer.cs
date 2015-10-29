@@ -41,7 +41,6 @@
             this.SelectedColorButton = new System.Windows.Forms.Button();
             this.MainTopTab = new System.Windows.Forms.TabControl();
             this.ColorPage = new System.Windows.Forms.TabPage();
-            this.ColorList = new CozyPixel.Controls.ColorListView();
             this.CozyColorPage = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -49,17 +48,24 @@
             this.OpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.CurrPathStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ColorList = new CozyPixel.Controls.ColorListView();
             this.MainLeftTab = new CozyPixel.Controls.VerticalTabControl();
+            this.SelectToolPage = new System.Windows.Forms.TabPage();
+            this.FillToolButton = new System.Windows.Forms.Button();
+            this.StrawToolButton = new System.Windows.Forms.Button();
+            this.EarserToolButton = new System.Windows.Forms.Button();
+            this.LineToolButton = new System.Windows.Forms.Button();
+            this.PencilToolButton = new System.Windows.Forms.Button();
+            this.FileSelectPage = new System.Windows.Forms.TabPage();
+            this.RefreshThumbListButton = new System.Windows.Forms.Button();
+            this.ThumbListView = new CozyPixel.Controls.ImageListView();
+            this.DirectorySelectButton = new System.Windows.Forms.Button();
             this.GridOpeionPage = new System.Windows.Forms.TabPage();
             this.GridWidthLabel = new System.Windows.Forms.Label();
             this.GridWidthBox = new System.Windows.Forms.TextBox();
             this.ShowGridCheckBox = new System.Windows.Forms.CheckBox();
             this.GridColorButton = new System.Windows.Forms.Button();
             this.ColorLabel = new System.Windows.Forms.Label();
-            this.FileSelectPage = new System.Windows.Forms.TabPage();
-            this.RefreshThumbListButton = new System.Windows.Forms.Button();
-            this.ThumbListView = new CozyPixel.Controls.ImageListView();
-            this.DirectorySelectButton = new System.Windows.Forms.Button();
             this.PixelPainter = new CozyPixel.Controls.PixelPaintControl();
             this.MainStripMenu.SuspendLayout();
             this.MainTopTab.SuspendLayout();
@@ -69,8 +75,9 @@
             this.ThumbMenuStrip.SuspendLayout();
             this.MainStatusStrip.SuspendLayout();
             this.MainLeftTab.SuspendLayout();
-            this.GridOpeionPage.SuspendLayout();
+            this.SelectToolPage.SuspendLayout();
             this.FileSelectPage.SuspendLayout();
+            this.GridOpeionPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).BeginInit();
             this.SuspendLayout();
             // 
@@ -171,17 +178,6 @@
             this.ColorPage.Text = "24色";
             this.ColorPage.UseVisualStyleBackColor = true;
             // 
-            // ColorList
-            // 
-            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
-            this.ColorList.ColorItemSize = new System.Drawing.Size(46, 20);
-            this.ColorList.Location = new System.Drawing.Point(195, 22);
-            this.ColorList.Name = "ColorList";
-            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
-            this.ColorList.Size = new System.Drawing.Size(400, 72);
-            this.ColorList.TabIndex = 2;
-            this.ColorList.ColorSelectedEventHandler += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorList_ColorSelectedEventHandler);
-            // 
             // CozyColorPage
             // 
             this.CozyColorPage.Controls.Add(this.pictureBox1);
@@ -240,11 +236,23 @@
             this.CurrPathStatusLabel.Size = new System.Drawing.Size(88, 17);
             this.CurrPathStatusLabel.Text = "当前文件 ： 无";
             // 
+            // ColorList
+            // 
+            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
+            this.ColorList.ColorItemSize = new System.Drawing.Size(46, 20);
+            this.ColorList.Location = new System.Drawing.Point(195, 22);
+            this.ColorList.Name = "ColorList";
+            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
+            this.ColorList.Size = new System.Drawing.Size(400, 72);
+            this.ColorList.TabIndex = 2;
+            this.ColorList.ColorSelectedEventHandler += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorList_ColorSelectedEventHandler);
+            // 
             // MainLeftTab
             // 
             this.MainLeftTab.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.MainLeftTab.Controls.Add(this.GridOpeionPage);
+            this.MainLeftTab.Controls.Add(this.SelectToolPage);
             this.MainLeftTab.Controls.Add(this.FileSelectPage);
+            this.MainLeftTab.Controls.Add(this.GridOpeionPage);
             this.MainLeftTab.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.MainLeftTab.ItemSize = new System.Drawing.Size(18, 20);
             stringFormat1.Alignment = System.Drawing.StringAlignment.Center;
@@ -258,6 +266,116 @@
             this.MainLeftTab.SelectedIndex = 0;
             this.MainLeftTab.Size = new System.Drawing.Size(243, 672);
             this.MainLeftTab.TabIndex = 6;
+            // 
+            // SelectToolPage
+            // 
+            this.SelectToolPage.Controls.Add(this.FillToolButton);
+            this.SelectToolPage.Controls.Add(this.StrawToolButton);
+            this.SelectToolPage.Controls.Add(this.EarserToolButton);
+            this.SelectToolPage.Controls.Add(this.LineToolButton);
+            this.SelectToolPage.Controls.Add(this.PencilToolButton);
+            this.SelectToolPage.Location = new System.Drawing.Point(24, 4);
+            this.SelectToolPage.Name = "SelectToolPage";
+            this.SelectToolPage.Size = new System.Drawing.Size(215, 664);
+            this.SelectToolPage.TabIndex = 2;
+            this.SelectToolPage.Text = "工具选择";
+            this.SelectToolPage.UseVisualStyleBackColor = true;
+            // 
+            // FillToolButton
+            // 
+            this.FillToolButton.Location = new System.Drawing.Point(45, 228);
+            this.FillToolButton.Name = "FillToolButton";
+            this.FillToolButton.Size = new System.Drawing.Size(75, 23);
+            this.FillToolButton.TabIndex = 4;
+            this.FillToolButton.Text = "填充工具";
+            this.FillToolButton.UseVisualStyleBackColor = true;
+            this.FillToolButton.Click += new System.EventHandler(this.FillToolButton_Click);
+            // 
+            // StrawToolButton
+            // 
+            this.StrawToolButton.Location = new System.Drawing.Point(45, 184);
+            this.StrawToolButton.Name = "StrawToolButton";
+            this.StrawToolButton.Size = new System.Drawing.Size(75, 23);
+            this.StrawToolButton.TabIndex = 3;
+            this.StrawToolButton.Text = "吸取工具";
+            this.StrawToolButton.UseVisualStyleBackColor = true;
+            this.StrawToolButton.Click += new System.EventHandler(this.StrawToolButton_Click);
+            // 
+            // EarserToolButton
+            // 
+            this.EarserToolButton.Location = new System.Drawing.Point(45, 137);
+            this.EarserToolButton.Name = "EarserToolButton";
+            this.EarserToolButton.Size = new System.Drawing.Size(75, 23);
+            this.EarserToolButton.TabIndex = 2;
+            this.EarserToolButton.Text = "橡皮擦";
+            this.EarserToolButton.UseVisualStyleBackColor = true;
+            this.EarserToolButton.Click += new System.EventHandler(this.EarserToolButton_Click);
+            // 
+            // LineToolButton
+            // 
+            this.LineToolButton.Location = new System.Drawing.Point(45, 88);
+            this.LineToolButton.Name = "LineToolButton";
+            this.LineToolButton.Size = new System.Drawing.Size(75, 23);
+            this.LineToolButton.TabIndex = 1;
+            this.LineToolButton.Text = "画线";
+            this.LineToolButton.UseVisualStyleBackColor = true;
+            this.LineToolButton.Click += new System.EventHandler(this.LineToolButton_Click);
+            // 
+            // PencilToolButton
+            // 
+            this.PencilToolButton.Location = new System.Drawing.Point(45, 40);
+            this.PencilToolButton.Name = "PencilToolButton";
+            this.PencilToolButton.Size = new System.Drawing.Size(75, 23);
+            this.PencilToolButton.TabIndex = 0;
+            this.PencilToolButton.Text = "铅笔";
+            this.PencilToolButton.UseVisualStyleBackColor = true;
+            this.PencilToolButton.Click += new System.EventHandler(this.PencilToolButton_Click);
+            // 
+            // FileSelectPage
+            // 
+            this.FileSelectPage.Controls.Add(this.RefreshThumbListButton);
+            this.FileSelectPage.Controls.Add(this.ThumbListView);
+            this.FileSelectPage.Controls.Add(this.DirectorySelectButton);
+            this.FileSelectPage.Location = new System.Drawing.Point(24, 4);
+            this.FileSelectPage.Name = "FileSelectPage";
+            this.FileSelectPage.Padding = new System.Windows.Forms.Padding(3);
+            this.FileSelectPage.Size = new System.Drawing.Size(215, 664);
+            this.FileSelectPage.TabIndex = 1;
+            this.FileSelectPage.Text = "文件选择";
+            this.FileSelectPage.UseVisualStyleBackColor = true;
+            // 
+            // RefreshThumbListButton
+            // 
+            this.RefreshThumbListButton.Location = new System.Drawing.Point(26, 47);
+            this.RefreshThumbListButton.Name = "RefreshThumbListButton";
+            this.RefreshThumbListButton.Size = new System.Drawing.Size(155, 23);
+            this.RefreshThumbListButton.TabIndex = 3;
+            this.RefreshThumbListButton.Text = "刷新";
+            this.RefreshThumbListButton.UseVisualStyleBackColor = true;
+            this.RefreshThumbListButton.Click += new System.EventHandler(this.RefreshThumbListButton_Click);
+            // 
+            // ThumbListView
+            // 
+            this.ThumbListView.ContextMenuStrip = this.ThumbMenuStrip;
+            this.ThumbListView.Location = new System.Drawing.Point(26, 76);
+            this.ThumbListView.MaxNameLength = 12;
+            this.ThumbListView.MultiSelect = false;
+            this.ThumbListView.Name = "ThumbListView";
+            this.ThumbListView.ShowItemToolTips = true;
+            this.ThumbListView.Size = new System.Drawing.Size(155, 553);
+            this.ThumbListView.TabIndex = 2;
+            this.ThumbListView.UseCompatibleStateImageBehavior = false;
+            this.ThumbListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ThumbListView_ItemSelectionChanged);
+            // 
+            // DirectorySelectButton
+            // 
+            this.DirectorySelectButton.Location = new System.Drawing.Point(26, 18);
+            this.DirectorySelectButton.Name = "DirectorySelectButton";
+            this.DirectorySelectButton.Size = new System.Drawing.Size(155, 23);
+            this.DirectorySelectButton.TabIndex = 0;
+            this.DirectorySelectButton.Text = "更换当前目录";
+            this.DirectorySelectButton.UseVisualStyleBackColor = true;
+            this.DirectorySelectButton.Click += new System.EventHandler(this.DirectorySelectButton_Click);
             // 
             // GridOpeionPage
             // 
@@ -327,56 +445,11 @@
             this.ColorLabel.TabIndex = 0;
             this.ColorLabel.Text = "网格颜色";
             // 
-            // FileSelectPage
-            // 
-            this.FileSelectPage.Controls.Add(this.RefreshThumbListButton);
-            this.FileSelectPage.Controls.Add(this.ThumbListView);
-            this.FileSelectPage.Controls.Add(this.DirectorySelectButton);
-            this.FileSelectPage.Location = new System.Drawing.Point(24, 4);
-            this.FileSelectPage.Name = "FileSelectPage";
-            this.FileSelectPage.Padding = new System.Windows.Forms.Padding(3);
-            this.FileSelectPage.Size = new System.Drawing.Size(215, 664);
-            this.FileSelectPage.TabIndex = 1;
-            this.FileSelectPage.Text = "文件选择";
-            this.FileSelectPage.UseVisualStyleBackColor = true;
-            // 
-            // RefreshThumbListButton
-            // 
-            this.RefreshThumbListButton.Location = new System.Drawing.Point(26, 47);
-            this.RefreshThumbListButton.Name = "RefreshThumbListButton";
-            this.RefreshThumbListButton.Size = new System.Drawing.Size(155, 23);
-            this.RefreshThumbListButton.TabIndex = 3;
-            this.RefreshThumbListButton.Text = "刷新";
-            this.RefreshThumbListButton.UseVisualStyleBackColor = true;
-            this.RefreshThumbListButton.Click += new System.EventHandler(this.RefreshThumbListButton_Click);
-            // 
-            // ThumbListView
-            // 
-            this.ThumbListView.ContextMenuStrip = this.ThumbMenuStrip;
-            this.ThumbListView.Location = new System.Drawing.Point(26, 76);
-            this.ThumbListView.MaxNameLength = 12;
-            this.ThumbListView.MultiSelect = false;
-            this.ThumbListView.Name = "ThumbListView";
-            this.ThumbListView.ShowItemToolTips = true;
-            this.ThumbListView.Size = new System.Drawing.Size(155, 553);
-            this.ThumbListView.TabIndex = 2;
-            this.ThumbListView.UseCompatibleStateImageBehavior = false;
-            this.ThumbListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ThumbListView_ItemSelectionChanged);
-            // 
-            // DirectorySelectButton
-            // 
-            this.DirectorySelectButton.Location = new System.Drawing.Point(26, 18);
-            this.DirectorySelectButton.Name = "DirectorySelectButton";
-            this.DirectorySelectButton.Size = new System.Drawing.Size(155, 23);
-            this.DirectorySelectButton.TabIndex = 0;
-            this.DirectorySelectButton.Text = "更换当前目录";
-            this.DirectorySelectButton.UseVisualStyleBackColor = true;
-            this.DirectorySelectButton.Click += new System.EventHandler(this.DirectorySelectButton_Click);
-            // 
             // PixelPainter
             // 
             this.PixelPainter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PixelPainter.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.PixelPainter.DefaultDrawColor = System.Drawing.Color.White;
             this.PixelPainter.Location = new System.Drawing.Point(316, 188);
             this.PixelPainter.Name = "PixelPainter";
             this.PixelPainter.Size = new System.Drawing.Size(640, 512);
@@ -384,6 +457,8 @@
             this.PixelPainter.TabIndex = 3;
             this.PixelPainter.TabStop = false;
             this.PixelPainter.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseDown);
+            this.PixelPainter.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseMove);
+            this.PixelPainter.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseUp);
             // 
             // CozyPixelForm
             // 
@@ -399,7 +474,7 @@
             this.MinimizeBox = false;
             this.Name = "CozyPixelForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CozyPixel 0.5";
+            this.Text = "CozyPixel 0.6";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();
@@ -411,9 +486,10 @@
             this.MainStatusStrip.ResumeLayout(false);
             this.MainStatusStrip.PerformLayout();
             this.MainLeftTab.ResumeLayout(false);
+            this.SelectToolPage.ResumeLayout(false);
+            this.FileSelectPage.ResumeLayout(false);
             this.GridOpeionPage.ResumeLayout(false);
             this.GridOpeionPage.PerformLayout();
-            this.FileSelectPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -452,6 +528,12 @@
         private System.Windows.Forms.TabPage CozyColorPage;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TabPage SelectToolPage;
+        private System.Windows.Forms.Button PencilToolButton;
+        private System.Windows.Forms.Button LineToolButton;
+        private System.Windows.Forms.Button EarserToolButton;
+        private System.Windows.Forms.Button StrawToolButton;
+        private System.Windows.Forms.Button FillToolButton;
     }
 }
 

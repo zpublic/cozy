@@ -96,6 +96,14 @@
     <Compile Include="Model\PixelMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\IPixelColor.cs" />
+    <Compile Include="Tools\IPixelDrawable.cs" />
+    <Compile Include="Tools\IPixelTool.cs" />
+    <Compile Include="Tools\PixelEraser.cs" />
+    <Compile Include="Tools\PixelFill.cs" />
+    <Compile Include="Tools\PixelLine.cs" />
+    <Compile Include="Tools\PixelPencil.cs" />
+    <Compile Include="Tools\PixelStraw.cs" />
     <EmbeddedResource Include="Controls\ImageListView.resx">
       <DependentUpon>ImageListView.cs</DependentUpon>
     </EmbeddedResource>

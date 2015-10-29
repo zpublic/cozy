@@ -11,16 +11,32 @@ using CozyPixel.Controls.ControlEventArgs;
 using CozyPixel.Forms;
 using System.IO;
 using CozyColor.Core.Color;
+using CozyPixel.Tools;
 
 namespace CozyPixel
 {
-    public partial class CozyPixelForm : Form
+    public partial class CozyPixelForm : Form, IPixelColor
     {
         public bool IsModified { get; set; }
 
         public string CurrDire { get; set; } = Application.StartupPath;
 
         public string SelectedImagePath { get; set; } = string.Empty;
+
+        public IPixelTool CurrPixelTool { get; set; }
+
+        public Color CurrColor
+        {
+            get
+            {
+                return SelectedColorButton.BackColor;
+            }
+
+            set
+            {
+                SelectedColorButton.BackColor = value;
+            }
+        }
 
         public CozyPixelForm()
         {
@@ -31,16 +47,14 @@ namespace CozyPixel
         {
             TestColor();
             RefreshThumb();
+            CurrPixelTool = new PixelPencil(this);
         }
 
         private void OpenMenuItem_Click(object sender, EventArgs e)
         {
-            if (IsModified)
+            if (IsModified && !ShowSaveDialog())
             {
-                if (!ShowSaveDialog())
-                {
-                    return;
-                }
+                return;
             }
 
             CloseFile();
@@ -49,12 +63,9 @@ namespace CozyPixel
 
         private void ExitMenuItem_Click(object sender, EventArgs e)
         {
-            if (IsModified)
+            if (IsModified && !ShowSaveDialog())
             {
-                if (!ShowSaveDialog())
-                {
-                    return;
-                }
+                return;
             }
 
             Close();
@@ -71,15 +82,6 @@ namespace CozyPixel
             SaveFile();
         }
 
-        private void PictureBox_MouseDown(object sender, MouseEventArgs e)
-        {
-            PixelPainter.DrawPixel(e.Location, ColorList.SelectedColor);
-            if(!IsModified)
-            {
-                IsModified = true;
-            }
-        }
-
         private void GridColorButton_Click(object sender, EventArgs e)
         {
             var selectForm = new ColorSelectForm(ColorSelectCallback);
@@ -91,12 +93,8 @@ namespace CozyPixel
             if (CurrPixelMap != null)
             {
                 CurrPixelMap.ShowGrid   = ShowGridCheckBox.Checked;
-                CurrPixelMap.PixelWidth = DefaultPixelWidth;
+                CurrPixelMap.PixelWidth = DefaultPixelWidth - (CurrPixelMap.ShowGrid ? CurrPixelMap.GridWidth : 0);
 
-                if (CurrPixelMap.ShowGrid)
-                {
-                    CurrPixelMap.PixelWidth -= CurrPixelMap.GridWidth;
-                }
                 PixelPainter.RefreshPixel();
             }
         }
@@ -108,9 +106,7 @@ namespace CozyPixel
             {
                 if (CurrPixelMap != null)
                 {
-                    if (w == 0) w = 1;
-
-                    CurrPixelMap.GridWidth = w;
+                    CurrPixelMap.GridWidth = (w == 0 ? 1 : w);
                     PixelPainter.RefreshPixel();
                 }
             }
@@ -161,19 +157,16 @@ namespace CozyPixel
 
         private void ColorList_ColorSelectedEventHandler(object sender, ColorEventAgs e)
         {
-            SelectedColorButton.BackColor = e.SelectedColor;
+            CurrColor = e.SelectedColor;
         }
 
         private void ThumbListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             if (e.IsSelected)
             {
-                if (IsModified)
+                if (IsModified && !ShowSaveDialog())
                 {
-                    if (!ShowSaveDialog())
-                    {
                         return;
-                    }
                 }
 
                 CloseFile();
@@ -187,6 +180,73 @@ namespace CozyPixel
                     ChangePixelPainterImage(res);
                     SetCurrPathStatusLabel(bmpPath);
                 }
+            }
+        }
+
+        private void PictureBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                CurrPixelTool.Begin(PixelPainter, e.Location);
+            }
+        }
+
+        private void PixelPainter_MouseUp(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left &&　CurrPixelTool.End(e.Location))
+            {
+                if (!IsModified && CurrPixelTool.WillModify)
+                {
+                    IsModified = true;
+                }
+            }
+        }
+
+        private void PixelPainter_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                CurrPixelTool.Move(e.Location);
+            }
+        }
+
+        private void PencilToolButton_Click(object sender, EventArgs e)
+        {
+            if(CurrPixelTool.GetType() != typeof(PixelPencil))
+            {
+                CurrPixelTool = new PixelPencil(this);
+            }
+        }
+
+        private void LineToolButton_Click(object sender, EventArgs e)
+        {
+            if (CurrPixelTool.GetType() != typeof(PixelLine))
+            {
+                CurrPixelTool = new PixelLine(this);
+            }
+        }
+
+        private void EarserToolButton_Click(object sender, EventArgs e)
+        {
+            if (CurrPixelTool.GetType() != typeof(PixelEraser))
+            {
+                CurrPixelTool = new PixelEraser();
+            }
+        }
+
+        private void StrawToolButton_Click(object sender, EventArgs e)
+        {
+            if (CurrPixelTool.GetType() != typeof(PixelStraw))
+            {
+                CurrPixelTool = new PixelStraw(this);
+            }
+        }
+
+        private void FillToolButton_Click(object sender, EventArgs e)
+        {
+            if (CurrPixelTool.GetType() != typeof(PixelFill))
+            {
+                CurrPixelTool = new PixelFill(this);
             }
         }
     }
