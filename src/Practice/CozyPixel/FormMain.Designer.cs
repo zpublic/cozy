@@ -41,7 +41,6 @@
             this.SelectedColorButton = new System.Windows.Forms.Button();
             this.MainTopTab = new System.Windows.Forms.TabControl();
             this.ColorPage = new System.Windows.Forms.TabPage();
-            this.ColorList = new CozyPixel.Controls.ColorListView();
             this.CozyColorPage = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -49,6 +48,7 @@
             this.OpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.CurrPathStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ColorList = new CozyPixel.Controls.ColorListView();
             this.MainLeftTab = new CozyPixel.Controls.VerticalTabControl();
             this.SelectToolPage = new System.Windows.Forms.TabPage();
             this.FillToolButton = new System.Windows.Forms.Button();
@@ -178,17 +178,6 @@
             this.ColorPage.Text = "24色";
             this.ColorPage.UseVisualStyleBackColor = true;
             // 
-            // ColorList
-            // 
-            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
-            this.ColorList.ColorItemSize = new System.Drawing.Size(46, 20);
-            this.ColorList.Location = new System.Drawing.Point(195, 22);
-            this.ColorList.Name = "ColorList";
-            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
-            this.ColorList.Size = new System.Drawing.Size(400, 72);
-            this.ColorList.TabIndex = 2;
-            this.ColorList.ColorSelectedEventHandler += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorList_ColorSelectedEventHandler);
-            // 
             // CozyColorPage
             // 
             this.CozyColorPage.Controls.Add(this.pictureBox1);
@@ -246,6 +235,17 @@
             this.CurrPathStatusLabel.Name = "CurrPathStatusLabel";
             this.CurrPathStatusLabel.Size = new System.Drawing.Size(88, 17);
             this.CurrPathStatusLabel.Text = "当前文件 ： 无";
+            // 
+            // ColorList
+            // 
+            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
+            this.ColorList.ColorItemSize = new System.Drawing.Size(46, 20);
+            this.ColorList.Location = new System.Drawing.Point(195, 22);
+            this.ColorList.Name = "ColorList";
+            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
+            this.ColorList.Size = new System.Drawing.Size(400, 72);
+            this.ColorList.TabIndex = 2;
+            this.ColorList.ColorSelectedEventHandler += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorList_ColorSelectedEventHandler);
             // 
             // MainLeftTab
             // 
@@ -474,7 +474,7 @@
             this.MinimizeBox = false;
             this.Name = "CozyPixelForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CozyPixel 0.5";
+            this.Text = "CozyPixel 0.6";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();
