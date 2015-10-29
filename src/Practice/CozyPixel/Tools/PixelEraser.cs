@@ -11,7 +11,7 @@ namespace CozyPixel.Tools
     {
         public bool WillModify { get { return true; } }
 
-        public Color DrawColor { get; set; }
+        public IPixelColor ColorHolder { get; set; }
 
         private IPixelDrawable Target { get; set; }
 
@@ -19,11 +19,13 @@ namespace CozyPixel.Tools
 
         private List<Point> DrawPoints { get; set; } = new List<Point>();
 
+        private Color EraseColor { get; set; }
+
         public void Begin(IPixelDrawable paint, Point p)
         {
             DrawPoints.Add(p);
             Target      = paint;
-            DrawColor   = Target.DefaultDrawColor;
+            EraseColor  = Target.DefaultDrawColor;
             LastPoint   = p;
         }
 
@@ -32,10 +34,10 @@ namespace CozyPixel.Tools
             if (Target != null)
             {
                 DrawPoints.Add(p);
-                Target.FakeDrawLine(LastPoint, p, DrawColor);
+                Target.FakeDrawLine(LastPoint, p, EraseColor);
 
                 LastPoint   = p;
-                var ret     = SavePointsToMap();
+                var ret     = CozyPixelHelper.SavePointsToMap(DrawPoints, Target, EraseColor);
                 Target      = null;
                 return ret;
             }
@@ -47,30 +49,9 @@ namespace CozyPixel.Tools
             if (Target != null)
             {
                 DrawPoints.Add(p);
-                Target.FakeDrawLine(LastPoint, p, DrawColor);
+                Target.FakeDrawLine(LastPoint, p, EraseColor);
                 LastPoint = p;
             }
-        }
-
-        private bool SavePointsToMap()
-        {
-            if (DrawPoints.Count > 0)
-            {
-                bool IsModified = false;
-                Target.DrawPixel(DrawPoints[0], DrawColor);
-
-                for (int i = 1; i < DrawPoints.Count; ++i)
-                {
-                    if (Target.DrawLine(DrawPoints[i - 1], DrawPoints[i], DrawColor))
-                    {
-                        IsModified = true;
-                    }
-                }
-                DrawPoints.Clear();
-                Target.UpdateDrawable();
-                return IsModified;
-            }
-            return false;
         }
     }
 }

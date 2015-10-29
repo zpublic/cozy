@@ -76,6 +76,12 @@ namespace CozyPixel.Controls
             Refresh();
         }
 
+        public Color ReadPixel(Point p)
+        {
+            var mapp = ConvertSceneToMap(p);
+            return SourceImage.GetPixel(mapp.X, mapp.Y);
+        }
+
         /// <summary>
         /// 绘制像素块
         /// </summary>

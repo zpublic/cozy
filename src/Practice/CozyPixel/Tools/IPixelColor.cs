@@ -9,6 +9,6 @@ namespace CozyPixel.Tools
 {
     public interface IPixelColor
     {
-        Color GetCurrColor { get;}
+        Color CurrColor { get; set; }
     }
 }

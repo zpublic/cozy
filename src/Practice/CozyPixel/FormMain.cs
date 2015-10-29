@@ -15,7 +15,7 @@ using CozyPixel.Tools;
 
 namespace CozyPixel
 {
-    public partial class CozyPixelForm : Form
+    public partial class CozyPixelForm : Form, IPixelColor
     {
         public bool IsModified { get; set; }
 
@@ -23,7 +23,20 @@ namespace CozyPixel
 
         public string SelectedImagePath { get; set; } = string.Empty;
 
-        public IPixelTool CurrPixelTool { get; set; } = new PixelLine();
+        public IPixelTool CurrPixelTool { get; set; }
+
+        public Color CurrColor
+        {
+            get
+            {
+                return SelectedColorButton.BackColor;
+            }
+
+            set
+            {
+                SelectedColorButton.BackColor = value;
+            }
+        }
 
         public CozyPixelForm()
         {
@@ -34,6 +47,7 @@ namespace CozyPixel
         {
             TestColor();
             RefreshThumb();
+            CurrPixelTool = new PixelPencil(this);
         }
 
         private void OpenMenuItem_Click(object sender, EventArgs e)
@@ -143,12 +157,7 @@ namespace CozyPixel
 
         private void ColorList_ColorSelectedEventHandler(object sender, ColorEventAgs e)
         {
-            SelectedColorButton.BackColor = e.SelectedColor;
-
-            if(CurrPixelTool != null)
-            {
-                CurrPixelTool.DrawColor = e.SelectedColor;
-            }
+            CurrColor = e.SelectedColor;
         }
 
         private void ThumbListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -205,8 +214,7 @@ namespace CozyPixel
         {
             if(CurrPixelTool.GetType() != typeof(PixelPencil))
             {
-                CurrPixelTool           = new PixelPencil();
-                CurrPixelTool.DrawColor = ColorList.SelectedColor;
+                CurrPixelTool               = new PixelPencil(this);
             }
         }
 
@@ -214,8 +222,7 @@ namespace CozyPixel
         {
             if (CurrPixelTool.GetType() != typeof(PixelLine))
             {
-                CurrPixelTool           = new PixelLine();
-                CurrPixelTool.DrawColor = ColorList.SelectedColor;
+                CurrPixelTool               = new PixelLine(this);
             }
         }
 
@@ -223,7 +230,17 @@ namespace CozyPixel
         {
             if (CurrPixelTool.GetType() != typeof(PixelEraser))
             {
-                CurrPixelTool = new PixelEraser();
+                CurrPixelTool               = new PixelEraser();
+                CurrPixelTool.ColorHolder   = this;
+            }
+        }
+
+        private void StrawToolButton_Click(object sender, EventArgs e)
+        {
+            if (CurrPixelTool.GetType() != typeof(PixelStraw))
+            {
+                CurrPixelTool               = new PixelStraw(this);
+                CurrPixelTool.ColorHolder   = this;
             }
         }
     }

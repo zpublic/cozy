@@ -52,5 +52,12 @@ namespace CozyPixel.Tools
         /// 刷新 没有保存到像素块的图像
         /// </summary>
         void UpdateDrawable();
+
+        /// <summary>
+        /// 读取像素块的颜色
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        Color ReadPixel(Point p);
     }
 }

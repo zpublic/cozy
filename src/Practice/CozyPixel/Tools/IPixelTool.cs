@@ -10,7 +10,7 @@ namespace CozyPixel.Tools
 {
     public interface IPixelTool
     {
-        Color DrawColor { get; set; }
+        IPixelColor ColorHolder { get; set; }
 
         bool WillModify { get; }
 

@@ -102,6 +102,7 @@
     <Compile Include="Tools\PixelEraser.cs" />
     <Compile Include="Tools\PixelLine.cs" />
     <Compile Include="Tools\PixelPencil.cs" />
+    <Compile Include="Tools\PixelStraw.cs" />
     <EmbeddedResource Include="Controls\ImageListView.resx">
       <DependentUpon>ImageListView.cs</DependentUpon>
     </EmbeddedResource>

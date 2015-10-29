@@ -41,6 +41,7 @@
             this.SelectedColorButton = new System.Windows.Forms.Button();
             this.MainTopTab = new System.Windows.Forms.TabControl();
             this.ColorPage = new System.Windows.Forms.TabPage();
+            this.ColorList = new CozyPixel.Controls.ColorListView();
             this.CozyColorPage = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -48,7 +49,6 @@
             this.OpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.CurrPathStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ColorList = new CozyPixel.Controls.ColorListView();
             this.MainLeftTab = new CozyPixel.Controls.VerticalTabControl();
             this.SelectToolPage = new System.Windows.Forms.TabPage();
             this.EarserToolButton = new System.Windows.Forms.Button();
@@ -65,6 +65,7 @@
             this.GridColorButton = new System.Windows.Forms.Button();
             this.ColorLabel = new System.Windows.Forms.Label();
             this.PixelPainter = new CozyPixel.Controls.PixelPaintControl();
+            this.StrawToolButton = new System.Windows.Forms.Button();
             this.MainStripMenu.SuspendLayout();
             this.MainTopTab.SuspendLayout();
             this.ColorPage.SuspendLayout();
@@ -176,6 +177,17 @@
             this.ColorPage.Text = "24色";
             this.ColorPage.UseVisualStyleBackColor = true;
             // 
+            // ColorList
+            // 
+            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
+            this.ColorList.ColorItemSize = new System.Drawing.Size(46, 20);
+            this.ColorList.Location = new System.Drawing.Point(195, 22);
+            this.ColorList.Name = "ColorList";
+            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
+            this.ColorList.Size = new System.Drawing.Size(400, 72);
+            this.ColorList.TabIndex = 2;
+            this.ColorList.ColorSelectedEventHandler += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorList_ColorSelectedEventHandler);
+            // 
             // CozyColorPage
             // 
             this.CozyColorPage.Controls.Add(this.pictureBox1);
@@ -234,17 +246,6 @@
             this.CurrPathStatusLabel.Size = new System.Drawing.Size(88, 17);
             this.CurrPathStatusLabel.Text = "当前文件 ： 无";
             // 
-            // ColorList
-            // 
-            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
-            this.ColorList.ColorItemSize = new System.Drawing.Size(46, 20);
-            this.ColorList.Location = new System.Drawing.Point(195, 22);
-            this.ColorList.Name = "ColorList";
-            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
-            this.ColorList.Size = new System.Drawing.Size(400, 72);
-            this.ColorList.TabIndex = 2;
-            this.ColorList.ColorSelectedEventHandler += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorList_ColorSelectedEventHandler);
-            // 
             // MainLeftTab
             // 
             this.MainLeftTab.Alignment = System.Windows.Forms.TabAlignment.Left;
@@ -267,6 +268,7 @@
             // 
             // SelectToolPage
             // 
+            this.SelectToolPage.Controls.Add(this.StrawToolButton);
             this.SelectToolPage.Controls.Add(this.EarserToolButton);
             this.SelectToolPage.Controls.Add(this.LineToolButton);
             this.SelectToolPage.Controls.Add(this.PencilToolButton);
@@ -436,6 +438,16 @@
             this.PixelPainter.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseMove);
             this.PixelPainter.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseUp);
             // 
+            // StrawToolButton
+            // 
+            this.StrawToolButton.Location = new System.Drawing.Point(45, 184);
+            this.StrawToolButton.Name = "StrawToolButton";
+            this.StrawToolButton.Size = new System.Drawing.Size(75, 23);
+            this.StrawToolButton.TabIndex = 3;
+            this.StrawToolButton.Text = "吸取工具";
+            this.StrawToolButton.UseVisualStyleBackColor = true;
+            this.StrawToolButton.Click += new System.EventHandler(this.StrawToolButton_Click);
+            // 
             // CozyPixelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -508,6 +520,7 @@
         private System.Windows.Forms.Button PencilToolButton;
         private System.Windows.Forms.Button LineToolButton;
         private System.Windows.Forms.Button EarserToolButton;
+        private System.Windows.Forms.Button StrawToolButton;
     }
 }
 

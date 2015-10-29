@@ -9,37 +9,46 @@ namespace CozyPixel.Tools
 {
     public class PixelLine : IPixelTool
     {
-        public Color DrawColor { get; set; }
-
         public bool WillModify { get { return true; } }
 
         private IPixelDrawable Target { get; set; }
 
         private Point BeginPoint { get; set; }
 
+        public IPixelColor ColorHolder { get; set; }
+
+        public PixelLine(IPixelColor holder)
+        {
+            ColorHolder = holder;
+        }
+
         public void Begin(IPixelDrawable paint, Point p)
         {
-            Target = paint;
-            BeginPoint = p;
+            Target      = paint;
+            BeginPoint  = p;
         }
 
         public void Move(Point p)
         {
-            if(Target != null)
+            if(Target != null && ColorHolder != null)
             {
                 Target.UpdateDrawable();
-                Target.FakeDrawLine(BeginPoint, p, DrawColor);
+                Target.FakeDrawLine(BeginPoint, p, ColorHolder.CurrColor);
             }
         }
 
         public bool End(Point p)
         {
-            Target.FakeDrawLine(BeginPoint, p, DrawColor);
+            if (Target != null && ColorHolder != null)
+            {
+                Target.FakeDrawLine(BeginPoint, p, ColorHolder.CurrColor);
 
-            bool ret = Target.DrawLine(BeginPoint, p, DrawColor);
-            Target.UpdateDrawable();
-            Target = null;
-            return ret;
+                bool ret = Target.DrawLine(BeginPoint, p, ColorHolder.CurrColor);
+                Target.UpdateDrawable();
+                Target = null;
+                return ret;
+            }
+            return false;
         }
     }
 }
