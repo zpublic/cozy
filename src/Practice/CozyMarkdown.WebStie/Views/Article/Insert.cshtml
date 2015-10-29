@@ -8,18 +8,18 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">文章标题:</label>
             <div class="col-sm-10">
-                <input type="text" name="Title" class="form-control" />
+                <input type="text" name="Title" class="form-control" value="@Model.Title" />
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">作者:</label>
             <div class="col-sm-10">
-                <input type="text" name="Author" class="form-control" />
+                <input type="text" name="Author" class="form-control" value="@Model.Author" />
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-12">
-                <textarea name="Content" class="form-control" style="height:500px;width:83%"></textarea>
+                <textarea name="Content" class="form-control" style="height:500px;width:83%">@Model.Content</textarea>
             </div>
         </div>
         <div class="col-sm-offset-2">

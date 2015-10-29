@@ -14,7 +14,7 @@ namespace CozyMarkdown.WebStie {
             if (db.GetAll<Data.Models.ArticlecModel>().Count() < 1) {
                 var ariclecsContent = System.IO.File.ReadAllText("Test.md");
                 for (int i = 0; i < 5; i++) {
-                    db.Save(new Data.Models.ArticlecModel {
+                    db.Insert(new Data.Models.ArticlecModel {
                         Id = Guid.NewGuid(),
                         Title = $"Cozy{i}",
                         SubTitle = $"Cozy-readme{i}",
