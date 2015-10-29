@@ -61,6 +61,9 @@
             this.ThumbListView = new CozyPixel.Controls.ImageListView();
             this.DirectorySelectButton = new System.Windows.Forms.Button();
             this.PixelPainter = new CozyPixel.Controls.PixelPaintControl();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.SelectToolPage = new System.Windows.Forms.TabPage();
+            this.PencilToolButton = new System.Windows.Forms.Button();
             this.MainStripMenu.SuspendLayout();
             this.MainTopTab.SuspendLayout();
             this.ColorPage.SuspendLayout();
@@ -72,6 +75,7 @@
             this.GridOpeionPage.SuspendLayout();
             this.FileSelectPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).BeginInit();
+            this.SelectToolPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainStripMenu
@@ -243,8 +247,9 @@
             // MainLeftTab
             // 
             this.MainLeftTab.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.MainLeftTab.Controls.Add(this.GridOpeionPage);
+            this.MainLeftTab.Controls.Add(this.SelectToolPage);
             this.MainLeftTab.Controls.Add(this.FileSelectPage);
+            this.MainLeftTab.Controls.Add(this.GridOpeionPage);
             this.MainLeftTab.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.MainLeftTab.ItemSize = new System.Drawing.Size(18, 20);
             stringFormat1.Alignment = System.Drawing.StringAlignment.Center;
@@ -261,6 +266,7 @@
             // 
             // GridOpeionPage
             // 
+            this.GridOpeionPage.Controls.Add(this.toolStrip1);
             this.GridOpeionPage.Controls.Add(this.GridWidthLabel);
             this.GridOpeionPage.Controls.Add(this.GridWidthBox);
             this.GridOpeionPage.Controls.Add(this.ShowGridCheckBox);
@@ -384,6 +390,36 @@
             this.PixelPainter.TabIndex = 3;
             this.PixelPainter.TabStop = false;
             this.PixelPainter.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseDown);
+            this.PixelPainter.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseMove);
+            this.PixelPainter.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseUp);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(209, 25);
+            this.toolStrip1.TabIndex = 5;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // SelectToolPage
+            // 
+            this.SelectToolPage.Controls.Add(this.PencilToolButton);
+            this.SelectToolPage.Location = new System.Drawing.Point(24, 4);
+            this.SelectToolPage.Name = "SelectToolPage";
+            this.SelectToolPage.Size = new System.Drawing.Size(215, 664);
+            this.SelectToolPage.TabIndex = 2;
+            this.SelectToolPage.Text = "工具选择";
+            this.SelectToolPage.UseVisualStyleBackColor = true;
+            // 
+            // PencilToolButton
+            // 
+            this.PencilToolButton.Location = new System.Drawing.Point(45, 40);
+            this.PencilToolButton.Name = "PencilToolButton";
+            this.PencilToolButton.Size = new System.Drawing.Size(75, 23);
+            this.PencilToolButton.TabIndex = 0;
+            this.PencilToolButton.Text = "铅笔";
+            this.PencilToolButton.UseVisualStyleBackColor = true;
+            this.PencilToolButton.Click += new System.EventHandler(this.PencilToolButton_Click);
             // 
             // CozyPixelForm
             // 
@@ -415,6 +451,7 @@
             this.GridOpeionPage.PerformLayout();
             this.FileSelectPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PixelPainter)).EndInit();
+            this.SelectToolPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -452,6 +489,9 @@
         private System.Windows.Forms.TabPage CozyColorPage;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.TabPage SelectToolPage;
+        private System.Windows.Forms.Button PencilToolButton;
     }
 }
 
