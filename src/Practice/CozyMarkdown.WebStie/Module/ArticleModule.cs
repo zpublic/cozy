@@ -1,6 +1,7 @@
 ﻿using CozyMarkdown.Data.Models;
 using CommonMark;
 using Nancy.ModelBinding;
+using System.Linq;
 
 namespace CozyMarkdown.WebStie.Module {
 
@@ -10,8 +11,7 @@ namespace CozyMarkdown.WebStie.Module {
 
             Get["Article/{title}"] = param => {
                 string title = param.title;
-                var q = db.GetContent<ArticlecModel>();
-                var article = q.FindOne(y => y.Title == title);
+                var article = db.Get<ArticlecModel>(x => x.Title == title);
                 var model = new {
                     a = article,
                     html = CommonMarkConverter.Convert(article.Content)
