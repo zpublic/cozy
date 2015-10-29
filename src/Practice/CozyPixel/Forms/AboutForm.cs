@@ -16,6 +16,7 @@ namespace CozyPixel.Forms
         {
             InitializeComponent();
             AboutLabel.Text = "CozyPixel " + Program.Version;
+            labelAuthor.Text = "Contributors：\r\n    zapline\r\n    kingwl\r\n    wjk";
         }
 
         private void OkButton_Click(object sender, EventArgs e)
