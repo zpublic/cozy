@@ -1,7 +1,6 @@
 ﻿using CozyMarkdown.Data.Models;
 using CommonMark;
 using Nancy.ModelBinding;
-using System.Linq;
 using System;
 
 namespace CozyMarkdown.WebStie.Module {

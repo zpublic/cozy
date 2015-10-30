@@ -1,5 +1,4 @@
-﻿using Nancy;
-using CozyMarkdown.Data.Models;
+﻿using CozyMarkdown.Data.Models;
 using System.Linq;
 
 
