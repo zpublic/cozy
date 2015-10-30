@@ -183,7 +183,7 @@ namespace CozyPixel
             }
         }
 
-        private void PictureBox_MouseDown(object sender, MouseEventArgs e)
+        private void PixelPainter_MouseDown(object sender, MouseEventArgs e)
         {
             if(e.Button == MouseButtons.Left)
             {

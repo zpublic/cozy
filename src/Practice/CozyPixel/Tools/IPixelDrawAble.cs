@@ -61,10 +61,11 @@ namespace CozyPixel.Tools
         bool Fill(Point p, Color c);
 
         /// <summary>
-        /// 读取像素块的颜色
+        /// 尝试读取坐标颜色
         /// </summary>
         /// <param name="p"></param>
-        /// <returns></returns>
-        Color ReadPixel(Point p);
+        /// <param name="c"></param>
+        /// <returns>失败返回false</returns>
+        bool TryReadPixel(Point p, out Color c);
     }
 }

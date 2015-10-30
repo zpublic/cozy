@@ -55,8 +55,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Other\OstwaldColor.cs" />
-    <Compile Include="Controls\PixelPaintControl.cs">
-      <SubType>Component</SubType>
+    <Compile Include="Controls\PixelPainter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PixelPainter.Designer.cs">
+      <DependentUpon>PixelPainter.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\VerticalTabControl.cs">
       <SubType>Component</SubType>
@@ -107,8 +110,8 @@
     <EmbeddedResource Include="Controls\ImageListView.resx">
       <DependentUpon>ImageListView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\PixelPaintControl.resx">
-      <DependentUpon>PixelPaintControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\PixelPainter.resx">
+      <DependentUpon>PixelPainter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
