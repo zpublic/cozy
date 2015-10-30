@@ -12,10 +12,11 @@ using CozyPixel.Forms;
 using System.IO;
 using CozyColor.Core.Color;
 using CozyPixel.Tools;
+using MetroFramework.Forms;
 
 namespace CozyPixel
 {
-    public partial class CozyPixelForm : Form, IPixelColor
+    public partial class CozyPixelForm : MetroForm, IPixelColor
     {
         public bool IsModified { get; set; }
 

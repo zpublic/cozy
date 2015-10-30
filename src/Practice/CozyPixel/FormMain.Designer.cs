@@ -39,15 +39,15 @@
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectedColorButton = new System.Windows.Forms.Button();
-            this.MainTopTab = new System.Windows.Forms.TabControl();
-            this.ColorPage = new System.Windows.Forms.TabPage();
-            this.CozyColorPage = new System.Windows.Forms.TabPage();
+            this.MainTopTab = new MetroFramework.Controls.MetroTabControl();
+            this.ColorPage = new MetroFramework.Controls.MetroTabPage();
+            this.ColorList = new CozyPixel.Controls.ColorListView();
+            this.CozyColorPage = new MetroFramework.Controls.MetroTabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.CurrPathStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.PixelPainter = new CozyPixel.Controls.PixelPainter();
-            this.ColorList = new CozyPixel.Controls.ColorListView();
             this.MainLeftTab = new CozyPixel.Controls.VerticalTabControl();
             this.SelectToolPage = new System.Windows.Forms.TabPage();
             this.FillToolButton = new System.Windows.Forms.Button();
@@ -83,9 +83,9 @@
             this.MainStripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileMenuItem,
             this.HelpMenuItem});
-            this.MainStripMenu.Location = new System.Drawing.Point(0, 0);
+            this.MainStripMenu.Location = new System.Drawing.Point(20, 60);
             this.MainStripMenu.Name = "MainStripMenu";
-            this.MainStripMenu.Size = new System.Drawing.Size(1264, 25);
+            this.MainStripMenu.Size = new System.Drawing.Size(1224, 25);
             this.MainStripMenu.TabIndex = 1;
             this.MainStripMenu.Text = "menuStrip1";
             // 
@@ -157,7 +157,7 @@
             // 
             this.MainTopTab.Controls.Add(this.ColorPage);
             this.MainTopTab.Controls.Add(this.CozyColorPage);
-            this.MainTopTab.Location = new System.Drawing.Point(432, 41);
+            this.MainTopTab.Location = new System.Drawing.Point(397, 99);
             this.MainTopTab.Name = "MainTopTab";
             this.MainTopTab.SelectedIndex = 0;
             this.MainTopTab.Size = new System.Drawing.Size(720, 140);
@@ -174,6 +174,17 @@
             this.ColorPage.TabIndex = 0;
             this.ColorPage.Text = "24色";
             this.ColorPage.UseVisualStyleBackColor = true;
+            // 
+            // ColorList
+            // 
+            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
+            this.ColorList.ColorItemSize = new System.Drawing.Size(58, 20);
+            this.ColorList.Location = new System.Drawing.Point(195, 22);
+            this.ColorList.Name = "ColorList";
+            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
+            this.ColorList.Size = new System.Drawing.Size(500, 72);
+            this.ColorList.TabIndex = 2;
+            this.ColorList.ColorSelectedEventHandler += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorList_ColorSelectedEventHandler);
             // 
             // CozyColorPage
             // 
@@ -208,9 +219,9 @@
             // 
             this.MainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CurrPathStatusLabel});
-            this.MainStatusStrip.Location = new System.Drawing.Point(0, 659);
+            this.MainStatusStrip.Location = new System.Drawing.Point(20, 639);
             this.MainStatusStrip.Name = "MainStatusStrip";
-            this.MainStatusStrip.Size = new System.Drawing.Size(1264, 22);
+            this.MainStatusStrip.Size = new System.Drawing.Size(1224, 22);
             this.MainStatusStrip.TabIndex = 8;
             this.MainStatusStrip.Text = "statusStrip1";
             // 
@@ -227,25 +238,14 @@
             this.PixelPainter.Cursor = System.Windows.Forms.Cursors.Cross;
             this.PixelPainter.DefaultDrawColor = System.Drawing.Color.White;
             this.PixelPainter.Image = null;
-            this.PixelPainter.Location = new System.Drawing.Point(355, 210);
+            this.PixelPainter.Location = new System.Drawing.Point(397, 261);
             this.PixelPainter.Name = "PixelPainter";
-            this.PixelPainter.Size = new System.Drawing.Size(710, 420);
+            this.PixelPainter.Size = new System.Drawing.Size(716, 354);
             this.PixelPainter.SourceImage = null;
             this.PixelPainter.TabIndex = 9;
             this.PixelPainter.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseDown);
             this.PixelPainter.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseMove);
             this.PixelPainter.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseUp);
-            // 
-            // ColorList
-            // 
-            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
-            this.ColorList.ColorItemSize = new System.Drawing.Size(58, 20);
-            this.ColorList.Location = new System.Drawing.Point(195, 22);
-            this.ColorList.Name = "ColorList";
-            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
-            this.ColorList.Size = new System.Drawing.Size(500, 72);
-            this.ColorList.TabIndex = 2;
-            this.ColorList.ColorSelectedEventHandler += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorList_ColorSelectedEventHandler);
             // 
             // MainLeftTab
             // 
@@ -260,11 +260,11 @@
             stringFormat1.LineAlignment = System.Drawing.StringAlignment.Center;
             stringFormat1.Trimming = System.Drawing.StringTrimming.Character;
             this.MainLeftTab.ItemTextFormat = stringFormat1;
-            this.MainLeftTab.Location = new System.Drawing.Point(12, 41);
+            this.MainLeftTab.Location = new System.Drawing.Point(23, 95);
             this.MainLeftTab.Multiline = true;
             this.MainLeftTab.Name = "MainLeftTab";
             this.MainLeftTab.SelectedIndex = 0;
-            this.MainLeftTab.Size = new System.Drawing.Size(300, 580);
+            this.MainLeftTab.Size = new System.Drawing.Size(300, 520);
             this.MainLeftTab.TabIndex = 6;
             // 
             // SelectToolPage
@@ -276,7 +276,7 @@
             this.SelectToolPage.Controls.Add(this.PencilToolButton);
             this.SelectToolPage.Location = new System.Drawing.Point(24, 4);
             this.SelectToolPage.Name = "SelectToolPage";
-            this.SelectToolPage.Size = new System.Drawing.Size(272, 572);
+            this.SelectToolPage.Size = new System.Drawing.Size(272, 512);
             this.SelectToolPage.TabIndex = 2;
             this.SelectToolPage.Text = "工具选择";
             this.SelectToolPage.UseVisualStyleBackColor = true;
@@ -398,7 +398,7 @@
             this.ColorPicker.ColorWidth = 50;
             this.ColorPicker.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.ColorPicker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ColorPicker.DropDownWidth = 200;
+            this.ColorPicker.DropDownWidth = 150;
             this.ColorPicker.Location = new System.Drawing.Point(87, 302);
             this.ColorPicker.Name = "ColorPicker";
             this.ColorPicker.SelectedColor = System.Drawing.Color.Empty;
@@ -471,7 +471,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CozyPixelForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CozyPixel 0.6";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MainStripMenu.ResumeLayout(false);
@@ -508,17 +507,22 @@
         private System.Windows.Forms.Label GridWidthLabel;
         private System.Windows.Forms.TextBox GridWidthBox;
         private System.Windows.Forms.ToolStripMenuItem CreateMenuItem;
-        private System.Windows.Forms.TabPage ColorPage;
+        //private System.Windows.Forms.TabPage ColorPage;
+        private MetroFramework.Controls.MetroTabPage ColorPage;
         private Controls.ColorListView ColorList;
         private System.Windows.Forms.Button SelectedColorButton;
-        private System.Windows.Forms.TabControl MainTopTab;
+        //private System.Windows.Forms.TabControl MainTopTab;
+        private MetroFramework.Controls.MetroTabControl MainTopTab;
+
         private System.Windows.Forms.TabPage FileSelectPage;
         private System.Windows.Forms.Button DirectorySelectButton;
         private Controls.ImageListView ThumbListView;
         private System.Windows.Forms.StatusStrip MainStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel CurrPathStatusLabel;
         private System.Windows.Forms.Button RefreshThumbListButton;
-        private System.Windows.Forms.TabPage CozyColorPage;
+        //private System.Windows.Forms.TabPage CozyColorPage;
+        private MetroFramework.Controls.MetroTabPage CozyColorPage;
+
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TabPage SelectToolPage;

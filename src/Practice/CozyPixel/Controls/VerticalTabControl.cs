@@ -5,26 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 
 namespace CozyPixel.Controls
 {
-    public class VerticalTabControl : TabControl
+    public class VerticalTabControl : MetroTabControl
     {
         public StringFormat ItemTextFormat { get; set; }
 
         public VerticalTabControl()
         {
-            ItemTextFormat = new StringFormat()
-            {
-                Alignment       = StringAlignment.Center,
-                LineAlignment   = StringAlignment.Center,
-            };
+            TextAlign = ContentAlignment.MiddleCenter;
 
             DrawItem += On_TabControl_DrawItem;
 
             DrawMode = TabDrawMode.OwnerDrawFixed;
         }
 
+        // 没有用
         private void On_TabControl_DrawItem(object sender, DrawItemEventArgs e)
         {
             var g           = e.Graphics;
