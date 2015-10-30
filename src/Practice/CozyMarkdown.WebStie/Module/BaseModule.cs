@@ -10,5 +10,9 @@ namespace CozyMarkdown.WebStie.Module {
         public BaseModule() {
             db = DbContent.GetInstance();
         }
+
+        public BaseModule(string path) : base(path) {
+            db = DbContent.GetInstance();
+        }
     }
 }

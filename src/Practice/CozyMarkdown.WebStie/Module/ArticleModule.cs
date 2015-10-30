@@ -7,7 +7,7 @@ namespace CozyMarkdown.WebStie.Module {
 
     public class ArticleModule : BaseModule {
 
-        public ArticleModule() {
+        public ArticleModule() : base("Article") {
 
             Func<ArticlecModel, ArticlecModel> Save = x => {
                 if (x.Id == Guid.Empty) {
@@ -31,30 +31,30 @@ namespace CozyMarkdown.WebStie.Module {
                 return result;
             };
 
-            Get["Article/{title}"] = param => {
+            Get["/{title}"] = param => {
                 string title = param.title;
                 var model = db.Get<ArticlecModel>(x => x.Title == title);
                 return View["Article/Index", ConvertViewModel(model)];
             };
 
-            Get["Article/Insert"] = param => {
+            Get["/Insert"] = param => {
                 return View["Article/Insert", new ArticlecModel()];
             };
 
-            Get["Article/{title}/Edit"] = param => {
+            Get["/{title}/Edit"] = param => {
                 string title = param.title;
                 var model = db.Get<ArticlecModel>(x => x.Title == title);
                 return View["Article/Insert", model];
             };
 
-            Get["Article/{title}/Delete"] = param => {
+            Get["/{title}/Delete"] = param => {
                 string title = param.title;
                 var model = db.Get<ArticlecModel>(x => x.Title == title);
                 db.Delete<ArticlecModel>(model.Id);
                 return View["Home/Index"];
             };
 
-            Post["Article/Insert"] = param => {
+            Post["/Insert"] = param => {
                 var model = this.Bind<ArticlecModel>();
                 model = Save(model);
                 if (model == null) {
