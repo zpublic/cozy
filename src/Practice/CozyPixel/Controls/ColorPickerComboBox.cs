@@ -8,10 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CozyPixel.Controls.ControlEventArgs;
+using MetroFramework.Controls;
+using MetroFramework;
+using MetroFramework.Drawing;
 
 namespace CozyPixel.Controls
 {
-    public partial class ColorPickerComboBox : ComboBox
+    public partial class ColorPickerComboBox : MetroComboBox
     {
         internal class ColorPickerComboxItem
         {
@@ -23,6 +26,11 @@ namespace CozyPixel.Controls
             {
                 Text        = text;
                 DrawColor   = color;
+            }
+
+            public override string ToString()
+            {
+                return Text;
             }
         }
 
@@ -69,23 +77,52 @@ namespace CozyPixel.Controls
 
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
-            e.DrawBackground();
-
-            if (e.Index != -1)
+            if (e.Index >= 0)
             {
-                var rect = e.Bounds;
+                Color foreColor;
+                Color backColor = BackColor;
+
+                if (!UseCustomBackColor)
+                {
+                    backColor = MetroPaint.BackColor.Form(Theme);
+                }
+
+                if (e.State == (DrawItemState.NoAccelerator | DrawItemState.NoFocusRect) || e.State == DrawItemState.None)
+                {
+                    using (SolidBrush b = new SolidBrush(backColor))
+                    {
+                        e.Graphics.FillRectangle(b, new Rectangle(e.Bounds.Left, e.Bounds.Top, e.Bounds.Width, e.Bounds.Height));
+                    }
+
+                    foreColor = MetroPaint.ForeColor.Link.Normal(Theme);
+                }
+                else
+                {
+                    using (SolidBrush b = new SolidBrush(MetroPaint.GetStyleColor(Style)))
+                    {
+                        e.Graphics.FillRectangle(b, new Rectangle(e.Bounds.Left, e.Bounds.Top, e.Bounds.Width, e.Bounds.Height));
+                    }
+
+                    foreColor = MetroPaint.ForeColor.Tile.Normal(Theme);
+                }
+
+                Rectangle textRect = new Rectangle(0, e.Bounds.Top, e.Bounds.Width, e.Bounds.Height);
+                TextRenderer.DrawText(e.Graphics, GetItemText(Items[e.Index]), MetroFonts.ComboBox(FontSize, FontWeight), textRect, foreColor, TextFormatFlags.Left | TextFormatFlags.VerticalCenter);
+
                 var item = Items[e.Index] as ColorPickerComboxItem;
                 if (item != null)
                 {
-                    string text = item.Text;
-                    var brush = new SolidBrush(item.DrawColor);
-                    var dr = new Rectangle(rect.X + Width, rect.Y + rect.Height / 4, ColorWidth, rect.Height / 2);
+                    var brush   = new SolidBrush(item.DrawColor);
+                    var rect    = e.Bounds;
+                    var dr      = new Rectangle(rect.X + Width, rect.Y + rect.Height / 4, ColorWidth, rect.Height / 2);
 
-                    e.Graphics.DrawString(text, e.Font, SystemBrushes.ControlText, rect.X, rect.Y);
                     e.Graphics.FillRectangle(brush, dr);
-
                     SelectedColor = item.DrawColor;
                 }
+            }
+            else
+            {
+                base.OnDrawItem(e);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using CozyPixel.Model;
+using MetroFramework;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -59,7 +60,7 @@ namespace CozyPixel
 
                 if (res.Width > 128 || res.Height > 128)
                 {
-                    MessageBox.Show("不支持超过128 * 128的文件", "打开失败");
+                    MetroMessageBox.Show(this, "不支持超过128 * 128的文件", "打开失败");
                     return false;
                 }
 
@@ -75,7 +76,7 @@ namespace CozyPixel
         {
             if(w > 128 || h > 128)
             {
-                MessageBox.Show("不支持超过128 * 128的文件", "创建失败");
+                MetroMessageBox.Show(this, "不支持超过128 * 128的文件", "创建失败");
                 return;
             }
 

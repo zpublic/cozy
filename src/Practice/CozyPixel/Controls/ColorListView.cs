@@ -100,8 +100,8 @@ namespace CozyPixel.Controls
 
         private void SetButtonInfo(MetroButton bt, Color c)
         {
+            bt.UseCustomForeColor = true;
             bt.UseCustomBackColor           = true;
-            bt.UseStyleColors = true;
             bt.Size                         = ColorItemSize;
             bt.Margin                       = ColorItemMargin;
             bt.ForeColor                    = c;

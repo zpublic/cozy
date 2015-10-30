@@ -28,34 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.WidthLabel = new System.Windows.Forms.Label();
-            this.HeightLabel = new System.Windows.Forms.Label();
+            this.WidthLabel = new MetroFramework.Controls.MetroLabel();
+            this.HeightLabel = new MetroFramework.Controls.MetroLabel();
             this.WidthBox = new System.Windows.Forms.TextBox();
             this.HeightBox = new System.Windows.Forms.TextBox();
-            this.OKButton = new System.Windows.Forms.Button();
+            this.OKButton = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // WidthLabel
             // 
             this.WidthLabel.AutoSize = true;
-            this.WidthLabel.Location = new System.Drawing.Point(52, 25);
+            this.WidthLabel.Location = new System.Drawing.Point(76, 91);
             this.WidthLabel.Name = "WidthLabel";
-            this.WidthLabel.Size = new System.Drawing.Size(41, 12);
+            this.WidthLabel.Size = new System.Drawing.Size(51, 19);
             this.WidthLabel.TabIndex = 0;
             this.WidthLabel.Text = "宽度：";
             // 
             // HeightLabel
             // 
             this.HeightLabel.AutoSize = true;
-            this.HeightLabel.Location = new System.Drawing.Point(52, 80);
+            this.HeightLabel.Location = new System.Drawing.Point(76, 146);
             this.HeightLabel.Name = "HeightLabel";
-            this.HeightLabel.Size = new System.Drawing.Size(41, 12);
+            this.HeightLabel.Size = new System.Drawing.Size(51, 19);
             this.HeightLabel.TabIndex = 1;
             this.HeightLabel.Text = "高度：";
             // 
             // WidthBox
             // 
-            this.WidthBox.Location = new System.Drawing.Point(123, 22);
+            this.WidthBox.Location = new System.Drawing.Point(147, 91);
             this.WidthBox.Name = "WidthBox";
             this.WidthBox.Size = new System.Drawing.Size(100, 21);
             this.WidthBox.TabIndex = 2;
@@ -63,7 +63,7 @@
             // 
             // HeightBox
             // 
-            this.HeightBox.Location = new System.Drawing.Point(123, 80);
+            this.HeightBox.Location = new System.Drawing.Point(147, 146);
             this.HeightBox.Name = "HeightBox";
             this.HeightBox.Size = new System.Drawing.Size(100, 21);
             this.HeightBox.TabIndex = 3;
@@ -71,26 +71,25 @@
             // 
             // OKButton
             // 
-            this.OKButton.Location = new System.Drawing.Point(82, 128);
+            this.OKButton.Location = new System.Drawing.Point(108, 202);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(75, 23);
             this.OKButton.TabIndex = 4;
             this.OKButton.Text = "确定";
-            this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.UseSelectable = true;
             this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
             // CreateNewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(265, 169);
+            this.ClientSize = new System.Drawing.Size(328, 263);
             this.Controls.Add(this.OKButton);
             this.Controls.Add(this.HeightBox);
             this.Controls.Add(this.WidthBox);
             this.Controls.Add(this.HeightLabel);
             this.Controls.Add(this.WidthLabel);
             this.Name = "CreateNewForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "创建新像素画";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -99,10 +98,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label WidthLabel;
-        private System.Windows.Forms.Label HeightLabel;
+        private MetroFramework.Controls.MetroLabel WidthLabel;
+        private MetroFramework.Controls.MetroLabel HeightLabel;
         private System.Windows.Forms.TextBox WidthBox;
         private System.Windows.Forms.TextBox HeightBox;
-        private System.Windows.Forms.Button OKButton;
+        private MetroFramework.Controls.MetroButton OKButton;
     }
 }

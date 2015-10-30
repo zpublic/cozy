@@ -77,9 +77,6 @@
     <Compile Include="Controls\PixelPainter.Designer.cs">
       <DependentUpon>PixelPainter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\VerticalTabControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="CozyPixelHelper.cs" />
     <Compile Include="Draw\BitmapGenerate.cs" />
     <Compile Include="FormMain.Callback.cs">

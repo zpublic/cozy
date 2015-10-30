@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Drawing.StringFormat stringFormat1 = new System.Drawing.StringFormat();
             this.MainStripMenu = new System.Windows.Forms.MenuStrip();
             this.FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,34 +37,34 @@
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SelectedColorButton = new System.Windows.Forms.Button();
+            this.SelectedColorButton = new MetroFramework.Controls.MetroButton();
             this.MainTopTab = new MetroFramework.Controls.MetroTabControl();
             this.ColorPage = new MetroFramework.Controls.MetroTabPage();
             this.ColorList = new CozyPixel.Controls.ColorListView();
             this.CozyColorPage = new MetroFramework.Controls.MetroTabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button1 = new MetroFramework.Controls.MetroButton();
             this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.CurrPathStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.PixelPainter = new CozyPixel.Controls.PixelPainter();
-            this.MainLeftTab = new CozyPixel.Controls.VerticalTabControl();
-            this.SelectToolPage = new System.Windows.Forms.TabPage();
-            this.FillToolButton = new System.Windows.Forms.Button();
-            this.StrawToolButton = new System.Windows.Forms.Button();
-            this.EarserToolButton = new System.Windows.Forms.Button();
-            this.LineToolButton = new System.Windows.Forms.Button();
-            this.PencilToolButton = new System.Windows.Forms.Button();
-            this.FileSelectPage = new System.Windows.Forms.TabPage();
-            this.RefreshThumbListButton = new System.Windows.Forms.Button();
+            this.MainLeftTab = new MetroFramework.Controls.MetroTabControl();
+            this.SelectToolPage = new MetroFramework.Controls.MetroTabPage();
+            this.FillToolButton = new MetroFramework.Controls.MetroButton();
+            this.StrawToolButton = new MetroFramework.Controls.MetroButton();
+            this.EarserToolButton = new MetroFramework.Controls.MetroButton();
+            this.LineToolButton = new MetroFramework.Controls.MetroButton();
+            this.PencilToolButton = new MetroFramework.Controls.MetroButton();
+            this.FileSelectPage = new MetroFramework.Controls.MetroTabPage();
+            this.RefreshThumbListButton = new MetroFramework.Controls.MetroButton();
             this.ThumbListView = new CozyPixel.Controls.ImageListView();
-            this.DirectorySelectButton = new System.Windows.Forms.Button();
-            this.GridOpeionPage = new System.Windows.Forms.TabPage();
+            this.DirectorySelectButton = new MetroFramework.Controls.MetroButton();
+            this.GridOpeionPage = new MetroFramework.Controls.MetroTabPage();
             this.ColorPicker = new CozyPixel.Controls.ColorPickerComboBox();
-            this.GridWidthLabel = new System.Windows.Forms.Label();
+            this.GridWidthLabel = new MetroFramework.Controls.MetroLabel();
             this.GridWidthBox = new System.Windows.Forms.TextBox();
-            this.ShowGridCheckBox = new System.Windows.Forms.CheckBox();
-            this.GridColorButton = new System.Windows.Forms.Button();
-            this.ColorLabel = new System.Windows.Forms.Label();
+            this.ShowGridCheckBox = new MetroFramework.Controls.MetroToggle();
+            this.GridColorButton = new MetroFramework.Controls.MetroButton();
+            this.ColorLabel = new MetroFramework.Controls.MetroLabel();
+            this.PixelPainter = new CozyPixel.Controls.PixelPainter();
             this.MainStripMenu.SuspendLayout();
             this.MainTopTab.SuspendLayout();
             this.ColorPage.SuspendLayout();
@@ -145,13 +144,12 @@
             // 
             // SelectedColorButton
             // 
-            this.SelectedColorButton.FlatAppearance.BorderSize = 0;
-            this.SelectedColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SelectedColorButton.Location = new System.Drawing.Point(67, 22);
             this.SelectedColorButton.Name = "SelectedColorButton";
             this.SelectedColorButton.Size = new System.Drawing.Size(72, 72);
             this.SelectedColorButton.TabIndex = 5;
-            this.SelectedColorButton.UseVisualStyleBackColor = true;
+            this.SelectedColorButton.UseCustomBackColor = true;
+            this.SelectedColorButton.UseSelectable = true;
             // 
             // MainTopTab
             // 
@@ -162,18 +160,25 @@
             this.MainTopTab.SelectedIndex = 0;
             this.MainTopTab.Size = new System.Drawing.Size(720, 140);
             this.MainTopTab.TabIndex = 7;
+            this.MainTopTab.UseSelectable = true;
             // 
             // ColorPage
             // 
             this.ColorPage.Controls.Add(this.ColorList);
             this.ColorPage.Controls.Add(this.SelectedColorButton);
-            this.ColorPage.Location = new System.Drawing.Point(4, 22);
+            this.ColorPage.HorizontalScrollbarBarColor = true;
+            this.ColorPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.ColorPage.HorizontalScrollbarSize = 10;
+            this.ColorPage.Location = new System.Drawing.Point(4, 38);
             this.ColorPage.Name = "ColorPage";
             this.ColorPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ColorPage.Size = new System.Drawing.Size(712, 114);
+            this.ColorPage.Size = new System.Drawing.Size(712, 98);
             this.ColorPage.TabIndex = 0;
             this.ColorPage.Text = "24色";
             this.ColorPage.UseVisualStyleBackColor = true;
+            this.ColorPage.VerticalScrollbarBarColor = true;
+            this.ColorPage.VerticalScrollbarHighlightOnWheel = false;
+            this.ColorPage.VerticalScrollbarSize = 10;
             // 
             // ColorList
             // 
@@ -190,12 +195,18 @@
             // 
             this.CozyColorPage.Controls.Add(this.pictureBox1);
             this.CozyColorPage.Controls.Add(this.button1);
-            this.CozyColorPage.Location = new System.Drawing.Point(4, 22);
+            this.CozyColorPage.HorizontalScrollbarBarColor = true;
+            this.CozyColorPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.CozyColorPage.HorizontalScrollbarSize = 10;
+            this.CozyColorPage.Location = new System.Drawing.Point(4, 38);
             this.CozyColorPage.Name = "CozyColorPage";
-            this.CozyColorPage.Size = new System.Drawing.Size(712, 114);
+            this.CozyColorPage.Size = new System.Drawing.Size(712, 98);
             this.CozyColorPage.TabIndex = 1;
             this.CozyColorPage.Text = "CozyColor";
             this.CozyColorPage.UseVisualStyleBackColor = true;
+            this.CozyColorPage.VerticalScrollbarBarColor = true;
+            this.CozyColorPage.VerticalScrollbarHighlightOnWheel = false;
+            this.CozyColorPage.VerticalScrollbarSize = 10;
             // 
             // pictureBox1
             // 
@@ -212,7 +223,7 @@
             this.button1.Size = new System.Drawing.Size(87, 80);
             this.button1.TabIndex = 0;
             this.button1.Text = "生成";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseSelectable = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainStatusStrip
@@ -231,41 +242,20 @@
             this.CurrPathStatusLabel.Size = new System.Drawing.Size(88, 17);
             this.CurrPathStatusLabel.Text = "当前文件 ： 无";
             // 
-            // PixelPainter
-            // 
-            this.PixelPainter.AutoScroll = true;
-            this.PixelPainter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PixelPainter.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.PixelPainter.DefaultDrawColor = System.Drawing.Color.White;
-            this.PixelPainter.Image = null;
-            this.PixelPainter.Location = new System.Drawing.Point(397, 261);
-            this.PixelPainter.Name = "PixelPainter";
-            this.PixelPainter.Size = new System.Drawing.Size(716, 354);
-            this.PixelPainter.SourceImage = null;
-            this.PixelPainter.TabIndex = 9;
-            this.PixelPainter.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseDown);
-            this.PixelPainter.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseMove);
-            this.PixelPainter.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseUp);
-            // 
             // MainLeftTab
             // 
-            this.MainLeftTab.Alignment = System.Windows.Forms.TabAlignment.Left;
             this.MainLeftTab.Controls.Add(this.SelectToolPage);
             this.MainLeftTab.Controls.Add(this.FileSelectPage);
             this.MainLeftTab.Controls.Add(this.GridOpeionPage);
             this.MainLeftTab.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.MainLeftTab.ItemSize = new System.Drawing.Size(18, 20);
-            stringFormat1.Alignment = System.Drawing.StringAlignment.Center;
-            stringFormat1.HotkeyPrefix = System.Drawing.Text.HotkeyPrefix.None;
-            stringFormat1.LineAlignment = System.Drawing.StringAlignment.Center;
-            stringFormat1.Trimming = System.Drawing.StringTrimming.Character;
-            this.MainLeftTab.ItemTextFormat = stringFormat1;
+            this.MainLeftTab.ItemSize = new System.Drawing.Size(18, 80);
             this.MainLeftTab.Location = new System.Drawing.Point(23, 95);
             this.MainLeftTab.Multiline = true;
             this.MainLeftTab.Name = "MainLeftTab";
-            this.MainLeftTab.SelectedIndex = 0;
+            this.MainLeftTab.SelectedIndex = 2;
             this.MainLeftTab.Size = new System.Drawing.Size(300, 520);
             this.MainLeftTab.TabIndex = 6;
+            this.MainLeftTab.UseSelectable = true;
             // 
             // SelectToolPage
             // 
@@ -274,12 +264,18 @@
             this.SelectToolPage.Controls.Add(this.EarserToolButton);
             this.SelectToolPage.Controls.Add(this.LineToolButton);
             this.SelectToolPage.Controls.Add(this.PencilToolButton);
-            this.SelectToolPage.Location = new System.Drawing.Point(24, 4);
+            this.SelectToolPage.HorizontalScrollbarBarColor = true;
+            this.SelectToolPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.SelectToolPage.HorizontalScrollbarSize = 10;
+            this.SelectToolPage.Location = new System.Drawing.Point(4, 84);
             this.SelectToolPage.Name = "SelectToolPage";
-            this.SelectToolPage.Size = new System.Drawing.Size(272, 512);
+            this.SelectToolPage.Size = new System.Drawing.Size(292, 432);
             this.SelectToolPage.TabIndex = 2;
             this.SelectToolPage.Text = "工具选择";
             this.SelectToolPage.UseVisualStyleBackColor = true;
+            this.SelectToolPage.VerticalScrollbarBarColor = true;
+            this.SelectToolPage.VerticalScrollbarHighlightOnWheel = false;
+            this.SelectToolPage.VerticalScrollbarSize = 10;
             // 
             // FillToolButton
             // 
@@ -288,7 +284,7 @@
             this.FillToolButton.Size = new System.Drawing.Size(75, 23);
             this.FillToolButton.TabIndex = 4;
             this.FillToolButton.Text = "填充工具";
-            this.FillToolButton.UseVisualStyleBackColor = true;
+            this.FillToolButton.UseSelectable = true;
             this.FillToolButton.Click += new System.EventHandler(this.FillToolButton_Click);
             // 
             // StrawToolButton
@@ -298,7 +294,7 @@
             this.StrawToolButton.Size = new System.Drawing.Size(75, 23);
             this.StrawToolButton.TabIndex = 3;
             this.StrawToolButton.Text = "吸取工具";
-            this.StrawToolButton.UseVisualStyleBackColor = true;
+            this.StrawToolButton.UseSelectable = true;
             this.StrawToolButton.Click += new System.EventHandler(this.StrawToolButton_Click);
             // 
             // EarserToolButton
@@ -308,7 +304,7 @@
             this.EarserToolButton.Size = new System.Drawing.Size(75, 23);
             this.EarserToolButton.TabIndex = 2;
             this.EarserToolButton.Text = "橡皮擦";
-            this.EarserToolButton.UseVisualStyleBackColor = true;
+            this.EarserToolButton.UseSelectable = true;
             this.EarserToolButton.Click += new System.EventHandler(this.EarserToolButton_Click);
             // 
             // LineToolButton
@@ -318,7 +314,7 @@
             this.LineToolButton.Size = new System.Drawing.Size(75, 23);
             this.LineToolButton.TabIndex = 1;
             this.LineToolButton.Text = "画线";
-            this.LineToolButton.UseVisualStyleBackColor = true;
+            this.LineToolButton.UseSelectable = true;
             this.LineToolButton.Click += new System.EventHandler(this.LineToolButton_Click);
             // 
             // PencilToolButton
@@ -328,7 +324,7 @@
             this.PencilToolButton.Size = new System.Drawing.Size(75, 23);
             this.PencilToolButton.TabIndex = 0;
             this.PencilToolButton.Text = "铅笔";
-            this.PencilToolButton.UseVisualStyleBackColor = true;
+            this.PencilToolButton.UseSelectable = true;
             this.PencilToolButton.Click += new System.EventHandler(this.PencilToolButton_Click);
             // 
             // FileSelectPage
@@ -336,13 +332,19 @@
             this.FileSelectPage.Controls.Add(this.RefreshThumbListButton);
             this.FileSelectPage.Controls.Add(this.ThumbListView);
             this.FileSelectPage.Controls.Add(this.DirectorySelectButton);
-            this.FileSelectPage.Location = new System.Drawing.Point(24, 4);
+            this.FileSelectPage.HorizontalScrollbarBarColor = true;
+            this.FileSelectPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.FileSelectPage.HorizontalScrollbarSize = 10;
+            this.FileSelectPage.Location = new System.Drawing.Point(4, 84);
             this.FileSelectPage.Name = "FileSelectPage";
             this.FileSelectPage.Padding = new System.Windows.Forms.Padding(3);
-            this.FileSelectPage.Size = new System.Drawing.Size(272, 572);
+            this.FileSelectPage.Size = new System.Drawing.Size(292, 432);
             this.FileSelectPage.TabIndex = 1;
             this.FileSelectPage.Text = "文件选择";
             this.FileSelectPage.UseVisualStyleBackColor = true;
+            this.FileSelectPage.VerticalScrollbarBarColor = true;
+            this.FileSelectPage.VerticalScrollbarHighlightOnWheel = false;
+            this.FileSelectPage.VerticalScrollbarSize = 10;
             // 
             // RefreshThumbListButton
             // 
@@ -351,7 +353,7 @@
             this.RefreshThumbListButton.Size = new System.Drawing.Size(155, 23);
             this.RefreshThumbListButton.TabIndex = 3;
             this.RefreshThumbListButton.Text = "刷新";
-            this.RefreshThumbListButton.UseVisualStyleBackColor = true;
+            this.RefreshThumbListButton.UseSelectable = true;
             this.RefreshThumbListButton.Click += new System.EventHandler(this.RefreshThumbListButton_Click);
             // 
             // ThumbListView
@@ -373,7 +375,7 @@
             this.DirectorySelectButton.Size = new System.Drawing.Size(155, 23);
             this.DirectorySelectButton.TabIndex = 0;
             this.DirectorySelectButton.Text = "更换当前目录";
-            this.DirectorySelectButton.UseVisualStyleBackColor = true;
+            this.DirectorySelectButton.UseSelectable = true;
             this.DirectorySelectButton.Click += new System.EventHandler(this.DirectorySelectButton_Click);
             // 
             // GridOpeionPage
@@ -385,33 +387,39 @@
             this.GridOpeionPage.Controls.Add(this.GridColorButton);
             this.GridOpeionPage.Controls.Add(this.ColorLabel);
             this.GridOpeionPage.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.GridOpeionPage.Location = new System.Drawing.Point(24, 4);
+            this.GridOpeionPage.HorizontalScrollbarBarColor = true;
+            this.GridOpeionPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.GridOpeionPage.HorizontalScrollbarSize = 10;
+            this.GridOpeionPage.Location = new System.Drawing.Point(4, 84);
             this.GridOpeionPage.Name = "GridOpeionPage";
             this.GridOpeionPage.Padding = new System.Windows.Forms.Padding(3);
-            this.GridOpeionPage.Size = new System.Drawing.Size(272, 572);
+            this.GridOpeionPage.Size = new System.Drawing.Size(292, 432);
             this.GridOpeionPage.TabIndex = 0;
             this.GridOpeionPage.Text = "网格选项";
             this.GridOpeionPage.UseVisualStyleBackColor = true;
+            this.GridOpeionPage.VerticalScrollbarBarColor = true;
+            this.GridOpeionPage.VerticalScrollbarHighlightOnWheel = false;
+            this.GridOpeionPage.VerticalScrollbarSize = 10;
             // 
             // ColorPicker
             // 
             this.ColorPicker.ColorWidth = 50;
-            this.ColorPicker.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.ColorPicker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ColorPicker.DropDownWidth = 150;
+            this.ColorPicker.ItemHeight = 23;
             this.ColorPicker.Location = new System.Drawing.Point(87, 302);
             this.ColorPicker.Name = "ColorPicker";
             this.ColorPicker.SelectedColor = System.Drawing.Color.Empty;
-            this.ColorPicker.Size = new System.Drawing.Size(100, 22);
+            this.ColorPicker.Size = new System.Drawing.Size(100, 29);
             this.ColorPicker.TabIndex = 5;
+            this.ColorPicker.UseSelectable = true;
             this.ColorPicker.ColorPickerSelectedColorChanged += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorPicker_ColorPickerSelectedColorChanged);
             // 
             // GridWidthLabel
             // 
             this.GridWidthLabel.AutoSize = true;
-            this.GridWidthLabel.Location = new System.Drawing.Point(87, 235);
+            this.GridWidthLabel.Location = new System.Drawing.Point(87, 228);
             this.GridWidthLabel.Name = "GridWidthLabel";
-            this.GridWidthLabel.Size = new System.Drawing.Size(53, 12);
+            this.GridWidthLabel.Size = new System.Drawing.Size(65, 19);
             this.GridWidthLabel.TabIndex = 4;
             this.GridWidthLabel.Text = "网格宽度";
             // 
@@ -431,22 +439,21 @@
             this.ShowGridCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ShowGridCheckBox.Location = new System.Drawing.Point(89, 69);
             this.ShowGridCheckBox.Name = "ShowGridCheckBox";
-            this.ShowGridCheckBox.Size = new System.Drawing.Size(72, 16);
+            this.ShowGridCheckBox.Size = new System.Drawing.Size(80, 16);
             this.ShowGridCheckBox.TabIndex = 2;
-            this.ShowGridCheckBox.Text = "显示网格";
-            this.ShowGridCheckBox.UseVisualStyleBackColor = true;
+            this.ShowGridCheckBox.Text = "On";
+            this.ShowGridCheckBox.UseSelectable = true;
             this.ShowGridCheckBox.CheckedChanged += new System.EventHandler(this.ShowGridCheckBox_CheckedChanged);
             // 
             // GridColorButton
             // 
             this.GridColorButton.BackColor = System.Drawing.Color.Black;
-            this.GridColorButton.FlatAppearance.BorderSize = 0;
-            this.GridColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GridColorButton.Location = new System.Drawing.Point(89, 152);
             this.GridColorButton.Name = "GridColorButton";
             this.GridColorButton.Size = new System.Drawing.Size(48, 48);
             this.GridColorButton.TabIndex = 1;
-            this.GridColorButton.UseVisualStyleBackColor = false;
+            this.GridColorButton.UseCustomBackColor = true;
+            this.GridColorButton.UseSelectable = true;
             this.GridColorButton.Click += new System.EventHandler(this.GridColorButton_Click);
             // 
             // ColorLabel
@@ -454,9 +461,25 @@
             this.ColorLabel.AutoSize = true;
             this.ColorLabel.Location = new System.Drawing.Point(87, 124);
             this.ColorLabel.Name = "ColorLabel";
-            this.ColorLabel.Size = new System.Drawing.Size(53, 12);
+            this.ColorLabel.Size = new System.Drawing.Size(65, 19);
             this.ColorLabel.TabIndex = 0;
             this.ColorLabel.Text = "网格颜色";
+            // 
+            // PixelPainter
+            // 
+            this.PixelPainter.AutoScroll = true;
+            this.PixelPainter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PixelPainter.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.PixelPainter.DefaultDrawColor = System.Drawing.Color.White;
+            this.PixelPainter.Image = null;
+            this.PixelPainter.Location = new System.Drawing.Point(397, 261);
+            this.PixelPainter.Name = "PixelPainter";
+            this.PixelPainter.Size = new System.Drawing.Size(716, 354);
+            this.PixelPainter.SourceImage = null;
+            this.PixelPainter.TabIndex = 9;
+            this.PixelPainter.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseDown);
+            this.PixelPainter.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseMove);
+            this.PixelPainter.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseUp);
             // 
             // CozyPixelForm
             // 
@@ -499,40 +522,38 @@
         private System.Windows.Forms.ToolStripMenuItem ExitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SaveMenuItem;
-        private Controls.VerticalTabControl MainLeftTab;
-        private System.Windows.Forms.TabPage GridOpeionPage;
-        private System.Windows.Forms.Button GridColorButton;
-        private System.Windows.Forms.Label ColorLabel;
-        private System.Windows.Forms.CheckBox ShowGridCheckBox;
-        private System.Windows.Forms.Label GridWidthLabel;
+        private MetroFramework.Controls.MetroTabControl MainLeftTab;
+        private MetroFramework.Controls.MetroTabPage GridOpeionPage;
+        private MetroFramework.Controls.MetroButton GridColorButton;
+        private MetroFramework.Controls.MetroToggle ShowGridCheckBox;
+        private MetroFramework.Controls.MetroLabel GridWidthLabel;
         private System.Windows.Forms.TextBox GridWidthBox;
         private System.Windows.Forms.ToolStripMenuItem CreateMenuItem;
-        //private System.Windows.Forms.TabPage ColorPage;
         private MetroFramework.Controls.MetroTabPage ColorPage;
         private Controls.ColorListView ColorList;
-        private System.Windows.Forms.Button SelectedColorButton;
-        //private System.Windows.Forms.TabControl MainTopTab;
+        private MetroFramework.Controls.MetroButton SelectedColorButton;
         private MetroFramework.Controls.MetroTabControl MainTopTab;
 
-        private System.Windows.Forms.TabPage FileSelectPage;
-        private System.Windows.Forms.Button DirectorySelectButton;
+        private MetroFramework.Controls.MetroTabPage FileSelectPage;
+        private MetroFramework.Controls.MetroButton DirectorySelectButton;
         private Controls.ImageListView ThumbListView;
         private System.Windows.Forms.StatusStrip MainStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel CurrPathStatusLabel;
-        private System.Windows.Forms.Button RefreshThumbListButton;
-        //private System.Windows.Forms.TabPage CozyColorPage;
+        private MetroFramework.Controls.MetroButton RefreshThumbListButton;
         private MetroFramework.Controls.MetroTabPage CozyColorPage;
 
-        private System.Windows.Forms.Button button1;
+        private MetroFramework.Controls.MetroButton button1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TabPage SelectToolPage;
-        private System.Windows.Forms.Button PencilToolButton;
-        private System.Windows.Forms.Button LineToolButton;
-        private System.Windows.Forms.Button EarserToolButton;
-        private System.Windows.Forms.Button StrawToolButton;
-        private System.Windows.Forms.Button FillToolButton;
+        private MetroFramework.Controls.MetroTabPage SelectToolPage;
+        private MetroFramework.Controls.MetroButton PencilToolButton;
+        private MetroFramework.Controls.MetroButton LineToolButton;
+        private MetroFramework.Controls.MetroButton EarserToolButton;
+        private MetroFramework.Controls.MetroButton StrawToolButton;
+
+        private MetroFramework.Controls.MetroButton FillToolButton;
         private Controls.PixelPainter PixelPainter;
         private Controls.ColorPickerComboBox ColorPicker;
+        private MetroFramework.Controls.MetroLabel ColorLabel;
     }
 }
 
