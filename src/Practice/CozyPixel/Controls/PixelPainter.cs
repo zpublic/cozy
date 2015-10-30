@@ -281,5 +281,19 @@ namespace CozyPixel.Controls
         {
             OnMouseUp(e);
         }
+
+        private void InnerPicBox_SizeChanged(object sender, EventArgs e)
+        {
+            var new_loc = InnerPicBox.Location;
+            if (InnerPicBox.Width < Width)
+            {
+                new_loc = new Point((Width - InnerPicBox.Width) / 2, new_loc.Y);
+            }
+            if (InnerPicBox.Height < Height)
+            {
+                new_loc = new Point(new_loc.X, (Height - InnerPicBox.Height) / 2);
+            }
+            InnerPicBox.Location = new_loc;
+        }
     }
 }

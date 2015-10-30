@@ -40,6 +40,7 @@
             this.InnerPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.InnerPicBox.TabIndex = 0;
             this.InnerPicBox.TabStop = false;
+            this.InnerPicBox.SizeChanged += new System.EventHandler(this.InnerPicBox_SizeChanged);
             this.InnerPicBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.InnerPicBox_MouseDown);
             this.InnerPicBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.InnerPicBox_MouseMove);
             this.InnerPicBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.InnerPicBox_MouseUp);
