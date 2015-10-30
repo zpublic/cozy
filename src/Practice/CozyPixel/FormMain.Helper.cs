@@ -63,6 +63,7 @@ namespace CozyPixel
             foreach (var c in list)
             {
                 ColorList.AddColor(c);
+                ColorPicker.AddColor("Color", c);
             }
         }
 

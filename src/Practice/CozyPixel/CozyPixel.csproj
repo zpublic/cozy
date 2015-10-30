@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,7 +51,11 @@
     <Compile Include="Controls\ColorListView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\ColorPickerComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\ControlEventArgs\ColorEventAgs.cs" />
+    <Compile Include="Controls\Designer\ColorPickerComboboxDesigner.cs" />
     <Compile Include="Controls\ImageListView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -107,6 +112,9 @@
     <Compile Include="Tools\PixelLine.cs" />
     <Compile Include="Tools\PixelPencil.cs" />
     <Compile Include="Tools\PixelStraw.cs" />
+    <EmbeddedResource Include="Controls\ColorPickerComboBox.resx">
+      <DependentUpon>ColorPickerComboBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ImageListView.resx">
       <DependentUpon>ImageListView.cs</DependentUpon>
     </EmbeddedResource>

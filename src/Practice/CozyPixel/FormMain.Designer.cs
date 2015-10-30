@@ -60,6 +60,7 @@
             this.ThumbListView = new CozyPixel.Controls.ImageListView();
             this.DirectorySelectButton = new System.Windows.Forms.Button();
             this.GridOpeionPage = new System.Windows.Forms.TabPage();
+            this.ColorPicker = new CozyPixel.Controls.ColorPickerComboBox();
             this.GridWidthLabel = new System.Windows.Forms.Label();
             this.GridWidthBox = new System.Windows.Forms.TextBox();
             this.ShowGridCheckBox = new System.Windows.Forms.CheckBox();
@@ -226,7 +227,7 @@
             this.PixelPainter.Cursor = System.Windows.Forms.Cursors.Cross;
             this.PixelPainter.DefaultDrawColor = System.Drawing.Color.White;
             this.PixelPainter.Image = null;
-            this.PixelPainter.Location = new System.Drawing.Point(436, 201);
+            this.PixelPainter.Location = new System.Drawing.Point(355, 210);
             this.PixelPainter.Name = "PixelPainter";
             this.PixelPainter.Size = new System.Drawing.Size(710, 420);
             this.PixelPainter.SourceImage = null;
@@ -377,6 +378,7 @@
             // 
             // GridOpeionPage
             // 
+            this.GridOpeionPage.Controls.Add(this.ColorPicker);
             this.GridOpeionPage.Controls.Add(this.GridWidthLabel);
             this.GridOpeionPage.Controls.Add(this.GridWidthBox);
             this.GridOpeionPage.Controls.Add(this.ShowGridCheckBox);
@@ -390,6 +392,19 @@
             this.GridOpeionPage.TabIndex = 0;
             this.GridOpeionPage.Text = "网格选项";
             this.GridOpeionPage.UseVisualStyleBackColor = true;
+            // 
+            // ColorPicker
+            // 
+            this.ColorPicker.ColorWidth = 50;
+            this.ColorPicker.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.ColorPicker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ColorPicker.DropDownWidth = 200;
+            this.ColorPicker.Location = new System.Drawing.Point(87, 302);
+            this.ColorPicker.Name = "ColorPicker";
+            this.ColorPicker.SelectedColor = System.Drawing.Color.Empty;
+            this.ColorPicker.Size = new System.Drawing.Size(100, 22);
+            this.ColorPicker.TabIndex = 5;
+            this.ColorPicker.ColorPickerSelectedColorChanged += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorPicker_ColorPickerSelectedColorChanged);
             // 
             // GridWidthLabel
             // 
@@ -513,6 +528,7 @@
         private System.Windows.Forms.Button StrawToolButton;
         private System.Windows.Forms.Button FillToolButton;
         private Controls.PixelPainter PixelPainter;
+        private Controls.ColorPickerComboBox ColorPicker;
     }
 }
 

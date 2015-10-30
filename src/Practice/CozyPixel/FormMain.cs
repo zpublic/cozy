@@ -249,5 +249,10 @@ namespace CozyPixel
                 CurrPixelTool = new PixelFill(this);
             }
         }
+
+        private void ColorPicker_ColorPickerSelectedColorChanged(object sender, ColorEventAgs e)
+        {
+            ColorSelectCallback(e.SelectedColor);
+        }
     }
 }
