@@ -9,10 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CozyPixel.Tools;
+using MetroFramework.Forms;
 
 namespace CozyPixel.Forms
 {
-    public partial class ColorSelectForm : Form
+    public partial class ColorSelectForm : MetroForm
     {
         private Action<Color> ColorCallback { get; set; }
 

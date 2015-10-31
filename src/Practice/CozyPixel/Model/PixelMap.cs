@@ -17,6 +17,10 @@ namespace CozyPixel.Model
 
         public int PixelWidth { get; set; } = 8;
 
+        public int Width { get { return data != null ? data.Width : 0; } }
+
+        public int Height { get { return data != null ? data.Height : 0; } }
+
         public Color GridColor { get; set; } = Color.Black;
 
         public void Resize(int width, int height)
@@ -32,6 +36,11 @@ namespace CozyPixel.Model
         public Color GetPixel(int x, int y)
         {
             return data.GetPixel(x, y);
+        }
+
+        public void Save(string filename)
+        {
+            data.Save(filename);
         }
     }
 }

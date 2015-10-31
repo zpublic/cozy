@@ -12,10 +12,11 @@ using CozyPixel.Forms;
 using System.IO;
 using CozyColor.Core.Color;
 using CozyPixel.Tools;
+using MetroFramework.Forms;
 
 namespace CozyPixel
 {
-    public partial class CozyPixelForm : Form, IPixelColor
+    public partial class CozyPixelForm : MetroForm, IPixelColor
     {
         public bool IsModified { get; set; }
 
@@ -183,7 +184,7 @@ namespace CozyPixel
             }
         }
 
-        private void PictureBox_MouseDown(object sender, MouseEventArgs e)
+        private void PixelPainter_MouseDown(object sender, MouseEventArgs e)
         {
             if(e.Button == MouseButtons.Left)
             {
@@ -248,6 +249,11 @@ namespace CozyPixel
             {
                 CurrPixelTool = new PixelFill(this);
             }
+        }
+
+        private void ColorPicker_ColorPickerSelectedColorChanged(object sender, ColorEventAgs e)
+        {
+            ColorSelectCallback(e.SelectedColor);
         }
     }
 }

@@ -23,24 +23,33 @@ namespace CozyPixel.Tools
         public void Begin(IPixelDrawable paint, Point p)
         {
             Target                  = paint;
-            ColorHolder.CurrColor   = Target.ReadPixel(p);
+            var c                   = Color.Empty;
+
+            if(Target.TryReadPixel(p, out c))
+            {
+                ColorHolder.CurrColor = c;
+            }
         }
 
         public bool End(Point p)
         {
-            if (Target != null && ColorHolder != null)
+            var c = Color.Empty;
+
+            if (Target != null && ColorHolder != null && Target.TryReadPixel(p, out c))
             {
-                ColorHolder.CurrColor = Target.ReadPixel(p);
-                Target = null;
+                ColorHolder.CurrColor   = c;
+                Target                  = null;
             }
             return true;
         }
 
         public void Move(Point p)
         {
-            if (Target != null && ColorHolder != null)
+            var c = Color.Empty;
+
+            if (Target != null && ColorHolder != null && Target.TryReadPixel(p, out c))
             {
-                ColorHolder.CurrColor = Target.ReadPixel(p);
+                ColorHolder.CurrColor   = c;
             }
         }
     }

@@ -1,18 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CozyPixel.Model;
 using CozyPixel.Draw;
 using CozyPixel.Tools;
+using CozyPixel.Model;
 
 namespace CozyPixel.Controls
 {
-    public class PixelPaintControl : PictureBox, IPixelDrawable
+    public partial class PixelPainter : UserControl, IPixelDrawable
     {
+        public PixelPainter()
+        {
+            InitializeComponent();
+        }
+
+        public Image Image
+        {
+            get
+            {
+                return InnerPicBox == null ? null : InnerPicBox.Image;
+            }
+            set
+            {
+                if (InnerPicBox != null)
+                {
+                    InnerPicBox.Image = value;
+                }
+            }
+        }
+
         private PixelMap sourceImage;
         public PixelMap SourceImage
         {
@@ -33,9 +55,9 @@ namespace CozyPixel.Controls
 
         public void Save(string filename)
         {
-            if(SourceImage != null)
+            if (SourceImage != null)
             {
-                SourceImage.data.Save(filename);
+                SourceImage.Save(filename);
             }
         }
 
@@ -47,15 +69,17 @@ namespace CozyPixel.Controls
 
         public bool DrawLine(Point begin, Point end, Color c)
         {
-            var mapBegin    = ConvertSceneToMap(begin);
-            var mapEnd      = ConvertSceneToMap(end);
+            var mapBegin = ConvertSceneToMap(begin);
+            var mapEnd = ConvertSceneToMap(end);
             return DrawLine(mapBegin, mapEnd, c, ShowGraphics, true);
         }
 
         public bool FakeDrawPixel(Point p, Color c)
         {
+            if (InnerPicBox == null) return false;
+
             var mapp = ConvertSceneToMap(p);
-            using (var g = CreateGraphics())
+            using (var g = InnerPicBox.CreateGraphics())
             {
                 return DrawPixel(p, c, g, false);
             }
@@ -63,9 +87,11 @@ namespace CozyPixel.Controls
 
         public bool FakeDrawLine(Point begin, Point end, Color c)
         {
-            var mapBegin    = ConvertSceneToMap(begin);
-            var mapEnd      = ConvertSceneToMap(end);
-            using (var g = CreateGraphics())
+            if (InnerPicBox == null) return false;
+
+            var mapBegin = ConvertSceneToMap(begin);
+            var mapEnd = ConvertSceneToMap(end);
+            using (var g = InnerPicBox.CreateGraphics())
             {
                 return DrawLine(mapBegin, mapEnd, c, g, false);
             }
@@ -73,20 +99,30 @@ namespace CozyPixel.Controls
 
         public void UpdateDrawable()
         {
-            Refresh();
+            if (InnerPicBox != null)
+            {
+                InnerPicBox.Refresh();
+            }
         }
 
-        public Color ReadPixel(Point p)
+        public bool TryReadPixel(Point p, out Color c)
         {
             var mapp = ConvertSceneToMap(p);
-            return SourceImage.GetPixel(mapp.X, mapp.Y);
+            if (mapp.X >= 0 && mapp.Y >= 0 && mapp.X < SourceImage.Width && mapp.Y < SourceImage.Height)
+            {
+                c = SourceImage.GetPixel(mapp.X, mapp.Y);
+                return true;
+            }
+
+            c = Color.Empty;
+            return false;
         }
 
         public bool Fill(Point p, Color c)
         {
-            var mapp    = ConvertSceneToMap(p);
-            var src     = SourceImage.GetPixel(mapp.X, mapp.Y);
-            if(src == c)
+            var mapp = ConvertSceneToMap(p);
+            var src = SourceImage.GetPixel(mapp.X, mapp.Y);
+            if (src == c)
             {
                 return false;
             }
@@ -96,7 +132,7 @@ namespace CozyPixel.Controls
 
         private int SearchAndFillPixel(Point p, Color src, Color dest)
         {
-            if (p.X < 0 || p.Y < 0 || p.X >= SourceImage.data.Width || p.Y >= SourceImage.data.Height)
+            if (p.X < 0 || p.Y < 0 || p.X >= SourceImage.Width || p.Y >= SourceImage.Height)
             {
                 return 0;
             }
@@ -128,17 +164,15 @@ namespace CozyPixel.Controls
         {
             if (SourceImage != null)
             {
-                var b       = new SolidBrush(c);
-                int x       = p.X;
-                int y       = p.Y;
+                var b = new SolidBrush(c);
 
-                if (x >= 0 && y >= 0 && x < SourceImage.data.Width && y < SourceImage.data.Height)
+                if (p.X >= 0 && p.Y >= 0 && p.X < SourceImage.Width && p.Y < SourceImage.Height)
                 {
-                    if(SaveToMap)
+                    if (SaveToMap)
                     {
-                        SourceImage.SetPixel(x, y, c);
+                        SourceImage.SetPixel(p.X, p.Y, c);
                     }
-                    BitmapGenerate.DrawPixel(SourceImage, g, x, y, c);
+                    BitmapGenerate.DrawPixel(SourceImage, g, p.X, p.Y, c);
                 }
                 return true;
             }
@@ -169,10 +203,10 @@ namespace CozyPixel.Controls
         {
             DrawPixel(end, c, g, SaveToMap);
 
-            int n   = 0;
-            int k   = 0;
-            int dx  = end.X - begin.X;
-            int dy  = end.Y - begin.Y;
+            int n = 0;
+            int k = 0;
+            int dx = end.X - begin.X;
+            int dy = end.Y - begin.Y;
 
             if (Math.Abs(dx) > Math.Abs(dy))
             {
@@ -183,15 +217,15 @@ namespace CozyPixel.Controls
                 n = Math.Abs(dy);
             }
 
-            float xinc  = (float)dx / n;
-            float yinc  = (float)dy / n;
-            float x     = begin.X;
-            float y     = begin.Y;
+            float xinc = (float)dx / n;
+            float yinc = (float)dy / n;
+            float x = begin.X;
+            float y = begin.Y;
 
             bool ret = false;
             for (k = 1; k <= n; k++)
             {
-                if(DrawPixel(new Point((int)(x + 0.5f), (int)(y + 0.5f)), c, g, SaveToMap))
+                if (DrawPixel(new Point((int)(x + 0.5f), (int)(y + 0.5f)), c, g, SaveToMap))
                 {
                     ret = true;
                 }
@@ -204,10 +238,10 @@ namespace CozyPixel.Controls
 
         public void RefreshGrid()
         {
-            if (SourceImage != null && SourceImage.ShowGrid)
+            if (SourceImage != null && InnerPicBox != null && SourceImage.ShowGrid)
             {
                 BitmapGenerate.DrawGrid(SourceImage, ShowGraphics);
-                Invalidate();
+                InnerPicBox.Invalidate();
             }
         }
 
@@ -226,7 +260,40 @@ namespace CozyPixel.Controls
                 Image = BitmapGenerate.Draw(SourceImage);
                 ShowGraphics = Graphics.FromImage(Image);
             }
-            Invalidate();
+
+            if (InnerPicBox != null)
+            {
+                InnerPicBox.Invalidate();
+            }
+        }
+
+        private void InnerPicBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            OnMouseDown(e);
+        }
+
+        private void InnerPicBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            OnMouseMove(e);
+        }
+
+        private void InnerPicBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            OnMouseUp(e);
+        }
+
+        private void InnerPicBox_SizeChanged(object sender, EventArgs e)
+        {
+            var new_loc = InnerPicBox.Location;
+            if (InnerPicBox.Width < Width)
+            {
+                new_loc = new Point((Width - InnerPicBox.Width) / 2, new_loc.Y);
+            }
+            if (InnerPicBox.Height < Height)
+            {
+                new_loc = new Point(new_loc.X, (Height - InnerPicBox.Height) / 2);
+            }
+            InnerPicBox.Location = new_loc;
         }
     }
 }

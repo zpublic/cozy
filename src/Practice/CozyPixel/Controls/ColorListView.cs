@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CozyPixel.Controls.ControlEventArgs;
+using MetroFramework.Controls;
 
 namespace CozyPixel.Controls
 {
     public class ColorListView : FlowLayoutPanel
     {
-        private Dictionary<Color, Button> ColorButtonMap { get; set; } = new Dictionary<Color, Button>();
+        private Dictionary<Color, MetroButton> ColorButtonMap { get; set; } = new Dictionary<Color, MetroButton>();
 
         public Padding ColorItemMargin { get; set; } = new Padding(3, 0, 3, 0);
 
@@ -60,7 +61,7 @@ namespace CozyPixel.Controls
         {
             if(!ColorButtonMap.ContainsKey(c))
             {
-                var bt = new Button();
+                var bt = new MetroButton();
                 SetButtonInfo(bt, c);
                 ColorButtonMap[c] = bt;
                 this.Controls.Add(bt);
@@ -97,14 +98,14 @@ namespace CozyPixel.Controls
             }
         }
 
-        private void SetButtonInfo(Button bt, Color c)
+        private void SetButtonInfo(MetroButton bt, Color c)
         {
+            bt.UseCustomForeColor = true;
+            bt.UseCustomBackColor           = true;
             bt.Size                         = ColorItemSize;
             bt.Margin                       = ColorItemMargin;
+            bt.ForeColor                    = c;
             bt.BackColor                    = c;
-            bt.FlatStyle                    = FlatStyle.Flat;
-            bt.FlatAppearance.BorderSize    = 0;
-            bt.Cursor                       = Cursors.Hand;
             bt.Click                        += OnColorButtonClick;
         }
 
@@ -115,7 +116,7 @@ namespace CozyPixel.Controls
                 SelectedButton.FlatAppearance.BorderSize = 0;
             }
 
-            var bt                                      = (Button)sender;
+            var bt                                      = (MetroButton)sender;
             SelectedColor                               = bt.BackColor;
         }
     }

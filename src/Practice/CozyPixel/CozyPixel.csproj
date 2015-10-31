@@ -33,8 +33,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MetroFramework, Version=1.3.5.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\MetroModernUI.1.3.5.0\lib\net45\MetroFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.3.5.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\MetroModernUI.1.3.5.0\lib\net45\MetroFramework.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.3.5.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\MetroModernUI.1.3.5.0\lib\net45\MetroFramework.Fonts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,16 +63,19 @@
     <Compile Include="Controls\ColorListView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\ColorPickerComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\ControlEventArgs\ColorEventAgs.cs" />
     <Compile Include="Controls\ImageListView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Other\OstwaldColor.cs" />
-    <Compile Include="Controls\PixelPaintControl.cs">
-      <SubType>Component</SubType>
+    <Compile Include="Controls\PixelPainter.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\VerticalTabControl.cs">
-      <SubType>Component</SubType>
+    <Compile Include="Controls\PixelPainter.Designer.cs">
+      <DependentUpon>PixelPainter.cs</DependentUpon>
     </Compile>
     <Compile Include="CozyPixelHelper.cs" />
     <Compile Include="Draw\BitmapGenerate.cs" />
@@ -104,11 +120,14 @@
     <Compile Include="Tools\PixelLine.cs" />
     <Compile Include="Tools\PixelPencil.cs" />
     <Compile Include="Tools\PixelStraw.cs" />
+    <EmbeddedResource Include="Controls\ColorPickerComboBox.resx">
+      <DependentUpon>ColorPickerComboBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ImageListView.resx">
       <DependentUpon>ImageListView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\PixelPaintControl.resx">
-      <DependentUpon>PixelPaintControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\PixelPainter.resx">
+      <DependentUpon>PixelPainter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -134,6 +153,7 @@
     <Compile Include="FormMain.Operat.cs">
       <SubType>Form</SubType>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

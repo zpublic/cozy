@@ -42,7 +42,7 @@ namespace CozyPixel
 
         private bool ShowSaveDialog()
         {
-            var r = MessageBox.Show("是否保存", "", MessageBoxButtons.YesNoCancel);
+            var r = MetroFramework.MetroMessageBox.Show(this, "是否保存", "", MessageBoxButtons.YesNoCancel);
             if (r == DialogResult.Yes)
             {
                 if (!SaveFile())
@@ -63,6 +63,7 @@ namespace CozyPixel
             foreach (var c in list)
             {
                 ColorList.AddColor(c);
+                ColorPicker.AddColor("Color", c);
             }
         }
 

@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 
 namespace CozyPixel.Forms
 {
-    public partial class CreateNewForm : Form
+    public partial class CreateNewForm : MetroForm
     {
         private Action<int, int> CreateCallback { get; set; }
 
