@@ -100,6 +100,9 @@
     <None Include="Content\less\variables.less" />
     <None Include="packages.config" />
     <None Include="wwwroot\bower.json" />
+    <None Include="wwwroot\bower_components\requirejs\.bower.json" />
+    <None Include="wwwroot\bower_components\requirejs\bower.json" />
+    <None Include="wwwroot\bower_components\requirejs\README.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Test.md">
@@ -208,6 +211,7 @@
     <Content Include="Content\js\jquery.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="wwwroot\bower_components\requirejs\require.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CozyMarkdown.Data\CozyMarkdown.Data.csproj">
