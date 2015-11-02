@@ -84,6 +84,7 @@
     <Compile Include="Draw\BitmapGenerate.cs" />
     <Compile Include="Draw\GenericDraw.cs" />
     <Compile Include="FormMain.Callback.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.cs">
@@ -93,6 +94,11 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.Helper.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Operat.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AboutForm.cs">
@@ -154,9 +160,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="FormMain.Operat.cs">
-      <SubType>Form</SubType>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
