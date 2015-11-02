@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CozyPixel.Draw;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -25,14 +26,20 @@ namespace CozyPixel.Tools
         public void Begin(IPixelDrawable paint, Point p)
         {
             Target      = paint;
-            BeginPoint  = p;
+            BeginPoint  = Target.ConvertSceneToMap(p); 
         }
 
         public bool End(Point p)
         {
-            if(Target != null && ColorHolder != null && p == BeginPoint)
+            var mapp = Target.ConvertSceneToMap(p);
+
+            if (Target != null && ColorHolder != null && mapp == BeginPoint)
             {
-                Target.Fill(p, ColorHolder.CurrColor);
+                var nps = GenericDraw.GetPointsWithSameColor(Target, mapp, Target.ReadPixel(mapp));
+                foreach(var np in nps)
+                {
+                    Target.DrawPixel(np, ColorHolder.CurrColor);
+                }
                 Target.UpdateDrawable();
             }
             return false;

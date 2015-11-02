@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyPixel.Tools;
+using CozyPixel.Draw;
 
 namespace CozyPixel
 {
@@ -24,19 +25,25 @@ namespace CozyPixel
         {
             if (DrawPoints.Count > 0)
             {
-                bool IsModified = false;
-                Target.DrawPixel(DrawPoints[0], c);
+                HashSet<Point> NeetDraw = new HashSet<Point>() { DrawPoints[0] };
 
                 for (int i = 1; i < DrawPoints.Count; ++i)
                 {
-                    if (Target.DrawLine(DrawPoints[i - 1], DrawPoints[i], c))
+                    var ps = GenericDraw.Line(DrawPoints[i - 1], DrawPoints[i]);
+                    foreach(var p in ps)
                     {
-                        IsModified = true;
+                        NeetDraw.Add(p);
                     }
                 }
+
+                foreach(var p in NeetDraw)
+                {
+                    Target.DrawPixel(p, c);
+                }
+
                 DrawPoints.Clear();
                 Target.UpdateDrawable();
-                return IsModified;
+                return true;
             }
             return false;
         }

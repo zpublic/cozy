@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CozyPixel.Draw;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -23,20 +24,20 @@ namespace CozyPixel.Tools
 
         public void Begin(IPixelDrawable paint, Point p)
         {
-            DrawPoints.Add(p);
             Target      = paint;
+            var mapp    = Target.ConvertSceneToMap(p);
             EraseColor  = Target.DefaultDrawColor;
-            LastPoint   = p;
+            LastPoint   = mapp;
+            DrawPoints.Add(mapp);
         }
 
         public bool End(Point p)
         {
             if (Target != null)
             {
-                DrawPoints.Add(p);
-                Target.FakeDrawLine(LastPoint, p, EraseColor);
-
-                LastPoint   = p;
+                var mapp = Target.ConvertSceneToMap(p);
+                DrawPoints.Add(mapp);
+                LastPoint   = mapp;
                 var ret     = CozyPixelHelper.SavePointsToMap(DrawPoints, Target, EraseColor);
                 Target      = null;
                 return ret;
@@ -48,9 +49,14 @@ namespace CozyPixel.Tools
         {
             if (Target != null)
             {
-                DrawPoints.Add(p);
-                Target.FakeDrawLine(LastPoint, p, EraseColor);
-                LastPoint = p;
+                var mapp = Target.ConvertSceneToMap(p);
+                DrawPoints.Add(mapp);
+                var nps = GenericDraw.Line(LastPoint, mapp);
+                foreach (var np in nps)
+                {
+                    Target.FakeDrawPixel(np, EraseColor);
+                }
+                LastPoint = mapp;
             }
         }
     }

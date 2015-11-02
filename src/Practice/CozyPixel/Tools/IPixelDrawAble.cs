@@ -9,6 +9,10 @@ namespace CozyPixel.Tools
 {
     public interface IPixelDrawable
     {
+        int PixelWidth { get; }
+
+        int PixelHeight { get; }
+
         /// <summary>
         /// 默认绘制颜色
         /// </summary>
@@ -31,34 +35,9 @@ namespace CozyPixel.Tools
         bool FakeDrawPixel(Point p, Color c);
 
         /// <summary>
-        /// 画线到像素块
-        /// </summary>
-        /// <param name="start">线条起点</param>
-        /// <param name="end">线条终点</param>
-        /// <param name="c">线条颜色</param>
-        /// <returns>成功返回true</returns>
-        bool DrawLine(Point start, Point end, Color c);
-
-        /// <summary>
-        /// 画线到屏幕 不保存到像素块
-        /// </summary>
-        /// <param name="start">线条起点</param>
-        /// <param name="end">线条终点</param>
-        /// <param name="c">绘制颜色</param>
-        /// <returns>成功返回true</returns>
-        bool FakeDrawLine(Point start, Point end, Color c);
-
-        /// <summary>
         /// 刷新 没有保存到像素块的图像
         /// </summary>
         void UpdateDrawable();
-
-        /// <summary>
-        /// 以给定点为中心填充
-        /// </summary>
-        /// <param name="p"></param>
-        /// <returns></returns>
-        bool Fill(Point p, Color c);
 
         /// <summary>
         /// 尝试读取坐标颜色
@@ -66,6 +45,9 @@ namespace CozyPixel.Tools
         /// <param name="p"></param>
         /// <param name="c"></param>
         /// <returns>失败返回false</returns>
-        bool TryReadPixel(Point p, out Color c);
+        Color ReadPixel(Point p);
+
+        Point ConvertMapToScene(Point p);
+        Point ConvertSceneToMap(Point p);
     }
 }

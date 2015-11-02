@@ -79,6 +79,7 @@
     </Compile>
     <Compile Include="CozyPixelHelper.cs" />
     <Compile Include="Draw\BitmapGenerate.cs" />
+    <Compile Include="Draw\GenericDraw.cs" />
     <Compile Include="FormMain.Callback.cs">
       <SubType>Form</SubType>
     </Compile>

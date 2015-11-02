@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CozyPixel.Draw;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -25,15 +26,22 @@ namespace CozyPixel.Tools
         public void Begin(IPixelDrawable paint, Point p)
         {
             Target      = paint;
-            BeginPoint  = p;
+            var mapp    = Target.ConvertSceneToMap(p);
+            BeginPoint  = mapp;
         }
 
         public void Move(Point p)
         {
             if(Target != null && ColorHolder != null)
             {
+                var mapp = Target.ConvertSceneToMap(p);
+
                 Target.UpdateDrawable();
-                Target.FakeDrawLine(BeginPoint, p, ColorHolder.CurrColor);
+                var nps = GenericDraw.Line(BeginPoint, mapp);
+                foreach(var np in nps)
+                {
+                    Target.FakeDrawPixel(np, ColorHolder.CurrColor);
+                }
             }
         }
 
@@ -41,12 +49,16 @@ namespace CozyPixel.Tools
         {
             if (Target != null && ColorHolder != null)
             {
-                Target.FakeDrawLine(BeginPoint, p, ColorHolder.CurrColor);
+                var mapp = Target.ConvertSceneToMap(p);
 
-                bool ret = Target.DrawLine(BeginPoint, p, ColorHolder.CurrColor);
+                var nps = GenericDraw.Line(BeginPoint, mapp);
+                foreach (var np in nps)
+                {
+                    Target.DrawPixel(np, ColorHolder.CurrColor);
+                }
                 Target.UpdateDrawable();
                 Target = null;
-                return ret;
+                return true;
             }
             return false;
         }
