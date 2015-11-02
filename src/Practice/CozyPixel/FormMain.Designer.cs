@@ -530,7 +530,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CozyPixelForm";
-            this.Text = "CozyPixel 0.65";
+            this.Text = "CozyPixel 0.75";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();
