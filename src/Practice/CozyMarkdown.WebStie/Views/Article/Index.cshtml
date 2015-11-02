@@ -1,4 +1,5 @@
-﻿@{
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase
+@{
     Layout = "Layout.cshtml";
 }
 <header class="intro-header animated bounceInLeft" style="background-image: url('/Content/img/post-bg.jpg')">
@@ -14,6 +15,9 @@
         </div>
     </div>
 </header>
+
+
+
 <!-- Post Content -->
 <article>
     <div class="container animated zoomIn">
