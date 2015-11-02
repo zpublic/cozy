@@ -145,16 +145,15 @@ namespace CozyPixel
             RefreshThumb();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void GenerateButton_Click(object sender, EventArgs e)
         {
-            var arr     = DradientColor.Generate(RandomColor.Generate(), RandomColor.Generate(), 10);
-            Bitmap b    = new Bitmap(500, 80);
-            var g       = Graphics.FromImage(b);
-            for (int i = 0; i < 10; ++i)
+            var arr     = DradientColor.Generate(RandomColor.Generate(), RandomColor.Generate(), 24);
+            CozyColorListView.Clear();
+
+            foreach(var c in arr)
             {
-                g.FillRectangle(new SolidBrush(arr[i]), i * 50, 0, i * 50 + 50, 80);
+                CozyColorListView.AddColor(c);
             }
-            pictureBox1.Image = b;
         }
 
         private void ColorList_ColorSelectedEventHandler(object sender, ColorEventAgs e)

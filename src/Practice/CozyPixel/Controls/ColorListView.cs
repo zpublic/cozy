@@ -56,6 +56,19 @@ namespace CozyPixel.Controls
         public event EventHandler<ColorEventAgs> ColorSelectedEventHandler;
         public event EventHandler<ColorEventAgs> ColorAddEventHandler;
         public event EventHandler<ColorEventAgs> ColorRemoveEventHandler;
+        public event EventHandler ColorClearEventHandler;
+
+        public void Clear()
+        {
+            ColorButtonMap.Clear();
+            Controls.Clear();
+            SelectedColor = Color.Empty;
+
+            if (ColorClearEventHandler != null)
+            {
+                ColorClearEventHandler(this, new EventArgs());
+            }
+        }
 
         public void AddColor(Color c)
         {
