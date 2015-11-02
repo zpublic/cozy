@@ -13,6 +13,7 @@ using System.IO;
 using CozyColor.Core.Color;
 using CozyPixel.Tools;
 using MetroFramework.Forms;
+using CozyPixel.Command;
 
 namespace CozyPixel
 {
@@ -24,7 +25,7 @@ namespace CozyPixel
 
         public string SelectedImagePath { get; set; } = string.Empty;
 
-        public IPixelTool CurrPixelTool { get; set; }
+        public PixelToolBase CurrPixelTool { get; set; }
 
         public Color CurrColor
         {
@@ -144,16 +145,15 @@ namespace CozyPixel
             RefreshThumb();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void GenerateButton_Click(object sender, EventArgs e)
         {
-            var arr     = DradientColor.Generate(RandomColor.Generate(), RandomColor.Generate(), 10);
-            Bitmap b    = new Bitmap(500, 80);
-            var g       = Graphics.FromImage(b);
-            for (int i = 0; i < 10; ++i)
+            var arr     = DradientColor.Generate(RandomColor.Generate(), RandomColor.Generate(), 24);
+            CozyColorListView.Clear();
+
+            foreach(var c in arr)
             {
-                g.FillRectangle(new SolidBrush(arr[i]), i * 50, 0, i * 50 + 50, 80);
+                CozyColorListView.AddColor(c);
             }
-            pictureBox1.Image = b;
         }
 
         private void ColorList_ColorSelectedEventHandler(object sender, ColorEventAgs e)
@@ -254,6 +254,18 @@ namespace CozyPixel
         private void ColorPicker_ColorPickerSelectedColorChanged(object sender, ColorEventAgs e)
         {
             ColorSelectCallback(e.SelectedColor);
+        }
+
+        private void CancleMenuItem_Click(object sender, EventArgs e)
+        {
+            CommandManager.Instance.Undo();
+            PixelPainter.UpdateDrawable();
+        }
+
+        private void ResumeMenuItem_Click(object sender, EventArgs e)
+        {
+            CommandManager.Instance.Redo();
+            PixelPainter.UpdateDrawable();
         }
     }
 }

@@ -60,6 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\CommandManager.cs" />
+    <Compile Include="Command\DrawPixelCommand.cs" />
+    <Compile Include="Command\IPixelCommand.cs" />
     <Compile Include="Controls\ColorListView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -79,7 +82,9 @@
     </Compile>
     <Compile Include="CozyPixelHelper.cs" />
     <Compile Include="Draw\BitmapGenerate.cs" />
+    <Compile Include="Draw\GenericDraw.cs" />
     <Compile Include="FormMain.Callback.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.cs">
@@ -89,6 +94,11 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.Helper.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Operat.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AboutForm.cs">
@@ -113,8 +123,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\IPixelColor.cs" />
-    <Compile Include="Tools\IPixelDrawable.cs" />
-    <Compile Include="Tools\IPixelTool.cs" />
+    <Compile Include="Draw\IPixelDrawable.cs" />
+    <Compile Include="Tools\PixelToolBase.cs" />
+    <Compile Include="Draw\IPixelGridDrawable.cs" />
     <Compile Include="Tools\PixelEraser.cs" />
     <Compile Include="Tools\PixelFill.cs" />
     <Compile Include="Tools\PixelLine.cs" />
@@ -149,9 +160,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="FormMain.Operat.cs">
-      <SubType>Form</SubType>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

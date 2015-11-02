@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CozyPixel.Command;
+using CozyPixel.Draw;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,40 +9,35 @@ using System.Threading.Tasks;
 
 namespace CozyPixel.Tools
 {
-    public class PixelFill : IPixelTool
+    public class PixelFill : PixelToolBase
     {
-        public IPixelColor ColorHolder { get; set; }
-
-        public bool WillModify { get { return true; } }
-
-        private Point BeginPoint { get; set; }
-
-        private IPixelDrawable Target { get; set; }
+        public override bool WillModify { get { return true; } }
 
         public PixelFill(IPixelColor holder)
         {
             ColorHolder = holder;
         }
 
-        public void Begin(IPixelDrawable paint, Point p)
+        protected override bool OnEnd(Point p)
         {
-            Target      = paint;
-            BeginPoint  = p;
-        }
+            base.OnEnd(p);
 
-        public bool End(Point p)
-        {
-            if(Target != null && ColorHolder != null && p == BeginPoint)
+            if (Target != null && ColorHolder != null)
             {
-                Target.Fill(p, ColorHolder.CurrColor);
+                var mapp = p.ToMap(Target.GridWidth);
+
+                var command = new DrawPixelCommand()
+                {
+                    Color   = ColorHolder.CurrColor,
+                    Points  = GenericDraw.GetPointsWithSameColor(Target, mapp, Target.ReadPixel(mapp)),
+                    Target  = Target,
+                };
+                CommandManager.Instance.Do(command);
+
                 Target.UpdateDrawable();
+                return true;
             }
             return false;
-        }
-
-        public void Move(Point p)
-        {
-
         }
     }
 }

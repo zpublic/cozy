@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyPixel.Tools;
+using CozyPixel.Draw;
 
 namespace CozyPixel
 {
@@ -20,25 +21,45 @@ namespace CozyPixel
             return res;
         }
 
-        public static bool SavePointsToMap(List<Point> DrawPoints, IPixelDrawable Target, Color c)
+        public static IEnumerable<Point> GetAllPoint(List<Point> DrawPoints)
         {
+            HashSet<Point> NeetDraw = new HashSet<Point>();
+
             if (DrawPoints.Count > 0)
             {
-                bool IsModified = false;
-                Target.DrawPixel(DrawPoints[0], c);
+                NeetDraw.Add(DrawPoints[0]);
 
                 for (int i = 1; i < DrawPoints.Count; ++i)
                 {
-                    if (Target.DrawLine(DrawPoints[i - 1], DrawPoints[i], c))
+                    var ps = GenericDraw.Line(DrawPoints[i - 1], DrawPoints[i]);
+                    foreach(var p in ps)
                     {
-                        IsModified = true;
+                        NeetDraw.Add(p);
                     }
                 }
-                DrawPoints.Clear();
-                Target.UpdateDrawable();
-                return IsModified;
             }
-            return false;
+            return NeetDraw;
+        }
+
+        public static Point ToMap(this Point p, int w)
+        {
+            return new Point(p.X / w, p.Y / w);
+        }
+
+        public static Point ToScreen(this Point p, int w)
+        {
+            return new Point(p.X * w, p.Y * w);
+        }
+
+        public static void FakeDrawPixel(this IPixelGridDrawable target, IEnumerable<Point> points, Color c)
+        {
+            if(target != null && points != null)
+            {
+                foreach(var obj in points)
+                {
+                    target.FakeDrawPixel(obj, c);
+                }
+            }
         }
     }
 }

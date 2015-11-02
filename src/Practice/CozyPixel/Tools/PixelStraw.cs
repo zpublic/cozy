@@ -4,52 +4,43 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CozyPixel.Draw;
 
 namespace CozyPixel.Tools
 {
-    public class PixelStraw : IPixelTool
+    public class PixelStraw : PixelToolBase
     {
-        public IPixelColor ColorHolder { get; set; }
-
-        public bool WillModify { get { return false; } }
-
-        private IPixelDrawable Target { get; set; }
+        public override bool WillModify { get { return false; } }
 
         public PixelStraw(IPixelColor holder)
         {
             ColorHolder = holder;
         }
 
-        public void Begin(IPixelDrawable paint, Point p)
+        protected override void OnBegin(Point p)
         {
-            Target                  = paint;
-            var c                   = Color.Empty;
-
-            if(Target.TryReadPixel(p, out c))
-            {
-                ColorHolder.CurrColor = c;
-            }
+            base.OnBegin(p);
+            ReadColor(p);
         }
 
-        public bool End(Point p)
+        protected override bool OnEnd(Point p)
         {
-            var c = Color.Empty;
-
-            if (Target != null && ColorHolder != null && Target.TryReadPixel(p, out c))
-            {
-                ColorHolder.CurrColor   = c;
-                Target                  = null;
-            }
+            base.OnEnd(p);
+            ReadColor(p);
             return true;
         }
 
-        public void Move(Point p)
+        protected override void OnMove(Point p)
         {
-            var c = Color.Empty;
+            base.OnMove(p);
+            ReadColor(p);
+        }
 
-            if (Target != null && ColorHolder != null && Target.TryReadPixel(p, out c))
+        private void ReadColor(Point p)
+        {
+            if (Target != null && ColorHolder != null)
             {
-                ColorHolder.CurrColor   = c;
+                ColorHolder.CurrColor = Target.ReadPixel(p.ToMap(Target.GridWidth));
             }
         }
     }

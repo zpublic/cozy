@@ -35,6 +35,9 @@
             this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CancleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ResumeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectedColorButton = new MetroFramework.Controls.MetroButton();
@@ -42,8 +45,8 @@
             this.ColorPage = new MetroFramework.Controls.MetroTabPage();
             this.ColorList = new CozyPixel.Controls.ColorListView();
             this.CozyColorPage = new MetroFramework.Controls.MetroTabPage();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new MetroFramework.Controls.MetroButton();
+            this.CozyColorListView = new CozyPixel.Controls.ColorListView();
+            this.GenerateButton = new MetroFramework.Controls.MetroButton();
             this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.CurrPathStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainLeftTab = new MetroFramework.Controls.MetroTabControl();
@@ -69,7 +72,6 @@
             this.MainTopTab.SuspendLayout();
             this.ColorPage.SuspendLayout();
             this.CozyColorPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.MainStatusStrip.SuspendLayout();
             this.MainLeftTab.SuspendLayout();
             this.SelectToolPage.SuspendLayout();
@@ -81,6 +83,7 @@
             // 
             this.MainStripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileMenuItem,
+            this.EditMenuItem,
             this.HelpMenuItem});
             this.MainStripMenu.Location = new System.Drawing.Point(20, 60);
             this.MainStripMenu.Name = "MainStripMenu";
@@ -96,49 +99,79 @@
             this.SaveMenuItem,
             this.ExitMenuItem});
             this.FileMenuItem.Name = "FileMenuItem";
-            this.FileMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.FileMenuItem.Text = "文件";
+            this.FileMenuItem.Size = new System.Drawing.Size(58, 21);
+            this.FileMenuItem.Text = "文件(&F)";
             // 
             // CreateMenuItem
             // 
             this.CreateMenuItem.Name = "CreateMenuItem";
-            this.CreateMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.CreateMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.CreateMenuItem.Size = new System.Drawing.Size(147, 22);
             this.CreateMenuItem.Text = "新建";
             this.CreateMenuItem.Click += new System.EventHandler(this.CreateMenuItem_Click);
             // 
             // OpenMenuItem
             // 
             this.OpenMenuItem.Name = "OpenMenuItem";
-            this.OpenMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.OpenMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.OpenMenuItem.Size = new System.Drawing.Size(147, 22);
             this.OpenMenuItem.Text = "打开";
             this.OpenMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
             // 
             // SaveMenuItem
             // 
             this.SaveMenuItem.Name = "SaveMenuItem";
-            this.SaveMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.SaveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.SaveMenuItem.Size = new System.Drawing.Size(147, 22);
             this.SaveMenuItem.Text = "保存";
             this.SaveMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
             // 
             // ExitMenuItem
             // 
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.ExitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.ExitMenuItem.Size = new System.Drawing.Size(147, 22);
             this.ExitMenuItem.Text = "退出";
             this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
+            // 
+            // EditMenuItem
+            // 
+            this.EditMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CancleMenuItem,
+            this.ResumeMenuItem});
+            this.EditMenuItem.Name = "EditMenuItem";
+            this.EditMenuItem.Size = new System.Drawing.Size(59, 21);
+            this.EditMenuItem.Text = "编辑(&E)";
+            // 
+            // CancleMenuItem
+            // 
+            this.CancleMenuItem.Name = "CancleMenuItem";
+            this.CancleMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.CancleMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.CancleMenuItem.Text = "撤销";
+            this.CancleMenuItem.Click += new System.EventHandler(this.CancleMenuItem_Click);
+            // 
+            // ResumeMenuItem
+            // 
+            this.ResumeMenuItem.Name = "ResumeMenuItem";
+            this.ResumeMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
+            this.ResumeMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.ResumeMenuItem.Text = "恢复";
+            this.ResumeMenuItem.Click += new System.EventHandler(this.ResumeMenuItem_Click);
             // 
             // HelpMenuItem
             // 
             this.HelpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AboutMenuItem});
             this.HelpMenuItem.Name = "HelpMenuItem";
-            this.HelpMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.HelpMenuItem.Text = "帮助";
+            this.HelpMenuItem.Size = new System.Drawing.Size(61, 21);
+            this.HelpMenuItem.Text = "帮助(&H)";
             // 
             // AboutMenuItem
             // 
             this.AboutMenuItem.Name = "AboutMenuItem";
-            this.AboutMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.AboutMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.AboutMenuItem.Size = new System.Drawing.Size(121, 22);
             this.AboutMenuItem.Text = "关于";
             this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
             // 
@@ -157,7 +190,7 @@
             this.MainTopTab.Controls.Add(this.CozyColorPage);
             this.MainTopTab.Location = new System.Drawing.Point(397, 99);
             this.MainTopTab.Name = "MainTopTab";
-            this.MainTopTab.SelectedIndex = 0;
+            this.MainTopTab.SelectedIndex = 1;
             this.MainTopTab.Size = new System.Drawing.Size(720, 140);
             this.MainTopTab.TabIndex = 7;
             this.MainTopTab.UseSelectable = true;
@@ -193,8 +226,8 @@
             // 
             // CozyColorPage
             // 
-            this.CozyColorPage.Controls.Add(this.pictureBox1);
-            this.CozyColorPage.Controls.Add(this.button1);
+            this.CozyColorPage.Controls.Add(this.CozyColorListView);
+            this.CozyColorPage.Controls.Add(this.GenerateButton);
             this.CozyColorPage.HorizontalScrollbarBarColor = true;
             this.CozyColorPage.HorizontalScrollbarHighlightOnWheel = false;
             this.CozyColorPage.HorizontalScrollbarSize = 10;
@@ -208,23 +241,26 @@
             this.CozyColorPage.VerticalScrollbarHighlightOnWheel = false;
             this.CozyColorPage.VerticalScrollbarSize = 10;
             // 
-            // pictureBox1
+            // CozyColorListView
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(108, 17);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(500, 80);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.CozyColorListView.ColorItemMargin = new System.Windows.Forms.Padding(2);
+            this.CozyColorListView.ColorItemSize = new System.Drawing.Size(58, 20);
+            this.CozyColorListView.Location = new System.Drawing.Point(181, 23);
+            this.CozyColorListView.Name = "CozyColorListView";
+            this.CozyColorListView.SelectedColor = System.Drawing.Color.Empty;
+            this.CozyColorListView.Size = new System.Drawing.Size(500, 72);
+            this.CozyColorListView.TabIndex = 2;
+            this.CozyColorListView.ColorSelectedEventHandler += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorList_ColorSelectedEventHandler);
             // 
-            // button1
+            // GenerateButton
             // 
-            this.button1.Location = new System.Drawing.Point(15, 17);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 80);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "生成";
-            this.button1.UseSelectable = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.GenerateButton.Location = new System.Drawing.Point(15, 17);
+            this.GenerateButton.Name = "GenerateButton";
+            this.GenerateButton.Size = new System.Drawing.Size(87, 80);
+            this.GenerateButton.TabIndex = 0;
+            this.GenerateButton.Text = "生成";
+            this.GenerateButton.UseSelectable = true;
+            this.GenerateButton.Click += new System.EventHandler(this.GenerateButton_Click);
             // 
             // MainStatusStrip
             // 
@@ -494,14 +530,13 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CozyPixelForm";
-            this.Text = "CozyPixel 0.6";
+            this.Text = "CozyPixel 0.75";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();
             this.MainTopTab.ResumeLayout(false);
             this.ColorPage.ResumeLayout(false);
             this.CozyColorPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.MainStatusStrip.ResumeLayout(false);
             this.MainStatusStrip.PerformLayout();
             this.MainLeftTab.ResumeLayout(false);
@@ -542,8 +577,7 @@
         private MetroFramework.Controls.MetroButton RefreshThumbListButton;
         private MetroFramework.Controls.MetroTabPage CozyColorPage;
 
-        private MetroFramework.Controls.MetroButton button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private MetroFramework.Controls.MetroButton GenerateButton;
         private MetroFramework.Controls.MetroTabPage SelectToolPage;
         private MetroFramework.Controls.MetroButton PencilToolButton;
         private MetroFramework.Controls.MetroButton LineToolButton;
@@ -554,6 +588,10 @@
         private Controls.PixelPainter PixelPainter;
         private Controls.ColorPickerComboBox ColorPicker;
         private MetroFramework.Controls.MetroLabel ColorLabel;
+        private System.Windows.Forms.ToolStripMenuItem EditMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CancleMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ResumeMenuItem;
+        private Controls.ColorListView CozyColorListView;
     }
 }
 
