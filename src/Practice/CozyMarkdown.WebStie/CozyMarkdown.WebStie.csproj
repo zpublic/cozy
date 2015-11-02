@@ -99,6 +99,7 @@
     <None Include="Content\less\mixins.less" />
     <None Include="Content\less\variables.less" />
     <None Include="packages.config" />
+    <None Include="wwwroot\bower.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Test.md">
