@@ -324,6 +324,10 @@
     <Content Include="Content\js\jquery.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="wwwroot\app.js" />
+    <Content Include="wwwroot\app.loader.js" />
+    <Content Include="wwwroot\app.main.js" />
+    <Content Include="wwwroot\app.routeConfig.js" />
     <Content Include="wwwroot\bower_components\angular-bootstrap\.gitignore" />
     <Content Include="wwwroot\bower_components\angular-bootstrap\index.js" />
     <Content Include="wwwroot\bower_components\angular-bootstrap\ui-bootstrap-csp.css" />
@@ -452,6 +456,8 @@
     <Content Include="wwwroot\bower_components\jquery\src\var\toString.js" />
     <Content Include="wwwroot\bower_components\jquery\src\wrap.js" />
     <Content Include="wwwroot\bower_components\requirejs\require.js" />
+    <Content Include="wwwroot\components\welcomeController.js" />
+    <Content Include="wwwroot\components\welcomeView.html" />
     <Content Include="wwwroot\index.html" />
   </ItemGroup>
   <ItemGroup>
