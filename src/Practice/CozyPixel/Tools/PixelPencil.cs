@@ -10,69 +10,67 @@ using CozyPixel.Command;
 
 namespace CozyPixel.Tools
 {
-    public class PixelPencil : IPixelTool
+    public class PixelPencil : PixelToolBase
     {
-        public bool WillModify { get { return true; } }
-
-        private IPixelDrawable Target { get; set; }
+        public override bool WillModify { get { return true; } }
 
         private Point LastPoint { get; set; }
 
         private List<Point> DrawPoints { get; set; } = new List<Point>();
-
-        public IPixelColor ColorHolder { get; set; }
 
         public PixelPencil(IPixelColor holder)
         {
             ColorHolder = holder;
         }
 
-        public void Begin(IPixelDrawable paint, Point p)
+        protected override void OnBegin(Point p)
         {
-            Target      = paint;
-            var mapp    = Target.ConvertSceneToMap(p);
-            LastPoint   = mapp;
-            DrawPoints.Add(mapp);
+            base.OnBegin(p);
+
+            LastPoint = p.ToMap(Target.GridWidth);
+            DrawPoints.Add(LastPoint);
         }
 
-        public void Move(Point p)
+        protected override void OnMove(Point p)
         {
-            if(Target != null && ColorHolder != null)
+            base.OnMove(p);
+
+            if (Target != null && ColorHolder != null)
             {
-                var mapp = Target.ConvertSceneToMap(p);
-                DrawPoints.Add(mapp);
-                var nps = GenericDraw.Line(LastPoint, mapp);
-                foreach (var np in nps)
-                {
-                    Target.FakeDrawPixel(np, ColorHolder.CurrColor);
-                }
-                LastPoint = mapp;
+                var old_last    = LastPoint;
+                LastPoint       = p.ToMap(Target.GridWidth);
+                DrawPoints.Add(LastPoint);
+
+                Target.FakeDrawPixel(GenericDraw.Line(old_last, LastPoint), ColorHolder.CurrColor);
             }
         }
 
-        public bool End(Point p)
+        protected override bool OnEnd(Point p)
         {
-            var mapp = Target.ConvertSceneToMap(p);
-            if(Target != null && ColorHolder != null)
-            {
-                DrawPoints.Add(mapp);
-                LastPoint   = mapp;
+            base.OnEnd(p);
 
-                var points = CozyPixelHelper.GetAllPoint(DrawPoints);
+            if (Target != null && ColorHolder != null)
+            {
+                DrawPoints.Add(p.ToMap(Target.GridWidth));
+
                 var command = new DrawPixelCommand()
                 {
                     Color   = ColorHolder.CurrColor,
-                    Points  = points,
+                    Points  = CozyPixelHelper.GetAllPoint(DrawPoints),
                     Target  = Target,
                 };
                 CommandManager.Instance.Do(command);
 
-                DrawPoints.Clear();
                 Target.UpdateDrawable();
-                Target      = null;
                 return true;
             }
             return false;
+        }
+
+        protected override void OnExit()
+        {
+            base.OnExit();
+            DrawPoints.Clear();
         }
     }
 }

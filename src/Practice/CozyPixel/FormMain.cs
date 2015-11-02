@@ -25,7 +25,7 @@ namespace CozyPixel
 
         public string SelectedImagePath { get; set; } = string.Empty;
 
-        public IPixelTool CurrPixelTool { get; set; }
+        public PixelToolBase CurrPixelTool { get; set; }
 
         public Color CurrColor
         {

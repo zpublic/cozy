@@ -9,59 +9,49 @@ using System.Threading.Tasks;
 
 namespace CozyPixel.Tools
 {
-    public class PixelLine : IPixelTool
+    public class PixelLine : PixelToolBase
     {
-        public bool WillModify { get { return true; } }
-
-        private IPixelDrawable Target { get; set; }
+        public override bool WillModify { get { return true; } }
 
         private Point BeginPoint { get; set; }
-
-        public IPixelColor ColorHolder { get; set; }
 
         public PixelLine(IPixelColor holder)
         {
             ColorHolder = holder;
         }
 
-        public void Begin(IPixelDrawable paint, Point p)
+        protected override void OnBegin(Point p)
         {
-            Target      = paint;
-            var mapp    = Target.ConvertSceneToMap(p);
-            BeginPoint  = mapp;
+            base.OnBegin(p);
+            BeginPoint = p.ToMap(Target.GridWidth);
         }
 
-        public void Move(Point p)
+        protected override void OnMove(Point p)
         {
+            base.OnMove(p);
+
             if(Target != null && ColorHolder != null)
             {
-                var mapp = Target.ConvertSceneToMap(p);
-
                 Target.UpdateDrawable();
-                var nps = GenericDraw.Line(BeginPoint, mapp);
-                foreach(var np in nps)
-                {
-                    Target.FakeDrawPixel(np, ColorHolder.CurrColor);
-                }
+                Target.FakeDrawPixel(GenericDraw.Line(BeginPoint, p.ToMap(Target.GridWidth)), ColorHolder.CurrColor);
             }
         }
 
-        public bool End(Point p)
+        protected override bool OnEnd(Point p)
         {
-            var mapp = Target.ConvertSceneToMap(p);
+            base.OnEnd(p);
+
             if (Target != null && ColorHolder != null)
             {
-                var nps = GenericDraw.Line(BeginPoint, mapp);
                 var command = new DrawPixelCommand()
                 {
                     Color   = ColorHolder.CurrColor,
-                    Points  = nps,
+                    Points  = GenericDraw.Line(BeginPoint, p.ToMap(Target.GridWidth)),
                     Target  = Target,
                 };
                 CommandManager.Instance.Do(command);
 
                 Target.UpdateDrawable();
-                Target = null;
                 return true;
             }
             return false;

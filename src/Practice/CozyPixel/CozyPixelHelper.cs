@@ -40,5 +40,26 @@ namespace CozyPixel
             }
             return NeetDraw;
         }
+
+        public static Point ToMap(this Point p, int w)
+        {
+            return new Point(p.X / w, p.Y / w);
+        }
+
+        public static Point ToScreen(this Point p, int w)
+        {
+            return new Point(p.X * w, p.Y * w);
+        }
+
+        public static void FakeDrawPixel(this IPixelGridDrawable target, IEnumerable<Point> points, Color c)
+        {
+            if(target != null && points != null)
+            {
+                foreach(var obj in points)
+                {
+                    target.FakeDrawPixel(obj, c);
+                }
+            }
+        }
     }
 }

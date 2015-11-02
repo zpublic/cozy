@@ -12,13 +12,13 @@ namespace CozyPixel.Draw
     {
         public static IEnumerable<Point> Line(Point begin, Point end)
         {
-            var result = new List<Point>();
+            var result = new HashSet<Point>();
             result.Add(end);
 
-            int n = 0;
-            int k = 0;
-            int dx = end.X - begin.X;
-            int dy = end.Y - begin.Y;
+            int n   = 0;
+            int k   = 0;
+            int dx  = end.X - begin.X;
+            int dy  = end.Y - begin.Y;
 
             if (Math.Abs(dx) > Math.Abs(dy))
             {
@@ -29,10 +29,10 @@ namespace CozyPixel.Draw
                 n = Math.Abs(dy);
             }
 
-            float xinc = (float)dx / n;
-            float yinc = (float)dy / n;
-            float x = begin.X;
-            float y = begin.Y;
+            float xinc  = (float)dx / n;
+            float yinc  = (float)dy / n;
+            float x     = begin.X;
+            float y     = begin.Y;
 
             for (k = 1; k <= n; k++)
             {
@@ -47,13 +47,13 @@ namespace CozyPixel.Draw
         public static IEnumerable<Point> GetPointsWithSameColor(IPixelDrawable d, Point begin, Color c)
         {
             HashSet<Point> visited = new HashSet<Point>();
-            SearchAndFillPixel(d, begin, c, visited);
+            SearchPointsWithColor(d, begin, c, visited);
             return visited;
         }
 
-        private static int SearchAndFillPixel(IPixelDrawable d, Point p, Color c, HashSet<Point> visited)
+        private static int SearchPointsWithColor(IPixelDrawable d, Point p, Color c, HashSet<Point> visited)
         {
-            if (p.X < 0 || p.Y < 0 || p.X >= d.PixelWidth || p.Y >= d.PixelHeight || d.ReadPixel(p) != c)
+            if (p.X < 0 || p.Y < 0 || p.X >= d.PixelSize.Width || p.Y >= d.PixelSize.Height || d.ReadPixel(p) != c)
             {
                 return 0;
             }
@@ -65,10 +65,10 @@ namespace CozyPixel.Draw
 
             int count = 1;
             visited.Add(p);
-            count += SearchAndFillPixel(d, new Point(p.X, p.Y + 1), c, visited);
-            count += SearchAndFillPixel(d, new Point(p.X, p.Y - 1), c, visited);
-            count += SearchAndFillPixel(d, new Point(p.X + 1, p.Y), c, visited);
-            count += SearchAndFillPixel(d, new Point(p.X - 1, p.Y), c, visited);
+            count += SearchPointsWithColor(d, new Point(p.X, p.Y + 1), c, visited);
+            count += SearchPointsWithColor(d, new Point(p.X, p.Y - 1), c, visited);
+            count += SearchPointsWithColor(d, new Point(p.X + 1, p.Y), c, visited);
+            count += SearchPointsWithColor(d, new Point(p.X - 1, p.Y), c, visited);
             return count;
         }
     }
