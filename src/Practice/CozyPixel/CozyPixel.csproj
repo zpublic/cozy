@@ -60,6 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\CommandManager.cs" />
+    <Compile Include="Command\DrawPixelCommand.cs" />
+    <Compile Include="Command\IPixelCommand.cs" />
     <Compile Include="Controls\ColorListView.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -21,11 +21,13 @@ namespace CozyPixel
             return res;
         }
 
-        public static bool SavePointsToMap(List<Point> DrawPoints, IPixelDrawable Target, Color c)
+        public static IEnumerable<Point> GetAllPoint(List<Point> DrawPoints)
         {
+            HashSet<Point> NeetDraw = new HashSet<Point>();
+
             if (DrawPoints.Count > 0)
             {
-                HashSet<Point> NeetDraw = new HashSet<Point>() { DrawPoints[0] };
+                NeetDraw.Add(DrawPoints[0]);
 
                 for (int i = 1; i < DrawPoints.Count; ++i)
                 {
@@ -35,17 +37,8 @@ namespace CozyPixel
                         NeetDraw.Add(p);
                     }
                 }
-
-                foreach(var p in NeetDraw)
-                {
-                    Target.DrawPixel(p, c);
-                }
-
-                DrawPoints.Clear();
-                Target.UpdateDrawable();
-                return true;
             }
-            return false;
+            return NeetDraw;
         }
     }
 }

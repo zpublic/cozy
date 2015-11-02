@@ -13,6 +13,7 @@ using System.IO;
 using CozyColor.Core.Color;
 using CozyPixel.Tools;
 using MetroFramework.Forms;
+using CozyPixel.Command;
 
 namespace CozyPixel
 {
@@ -254,6 +255,18 @@ namespace CozyPixel
         private void ColorPicker_ColorPickerSelectedColorChanged(object sender, ColorEventAgs e)
         {
             ColorSelectCallback(e.SelectedColor);
+        }
+
+        private void CancleMenuItem_Click(object sender, EventArgs e)
+        {
+            CommandManager.Instance.Undo();
+            PixelPainter.UpdateDrawable();
+        }
+
+        private void ResumeMenuItem_Click(object sender, EventArgs e)
+        {
+            CommandManager.Instance.Redo();
+            PixelPainter.UpdateDrawable();
         }
     }
 }

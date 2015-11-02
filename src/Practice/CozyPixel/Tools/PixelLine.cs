@@ -1,4 +1,5 @@
-﻿using CozyPixel.Draw;
+﻿using CozyPixel.Command;
+using CozyPixel.Draw;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -47,15 +48,18 @@ namespace CozyPixel.Tools
 
         public bool End(Point p)
         {
+            var mapp = Target.ConvertSceneToMap(p);
             if (Target != null && ColorHolder != null)
             {
-                var mapp = Target.ConvertSceneToMap(p);
-
                 var nps = GenericDraw.Line(BeginPoint, mapp);
-                foreach (var np in nps)
+                var command = new DrawPixelCommand()
                 {
-                    Target.DrawPixel(np, ColorHolder.CurrColor);
-                }
+                    Color   = ColorHolder.CurrColor,
+                    Points  = nps,
+                    Target  = Target,
+                };
+                CommandManager.Instance.Do(command);
+
                 Target.UpdateDrawable();
                 Target = null;
                 return true;

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CozyPixel.Command;
 
 namespace CozyPixel.Tools
 {
@@ -35,12 +36,23 @@ namespace CozyPixel.Tools
         {
             if (Target != null)
             {
-                var mapp = Target.ConvertSceneToMap(p);
+                var mapp    = Target.ConvertSceneToMap(p);
                 DrawPoints.Add(mapp);
                 LastPoint   = mapp;
-                var ret     = CozyPixelHelper.SavePointsToMap(DrawPoints, Target, EraseColor);
+
+                var points = CozyPixelHelper.GetAllPoint(DrawPoints);
+                var command = new DrawPixelCommand()
+                {
+                    Color   = EraseColor,
+                    Points  = points,
+                    Target  = Target,
+                };
+                CommandManager.Instance.Do(command);
+
+                DrawPoints.Clear();
+                Target.UpdateDrawable();
                 Target      = null;
-                return ret;
+                return true;
             }
             return false;
         }
