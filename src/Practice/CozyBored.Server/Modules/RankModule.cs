@@ -15,9 +15,10 @@ namespace CozyBored.Server.Modules {
 
             table = DbContent.GetInstance().GetTable<RankModel>();
 
-            Get["query-rank"] = param => {
+            Get["query-rank/{ver}"] = param => {
                 Console.WriteLine("query-rank");
-                var result = table.FindAll()
+                string ver = param.ver;
+                var result = table.Find(x => x.ver == ver)
                     .OrderByDescending(x => x.time).Take(10).ToList();
                 return result;
             };
