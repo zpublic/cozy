@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyPixel.Command;
+using System.Windows.Forms;
 
 namespace CozyPixel.Tools
 {
@@ -13,9 +14,17 @@ namespace CozyPixel.Tools
     {
         public override bool WillModify { get { return true; } }
 
+        public override Keys KeyCode { get { return Keys.E; } }
+
         private Point LastPoint { get; set; }
 
         private List<Point> DrawPoints { get; set; } = new List<Point>();
+
+        public PixelEraser()
+            : base(null)
+        {
+
+        }
 
         protected override void OnBegin(Point p)
         {
@@ -49,9 +58,9 @@ namespace CozyPixel.Tools
 
                 var command = new DrawPixelCommand()
                 {
-                    Color = Target.DefaultDrawColor,
-                    Points = CozyPixelHelper.GetAllPoint(DrawPoints),
-                    Target = Target,
+                    Color   = Target.DefaultDrawColor,
+                    Points  = CozyPixelHelper.GetAllPoint(DrawPoints),
+                    Target  = Target,
                 };
                 CommandManager.Instance.Do(command);
 

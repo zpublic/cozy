@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyPixel.Draw;
+using System.Windows.Forms;
 
 namespace CozyPixel.Tools
 {
@@ -15,7 +16,14 @@ namespace CozyPixel.Tools
 
         public abstract bool WillModify { get; }
 
+        public abstract Keys KeyCode { get; }
+
         protected IPixelGridDrawable Target { get; set; }
+
+        public PixelToolBase(IPixelColor holder)
+        {
+            ColorHolder = holder;
+        }
 
         public void Begin(IPixelGridDrawable paint, Point p)
         {

@@ -7,6 +7,7 @@ using CozyPixel.Controls;
 using System.Drawing;
 using CozyPixel.Draw;
 using CozyPixel.Command;
+using System.Windows.Forms;
 
 namespace CozyPixel.Tools
 {
@@ -14,13 +15,15 @@ namespace CozyPixel.Tools
     {
         public override bool WillModify { get { return true; } }
 
+        public override Keys KeyCode { get { return Keys.P; } }
+
         private Point LastPoint { get; set; }
 
         private List<Point> DrawPoints { get; set; } = new List<Point>();
 
         public PixelPencil(IPixelColor holder)
+            :base(holder)
         {
-            ColorHolder = holder;
         }
 
         protected override void OnBegin(Point p)

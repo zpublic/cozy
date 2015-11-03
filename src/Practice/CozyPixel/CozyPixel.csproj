@@ -131,6 +131,8 @@
     <Compile Include="Tools\PixelLine.cs" />
     <Compile Include="Tools\PixelPencil.cs" />
     <Compile Include="Tools\PixelStraw.cs" />
+    <Compile Include="Tools\PixelToolContainer.cs" />
+    <Compile Include="Tools\ShortcutsContainer.cs" />
     <EmbeddedResource Include="Controls\ColorPickerComboBox.resx">
       <DependentUpon>ColorPickerComboBox.cs</DependentUpon>
     </EmbeddedResource>

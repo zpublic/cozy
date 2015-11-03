@@ -47,9 +47,20 @@ namespace CozyPixel
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            InitTools();
             TestColor();
             RefreshThumb();
+        }
+
+        private void InitTools()
+        {
             CurrPixelTool = new PixelPencil(this);
+
+            PixelToolContainer.Instance.RegisterPixelTool("PixelPencil", CurrPixelTool);
+            PixelToolContainer.Instance.RegisterPixelTool("PixelLine", new PixelLine(this));
+            PixelToolContainer.Instance.RegisterPixelTool("PixelStraw", new PixelStraw(this));
+            PixelToolContainer.Instance.RegisterPixelTool("PixelFill", new PixelFill(this));
+            PixelToolContainer.Instance.RegisterPixelTool("PixelEraser", new PixelEraser());
         }
 
         private void OpenMenuItem_Click(object sender, EventArgs e)
@@ -215,7 +226,11 @@ namespace CozyPixel
         {
             if(CurrPixelTool.GetType() != typeof(PixelPencil))
             {
-                CurrPixelTool = new PixelPencil(this);
+                var tool = PixelToolContainer.Instance.GetPixelTool("PixelPencil");
+                if (tool != null)
+                {
+                    CurrPixelTool = tool;
+                }
             }
         }
 
@@ -223,7 +238,11 @@ namespace CozyPixel
         {
             if (CurrPixelTool.GetType() != typeof(PixelLine))
             {
-                CurrPixelTool = new PixelLine(this);
+                var tool = PixelToolContainer.Instance.GetPixelTool("PixelLine");
+                if (tool != null)
+                {
+                    CurrPixelTool = tool;
+                }
             }
         }
 
@@ -231,7 +250,11 @@ namespace CozyPixel
         {
             if (CurrPixelTool.GetType() != typeof(PixelEraser))
             {
-                CurrPixelTool = new PixelEraser();
+                var tool = PixelToolContainer.Instance.GetPixelTool("PixelEraser");
+                if (tool != null)
+                {
+                    CurrPixelTool = tool;
+                }
             }
         }
 
@@ -239,7 +262,11 @@ namespace CozyPixel
         {
             if (CurrPixelTool.GetType() != typeof(PixelStraw))
             {
-                CurrPixelTool = new PixelStraw(this);
+                var tool = PixelToolContainer.Instance.GetPixelTool("PixelStraw");
+                if (tool != null)
+                {
+                    CurrPixelTool = tool;
+                }
             }
         }
 
@@ -247,7 +274,11 @@ namespace CozyPixel
         {
             if (CurrPixelTool.GetType() != typeof(PixelFill))
             {
-                CurrPixelTool = new PixelFill(this);
+                var tool = PixelToolContainer.Instance.GetPixelTool("PixelFill");
+                if (tool != null)
+                {
+                    CurrPixelTool = tool;
+                }
             }
         }
 
@@ -266,6 +297,15 @@ namespace CozyPixel
         {
             CommandManager.Instance.Redo();
             PixelPainter.UpdateDrawable();
+        }
+
+        private void CozyPixelForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            var tool = PixelToolContainer.Instance.ShortcutsMapping.GetToolByShortcuts(e.KeyCode);
+            if (tool != null)
+            {
+                CurrPixelTool = tool;
+            }
         }
     }
 }
