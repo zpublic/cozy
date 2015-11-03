@@ -25,7 +25,7 @@ namespace CozyBored.Client.Winform
         private void MainTimer_Tick(object sender, EventArgs e)
         {
             var span        = DateTime.Now - BeginTime;
-            TimeLabel.Text  = string.Format("{0:D2}:{1:D2}:{2:D2}", span.Hours, span.Minutes, span.Seconds);
+            TimeLabel.Text  = string.Format("{0:D2}:{1:D2}:{2:D2}:{3:D3}", span.Hours, span.Minutes, span.Seconds, span.Milliseconds);
         }
 
         private void StartButton_MouseDown(object sender, MouseEventArgs e)
