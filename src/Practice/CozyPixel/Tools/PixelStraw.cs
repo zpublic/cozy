@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyPixel.Draw;
+using System.Windows.Forms;
 
 namespace CozyPixel.Tools
 {
@@ -12,9 +13,12 @@ namespace CozyPixel.Tools
     {
         public override bool WillModify { get { return false; } }
 
+        public override Keys KeyCode { get { return Keys.S; } }
+
         public PixelStraw(IPixelColor holder)
+            :base(holder)
         {
-            ColorHolder = holder;
+
         }
 
         protected override void OnBegin(Point p)

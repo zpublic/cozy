@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CozyPixel.Tools
 {
@@ -13,11 +14,14 @@ namespace CozyPixel.Tools
     {
         public override bool WillModify { get { return true; } }
 
+        public override Keys KeyCode { get { return Keys.L; } }
+
         private Point BeginPoint { get; set; }
 
         public PixelLine(IPixelColor holder)
+            :base(holder)
         {
-            ColorHolder = holder;
+
         }
 
         protected override void OnBegin(Point p)

@@ -288,7 +288,7 @@
             this.MainLeftTab.Location = new System.Drawing.Point(23, 95);
             this.MainLeftTab.Multiline = true;
             this.MainLeftTab.Name = "MainLeftTab";
-            this.MainLeftTab.SelectedIndex = 2;
+            this.MainLeftTab.SelectedIndex = 0;
             this.MainLeftTab.Size = new System.Drawing.Size(300, 520);
             this.MainLeftTab.TabIndex = 6;
             this.MainLeftTab.UseSelectable = true;
@@ -317,9 +317,9 @@
             // 
             this.FillToolButton.Location = new System.Drawing.Point(88, 253);
             this.FillToolButton.Name = "FillToolButton";
-            this.FillToolButton.Size = new System.Drawing.Size(75, 23);
+            this.FillToolButton.Size = new System.Drawing.Size(96, 23);
             this.FillToolButton.TabIndex = 4;
-            this.FillToolButton.Text = "填充工具";
+            this.FillToolButton.Text = "填充工具(F)";
             this.FillToolButton.UseSelectable = true;
             this.FillToolButton.Click += new System.EventHandler(this.FillToolButton_Click);
             // 
@@ -327,19 +327,19 @@
             // 
             this.StrawToolButton.Location = new System.Drawing.Point(88, 209);
             this.StrawToolButton.Name = "StrawToolButton";
-            this.StrawToolButton.Size = new System.Drawing.Size(75, 23);
+            this.StrawToolButton.Size = new System.Drawing.Size(96, 23);
             this.StrawToolButton.TabIndex = 3;
-            this.StrawToolButton.Text = "吸取工具";
+            this.StrawToolButton.Text = "吸取工具(S)";
             this.StrawToolButton.UseSelectable = true;
             this.StrawToolButton.Click += new System.EventHandler(this.StrawToolButton_Click);
             // 
             // EarserToolButton
             // 
-            this.EarserToolButton.Location = new System.Drawing.Point(88, 162);
+            this.EarserToolButton.Location = new System.Drawing.Point(88, 164);
             this.EarserToolButton.Name = "EarserToolButton";
-            this.EarserToolButton.Size = new System.Drawing.Size(75, 23);
+            this.EarserToolButton.Size = new System.Drawing.Size(96, 23);
             this.EarserToolButton.TabIndex = 2;
-            this.EarserToolButton.Text = "橡皮擦";
+            this.EarserToolButton.Text = "橡皮擦(E)";
             this.EarserToolButton.UseSelectable = true;
             this.EarserToolButton.Click += new System.EventHandler(this.EarserToolButton_Click);
             // 
@@ -347,9 +347,9 @@
             // 
             this.LineToolButton.Location = new System.Drawing.Point(88, 113);
             this.LineToolButton.Name = "LineToolButton";
-            this.LineToolButton.Size = new System.Drawing.Size(75, 23);
+            this.LineToolButton.Size = new System.Drawing.Size(96, 23);
             this.LineToolButton.TabIndex = 1;
-            this.LineToolButton.Text = "画线";
+            this.LineToolButton.Text = "画线(L)";
             this.LineToolButton.UseSelectable = true;
             this.LineToolButton.Click += new System.EventHandler(this.LineToolButton_Click);
             // 
@@ -357,9 +357,9 @@
             // 
             this.PencilToolButton.Location = new System.Drawing.Point(88, 65);
             this.PencilToolButton.Name = "PencilToolButton";
-            this.PencilToolButton.Size = new System.Drawing.Size(75, 23);
+            this.PencilToolButton.Size = new System.Drawing.Size(96, 23);
             this.PencilToolButton.TabIndex = 0;
-            this.PencilToolButton.Text = "铅笔";
+            this.PencilToolButton.Text = "铅笔(P)";
             this.PencilToolButton.UseSelectable = true;
             this.PencilToolButton.Click += new System.EventHandler(this.PencilToolButton_Click);
             // 
@@ -527,11 +527,13 @@
             this.Controls.Add(this.MainTopTab);
             this.Controls.Add(this.MainLeftTab);
             this.Controls.Add(this.MainStripMenu);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CozyPixelForm";
             this.Text = "CozyPixel 0.75";
             this.Load += new System.EventHandler(this.FormMain_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CozyPixelForm_KeyDown);
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();
             this.MainTopTab.ResumeLayout(false);
