@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CozyBored.Client.Winform.Forms;
+using CozyBored.Client.Core;
 
 namespace CozyBored.Client.Winform
 {
@@ -67,7 +68,7 @@ namespace CozyBored.Client.Winform
 
         private int Query(double time)
         {
-            return 1;
+            return BoredApi.GetRank(time);
         }
     }
 }

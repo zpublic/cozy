@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CozyBored.Client.Core;
+using CozyBored.Client.Core.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -41,7 +43,7 @@ namespace CozyBored.Client.Winform.Forms
 
         private void Save(string name, double mark)
         {
-
+            BoredApi.Save(new BoredModel() { name = name, time = mark });
         }
     }
 }

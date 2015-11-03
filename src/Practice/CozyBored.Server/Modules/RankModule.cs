@@ -28,7 +28,7 @@ namespace CozyBored.Server.Modules
             {
                 Console.WriteLine("get-rank");
                 string ver = param.ver;
-                int atime = param.time;
+                double atime = param.time;
                 var num = table.FindAll().OrderByDescending(x => x.time).Count(x => x.time <= atime) + 1;
                 var result = new { num = num };
                 return result;
