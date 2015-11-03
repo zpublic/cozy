@@ -12,35 +12,35 @@ namespace CozyPixel.Controls.Other
     /// </summary>
     public static class OstwaldColor
     {
-        public static List<Color> GetColor()
+        public static List<Color> GetColor(int alpha = 255)
         {
-            List<Color> list = new List<Color>();
-            list.Add(Color.FromArgb(255, 230, 0, 18));
-            list.Add(Color.FromArgb(255, 235, 97, 0));
-            list.Add(Color.FromArgb(255, 243, 152, 0));
-            list.Add(Color.FromArgb(255, 252, 200, 0));
-            list.Add(Color.FromArgb(255, 255, 251, 0));
-            list.Add(Color.FromArgb(255, 207, 0, 219));
-            list.Add(Color.FromArgb(255, 143, 195, 31));
-            list.Add(Color.FromArgb(255, 34, 172, 56));
-            list.Add(Color.FromArgb(255, 0, 153, 68));
-            list.Add(Color.FromArgb(255, 0, 155, 107));
-            list.Add(Color.FromArgb(255, 0, 158, 150));
-            list.Add(Color.FromArgb(255, 0, 160, 193));
-            list.Add(Color.FromArgb(255, 0, 160, 233));
-            list.Add(Color.FromArgb(255, 0, 134, 209));
-            list.Add(Color.FromArgb(255, 0, 104, 183));
-            list.Add(Color.FromArgb(255, 0, 71, 157));
-            list.Add(Color.FromArgb(255, 29, 32, 136));
-            list.Add(Color.FromArgb(255, 96, 25, 136));
-            list.Add(Color.FromArgb(255, 146, 7, 131));
-            list.Add(Color.FromArgb(255, 190, 0, 129));
-            list.Add(Color.FromArgb(255, 228, 0, 127));
-            list.Add(Color.FromArgb(255, 229, 0, 106));
-            list.Add(Color.FromArgb(255, 229, 0, 79));
-            list.Add(Color.FromArgb(255, 230, 0, 51));
-
-            return list;
+            return new List<Color>()
+            {
+                Color.FromArgb(alpha, 230, 0, 18),
+                Color.FromArgb(alpha, 235, 97, 0),
+                Color.FromArgb(alpha, 243, 152, 0),
+                Color.FromArgb(alpha, 252, 200, 0),
+                Color.FromArgb(alpha, 255, 251, 0),
+                Color.FromArgb(alpha, 207, 0, 219),
+                Color.FromArgb(alpha, 143, 195, 31),
+                Color.FromArgb(alpha, 34, 172, 56),
+                Color.FromArgb(alpha, 0, 153, 68),
+                Color.FromArgb(alpha, 0, 155, 107),
+                Color.FromArgb(alpha, 0, 158, 150),
+                Color.FromArgb(alpha, 0, 160, 193),
+                Color.FromArgb(alpha, 0, 160, 233),
+                Color.FromArgb(alpha, 0, 134, 209),
+                Color.FromArgb(alpha, 0, 104, 183),
+                Color.FromArgb(alpha, 0, 71, 157),
+                Color.FromArgb(alpha, 29, 32, 136),
+                Color.FromArgb(alpha, 96, 25, 136),
+                Color.FromArgb(alpha, 146, 7, 131),
+                Color.FromArgb(alpha, 190, 0, 129),
+                Color.FromArgb(alpha, 228, 0, 127),
+                Color.FromArgb(alpha, 229, 0, 106),
+                Color.FromArgb(alpha, 229, 0, 79),
+                Color.FromArgb(alpha, 230, 0, 51),
+            };
         }
     }
 }

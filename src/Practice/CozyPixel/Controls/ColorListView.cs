@@ -6,13 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CozyPixel.Controls.ControlEventArgs;
-using MetroFramework.Controls;
 
 namespace CozyPixel.Controls
 {
     public class ColorListView : FlowLayoutPanel
     {
-        private Dictionary<Color, MetroButton> ColorButtonMap { get; set; } = new Dictionary<Color, MetroButton>();
+        private Dictionary<Color, Button> ColorButtonMap { get; set; } = new Dictionary<Color, Button>();
 
         public Padding ColorItemMargin { get; set; } = new Padding(3, 0, 3, 0);
 
@@ -74,7 +73,7 @@ namespace CozyPixel.Controls
         {
             if(!ColorButtonMap.ContainsKey(c))
             {
-                var bt = new MetroButton();
+                var bt = new Button();
                 SetButtonInfo(bt, c);
                 ColorButtonMap[c] = bt;
                 this.Controls.Add(bt);
@@ -88,6 +87,14 @@ namespace CozyPixel.Controls
                 {
                     ColorAddEventHandler(this, new ColorEventAgs(c));
                 }
+            }
+        }
+
+        public void AddColor(IEnumerable<Color> colors)
+        {
+            foreach(var c in colors)
+            {
+                AddColor(c);
             }
         }
 
@@ -111,10 +118,10 @@ namespace CozyPixel.Controls
             }
         }
 
-        private void SetButtonInfo(MetroButton bt, Color c)
+        private void SetButtonInfo(Button bt, Color c)
         {
-            bt.UseCustomForeColor = true;
-            bt.UseCustomBackColor           = true;
+            bt.FlatAppearance.BorderSize    = 0;
+            bt.FlatStyle                    = FlatStyle.Flat;
             bt.Size                         = ColorItemSize;
             bt.Margin                       = ColorItemMargin;
             bt.ForeColor                    = c;
@@ -129,8 +136,8 @@ namespace CozyPixel.Controls
                 SelectedButton.FlatAppearance.BorderSize = 0;
             }
 
-            var bt                                      = (MetroButton)sender;
-            SelectedColor                               = bt.BackColor;
+            var bt          = (Button)sender;
+            SelectedColor   = bt.BackColor;
         }
     }
 }

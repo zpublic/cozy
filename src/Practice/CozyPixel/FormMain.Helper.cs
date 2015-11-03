@@ -59,10 +59,9 @@ namespace CozyPixel
 
         private void TestColor()
         {
-            var list = OstwaldColor.GetColor();
-            foreach (var c in list)
+            ColorList.AddColor(OstwaldColor.GetColor());
+            foreach (var c in OstwaldColor.GetColor(50))
             {
-                ColorList.AddColor(c);
                 ColorPicker.AddColor("Color", c);
             }
         }

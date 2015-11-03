@@ -40,7 +40,7 @@
             this.ResumeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SelectedColorButton = new MetroFramework.Controls.MetroButton();
+            this.SelectedColorButton = new System.Windows.Forms.Button();
             this.MainTopTab = new MetroFramework.Controls.MetroTabControl();
             this.ColorPage = new MetroFramework.Controls.MetroTabPage();
             this.ColorList = new CozyPixel.Controls.ColorListView();
@@ -65,7 +65,7 @@
             this.GridWidthLabel = new MetroFramework.Controls.MetroLabel();
             this.GridWidthBox = new System.Windows.Forms.TextBox();
             this.ShowGridCheckBox = new MetroFramework.Controls.MetroToggle();
-            this.GridColorButton = new MetroFramework.Controls.MetroButton();
+            this.GridColorButton = new System.Windows.Forms.Button();
             this.ColorLabel = new MetroFramework.Controls.MetroLabel();
             this.PixelPainter = new CozyPixel.Controls.PixelPainter();
             this.MainStripMenu.SuspendLayout();
@@ -181,8 +181,6 @@
             this.SelectedColorButton.Name = "SelectedColorButton";
             this.SelectedColorButton.Size = new System.Drawing.Size(72, 72);
             this.SelectedColorButton.TabIndex = 5;
-            this.SelectedColorButton.UseCustomBackColor = true;
-            this.SelectedColorButton.UseSelectable = true;
             // 
             // MainTopTab
             // 
@@ -288,7 +286,7 @@
             this.MainLeftTab.Location = new System.Drawing.Point(23, 95);
             this.MainLeftTab.Multiline = true;
             this.MainLeftTab.Name = "MainLeftTab";
-            this.MainLeftTab.SelectedIndex = 0;
+            this.MainLeftTab.SelectedIndex = 1;
             this.MainLeftTab.Size = new System.Drawing.Size(300, 520);
             this.MainLeftTab.TabIndex = 6;
             this.MainLeftTab.UseSelectable = true;
@@ -399,7 +397,7 @@
             this.ThumbListView.MultiSelect = false;
             this.ThumbListView.Name = "ThumbListView";
             this.ThumbListView.ShowItemToolTips = true;
-            this.ThumbListView.Size = new System.Drawing.Size(155, 472);
+            this.ThumbListView.Size = new System.Drawing.Size(155, 330);
             this.ThumbListView.TabIndex = 2;
             this.ThumbListView.UseCompatibleStateImageBehavior = false;
             this.ThumbListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ThumbListView_ItemSelectionChanged);
@@ -488,8 +486,7 @@
             this.GridColorButton.Name = "GridColorButton";
             this.GridColorButton.Size = new System.Drawing.Size(48, 48);
             this.GridColorButton.TabIndex = 1;
-            this.GridColorButton.UseCustomBackColor = true;
-            this.GridColorButton.UseSelectable = true;
+            this.GridColorButton.UseVisualStyleBackColor = false;
             this.GridColorButton.Click += new System.EventHandler(this.GridColorButton_Click);
             // 
             // ColorLabel
@@ -561,14 +558,14 @@
         private System.Windows.Forms.ToolStripMenuItem SaveMenuItem;
         private MetroFramework.Controls.MetroTabControl MainLeftTab;
         private MetroFramework.Controls.MetroTabPage GridOpeionPage;
-        private MetroFramework.Controls.MetroButton GridColorButton;
+        private System.Windows.Forms.Button GridColorButton;
         private MetroFramework.Controls.MetroToggle ShowGridCheckBox;
         private MetroFramework.Controls.MetroLabel GridWidthLabel;
         private System.Windows.Forms.TextBox GridWidthBox;
         private System.Windows.Forms.ToolStripMenuItem CreateMenuItem;
         private MetroFramework.Controls.MetroTabPage ColorPage;
         private Controls.ColorListView ColorList;
-        private MetroFramework.Controls.MetroButton SelectedColorButton;
+        private System.Windows.Forms.Button SelectedColorButton;
         private MetroFramework.Controls.MetroTabControl MainTopTab;
 
         private MetroFramework.Controls.MetroTabPage FileSelectPage;
