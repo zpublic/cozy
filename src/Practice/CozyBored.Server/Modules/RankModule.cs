@@ -29,7 +29,7 @@ namespace CozyBored.Server.Modules
                 Console.WriteLine("get-rank");
                 string ver = param.ver;
                 double atime = param.time;
-                var num = table.FindAll().OrderByDescending(x => x.time).Count(x => x.time <= atime) + 1;
+                var num = table.FindAll().OrderByDescending(x => x.time).Count(x => x.time > atime) + 1;
                 var result = new { num = num };
                 return result;
             };
@@ -44,6 +44,19 @@ namespace CozyBored.Server.Modules
                     return HttpStatusCode.OK;
                 }
                 return HttpStatusCode.InternalServerError;
+            };
+
+            Get["delete/time/{time}"] = param =>
+            {
+                double atime = param.time;
+                table.Delete(x => x.time == atime);
+                return HttpStatusCode.OK;
+            };
+            Get["delete/name/{name}"] = param =>
+            {
+                string aname = param.name;
+                table.Delete(x => x.name == aname);
+                return HttpStatusCode.OK;
             };
         }
 
