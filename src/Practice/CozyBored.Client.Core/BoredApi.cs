@@ -2,15 +2,15 @@
 using RestSharp;
 using System.Collections.Generic;
 
-namespace CozyBored.Client.Core {
-
-    public class BoredApi {
-
+namespace CozyBored.Client.Core
+{
+    public class BoredApi
+    {
         const string BaseUrl = "http://www.laorouji.com:1024";
         //const string BaseUrl = "http://localhost:1024/";
 
-        public static List<BoredModel> QueryRank(string ver) {
-
+        public static List<BoredModel> QueryRank(string ver)
+        {
             var client = new RestClient(BaseUrl);
             var request = new RestRequest(Method.GET);
             request.Resource = "query-rank/{ver}";
@@ -20,8 +20,8 @@ namespace CozyBored.Client.Core {
             return result;
         }
 
-        public static int GetRank(string ver, int time) {
-
+        public static int GetRank(string ver, int time)
+        {
             var client = new RestClient(BaseUrl);
             var request = new RestRequest(Method.GET);
             request.Resource = "get-rank/{ver}/{time}";
@@ -32,7 +32,8 @@ namespace CozyBored.Client.Core {
             return result;
         }
 
-        public static bool Save(BoredModel model) {
+        public static bool Save(BoredModel model)
+        {
             var client = new RestClient(BaseUrl);
             var request = new RestRequest("save", Method.POST);
             request.AddObject(model);
