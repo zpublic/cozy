@@ -23,6 +23,15 @@ namespace CozyBored.Server.Modules {
                 return result;
             };
 
+            Get["get-rank/{ver}/{time}"] = param => {
+                Console.WriteLine("query-rank");
+                string ver = param.ver;
+                DateTime time = param.time;
+                var result = table.Find(x => x.ver == ver)
+                    .OrderByDescending(x => x.time).Count(x => x.time <= time) + 1;
+                return result;
+            };
+
             Post["save"] = param => {
                 Console.WriteLine("save");
                 var model = this.Bind<RankModel>();
