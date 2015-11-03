@@ -40,7 +40,7 @@
             this.ResumeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SelectedColorButton = new MetroFramework.Controls.MetroButton();
+            this.SelectedColorButton = new System.Windows.Forms.Button();
             this.MainTopTab = new MetroFramework.Controls.MetroTabControl();
             this.ColorPage = new MetroFramework.Controls.MetroTabPage();
             this.ColorList = new CozyPixel.Controls.ColorListView();
@@ -61,11 +61,13 @@
             this.ThumbListView = new CozyPixel.Controls.ImageListView();
             this.DirectorySelectButton = new MetroFramework.Controls.MetroButton();
             this.GridOpeionPage = new MetroFramework.Controls.MetroTabPage();
+            this.GridAlphaTrack = new MetroFramework.Controls.MetroTrackBar();
+            this.GridAlphaLabel = new System.Windows.Forms.Label();
             this.ColorPicker = new CozyPixel.Controls.ColorPickerComboBox();
             this.GridWidthLabel = new MetroFramework.Controls.MetroLabel();
             this.GridWidthBox = new System.Windows.Forms.TextBox();
             this.ShowGridCheckBox = new MetroFramework.Controls.MetroToggle();
-            this.GridColorButton = new MetroFramework.Controls.MetroButton();
+            this.GridColorButton = new System.Windows.Forms.Button();
             this.ColorLabel = new MetroFramework.Controls.MetroLabel();
             this.PixelPainter = new CozyPixel.Controls.PixelPainter();
             this.MainStripMenu.SuspendLayout();
@@ -181,8 +183,6 @@
             this.SelectedColorButton.Name = "SelectedColorButton";
             this.SelectedColorButton.Size = new System.Drawing.Size(72, 72);
             this.SelectedColorButton.TabIndex = 5;
-            this.SelectedColorButton.UseCustomBackColor = true;
-            this.SelectedColorButton.UseSelectable = true;
             // 
             // MainTopTab
             // 
@@ -288,7 +288,7 @@
             this.MainLeftTab.Location = new System.Drawing.Point(23, 95);
             this.MainLeftTab.Multiline = true;
             this.MainLeftTab.Name = "MainLeftTab";
-            this.MainLeftTab.SelectedIndex = 0;
+            this.MainLeftTab.SelectedIndex = 2;
             this.MainLeftTab.Size = new System.Drawing.Size(300, 520);
             this.MainLeftTab.TabIndex = 6;
             this.MainLeftTab.UseSelectable = true;
@@ -399,7 +399,7 @@
             this.ThumbListView.MultiSelect = false;
             this.ThumbListView.Name = "ThumbListView";
             this.ThumbListView.ShowItemToolTips = true;
-            this.ThumbListView.Size = new System.Drawing.Size(155, 472);
+            this.ThumbListView.Size = new System.Drawing.Size(155, 330);
             this.ThumbListView.TabIndex = 2;
             this.ThumbListView.UseCompatibleStateImageBehavior = false;
             this.ThumbListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ThumbListView_ItemSelectionChanged);
@@ -416,6 +416,8 @@
             // 
             // GridOpeionPage
             // 
+            this.GridOpeionPage.Controls.Add(this.GridAlphaTrack);
+            this.GridOpeionPage.Controls.Add(this.GridAlphaLabel);
             this.GridOpeionPage.Controls.Add(this.ColorPicker);
             this.GridOpeionPage.Controls.Add(this.GridWidthLabel);
             this.GridOpeionPage.Controls.Add(this.GridWidthBox);
@@ -437,12 +439,33 @@
             this.GridOpeionPage.VerticalScrollbarHighlightOnWheel = false;
             this.GridOpeionPage.VerticalScrollbarSize = 10;
             // 
+            // GridAlphaTrack
+            // 
+            this.GridAlphaTrack.BackColor = System.Drawing.Color.Transparent;
+            this.GridAlphaTrack.Location = new System.Drawing.Point(85, 365);
+            this.GridAlphaTrack.Maximum = 255;
+            this.GridAlphaTrack.Name = "GridAlphaTrack";
+            this.GridAlphaTrack.Size = new System.Drawing.Size(100, 23);
+            this.GridAlphaTrack.TabIndex = 8;
+            this.GridAlphaTrack.Text = "GridAlpha";
+            this.GridAlphaTrack.Value = 255;
+            this.GridAlphaTrack.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GridAlphaTrack_Scroll);
+            // 
+            // GridAlphaLabel
+            // 
+            this.GridAlphaLabel.AutoSize = true;
+            this.GridAlphaLabel.Location = new System.Drawing.Point(83, 336);
+            this.GridAlphaLabel.Name = "GridAlphaLabel";
+            this.GridAlphaLabel.Size = new System.Drawing.Size(65, 12);
+            this.GridAlphaLabel.TabIndex = 7;
+            this.GridAlphaLabel.Text = "网格透明度";
+            // 
             // ColorPicker
             // 
             this.ColorPicker.ColorWidth = 50;
             this.ColorPicker.DropDownWidth = 150;
             this.ColorPicker.ItemHeight = 23;
-            this.ColorPicker.Location = new System.Drawing.Point(87, 302);
+            this.ColorPicker.Location = new System.Drawing.Point(85, 277);
             this.ColorPicker.Name = "ColorPicker";
             this.ColorPicker.SelectedColor = System.Drawing.Color.Empty;
             this.ColorPicker.Size = new System.Drawing.Size(100, 29);
@@ -453,7 +476,7 @@
             // GridWidthLabel
             // 
             this.GridWidthLabel.AutoSize = true;
-            this.GridWidthLabel.Location = new System.Drawing.Point(87, 228);
+            this.GridWidthLabel.Location = new System.Drawing.Point(85, 203);
             this.GridWidthLabel.Name = "GridWidthLabel";
             this.GridWidthLabel.Size = new System.Drawing.Size(65, 19);
             this.GridWidthLabel.TabIndex = 4;
@@ -461,7 +484,7 @@
             // 
             // GridWidthBox
             // 
-            this.GridWidthBox.Location = new System.Drawing.Point(87, 250);
+            this.GridWidthBox.Location = new System.Drawing.Point(85, 225);
             this.GridWidthBox.Name = "GridWidthBox";
             this.GridWidthBox.Size = new System.Drawing.Size(100, 21);
             this.GridWidthBox.TabIndex = 3;
@@ -473,7 +496,7 @@
             this.ShowGridCheckBox.AutoSize = true;
             this.ShowGridCheckBox.Checked = true;
             this.ShowGridCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ShowGridCheckBox.Location = new System.Drawing.Point(89, 69);
+            this.ShowGridCheckBox.Location = new System.Drawing.Point(87, 44);
             this.ShowGridCheckBox.Name = "ShowGridCheckBox";
             this.ShowGridCheckBox.Size = new System.Drawing.Size(80, 16);
             this.ShowGridCheckBox.TabIndex = 2;
@@ -484,18 +507,17 @@
             // GridColorButton
             // 
             this.GridColorButton.BackColor = System.Drawing.Color.Black;
-            this.GridColorButton.Location = new System.Drawing.Point(89, 152);
+            this.GridColorButton.Location = new System.Drawing.Point(87, 127);
             this.GridColorButton.Name = "GridColorButton";
             this.GridColorButton.Size = new System.Drawing.Size(48, 48);
             this.GridColorButton.TabIndex = 1;
-            this.GridColorButton.UseCustomBackColor = true;
-            this.GridColorButton.UseSelectable = true;
+            this.GridColorButton.UseVisualStyleBackColor = false;
             this.GridColorButton.Click += new System.EventHandler(this.GridColorButton_Click);
             // 
             // ColorLabel
             // 
             this.ColorLabel.AutoSize = true;
-            this.ColorLabel.Location = new System.Drawing.Point(87, 124);
+            this.ColorLabel.Location = new System.Drawing.Point(85, 99);
             this.ColorLabel.Name = "ColorLabel";
             this.ColorLabel.Size = new System.Drawing.Size(65, 19);
             this.ColorLabel.TabIndex = 0;
@@ -506,7 +528,6 @@
             this.PixelPainter.AutoScroll = true;
             this.PixelPainter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PixelPainter.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.PixelPainter.DefaultDrawColor = System.Drawing.Color.White;
             this.PixelPainter.Image = null;
             this.PixelPainter.Location = new System.Drawing.Point(397, 261);
             this.PixelPainter.Name = "PixelPainter";
@@ -561,14 +582,14 @@
         private System.Windows.Forms.ToolStripMenuItem SaveMenuItem;
         private MetroFramework.Controls.MetroTabControl MainLeftTab;
         private MetroFramework.Controls.MetroTabPage GridOpeionPage;
-        private MetroFramework.Controls.MetroButton GridColorButton;
+        private System.Windows.Forms.Button GridColorButton;
         private MetroFramework.Controls.MetroToggle ShowGridCheckBox;
         private MetroFramework.Controls.MetroLabel GridWidthLabel;
         private System.Windows.Forms.TextBox GridWidthBox;
         private System.Windows.Forms.ToolStripMenuItem CreateMenuItem;
         private MetroFramework.Controls.MetroTabPage ColorPage;
         private Controls.ColorListView ColorList;
-        private MetroFramework.Controls.MetroButton SelectedColorButton;
+        private System.Windows.Forms.Button SelectedColorButton;
         private MetroFramework.Controls.MetroTabControl MainTopTab;
 
         private MetroFramework.Controls.MetroTabPage FileSelectPage;
@@ -594,6 +615,8 @@
         private System.Windows.Forms.ToolStripMenuItem CancleMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ResumeMenuItem;
         private Controls.ColorListView CozyColorListView;
+        private System.Windows.Forms.Label GridAlphaLabel;
+        private MetroFramework.Controls.MetroTrackBar GridAlphaTrack;
     }
 }
 

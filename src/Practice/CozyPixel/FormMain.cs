@@ -307,5 +307,10 @@ namespace CozyPixel
                 CurrPixelTool = tool;
             }
         }
+
+        private void GridAlphaTrack_Scroll(object sender, ScrollEventArgs e)
+        {
+            ColorSelectCallback(GridColorButton.BackColor);
+        }
     }
 }

@@ -40,9 +40,9 @@
             this.TimeLabel.AutoSize = true;
             this.TimeLabel.Location = new System.Drawing.Point(108, 29);
             this.TimeLabel.Name = "TimeLabel";
-            this.TimeLabel.Size = new System.Drawing.Size(53, 12);
+            this.TimeLabel.Size = new System.Drawing.Size(71, 12);
             this.TimeLabel.TabIndex = 0;
-            this.TimeLabel.Text = "00:00:00";
+            this.TimeLabel.Text = "00:00:00:00";
             // 
             // StartButton
             // 
@@ -67,7 +67,7 @@
             // 
             // MainTimer
             // 
-            this.MainTimer.Interval = 1000;
+            this.MainTimer.Interval = 15;
             this.MainTimer.Tick += new System.EventHandler(this.MainTimer_Tick);
             // 
             // FormMain
@@ -79,6 +79,7 @@
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.TimeLabel);
             this.Name = "FormMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CozyBored";
             this.ResumeLayout(false);
             this.PerformLayout();
