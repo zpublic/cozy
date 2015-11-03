@@ -42,7 +42,7 @@
             this.TimeLabel.Name = "TimeLabel";
             this.TimeLabel.Size = new System.Drawing.Size(71, 12);
             this.TimeLabel.TabIndex = 0;
-            this.TimeLabel.Text = "00:00:00:00";
+            this.TimeLabel.Text = "00:00:00 000";
             // 
             // StartButton
             // 
@@ -67,7 +67,7 @@
             // 
             // MainTimer
             // 
-            this.MainTimer.Interval = 15;
+            this.MainTimer.Interval = 1;
             this.MainTimer.Tick += new System.EventHandler(this.MainTimer_Tick);
             // 
             // FormMain
