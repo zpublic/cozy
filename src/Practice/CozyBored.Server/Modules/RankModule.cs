@@ -5,35 +5,36 @@ using Nancy.ModelBinding;
 using LiteDB;
 using CozyBored.Server.Models;
 
-namespace CozyBored.Server.Modules {
-
-    public class RankModule : NancyModule {
-
+namespace CozyBored.Server.Modules
+{
+    public class RankModule : NancyModule
+    {
         private LiteCollection<RankModel> table;
 
-        public RankModule() {
-
+        public RankModule()
+        {
             table = DbContent.GetInstance().GetTable<RankModel>();
 
-            Get["query-rank/{ver}"] = param => {
+            Get["query-rank/{ver}"] = param =>
+            {
                 Console.WriteLine("query-rank");
                 string ver = param.ver;
-                var result = table.Find(x => x.ver == ver)
-                    .OrderByDescending(x => x.time).Take(10).ToList();
+                var result = table.FindAll().OrderByDescending(x => x.time).Take(10).ToList();
                 return result;
             };
 
-            Get["get-rank/{ver}/{time}"] = param => {
+            Get["get-rank/{ver}/{time}"] = param =>
+            {
                 Console.WriteLine("get-rank");
                 string ver = param.ver;
-                int time = param.time;
-                var num = table.Find(x => x.ver == ver)
-                    .OrderByDescending(x => x.time).Count(x => x.time < 1) + 1;
+                int atime = param.time;
+                var num = table.FindAll().OrderByDescending(x => x.time).Count(x => x.time <= atime) + 1;
                 var result = new { num = num };
                 return result;
             };
 
-            Post["save"] = param => {
+            Post["save/{ver}"] = param =>
+            {
                 var model = this.Bind<RankModel>();
                 model.id = Guid.NewGuid();
                 Console.WriteLine("save:" + model.name + "-" + model.time);

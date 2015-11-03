@@ -11,17 +11,16 @@ namespace CozyBored.Client.Cheat
     {
         static void Main(string[] args)
         {
-            string name = Console.ReadLine();
-            int time = int.Parse(Console.ReadLine());
+            string aname = Console.ReadLine();
+            double atime = double.Parse(Console.ReadLine());
             BoredApi.Save(new Core.Model.BoredModel
             {
-                time = 1,
-                ver = "1",
-                name = "cozy"
+                name = aname,
+                time = atime
             });
-            BoredApi.QueryRank("1");
-            BoredApi.GetRank("1", 1);
-            Console.WriteLine(name + ":" + time);
+            BoredApi.QueryRank();
+            BoredApi.GetRank(1);
+            Console.WriteLine(aname + ":" + atime);
         }
     }
 }
