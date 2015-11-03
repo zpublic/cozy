@@ -24,11 +24,12 @@ namespace CozyBored.Server.Modules {
             };
 
             Get["get-rank/{ver}/{time}"] = param => {
-                Console.WriteLine("query-rank");
+                Console.WriteLine("get-rank");
                 string ver = param.ver;
                 int time = param.time;
-                var result = table.Find(x => x.ver == ver)
-                    .OrderByDescending(x => x.time).Count(x => x.time <= time) + 1;
+                var num = table.Find(x => x.ver == ver)
+                    .OrderByDescending(x => x.time).Count(x => x.time < 1) + 1;
+                var result = new { num = num };
                 return result;
             };
 
