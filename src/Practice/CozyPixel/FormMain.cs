@@ -323,5 +323,15 @@ namespace CozyPixel
                 Zoom(e.Delta / WHEEL_DELTA);
             }
         }
+
+        private void ZoomInMenuItem_Click(object sender, EventArgs e)
+        {
+            Zoom(1);
+        }
+
+        private void ZoomOutMenuItem_Click(object sender, EventArgs e)
+        {
+            Zoom(-1);
+        }
     }
 }
