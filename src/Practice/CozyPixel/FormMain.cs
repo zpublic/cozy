@@ -333,5 +333,10 @@ namespace CozyPixel
         {
             Zoom(-1);
         }
+
+        private void ZoomResetMenuItem_Click(object sender, EventArgs e)
+        {
+            ZoomReset();
+        }
     }
 }

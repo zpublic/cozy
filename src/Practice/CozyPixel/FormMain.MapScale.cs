@@ -28,7 +28,7 @@ namespace CozyPixel
             }
         }
 
-        public void Reset()
+        public void ZoomReset()
         {
             if (CurrScale != DefaultScale)
             {

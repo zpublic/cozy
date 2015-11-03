@@ -41,6 +41,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ZoomInMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ZoomOutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ZoomResetMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectedColorButton = new System.Windows.Forms.Button();
@@ -146,7 +147,8 @@
             this.ResumeMenuItem,
             this.toolStripSeparator1,
             this.ZoomInMenuItem,
-            this.ZoomOutMenuItem});
+            this.ZoomOutMenuItem,
+            this.ZoomResetMenuItem});
             this.EditMenuItem.Name = "EditMenuItem";
             this.EditMenuItem.Size = new System.Drawing.Size(59, 21);
             this.EditMenuItem.Text = "编辑(&E)";
@@ -155,7 +157,7 @@
             // 
             this.CancleMenuItem.Name = "CancleMenuItem";
             this.CancleMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.CancleMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.CancleMenuItem.Size = new System.Drawing.Size(192, 22);
             this.CancleMenuItem.Text = "撤销";
             this.CancleMenuItem.Click += new System.EventHandler(this.CancleMenuItem_Click);
             // 
@@ -163,21 +165,21 @@
             // 
             this.ResumeMenuItem.Name = "ResumeMenuItem";
             this.ResumeMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.ResumeMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.ResumeMenuItem.Size = new System.Drawing.Size(192, 22);
             this.ResumeMenuItem.Text = "恢复";
             this.ResumeMenuItem.Click += new System.EventHandler(this.ResumeMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(170, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(189, 6);
             // 
             // ZoomInMenuItem
             // 
             this.ZoomInMenuItem.Name = "ZoomInMenuItem";
             this.ZoomInMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.W)));
-            this.ZoomInMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.ZoomInMenuItem.Size = new System.Drawing.Size(192, 22);
             this.ZoomInMenuItem.Text = "放大";
             this.ZoomInMenuItem.Click += new System.EventHandler(this.ZoomInMenuItem_Click);
             // 
@@ -186,9 +188,17 @@
             this.ZoomOutMenuItem.Name = "ZoomOutMenuItem";
             this.ZoomOutMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.Q)));
-            this.ZoomOutMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.ZoomOutMenuItem.Size = new System.Drawing.Size(192, 22);
             this.ZoomOutMenuItem.Text = "缩小";
             this.ZoomOutMenuItem.Click += new System.EventHandler(this.ZoomOutMenuItem_Click);
+            // 
+            // ZoomResetMenuItem
+            // 
+            this.ZoomResetMenuItem.Name = "ZoomResetMenuItem";
+            this.ZoomResetMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D0)));
+            this.ZoomResetMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.ZoomResetMenuItem.Text = "恢复默认大小";
+            this.ZoomResetMenuItem.Click += new System.EventHandler(this.ZoomResetMenuItem_Click);
             // 
             // HelpMenuItem
             // 
@@ -651,6 +661,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem ZoomInMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ZoomOutMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ZoomResetMenuItem;
     }
 }
 
