@@ -26,7 +26,7 @@ namespace CozyBored.Server.Modules {
             Get["get-rank/{ver}/{time}"] = param => {
                 Console.WriteLine("query-rank");
                 string ver = param.ver;
-                DateTime time = param.time;
+                int time = param.time;
                 var result = table.Find(x => x.ver == ver)
                     .OrderByDescending(x => x.time).Count(x => x.time <= time) + 1;
                 return result;
