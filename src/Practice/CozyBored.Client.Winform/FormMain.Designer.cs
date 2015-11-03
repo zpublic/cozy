@@ -79,6 +79,7 @@
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.TimeLabel);
             this.Name = "FormMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CozyBored";
             this.ResumeLayout(false);
             this.PerformLayout();

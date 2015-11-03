@@ -93,6 +93,7 @@
             this.Controls.Add(this.OKButton);
             this.Controls.Add(this.RankListView);
             this.Name = "RankListForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "无聊排行榜";
             this.Load += new System.EventHandler(this.RankListForm_Load);
             this.ResumeLayout(false);
