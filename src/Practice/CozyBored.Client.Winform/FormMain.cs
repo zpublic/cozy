@@ -39,7 +39,7 @@ namespace CozyBored.Client.Winform
             EndTime             = DateTime.Now;
             MainTimer.Enabled   = false;
             var span            = EndTime - BeginTime;
-            var rank            = Query(span.TotalSeconds);
+            var rank            = Query(span.TotalMilliseconds);
 
             if (rank == -1)
             {
@@ -53,7 +53,7 @@ namespace CozyBored.Client.Winform
                 }
                 else
                 {
-                    var saveForm = new SaveForm(span.TotalSeconds);
+                    var saveForm = new SaveForm(span.TotalMilliseconds);
                     saveForm.ShowDialog();
                 }
             }
