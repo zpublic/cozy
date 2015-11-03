@@ -34,9 +34,9 @@ namespace CozyBored.Server.Modules {
             };
 
             Post["save"] = param => {
-                Console.WriteLine("save");
                 var model = this.Bind<RankModel>();
                 model.id = Guid.NewGuid();
+                Console.WriteLine("save:" + model.name + "-" + model.time);
                 if (table.Insert(model) != null)
                     return HttpStatusCode.OK;
                 return HttpStatusCode.InternalServerError;
