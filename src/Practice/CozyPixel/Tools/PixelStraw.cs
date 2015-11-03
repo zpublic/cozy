@@ -13,7 +13,7 @@ namespace CozyPixel.Tools
     {
         public override bool WillModify { get { return false; } }
 
-        public override Keys KeyCode { get { return Keys.S; } }
+        public override Keys KeyCode { get { return Keys.D4; } }
 
         public PixelStraw(IPixelColor holder)
             :base(holder)

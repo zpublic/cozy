@@ -14,7 +14,7 @@ namespace CozyPixel.Tools
     {
         public override bool WillModify { get { return true; } }
 
-        public override Keys KeyCode { get { return Keys.L; } }
+        public override Keys KeyCode { get { return Keys.D2; } }
 
         private Point BeginPoint { get; set; }
 

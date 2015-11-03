@@ -282,8 +282,8 @@
             // 
             // CozyColorListView
             // 
-            this.CozyColorListView.ColorItemMargin = new System.Windows.Forms.Padding(2);
-            this.CozyColorListView.ColorItemSize = new System.Drawing.Size(58, 20);
+            this.CozyColorListView.ColorItemMargin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.CozyColorListView.ColorItemSize = new System.Drawing.Size(51, 72);
             this.CozyColorListView.Location = new System.Drawing.Point(181, 23);
             this.CozyColorListView.Name = "CozyColorListView";
             this.CozyColorListView.SelectedColor = System.Drawing.Color.Empty;
@@ -327,7 +327,7 @@
             this.MainLeftTab.Location = new System.Drawing.Point(23, 95);
             this.MainLeftTab.Multiline = true;
             this.MainLeftTab.Name = "MainLeftTab";
-            this.MainLeftTab.SelectedIndex = 2;
+            this.MainLeftTab.SelectedIndex = 0;
             this.MainLeftTab.Size = new System.Drawing.Size(300, 520);
             this.MainLeftTab.TabIndex = 6;
             this.MainLeftTab.UseSelectable = true;
@@ -356,9 +356,9 @@
             // 
             this.FillToolButton.Location = new System.Drawing.Point(88, 253);
             this.FillToolButton.Name = "FillToolButton";
-            this.FillToolButton.Size = new System.Drawing.Size(96, 23);
+            this.FillToolButton.Size = new System.Drawing.Size(129, 23);
             this.FillToolButton.TabIndex = 4;
-            this.FillToolButton.Text = "填充工具(F)";
+            this.FillToolButton.Text = "填充工具 (Ctrl +5)";
             this.FillToolButton.UseSelectable = true;
             this.FillToolButton.Click += new System.EventHandler(this.FillToolButton_Click);
             // 
@@ -366,9 +366,9 @@
             // 
             this.StrawToolButton.Location = new System.Drawing.Point(88, 209);
             this.StrawToolButton.Name = "StrawToolButton";
-            this.StrawToolButton.Size = new System.Drawing.Size(96, 23);
+            this.StrawToolButton.Size = new System.Drawing.Size(129, 23);
             this.StrawToolButton.TabIndex = 3;
-            this.StrawToolButton.Text = "吸取工具(S)";
+            this.StrawToolButton.Text = "吸取工具 (Ctrl + 4)";
             this.StrawToolButton.UseSelectable = true;
             this.StrawToolButton.Click += new System.EventHandler(this.StrawToolButton_Click);
             // 
@@ -376,9 +376,9 @@
             // 
             this.EarserToolButton.Location = new System.Drawing.Point(88, 164);
             this.EarserToolButton.Name = "EarserToolButton";
-            this.EarserToolButton.Size = new System.Drawing.Size(96, 23);
+            this.EarserToolButton.Size = new System.Drawing.Size(129, 23);
             this.EarserToolButton.TabIndex = 2;
-            this.EarserToolButton.Text = "橡皮擦(E)";
+            this.EarserToolButton.Text = "橡皮擦 (Ctrl + 3)";
             this.EarserToolButton.UseSelectable = true;
             this.EarserToolButton.Click += new System.EventHandler(this.EarserToolButton_Click);
             // 
@@ -386,9 +386,9 @@
             // 
             this.LineToolButton.Location = new System.Drawing.Point(88, 113);
             this.LineToolButton.Name = "LineToolButton";
-            this.LineToolButton.Size = new System.Drawing.Size(96, 23);
+            this.LineToolButton.Size = new System.Drawing.Size(129, 23);
             this.LineToolButton.TabIndex = 1;
-            this.LineToolButton.Text = "画线(L)";
+            this.LineToolButton.Text = "画线 (Ctrl +2)";
             this.LineToolButton.UseSelectable = true;
             this.LineToolButton.Click += new System.EventHandler(this.LineToolButton_Click);
             // 
@@ -396,9 +396,9 @@
             // 
             this.PencilToolButton.Location = new System.Drawing.Point(88, 65);
             this.PencilToolButton.Name = "PencilToolButton";
-            this.PencilToolButton.Size = new System.Drawing.Size(96, 23);
+            this.PencilToolButton.Size = new System.Drawing.Size(129, 23);
             this.PencilToolButton.TabIndex = 0;
-            this.PencilToolButton.Text = "铅笔(P)";
+            this.PencilToolButton.Text = "铅笔 (Ctrl + 1)";
             this.PencilToolButton.UseSelectable = true;
             this.PencilToolButton.Click += new System.EventHandler(this.PencilToolButton_Click);
             // 
