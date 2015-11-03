@@ -525,6 +525,7 @@
             // 
             this.GridWidthBox.Location = new System.Drawing.Point(85, 225);
             this.GridWidthBox.Name = "GridWidthBox";
+            this.GridWidthBox.ReadOnly = true;
             this.GridWidthBox.Size = new System.Drawing.Size(100, 21);
             this.GridWidthBox.TabIndex = 3;
             this.GridWidthBox.Text = "2";
