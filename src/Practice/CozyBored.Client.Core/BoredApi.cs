@@ -9,13 +9,12 @@ namespace CozyBored.Client.Core
 {
     public class BoredApi
     {
-        //const string BaseUrl = "https://www.laorouji.com:1024/";
-        const string BaseUrl = "https://localhost:1024/";
+        const string BaseUrl = "http://www.laorouji.com:1024";
 
         public static int QueryRank()
         {
             var client = new RestClient(BaseUrl);
-            var request = new RestRequest("/query-rank", Method.GET);
+            var request = new RestRequest("query-rank", Method.GET);
             request.AddParameter("ver", 1);
             IRestResponse response = client.Execute(request);
             var content = response.Content;
