@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyBored.Client.Core", "..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyBored.Client.Winform", "..\src\Practice\CozyBored.Client.Winform\CozyBored.Client.Winform.csproj", "{05F8F344-95E9-4282-8C21-2631C4FF7C91}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyBored.Client.Cheat", "..\src\Practice\CozyBored.Client.Cheat\CozyBored.Client.Cheat.csproj", "{CC08C8A8-E082-435A-A083-880D6BBFEB82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{05F8F344-95E9-4282-8C21-2631C4FF7C91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05F8F344-95E9-4282-8C21-2631C4FF7C91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05F8F344-95E9-4282-8C21-2631C4FF7C91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC08C8A8-E082-435A-A083-880D6BBFEB82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC08C8A8-E082-435A-A083-880D6BBFEB82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC08C8A8-E082-435A-A083-880D6BBFEB82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC08C8A8-E082-435A-A083-880D6BBFEB82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

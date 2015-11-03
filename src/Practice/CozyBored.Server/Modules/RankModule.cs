@@ -16,12 +16,14 @@ namespace CozyBored.Server.Modules {
             table = DbContent.GetInstance().GetTable<RankModel>();
 
             Get["query-rank"] = param => {
+                Console.WriteLine("query-rank");
                 var result = table.FindAll()
                     .OrderByDescending(x => x.time).Take(10).ToList();
                 return result;
             };
 
             Post["save"] = param => {
+                Console.WriteLine("save");
                 var model = this.Bind<RankModel>();
                 model.id = Guid.NewGuid();
                 if (table.Insert(model) != null)
