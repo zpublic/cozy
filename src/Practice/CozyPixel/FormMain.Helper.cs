@@ -32,7 +32,7 @@ namespace CozyPixel
             {
                 ShowGrid    = ShowGridCheckBox.Checked,
                 data        = bmp,
-                PixelWidth  = DefaultPixelWidth - gw,
+                PixelWidth  = CurrPixelWidth - gw,
                 GridWidth   = gw,
                 GridColor   = GridColorButton.BackColor,
             };
@@ -71,7 +71,6 @@ namespace CozyPixel
         {
             CurrPathStatusLabel.Text    = "当前文件 ： " + (label ?? string.Empty);
         }
-
 
         private void RefreshThumb()
         {

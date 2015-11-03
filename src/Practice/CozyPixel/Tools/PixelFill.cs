@@ -14,7 +14,7 @@ namespace CozyPixel.Tools
     {
         public override bool WillModify { get { return true; } }
 
-        public override Keys KeyCode { get { return Keys.F; } }
+        public override Keys KeyCode { get { return Keys.D5; } }
 
         public PixelFill(IPixelColor holder)
             :base(holder)

@@ -14,9 +14,6 @@ namespace CozyPixel
     {
         private PixelMap CurrPixelMap { get; set; }
 
-        public const int DefaultPixelWidth = 18;
-        public const int DefaultGridWidth = 2;
-
         public const string OpenDlgFilter = @"(*.jpg,*.png,*.jpeg,*.bmp,*.gif)| *.jpg; *.png; *.jpeg; *.bmp; *.gif | All files(*.*) | *.* ";
         public const string SaveDlgFilter = @"位图(*.bmp)|*.bmp|All Files|*.*";
 

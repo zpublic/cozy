@@ -98,6 +98,11 @@ namespace CozyPixel.Controls
             }
         }
 
+        public void ChangeSelectedColor(int i)
+        {
+            SelectedColor = Controls[i - 1].BackColor;
+        }
+
         public void RemoveColor(Color c)
         {
             if (ColorButtonMap.ContainsKey(c))
@@ -131,11 +136,6 @@ namespace CozyPixel.Controls
 
         private void OnColorButtonClick(object sender, EventArgs e)
         {
-            if(SelectedButton != null)
-            {
-                SelectedButton.FlatAppearance.BorderSize = 0;
-            }
-
             var bt          = (Button)sender;
             SelectedColor   = bt.BackColor;
         }
