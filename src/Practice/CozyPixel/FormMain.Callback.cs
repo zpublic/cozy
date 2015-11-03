@@ -14,7 +14,7 @@ namespace CozyPixel
             GridColorButton.BackColor = c;
             if (CurrPixelMap != null)
             {
-                CurrPixelMap.GridColor = c;
+                CurrPixelMap.GridColor = Color.FromArgb(GridAlphaTrack.Value, c);
                 PixelPainter.RefreshGrid();
             }
         }

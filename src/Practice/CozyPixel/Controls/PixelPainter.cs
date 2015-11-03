@@ -44,7 +44,8 @@ namespace CozyPixel.Controls
             }
             set
             {
-                sourceImage = value;
+                sourceImage         = value;
+                DefaultDrawColor    = value.BackColor;
                 RefreshPixel();
             }
         }

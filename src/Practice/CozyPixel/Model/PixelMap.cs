@@ -23,6 +23,8 @@ namespace CozyPixel.Model
 
         public Color GridColor { get; set; } = Color.Black;
 
+        public Color BackColor { get; set; } = Color.White;
+
         public void Resize(int width, int height)
         {
             data = new Bitmap(width, height);

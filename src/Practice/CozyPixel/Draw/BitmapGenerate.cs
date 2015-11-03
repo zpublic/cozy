@@ -23,6 +23,7 @@ namespace CozyPixel.Draw
             Bitmap b = new Bitmap(w, h);
             using (Graphics g = Graphics.FromImage(b))
             {
+                g.Clear(pm.BackColor);
 
                 for (int i = 0; i < pm.Width; ++i)
                 {
@@ -46,11 +47,14 @@ namespace CozyPixel.Draw
             var w = pm.Width * x;
             var h = pm.Height * x;
 
+            var ePen        = new Pen(pm.BackColor, pm.GridWidth);
             var GridPen     = new Pen(pm.GridColor, pm.GridWidth);
             int BlockWidth  = pm.PixelWidth + pm.GridWidth;
 
             for (int i = 0; i <= pm.Width; ++i)
             {
+                g.DrawLine(ePen, 0, i * BlockWidth, w, i * BlockWidth);
+                g.DrawLine(ePen, i * BlockWidth, 0, i * BlockWidth, h);
                 g.DrawLine(GridPen, 0, i * BlockWidth, w, i * BlockWidth);
                 g.DrawLine(GridPen, i * BlockWidth, 0, i * BlockWidth, h);
             }

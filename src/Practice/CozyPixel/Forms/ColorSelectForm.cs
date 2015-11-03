@@ -23,7 +23,7 @@ namespace CozyPixel.Forms
 
             ColorCallback = callback;
 
-            var list = OstwaldColor.GetColor(127);
+            var list = OstwaldColor.GetColor();
             foreach (var c in list)
             {
                 ColorSelectList.AddColor(c);
