@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LiteDB, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\sln\packages\LiteDB.1.0.3\lib\net40\LiteDB.dll</HintPath>
+    <Reference Include="LiteDB, Version=1.0.4.0, Culture=neutral, PublicKeyToken=5c2fff750805920e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\LiteDB.1.0.4\lib\net40\LiteDB.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="DbContent.cs" />
     <Compile Include="Models\ArticlecModel.cs" />
-    <Compile Include="Models\IEntityModel.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

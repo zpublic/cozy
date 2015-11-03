@@ -1,0 +1,25 @@
+{
+  "name": "cozy_markdown",
+  "authors": [
+    "max"
+  ],
+  "description": "\"前端包管理\"",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "requirejs": "~2.1.20",
+    "angular": "~1.4.7",
+    "angular-route": "~1.4.7",
+    "angular-bootstrap": "~0.14.3",
+    "bootstrap": "~3.3.5"
+  }
+}
