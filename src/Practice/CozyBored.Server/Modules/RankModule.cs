@@ -9,17 +9,18 @@ namespace CozyBored.Server.Modules
 {
     public class RankModule : NancyModule
     {
-        private LiteCollection<RankModel> table;
+        private LiteCollection<RankModel> table = DbContent.GetInstance().GetTable<RankModel>();
 
         public RankModule()
         {
-            table = DbContent.GetInstance().GetTable<RankModel>();
-
             Get["query-rank/{ver}"] = param =>
             {
                 Console.WriteLine("query-rank");
                 string ver = param.ver;
-                var result = table.FindAll().OrderByDescending(x => x.time).Take(10).ToList();
+                var i = table.FindAll();
+                var i2 = i.OrderByDescending(x => x.time);
+                var i3 = i2.Take(10);
+                var result = i3.ToList();
                 return result;
             };
 
@@ -39,7 +40,9 @@ namespace CozyBored.Server.Modules
                 model.id = Guid.NewGuid();
                 Console.WriteLine("save:" + model.name + "-" + model.time);
                 if (table.Insert(model) != null)
+                {
                     return HttpStatusCode.OK;
+                }
                 return HttpStatusCode.InternalServerError;
             };
         }

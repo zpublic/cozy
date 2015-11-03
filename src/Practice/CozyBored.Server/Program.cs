@@ -8,7 +8,7 @@ namespace CozyBored.Server {
 
         static void Main(string[] args) {
 
-            var baseUrl = "http://localhost:1024/";
+            var baseUrl = "http://localhost:23333/";
 
             HostConfiguration hostconfig = new HostConfiguration() {
                 UrlReservations = new UrlReservations { CreateAutomatically = true }

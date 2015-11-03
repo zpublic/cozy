@@ -7,8 +7,8 @@ namespace CozyBored.Client.Core
     public class BoredApi
     {
         const string Ver = "1";
-        const string BaseUrl = "http://www.laorouji.com:1024";
-        //const string BaseUrl = "http://localhost:1024/";
+        const string BaseUrl = "http://www.laorouji.com:23333/";
+        //const string BaseUrl = "http://localhost:23333/";
 
         public static List<BoredModel> QueryRank()
         {
