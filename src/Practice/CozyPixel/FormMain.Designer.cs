@@ -47,9 +47,7 @@
             this.SelectedColorButton = new System.Windows.Forms.Button();
             this.MainTopTab = new MetroFramework.Controls.MetroTabControl();
             this.ColorPage = new MetroFramework.Controls.MetroTabPage();
-            this.ColorList = new CozyPixel.Controls.ColorListView();
             this.CozyColorPage = new MetroFramework.Controls.MetroTabPage();
-            this.CozyColorListView = new CozyPixel.Controls.ColorListView();
             this.GenerateButton = new MetroFramework.Controls.MetroButton();
             this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.CurrPathStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -62,18 +60,20 @@
             this.PencilToolButton = new MetroFramework.Controls.MetroButton();
             this.FileSelectPage = new MetroFramework.Controls.MetroTabPage();
             this.RefreshThumbListButton = new MetroFramework.Controls.MetroButton();
-            this.ThumbListView = new CozyPixel.Controls.ImageListView();
             this.DirectorySelectButton = new MetroFramework.Controls.MetroButton();
             this.GridOpeionPage = new MetroFramework.Controls.MetroTabPage();
             this.GridAlphaTrack = new MetroFramework.Controls.MetroTrackBar();
             this.GridAlphaLabel = new System.Windows.Forms.Label();
-            this.ColorPicker = new CozyPixel.Controls.ColorPickerComboBox();
             this.GridWidthLabel = new MetroFramework.Controls.MetroLabel();
             this.GridWidthBox = new System.Windows.Forms.TextBox();
             this.ShowGridCheckBox = new MetroFramework.Controls.MetroToggle();
             this.GridColorButton = new System.Windows.Forms.Button();
             this.ColorLabel = new MetroFramework.Controls.MetroLabel();
             this.PixelPainter = new CozyPixel.Controls.PixelPainter();
+            this.ColorList = new CozyPixel.Controls.ColorListView();
+            this.CozyColorListView = new CozyPixel.Controls.ColorListView();
+            this.ThumbListView = new CozyPixel.Controls.ImageListView();
+            this.ColorPicker = new CozyPixel.Controls.ColorPickerComboBox();
             this.MainStripMenu.SuspendLayout();
             this.MainTopTab.SuspendLayout();
             this.ColorPage.SuspendLayout();
@@ -252,17 +252,6 @@
             this.ColorPage.VerticalScrollbarHighlightOnWheel = false;
             this.ColorPage.VerticalScrollbarSize = 10;
             // 
-            // ColorList
-            // 
-            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
-            this.ColorList.ColorItemSize = new System.Drawing.Size(58, 20);
-            this.ColorList.Location = new System.Drawing.Point(195, 22);
-            this.ColorList.Name = "ColorList";
-            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
-            this.ColorList.Size = new System.Drawing.Size(500, 72);
-            this.ColorList.TabIndex = 2;
-            this.ColorList.ColorSelectedEventHandler += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorList_ColorSelectedEventHandler);
-            // 
             // CozyColorPage
             // 
             this.CozyColorPage.Controls.Add(this.CozyColorListView);
@@ -279,17 +268,6 @@
             this.CozyColorPage.VerticalScrollbarBarColor = true;
             this.CozyColorPage.VerticalScrollbarHighlightOnWheel = false;
             this.CozyColorPage.VerticalScrollbarSize = 10;
-            // 
-            // CozyColorListView
-            // 
-            this.CozyColorListView.ColorItemMargin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.CozyColorListView.ColorItemSize = new System.Drawing.Size(51, 72);
-            this.CozyColorListView.Location = new System.Drawing.Point(181, 23);
-            this.CozyColorListView.Name = "CozyColorListView";
-            this.CozyColorListView.SelectedColor = System.Drawing.Color.Empty;
-            this.CozyColorListView.Size = new System.Drawing.Size(500, 72);
-            this.CozyColorListView.TabIndex = 2;
-            this.CozyColorListView.ColorSelectedEventHandler += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorList_ColorSelectedEventHandler);
             // 
             // GenerateButton
             // 
@@ -431,18 +409,6 @@
             this.RefreshThumbListButton.UseSelectable = true;
             this.RefreshThumbListButton.Click += new System.EventHandler(this.RefreshThumbListButton_Click);
             // 
-            // ThumbListView
-            // 
-            this.ThumbListView.Location = new System.Drawing.Point(60, 80);
-            this.ThumbListView.MaxNameLength = 12;
-            this.ThumbListView.MultiSelect = false;
-            this.ThumbListView.Name = "ThumbListView";
-            this.ThumbListView.ShowItemToolTips = true;
-            this.ThumbListView.Size = new System.Drawing.Size(155, 330);
-            this.ThumbListView.TabIndex = 2;
-            this.ThumbListView.UseCompatibleStateImageBehavior = false;
-            this.ThumbListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ThumbListView_ItemSelectionChanged);
-            // 
             // DirectorySelectButton
             // 
             this.DirectorySelectButton.Location = new System.Drawing.Point(60, 22);
@@ -498,19 +464,6 @@
             this.GridAlphaLabel.Size = new System.Drawing.Size(65, 12);
             this.GridAlphaLabel.TabIndex = 7;
             this.GridAlphaLabel.Text = "网格透明度";
-            // 
-            // ColorPicker
-            // 
-            this.ColorPicker.ColorWidth = 50;
-            this.ColorPicker.DropDownWidth = 150;
-            this.ColorPicker.ItemHeight = 23;
-            this.ColorPicker.Location = new System.Drawing.Point(85, 277);
-            this.ColorPicker.Name = "ColorPicker";
-            this.ColorPicker.SelectedColor = System.Drawing.Color.Empty;
-            this.ColorPicker.Size = new System.Drawing.Size(100, 29);
-            this.ColorPicker.TabIndex = 5;
-            this.ColorPicker.UseSelectable = true;
-            this.ColorPicker.ColorPickerSelectedColorChanged += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorPicker_ColorPickerSelectedColorChanged);
             // 
             // GridWidthLabel
             // 
@@ -579,6 +532,53 @@
             this.PixelPainter.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseMove);
             this.PixelPainter.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PixelPainter_MouseUp);
             // 
+            // ColorList
+            // 
+            this.ColorList.ColorItemMargin = new System.Windows.Forms.Padding(2);
+            this.ColorList.ColorItemSize = new System.Drawing.Size(58, 20);
+            this.ColorList.Location = new System.Drawing.Point(195, 22);
+            this.ColorList.Name = "ColorList";
+            this.ColorList.SelectedColor = System.Drawing.Color.Empty;
+            this.ColorList.Size = new System.Drawing.Size(500, 72);
+            this.ColorList.TabIndex = 2;
+            this.ColorList.ColorSelectedEventHandler += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorList_ColorSelectedEventHandler);
+            // 
+            // CozyColorListView
+            // 
+            this.CozyColorListView.ColorItemMargin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.CozyColorListView.ColorItemSize = new System.Drawing.Size(51, 72);
+            this.CozyColorListView.Location = new System.Drawing.Point(181, 23);
+            this.CozyColorListView.Name = "CozyColorListView";
+            this.CozyColorListView.SelectedColor = System.Drawing.Color.Empty;
+            this.CozyColorListView.Size = new System.Drawing.Size(500, 72);
+            this.CozyColorListView.TabIndex = 2;
+            this.CozyColorListView.ColorSelectedEventHandler += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorList_ColorSelectedEventHandler);
+            // 
+            // ThumbListView
+            // 
+            this.ThumbListView.Location = new System.Drawing.Point(60, 80);
+            this.ThumbListView.MaxNameLength = 12;
+            this.ThumbListView.MultiSelect = false;
+            this.ThumbListView.Name = "ThumbListView";
+            this.ThumbListView.ShowItemToolTips = true;
+            this.ThumbListView.Size = new System.Drawing.Size(155, 330);
+            this.ThumbListView.TabIndex = 2;
+            this.ThumbListView.UseCompatibleStateImageBehavior = false;
+            this.ThumbListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ThumbListView_ItemSelectionChanged);
+            // 
+            // ColorPicker
+            // 
+            this.ColorPicker.ColorWidth = 50;
+            this.ColorPicker.DropDownWidth = 150;
+            this.ColorPicker.ItemHeight = 23;
+            this.ColorPicker.Location = new System.Drawing.Point(85, 277);
+            this.ColorPicker.Name = "ColorPicker";
+            this.ColorPicker.SelectedColor = System.Drawing.Color.Empty;
+            this.ColorPicker.Size = new System.Drawing.Size(100, 29);
+            this.ColorPicker.TabIndex = 5;
+            this.ColorPicker.UseSelectable = true;
+            this.ColorPicker.ColorPickerSelectedColorChanged += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorPicker_ColorPickerSelectedColorChanged);
+            // 
             // CozyPixelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -593,7 +593,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CozyPixelForm";
-            this.Text = "CozyPixel 0.75";
+            this.Text = "CozyPixel 0.9";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CozyPixelForm_KeyDown);
             this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.CozyPixelForm_MouseWheel);
