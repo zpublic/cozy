@@ -24,7 +24,7 @@ namespace CozyBored.Server.Modules {
             };
 
             Get["get-rank/{ver}/{time}"] = param => {
-                Console.WriteLine("query-rank");
+                Console.WriteLine("get-rank");
                 string ver = param.ver;
                 DateTime time = param.time;
                 var result = table.Find(x => x.ver == ver)
@@ -33,9 +33,9 @@ namespace CozyBored.Server.Modules {
             };
 
             Post["save"] = param => {
-                Console.WriteLine("save");
                 var model = this.Bind<RankModel>();
                 model.id = Guid.NewGuid();
+                Console.WriteLine("save:" + model.name + "-" + model.time);
                 if (table.Insert(model) != null)
                     return HttpStatusCode.OK;
                 return HttpStatusCode.InternalServerError;

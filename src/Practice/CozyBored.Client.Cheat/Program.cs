@@ -14,6 +14,7 @@ namespace CozyBored.Client.Cheat
             string name = Console.ReadLine();
             int time = int.Parse(Console.ReadLine());
             BoredApi.Save(name, time);
+            BoredApi.GetRank(time);
             BoredApi.QueryRank();
             Console.WriteLine(name + ":" + time);
         }

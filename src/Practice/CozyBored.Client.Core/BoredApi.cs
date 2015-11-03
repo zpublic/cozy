@@ -14,8 +14,16 @@ namespace CozyBored.Client.Core
         public static int QueryRank()
         {
             var client = new RestClient(BaseUrl);
-            var request = new RestRequest("query-rank", Method.GET);
-            request.AddParameter("ver", 1);
+            var request = new RestRequest("query-rank/1", Method.GET);
+            IRestResponse response = client.Execute(request);
+            var content = response.Content;
+            return 0;
+        }
+
+        public static int GetRank(int time)
+        {
+            var client = new RestClient(BaseUrl);
+            var request = new RestRequest("get-rank/1/" + time.ToString(), Method.GET);
             IRestResponse response = client.Execute(request);
             var content = response.Content;
             return 0;
