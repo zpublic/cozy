@@ -1,23 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Nancy;
 using Nancy.ModelBinding;
+using LiteDB;
+using CozyBored.Server.Models;
 
 namespace CozyBored.Server.Modules {
 
     public class RankModule : NancyModule {
 
+        private LiteCollection<RankModel> table;
+
         public RankModule() {
 
+            table = DbContent.GetInstance().GetTable<RankModel>();
+
             Get["query-rank"] = param => {
-                throw new NotImplementedException();
+                var result = table.FindAll()
+                    .OrderByDescending(x => x.time).Take(10).ToList();
+                return result;
             };
 
             Post["save"] = param => {
-                throw new NotImplementedException();
+                var model = this.Bind<RankModel>();
+                model.id = Guid.NewGuid();
+                if (table.Insert(model) != null)
+                    return HttpStatusCode.OK;
+                return HttpStatusCode.InternalServerError;
             };
         }
 

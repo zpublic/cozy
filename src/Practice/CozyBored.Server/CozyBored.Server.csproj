@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbContent.cs" />
     <Compile Include="Models\RankModel.cs" />
     <Compile Include="Modules\RankModule.cs" />
     <Compile Include="Program.cs" />
