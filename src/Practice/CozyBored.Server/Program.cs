@@ -1,15 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Nancy;
+using Nancy.Hosting.Self;
+using System;
 
-namespace CozyBored.Server
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
+namespace CozyBored.Server {
+
+    class Program {
+
+        static void Main(string[] args) {
+
+            var baseUrl = "http://localhost:1024/";
+
+            HostConfiguration hostconfig = new HostConfiguration() {
+                UrlReservations = new UrlReservations { CreateAutomatically = true }
+            };
+
+            using (var host = new NancyHost(new Url(baseUrl), new DefaultNancyBootstrapper(), hostconfig)) {
+                host.Start();
+                Console.WriteLine("火力全开！");
+                Console.ReadKey();
+
+            }
         }
     }
 }
