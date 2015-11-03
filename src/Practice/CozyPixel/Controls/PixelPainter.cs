@@ -169,9 +169,7 @@ namespace CozyPixel.Controls
 
         private void InnerPicBox_SizeChanged(object sender, EventArgs e)
         {
-            InnerPicBox.Location = new Point(
-                (InnerPicBox.Width < Width ? (Width - InnerPicBox.Width) / 2 : InnerPicBox.Location.X),
-                (InnerPicBox.Height < Height ? (Height - InnerPicBox.Height) / 2 : InnerPicBox.Location.Y));
+            InnerPicBox.Location = new Point( (Width - InnerPicBox.Width) / 2, (Height - InnerPicBox.Height) / 2);
         }
     }
 }

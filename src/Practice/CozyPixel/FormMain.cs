@@ -40,6 +40,8 @@ namespace CozyPixel
             }
         }
 
+        private bool IsControlDown { get; set; }
+
         public CozyPixelForm()
         {
             InitializeComponent();
@@ -311,6 +313,15 @@ namespace CozyPixel
         private void GridAlphaTrack_Scroll(object sender, ScrollEventArgs e)
         {
             ColorSelectCallback(GridColorButton.BackColor);
+        }
+
+        const int WHEEL_DELTA = 120;
+        private void CozyPixelForm_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.None && ModifierKeys == Keys.Control)
+            {
+                Zoom(e.Delta / WHEEL_DELTA);
+            }
         }
     }
 }

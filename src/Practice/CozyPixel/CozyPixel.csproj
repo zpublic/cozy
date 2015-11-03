@@ -97,6 +97,9 @@
       <DependentUpon>FormMain.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMain.MapScale.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMain.Operat.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
       <SubType>Form</SubType>
