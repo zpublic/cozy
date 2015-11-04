@@ -182,6 +182,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CozyAscii.Console\CozyAscii.Console.csproj">
+      <Project>{c1526e1d-7a4c-4171-8eb8-583a14dd1bcc}</Project>
+      <Name>CozyAscii.Console</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyColor.Core\CozyColor.Core.csproj">
       <Project>{896bd16c-2781-4b42-8472-d8c964b9bb86}</Project>
       <Name>CozyColor.Core</Name>
