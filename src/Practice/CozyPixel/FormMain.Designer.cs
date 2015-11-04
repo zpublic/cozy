@@ -49,6 +49,7 @@
             this.ColorPage = new MetroFramework.Controls.MetroTabPage();
             this.CozyColorPage = new MetroFramework.Controls.MetroTabPage();
             this.GenerateButton = new MetroFramework.Controls.MetroButton();
+            this.CozyAsciiPage = new MetroFramework.Controls.MetroTabPage();
             this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.CurrPathStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainLeftTab = new MetroFramework.Controls.MetroTabControl();
@@ -74,10 +75,12 @@
             this.CozyColorListView = new CozyPixel.Controls.ColorListView();
             this.ThumbListView = new CozyPixel.Controls.ImageListView();
             this.ColorPicker = new CozyPixel.Controls.ColorPickerComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.MainStripMenu.SuspendLayout();
             this.MainTopTab.SuspendLayout();
             this.ColorPage.SuspendLayout();
             this.CozyColorPage.SuspendLayout();
+            this.CozyAsciiPage.SuspendLayout();
             this.MainStatusStrip.SuspendLayout();
             this.MainLeftTab.SuspendLayout();
             this.SelectToolPage.SuspendLayout();
@@ -227,9 +230,10 @@
             // 
             this.MainTopTab.Controls.Add(this.ColorPage);
             this.MainTopTab.Controls.Add(this.CozyColorPage);
+            this.MainTopTab.Controls.Add(this.CozyAsciiPage);
             this.MainTopTab.Location = new System.Drawing.Point(397, 99);
             this.MainTopTab.Name = "MainTopTab";
-            this.MainTopTab.SelectedIndex = 1;
+            this.MainTopTab.SelectedIndex = 2;
             this.MainTopTab.Size = new System.Drawing.Size(720, 140);
             this.MainTopTab.TabIndex = 7;
             this.MainTopTab.UseSelectable = true;
@@ -254,8 +258,8 @@
             // 
             // CozyColorPage
             // 
-            this.CozyColorPage.Controls.Add(this.CozyColorListView);
             this.CozyColorPage.Controls.Add(this.GenerateButton);
+            this.CozyColorPage.Controls.Add(this.CozyColorListView);
             this.CozyColorPage.HorizontalScrollbarBarColor = true;
             this.CozyColorPage.HorizontalScrollbarHighlightOnWheel = false;
             this.CozyColorPage.HorizontalScrollbarSize = 10;
@@ -278,6 +282,21 @@
             this.GenerateButton.Text = "生成";
             this.GenerateButton.UseSelectable = true;
             this.GenerateButton.Click += new System.EventHandler(this.GenerateButton_Click);
+            // 
+            // CozyAsciiPage
+            // 
+            this.CozyAsciiPage.Controls.Add(this.button1);
+            this.CozyAsciiPage.HorizontalScrollbarBarColor = true;
+            this.CozyAsciiPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.CozyAsciiPage.HorizontalScrollbarSize = 10;
+            this.CozyAsciiPage.Location = new System.Drawing.Point(4, 38);
+            this.CozyAsciiPage.Name = "CozyAsciiPage";
+            this.CozyAsciiPage.Size = new System.Drawing.Size(712, 98);
+            this.CozyAsciiPage.TabIndex = 2;
+            this.CozyAsciiPage.Text = "CozyAscii";
+            this.CozyAsciiPage.VerticalScrollbarBarColor = true;
+            this.CozyAsciiPage.VerticalScrollbarHighlightOnWheel = false;
+            this.CozyAsciiPage.VerticalScrollbarSize = 10;
             // 
             // MainStatusStrip
             // 
@@ -579,6 +598,16 @@
             this.ColorPicker.UseSelectable = true;
             this.ColorPicker.ColorPickerSelectedColorChanged += new System.EventHandler<CozyPixel.Controls.ControlEventArgs.ColorEventAgs>(this.ColorPicker_ColorPickerSelectedColorChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(229, 27);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(290, 53);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "降纬打击";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // CozyPixelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -602,6 +631,7 @@
             this.MainTopTab.ResumeLayout(false);
             this.ColorPage.ResumeLayout(false);
             this.CozyColorPage.ResumeLayout(false);
+            this.CozyAsciiPage.ResumeLayout(false);
             this.MainStatusStrip.ResumeLayout(false);
             this.MainStatusStrip.PerformLayout();
             this.MainLeftTab.ResumeLayout(false);
@@ -663,6 +693,8 @@
         private System.Windows.Forms.ToolStripMenuItem ZoomInMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ZoomOutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ZoomResetMenuItem;
+        private MetroFramework.Controls.MetroTabPage CozyAsciiPage;
+        private System.Windows.Forms.Button button1;
     }
 }
 

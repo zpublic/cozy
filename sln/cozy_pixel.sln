@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPixel", "..\src\Practic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyColor.Core", "..\src\Practice\CozyColor.Core\CozyColor.Core.csproj", "{896BD16C-2781-4B42-8472-D8C964B9BB86}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyAscii.Console", "..\src\Practice\CozyAscii.Console\CozyAscii.Console.csproj", "{C1526E1D-7A4C-4171-8EB8-583A14DD1BCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{896BD16C-2781-4B42-8472-D8C964B9BB86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{896BD16C-2781-4B42-8472-D8C964B9BB86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{896BD16C-2781-4B42-8472-D8C964B9BB86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1526E1D-7A4C-4171-8EB8-583A14DD1BCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1526E1D-7A4C-4171-8EB8-583A14DD1BCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1526E1D-7A4C-4171-8EB8-583A14DD1BCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1526E1D-7A4C-4171-8EB8-583A14DD1BCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

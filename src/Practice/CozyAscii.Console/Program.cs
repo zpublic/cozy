@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,15 +12,19 @@ namespace CozyAscii.Console
     {
         static void Main(string[] args)
         {
-            char[] chars = { '@', 'w', '#', '$', 'k', 'd', 't', 'j', 'i', '.', ' ' };
-            Bitmap b = new Bitmap(@"g:\aqa.bmp");
-            for (int y = 0; y < b.Height; ++y)
+            if (args.Count() == 1)
             {
-                for (int x = 0; x < b.Width; ++x)
+                char[] chars = { '@', 'w', '#', '$', 'k', 'd', 't', 'j', 'i', '.', ' ' };
+                Bitmap b = new Bitmap(args[0]);
+                for (int y = 0; y < b.Height; ++y)
                 {
-                    System.Console.Write(chars[(b.GetPixel(x, y).R + b.GetPixel(x, y).G + b.GetPixel(x, y).B) / 3 / 25]);
+                    for (int x = 0; x < b.Width; ++x)
+                    {
+                        System.Console.Write(chars[(b.GetPixel(x, y).R + b.GetPixel(x, y).G + b.GetPixel(x, y).B) / 3 / 25]);
+                    }
+                    System.Console.WriteLine();
                 }
-                System.Console.WriteLine();
+                System.Console.ReadKey();
             }
         }
     }

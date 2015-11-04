@@ -14,6 +14,7 @@ using CozyColor.Core.Color;
 using CozyPixel.Tools;
 using MetroFramework.Forms;
 using CozyPixel.Command;
+using System.Diagnostics;
 
 namespace CozyPixel
 {
@@ -346,6 +347,14 @@ namespace CozyPixel
         private void ZoomResetMenuItem_Click(object sender, EventArgs e)
         {
             ZoomReset();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (SelectedImagePath != null && SelectedImagePath != "")
+            {
+                Process.Start(System.Environment.CurrentDirectory + "\\CozyAscii.Console.exe", SelectedImagePath);
+            }
         }
     }
 }
