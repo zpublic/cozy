@@ -21,21 +21,17 @@ namespace CozyPixel
             return res;
         }
 
-        public static IEnumerable<Point> GetAllPoint(List<Point> DrawPoints)
+        public static IEnumerable<KeyValuePair<Point, Color>> GetAllPoint(List<Point> DrawPoints, Color c)
         {
-            HashSet<Point> NeetDraw = new HashSet<Point>();
+            Dictionary<Point, Color> NeetDraw = new Dictionary<Point, Color>();
 
             if (DrawPoints.Count > 0)
             {
-                NeetDraw.Add(DrawPoints[0]);
+                NeetDraw[DrawPoints[0]] = c;
 
                 for (int i = 1; i < DrawPoints.Count; ++i)
                 {
-                    var ps = GenericDraw.Line(DrawPoints[i - 1], DrawPoints[i]);
-                    foreach(var p in ps)
-                    {
-                        NeetDraw.Add(p);
-                    }
+                    GenericDraw.Line(DrawPoints[i - 1], DrawPoints[i], c, NeetDraw);
                 }
             }
             return NeetDraw;
@@ -51,15 +47,39 @@ namespace CozyPixel
             return new Point(p.X * w, p.Y * w);
         }
 
-        public static void FakeDrawPixel(this IPixelGridDrawable target, IEnumerable<Point> points, Color c)
+        public static void FakeDrawPixel(this IPixelDrawable target, IEnumerable<KeyValuePair<Point, Color>> points)
         {
-            if(target != null && points != null)
+            if(target != null && points != null && target.IsReady)
             {
                 foreach(var obj in points)
                 {
-                    target.FakeDrawPixel(obj, c);
+                    target.FakeDrawPixel(obj.Key, obj.Value);
                 }
             }
+        }
+
+        public static Color Blend(Color Dest, Color source, double alpha)
+        {
+            return Color.FromArgb(
+                (int)(Dest.A * alpha + source.A * (1 - alpha)),
+                (int)(Dest.R * alpha + source.R * (1 - alpha)),
+                (int)(Dest.G * alpha + source.G * (1 - alpha)),
+                (int)(Dest.B * alpha + source.B * (1 - alpha)));
+        }
+
+        public static double Length(this Point p, Point o)
+        {
+            return Math.Sqrt((p.X - o.X) * (p.X - o.X) + (p.Y - o.Y) * (p.Y - o.Y));
+        }
+
+        public static double GaussianWeight(double length)
+        {
+            return 42;
+        }
+
+        public static double LinearWeight(double length, double width)
+        {
+            return 1 - (length / width);
         }
     }
 }

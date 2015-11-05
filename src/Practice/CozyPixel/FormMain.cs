@@ -15,11 +15,14 @@ using CozyPixel.Tools;
 using MetroFramework.Forms;
 using CozyPixel.Command;
 using System.Diagnostics;
+using CozyPixel.Model;
 
 namespace CozyPixel
 {
     public partial class CozyPixelForm : MetroForm, IPixelColor
     {
+
+
         public bool IsModified { get; set; }
 
         public string CurrDire { get; set; } = Application.StartupPath;
@@ -109,7 +112,7 @@ namespace CozyPixel
             if (CurrPixelMap != null)
             {
                 CurrPixelMap.ShowGrid   = ShowGridCheckBox.Checked;
-                CurrPixelMap.PixelWidth = DefaultPixelWidth - (CurrPixelMap.ShowGrid ? CurrPixelMap.GridWidth : 0);
+                CurrPixelMap.PixelWidth = PixelMap.DefaultPixelWidth - (CurrPixelMap.ShowGrid ? CurrPixelMap.GridWidth : 0);
 
                 PixelPainter.RefreshPixel();
             }
@@ -312,11 +315,13 @@ namespace CozyPixel
                     CurrPixelTool = tool;
                 }
             }
-
-            int value = (int)e.KeyCode;
-            if(value >= (int)Keys.D1 && value <= (int)Keys.D9)
+            else
             {
-                CozyColorListView.ChangeSelectedColor(value - (int)Keys.D0);
+                int value = (int)e.KeyCode;
+                if (value >= (int)Keys.D1 && value <= (int)Keys.D9)
+                {
+                    CozyColorListView.ChangeSelectedColor(value - (int)Keys.D0);
+                }
             }
         }
 
@@ -325,28 +330,19 @@ namespace CozyPixel
             ColorSelectCallback(GridColorButton.BackColor);
         }
 
-        const int WHEEL_DELTA = 120;
-        private void CozyPixelForm_MouseWheel(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.None && ModifierKeys == Keys.Control)
-            {
-                Zoom(e.Delta / WHEEL_DELTA);
-            }
-        }
-
         private void ZoomInMenuItem_Click(object sender, EventArgs e)
         {
-            Zoom(1);
+            PixelPainter.Zoom(1);
         }
 
         private void ZoomOutMenuItem_Click(object sender, EventArgs e)
         {
-            Zoom(-1);
+            PixelPainter.Zoom(-1);
         }
 
         private void ZoomResetMenuItem_Click(object sender, EventArgs e)
         {
-            ZoomReset();
+            PixelPainter.ZoomReset();
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -26,14 +26,14 @@ namespace CozyPixel.Tools
         {
             base.OnEnd(p);
 
-            if (Target != null && ColorHolder != null)
+            if (Target != null && ColorHolder != null && Target.IsReady)
             {
-                var mapp = p.ToMap(Target.GridWidth);
+                var mapp    = p.ToMap(Target.GridWidth);
+                var points  = GenericDraw.GetPointsWithSameColor(Target, mapp, Target.ReadPixel(mapp));
 
                 var command = new DrawPixelCommand()
                 {
-                    Color   = ColorHolder.CurrColor,
-                    Points  = GenericDraw.GetPointsWithSameColor(Target, mapp, Target.ReadPixel(mapp)),
+                    Points  = points.Select(x => new KeyValuePair<Point, Color>(x.Key, ColorHolder.CurrColor)),
                     Target  = Target,
                 };
                 CommandManager.Instance.Do(command);

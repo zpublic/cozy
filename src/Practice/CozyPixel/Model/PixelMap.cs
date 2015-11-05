@@ -9,13 +9,17 @@ namespace CozyPixel.Model
 {
     public class PixelMap
     {
+        public const int DefaultPixelWidth = 20;
+
+        public const int DefaultGridWidth = 2;
+
         public Bitmap data { get; set; }
 
         public bool ShowGrid { get; set; } = true;
 
-        public int GridWidth { get; set; } = 2;
+        public int GridWidth { get; set; } = DefaultGridWidth;
 
-        public int PixelWidth { get; set; } = 8;
+        public int PixelWidth { get; set; } = DefaultPixelWidth;
 
         public int Width { get { return data != null ? data.Width : 0; } }
 

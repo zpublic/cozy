@@ -18,8 +18,8 @@ namespace CozyPixel
             int gw = 0;
             if (!int.TryParse(GridWidthBox.Text, out gw))
             {
-                gw                  = DefaultGridWidth;
-                GridWidthBox.Text   = DefaultGridWidth.ToString();
+                gw                  = PixelMap.DefaultGridWidth;
+                GridWidthBox.Text   = PixelMap.DefaultGridWidth.ToString();
             }
             return gw;
         }
@@ -32,7 +32,7 @@ namespace CozyPixel
             {
                 ShowGrid    = ShowGridCheckBox.Checked,
                 data        = bmp,
-                PixelWidth  = CurrPixelWidth - gw,
+                PixelWidth  = PixelMap.DefaultPixelWidth - gw,
                 GridWidth   = gw,
                 GridColor   = GridColorButton.BackColor,
             };

@@ -44,6 +44,8 @@
             this.InnerPicBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.InnerPicBox_MouseDown);
             this.InnerPicBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.InnerPicBox_MouseMove);
             this.InnerPicBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.InnerPicBox_MouseUp);
+            this.InnerPicBox.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.InnerPicBox_MouseWheel);
+
             // 
             // PixelPainter
             // 
