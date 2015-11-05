@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CozyPixel.Tools
 {
-    public class PixelPencil : PixelToolBase
+    public class PixelPencil : DragPixelTool
     {
         public override bool WillModify { get { return true; } }
 
@@ -19,27 +19,9 @@ namespace CozyPixel.Tools
 
         public int Width { get; set; } = 2;
 
-        private Point LastPoint { get; set; }
-
-        private Dictionary<Point, Color> FakeDrawPoints { get; set; } = new Dictionary<Point, Color>();
-
-        private List<Point> DrawPoints { get; set; } = new List<Point>();
-
         public PixelPencil(IPixelColor holder)
             :base(holder)
         {
-        }
-
-        protected override void OnBegin(Point p)
-        {
-            base.OnBegin(p);
-            FakeDrawPoints.Clear();
-
-            if (Target != null && Target.IsReady)
-            {
-                LastPoint = p.ToMap(Target.GridWidth);
-                DrawPoints.Add(LastPoint);
-            }
         }
 
         protected override void OnMove(Point p)
@@ -50,7 +32,6 @@ namespace CozyPixel.Tools
             {
                 var old_last    = LastPoint;
                 LastPoint       = p.ToMap(Target.GridWidth);
-                DrawPoints.Add(LastPoint);
 
                 GenericDraw.Line(old_last, LastPoint, ColorHolder.CurrColor, FakeDrawPoints);
                 Target.FakeDrawPixel(FakeDrawPoints.GetDistributionColor(Target, Width));
@@ -63,8 +44,6 @@ namespace CozyPixel.Tools
 
             if (Target != null && ColorHolder != null && Target.IsReady)
             {
-                DrawPoints.Add(p.ToMap(Target.GridWidth));
-
                 var points = CozyPixelHelper.GetAllPoint(DrawPoints, ColorHolder.CurrColor);
                 var command = new DrawPixelCommand()
                 {
@@ -77,12 +56,6 @@ namespace CozyPixel.Tools
                 return true;
             }
             return false;
-        }
-
-        protected override void OnExit()
-        {
-            base.OnExit();
-            DrawPoints.Clear();
         }
     }
 }
