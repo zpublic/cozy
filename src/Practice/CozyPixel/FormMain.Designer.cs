@@ -623,7 +623,6 @@
             this.Text = "CozyPixel 0.9";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CozyPixelForm_KeyDown);
-            this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.CozyPixelForm_MouseWheel);
             this.MainStripMenu.ResumeLayout(false);
             this.MainStripMenu.PerformLayout();
             this.MainTopTab.ResumeLayout(false);
