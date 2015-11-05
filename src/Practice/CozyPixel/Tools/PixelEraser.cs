@@ -16,7 +16,11 @@ namespace CozyPixel.Tools
 
         public override Keys KeyCode { get { return Keys.D3; } }
 
+        public int Width { get; set; } = 2;
+
         private Point LastPoint { get; set; }
+
+        private Dictionary<Point, Color> FakeDrawPoints { get; set; } = new Dictionary<Point, Color>();
 
         private List<Point> DrawPoints { get; set; } = new List<Point>();
 
@@ -29,22 +33,27 @@ namespace CozyPixel.Tools
         protected override void OnBegin(Point p)
         {
             base.OnBegin(p);
+            FakeDrawPoints.Clear();
 
-            LastPoint = p.ToMap(Target.GridWidth);
-            DrawPoints.Add(LastPoint);
+            if (Target != null && Target.IsReady)
+            {
+                LastPoint = p.ToMap(Target.GridWidth);
+                DrawPoints.Add(LastPoint);
+            }
         }
 
         protected override void OnMove(Point p)
         {
             base.OnMove(p);
 
-            if (Target != null)
+            if (Target != null && Target.IsReady)
             {
-                var old_last    = LastPoint;
-                LastPoint       = p.ToMap(Target.GridWidth);
+                var old_last = LastPoint;
+                LastPoint = p.ToMap(Target.GridWidth);
                 DrawPoints.Add(LastPoint);
 
-                Target.FakeDrawPixel(GenericDraw.Line(old_last, LastPoint), Target.DefaultDrawColor);
+                GenericDraw.Line(old_last, LastPoint, Target.DefaultDrawColor, FakeDrawPoints);
+                Target.FakeDrawPixel(FakeDrawPoints.GetDistributionColor(Target, Width));
             }
         }
 
@@ -52,15 +61,15 @@ namespace CozyPixel.Tools
         {
             base.OnEnd(p);
 
-            if (Target != null)
+            if (Target != null && Target.IsReady)
             {
                 DrawPoints.Add(p.ToMap(Target.GridWidth));
 
+                var points = CozyPixelHelper.GetAllPoint(DrawPoints, Target.DefaultDrawColor);
                 var command = new DrawPixelCommand()
                 {
-                    Color   = Target.DefaultDrawColor,
-                    Points  = CozyPixelHelper.GetAllPoint(DrawPoints),
-                    Target  = Target,
+                    Points = points.GetDistributionColor(Target, Width),
+                    Target = Target,
                 };
                 CommandManager.Instance.Do(command);
 

@@ -42,7 +42,7 @@ namespace CozyPixel.Tools
 
         private void ReadColor(Point p)
         {
-            if (Target != null && ColorHolder != null)
+            if (Target != null && ColorHolder != null && Target.IsReady)
             {
                 ColorHolder.CurrColor = Target.ReadPixel(p.ToMap(Target.GridWidth));
             }

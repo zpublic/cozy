@@ -312,11 +312,13 @@ namespace CozyPixel
                     CurrPixelTool = tool;
                 }
             }
-
-            int value = (int)e.KeyCode;
-            if(value >= (int)Keys.D1 && value <= (int)Keys.D9)
+            else
             {
-                CozyColorListView.ChangeSelectedColor(value - (int)Keys.D0);
+                int value = (int)e.KeyCode;
+                if (value >= (int)Keys.D1 && value <= (int)Keys.D9)
+                {
+                    CozyColorListView.ChangeSelectedColor(value - (int)Keys.D0);
+                }
             }
         }
 
