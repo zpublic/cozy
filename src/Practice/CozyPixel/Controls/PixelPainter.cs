@@ -20,18 +20,29 @@ namespace CozyPixel.Controls
             InitializeComponent();
         }
 
+        public float ScaleStep { get; set; } = 0.1f;
+
+        public int MaxScale { get; set; } = 8;
+
+        public int MinScale { get; set; } = 8;
+
+        public bool IsReady { get { return SourceImage != null; } }
+
+        public int DefaultScaleWidth { get; set; }
+
+        public Color DefaultDrawColor { get; set; } = Color.White;
+
+        private float CurrScale { get; set; } = 1.0f;
+
         public Image Image
         {
             get
             {
-                return InnerPicBox == null ? null : InnerPicBox.Image;
+                return InnerPicBox.Image;
             }
             set
             {
-                if (InnerPicBox != null)
-                {
-                    InnerPicBox.Image = value;
-                }
+                InnerPicBox.Image = value;
             }
         }
 
@@ -47,22 +58,52 @@ namespace CozyPixel.Controls
                 sourceImage = value;
                 if (value != null)
                 {
-                    DefaultDrawColor = value.BackColor;
+                    DefaultDrawColor    = value.BackColor;
+                    DefaultScaleWidth   = value.PixelWidth;
                 }
 
                 RefreshPixel();
             }
         }
+        public int CurrPixelWidth
+        {
+            get
+            {
+                if(IsReady)
+                {
+                    return (int)(CurrScale * DefaultScaleWidth + float.Epsilon);
+                }
+                return PixelMap.DefaultPixelWidth;
+            }
+        }
 
-        public Color DefaultDrawColor { get; set; } = Color.White;
+        public int GridWidth
+        {
+            get
+            {
+                if(IsReady)
+                {
+                    return SourceImage.PixelWidth + (SourceImage.ShowGrid ? SourceImage.GridWidth : 0);
+                }
+                return 0;
+            }
+        }
 
-        public int GridWidth { get { return SourceImage.PixelWidth + (SourceImage.ShowGrid ? SourceImage.GridWidth : 0); } }
-
-        public Size PixelSize { get { return new Size(SourceImage.Width, SourceImage.Height); } }
+        public Size PixelSize
+        {
+            get
+            {
+                if(IsReady)
+                {
+                    return new Size(SourceImage.Width, SourceImage.Height);
+                }
+                return Size.Empty;
+            }
+        }
 
         public void Save(string filename)
         {
-            if (SourceImage != null)
+            if (IsReady)
             {
                 SourceImage.Save(filename);
             }
@@ -70,25 +111,29 @@ namespace CozyPixel.Controls
 
         public void DrawPixel(Point p, Color c)
         {
-            using (var g = Graphics.FromImage(Image))
+            if(IsReady)
             {
-                DrawPixel(p, c, g, true);
+                using (var g = Graphics.FromImage(Image))
+                {
+                    DrawPixel(p, c, g, true);
+                }
             }
         }
 
         public void FakeDrawPixel(Point p, Color c)
         {
-            if (InnerPicBox == null) return;
-
-            using (var g = InnerPicBox.CreateGraphics())
+            if (IsReady)
             {
-                DrawPixel(p, c, g, false);
+                using (var g = InnerPicBox.CreateGraphics())
+                {
+                    DrawPixel(p, c, g, false);
+                }
             }
         }
 
         public void UpdateDrawable()
         {
-            if (InnerPicBox != null)
+            if (IsReady)
             {
                 InnerPicBox.Refresh();
             }
@@ -96,9 +141,9 @@ namespace CozyPixel.Controls
 
         public Color ReadPixel(Point p)
         {
-            if(p.X >= 0 && p.Y >= 0 && p.X < SourceImage.Width && p.Y < sourceImage.Height)
+            if(IsReady)
             {
-                if (SourceImage != null)
+                if (p.X >= 0 && p.Y >= 0 && p.X < SourceImage.Width && p.Y < sourceImage.Height)
                 {
                     return SourceImage.GetPixel(p.X, p.Y);
                 }
@@ -108,7 +153,7 @@ namespace CozyPixel.Controls
 
         private bool DrawPixel(Point p, Color c, Graphics g, bool SaveToMap)
         {
-            if (SourceImage != null)
+            if(IsReady)
             {
                 var b = new SolidBrush(c);
 
@@ -119,15 +164,15 @@ namespace CozyPixel.Controls
                         SourceImage.SetPixel(p.X, p.Y, c);
                     }
                     BitmapGenerate.DrawPixel(SourceImage, g, p.X, p.Y, c);
+                    return true;
                 }
-                return true;
             }
             return false;
         }
 
         public void RefreshGrid()
         {
-            if (SourceImage != null && InnerPicBox != null && SourceImage.ShowGrid)
+            if (IsReady && SourceImage.ShowGrid)
             {
                 using (var g = Graphics.FromImage(Image))
                 {
@@ -139,17 +184,46 @@ namespace CozyPixel.Controls
 
         public void RefreshPixel()
         {
-            Image = null;
-
-            if (SourceImage != null)
+            if (IsReady)
             {
                 Image = BitmapGenerate.Draw(SourceImage);
-            }
-
-            if (InnerPicBox != null)
-            {
                 InnerPicBox.Invalidate();
             }
+        }
+
+        public void Zoom(int n)
+        {
+            var newScale = Clamp(CurrScale + n * ScaleStep, 1.0f - MinScale * ScaleStep, 1.0f + MaxScale * ScaleStep);
+            if (CurrScale != newScale)
+            {
+                CurrScale = newScale;
+                RefreshPixelMapSize();
+            }
+        }
+
+        public void ZoomReset()
+        {
+            if (Math.Abs(CurrScale - 1.0f) < float.Epsilon)
+            {
+                CurrScale = 1.0f;
+                RefreshPixelMapSize();
+            }
+        }
+
+        private void RefreshPixelMapSize()
+        {
+            if (IsReady)
+            {
+                SourceImage.PixelWidth = (int)(DefaultScaleWidth * CurrScale);
+                RefreshPixel();
+            }
+        }
+
+        private float Clamp(float value, float min, float max)
+        {
+            if (value > max) return max;
+            if (value < min) return min;
+            return value;
         }
 
         private void InnerPicBox_MouseDown(object sender, MouseEventArgs e)
@@ -170,6 +244,15 @@ namespace CozyPixel.Controls
         private void InnerPicBox_SizeChanged(object sender, EventArgs e)
         {
             InnerPicBox.Location = new Point( (Width - InnerPicBox.Width) / 2, (Height - InnerPicBox.Height) / 2);
+        }
+
+        const int WHEEL_DELTA = 120;
+        private void InnerPicBox_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.None && ModifierKeys == Keys.Control)
+            {
+                Zoom(e.Delta / WHEEL_DELTA);
+            }
         }
     }
 }

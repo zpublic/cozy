@@ -16,6 +16,8 @@ namespace CozyPixel.Tools
 
         public override Keys KeyCode { get { return Keys.D2; } }
 
+        public int Width { get; set; } = 2;
+
         private Point BeginPoint { get; set; }
 
         public PixelLine(IPixelColor holder)
@@ -27,17 +29,23 @@ namespace CozyPixel.Tools
         protected override void OnBegin(Point p)
         {
             base.OnBegin(p);
-            BeginPoint = p.ToMap(Target.GridWidth);
+
+            if(Target != null && Target.IsReady)
+            {
+                BeginPoint = p.ToMap(Target.GridWidth);
+            }
         }
 
         protected override void OnMove(Point p)
         {
             base.OnMove(p);
 
-            if(Target != null && ColorHolder != null)
+            if(Target != null && ColorHolder != null && Target.IsReady)
             {
                 Target.UpdateDrawable();
-                Target.FakeDrawPixel(GenericDraw.Line(BeginPoint, p.ToMap(Target.GridWidth)), ColorHolder.CurrColor);
+                var points = new Dictionary<Point, Color>();
+                GenericDraw.Line(BeginPoint, p.ToMap(Target.GridWidth), ColorHolder.CurrColor, points);
+                Target.FakeDrawPixel(points.GetDistributionColor(Target, Width));
             }
         }
 
@@ -45,12 +53,13 @@ namespace CozyPixel.Tools
         {
             base.OnEnd(p);
 
-            if (Target != null && ColorHolder != null)
+            if (Target != null && ColorHolder != null && Target.IsReady)
             {
+                var points = new Dictionary<Point, Color>();
+                GenericDraw.Line(BeginPoint, p.ToMap(Target.GridWidth), ColorHolder.CurrColor, points);
                 var command = new DrawPixelCommand()
                 {
-                    Color   = ColorHolder.CurrColor,
-                    Points  = GenericDraw.Line(BeginPoint, p.ToMap(Target.GridWidth)),
+                    Points  = points.GetDistributionColor(Target, Width),
                     Target  = Target,
                 };
                 CommandManager.Instance.Do(command);

@@ -100,7 +100,10 @@ namespace CozyPixel.Controls
 
         public void ChangeSelectedColor(int i)
         {
-            SelectedColor = Controls[i - 1].BackColor;
+            if(Controls.Count > 0)
+            {
+                SelectedColor = Controls[i - 1].BackColor;
+            }
         }
 
         public void RemoveColor(Color c)
