@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9839F61A-7D04-4225-B4E1-F42A97A072BA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CozyElf.Core</RootNamespace>
+    <AssemblyName>CozyElf.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ELF\Class.cs" />
+    <Compile Include="ELF\Consts.cs" />
+    <Compile Include="ELF\ELF.cs" />
+    <Compile Include="ELF\ELFReader.cs" />
+    <Compile Include="ELF\Endianess.cs" />
+    <Compile Include="ELF\FileType.cs" />
+    <Compile Include="ELF\IELF.cs" />
+    <Compile Include="ELF\Machine.cs" />
+    <Compile Include="ELF\Sections\INoteSection.cs" />
+    <Compile Include="ELF\Sections\IProgBitsSection.cs" />
+    <Compile Include="ELF\Sections\ISection.cs" />
+    <Compile Include="ELF\Sections\IStringTable.cs" />
+    <Compile Include="ELF\Sections\ISymbolEntry.cs" />
+    <Compile Include="ELF\Sections\ISymbolTable.cs" />
+    <Compile Include="ELF\Sections\NoteData.cs" />
+    <Compile Include="ELF\Sections\NoteSection.cs" />
+    <Compile Include="ELF\Sections\ProgBitsSection.cs" />
+    <Compile Include="ELF\Sections\Section.cs" />
+    <Compile Include="ELF\Sections\SectionFlags.cs" />
+    <Compile Include="ELF\Sections\SectionHeader.cs" />
+    <Compile Include="ELF\Sections\SectionType.cs" />
+    <Compile Include="ELF\Sections\SpecialSectionIndex.cs" />
+    <Compile Include="ELF\Sections\SpecialSectionType.cs" />
+    <Compile Include="ELF\Sections\StringTable.cs" />
+    <Compile Include="ELF\Sections\SymbolBinding.cs" />
+    <Compile Include="ELF\Sections\SymbolEntry.cs" />
+    <Compile Include="ELF\Sections\SymbolTable.cs" />
+    <Compile Include="ELF\Sections\SymbolType.cs" />
+    <Compile Include="ELF\Segments\ISegment.cs" />
+    <Compile Include="ELF\Segments\Segment.cs" />
+    <Compile Include="ELF\Segments\SegmentFlags.cs" />
+    <Compile Include="ELF\Segments\SegmentType.cs" />
+    <Compile Include="ELF\Utilities.cs" />
+    <Compile Include="MiscUtil\BigEndianBitConverter.cs" />
+    <Compile Include="MiscUtil\EndianBinaryReader.cs" />
+    <Compile Include="MiscUtil\EndianBinaryWriter.cs" />
+    <Compile Include="MiscUtil\EndianBitConverter.cs" />
+    <Compile Include="MiscUtil\Endianness.cs" />
+    <Compile Include="MiscUtil\LittleEndianBitConverter.cs" />
+    <Compile Include="MiscUtil\NonClosingStreamWrapper.cs" />
+    <Compile Include="MiscUtil\Streams.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UImage\Architecture.cs" />
+    <Compile Include="UImage\CompressionType.cs" />
+    <Compile Include="UImage\ImageDataResult.cs" />
+    <Compile Include="UImage\ImageType.cs" />
+    <Compile Include="UImage\OS.cs" />
+    <Compile Include="UImage\UImage.cs" />
+    <Compile Include="UImage\UImageReader.cs" />
+    <Compile Include="UImage\UImageResult.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
