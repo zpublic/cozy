@@ -21,6 +21,18 @@
     <ClInclude Include="src\ElfReader.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\ElfEnum.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ElfObject.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ElfProgramHeaderObject.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ELfSectionHeaderObject.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CozyElfCppEasySample.cpp" />
@@ -30,6 +42,15 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ElfReader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ElfObject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ElfProgramHeaderObject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ELfSectionHeaderObject.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

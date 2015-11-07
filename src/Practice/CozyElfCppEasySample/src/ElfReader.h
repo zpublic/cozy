@@ -19,7 +19,6 @@ namespace CozyElf
 
         void ReadHeader(std::ifstream& fs, Elf32* object);
         void ReadProgramheader(std::ifstream& fs, Elf32* object);
-
         void ReadSectionHeader(std::ifstream& fs, Elf32* object);
     };
 }

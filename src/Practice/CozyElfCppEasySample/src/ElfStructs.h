@@ -1,7 +1,10 @@
 #ifndef __COZY_ELF_STRUCTS__
 #define __COZY_ELF_STRUCTS__
 
+#pragma warning(disable:4251)
+
 #include "ELFDef.h"
+#include <vector>
 
 namespace CozyElf
 {
@@ -52,12 +55,11 @@ namespace CozyElf
         Elf32_Word  sh_entsize;
     };
 
-
-    struct Elf32
+    struct COZY_API Elf32
     {
-        Elf32_Ehdr m_header;
-        Elf32_Phdr* m_program_header;
-        Elf32_Shdr* m_section_header;
+        Elf32_Ehdr              m_header;
+        std::vector<Elf32_Phdr> m_program_header;
+        std::vector<Elf32_Shdr> m_section_header;
     };
 }
 

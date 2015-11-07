@@ -150,7 +150,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ElfDef.h" />
+    <ClInclude Include="src\ElfEnum.h" />
+    <ClInclude Include="src\ElfObject.h" />
+    <ClInclude Include="src\ElfProgramHeaderObject.h" />
     <ClInclude Include="src\ElfReader.h" />
+    <ClInclude Include="src\ELfSectionHeaderObject.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -170,7 +174,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\ElfObject.cpp" />
+    <ClCompile Include="src\ElfProgramHeaderObject.cpp" />
     <ClCompile Include="src\ElfReader.cpp" />
+    <ClCompile Include="src\ELfSectionHeaderObject.cpp" />
     <ClCompile Include="src\ElfStructs.h" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
