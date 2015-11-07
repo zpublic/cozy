@@ -5,38 +5,32 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Src">
-      <UniqueIdentifier>{d91c4a63-e92a-471e-a4d5-bb75be5e77b5}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{76edeb33-222e-4120-9f9c-06cf76ec5b79}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="targetver.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Src\ELF.h">
-      <Filter>Src</Filter>
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="src\ElfDef.h">
+      <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ELFDef.h">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ELFReader.h">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ELFEnum.h">
-      <Filter>Src</Filter>
+    <ClInclude Include="src\ElfReader.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CozyELFCpp.cpp" />
+    <ClCompile Include="CozyElfCppEasySample.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="Src\ELF.cpp">
-      <Filter>Src</Filter>
+    <ClCompile Include="src\ElfStructs.h">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Src\ELFReader.cpp">
-      <Filter>Src</Filter>
+    <ClCompile Include="src\ElfReader.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

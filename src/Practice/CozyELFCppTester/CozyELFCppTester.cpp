@@ -2,11 +2,13 @@
 //
 
 #include "stdafx.h"
-#include "../CozyELFCpp/Src/ELFReader.h"
+#include "../CozyElfCppEasySample/src/ElfReader.h"
 
 int main()
 {
-    auto ret = ELFReader::Load("D:\\1.so");
+    CozyElf::ElfReader reader;
+    reader.Load("D:\\1.so");
+
     return 0;
 }
 
