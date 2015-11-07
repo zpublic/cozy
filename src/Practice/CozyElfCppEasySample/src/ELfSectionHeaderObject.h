@@ -3,17 +3,22 @@
 
 #include "ElfDef.h"
 #include "ElfStructs.h"
+#include <memory>
+#include <functional>
 
 namespace CozyElf
 {
     class COZY_API ELfSectionHeaderObject
     {
     public:
-        ELfSectionHeaderObject(Elf32_Shdr* obj);
+        ELfSectionHeaderObject(std::shared_ptr<Elf32_Shdr> obj, std::function<std::string(Elf32_Word)> GetNameCallback);
         ~ELfSectionHeaderObject();
 
+        std::string GetName() const;
+
     private:
-        Elf32_Shdr* m_obj;
+        std::shared_ptr<Elf32_Shdr>             m_obj;
+        std::function<std::string(Elf32_Word)>  m_nameCallback;
     };
 }
 

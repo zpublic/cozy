@@ -5,6 +5,7 @@
 
 #include "ELFDef.h"
 #include <vector>
+#include <memory>
 
 namespace CozyElf
 {
@@ -57,9 +58,9 @@ namespace CozyElf
 
     struct COZY_API Elf32
     {
-        Elf32_Ehdr              m_header;
-        std::vector<Elf32_Phdr> m_program_header;
-        std::vector<Elf32_Shdr> m_section_header;
+        Elf32_Ehdr                                  m_header;
+        std::vector<std::shared_ptr<Elf32_Phdr>>    m_program_header;
+        std::vector<std::shared_ptr<Elf32_Shdr>>    m_section_header;
     };
 }
 

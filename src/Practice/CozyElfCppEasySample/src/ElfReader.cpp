@@ -12,14 +12,14 @@ ElfReader::~ElfReader()
 
 }
 
-Elf32* ElfReader::Load(const std::string& filename)
+std::shared_ptr<Elf32> ElfReader::Load(const std::string& filename)
 {
     std::ifstream fs(filename, std::ios::binary);
     if (fs.is_open())
     {
         if (TryLoad(fs))
         {
-            Elf32* ptr = new Elf32();
+            auto ptr = std::make_shared<Elf32>();
             ReadHeader(fs, ptr);
             ReadProgramheader(fs, ptr);
             ReadSectionHeader(fs, ptr);
@@ -63,38 +63,46 @@ bool ElfReader::TryLoad(std::ifstream& fs)
     return true;
 }
 
-void ElfReader::ReadHeader(std::ifstream& fs, Elf32* object)
+void ElfReader::ReadHeader(std::ifstream& fs, std::shared_ptr<Elf32> object)
 {
     fs.seekg(std::ios::beg);
     fs.read(reinterpret_cast<char*>(&object->m_header), sizeof(Elf32_Ehdr));
 }
 
-void ElfReader::ReadProgramheader(std::ifstream& fs, Elf32* object)
+void ElfReader::ReadProgramheader(std::ifstream& fs, std::shared_ptr<Elf32> object)
 {
     if (object->m_header.e_phoff != 0)
     {
         fs.seekg(object->m_header.e_phoff, std::ios::beg);
 
         int phnum = object->m_header.e_phnum;
-        object->m_program_header = std::vector<Elf32_Phdr>(phnum);
+        object->m_program_header = std::vector<std::shared_ptr<Elf32_Phdr>>();
+        object->m_program_header.reserve(phnum);
+
         for (int i = 0; i < phnum; ++i)
         {
-            fs.read(reinterpret_cast<char*>(&object->m_program_header[i]), object->m_header.e_phentsize);
+            auto item = std::make_shared<Elf32_Phdr>();
+            fs.read(reinterpret_cast<char*>(item.get()), object->m_header.e_phentsize);
+            object->m_program_header.push_back(item);
         }
     }
 }
 
-void ElfReader::ReadSectionHeader(std::ifstream& fs, Elf32* object)
+void ElfReader::ReadSectionHeader(std::ifstream& fs, std::shared_ptr<Elf32> object)
 {
     if (object->m_header.e_shoff != 0)
     {
         fs.seekg(object->m_header.e_shoff, std::ios::beg);
 
         int shnum = object->m_header.e_shnum;
-        object->m_section_header = std::vector<Elf32_Shdr>(shnum);
+        object->m_section_header = std::vector<std::shared_ptr<Elf32_Shdr>>();
+        object->m_section_header.reserve(shnum);
+
         for (int i = 0; i < shnum; ++i)
         {
-            fs.read(reinterpret_cast<char*>(&object->m_section_header[i]), object->m_header.e_shentsize);
+            auto item = std::make_shared<Elf32_Shdr>();
+            fs.read(reinterpret_cast<char*>(item.get()), object->m_header.e_shentsize);
+            object->m_section_header.push_back(item);
         }
     }
 }

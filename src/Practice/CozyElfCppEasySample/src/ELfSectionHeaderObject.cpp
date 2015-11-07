@@ -2,8 +2,8 @@
 
 using namespace CozyElf;
 
-ELfSectionHeaderObject::ELfSectionHeaderObject(Elf32_Shdr* obj)
-    :m_obj(obj)
+ELfSectionHeaderObject::ELfSectionHeaderObject(std::shared_ptr<Elf32_Shdr> obj, std::function<std::string(Elf32_Word)> GetNameCallback)
+    :m_obj(obj),m_nameCallback(GetNameCallback)
 {
 
 }
@@ -11,4 +11,9 @@ ELfSectionHeaderObject::ELfSectionHeaderObject(Elf32_Shdr* obj)
 ELfSectionHeaderObject::~ELfSectionHeaderObject()
 {
 
+}
+
+std::string ELfSectionHeaderObject::GetName() const
+{
+    return m_nameCallback(m_obj->sh_name);
 }

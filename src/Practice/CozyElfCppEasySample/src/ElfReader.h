@@ -12,14 +12,14 @@ namespace CozyElf
         ElfReader();
         ~ElfReader();
 
-        Elf32* Load(const std::string& filename);
+        std::shared_ptr<Elf32> Load(const std::string& filename);
 
     private:
         bool TryLoad(std::ifstream& fs);
 
-        void ReadHeader(std::ifstream& fs, Elf32* object);
-        void ReadProgramheader(std::ifstream& fs, Elf32* object);
-        void ReadSectionHeader(std::ifstream& fs, Elf32* object);
+        void ReadHeader(std::ifstream& fs, std::shared_ptr<Elf32> object);
+        void ReadProgramheader(std::ifstream& fs, std::shared_ptr<Elf32> object);
+        void ReadSectionHeader(std::ifstream& fs, std::shared_ptr<Elf32> object);
     };
 }
 

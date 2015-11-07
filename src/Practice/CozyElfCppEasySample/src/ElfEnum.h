@@ -201,6 +201,24 @@ namespace CozyElf
         R78KOR = 199, // Renesas 78KOR family
         F56800EX = 200 // Freescale 56800EX Digital Signal Controller (DSC)
     };
+
+    enum class SegmentType
+    {
+        Unknow = 0,
+        Load,
+        Dynamic,
+        Interpreter,
+        Note,
+        SharedLibrary,
+        ProgramHeader
+    };
+
+    enum class SegmentFlags
+    {
+        Execute = 1,
+        Write = 2,
+        Read = 4
+    };
 }
 
 #endif // __COZY_ELF_ENUM__
