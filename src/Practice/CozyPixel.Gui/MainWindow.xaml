@@ -7,5 +7,6 @@
         xmlns:local="clr-namespace:CozyPixel.Gui"
         mc:Ignorable="d" Height="350" Width="525" ShowMinButton="False" ShowMaxRestoreButton="False" Title="像素鸡" WindowState="Maximized">
     <Grid>
+        <Image x:Name="image" Margin="1"/>
     </Grid>
 </Controls:MetroWindow>
