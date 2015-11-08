@@ -17,7 +17,7 @@ namespace CozyPixel.Tool
 
         private Point BeginPoint { get; set; }
 
-        public PixelLine(IPixelColor holder)
+        public PixelLine(Color holder)
             :base(holder)
         {
 
@@ -41,7 +41,7 @@ namespace CozyPixel.Tool
             {
                 Target.UpdateDrawable();
                 var points = new Dictionary<Point, Color>();
-                GenericDraw.Line(BeginPoint, p.ToMap(Target.GridWidth), ColorHolder.CurrColor, points);
+                GenericDraw.Line(BeginPoint, p.ToMap(Target.GridWidth), ColorHolder, points);
                 Target.FakeDrawPixel(points.GetDistributionColor(Target, Width));
             }
         }
@@ -53,7 +53,7 @@ namespace CozyPixel.Tool
             if (Target != null && ColorHolder != null && Target.IsReady)
             {
                 var points = new Dictionary<Point, Color>();
-                GenericDraw.Line(BeginPoint, p.ToMap(Target.GridWidth), ColorHolder.CurrColor, points);
+                GenericDraw.Line(BeginPoint, p.ToMap(Target.GridWidth), ColorHolder, points);
                 var command = new DrawPixelCommand()
                 {
                     Points  = points.GetDistributionColor(Target, Width),

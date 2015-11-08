@@ -11,13 +11,18 @@ namespace CozyPixel.Tool
 {
     public abstract class PixelToolBase
     {
-        public IPixelColor ColorHolder { get; set; }
+        public Color ColorHolder { get; set; }
 
         public abstract bool WillModify { get; }
 
         protected IPixelGridDrawable Target { get; set; }
 
-        public PixelToolBase(IPixelColor holder)
+        public PixelToolBase()
+        {
+
+        }
+
+        public PixelToolBase(Color holder)
         {
             ColorHolder = holder;
         }

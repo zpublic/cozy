@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CozyPixel.Tool
 {
-    public abstract class DragPixelTool : PixelToolBase
+    public abstract class PixelToolDraggable : PixelToolBase
     {
         protected Point LastPoint { get; set; }
 
@@ -16,7 +16,12 @@ namespace CozyPixel.Tool
 
         protected List<Point> DrawPoints { get; set; } = new List<Point>();
 
-        public DragPixelTool(IPixelColor holder)
+        public PixelToolDraggable()
+        {
+
+        }
+
+        public PixelToolDraggable(Color holder)
             :base(holder)
         {
 

@@ -9,17 +9,11 @@ using CozyPixel.Command;
 
 namespace CozyPixel.Tool
 {
-    public class PixelEraser : DragPixelTool
+    public class PixelEraser : PixelToolDraggable
     {
         public override bool WillModify { get { return true; } }
 
         public int Width { get; set; } = 2;
-
-        public PixelEraser()
-            : base(null)
-        {
-
-        }
 
         protected override void OnMove(Point p)
         {

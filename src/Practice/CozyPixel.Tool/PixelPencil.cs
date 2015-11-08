@@ -9,13 +9,13 @@ using CozyPixel.Command;
 
 namespace CozyPixel.Tool
 {
-    public class PixelPencil : DragPixelTool
+    public class PixelPencil : PixelToolDraggable
     {
         public override bool WillModify { get { return true; } }
 
         public int Width { get; set; } = 2;
 
-        public PixelPencil(IPixelColor holder)
+        public PixelPencil(Color holder)
             :base(holder)
         {
         }
@@ -29,7 +29,7 @@ namespace CozyPixel.Tool
                 var old_last    = LastPoint;
                 LastPoint       = p.ToMap(Target.GridWidth);
 
-                GenericDraw.Line(old_last, LastPoint, ColorHolder.CurrColor, FakeDrawPoints);
+                GenericDraw.Line(old_last, LastPoint, ColorHolder, FakeDrawPoints);
                 Target.FakeDrawPixel(FakeDrawPoints.GetDistributionColor(Target, Width));
             }
         }
@@ -40,7 +40,7 @@ namespace CozyPixel.Tool
 
             if (Target != null && ColorHolder != null && Target.IsReady)
             {
-                var points = CozyPixelHelper.GetAllPoint(DrawPoints, ColorHolder.CurrColor);
+                var points = CozyPixelHelper.GetAllPoint(DrawPoints, ColorHolder);
                 var command = new DrawPixelCommand()
                 {
                     Points  = points.GetDistributionColor(Target, Width),

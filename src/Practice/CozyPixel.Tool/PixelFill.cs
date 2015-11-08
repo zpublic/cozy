@@ -13,7 +13,7 @@ namespace CozyPixel.Tool
     {
         public override bool WillModify { get { return true; } }
 
-        public PixelFill(IPixelColor holder)
+        public PixelFill(Color holder)
             :base(holder)
         {
 
@@ -30,7 +30,7 @@ namespace CozyPixel.Tool
 
                 var command = new DrawPixelCommand()
                 {
-                    Points  = points.Select(x => new KeyValuePair<Point, Color>(x.Key, ColorHolder.CurrColor)),
+                    Points  = points.Select(x => new KeyValuePair<Point, Color>(x.Key, ColorHolder)),
                     Target  = Target,
                 };
                 CommandManager.Instance.Do(command);

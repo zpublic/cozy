@@ -12,7 +12,7 @@ namespace CozyPixel.Tool
     {
         public override bool WillModify { get { return false; } }
 
-        public PixelStraw(IPixelColor holder)
+        public PixelStraw(Color holder)
             :base(holder)
         {
 
@@ -39,9 +39,9 @@ namespace CozyPixel.Tool
 
         private void ReadColor(Point p)
         {
-            if (Target != null && ColorHolder != null && Target.IsReady)
+            if (Target != null && Target.IsReady)
             {
-                ColorHolder.CurrColor = Target.ReadPixel(p.ToMap(Target.GridWidth));
+                ColorHolder = Target.ReadPixel(p.ToMap(Target.GridWidth));
             }
         }
     }
