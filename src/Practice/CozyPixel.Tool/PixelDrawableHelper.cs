@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using CozyPixel.Interface;
+using System.Collections.Generic;
 using System.Drawing;
 
-namespace CozyPixel.Interface
+namespace CozyPixel.Tool
 {
     public static class PixelDrawableHelper
     {
