@@ -104,6 +104,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyPixel.Facade\CozyPixel.Facade.csproj">
+      <Project>{a9f0b5da-3f82-4800-8596-07a2347d3307}</Project>
+      <Name>CozyPixel.Facade</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
