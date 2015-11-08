@@ -10,7 +10,7 @@ namespace CozyPixel.Draw
 {
     public class BitmapGenerate
     {
-        public static Bitmap Draw(PixelMap pm)
+        public static Bitmap Draw(PixelArtObject pm)
         {
             int w = pm.PixelWidth * pm.Width;
             int h = pm.PixelWidth * pm.Height;
@@ -41,7 +41,7 @@ namespace CozyPixel.Draw
             return b;
         }
 
-        public static void DrawGrid(PixelMap pm, Graphics g)
+        public static void DrawGrid(PixelArtObject pm, Graphics g)
         {
             int x = pm.PixelWidth + pm.GridWidth;
             var w = pm.Width * x;
@@ -60,7 +60,7 @@ namespace CozyPixel.Draw
             }
         }
 
-        public static void DrawPixel(PixelMap pm, Graphics g, int x, int y, Color c)
+        public static void DrawPixel(PixelArtObject pm, Graphics g, int x, int y, Color c)
         {
             var brush = new SolidBrush(c);
             if (pm.ShowGrid)

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace CozyPixel.Model
 {
-    public class PixelMap
+    // 单个像素画model
+    public class PixelArtObject
     {
         public const int DefaultPixelWidth = 20;
 
