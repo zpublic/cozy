@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:MyControls="clr-namespace:CozyPixel.Gui.Control"
         xmlns:local="clr-namespace:CozyPixel.Gui"
         mc:Ignorable="d" Height="350" Width="525" ShowMinButton="False" ShowMaxRestoreButton="False" Title="像素鸡" WindowState="Maximized">
     <Grid>
-        <Image x:Name="image" Margin="1"/>
+        <MyControls:PixelPainter x:Name="image" Margin="1"/>
     </Grid>
 </Controls:MetroWindow>
