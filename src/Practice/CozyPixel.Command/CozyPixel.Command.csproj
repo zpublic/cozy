@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="CommandManager.cs" />
     <Compile Include="DrawPixelCommand.cs" />
-    <Compile Include="IPixelCommand.cs" />
+    <Compile Include="ICommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

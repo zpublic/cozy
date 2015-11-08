@@ -9,13 +9,12 @@ namespace CozyPixel.Command
     public class CommandManager
     {
         private static CommandManager instance { get; set; } = new CommandManager();
-
         public static CommandManager Instance { get { return instance; } }
 
-        private Stack<IPixelCommand> UndoList { get; set; } = new Stack<IPixelCommand>();
-        private Stack<IPixelCommand> RedoList { get; set; } = new Stack<IPixelCommand>();
+        private Stack<ICommand> UndoList { get; set; } = new Stack<ICommand>();
+        private Stack<ICommand> RedoList { get; set; } = new Stack<ICommand>();
 
-        public void Do(IPixelCommand command)
+        public void Do(ICommand command)
         {
             if(RedoList.Count > 0)
             {
