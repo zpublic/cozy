@@ -1,48 +1,34 @@
 #ifndef __COZY_ELF_ENUM__
 #define __COZY_ELF_ENUM__
 
+#include "CozyDef.h"
+
 namespace CozyElf
 {
-    enum class SectionType
+    enum class COZY_API ElfClass : unsigned char
     {
-        Null = 0,
-        ProgBits,
-        SymbolTable,
-        StringTable,
-        RelocationAddends,
-        HashTable,
-        Dynamic,
-        Note,
-        NoBits,
-        Relocation,
-        Shlib,
-        DynamicSymbolTable,
-    };
-
-    enum class ElfClass
-    {
-        Unknow,
-        Bit32,
+        Unknow = 0,
+        Bit32 ,
         Bit64,
     };
 
-    enum class Endianess
+    enum class COZY_API ElfEndianess : unsigned char
     {
-        Unknow,
+        Unknow = 0,
         LittleEndian,
         BigEndian,
     };
 
-    enum class ElfFileType
+    enum class COZY_API ElfFileType : Elf32_Half
     {
-        None,
+        None = 0,
         Relocatable,
         Executable,
         SharedObject,
-        Core,
+        Core
     };
 
-    enum class MachineType
+    enum class COZY_API ElfMachineType : Elf32_Half
     {
         None = 0, // No machine
         M32 = 1, // AT&T WE 32100
@@ -202,22 +188,48 @@ namespace CozyElf
         F56800EX = 200 // Freescale 56800EX Digital Signal Controller (DSC)
     };
 
-    enum class SegmentType
-    {
-        Unknow = 0,
-        Load,
-        Dynamic,
-        Interpreter,
-        Note,
-        SharedLibrary,
-        ProgramHeader
-    };
-
-    enum class SegmentFlags
+    enum class COZY_API SegmentFlags : Elf32_Word
     {
         Execute = 1,
         Write = 2,
         Read = 4
+    };
+
+    enum class ProgramHeaderType : Elf32_Word
+    {
+        PT_LOAD = 1,
+        PT_DYNAMIC = 2,
+        PT_INTERP = 3,
+        PT_NOTE = 4,
+        PT_SHLIB = 5,
+        PT_PHDR = 6,
+        PT_LOPROC = 0x70000000,
+        PT_HIPROC = 0x7fffffff,
+        PT_MIPS_REGINFO = 0x70000000,
+        PT_MIPS_OPTIONS = 0x70000001,
+    };
+
+    enum class SectionFlags : Elf32_Word
+    {
+        Writable = 1,
+        Allocatable = 2,
+        Executable = 4
+    };
+
+    enum SectionType : Elf32_Word
+    {
+        Null = 0,
+        ProgBits,
+        SymbolTable,
+        StringTable,
+        RelocationAddends,
+        HashTable,
+        Dynamic,
+        Note,
+        NoBits,
+        Relocation,
+        Shlib,
+        DynamicSymbolTable,
     };
 }
 
