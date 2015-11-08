@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPixel.Tool", "..\src\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPixel.Interface", "..\src\Practice\CozyPixel.Interface\CozyPixel.Interface.csproj", "{BDA50C69-36CF-42F9-8DAC-3F102B69056A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPixel.Helper", "..\src\Practice\CozyPixel.Helper\CozyPixel.Helper.csproj", "{768182ED-1B78-4B2D-8703-7397622792A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{BDA50C69-36CF-42F9-8DAC-3F102B69056A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDA50C69-36CF-42F9-8DAC-3F102B69056A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDA50C69-36CF-42F9-8DAC-3F102B69056A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{768182ED-1B78-4B2D-8703-7397622792A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{768182ED-1B78-4B2D-8703-7397622792A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{768182ED-1B78-4B2D-8703-7397622792A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{768182ED-1B78-4B2D-8703-7397622792A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,5 +87,6 @@ Global
 		{4525CA00-62FD-42F9-8059-150676C3572B} = {7B246C2C-5AFB-48A9-AE15-7DB00ABB01A8}
 		{11155D08-0353-454F-B63A-5ADB700522F1} = {7B246C2C-5AFB-48A9-AE15-7DB00ABB01A8}
 		{BDA50C69-36CF-42F9-8DAC-3F102B69056A} = {7B246C2C-5AFB-48A9-AE15-7DB00ABB01A8}
+		{768182ED-1B78-4B2D-8703-7397622792A8} = {7B246C2C-5AFB-48A9-AE15-7DB00ABB01A8}
 	EndGlobalSection
 EndGlobal

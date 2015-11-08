@@ -1,11 +1,8 @@
-﻿using CozyPixel.Draw;
-using System;
-using System.Collections.Generic;
+﻿using CozyPixel.Helper;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CozyPixel.Command;
+using CozyPixel.Draw;
+using CozyPixel.Interface;
 
 namespace CozyPixel.Tool
 {
@@ -35,7 +32,7 @@ namespace CozyPixel.Tool
 
             if (Target != null && Target.IsReady)
             {
-                var points = CozyPixelHelper.GetAllPoint(DrawPoints, Target.DefaultDrawColor);
+                var points = GenericDraw.GetAllPoint(DrawPoints, Target.DefaultDrawColor);
                 var command = new DrawPixelCommand()
                 {
                     Points = points.GetDistributionColor(Target, Width),

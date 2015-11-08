@@ -42,11 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BitmapGenerate.cs" />
-    <Compile Include="CozyPixelHelper.cs" />
     <Compile Include="GenericDraw.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CozyPixel.Helper\CozyPixel.Helper.csproj">
+      <Project>{768182ed-1b78-4b2d-8703-7397622792a8}</Project>
+      <Name>CozyPixel.Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyPixel.Interface\CozyPixel.Interface.csproj">
       <Project>{bda50c69-36cf-42f9-8dac-3f102b69056a}</Project>
       <Name>CozyPixel.Interface</Name>

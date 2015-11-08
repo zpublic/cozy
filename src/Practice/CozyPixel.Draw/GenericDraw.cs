@@ -1,4 +1,5 @@
-﻿using CozyPixel.Interface;
+﻿using CozyPixel.Helper;
+using CozyPixel.Interface;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -93,6 +94,22 @@ namespace CozyPixel.Draw
                 }
             }
             return result;
+        }
+        
+        public static IEnumerable<KeyValuePair<Point, Color>> GetAllPoint(List<Point> DrawPoints, Color c)
+        {
+            Dictionary<Point, Color> NeetDraw = new Dictionary<Point, Color>();
+
+            if (DrawPoints.Count > 0)
+            {
+                NeetDraw[DrawPoints[0]] = c;
+
+                for (int i = 1; i < DrawPoints.Count; ++i)
+                {
+                    GenericDraw.Line(DrawPoints[i - 1], DrawPoints[i], c, NeetDraw);
+                }
+            }
+            return NeetDraw;
         }
     }
 }

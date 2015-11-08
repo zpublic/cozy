@@ -1,9 +1,8 @@
-﻿using CozyPixel.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace CozyPixel.Draw
+namespace CozyPixel.Helper
 {
     public static class CozyPixelHelper
     {
@@ -17,22 +16,6 @@ namespace CozyPixel.Draw
             return res;
         }
 
-        public static IEnumerable<KeyValuePair<Point, Color>> GetAllPoint(List<Point> DrawPoints, Color c)
-        {
-            Dictionary<Point, Color> NeetDraw = new Dictionary<Point, Color>();
-
-            if (DrawPoints.Count > 0)
-            {
-                NeetDraw[DrawPoints[0]] = c;
-
-                for (int i = 1; i < DrawPoints.Count; ++i)
-                {
-                    GenericDraw.Line(DrawPoints[i - 1], DrawPoints[i], c, NeetDraw);
-                }
-            }
-            return NeetDraw;
-        }
-
         public static Point ToMap(this Point p, int w)
         {
             return new Point(p.X / w, p.Y / w);
@@ -41,17 +24,6 @@ namespace CozyPixel.Draw
         public static Point ToScreen(this Point p, int w)
         {
             return new Point(p.X * w, p.Y * w);
-        }
-
-        public static void FakeDrawPixel(this IPixelDrawable target, IEnumerable<KeyValuePair<Point, Color>> points)
-        {
-            if(target != null && points != null && target.IsReady)
-            {
-                foreach(var obj in points)
-                {
-                    target.FakeDrawPixel(obj.Key, obj.Value);
-                }
-            }
         }
 
         public static Color Blend(Color Dest, Color source, double alpha)
