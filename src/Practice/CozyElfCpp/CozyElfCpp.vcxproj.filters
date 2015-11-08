@@ -22,7 +22,6 @@
     <ClInclude Include="ElfWriter.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CozyElfCpp.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="ElfReader.cpp" />
