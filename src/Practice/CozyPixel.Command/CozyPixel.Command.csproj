@@ -47,9 +47,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CozyPixel.Draw\CozyPixel.Draw.csproj">
-      <Project>{15d8ad1d-0a0c-43de-b61a-47a4b92213eb}</Project>
-      <Name>CozyPixel.Draw</Name>
+    <ProjectReference Include="..\CozyPixel.Interface\CozyPixel.Interface.csproj">
+      <Project>{bda50c69-36cf-42f9-8dac-3f102b69056a}</Project>
+      <Name>CozyPixel.Interface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

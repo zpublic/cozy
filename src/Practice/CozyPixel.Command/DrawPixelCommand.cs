@@ -1,4 +1,4 @@
-﻿using CozyPixel.Draw;
+﻿using CozyPixel.Interface;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

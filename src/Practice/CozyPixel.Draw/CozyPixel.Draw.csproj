@@ -44,11 +44,13 @@
     <Compile Include="BitmapGenerate.cs" />
     <Compile Include="CozyPixelHelper.cs" />
     <Compile Include="GenericDraw.cs" />
-    <Compile Include="IPixelDrawable.cs" />
-    <Compile Include="IPixelGridDrawable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CozyPixel.Interface\CozyPixel.Interface.csproj">
+      <Project>{bda50c69-36cf-42f9-8dac-3f102b69056a}</Project>
+      <Name>CozyPixel.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyPixel.Model\CozyPixel.Model.csproj">
       <Project>{10f4479e-2c0b-4245-82dd-dd5f5f57dc71}</Project>
       <Name>CozyPixel.Model</Name>

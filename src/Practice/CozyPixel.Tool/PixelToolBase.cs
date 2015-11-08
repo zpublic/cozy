@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CozyPixel.Draw;
-using CozyPixel.Tools;
+﻿using System.Drawing;
+using CozyPixel.Interface;
 
 namespace CozyPixel.Tool
 {
