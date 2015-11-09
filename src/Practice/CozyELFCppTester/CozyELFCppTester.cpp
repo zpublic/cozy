@@ -3,27 +3,51 @@
 
 #include "stdafx.h"
 #include <iostream>
-#include "../CozyElfCpp/ElfReader.h"
+#include "../CozyElfCpp/ElfObject.h"
 
 int main()
 {
-    const std::string filename = "D:\\1.so";
+    LPCTSTR filename = TEXT("D:\\1.so");
 
-    auto result = CozyElf::ElfReader::Load(filename);
-    std::cout << "FileName : " << filename << std::endl;
+    auto obj = new CozyElf::ElfObject();
+    std::cout << "Open " << filename;
 
-    int l = result->GetShdrCount();
-    std::cout << "Section Count : " << l << std::endl;
-    for (int i = 0; i < l; ++i)
+    if (obj->Init(filename))
     {
-        auto hdr = result->GetShdr(i);
-        auto name = hdr.GetName();
-        if (name != nullptr)
-        {
-            std::cout << "Section" << i << " : " << name << "\t\tVirtualAddress : " << hdr.GetAddress() << std::endl;
-        }
-    }
+        std::cout << " Success !" << std::endl;
 
+        std::cout << "FileSize : " << obj->GetFileSize() << std::endl;
+        std::cout << "Entry Point : " << obj->GetEntryPoint() << std::endl;
+
+        size_t num = 0;
+
+        auto ptbl = obj->GetSegmentTable(&num);
+        std::cout << "ProgramTable : " << std::endl << "Count : " << num << std::endl;
+
+        for (DWORD i = 0; i < num; ++i)
+        {
+            std::cout << "Virtual Address : " << ptbl[i].p_vaddr << std::endl;
+        }
+
+        std::cout << std::endl;
+
+        auto stbl = obj->GetSectionTable(&num);
+        std::cout << "SectionTable : " << std::endl << "Count : " << num << std::endl;
+
+        for (DWORD i = 0; i < num; ++i)
+        {
+            std::cout << "Section Name " << obj->GetString(stbl[i].sh_name) << " Address : " << stbl[i].sh_addr << std::endl;
+        }
+
+        obj->SaveSectionTable();
+
+        obj->Release();
+    }
+    else
+    {
+        std::cout << " Failed !" << std::endl;
+    }
+    
     system("pause");
     return 0;
 }

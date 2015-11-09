@@ -2,47 +2,65 @@
 #define __COZY_ELF_OBJECT__
 
 #include "CozyDef.h"
-#include "CozyEnum.h"
-#include "ElfProgramHeaderObject.h"
-#include "ElfSectionHeaderObject.h"
+#include "ElfStructs.h"
+#include "windows.h"
 
 namespace CozyElf
 {
-    struct Elf32_Ehdr;
     class COZY_API ElfObject
     {
     public:
-        ElfObject(unsigned char* data, size_t length);
-        ~ElfObject();
+        ElfObject();
 
-        ElfClass GetElfClass() const;
-        ElfEndianess GetElfEndianess() const;
-        ElfFileType GetElfFileType() const;
-        ElfMachineType GetElfMachineType() const;
-        Elf32_Word GetElfVersion() const;
-        Elf32_Addr GetEntry() const;
+    // 禁止在堆上构造 与Release配合
+    private:
+        ~ElfObject() = default;
 
-        void SetElfClass(ElfClass);
-        void SetElfEndianess(ElfEndianess);
-        void SetElfFileType(ElfFileType);
-        void SetElfMachineType(ElfMachineType);
-        void SetElfVersion(Elf32_Word);
-        void SetEntry(Elf32_Addr);
+    public:
+        // 初始化
+        bool Init(LPCTSTR pszFilename);
 
-        Elf32_Half GetPhdrCount() const;
-        Elf32_Half GetShdrCount() const;
-        ElfProgramHeaderObject GetPhdr(int index) const;
-        ElfSectionHeaderObject GetShdr(int index) const;
+        // 释放
+        void Release();
 
-        size_t ToRawData(void* dest);
+    public:
+        Elf32_Ehdr* GetElfHeader();
+        Elf32_Phdr* GetSegmentTable(size_t* pNum);
+        Elf32_Shdr* GetSectionTable(size_t* pNum);
 
-private:
-        const char* GetString(Elf32_Word offset) const;
+        int32_t GetEntryPoint() const;
+        DWORD GetFileSize() const;
+        const char* GetString(Elf32_Off offset) const;
+        LPCTSTR GetFileName() const;
 
-private:
-        unsigned char*  m_rawData;
-        Elf32_Ehdr*     m_elfBase;
-        size_t          m_length;
+    public:
+        void SaveElfHeader();
+        void SaveSegmentTable();
+        void SaveSectionTable();
+        void SaveStringTable();
+
+    public:
+        int32_t SectionToFile(DWORD dwIndex) const;
+        int32_t FileToSection(DWORD dwOffset) const;
+
+    private:
+        bool TryRead();
+        void Clear();
+        void InitStringTable();
+        void SaveToFile(LPVOID lpDest, LPCVOID lpSrc, DWORD dwLength);
+
+    private:
+        Elf32_Ehdr      m_stElfHdr;
+        LPCTSTR         m_pszFilename;
+        Elf32_Phdr*     m_pSegmentTbl;
+        Elf32_Shdr*     m_pSectionTbl;
+        char*           m_pStringTable;
+        char*           m_rawData;
+        DWORD           m_dwFileSize;
+        DWORD           m_dwSegmentNum;
+        DWORD           m_dwSectionNum;
+        HANDLE          m_hFile;
+        HANDLE          m_hFileMapping;
     };
 }
 

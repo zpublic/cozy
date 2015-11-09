@@ -152,11 +152,7 @@
     <ClInclude Include="CozyDef.h" />
     <ClInclude Include="CozyEnum.h" />
     <ClInclude Include="ElfObject.h" />
-    <ClInclude Include="ElfProgramHeaderObject.h" />
-    <ClInclude Include="ElfReader.h" />
-    <ClInclude Include="ElfSectionHeaderObject.h" />
     <ClInclude Include="ElfStructs.h" />
-    <ClInclude Include="ElfWriter.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -176,10 +172,6 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ElfObject.cpp" />
-    <ClCompile Include="ElfProgramHeaderObject.cpp" />
-    <ClCompile Include="ElfReader.cpp" />
-    <ClCompile Include="ElfSectionHeaderObject.cpp" />
-    <ClCompile Include="ElfWriter.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
