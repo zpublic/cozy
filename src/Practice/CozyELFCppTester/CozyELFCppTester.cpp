@@ -1,13 +1,12 @@
 // CozyELFCppTester.cpp : 定义控制台应用程序的入口点。
 //
 
-#include "stdafx.h"
 #include <iostream>
 #include "../CozyElfCpp/ElfObject.h"
 
 int main()
 {
-    LPCTSTR filename = TEXT("D:\\1.so");
+    const char* filename = "D:\\1.so";
 
     auto obj = new CozyElf::ElfObject();
     std::cout << "Open " << filename;
@@ -24,7 +23,7 @@ int main()
         auto ptbl = obj->GetSegmentTable(&num);
         std::cout << "ProgramTable : " << std::endl << "Count : " << num << std::endl;
 
-        for (DWORD i = 0; i < num; ++i)
+        for (uint32_t i = 0; i < num; ++i)
         {
             std::cout << "Virtual Address : " << ptbl[i].p_vaddr << std::endl;
         }
@@ -34,7 +33,7 @@ int main()
         auto stbl = obj->GetSectionTable(&num);
         std::cout << "SectionTable : " << std::endl << "Count : " << num << std::endl;
 
-        for (DWORD i = 0; i < num; ++i)
+        for (uint32_t i = 0; i < num; ++i)
         {
             std::cout << "Section Name " << obj->GetString(stbl[i].sh_name) << " Address : " << stbl[i].sh_addr << std::endl;
         }

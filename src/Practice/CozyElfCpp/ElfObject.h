@@ -3,11 +3,11 @@
 
 #include "CozyDef.h"
 #include "ElfStructs.h"
-#include "windows.h"
+#include <cstdio>
 
 namespace CozyElf
 {
-    class COZY_API ElfObject
+    class ElfObject
     {
     public:
         ElfObject();
@@ -18,20 +18,20 @@ namespace CozyElf
 
     public:
         // ≥ı ºªØ
-        bool Init(LPCTSTR pszFilename);
+        bool Init(const char* filename);
 
         //  Õ∑≈
         void Release();
 
     public:
         Elf32_Ehdr* GetElfHeader();
-        Elf32_Phdr* GetSegmentTable(size_t* pNum);
-        Elf32_Shdr* GetSectionTable(size_t* pNum);
+        Elf32_Phdr* GetSegmentTable(size_t* num);
+        Elf32_Shdr* GetSectionTable(size_t* num);
 
         int32_t GetEntryPoint() const;
-        DWORD GetFileSize() const;
+        uint32_t GetFileSize() const;
         const char* GetString(Elf32_Off offset) const;
-        LPCTSTR GetFileName() const;
+        const char* GetFileName() const;
 
     public:
         void SaveElfHeader();
@@ -40,27 +40,25 @@ namespace CozyElf
         void SaveStringTable();
 
     public:
-        int32_t SectionToFile(DWORD dwIndex) const;
-        int32_t FileToSection(DWORD dwOffset) const;
+        int32_t SectionToFile(uint32_t index) const;
+        int32_t FileToSection(uint32_t offset) const;
 
     private:
         bool TryRead();
         void Clear();
         void InitStringTable();
-        void SaveToFile(LPVOID lpDest, LPCVOID lpSrc, DWORD dwLength);
+        void SaveToFile(const void* src, uint32_t offset, uint32_t length);
 
     private:
-        Elf32_Ehdr      m_stElfHdr;
-        LPCTSTR         m_pszFilename;
-        Elf32_Phdr*     m_pSegmentTbl;
-        Elf32_Shdr*     m_pSectionTbl;
-        char*           m_pStringTable;
-        char*           m_rawData;
-        DWORD           m_dwFileSize;
-        DWORD           m_dwSegmentNum;
-        DWORD           m_dwSectionNum;
-        HANDLE          m_hFile;
-        HANDLE          m_hFileMapping;
+        Elf32_Ehdr          m_elf_header;
+        const char*         m_filename;
+        Elf32_Phdr*         m_segment_table;
+        Elf32_Shdr*         m_section_table;
+        std::FILE*          m_file;
+        char*               m_string_table;
+        uint32_t            m_file_size;
+        uint32_t            m_segment_num;
+        uint32_t            m_section_num;
     };
 }
 

@@ -4,56 +4,55 @@
 
 using namespace CozyElf;
 
-unsigned char COZY_API DefaultMagicNumber[] = { 0x7f, 0x45, 0x4c, 0x46 };
+unsigned char DefaultMagicNumber[] = { 0x7f, 0x45, 0x4c, 0x46 };
 
 ElfObject::ElfObject()
-    :m_pSegmentTbl(nullptr), m_pSectionTbl(nullptr), m_pszFilename(nullptr), m_pStringTable(nullptr), m_rawData(nullptr),
-    m_hFile(INVALID_HANDLE_VALUE), m_hFileMapping(INVALID_HANDLE_VALUE)
+    :m_segment_table(nullptr), m_section_table(nullptr), m_filename(nullptr), m_string_table(nullptr), m_file(nullptr)
 {
     Clear();
 }
 
-bool ElfObject::Init(LPCTSTR pszFilename)
+bool ElfObject::Init(const char* pszFilename)
 {
     Clear();
-
-    m_hFile = ::CreateFile(pszFilename, GENERIC_READ | GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
-    if (m_hFile != INVALID_HANDLE_VALUE)
+    m_file = std::fopen(pszFilename, "rb+");
+    if (m_file != nullptr)
     {
         if (TryRead())
         {
-            m_dwFileSize        = ::GetFileSize(m_hFile, nullptr);
-            m_hFileMapping      = ::CreateFileMapping(m_hFile, nullptr, PAGE_READWRITE, 0, m_dwFileSize, nullptr);
-
-            if (m_hFileMapping != nullptr)
+            std::fseek(m_file, 0, SEEK_SET);
+            if (!std::fread(&m_elf_header, sizeof(Elf32_Ehdr), 1, m_file))
             {
-                // 映射文件到地址空间
-                m_rawData = reinterpret_cast<char*>(::MapViewOfFile(m_hFileMapping, FILE_MAP_ALL_ACCESS, 0, 0, m_dwFileSize));
-                if (m_rawData == nullptr)
-                {
-                    return false;
-                }
-
-                // 初始化Elf头结构
-                ::CopyMemory(&m_stElfHdr, m_rawData, sizeof(Elf32_Ehdr));
-
-                // 初始化SegmentTable
-                m_dwSegmentNum      = static_cast<DWORD>(m_stElfHdr.e_phnum);
-                m_pSegmentTbl       = new Elf32_Phdr[m_dwSegmentNum];
-                ::CopyMemory(m_pSegmentTbl, m_rawData + m_stElfHdr.e_phoff, sizeof(Elf32_Phdr) * m_dwSegmentNum);
-
-                // 初始化SectionTable
-                m_dwSectionNum      = static_cast<DWORD>(m_stElfHdr.e_shnum);
-                m_pSectionTbl       = new Elf32_Shdr[m_dwSectionNum];
-                ::CopyMemory(m_pSectionTbl, m_rawData + m_stElfHdr.e_shoff, sizeof(Elf32_Shdr) * m_dwSectionNum);
-
-                // 初始化字符串表
-                InitStringTable();
-
-                m_pszFilename = pszFilename;
-
-                return true;
+                return false;
             }
+
+            // 初始化SegmentTable
+            m_segment_num       = static_cast<uint32_t>(m_elf_header.e_phnum);
+            m_segment_table     = new Elf32_Phdr[m_segment_num];
+
+            std::fseek(m_file, m_elf_header.e_phoff, SEEK_SET);
+            if (std::fread(m_segment_table, sizeof(Elf32_Phdr), m_segment_num, m_file) !=  m_segment_num)
+            {
+                return false;
+            }
+
+
+            // 初始化SectionTable
+            m_section_num       = static_cast<uint32_t>(m_elf_header.e_shnum);
+            m_section_table     = new Elf32_Shdr[m_section_num];
+
+            std::fseek(m_file, m_elf_header.e_shoff, SEEK_SET);
+            if (std::fread(m_section_table, sizeof(Elf32_Shdr), m_section_num, m_file) !=  m_section_num)
+            {
+                return false;
+            }
+
+            // 初始化字符串表
+            InitStringTable();
+
+            m_filename = pszFilename;
+
+            return true;
         }
         
     }
@@ -62,16 +61,16 @@ bool ElfObject::Init(LPCTSTR pszFilename)
 
 bool ElfObject::TryRead()
 {
-    if (m_hFile != INVALID_HANDLE_VALUE)
+    if (m_file != nullptr)
     {
-        ::SetFilePointer(m_hFile, 0, 0, FILE_BEGIN);
+        std::fseek(m_file, 0, SEEK_SET);
 
-        DWORD dwRead = 0;
         unsigned char magic_number_and_other[6];
+        if (!std::fread(magic_number_and_other, 6, 1, m_file))
+        {
+            return false;
+        }
 
-        ::ReadFile(m_hFile, magic_number_and_other, 6, &dwRead, nullptr);
-
-        if (dwRead != 6) return false;
         for (int i = 0; i < 4; ++i)
         {
             if (magic_number_and_other[i] != DefaultMagicNumber[i])
@@ -97,24 +96,21 @@ bool ElfObject::TryRead()
 
 void ElfObject::Clear()
 {
-    m_dwSegmentNum    = 0;
-    m_dwSectionNum    = 0;
-    m_dwFileSize      = 0;
+    m_segment_num    = 0;
+    m_section_num    = 0;
+    m_file_size      = 0;
 
-    if (m_rawData != nullptr)
+    if (m_file != nullptr)
     {
-        ::UnmapViewOfFile(m_rawData);
-        m_rawData = nullptr;
+        std::fclose(m_file);
+        m_file = nullptr;
     }
 
-    SAFE_DELETE_ARRAY(m_pSegmentTbl);
-    SAFE_DELETE_ARRAY(m_pSectionTbl);
-    SAFE_DELETE_ARRAY(m_pStringTable);
+    SAFE_DELETE_ARRAY(m_segment_table);
+    SAFE_DELETE_ARRAY(m_section_table);
+    SAFE_DELETE_ARRAY(m_string_table);
 
-    SAFE_CLOSE(m_hFileMapping);
-    SAFE_CLOSE(m_hFile);
-
-    ::ZeroMemory(&m_stElfHdr, sizeof(m_stElfHdr));
+    std::memset(&m_elf_header, 0, sizeof(m_elf_header));
 }
 
 void ElfObject::Release()
@@ -125,116 +121,117 @@ void ElfObject::Release()
 
 Elf32_Ehdr* ElfObject::GetElfHeader()
 {
-    if (m_pszFilename == nullptr) return nullptr;
+    if (m_filename == nullptr) return nullptr;
 
-    return &m_stElfHdr;
+    return &m_elf_header;
 }
 
 Elf32_Phdr* ElfObject::GetSegmentTable(size_t* pNum)
 {
-    if (m_pszFilename == nullptr) return nullptr;
+    if (m_filename == nullptr) return nullptr;
     if (pNum != nullptr)
     {
-        *pNum = m_dwSegmentNum;
+        *pNum = m_segment_num;
     }
-    return m_pSegmentTbl;
+    return m_segment_table;
 }
 
 Elf32_Shdr* ElfObject::GetSectionTable(size_t* pNum)
 {
-    if (m_pszFilename == nullptr) return nullptr;
+    if (m_filename == nullptr) return nullptr;
     if (pNum != nullptr)
     {
-        *pNum = m_dwSectionNum;
+        *pNum = m_section_num;
     }
-    return m_pSectionTbl;
+    return m_section_table;
 }
 
 int32_t ElfObject::GetEntryPoint() const
 {
-    if (m_pszFilename == nullptr) return -1;
-    return m_stElfHdr.e_entry;
+    if (m_filename == nullptr) return -1;
+    return m_elf_header.e_entry;
 }
 
 const char* ElfObject::GetString(Elf32_Off offset) const
 {
-    if (m_pszFilename == nullptr || m_pStringTable == nullptr) return nullptr;
-    return m_pStringTable + offset;
+    if (m_filename == nullptr || m_string_table == nullptr) return nullptr;
+    return m_string_table + offset;
 }
 
 void ElfObject::InitStringTable()
 {
-    DWORD nStroff   = m_pSectionTbl[m_stElfHdr.e_shstrndx].sh_offset;
-    DWORD nLength   = m_pSectionTbl[m_stElfHdr.e_shstrndx].sh_size;
+    uint32_t stroff     = m_section_table[m_elf_header.e_shstrndx].sh_offset;
+    uint32_t length     = m_section_table[m_elf_header.e_shstrndx].sh_size;
+    m_string_table      = new char[length];
 
-    m_pStringTable  = new char[nLength];
-    ::CopyMemory(m_pStringTable, m_rawData + nStroff, nLength);
+    std::fseek(m_file, stroff, SEEK_SET);
+    std::fread(m_string_table, length, 1, m_file);
 }
 
 void ElfObject::SaveElfHeader()
 {
-    if (m_hFile != INVALID_HANDLE_VALUE && m_hFileMapping != INVALID_HANDLE_VALUE && m_rawData != nullptr)
+    if (m_file != nullptr)
     {
-        ::CopyMemory(m_rawData, &m_stElfHdr, sizeof(m_stElfHdr));
-        ::FlushViewOfFile(m_rawData, sizeof(m_stElfHdr));
+        std::fseek(m_file, 0, SEEK_SET);
+        std::fwrite(&m_elf_header, sizeof(m_elf_header), 1, m_file);
     }
 }
 
 void ElfObject::SaveSegmentTable()
 {
-    if (m_hFile != INVALID_HANDLE_VALUE && m_hFileMapping != INVALID_HANDLE_VALUE && m_pSegmentTbl != nullptr)
+    if (m_file != nullptr && m_segment_table != nullptr)
     {
-        DWORD nOffset   = m_stElfHdr.e_phoff;
-        DWORD dwLength  = sizeof(Elf32_Phdr) * m_dwSegmentNum;
+        uint32_t offset = m_elf_header.e_phoff;
+        uint32_t length = sizeof(Elf32_Phdr) * m_segment_num;
 
-        SaveToFile(m_rawData + nOffset, m_pSegmentTbl, dwLength);
+        SaveToFile(m_segment_table, offset, length);
     }
 }
 
 void ElfObject::SaveSectionTable()
 {
-    if (m_hFile != INVALID_HANDLE_VALUE && m_hFileMapping != INVALID_HANDLE_VALUE && m_pSectionTbl != nullptr)
+    if (m_file != nullptr && m_section_table != nullptr)
     {
-        DWORD nOffset   = m_stElfHdr.e_shoff;
-        DWORD dwLength  = sizeof(Elf32_Shdr) * m_dwSectionNum;
-
-        SaveToFile(m_rawData + nOffset, m_pSectionTbl, dwLength);
+        uint32_t offset = m_elf_header.e_shoff;
+        uint32_t length = sizeof(Elf32_Shdr) * m_section_num;
+        
+        SaveToFile(m_section_table, offset, length);
     }
 }
 
 void ElfObject::SaveStringTable()
 {
-    if (m_hFile != INVALID_HANDLE_VALUE && m_hFileMapping != INVALID_HANDLE_VALUE && m_pStringTable != nullptr)
+    if (m_file != nullptr && m_string_table != nullptr)
     {
-        DWORD dwStroff = m_pSectionTbl[m_stElfHdr.e_shstrndx].sh_offset;
-        DWORD dwLength = m_pSectionTbl[m_stElfHdr.e_shstrndx].sh_size;
+        uint32_t stroff = m_section_table[m_elf_header.e_shstrndx].sh_offset;
+        uint32_t length = m_section_table[m_elf_header.e_shstrndx].sh_size;
 
-        SaveToFile(m_rawData + dwStroff, m_pStringTable, dwLength);
+        SaveToFile(m_string_table, stroff, length);
     }
 }
 
-LPCTSTR ElfObject::GetFileName() const
+const char* ElfObject::GetFileName() const
 {
-    return m_pszFilename;
+    return m_filename;
 }
 
-DWORD ElfObject::GetFileSize() const
+uint32_t ElfObject::GetFileSize() const
 {
-    return m_dwFileSize;
+    return m_file_size;
 }
 
-int32_t ElfObject::SectionToFile(DWORD dwIndex) const
+int32_t ElfObject::SectionToFile(uint32_t dwIndex) const
 {
-    if (dwIndex >= m_dwSectionNum) return -1;
+    if (dwIndex >= m_section_num) return -1;
 
-    return m_pSectionTbl[dwIndex].sh_offset;
+    return m_section_table[dwIndex].sh_offset;
 }
 
-int32_t ElfObject::FileToSection(DWORD dwOffset) const
+int32_t ElfObject::FileToSection(uint32_t dwOffset) const
 {
-    for (DWORD i = 0; i < m_dwSectionNum; ++i)
+    for (uint32_t i = 0; i < m_section_num; ++i)
     {
-        if (dwOffset >= m_pSectionTbl[i].sh_offset && dwOffset < m_pSectionTbl[i].sh_offset + m_pSectionTbl[i].sh_size)
+        if (dwOffset >= m_section_table[i].sh_offset && dwOffset < m_section_table[i].sh_offset + m_section_table[i].sh_size)
         {
             return i;
         }
@@ -242,8 +239,8 @@ int32_t ElfObject::FileToSection(DWORD dwOffset) const
     return -1;
 }
 
-void ElfObject::SaveToFile(LPVOID lpDest, LPCVOID lpSrc, DWORD dwLength)
+void ElfObject::SaveToFile(const void* src, uint32_t offset, uint32_t length)
 {
-    ::CopyMemory(lpDest, lpSrc, dwLength);
-    ::FlushViewOfFile(lpDest, dwLength);
+    std::fseek(m_file, offset, SEEK_SET);
+    std::fwrite(src, length, 1, m_file);
 }

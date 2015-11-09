@@ -5,7 +5,7 @@
 
 namespace CozyElf
 {
-    struct COZY_API Elf32_Ehdr
+    struct Elf32_Ehdr
     {
         static const int EI_NIDENT = 16;
         unsigned char e_ident[EI_NIDENT];
@@ -25,7 +25,7 @@ namespace CozyElf
         Elf32_Half      e_shstrndx;
     };
 
-    struct COZY_API Elf32_Phdr
+    struct Elf32_Phdr
     {
         Elf32_Word      p_type;
         Elf32_Off       p_offset;
@@ -37,7 +37,7 @@ namespace CozyElf
         Elf32_Word      p_align;
     };
 
-    struct COZY_API Elf32_Shdr
+    struct Elf32_Shdr
     {
         Elf32_Word      sh_name;
         Elf32_Word      sh_type;

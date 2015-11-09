@@ -164,6 +164,11 @@
     <ClCompile Include="CozyELFCppTester.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyElfCpp\CozyElfCpp.vcxproj">
+      <Project>{7958b6b8-ed4f-43f1-8e43-ce02602dc4a3}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
