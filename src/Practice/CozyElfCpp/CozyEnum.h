@@ -8,8 +8,8 @@ namespace CozyElf
     enum class COZY_API ElfClass : unsigned char
     {
         Unknow = 0,
-        Bit32 ,
-        Bit64,
+        X86 ,
+        X64,
     };
 
     enum class COZY_API ElfEndianess : unsigned char
@@ -21,7 +21,7 @@ namespace CozyElf
 
     enum class COZY_API ElfFileType : Elf32_Half
     {
-        None = 0,
+        Unknow = 0,
         Relocatable,
         Executable,
         SharedObject,
@@ -30,7 +30,7 @@ namespace CozyElf
 
     enum class COZY_API ElfMachineType : Elf32_Half
     {
-        None = 0, // No machine
+        Unknow = 0, // No machine
         M32 = 1, // AT&T WE 32100
         SPARC = 2, // SPARC
         Intel386 = 3, // Intel 386
@@ -195,7 +195,7 @@ namespace CozyElf
         Read = 4
     };
 
-    enum class ProgramHeaderType : Elf32_Word
+    enum class COZY_API ProgramHeaderType : Elf32_Word
     {
         PT_LOAD = 1,
         PT_DYNAMIC = 2,
@@ -209,16 +209,16 @@ namespace CozyElf
         PT_MIPS_OPTIONS = 0x70000001,
     };
 
-    enum class SectionFlags : Elf32_Word
+    enum class COZY_API SectionFlags : Elf32_Word
     {
         Writable = 1,
         Allocatable = 2,
         Executable = 4
     };
 
-    enum SectionType : Elf32_Word
+    enum class COZY_API SectionType : Elf32_Word
     {
-        Null = 0,
+        Unknow = 0,
         ProgBits,
         SymbolTable,
         StringTable,

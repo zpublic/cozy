@@ -12,22 +12,14 @@
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="ElfReader.h" />
     <ClInclude Include="ElfObject.h" />
     <ClInclude Include="CozyDef.h" />
     <ClInclude Include="ElfStructs.h" />
     <ClInclude Include="CozyEnum.h" />
-    <ClInclude Include="ElfProgramHeaderObject.h" />
-    <ClInclude Include="ElfSectionHeaderObject.h" />
-    <ClInclude Include="ElfWriter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="ElfReader.cpp" />
     <ClCompile Include="ElfObject.cpp" />
-    <ClCompile Include="ElfProgramHeaderObject.cpp" />
-    <ClCompile Include="ElfSectionHeaderObject.cpp" />
-    <ClCompile Include="ElfWriter.cpp" />
   </ItemGroup>
 </Project>

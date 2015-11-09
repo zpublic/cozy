@@ -1,13 +1,18 @@
 #ifndef __COZY_ELF_DEF__
 #define __COZY_ELF_DEF__
 
+#include <cstdint>
+#include "windows.h"
+
 #ifndef COZY_API_EXPORT
 #define COZY_API _declspec(dllimport)
 #else
 #define COZY_API _declspec(dllexport)
 #endif
 
-#include <cstdint>
+#define SAFE_DELETE(ptr) do { if ( ptr != nullptr ) { delete ptr; ptr = nullptr; } } while (0)
+#define SAFE_DELETE_ARRAY(ptr) do { if ( ptr != nullptr ) { delete[] ptr; ptr = nullptr; } } while (0)
+#define SAFE_CLOSE(handle) do { if ( handle != INVALID_HANDLE_VALUE ) { ::CloseHandle(handle); handle = INVALID_HANDLE_VALUE; } } while (0)
 
 namespace CozyElf
 {
