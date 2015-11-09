@@ -18,18 +18,18 @@ namespace CozyElf
 
     public:
         // ≥ı ºªØ
-        bool Init(const char* filename);
+        bool Init(const zl_char* filename);
 
         //  Õ∑≈
         void Release();
 
     public:
         Elf32_Ehdr* GetElfHeader();
-        Elf32_Phdr* GetSegmentTable(size_t* num);
-        Elf32_Shdr* GetSectionTable(size_t* num);
+        Elf32_Phdr* GetSegmentTable(zl_int32* num);
+        Elf32_Shdr* GetSectionTable(zl_int32* num);
 
-        int32_t GetEntryPoint() const;
-        uint32_t GetFileSize() const;
+        Elf32_Addr GetEntryPoint() const;
+        zl_uint32 GetFileSize() const;
         const char* GetString(Elf32_Off offset) const;
         const char* GetFileName() const;
 
@@ -40,25 +40,25 @@ namespace CozyElf
         void SaveStringTable();
 
     public:
-        int32_t SectionToFile(uint32_t index) const;
-        int32_t FileToSection(uint32_t offset) const;
+        zl_int32 SectionToFile(zl_uint32 index) const;
+        zl_int32 FileToSection(zl_uint32 offset) const;
 
     private:
         bool TryRead();
         void Clear();
         void InitStringTable();
-        void SaveToFile(const void* src, uint32_t offset, uint32_t length);
+        void SaveToFile(const void* src, zl_uint32 offset, zl_uint32 length);
 
     private:
         Elf32_Ehdr          m_elf_header;
-        const char*         m_filename;
+        const zl_char*      m_filename;
         Elf32_Phdr*         m_segment_table;
         Elf32_Shdr*         m_section_table;
         std::FILE*          m_file;
-        char*               m_string_table;
-        uint32_t            m_file_size;
-        uint32_t            m_segment_num;
-        uint32_t            m_section_num;
+        zl_char*            m_string_table;
+        zl_uint32           m_file_size;
+        zl_uint16           m_segment_num;
+        zl_uint16           m_section_num;
     };
 }
 

@@ -6,7 +6,7 @@
 
 int main()
 {
-    const char* filename = "D:\\1.so";
+    const zl_char* filename = "D:\\1.so";
 
     auto obj = new CozyElf::ElfObject();
     std::cout << "Open " << filename;
@@ -18,12 +18,12 @@ int main()
         std::cout << "FileSize : " << obj->GetFileSize() << std::endl;
         std::cout << "Entry Point : " << obj->GetEntryPoint() << std::endl;
 
-        size_t num = 0;
+        zl_int32 num = 0;
 
         auto ptbl = obj->GetSegmentTable(&num);
         std::cout << "ProgramTable : " << std::endl << "Count : " << num << std::endl;
 
-        for (uint32_t i = 0; i < num; ++i)
+        for (zl_int32 i = 0; i < num; ++i)
         {
             std::cout << "Virtual Address : " << ptbl[i].p_vaddr << std::endl;
         }
@@ -33,7 +33,7 @@ int main()
         auto stbl = obj->GetSectionTable(&num);
         std::cout << "SectionTable : " << std::endl << "Count : " << num << std::endl;
 
-        for (uint32_t i = 0; i < num; ++i)
+        for (zl_int32 i = 0; i < num; ++i)
         {
             std::cout << "Section Name " << obj->GetString(stbl[i].sh_name) << " Address : " << stbl[i].sh_addr << std::endl;
         }

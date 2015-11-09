@@ -7,8 +7,8 @@ namespace CozyElf
 {
     struct Elf32_Ehdr
     {
-        static const int EI_NIDENT = 16;
-        unsigned char e_ident[EI_NIDENT];
+        static const zl_int32 EI_NIDENT = 16;
+        zl_uchar e_ident[EI_NIDENT];
 
         Elf32_Half      e_type;
         Elf32_Half      e_machine;

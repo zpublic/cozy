@@ -5,14 +5,14 @@
 
 namespace CozyElf
 {
-    enum class ElfClass : unsigned char
+    enum class ElfClass : zl_uchar
     {
         Unknow = 0,
         X86 ,
         X64,
     };
 
-    enum class ElfEndianess : unsigned char
+    enum class ElfEndianess : zl_uchar
     {
         Unknow = 0,
         LittleEndian,
