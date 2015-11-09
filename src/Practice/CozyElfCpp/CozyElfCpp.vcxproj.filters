@@ -10,7 +10,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="ElfObject.h" />
     <ClInclude Include="CozyDef.h" />
@@ -18,8 +17,6 @@
     <ClInclude Include="CozyEnum.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="ElfObject.cpp" />
   </ItemGroup>
 </Project>

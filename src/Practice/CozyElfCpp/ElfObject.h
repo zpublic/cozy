@@ -3,11 +3,11 @@
 
 #include "CozyDef.h"
 #include "ElfStructs.h"
-#include "windows.h"
+#include <cstdio>
 
 namespace CozyElf
 {
-    class COZY_API ElfObject
+    class ElfObject
     {
     public:
         ElfObject();
@@ -18,20 +18,20 @@ namespace CozyElf
 
     public:
         // ≥ı ºªØ
-        bool Init(LPCTSTR pszFilename);
+        bool Init(const zl_char* filename);
 
         //  Õ∑≈
         void Release();
 
     public:
         Elf32_Ehdr* GetElfHeader();
-        Elf32_Phdr* GetSegmentTable(size_t* pNum);
-        Elf32_Shdr* GetSectionTable(size_t* pNum);
+        Elf32_Phdr* GetSegmentTable(zl_int32* num);
+        Elf32_Shdr* GetSectionTable(zl_int32* num);
 
-        int32_t GetEntryPoint() const;
-        DWORD GetFileSize() const;
+        Elf32_Addr GetEntryPoint() const;
+        zl_uint32 GetFileSize() const;
         const char* GetString(Elf32_Off offset) const;
-        LPCTSTR GetFileName() const;
+        const char* GetFileName() const;
 
     public:
         void SaveElfHeader();
@@ -40,27 +40,25 @@ namespace CozyElf
         void SaveStringTable();
 
     public:
-        int32_t SectionToFile(DWORD dwIndex) const;
-        int32_t FileToSection(DWORD dwOffset) const;
+        zl_int32 SectionToFile(zl_uint32 index) const;
+        zl_int32 FileToSection(zl_uint32 offset) const;
 
     private:
         bool TryRead();
         void Clear();
         void InitStringTable();
-        void SaveToFile(LPVOID lpDest, LPCVOID lpSrc, DWORD dwLength);
+        void SaveToFile(const void* src, zl_uint32 offset, zl_uint32 length);
 
     private:
-        Elf32_Ehdr      m_stElfHdr;
-        LPCTSTR         m_pszFilename;
-        Elf32_Phdr*     m_pSegmentTbl;
-        Elf32_Shdr*     m_pSectionTbl;
-        char*           m_pStringTable;
-        char*           m_rawData;
-        DWORD           m_dwFileSize;
-        DWORD           m_dwSegmentNum;
-        DWORD           m_dwSectionNum;
-        HANDLE          m_hFile;
-        HANDLE          m_hFileMapping;
+        Elf32_Ehdr          m_elf_header;
+        const zl_char*      m_filename;
+        Elf32_Phdr*         m_segment_table;
+        Elf32_Shdr*         m_section_table;
+        std::FILE*          m_file;
+        zl_char*            m_string_table;
+        zl_uint32           m_file_size;
+        zl_uint16           m_segment_num;
+        zl_uint16           m_section_num;
     };
 }
 

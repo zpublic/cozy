@@ -5,21 +5,21 @@
 
 namespace CozyElf
 {
-    enum class COZY_API ElfClass : unsigned char
+    enum class ElfClass : zl_uchar
     {
         Unknow = 0,
         X86 ,
         X64,
     };
 
-    enum class COZY_API ElfEndianess : unsigned char
+    enum class ElfEndianess : zl_uchar
     {
         Unknow = 0,
         LittleEndian,
         BigEndian,
     };
 
-    enum class COZY_API ElfFileType : Elf32_Half
+    enum class ElfFileType : Elf32_Half
     {
         Unknow = 0,
         Relocatable,
@@ -28,7 +28,7 @@ namespace CozyElf
         Core
     };
 
-    enum class COZY_API ElfMachineType : Elf32_Half
+    enum class ElfMachineType : Elf32_Half
     {
         Unknow = 0, // No machine
         M32 = 1, // AT&T WE 32100
@@ -188,14 +188,14 @@ namespace CozyElf
         F56800EX = 200 // Freescale 56800EX Digital Signal Controller (DSC)
     };
 
-    enum class COZY_API SegmentFlags : Elf32_Word
+    enum class SegmentFlags : Elf32_Word
     {
         Execute = 1,
         Write = 2,
         Read = 4
     };
 
-    enum class COZY_API ProgramHeaderType : Elf32_Word
+    enum class ProgramHeaderType : Elf32_Word
     {
         PT_LOAD = 1,
         PT_DYNAMIC = 2,
@@ -209,14 +209,14 @@ namespace CozyElf
         PT_MIPS_OPTIONS = 0x70000001,
     };
 
-    enum class COZY_API SectionFlags : Elf32_Word
+    enum class SectionFlags : Elf32_Word
     {
         Writable = 1,
         Allocatable = 2,
         Executable = 4
     };
 
-    enum class COZY_API SectionType : Elf32_Word
+    enum class SectionType : Elf32_Word
     {
         Unknow = 0,
         ProgBits,
