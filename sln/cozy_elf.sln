@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyElf.Core", "..\src\Practice\CozyElf.Core\CozyElf.Core.csproj", "{9839F61A-7D04-4225-B4E1-F42A97A072BA}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CozyELFCppTester", "..\src\Practice\CozyELFCppTester\CozyELFCppTester.vcxproj", "{2289073D-17BC-4B37-B283-0D898CE9167F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7958B6B8-ED4F-43F1-8E43-CE02602DC4A3} = {7958B6B8-ED4F-43F1-8E43-CE02602DC4A3}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CozyElfCpp", "..\src\Practice\CozyElfCpp\CozyElfCpp.vcxproj", "{7958B6B8-ED4F-43F1-8E43-CE02602DC4A3}"
 EndProject
