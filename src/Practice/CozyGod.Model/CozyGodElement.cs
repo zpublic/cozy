@@ -10,7 +10,7 @@ namespace CozyGod.Model
     {
         public string Name { get; set; }
         public string CN_Name { get; set; }
-        public string Picture { get; set; }
         public int Level { get; set; }
+        public string Picture { get; set; }
     }
 }
