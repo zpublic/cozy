@@ -10,3 +10,6 @@
 [submodule "src/Practice/CozyDict.Gui/tessdata"]
 	path = src/Practice/CozyDict.Gui/tessdata
 	url = https://git.oschina.net/zapline/cozy_res_tessdata.git
+[submodule "src/Practice/CozyGod.Content"]
+	path = src/Practice/CozyGod.Content
+	url = https://git.oschina.net/zapline/CozyGod.Content.git
