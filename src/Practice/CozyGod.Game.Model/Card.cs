@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CozyGod.Model
 {
-    public class CozyGodElement
+    public class Card
     {
         public string Name { get; set; }
         public string CN_Name { get; set; }
