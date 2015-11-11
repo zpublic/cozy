@@ -85,9 +85,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CozyGod.Model\CozyGod.Model.csproj">
+    <ProjectReference Include="..\CozyGod.Game.Model\CozyGod.Game.Model.csproj">
       <Project>{3dccda5f-65ab-4fec-b643-270915754f77}</Project>
-      <Name>CozyGod.Model</Name>
+      <Name>CozyGod.Game.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

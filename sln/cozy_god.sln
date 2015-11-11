@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.Model", "..\src\Practice\CozyGod.Model\CozyGod.Model.csproj", "{3DCCDA5F-65AB-4FEC-B643-270915754F77}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.CardEditor", "..\src\Practice\CozyGod.CardEditor\CozyGod.CardEditor.csproj", "{22E4D335-4695-4D2A-AE36-59F9689F0482}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tool", "Tool", "{6F43331D-C55C-43D5-A4B1-747E943A1035}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.Tool.SplitPic", "..\src\Practice\CozyGod.Tool.SplitPic\CozyGod.Tool.SplitPic.csproj", "{8E5E9019-D315-447E-93C6-204E5970F7F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Game", "Game", "{AEB32660-52D0-4FE5-8240-41800FEB9E6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.Game.Model", "..\src\Practice\CozyGod.Game.Model\CozyGod.Game.Model.csproj", "{3DCCDA5F-65AB-4FEC-B643-270915754F77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.Tool.CardEditor", "..\src\Practice\CozyGod.Tool.CardEditor\CozyGod.Tool.CardEditor.csproj", "{22E4D335-4695-4D2A-AE36-59F9689F0482}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +19,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3DCCDA5F-65AB-4FEC-B643-270915754F77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3DCCDA5F-65AB-4FEC-B643-270915754F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DCCDA5F-65AB-4FEC-B643-270915754F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -25,15 +31,13 @@ Global
 		{22E4D335-4695-4D2A-AE36-59F9689F0482}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22E4D335-4695-4D2A-AE36-59F9689F0482}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22E4D335-4695-4D2A-AE36-59F9689F0482}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8E5E9019-D315-447E-93C6-204E5970F7F0} = {6F43331D-C55C-43D5-A4B1-747E943A1035}
+		{3DCCDA5F-65AB-4FEC-B643-270915754F77} = {AEB32660-52D0-4FE5-8240-41800FEB9E6E}
+		{22E4D335-4695-4D2A-AE36-59F9689F0482} = {6F43331D-C55C-43D5-A4B1-747E943A1035}
 	EndGlobalSection
 EndGlobal
