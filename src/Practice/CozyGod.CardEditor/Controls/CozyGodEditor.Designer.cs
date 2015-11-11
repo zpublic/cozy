@@ -38,7 +38,7 @@
             this.InnerPictruceBox.Location = new System.Drawing.Point(0, 0);
             this.InnerPictruceBox.Name = "InnerPictruceBox";
             this.InnerPictruceBox.Size = new System.Drawing.Size(96, 96);
-            this.InnerPictruceBox.TabIndex = 0;
+            this.InnerPictruceBox.TabIndex = 2;
             this.InnerPictruceBox.TabStop = false;
             // 
             // CozyGodEditor
