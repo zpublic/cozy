@@ -2,7 +2,7 @@
 using CozyGod.Game.Interface;
 using CozyGod.Model;
 
-namespace CozyGod.Test.CraftTester
+namespace CozyGod.Test.RaffleTester
 {
     class Program
     {
@@ -11,11 +11,8 @@ namespace CozyGod.Test.CraftTester
             ICozyGodEngine engine = new CozyGodEngine();
             engine.Init();
 
-            ICraft i = engine.GetCraft();
-            Card a = new Card();
-            Card b = new Card();
-            i.TryCraft(a, b);
-            i.Craft(a, b);
+            IRaffle i = engine.GetRaffle();
+            Card c = i.Draw();
         }
     }
 }

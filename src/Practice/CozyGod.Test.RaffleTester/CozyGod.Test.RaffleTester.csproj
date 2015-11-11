@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6BF6DA90-FEDE-49EE-8E1E-60CF40A013EB}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{4B19ED0C-57A2-4478-8AE3-B6F78ECA4EE6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyGod.Game.Interface</RootNamespace>
-    <AssemblyName>CozyGod.Game.Interface</AssemblyName>
+    <RootNamespace>CozyGod.Test.RaffleTester</RootNamespace>
+    <AssemblyName>CozyGod.Test.RaffleTester</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,12 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICozyGodEngine.cs" />
-    <Compile Include="ICraft.cs" />
-    <Compile Include="IRaffle.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyGod.Game.Engine\CozyGod.Game.Engine.csproj">
+      <Project>{08beea55-79dc-414e-9621-4c43e333a8eb}</Project>
+      <Name>CozyGod.Game.Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyGod.Game.Interface\CozyGod.Game.Interface.csproj">
+      <Project>{6bf6da90-fede-49ee-8e1e-60cf40a013eb}</Project>
+      <Name>CozyGod.Game.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyGod.Game.Model\CozyGod.Game.Model.csproj">
       <Project>{3dccda5f-65ab-4fec-b643-270915754f77}</Project>
       <Name>CozyGod.Game.Model</Name>

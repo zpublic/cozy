@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CozyGod.Game.Craft\CozyGod.Game.Craft.csproj">
-      <Project>{f3beb1a7-941d-437a-9520-208790f9082a}</Project>
-      <Name>CozyGod.Game.Craft</Name>
+    <ProjectReference Include="..\CozyGod.Game.Engine\CozyGod.Game.Engine.csproj">
+      <Project>{08beea55-79dc-414e-9621-4c43e333a8eb}</Project>
+      <Name>CozyGod.Game.Engine</Name>
     </ProjectReference>
     <ProjectReference Include="..\CozyGod.Game.Interface\CozyGod.Game.Interface.csproj">
       <Project>{6bf6da90-fede-49ee-8e1e-60cf40a013eb}</Project>
