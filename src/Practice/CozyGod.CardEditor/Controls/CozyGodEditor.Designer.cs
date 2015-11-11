@@ -48,6 +48,7 @@
             this.Controls.Add(this.InnerPictruceBox);
             this.Name = "CozyGodEditor";
             this.Size = new System.Drawing.Size(96, 96);
+            this.Load += new System.EventHandler(this.CozyGodEditor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.InnerPictruceBox)).EndInit();
             this.ResumeLayout(false);
 

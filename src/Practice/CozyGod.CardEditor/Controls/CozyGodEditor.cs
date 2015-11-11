@@ -24,8 +24,12 @@ namespace CozyGod.CardEditor.Controls
             set
             {
                 _Element = value;
-                Init();
-                RefreshImage();
+
+                if(Image != null)
+                {
+                    RefreshAll();
+                }
+                
                 UpdateElementHandler();
             }
         }
@@ -44,45 +48,28 @@ namespace CozyGod.CardEditor.Controls
             }
         }
 
-        public Image ElementBorder { get; set; }
+        private Image _ElementBorder { get; set; }
+        public Image ElementBorder
+        {
+            get
+            {
+                return _ElementBorder;
+            }
+            set
+            {
+                _ElementBorder = value;
+
+                RefreshAll();
+            }
+        }
 
         public Font NameFont { get; set; } = SystemFonts.DefaultFont;
+
+        private string LastFilePath = string.Empty;
 
         public CozyGodEditor()
         {
             InitializeComponent();
-        }
-
-        private void Init()
-        {
-            if (Image == null)
-            {
-                Image = new Bitmap(Width, Height);
-            }
-
-            SourceImage = null;
-            if (Element != null && File.Exists(Element.Picture))
-            {
-                SourceImage = Image.FromFile(Element.Picture);
-            }
-            DrawSourceImage();
-        }
-
-        private void DrawSourceImage()
-        {
-            using (var g = Graphics.FromImage(Image))
-            {
-                g.Clear(SystemColors.Control);
-
-                if (SourceImage != null)
-                {
-                    g.DrawImage(SourceImage,
-                        new Rectangle(0, 0, Width, (int)(Height * 0.625)),
-                        new Rectangle(0, 0, SourceImage.Width, SourceImage.Height),
-                            GraphicsUnit.Pixel);
-
-                }
-            }
         }
 
         private void UpdateElementHandler()
@@ -95,37 +82,79 @@ namespace CozyGod.CardEditor.Controls
 
         private void OnElementPropertyChanged(object sender, EventArgs e)
         {
-            DrawSourceImage();
-            RefreshImage();
+            if (Image != null)
+            {
+                RefreshAll();
+            }
         }
 
-        private void RefreshImage()
+        private void RefreshAll()
         {
-            if(Image != null)
+            if(Image != null && Element != null)
             {
                 using (var g = Graphics.FromImage(Image))
                 {
-                    if(ElementBorder != null)
-                    {
-                        g.DrawImage(ElementBorder, 
-                            new Rectangle(0, 0, Width, Height),
-                            new Rectangle(0, 0, ElementBorder.Width, ElementBorder.Height),
-                            GraphicsUnit.Pixel);
-                    }
-
-                    if(Element != null)
-                    {
-                        SizeF sizeText = g.MeasureString(Element.Name, NameFont);
-
-                        g.DrawString(Element.Name,
-                            NameFont,
-                            SystemBrushes.ControlText,
-                            (Width - sizeText.Width) / 2,
-                            (int)(Height * 0.625));
-                    }
+                    RefreshSourceImage();
+                    DrawSourceImage(g);
+                    RefreshBorder(g);
+                    RefreshImage(g);
                 }
-                InnerPictruceBox.Invalidate();
             }
+        }
+
+        private void RefreshSourceImage()
+        {
+            if (Element != null && Element.Picture != LastFilePath && File.Exists(Element.Picture))
+            {
+                LastFilePath    = Element.Picture;
+                SourceImage     = Image.FromFile(Element.Picture);
+            }
+        }
+
+        private void DrawSourceImage(Graphics g)
+        {
+            g.Clear(SystemColors.Control);
+
+            if (SourceImage != null)
+            {
+                g.DrawImage(SourceImage,
+                    new Rectangle(0, 0, Width, (int)(Height * 0.625)),
+                    new Rectangle(0, 0, SourceImage.Width, SourceImage.Height),
+                        GraphicsUnit.Pixel);
+            }
+            InnerPictruceBox.Invalidate();
+        }
+
+        private void RefreshImage(Graphics g)
+        {
+            if (Element != null)
+            {
+                SizeF sizeText = g.MeasureString(Element.Name, NameFont);
+
+                g.DrawString(Element.Name,
+                    NameFont,
+                    SystemBrushes.ControlText,
+                    (Width - sizeText.Width) / 2,
+                    (int)(Height * 0.625));
+            }
+            InnerPictruceBox.Invalidate();
+        }
+
+        private void RefreshBorder(Graphics g)
+        {
+            if (ElementBorder != null)
+            {
+                g.DrawImage(ElementBorder,
+                    new Rectangle(0, 0, Width, Height),
+                    new Rectangle(0, 0, ElementBorder.Width, ElementBorder.Height),
+                    GraphicsUnit.Pixel);
+            }
+            InnerPictruceBox.Invalidate();
+        }
+
+        private void CozyGodEditor_Load(object sender, EventArgs e)
+        {
+             Image = new Bitmap(Width, Height);
         }
     }
 }
