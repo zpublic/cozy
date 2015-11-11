@@ -13,7 +13,7 @@ namespace CozyGod.CardEditor
 {
     public partial class MainForm : Form
     {
-        private CozyGodElement CurrElement { get; set; }
+        private Card CurrElement { get; set; }
 
         public MainForm()
         {
@@ -39,7 +39,7 @@ namespace CozyGod.CardEditor
                 && PictureTextBox.Text != string.Empty
                 && int.TryParse(LevelTextBox.Text, out result))
             {
-                CurrElement = new CozyGodElement()
+                CurrElement = new Card()
                 {
                     Name    = NameTextBox.Text,
                     CN_Name = CN_NameTextBox.Text,

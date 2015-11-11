@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            CozyGod.Model.CozyGodElement cozyGodElement1 = new CozyGod.Model.CozyGodElement();
+            CozyGod.Model.Card cozyGodElement1 = new CozyGod.Model.Card();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.CN_NameTextBox = new System.Windows.Forms.TextBox();
             this.LevelTextBox = new System.Windows.Forms.TextBox();
