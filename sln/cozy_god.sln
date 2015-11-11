@@ -3,13 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.Model", "..\src\Practice\CozyGod.Model\CozyGod.Model.csproj", "{3DCCDA5F-65AB-4FEC-B643-270915754F77}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.CardEditor", "..\src\Practice\CozyGod.CardEditor\CozyGod.CardEditor.csproj", "{22E4D335-4695-4D2A-AE36-59F9689F0482}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tool", "Tool", "{6F43331D-C55C-43D5-A4B1-747E943A1035}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.Tool.SplitPic", "..\src\Practice\CozyGod.Tool.SplitPic\CozyGod.Tool.SplitPic.csproj", "{8E5E9019-D315-447E-93C6-204E5970F7F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Game", "Game", "{AEB32660-52D0-4FE5-8240-41800FEB9E6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.Game.Model", "..\src\Practice\CozyGod.Game.Model\CozyGod.Game.Model.csproj", "{3DCCDA5F-65AB-4FEC-B643-270915754F77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.Tool.CardEditor", "..\src\Practice\CozyGod.Tool.CardEditor\CozyGod.Tool.CardEditor.csproj", "{22E4D335-4695-4D2A-AE36-59F9689F0482}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.Game.Interface", "..\src\Practice\CozyGod.Game.Interface\CozyGod.Game.Interface.csproj", "{6BF6DA90-FEDE-49EE-8E1E-60CF40A013EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.Game.Craft", "..\src\Practice\CozyGod.Game.Craft\CozyGod.Game.Craft.csproj", "{F3BEB1A7-941D-437A-9520-208790F9082A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{40110843-4C77-4907-9957-CAE6FD78CE03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.Test.CraftTester", "..\src\Practice\CozyGod.Test.CraftTester\CozyGod.Test.CraftTester.csproj", "{A7D6708D-06A5-4F09-8660-1CC4C25D0EF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.Game.Raffle", "..\src\Practice\CozyGod.Game.Raffle\CozyGod.Game.Raffle.csproj", "{03DA6653-9F69-42DF-8112-7870D286FB89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.Test.RaffleTester", "..\src\Practice\CozyGod.Test.RaffleTester\CozyGod.Test.RaffleTester.csproj", "{4B19ED0C-57A2-4478-8AE3-B6F78ECA4EE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.Game.Engine", "..\src\Practice\CozyGod.Game.Engine\CozyGod.Game.Engine.csproj", "{08BEEA55-79DC-414E-9621-4C43E333A8EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +33,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3DCCDA5F-65AB-4FEC-B643-270915754F77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3DCCDA5F-65AB-4FEC-B643-270915754F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DCCDA5F-65AB-4FEC-B643-270915754F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -25,10 +45,30 @@ Global
 		{22E4D335-4695-4D2A-AE36-59F9689F0482}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22E4D335-4695-4D2A-AE36-59F9689F0482}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22E4D335-4695-4D2A-AE36-59F9689F0482}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E5E9019-D315-447E-93C6-204E5970F7F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BF6DA90-FEDE-49EE-8E1E-60CF40A013EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BF6DA90-FEDE-49EE-8E1E-60CF40A013EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BF6DA90-FEDE-49EE-8E1E-60CF40A013EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BF6DA90-FEDE-49EE-8E1E-60CF40A013EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3BEB1A7-941D-437A-9520-208790F9082A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3BEB1A7-941D-437A-9520-208790F9082A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3BEB1A7-941D-437A-9520-208790F9082A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3BEB1A7-941D-437A-9520-208790F9082A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7D6708D-06A5-4F09-8660-1CC4C25D0EF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7D6708D-06A5-4F09-8660-1CC4C25D0EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7D6708D-06A5-4F09-8660-1CC4C25D0EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7D6708D-06A5-4F09-8660-1CC4C25D0EF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03DA6653-9F69-42DF-8112-7870D286FB89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03DA6653-9F69-42DF-8112-7870D286FB89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03DA6653-9F69-42DF-8112-7870D286FB89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03DA6653-9F69-42DF-8112-7870D286FB89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B19ED0C-57A2-4478-8AE3-B6F78ECA4EE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B19ED0C-57A2-4478-8AE3-B6F78ECA4EE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B19ED0C-57A2-4478-8AE3-B6F78ECA4EE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B19ED0C-57A2-4478-8AE3-B6F78ECA4EE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08BEEA55-79DC-414E-9621-4C43E333A8EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08BEEA55-79DC-414E-9621-4C43E333A8EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08BEEA55-79DC-414E-9621-4C43E333A8EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08BEEA55-79DC-414E-9621-4C43E333A8EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,5 +76,13 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{22E4D335-4695-4D2A-AE36-59F9689F0482} = {6F43331D-C55C-43D5-A4B1-747E943A1035}
 		{8E5E9019-D315-447E-93C6-204E5970F7F0} = {6F43331D-C55C-43D5-A4B1-747E943A1035}
+		{3DCCDA5F-65AB-4FEC-B643-270915754F77} = {AEB32660-52D0-4FE5-8240-41800FEB9E6E}
+		{22E4D335-4695-4D2A-AE36-59F9689F0482} = {6F43331D-C55C-43D5-A4B1-747E943A1035}
+		{6BF6DA90-FEDE-49EE-8E1E-60CF40A013EB} = {AEB32660-52D0-4FE5-8240-41800FEB9E6E}
+		{F3BEB1A7-941D-437A-9520-208790F9082A} = {AEB32660-52D0-4FE5-8240-41800FEB9E6E}
+		{A7D6708D-06A5-4F09-8660-1CC4C25D0EF2} = {40110843-4C77-4907-9957-CAE6FD78CE03}
+		{03DA6653-9F69-42DF-8112-7870D286FB89} = {AEB32660-52D0-4FE5-8240-41800FEB9E6E}
+		{4B19ED0C-57A2-4478-8AE3-B6F78ECA4EE6} = {40110843-4C77-4907-9957-CAE6FD78CE03}
+		{08BEEA55-79DC-414E-9621-4C43E333A8EB} = {AEB32660-52D0-4FE5-8240-41800FEB9E6E}
 	EndGlobalSection
 EndGlobal

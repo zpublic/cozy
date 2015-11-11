@@ -14,8 +14,8 @@ namespace CozyGod.CardEditor.Controls
 {
     public partial class CozyGodEditor : UserControl
     {
-        private CozyGodElement _Element { get; set; }
-        public CozyGodElement Element
+        private Card _Element { get; set; }
+        public Card Element
         {
             get
             {

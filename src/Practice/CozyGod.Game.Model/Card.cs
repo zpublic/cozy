@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace CozyGod.Model
 {
-    public class CozyGodElement
+    public class Card
     {
-        public static CozyGodElement Empty
+        public static Card Empty
         {
             get
             {
-                return new CozyGodElement()
+                return new Card()
                 {
                     CN_Name = "无",
                     Name    = "Null",
