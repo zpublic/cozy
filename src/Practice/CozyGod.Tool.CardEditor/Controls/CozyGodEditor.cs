@@ -48,6 +48,9 @@ namespace CozyGod.CardEditor.Controls
             }
         }
 
+        public Size SourceImageSize { get; set; }
+        public Point SourceImagePos { get; set; }
+
         private Image _ElementBorder { get; set; }
         public Image ElementBorder
         {
@@ -64,6 +67,7 @@ namespace CozyGod.CardEditor.Controls
         }
 
         public Font NameFont { get; set; } = SystemFonts.DefaultFont;
+        public int NamePoxY { get; set; }
 
         private string LastFilePath = string.Empty;
 
@@ -118,8 +122,8 @@ namespace CozyGod.CardEditor.Controls
             if (SourceImage != null)
             {
                 g.DrawImage(SourceImage,
-                    new Rectangle(0, 0, Width, (int)(Height * 0.625)),
-                    new Rectangle(0, 0, SourceImage.Width, SourceImage.Height),
+                    new Rectangle(SourceImagePos, SourceImageSize),
+                    new Rectangle(Point.Empty, SourceImage.Size),
                         GraphicsUnit.Pixel);
             }
             InnerPictruceBox.Invalidate();
@@ -135,7 +139,7 @@ namespace CozyGod.CardEditor.Controls
                     NameFont,
                     SystemBrushes.ControlText,
                     (Width - sizeText.Width) / 2,
-                    (int)(Height * 0.625));
+                    NamePoxY);
             }
             InnerPictruceBox.Invalidate();
         }
@@ -145,8 +149,8 @@ namespace CozyGod.CardEditor.Controls
             if (ElementBorder != null)
             {
                 g.DrawImage(ElementBorder,
-                    new Rectangle(0, 0, Width, Height),
-                    new Rectangle(0, 0, ElementBorder.Width, ElementBorder.Height),
+                    new Rectangle(Point.Empty, Size),
+                    new Rectangle(Point.Empty, ElementBorder.Size),
                     GraphicsUnit.Pixel);
             }
             InnerPictruceBox.Invalidate();
