@@ -7,5 +7,6 @@ namespace CozyGod.Game.Interface
         CardLibrary Get();
         void Add(Card c);
         void Clear();
+        Card FindCardByName(string name);
     }
 }

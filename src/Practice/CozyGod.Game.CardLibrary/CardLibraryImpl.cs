@@ -18,5 +18,9 @@ namespace CozyGod.Game.CardLibrary
         {
             throw new NotImplementedException();
         }
+        public Card FindCardByName(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
