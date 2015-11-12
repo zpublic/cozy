@@ -15,5 +15,7 @@ namespace CozyGod.Game.Interface
         ICraft GetCraft();
 
         IRaffle GetRaffle();
+
+        IGameConfig GetConfig();
     }
 }

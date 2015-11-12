@@ -43,6 +43,7 @@
     <Compile Include="ICardLibrary.cs" />
     <Compile Include="ICozyGodEngine.cs" />
     <Compile Include="ICraft.cs" />
+    <Compile Include="IGameConfig.cs" />
     <Compile Include="IRaffle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
