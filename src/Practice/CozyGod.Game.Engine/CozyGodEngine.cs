@@ -12,12 +12,15 @@ namespace CozyGod.Game.Engine
 {
     public class CozyGodEngine : ICozyGodEngine
     {
-        private ICraft craft = new CraftImpl();
+        private ICraft craft;
         private IRaffle raffle = new RaffleImpl();
         private ICardLibrary cardLibrary = new CardLibraryImpl();
 
         public void Init()
         {
+            var c = new CraftImpl();
+            c.SetCardLibrary(cardLibrary);
+            craft = c;
         }
 
         public ICraft GetCraft()

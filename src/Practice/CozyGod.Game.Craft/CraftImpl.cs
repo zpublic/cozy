@@ -10,6 +10,13 @@ namespace CozyGod.Game.Craft
 {
     public class CraftImpl : ICraft
     {
+        private ICardLibrary mCL;
+
+        public void SetCardLibrary(ICardLibrary cl)
+        {
+            mCL = cl;
+        }
+
         public Card Craft(Card a, Card b)
         {
             throw new NotImplementedException();
