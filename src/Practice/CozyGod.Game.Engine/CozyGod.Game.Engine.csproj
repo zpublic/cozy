@@ -44,6 +44,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CozyGod.Game.CardLibrary\CozyGod.Game.CardLibrary.csproj">
+      <Project>{dbb6f0a2-39b9-44df-9567-2fea049cba6f}</Project>
+      <Name>CozyGod.Game.CardLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyGod.Game.Craft\CozyGod.Game.Craft.csproj">
       <Project>{f3beb1a7-941d-437a-9520-208790f9082a}</Project>
       <Name>CozyGod.Game.Craft</Name>

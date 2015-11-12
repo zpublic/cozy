@@ -10,6 +10,8 @@ namespace CozyGod.Game.Interface
     {
         void Init();
 
+        ICardLibrary GetCardLibrary();
+
         ICraft GetCraft();
 
         IRaffle GetRaffle();
