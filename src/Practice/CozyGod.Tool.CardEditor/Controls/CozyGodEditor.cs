@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CozyGod.Model;
 using System.IO;
+using CozyGod.CardEditor.Properties;
 
 namespace CozyGod.CardEditor.Controls
 {
@@ -50,6 +51,10 @@ namespace CozyGod.CardEditor.Controls
 
         public Size SourceImageSize { get; set; }
         public Point SourceImagePos { get; set; }
+
+        public Size LevelImageSize { get; set; }
+        public Point LevelImagePos { get; set; }
+        public Font LevelFont { get; set; } = SystemFonts.DefaultFont;
 
         private Image _ElementBorder { get; set; }
         public Image ElementBorder
@@ -101,7 +106,7 @@ namespace CozyGod.CardEditor.Controls
                     RefreshSourceImage();
                     DrawSourceImage(g);
                     RefreshBorder(g);
-                    RefreshImage(g);
+                    RefreshName(g);
                 }
             }
         }
@@ -129,17 +134,31 @@ namespace CozyGod.CardEditor.Controls
             InnerPictruceBox.Invalidate();
         }
 
-        private void RefreshImage(Graphics g)
+        private void RefreshName(Graphics g)
         {
             if (Element != null)
             {
-                SizeF sizeText = g.MeasureString(Element.Name, NameFont);
+                SizeF sizeText = g.MeasureString(Element.CN_Name, NameFont);
 
-                g.DrawString(Element.Name,
+                g.DrawString(Element.CN_Name,
                     NameFont,
                     SystemBrushes.ControlText,
                     (Width - sizeText.Width) / 2,
                     NamePoxY);
+
+                g.DrawImage(Resources.level_background,
+                    new Rectangle(LevelImagePos, LevelImageSize),
+                    new Rectangle(Point.Empty, Resources.level_background.Size),
+                    GraphicsUnit.Pixel);
+
+                var levelStr = Element.Level.ToString();
+                SizeF sizeLevel = g.MeasureString(levelStr, LevelFont);
+
+                g.DrawString(levelStr,
+                    LevelFont,
+                    SystemBrushes.ControlText,
+                    LevelImagePos.X + (LevelImageSize.Width - sizeLevel.Width) / 2,
+                    LevelImagePos.Y + (LevelImageSize.Height - sizeLevel.Height) / 2);
             }
             InnerPictruceBox.Invalidate();
         }
