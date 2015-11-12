@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            CozyGod.Model.Card cozyGodElement1 = new CozyGod.Model.Card();
+            CozyGod.Model.Card card1 = new CozyGod.Model.Card();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.CN_NameTextBox = new System.Windows.Forms.TextBox();
             this.LevelTextBox = new System.Windows.Forms.TextBox();
@@ -40,8 +40,8 @@
             this.SelectPictureButton = new System.Windows.Forms.Button();
             this.GenButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
-            this.cozyGodEditor1 = new CozyGod.CardEditor.Controls.CozyGodEditor();
             this.button1 = new System.Windows.Forms.Button();
+            this.cozyGodEditor1 = new CozyGod.CardEditor.Controls.CozyGodEditor();
             this.SuspendLayout();
             // 
             // NameTextBox
@@ -143,21 +143,6 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // cozyGodEditor1
-            // 
-            this.cozyGodEditor1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            cozyGodElement1.CN_Name = null;
-            cozyGodElement1.Level = 0;
-            cozyGodElement1.Name = null;
-            cozyGodElement1.Picture = null;
-            this.cozyGodEditor1.Element = cozyGodElement1;
-            this.cozyGodEditor1.ElementBorder = null;
-            this.cozyGodEditor1.Location = new System.Drawing.Point(230, 25);
-            this.cozyGodEditor1.Name = "cozyGodEditor1";
-            this.cozyGodEditor1.NameFont = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cozyGodEditor1.Size = new System.Drawing.Size(96, 96);
-            this.cozyGodEditor1.TabIndex = 0;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(14, 221);
@@ -167,6 +152,24 @@
             this.button1.Text = "选择边框";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // cozyGodEditor1
+            // 
+            this.cozyGodEditor1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            card1.CN_Name = null;
+            card1.Level = 0;
+            card1.Name = null;
+            card1.Picture = null;
+            this.cozyGodEditor1.Element = card1;
+            this.cozyGodEditor1.ElementBorder = null;
+            this.cozyGodEditor1.Location = new System.Drawing.Point(230, 25);
+            this.cozyGodEditor1.Name = "cozyGodEditor1";
+            this.cozyGodEditor1.NameFont = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cozyGodEditor1.NamePoxY = 63;
+            this.cozyGodEditor1.Size = new System.Drawing.Size(96, 96);
+            this.cozyGodEditor1.SourceImagePos = new System.Drawing.Point(18, 18);
+            this.cozyGodEditor1.SourceImageSize = new System.Drawing.Size(60, 45);
+            this.cozyGodEditor1.TabIndex = 0;
             // 
             // MainForm
             // 
