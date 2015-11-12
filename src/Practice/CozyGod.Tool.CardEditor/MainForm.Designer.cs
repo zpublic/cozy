@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            CozyGod.Model.Card card1 = new CozyGod.Model.Card();
+            CozyGod.Model.Card card2 = new CozyGod.Model.Card();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.CN_NameTextBox = new System.Windows.Forms.TextBox();
             this.LevelTextBox = new System.Windows.Forms.TextBox();
@@ -156,11 +156,11 @@
             // cozyGodEditor1
             // 
             this.cozyGodEditor1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            card1.CN_Name = null;
-            card1.Level = 0;
-            card1.Name = null;
-            card1.Picture = null;
-            this.cozyGodEditor1.Element = card1;
+            card2.CN_Name = null;
+            card2.Level = 0;
+            card2.Name = null;
+            card2.Picture = null;
+            this.cozyGodEditor1.Element = card2;
             this.cozyGodEditor1.ElementBorder = null;
             this.cozyGodEditor1.Location = new System.Drawing.Point(230, 25);
             this.cozyGodEditor1.Name = "cozyGodEditor1";
@@ -175,7 +175,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(353, 257);
+            this.ClientSize = new System.Drawing.Size(340, 257);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.GenButton);
