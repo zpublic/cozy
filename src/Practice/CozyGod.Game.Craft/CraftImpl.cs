@@ -11,13 +11,16 @@ namespace CozyGod.Game.Craft
 {
     public class CraftImpl : ICraft
     {
-        const string filePath = "CraftTableConfig.txt";
-
         List<CraftTable> m_CraftTableList = null;
+        private ICozyGodEngine mEngine;
         private ICardLibrary mCL;
+        private string mFilePath;
 
-        public bool init()
+        public bool Init(ICozyGodEngine engine)
         {
+            mEngine = engine;
+            mCL = engine.GetCardLibrary();
+            mFilePath = engine.GetConfig().GetContentPath() + @"Data\CraftTableConfig.txt";
             bool bRet = true;
             LoadCraftTable();
             if (m_CraftTableList==null)
@@ -32,11 +35,6 @@ namespace CozyGod.Game.Craft
         {
             internal List<string> costCardList = new List<string>();
             internal List<string> resultCardItem = new List<string>();
-        }
-
-        public void SetCardLibrary(ICardLibrary cl)
-        {
-            mCL = cl;
         }
 
         public Card Craft(Card a, Card b)
@@ -86,7 +84,7 @@ namespace CozyGod.Game.Craft
         }
         private void LoadCraftTable()
         {
-            using (var fileStm = new FileStream(filePath, FileMode.Open))
+            using (var fileStm = new FileStream(mFilePath, FileMode.Open))
             {
                 StreamReader sr = new StreamReader(fileStm);
 

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{08BEEA55-79DC-414E-9621-4C43E333A8EB}</ProjectGuid>
+    <ProjectGuid>{4E50C954-36C3-4F45-8343-AC7838CB7C8E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyGod.Game.Engine</RootNamespace>
-    <AssemblyName>CozyGod.Game.Engine</AssemblyName>
+    <RootNamespace>CozyGod.Game.GameConfig</RootNamespace>
+    <AssemblyName>CozyGod.Game.GameConfig</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,33 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CozyGodEngine.cs" />
+    <Compile Include="GameConfigImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CozyGod.Game.CardLibrary\CozyGod.Game.CardLibrary.csproj">
-      <Project>{dbb6f0a2-39b9-44df-9567-2fea049cba6f}</Project>
-      <Name>CozyGod.Game.CardLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyGod.Game.Craft\CozyGod.Game.Craft.csproj">
-      <Project>{f3beb1a7-941d-437a-9520-208790f9082a}</Project>
-      <Name>CozyGod.Game.Craft</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyGod.Game.GameConfig\CozyGod.Game.GameConfig.csproj">
-      <Project>{4e50c954-36c3-4f45-8343-ac7838cb7c8e}</Project>
-      <Name>CozyGod.Game.GameConfig</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CozyGod.Game.Interface\CozyGod.Game.Interface.csproj">
       <Project>{6bf6da90-fede-49ee-8e1e-60cf40a013eb}</Project>
       <Name>CozyGod.Game.Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyGod.Game.Model\CozyGod.Game.Model.csproj">
-      <Project>{3dccda5f-65ab-4fec-b643-270915754f77}</Project>
-      <Name>CozyGod.Game.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyGod.Game.Raffle\CozyGod.Game.Raffle.csproj">
-      <Project>{03da6653-9f69-42df-8112-7870d286fb89}</Project>
-      <Name>CozyGod.Game.Raffle</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

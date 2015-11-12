@@ -1,5 +1,6 @@
 ﻿using CozyGod.Game.CardLibrary;
 using CozyGod.Game.Craft;
+using CozyGod.Game.GameConfig;
 using CozyGod.Game.Interface;
 using CozyGod.Game.Raffle;
 using System;
@@ -15,11 +16,12 @@ namespace CozyGod.Game.Engine
         private ICraft craft;
         private IRaffle raffle = new RaffleImpl();
         private ICardLibrary cardLibrary = new CardLibraryImpl();
+        private IGameConfig config = new GameConfigImpl();
 
         public void Init()
         {
             var c = new CraftImpl();
-            c.SetCardLibrary(cardLibrary);
+            c.Init(this);
             craft = c;
         }
 
@@ -36,6 +38,11 @@ namespace CozyGod.Game.Engine
         public ICardLibrary GetCardLibrary()
         {
             return cardLibrary;
+        }
+
+        public IGameConfig GetConfig()
+        {
+            return config;
         }
     }
 }
