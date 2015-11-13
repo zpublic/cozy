@@ -10,5 +10,6 @@ namespace CozyGod.Game.Interface
     public interface IRaffle
     {
         Card Draw();
+        Card[] PentaDraw();
     }
 }

@@ -14,5 +14,10 @@ namespace CozyGod.Game.Raffle
         {
             throw new NotImplementedException();
         }
+
+        public Card[] PentaDraw()
+        {
+            return null;
+        }
     }
 }
