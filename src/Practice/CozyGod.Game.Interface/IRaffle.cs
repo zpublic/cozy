@@ -9,7 +9,7 @@ namespace CozyGod.Game.Interface
 {
     public interface IRaffle
     {
-        Card Draw();
+        Card Draw(int rank = 0);
         Card[] PentaDraw();
     }
 }
