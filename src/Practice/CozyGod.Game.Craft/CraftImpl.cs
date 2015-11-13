@@ -92,22 +92,29 @@ namespace CozyGod.Game.Craft
 
                 string str = sr.ReadLine();
 
-                while (str != null)
+                while (str != null&& str != "")
                 {
                     string[] strCraft = ParseStr(str);
                     if (strCraft != null)
                     {
-                        string[] costCard = strCraft[0].Split(',');
+                        string[] resultCard = strCraft[0].Split('+');
                         CraftTable CraftTableTemp = new CraftTable();
-                        for (int i = 0; i < costCard.Length; i++)
-                        {
-                            CraftTableTemp.costCardList.Add(costCard[i]);
-                        }
-
-                        string[] resultCard = strCraft[1].Split(',');
                         for (int i = 0; i < resultCard.Length; i++)
                         {
+                            //此处添加翻译接口
+
+
+
                             CraftTableTemp.resultCardItem.Add(resultCard[i]);
+                        }
+
+                        string[] costCard = strCraft[1].Split('+');
+                        for (int i = 0; i < costCard.Length; i++)
+                        {
+                            //此处添加翻译接口
+
+
+                            CraftTableTemp.costCardList.Add(costCard[i]);
                         }
 
                         if (m_CraftTableList == null)
@@ -129,7 +136,7 @@ namespace CozyGod.Game.Craft
             if (_line[0] != '/' &&
                 _line[1] != '/')
             {
-                string[] _list = _line.Split('\t');
+                string[] _list = _line.Split('=');
 
                 return _list;
             }
