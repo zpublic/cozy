@@ -14,7 +14,7 @@ namespace CozyGod.Game.Engine
     public class CozyGodEngine : ICozyGodEngine
     {
         private ICraft craft;
-        private IRaffle raffle = new RaffleImpl();
+        private IRaffle raffle;
         private ICardLibrary cardLibrary = new CardLibraryImpl();
         private IGameConfig config = new GameConfigImpl();
 
@@ -23,6 +23,9 @@ namespace CozyGod.Game.Engine
             var c = new CraftImpl();
             c.Init(this);
             craft = c;
+            var raf = new RaffleImpl();
+            raf.Init(this);
+            raffle = raf;
         }
 
         public ICraft GetCraft()

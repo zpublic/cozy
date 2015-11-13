@@ -81,6 +81,18 @@ namespace CozyGod.Game.Raffle
                 cardArrayRet[i] = Draw();
             }
 
+
+            // shuffle 打乱顺序
+            for(int i = 0; i < cardArrayRet.Length; i++)
+            {
+                Random rd = new Random();
+                int _iRdIndex = rd.Next(0, cardArrayRet.Length);
+
+                Card tmp = cardArrayRet[i];
+                cardArrayRet[i] = cardArrayRet[_iRdIndex];
+                cardArrayRet[_iRdIndex] = tmp;
+            }
+
             return cardArrayRet;
         }
 
