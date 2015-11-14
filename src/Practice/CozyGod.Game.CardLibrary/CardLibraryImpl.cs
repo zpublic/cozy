@@ -11,8 +11,13 @@ namespace CozyGod.Game.CardLibrary
     {
         private const int maxLevel = 15;
 
-        private Game.Model.CardLibrary LibInstance { get; set; }
-            = new Game.Model.CardLibrary(maxLevel);
+        private Model.CardLibrary LibInstance { get; set; }
+            = new Model.CardLibrary(maxLevel);
+
+        private Dictionary<string, string> TranslateToChTable { get; set; }
+        = new Dictionary<string, string>();
+        private Dictionary<string, string> TranslateToEnTable { get; set; }
+        = new Dictionary<string, string>();
 
         public void Add(Card c)
         {
@@ -38,7 +43,7 @@ namespace CozyGod.Game.CardLibrary
             }
         }
 
-        public Game.Model.CardLibrary Get()
+        public Model.CardLibrary Get()
         {
             return LibInstance;
         }
@@ -73,17 +78,29 @@ namespace CozyGod.Game.CardLibrary
         {
             using (var reader = new StreamReader(filename))
             {
-
+                TranslateToChTable = JsonConvert.DeserializeObject<Dictionary<string, string>>(reader.ReadToEnd());
+                foreach (var trans in TranslateToChTable)
+                {
+                    TranslateToEnTable[trans.Value] = trans.Key;
+                }
             }
         }
 
         public string TranslateToCh(string name)
         {
+            if(TranslateToChTable.ContainsKey(name))
+            {
+                return TranslateToChTable[name];
+            }
             return null;
         }
 
         public string TranslateToEn(string name)
         {
+            if (TranslateToEnTable.ContainsKey(name))
+            {
+                return TranslateToEnTable[name];
+            }
             return null;
         }
     }
