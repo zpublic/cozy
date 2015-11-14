@@ -1,4 +1,4 @@
-﻿using CozyGod.Model;
+﻿using CozyGod.Game.Model;
 
 namespace CozyGod.Game.Interface
 {
@@ -8,5 +8,7 @@ namespace CozyGod.Game.Interface
         void Add(Card c);
         void Clear();
         Card FindCardByName(string name);
+        string TranslateToCh(string name);
+        string TranslateToEn(string name);
     }
 }

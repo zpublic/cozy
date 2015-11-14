@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
-using CozyGod.Model;
-using CozyGod.Tool.CardGenerator.json;
+using CozyGod.Game.Model.json;
+using CozyGod.Game.Model;
 
 namespace CozyGod.Tool.CardGenerator
 {

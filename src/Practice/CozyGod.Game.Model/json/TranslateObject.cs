@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyGod.Tool.CardGenerator.json
+namespace CozyGod.Game.Model.json
 {
     public class TranslateObject
     {
@@ -21,5 +21,4 @@ namespace CozyGod.Tool.CardGenerator.json
         public string name { get; set; }
         public string text { get; set; }
     }
-
 }
