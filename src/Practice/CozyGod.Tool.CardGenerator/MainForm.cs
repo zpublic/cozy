@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
-using CozyGod.Model;
-using CozyGod.Tool.CardGenerator.json;
+using CozyGod.Game.Model;
 
 namespace CozyGod.Tool.CardGenerator
 {
@@ -124,11 +123,10 @@ namespace CozyGod.Tool.CardGenerator
         {
             using (var reader = new StreamReader(TranslatePath))
             {
-                var obj = JsonConvert.DeserializeObject<TranslateObject>(reader.ReadToEnd());
-                foreach (var trans in obj.Localization.String)
+                TranslateToCh = JsonConvert.DeserializeObject<Dictionary<string, string>>(reader.ReadToEnd());
+                foreach (var trans in TranslateToCh)
                 {
-                    TranslateToCh[trans.name] = trans.text;
-                    TranslateToEn[trans.text] = trans.name;
+                    TranslateToEn[trans.Value] = trans.Key;
                 }
             }
         }

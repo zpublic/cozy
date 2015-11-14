@@ -1,6 +1,6 @@
 ﻿using CozyGod.Game.Engine;
 using CozyGod.Game.Interface;
-using CozyGod.Model;
+using CozyGod.Game.Model;
 using System.Collections.Generic;
 
 namespace CozyGod.Test.CraftTester

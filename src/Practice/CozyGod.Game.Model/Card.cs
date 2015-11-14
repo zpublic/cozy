@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyGod.Model
+namespace CozyGod.Game.Model
 {
     public class Card
     {

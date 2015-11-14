@@ -1,10 +1,15 @@
 ﻿using System.Collections.Generic;
 
-namespace CozyGod.Model
+namespace CozyGod.Game.Model
 {
     public class CardLibrary
     {
-        public static int MaxLevel = 7;
-        public List<Card>[] Cards = new List<Card>[MaxLevel + 1];
+        //public static int MaxLevel = 15;
+        public List<Card>[] Cards { get; private set; }
+
+        public CardLibrary(int maxLevel = 15)
+        {
+            Cards = new List<Card>[maxLevel + 1];
+        }
     }
 }
