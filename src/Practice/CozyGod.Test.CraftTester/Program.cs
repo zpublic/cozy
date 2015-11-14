@@ -10,34 +10,42 @@ namespace CozyGod.Test.CraftTester
     {
         static void Main(string[] args)
         {
-            const int drawTestNumber = 100;
             ICozyGodEngine engine = new CozyGodEngine();
             engine.Init();
 
             ICraft i = engine.GetCraft();
-            Card a = new Card();
-            Card b = new Card();
-            System.Console.WriteLine("You cost card name : {0}, card level : {1} and card name : {2}, card level : {3}"
-                , a.Name, a.Level, b.Name, b.Level);
-            i.TryCraft(a, b);
-            i.Craft(a, b);
-            System.Console.WriteLine("You get card name : {0}, card level : {1}", i.Craft(a, b).Name, i.Craft(a, b).Level);
+            Card a = null;
+            Card b = null;
+            ICardLibrary lib = engine.GetCardLibrary();
 
-            Card[] pentaDrawTest;
-            Card drawTest;
-            IRaffle iRaffle = engine.GetRaffle();
 
-            for(int n = 0; n < drawTestNumber; n++)
+            while(true)
             {
-                pentaDrawTest = iRaffle.PentaDraw();
-                drawTest = iRaffle.Draw(2);
-                int index = 0;
-                while(pentaDrawTest[index] != null)
+                string input = System.Console.ReadLine();
+                string[] craftCard = input.Split(',');
+                a = lib.FindCardByName(craftCard[0]);
+                b = lib.FindCardByName(craftCard[1]);
+                if (a != null && b != null)
                 {
-                    System.Console.Write("card name : {0}, card level : {1}",pentaDrawTest[index].Name,pentaDrawTest[index].Level);
+                    System.Console.Write("card : {0}, level : {1} + card : {2}, card level : {3} = "
+                        , a.Name, a.Level, b.Name, b.Level);
                 }
-                System.Console.Write("\n");
-                System.Console.WriteLine("card name : {0}, card level : {1}", drawTest.Name, drawTest.Level);
+                else
+                {
+                    System.Console.Write("Some card has no fond.");
+                    continue;
+                }
+                Card cardRet = null;
+                if (i.TryCraft(a, b))
+                {
+                    cardRet = i.Craft(a, b);
+                }
+                else
+                {
+                    System.Console.WriteLine("null");
+                    continue;
+                }
+                System.Console.WriteLine("card : {0}, level : {1}", cardRet.Name, cardRet.Level);
             }
             
         }
