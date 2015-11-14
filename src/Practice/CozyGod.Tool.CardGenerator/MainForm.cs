@@ -22,47 +22,64 @@ namespace CozyGod.Tool.CardGenerator
 
         private string TranslatePath { get; set; }
 
+        private string OutputPath { get; set; }
+
+        private Image LevelBackground { get; set; }
+
+        private Image BorderBackground { get; set; }
+
+        private Size CardSize { get; set; } = new Size(96, 96);
+
+        private Point LevelPos { get; set; } = new Point(8, 8);
+
+        private Size LevelSize { get; set; } = new Size(24, 24);
+
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SelectImageDireButton_Click(object sender, EventArgs e)
         {
             if(folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
-                ImageDire = folderBrowserDialog1.SelectedPath;
+                ImageDire           = folderBrowserDialog1.SelectedPath;
+                ImagePathBox.Text   = ImageDire;
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void SelectCraftTablePathButton_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = @"text | *.txt";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                CraftTablePath = openFileDialog1.FileName;
+                CraftTablePath      = openFileDialog1.FileName;
+                CraftTableBox.Text  = CraftTablePath;
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void SelectTranslateTablePathButton_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = @"json | *.json";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                TranslatePath = openFileDialog1.FileName;
+                TranslatePath           = openFileDialog1.FileName;
+                TranslateTableBox.Text  = TranslatePath;
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void SelectOutputPathButton_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                OutputPath          = folderBrowserDialog1.SelectedPath;
+                OutputPathBox.Text  = OutputPath;
+            }
+        }
+
+        private void GenButton_Click(object sender, EventArgs e)
         {
             LoadFile();
-            if(saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                using (var writer = new StreamWriter(saveFileDialog1.FileName))
-                {
-                    writer.Write(JsonConvert.SerializeObject(CardList));
-                }
-            }
         }
 
         private Dictionary<string, string> TranslateToEn { get; set; } 
@@ -75,10 +92,24 @@ namespace CozyGod.Tool.CardGenerator
 
         private void LoadFile()
         {
-            Clear();
-            LoadTranslateTable();
-            ParseCraftTable();
-            TryGenerateCard();
+            if(Check())
+            {
+                Clear();
+                LoadTranslateTable();
+                ParseCraftTable();
+                TryGenerateCard();
+                OutputToImage();
+                SaveElementTable();
+            }
+        }
+
+        private bool Check()
+        {
+            if (ImageDire == null || ImageDire.Length == 0) return false;
+            if (CraftTablePath == null || CraftTablePath.Length == 0) return false;
+            if (TranslatePath == null || TranslatePath.Length == 0) return false;
+            if (OutputPath == null || OutputPath.Length == 0) return false;
+            return true;
         }
 
         private void Clear()
@@ -104,8 +135,8 @@ namespace CozyGod.Tool.CardGenerator
 
         private void ParseCraftTable()
         {
-            string line = null;
-            int currLevel = 0;
+            string line     = null;
+            int currLevel   = 0;
             using (var reader = new StreamReader(CraftTablePath))
             {
                 while ((line = reader.ReadLine()) != null)
@@ -184,6 +215,108 @@ namespace CozyGod.Tool.CardGenerator
                         }
                     }
                 }
+            }
+        }
+
+        private void OutputToImage()
+        {
+            foreach(var card in CardList)
+            {
+                var imgPath = Path.Combine(ImageDire, card.Name + ".bmp");
+                if (File.Exists(imgPath))
+                {
+                    using (var ifs = new FileStream(imgPath, FileMode.Open))
+                    {
+                        var im      = Image.FromStream(ifs);
+                        var output  = DrawCard(card, im);
+                        output.Save(Path.Combine(OutputPath, card.Name + ".bmp"));
+                    }
+                }
+            }
+        }
+
+        private Image DrawCard(Card card, Image img)
+        {
+            var b = new Bitmap(CardSize.Width, CardSize.Height);
+            using (var g = Graphics.FromImage(b))
+            {
+                if(BorderBackground != null)
+                {
+                    g.DrawImage(BorderBackground, 
+                        new Rectangle(Point.Empty, CardSize), 
+                        new Rectangle(Point.Empty, BorderBackground.Size), 
+                        GraphicsUnit.Pixel);
+                }
+
+                var offsetSize  = (CardSize - img.Size);
+                int offset      = offsetSize.Width / 2;
+                int fontSize    = Math.Abs(offsetSize.Width - offsetSize.Height) - 2;
+                fontSize        = fontSize > 2 ? fontSize : 2;
+
+                var CardFont    = new Font("微软雅黑", fontSize);
+
+                g.DrawImage(img,
+                    new Rectangle(new Point(offset, offset), img.Size),
+                    new Rectangle(Point.Empty, img.Size),
+                        GraphicsUnit.Pixel);
+
+                SizeF sizeText = g.MeasureString(card.CN_Name, CardFont);
+
+                g.DrawString(card.CN_Name,
+                    CardFont,
+                    SystemBrushes.ControlText,
+                    (CardSize.Width - sizeText.Width) / 2,
+                    offset + img.Height);
+
+                if(LevelBackground != null)
+                {
+                    g.DrawImage(LevelBackground,
+                    new Rectangle(LevelPos, LevelSize),
+                    new Rectangle(Point.Empty, LevelBackground.Size),
+                    GraphicsUnit.Pixel);
+
+                    var levelFont   = new Font("微软雅黑", 10, FontStyle.Bold);
+                    var levelStr    = card.Level.ToString();
+                    var sizeLevel   = g.MeasureString(levelStr, levelFont);
+
+                    g.DrawString(levelStr,
+                        levelFont,
+                        Brushes.WhiteSmoke,
+                        LevelPos.X + (LevelSize.Width - sizeLevel.Width) / 2,
+                        LevelPos.Y + (LevelSize.Height - sizeLevel.Height) / 2);
+                }
+            }
+            return b;
+        }
+
+        private void SaveElementTable()
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                using (var writer = new StreamWriter(saveFileDialog1.FileName))
+                {
+                    writer.Write(JsonConvert.SerializeObject(CardList));
+                }
+            }
+        }
+
+        private void SelectLevelBackgroundButton_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter =  @"图片|*.jpg;*.png;*.bmp";
+            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                LevelBackgroundBox.Text = openFileDialog1.FileName;
+                LevelBackground         = Image.FromFile(openFileDialog1.FileName);
+            }
+        }
+
+        private void SelectBorderButton_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = @"图片|*.jpg;*.png;*.bmp";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                BorderBackgroundBox.Text    = openFileDialog1.FileName;
+                BorderBackground            = Image.FromFile(openFileDialog1.FileName);
             }
         }
     }

@@ -8,6 +8,7 @@ namespace CozyGod.Game.CardLibrary
     {
         public void Add(Card c)
         {
+
         }
 
         public void Clear()
