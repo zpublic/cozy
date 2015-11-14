@@ -15,9 +15,8 @@ namespace CozyGod.Model
                 return new Card()
                 {
                     CN_Name = "无",
-                    Name    = "Null",
+                    Name    = string.Empty,
                     Level   = 0,
-                    Picture = string.Empty,
                 };
             }
         }
@@ -25,7 +24,6 @@ namespace CozyGod.Model
         private string _Name;
         private string _CN_Name;
         private int _Level;
-        private string _Picture;
 
         public string Name
         {
@@ -62,19 +60,6 @@ namespace CozyGod.Model
             set
             {
                 _Level = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Picture
-        {
-            get
-            {
-                return _Picture;
-            }
-            set
-            {
-                _Picture = value;
                 OnPropertyChanged();
             }
         }
