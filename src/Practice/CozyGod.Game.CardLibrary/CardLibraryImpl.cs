@@ -19,6 +19,14 @@ namespace CozyGod.Game.CardLibrary
         private Dictionary<string, string> TranslateToEnTable { get; set; }
         = new Dictionary<string, string>();
 
+        public CardLibraryImpl(string filename = null)
+        {
+            if(filename != null)
+            {
+                ReadCardList(filename);
+            }
+        }
+
         public void Add(Card c)
         {
             if(c.Level <= maxLevel)
