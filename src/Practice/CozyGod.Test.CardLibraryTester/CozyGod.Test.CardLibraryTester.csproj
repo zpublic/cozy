@@ -4,15 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4B19ED0C-57A2-4478-8AE3-B6F78ECA4EE6}</ProjectGuid>
+    <ProjectGuid>{725D20CB-DCE1-4226-B44C-B1B4354C62FF}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyGod.Test.RaffleTester</RootNamespace>
-    <AssemblyName>CozyGod.Test.RaffleTester</AssemblyName>
+    <RootNamespace>CozyGod.Test.CardLibraryTester</RootNamespace>
+    <AssemblyName>CozyGod.Test.CardLibraryTester</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -40,28 +41,41 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CozyGod.Game.Engine\CozyGod.Game.Engine.csproj">
-      <Project>{08beea55-79dc-414e-9621-4c43e333a8eb}</Project>
-      <Name>CozyGod.Game.Engine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyGod.Game.Interface\CozyGod.Game.Interface.csproj">
-      <Project>{6bf6da90-fede-49ee-8e1e-60cf40a013eb}</Project>
-      <Name>CozyGod.Game.Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyGod.Game.Model\CozyGod.Game.Model.csproj">
-      <Project>{3dccda5f-65ab-4fec-b643-270915754f77}</Project>
-      <Name>CozyGod.Game.Model</Name>
+    <ProjectReference Include="..\CozyGod.Game.CardLibrary\CozyGod.Game.CardLibrary.csproj">
+      <Project>{dbb6f0a2-39b9-44df-9567-2fea049cba6f}</Project>
+      <Name>CozyGod.Game.CardLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
