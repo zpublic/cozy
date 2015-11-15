@@ -10,6 +10,7 @@ namespace CozyGod.Game.Raffle
 {
     public class RaffleImpl : IRaffle
     {
+        const int RaffleMaxLevel = 9;
         float[] m_raffleProbabilityArray;
         private ICardLibrary mCL;
         private ICozyGodEngine m_engine;
@@ -75,7 +76,7 @@ namespace CozyGod.Game.Raffle
         {
             Card [] cardArrayRet = new Card[5];
 
-            cardArrayRet[0] = Draw(1);
+            cardArrayRet[0] = Draw(2);
             for(int i = 1; i < cardArrayRet.Length; i++)
             {
                 cardArrayRet[i] = Draw();
@@ -98,11 +99,11 @@ namespace CozyGod.Game.Raffle
 
         void LoadRaffleProbabilityArray()
         {
-            m_raffleProbabilityArray = new float[4];
-            m_raffleProbabilityArray[0] = 0.1f;     //1级1/10
-            m_raffleProbabilityArray[1] = 0.02f;    //2级1/50
-            m_raffleProbabilityArray[2] = 0.005f;   //3级1/200
-            m_raffleProbabilityArray[3] = 0.001f;   //4级1/1000
+            m_raffleProbabilityArray = new float[RaffleMaxLevel];
+            for(int i = 0; i < RaffleMaxLevel; i++)
+            {
+                m_raffleProbabilityArray[i] = 1.0f / (5.0f * (float)Math.Pow(3, i));
+            }
         }
     }
 }
