@@ -8,19 +8,10 @@ using Newtonsoft.Json;
 using System.IO;
 using CozyGod.Game.GameConfig.ConfigAttribute;
 using System.Reflection;
+using CozyGod.Game.Interface.ConfigEnum;
 
 namespace CozyGod.Game.GameConfig
 {
-    public enum StringConfigEnum
-    {
-        ContentPath
-    }
-
-    public enum IntegerConfigEnum
-    {
-        // Nothing
-    }
-
     public class GameConfigImpl : IGameConfig
     {
         public ConfigObject ConfigObj { get; set; }
@@ -30,31 +21,7 @@ namespace CozyGod.Game.GameConfig
 
         public GameConfigImpl()
         {
-            var configType      = typeof(ConfigObject);
-            var pros            = configType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-
-            foreach(var pro in pros)
-            {
-                CozyConfigAttribute att = pro.GetCustomAttribute<CozyConfigAttribute>();
-                if (att != null)
-                {
-                    if(!GameConfigDict.ContainsKey(pro.PropertyType) || GameConfigDict[pro.PropertyType] == null)
-                    {
-                        GameConfigDict[pro.PropertyType] = new Dictionary<string, PropertyInfo>();
-                    }
-
-                    GameConfigDict[pro.PropertyType][pro.Name] = pro;
-                }
-            }
-        }
-
-        public string GetContentPath()
-        {
-            if (ConfigObj.ContentPath != null)
-            {
-                return ConfigObj.ContentPath;
-            }
-            return null;
+            Init();
         }
 
         public bool TryGetStringConfig(StringConfigEnum name, out string result)
@@ -67,14 +34,24 @@ namespace CozyGod.Game.GameConfig
             return TryGetConfig(name.ToString(), out result);
         }
 
-        public bool TryGetConfig<T>(string name, out T output)
+        public bool TrySetStringConfig(StringConfigEnum name, string value)
+        {
+            return TrySetConfig(name.ToString(), value);
+        }
+
+        public bool TrySetIntegerConfig(IntegerConfigEnum name, int value)
+        {
+            return TrySetConfig(name.ToString(), value);
+        }
+
+        private bool TryGetConfig<T>(string name, out T output)
         {
             output = default(T);
 
             if (GameConfigDict.ContainsKey(typeof(T)))
             {
                 var typeDict = GameConfigDict[typeof(T)];
-                if(typeDict.ContainsKey(name))
+                if (typeDict.ContainsKey(name))
                 {
                     output = (T)typeDict[name].GetMethod.Invoke(ConfigObj, null);
                     return true;
@@ -83,7 +60,7 @@ namespace CozyGod.Game.GameConfig
             return false;
         }
 
-        public bool TrySetConfig<T>(string name, T value)
+        private bool TrySetConfig<T>(string name, T value)
         {
             if (GameConfigDict.ContainsKey(typeof(T)))
             {
@@ -97,15 +74,32 @@ namespace CozyGod.Game.GameConfig
             return false;
         }
 
-        public void Init()
+        private void Init()
         {
+            var configType  = typeof(ConfigObject);
+            var pros        = configType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (var pro in pros)
+            {
+                CozyConfigAttribute att = pro.GetCustomAttribute<CozyConfigAttribute>();
+                if (att != null)
+                {
+                    if (!GameConfigDict.ContainsKey(pro.PropertyType) || GameConfigDict[pro.PropertyType] == null)
+                    {
+                        GameConfigDict[pro.PropertyType] = new Dictionary<string, PropertyInfo>();
+                    }
+
+                    GameConfigDict[pro.PropertyType][pro.Name] = pro;
+                }
+            }
+
             string filepath = "./CozyGod.json";
             ReadFile(filepath);
         }
 
         private void ReadFile(string filepath)
         {
-            if(!File.Exists(filepath))
+            if (!File.Exists(filepath))
             {
                 using (var writer = new StreamWriter(filepath))
                 {
