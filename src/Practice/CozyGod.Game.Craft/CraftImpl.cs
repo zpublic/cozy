@@ -121,7 +121,7 @@ namespace CozyGod.Game.Craft
                             //此处添加翻译接口
                             string tranStr = mCL.TranslateToEn(costCard[i]);
 
-                            CraftTableTemp.costCardList.Add(costCard[i]);
+                            CraftTableTemp.costCardList.Add(tranStr);
                         }
 
                         if (m_CraftTableList == null)
