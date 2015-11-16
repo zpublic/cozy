@@ -11,6 +11,16 @@ using System.Reflection;
 
 namespace CozyGod.Game.GameConfig
 {
+    public enum StringConfigEnum
+    {
+        ContentPath
+    }
+
+    public enum IntegerConfigEnum
+    {
+        // Nothing
+    }
+
     public class GameConfigImpl : IGameConfig
     {
         public ConfigObject ConfigObj { get; set; }
@@ -47,6 +57,15 @@ namespace CozyGod.Game.GameConfig
             return null;
         }
 
+        public bool TryGetStringConfig(StringConfigEnum name, out string result)
+        {
+            return TryGetConfig(name.ToString(), out result);
+        }
+
+        public bool TryGetIntegerConfig(IntegerConfigEnum name, out int result)
+        {
+            return TryGetConfig(name.ToString(), out result);
+        }
 
         public bool TryGetConfig<T>(string name, out T output)
         {

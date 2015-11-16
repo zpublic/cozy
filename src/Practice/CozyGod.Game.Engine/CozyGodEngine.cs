@@ -24,7 +24,7 @@ namespace CozyGod.Game.Engine
             config.Init();
 
             string contextPath;
-            if (!config.TryGetConfig("ContentPath", out contextPath))
+            if (!config.TryGetStringConfig(StringConfigEnum.ContentPath, out contextPath))
             {
                 return;
             }
