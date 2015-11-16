@@ -60,10 +60,13 @@ namespace CozyGod.Game.CardLibrary
         {
             foreach (var list in LibInstance.Cards)
             {
-                var result = list.Find(x => x.Name == name);
-                if (result != null)
+                if (list != null)
                 {
-                    return result;
+                    var result = list.Find(x => x.Name.ToUpper() == name.ToUpper());
+                    if (result != null)
+                    {
+                        return result;
+                    }
                 }
             }
             return null;
