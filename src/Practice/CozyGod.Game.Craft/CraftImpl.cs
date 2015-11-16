@@ -20,7 +20,7 @@ namespace CozyGod.Game.Craft
         {
             mEngine = engine;
             mCL = engine.GetCardLibrary();
-            mFilePath = engine.GetConfig().GetContentPath() + @"Data\CraftTableConfig.txt";
+            mFilePath = engine.GetConfig().GetContentPath() + @"\Data\CraftTableConfig.txt";
             bool bRet = true;
             LoadCraftTable();
             if (m_CraftTableList==null)
@@ -136,10 +136,9 @@ namespace CozyGod.Game.Craft
                 _line[1] != '/')
             {
                 string[] _list = _line.Split('=');
-
-                return _list;
+                if (_list.Count() == 2)
+                    return _list;
             }
-
             return null;
         }
     }

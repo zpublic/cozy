@@ -23,18 +23,24 @@ namespace CozyGod.Game.GameConfig
             return null;
         }
 
-        public void ReadFile(string filename)
+        public void Init()
         {
-            if(!File.Exists(filename))
+            string filepath = "./CozyGod.json";
+            ReadFile(filepath);
+        }
+
+        private void ReadFile(string filepath)
+        {
+            if(!File.Exists(filepath))
             {
-                using (var writer = new StreamWriter(filename))
+                using (var writer = new StreamWriter(filepath))
                 {
                     ConfigObj = new ConfigObject();
                     writer.Write(JsonConvert.SerializeObject(ConfigObj));
                 }
             }
 
-            using (var reader = new StreamReader(filename))
+            using (var reader = new StreamReader(filepath))
             {
                 ConfigObj = JsonConvert.DeserializeObject<ConfigObject>(reader.ReadToEnd());
             }

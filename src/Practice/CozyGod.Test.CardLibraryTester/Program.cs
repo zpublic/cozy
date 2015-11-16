@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CozyGod.Game.CardLibrary;
+using CozyGod.Game.Engine;
 using CozyGod.Game.Interface;
 
 namespace CozyGod.Test.CardLibraryTester
@@ -11,8 +11,10 @@ namespace CozyGod.Test.CardLibraryTester
     {
         static void Main()
         {
-            ICardLibrary libImpl = new CardLibraryImpl(@"../../src/Practice/CozyGod.Content/Data/card.json");
-            var lib = libImpl.Get();
+            ICozyGodEngine engine = new CozyGodEngine();
+            engine.Init();
+            ICardLibrary cards = engine.GetCardLibrary();
+            var lib = cards.Get();
             for (int i = 0; i < lib.Cards.Length; ++i)
             {
                 Console.WriteLine("Level : " + i);

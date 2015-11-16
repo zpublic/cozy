@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CozyGod.Test.CardLibraryTester</RootNamespace>
     <AssemblyName>CozyGod.Test.CardLibraryTester</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -58,6 +59,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -73,9 +75,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CozyGod.Game.CardLibrary\CozyGod.Game.CardLibrary.csproj">
-      <Project>{dbb6f0a2-39b9-44df-9567-2fea049cba6f}</Project>
-      <Name>CozyGod.Game.CardLibrary</Name>
+    <ProjectReference Include="..\CozyGod.Game.Engine\CozyGod.Game.Engine.csproj">
+      <Project>{08beea55-79dc-414e-9621-4c43e333a8eb}</Project>
+      <Name>CozyGod.Game.Engine</Name>
     </ProjectReference>
     <ProjectReference Include="..\CozyGod.Game.Interface\CozyGod.Game.Interface.csproj">
       <Project>{6bf6da90-fede-49ee-8e1e-60cf40a013eb}</Project>
