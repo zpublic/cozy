@@ -23,7 +23,13 @@ namespace CozyGod.Game.Engine
             config = new GameConfigImpl();
             config.Init();
 
-            cardLibrary = new CardLibraryImpl(config.GetContentPath() + "/Data/card.json");
+            string contextPath;
+            if (!config.TryGetConfig("ContentPath", out contextPath))
+            {
+                return;
+            }
+
+            cardLibrary = new CardLibraryImpl(contextPath + "/Data/card.json");
 
             var c = new CraftImpl();
             c.Init(this);
