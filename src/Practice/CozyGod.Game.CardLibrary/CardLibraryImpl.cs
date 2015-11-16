@@ -19,11 +19,15 @@ namespace CozyGod.Game.CardLibrary
         private Dictionary<string, string> TranslateToEnTable { get; set; }
         = new Dictionary<string, string>();
 
-        public CardLibraryImpl(string filename = null)
+        public CardLibraryImpl(string filename = null, string transfile = null)
         {
             if(filename != null)
             {
                 ReadCardList(filename);
+            }
+            if (transfile != null)
+            {
+                ReadTranslateTable(transfile);
             }
         }
 
@@ -60,10 +64,13 @@ namespace CozyGod.Game.CardLibrary
         {
             foreach (var list in LibInstance.Cards)
             {
-                var result = list.Find(x => x.Name == name);
-                if (result != null)
+                if (list != null)
                 {
-                    return result;
+                    var result = list.Find(x => x.Name.ToUpper() == name.ToUpper());
+                    if (result != null)
+                    {
+                        return result;
+                    }
                 }
             }
             return null;
