@@ -104,7 +104,7 @@ namespace CozyGod.Game.Raffle
         {
             m_raffleProbabilityArray = new float[RaffleMaxLevelCount];
             float total = 0.0f;
-            for (int i = 0; i < RaffleMaxLevelCount; i++)
+            for (int i = 1; i < RaffleMaxLevelCount; i++)
             {
                 m_raffleProbabilityArray[i] = 1.0f / (5.0f * (float)Math.Pow(3, i-1));
                 total += m_raffleProbabilityArray[i];
