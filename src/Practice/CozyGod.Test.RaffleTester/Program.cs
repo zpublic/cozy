@@ -8,7 +8,7 @@ namespace CozyGod.Test.RaffleTester
     {
         static void Main(string[] args)
         {
-            const int drawTestNumber = 100;
+            const int drawTestNumber = 5;
             ICozyGodEngine engine = new CozyGodEngine();
             engine.Init();
 
@@ -19,13 +19,12 @@ namespace CozyGod.Test.RaffleTester
             for (int n = 0; n < drawTestNumber; n++)
             {
                 pentaDrawTest = iRaffle.PentaDraw();
-                drawTest = iRaffle.Draw(2);
-                int index = 0;
-                while (pentaDrawTest[index] != null)
+                foreach (var c in pentaDrawTest)
                 {
-                    System.Console.Write("card name : {0}, card level : {1}", pentaDrawTest[index].Name, pentaDrawTest[index].Level);
+                    System.Console.WriteLine("card name : {0}, card level : {1}", c.Name, c.Level);
                 }
-                System.Console.Write("\n");
+
+                drawTest = iRaffle.Draw(2);
                 System.Console.WriteLine("card name : {0}, card level : {1}", drawTest.Name, drawTest.Level);
             }
         }
