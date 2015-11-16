@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CozyGod.Model;
+using CozyGod.Game.Model;
+using System.IO;
 
 namespace CozyGod.CardEditor
 {
@@ -20,6 +21,8 @@ namespace CozyGod.CardEditor
             InitializeComponent();
         }
 
+        private string NamePath { get; set; }
+
         private void SelectPictureButton_Click(object sender, EventArgs e)
         {
             var openDlg     = new OpenFileDialog();
@@ -27,7 +30,8 @@ namespace CozyGod.CardEditor
 
             if(openDlg.ShowDialog() == DialogResult.OK)
             {
-                PictureTextBox.Text = openDlg.FileName;
+                NamePath            = openDlg.FileName;
+                NameTextBox.Text    = Path.GetFileNameWithoutExtension(NamePath);
             }
         }
 
@@ -36,14 +40,12 @@ namespace CozyGod.CardEditor
             int result = 0;
             if (NameTextBox.Text != string.Empty
                 && CN_NameTextBox.Text != string.Empty
-                && PictureTextBox.Text != string.Empty
                 && int.TryParse(LevelTextBox.Text, out result))
             {
                 CurrElement = new Card()
                 {
-                    Name    = NameTextBox.Text,
+                    Name    = NamePath,
                     CN_Name = CN_NameTextBox.Text,
-                    Picture = PictureTextBox.Text,
                     Level   = result,
                 };
                 cozyGodEditor1.Element = CurrElement;
@@ -85,14 +87,6 @@ namespace CozyGod.CardEditor
             }
         }
 
-        private void PictureTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if(CurrElement != null)
-            {
-                CurrElement.Picture = PictureTextBox.Text;
-            }
-        }
-
         private void SaveButton_Click(object sender, EventArgs e)
         {
             if(CurrElement != null)
@@ -115,6 +109,17 @@ namespace CozyGod.CardEditor
             if (openDlg.ShowDialog() == DialogResult.OK)
             {
                 cozyGodEditor1.ElementBorder = Image.FromFile(openDlg.FileName);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var openDlg     = new OpenFileDialog();
+            openDlg.Filter  = @"图片|*.jpg;*.png;*.bmp";
+
+            if (openDlg.ShowDialog() == DialogResult.OK)
+            {
+                cozyGodEditor1.LevelImage = Image.FromFile(openDlg.FileName);
             }
         }
     }

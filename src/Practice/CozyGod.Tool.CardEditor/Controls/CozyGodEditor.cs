@@ -7,9 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CozyGod.Model;
+using CozyGod.Game.Model;
 using System.IO;
-using CozyGod.CardEditor.Properties;
 
 namespace CozyGod.CardEditor.Controls
 {
@@ -52,6 +51,7 @@ namespace CozyGod.CardEditor.Controls
         public Size SourceImageSize { get; set; }
         public Point SourceImagePos { get; set; }
 
+        public Image LevelImage { get; set; }
         public Size LevelImageSize { get; set; }
         public Point LevelImagePos { get; set; }
         public Font LevelFont { get; set; } = SystemFonts.DefaultFont;
@@ -91,19 +91,17 @@ namespace CozyGod.CardEditor.Controls
 
         private void OnElementPropertyChanged(object sender, EventArgs e)
         {
-            if (Image != null)
-            {
-                RefreshAll();
-            }
+            RefreshAll();
         }
 
         private void RefreshAll()
         {
-            if(Image != null && Element != null)
+            RefreshSourceImage();
+
+            if (Image != null && Element != null)
             {
                 using (var g = Graphics.FromImage(Image))
                 {
-                    RefreshSourceImage();
                     DrawSourceImage(g);
                     RefreshBorder(g);
                     RefreshName(g);
@@ -113,16 +111,16 @@ namespace CozyGod.CardEditor.Controls
 
         private void RefreshSourceImage()
         {
-            if (Element != null && Element.Picture != LastFilePath && File.Exists(Element.Picture))
+            if (Element != null && Element.Name != LastFilePath && File.Exists(Element.Name))
             {
-                LastFilePath    = Element.Picture;
-                SourceImage     = Image.FromFile(Element.Picture);
+                LastFilePath    = Element.Name;
+                SourceImage     = Image.FromFile(Element.Name);
             }
         }
 
         private void DrawSourceImage(Graphics g)
         {
-            g.Clear(SystemColors.Control);
+            g.Clear(Color.FromArgb(0, 0, 0, 0));
 
             if (SourceImage != null)
             {
@@ -146,12 +144,15 @@ namespace CozyGod.CardEditor.Controls
                     (Width - sizeText.Width) / 2,
                     NamePoxY);
 
-                g.DrawImage(Resources.level_background,
+                if(LevelImage != null)
+                {
+                    g.DrawImage(LevelImage,
                     new Rectangle(LevelImagePos, LevelImageSize),
-                    new Rectangle(Point.Empty, Resources.level_background.Size),
+                    new Rectangle(Point.Empty, LevelImage.Size),
                     GraphicsUnit.Pixel);
+                }
 
-                var levelStr = Element.Level.ToString();
+                var levelStr    = Element.Level.ToString();
                 SizeF sizeLevel = g.MeasureString(levelStr, LevelFont);
 
                 g.DrawString(levelStr,
