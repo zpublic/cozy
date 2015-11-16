@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CozyGod.Game.Interface.ConfigEnum;
 
 namespace CozyGod.Game.Engine
 {
@@ -16,14 +17,19 @@ namespace CozyGod.Game.Engine
         private ICraft craft;
         private IRaffle raffle;
         private ICardLibrary cardLibrary;
-        private GameConfigImpl config;
+        private IGameConfig config;
 
         public void Init()
         {
             config = new GameConfigImpl();
-            config.Init();
 
-            cardLibrary = new CardLibraryImpl(config.GetContentPath() + "/Data/card.json");
+            string contextPath;
+            if (!config.TryGetStringConfig(StringConfigEnum.ContentPath, out contextPath))
+            {
+                return;
+            }
+
+            cardLibrary = new CardLibraryImpl(contextPath + "/Data/card.json");
 
             var c = new CraftImpl();
             c.Init(this);

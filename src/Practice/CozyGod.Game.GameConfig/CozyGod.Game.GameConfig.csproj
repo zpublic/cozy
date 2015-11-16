@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigAttribute\IntegerConfigAttribute.cs" />
     <Compile Include="ConfigObject.cs" />
     <Compile Include="GameConfigImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigEnum\IntegerConfigEnum.cs" />
+    <Compile Include="ConfigEnum\StringConfigEnum.cs" />
     <Compile Include="ICardLibrary.cs" />
     <Compile Include="ICozyGodEngine.cs" />
     <Compile Include="ICraft.cs" />

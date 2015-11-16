@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CozyGod.Game.Model;
 using System.IO;
+using CozyGod.Game.Interface.ConfigEnum;
 
 namespace CozyGod.Game.Craft
 {
@@ -19,8 +20,15 @@ namespace CozyGod.Game.Craft
         public bool Init(ICozyGodEngine engine)
         {
             mEngine = engine;
-            mCL = engine.GetCardLibrary();
-            mFilePath = engine.GetConfig().GetContentPath() + @"\Data\CraftTableConfig.txt";
+            mCL     = engine.GetCardLibrary();
+
+            string contentPath;
+            if(!engine.GetConfig().TryGetStringConfig(StringConfigEnum.ContentPath, out contentPath))
+            {
+                return false;
+            }
+
+            mFilePath = contentPath  + @"\Data\CraftTableConfig.txt";
             bool bRet = true;
             LoadCraftTable();
             if (m_CraftTableList==null)
