@@ -102,17 +102,16 @@ namespace CozyGod.Game.Craft
                         for (int i = 0; i < resultCard.Length; i++)
                         {
                             //此处添加翻译接口
+                           string tranStr =  mCL.TranslateToEn(resultCard[i]);
 
-
-
-                            CraftTableTemp.resultCardItem.Add(resultCard[i]);
+                            CraftTableTemp.resultCardItem.Add(tranStr);
                         }
 
                         string[] costCard = strCraft[1].Split('+');
                         for (int i = 0; i < costCard.Length; i++)
                         {
                             //此处添加翻译接口
-
+                            string tranStr = mCL.TranslateToEn(costCard[i]);
 
                             CraftTableTemp.costCardList.Add(costCard[i]);
                         }
