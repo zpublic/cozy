@@ -23,6 +23,11 @@ namespace CozyGod.Test.CraftTester
             {
                 string input = System.Console.ReadLine();
                 string[] craftCard = input.Split(',');
+                if(craftCard.Length < 2)
+                {
+                    System.Console.WriteLine("Input Error, \"name,name\"");
+                    continue;
+                }
                 a = lib.FindCardByName(craftCard[0]);
                 b = lib.FindCardByName(craftCard[1]);
                 if (a != null && b != null)
