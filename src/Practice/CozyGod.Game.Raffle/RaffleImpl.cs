@@ -11,7 +11,8 @@ namespace CozyGod.Game.Raffle
     public class RaffleImpl : IRaffle
     {
         Random rd = new Random();
-        const int RaffleMaxLevel = 9;
+        const int RaffleMaxLevelCount = 10;     //0-9级
+        const int minimumRank = 2;
         float[] m_raffleProbabilityArray;
         private ICardLibrary mCL;
         private ICozyGodEngine m_engine;
@@ -47,11 +48,13 @@ namespace CozyGod.Game.Raffle
             Card cardRet = null;
             float _fRd = (float)rd.NextDouble();
             int rankRet = -1;
+
             for (int i = rank; i < m_raffleProbabilityArray.Length; i++)
             {
                 if (_fRd < m_raffleProbabilityArray[i])
                 {
-                    rankRet = i + 1;
+                    rankRet = i;
+                    break;
                 }
                 else
                 {
@@ -59,7 +62,7 @@ namespace CozyGod.Game.Raffle
                 }
             }
 
-            if (rankRet == -1)
+            if(rankRet == -1)
             {
                 rankRet = rank;
             }
@@ -76,12 +79,11 @@ namespace CozyGod.Game.Raffle
         {
             Card [] cardArrayRet = new Card[5];
 
-            cardArrayRet[0] = Draw(2);
+            cardArrayRet[0] = Draw(minimumRank);
             for(int i = 1; i < cardArrayRet.Length; i++)
             {
                 cardArrayRet[i] = Draw();
             }
-
 
             // shuffle 打乱顺序
             for(int i = 0; i < cardArrayRet.Length; i++)
@@ -96,13 +98,20 @@ namespace CozyGod.Game.Raffle
             return cardArrayRet;
         }
 
+
+
         void LoadRaffleProbabilityArray()
         {
-            m_raffleProbabilityArray = new float[RaffleMaxLevel];
-            for(int i = 0; i < RaffleMaxLevel; i++)
+            m_raffleProbabilityArray = new float[RaffleMaxLevelCount];
+            float total = 0.0f;
+            for (int i = 1; i < RaffleMaxLevelCount; i++)
             {
-                m_raffleProbabilityArray[i] = 1.0f / (5.0f * (float)Math.Pow(3, i));
+                m_raffleProbabilityArray[i] = 1.0f / (5.0f * (float)Math.Pow(3, i-1));
+                total += m_raffleProbabilityArray[i];
             }
+
+            // 0概率为1 - 其他概率
+            m_raffleProbabilityArray[0] = 1 - total;
         }
     }
 }
