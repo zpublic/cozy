@@ -103,9 +103,15 @@ namespace CozyGod.Game.GameConfig
             {
                 using (var writer = new StreamWriter(filepath))
                 {
-                    ConfigObj = new ConfigObject();
+                    ConfigObj = new ConfigObject()
+                    {
+                        ContentPath = "./"
+                    };
+
                     writer.Write(JsonConvert.SerializeObject(ConfigObj));
                 }
+
+                throw new FileNotFoundException("please set CozyGod.json");
             }
 
             using (var reader = new StreamReader(filepath))
