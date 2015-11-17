@@ -56,6 +56,7 @@
     <Compile Include="CozyAnimation.cs" />
     <Compile Include="CozyAnimationFrame.cs" />
     <Compile Include="CozyCallFunc.cs" />
+    <Compile Include="CozyContentManager.cs" />
     <Compile Include="CozyDelayTime.cs" />
     <Compile Include="CozyDirector.cs" />
     <Compile Include="CozyExtraAction.cs" />

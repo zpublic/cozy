@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 
 namespace CozyKxlol.Engine
 {
@@ -31,7 +32,14 @@ namespace CozyKxlol.Engine
 
         public CozyTexture(string path)
         {
-            _Texutre = CozyDirector.Instance.GameInstance.Content.Load<Texture2D>(path);
+            if(Path.HasExtension(path))
+            {
+                _Texutre = CozyDirector.Instance.ContentInstance.TryLoad<Texture2D>(path);
+            }
+            else
+            {
+                _Texutre = CozyDirector.Instance.GameInstance.Content.Load<Texture2D>(path);
+            }
         }
 
         public Texture2D Get()

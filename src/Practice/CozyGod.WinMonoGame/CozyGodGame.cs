@@ -1,21 +1,34 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using CozyKxlol.Engine;
+using CozyGod.Game.Engine;
+using CozyGod.Game.Interface;
+using CozyGod.Game.Interface.ConfigEnum;
+using CozyGod.WinMonoGame.Scenes;
 
 namespace CozyGod.WinMonoGame
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class CozyGodGame : Microsoft.Xna.Framework.Game
+    public class CozyGodGame : CozyGame
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public ICozyGodEngine GameEngine { get; set; }
 
         public CozyGodGame()
         {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+            CozyDirector.Instance.ContentInstance = new CozyContentManager(Services);
+
+            GameEngine = new CozyGodEngine();
+            GameEngine.Init();
+
+            string ContentPath = null;
+            GameEngine.GetConfig().TryGetStringConfig(StringConfigEnum.ContentPath, out ContentPath);
+
+            Content.RootDirectory                               = ContentPath;
+            CozyDirector.Instance.ContentInstance.RootDirectory = ContentPath;
+            
         }
 
         /// <summary>
@@ -27,6 +40,7 @@ namespace CozyGod.WinMonoGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            CozyDirector.Instance.RunWithScene(new MainScene());
 
             base.Initialize();
         }
