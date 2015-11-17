@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.WinMonoGame", "..\s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyGod.Test.CardLibraryTester", "..\src\Practice\CozyGod.Test.CardLibraryTester\CozyGod.Test.CardLibraryTester.csproj", "{725D20CB-DCE1-4226-B44C-B1B4354C62FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyKxlol.Engine", "..\src\Practice\CozyKxlol.Engine\CozyKxlol.Engine.csproj", "{D07C7246-89DF-4B33-873A-01FD64D78BA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -155,6 +157,14 @@ Global
 		{725D20CB-DCE1-4226-B44C-B1B4354C62FF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{725D20CB-DCE1-4226-B44C-B1B4354C62FF}.Release|x86.ActiveCfg = Release|Any CPU
 		{725D20CB-DCE1-4226-B44C-B1B4354C62FF}.Release|x86.Build.0 = Release|Any CPU
+		{D07C7246-89DF-4B33-873A-01FD64D78BA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D07C7246-89DF-4B33-873A-01FD64D78BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D07C7246-89DF-4B33-873A-01FD64D78BA1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D07C7246-89DF-4B33-873A-01FD64D78BA1}.Debug|x86.Build.0 = Debug|Any CPU
+		{D07C7246-89DF-4B33-873A-01FD64D78BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D07C7246-89DF-4B33-873A-01FD64D78BA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D07C7246-89DF-4B33-873A-01FD64D78BA1}.Release|x86.ActiveCfg = Release|Any CPU
+		{D07C7246-89DF-4B33-873A-01FD64D78BA1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
