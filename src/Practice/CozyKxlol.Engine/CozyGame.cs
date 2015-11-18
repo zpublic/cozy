@@ -11,7 +11,7 @@ namespace CozyKxlol.Engine
     {
         protected GraphicsDeviceManager graphics;
         protected SpriteBatch spriteBatch;
-        
+
         public static SpriteFont nolmalFont;
 
         public Point WindowSize
@@ -32,6 +32,7 @@ namespace CozyKxlol.Engine
         {
             graphics = new GraphicsDeviceManager(this);
             CozyDirector.Instance.GameInstance = this;
+            WindowSize = new Point(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
         }
 
         protected override void Initialize()

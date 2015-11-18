@@ -20,6 +20,8 @@ namespace CozyKxlol.Engine
 
         public CozyTileJsonManager JsonManagerInstance { get; set; }
 
+        public CozyContentManager ContentInstance { get; set; }
+
         public Random RandomMaker { get; set; }
 
         private CozyDirector()
