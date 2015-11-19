@@ -18,21 +18,21 @@ namespace CozyKxlol.Engine
         {
             get
             {
-                return CozyDirector.Instance.WindowSize;
+                return new Point(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             }
             set
             {
                 graphics.PreferredBackBufferWidth   = value.X;
                 graphics.PreferredBackBufferHeight  = value.Y;
-                CozyDirector.Instance.WindowSize = value;
+                graphics.ApplyChanges();
             }
         }
 
         public CozyGame()
         {
-            graphics = new GraphicsDeviceManager(this);
             CozyDirector.Instance.GameInstance = this;
-            WindowSize = new Point(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+
+            graphics    = new GraphicsDeviceManager(this);
         }
 
         protected override void Initialize()

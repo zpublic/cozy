@@ -28,7 +28,8 @@ namespace CozyGod.WinMonoGame
 
             Content.RootDirectory                               = ContentPath;
             CozyDirector.Instance.ContentInstance.RootDirectory = ContentPath;
-            
+
+            WindowSize = new Point(960, 640);
         }
 
         /// <summary>
@@ -41,7 +42,6 @@ namespace CozyGod.WinMonoGame
         {
             // TODO: Add your initialization logic here
             CozyDirector.Instance.RunWithScene(new MainScene());
-
             base.Initialize();
         }
 
