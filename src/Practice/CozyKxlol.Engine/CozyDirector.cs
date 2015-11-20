@@ -11,7 +11,22 @@ namespace CozyKxlol.Engine
     {
         readonly Stack<CozyScene> scenesStack = new Stack<CozyScene>();
         public CozyScene RunningScene { get; private set; }
-        public Point WindowSize { get; set; }
+
+        public Point WindowSize
+        {
+            get
+            {
+                return GameInstance == null ? Point.Zero : GameInstance.WindowSize;
+            }
+            set
+            {
+                if(GameInstance != null)
+                {
+                    GameInstance.WindowSize = value;
+                }
+            }
+        }
+
         public CozyGame GameInstance { get; set; }
 
         public CozyTextureCache TextureCacheInstance { get; set; }
