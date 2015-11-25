@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Public", "Public", "{699ACA9A-32C3-468E-9746-DD949DA8BAAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLua.Core", "..\src\Practice\CozyLua.Core\CozyLua.Core.csproj", "{5FBF2C89-021C-4297-A408-D856A5288829}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLua.Core.Tester", "..\src\Practice\CozyLua.Core.Tester\CozyLua.Core.Tester.csproj", "{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyApiPlayer.Core", "..\src\Practice\CozyApiPlayer.Core\CozyApiPlayer.Core.csproj", "{594F36F7-B72C-4034-9B0E-9CF21B8D7C4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyApiPlayer.Cli", "..\src\Practice\CozyApiPlayer.Cli\CozyApiPlayer.Cli.csproj", "{AEE84A5A-FCE1-48C9-B4E0-30E9CB1384A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FBF2C89-021C-4297-A408-D856A5288829}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FBF2C89-021C-4297-A408-D856A5288829}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FBF2C89-021C-4297-A408-D856A5288829}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FBF2C89-021C-4297-A408-D856A5288829}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{594F36F7-B72C-4034-9B0E-9CF21B8D7C4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{594F36F7-B72C-4034-9B0E-9CF21B8D7C4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{594F36F7-B72C-4034-9B0E-9CF21B8D7C4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{594F36F7-B72C-4034-9B0E-9CF21B8D7C4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEE84A5A-FCE1-48C9-B4E0-30E9CB1384A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEE84A5A-FCE1-48C9-B4E0-30E9CB1384A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEE84A5A-FCE1-48C9-B4E0-30E9CB1384A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEE84A5A-FCE1-48C9-B4E0-30E9CB1384A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5FBF2C89-021C-4297-A408-D856A5288829} = {699ACA9A-32C3-468E-9746-DD949DA8BAAD}
+		{2093CFD5-46B8-4DD1-8DC7-1C07D3C22B20} = {699ACA9A-32C3-468E-9746-DD949DA8BAAD}
+	EndGlobalSection
+EndGlobal
