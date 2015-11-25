@@ -23,7 +23,7 @@ namespace CozySpider.Image12306
             InitRecvThread();
 
             SpiderSeeds seeds = new SpiderSeeds();
-            for (int i = 0; i <= 10; ++i)
+            for (int i = 0; i <= 100; ++i)
             {
                 seeds.AddSeed("https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&rand=sjrand&" + r.NextDouble().ToString().Substring(0, 10));
             }
