@@ -1,6 +1,7 @@
 ﻿using CozySpider.Core.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,6 +47,15 @@ namespace CozySpider.Core
             if(url != null && setting.Reader != null)
             {
                 return setting.Reader.Read(url);
+            }
+            return null;
+        }
+
+        public static Stream UrlReadData(string url, SpiderSetting setting)
+        {
+            if (url != null && setting.Reader != null)
+            {
+                return setting.Reader.ReadData(url);
             }
             return null;
         }

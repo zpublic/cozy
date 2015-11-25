@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCDK.Core", "..\src\Practice\CozyCDK.Core\CozyCDK.Core.csproj", "{0A2A790B-D27F-487B-BAD1-A35A69D3DF7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCDK.Tester", "..\src\Practice\CozyCDK.Tester\CozyCDK.Tester.csproj", "{E6304F62-B78B-45E9-99F3-F2E01E55BFE6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A2A790B-D27F-487B-BAD1-A35A69D3DF7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A2A790B-D27F-487B-BAD1-A35A69D3DF7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A2A790B-D27F-487B-BAD1-A35A69D3DF7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A2A790B-D27F-487B-BAD1-A35A69D3DF7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6304F62-B78B-45E9-99F3-F2E01E55BFE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6304F62-B78B-45E9-99F3-F2E01E55BFE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6304F62-B78B-45E9-99F3-F2E01E55BFE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6304F62-B78B-45E9-99F3-F2E01E55BFE6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
