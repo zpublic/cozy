@@ -9,7 +9,7 @@ namespace CozyCDK.Core
 {
     public class MD5Encrypt : IEncrypt
     {
-        private static MD5 _Md5 = new MD5CryptoServiceProvider();
+        private MD5 _Md5 = new MD5CryptoServiceProvider();
 
         public bool Check(string source)
         {

@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ECDEncrypt.cs" />
     <Compile Include="IEncrypt.cs" />
     <Compile Include="MD5Encrypt.cs" />
+    <Compile Include="MD5InfoEncrypt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

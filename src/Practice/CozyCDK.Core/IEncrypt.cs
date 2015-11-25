@@ -9,6 +9,7 @@ namespace CozyCDK.Core
     public interface IEncrypt
     {
         string Generate(string source);
+
         bool Check(string source);
     }
 }
