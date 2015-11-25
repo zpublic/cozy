@@ -3,7 +3,10 @@ using CozySpider.Core.Event;
 using CozySpider.Core.Reader;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,29 +28,17 @@ namespace CozySpider.Image12306
                 seeds.AddSeed("https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&rand=sjrand&" + r.NextDouble().ToString().Substring(0, 10));
             }
 
-            /*IUrlMatch match = new FindStringMatch()
-            {
-                StringFind = "www.cozy.com/cn/star/",
-                NoCase = true
-            };*/
-
-            //IUrlFilter filter = new BloomFilter();
-
-            IUrlReader reader = new DefaultReader();
+            IUrlReader reader = new ImageReader();
 
             SpiderSetting setting = new SpiderSetting();
             setting.Depth = 1;
             setting.WorkerCount = 8;
             setting.Seeds = seeds;
-            //setting.Match = match;
-            //setting.Filter = filter;
             setting.Reader = reader;
 
             SpiderMaster master = new SpiderMaster();
             master.Init(setting);
-            master.AddUrlEventHandler += OnEvent;
-            master.DataReceivedEventHandler += OnEvent;
-            master.ErrorEventHandler += OnEvent;
+            master.DataReceivedEventHandler += OnDataEvent;
 
             Console.WriteLine("Begin");
             master.Crawl();
@@ -62,9 +53,6 @@ namespace CozySpider.Image12306
 
         static Queue<string> MessageQueue = new Queue<string>();
         static object locker = new object();
-
-        static Queue<string> WebCache = new Queue<string>();
-        static object chacheLocker = new object();
 
         static Thread RecvThread { get; set; }
 
@@ -86,7 +74,6 @@ namespace CozySpider.Image12306
                         if (MessageQueue.Count > 0)
                         {
                             var result = MessageQueue.Dequeue();
-                            WebCache.Enqueue(result);
                             Console.WriteLine(result);
                         }
                     }
@@ -101,12 +88,24 @@ namespace CozySpider.Image12306
             RecvThread.Abort();
         }
 
-        private static void OnEvent(object sender, EventArgsBase e)
+        private static MD5 _Md5 { get; set; } = new MD5CryptoServiceProvider();
+
+        private static void OnDataEvent(object sender, DataReceivedEventArgs e)
         {
-            lock (locker)
+            Console.WriteLine(e.Data.Length);
+            var md5Byte = _Md5.ComputeHash(e.Data);
+
+            var sb = new StringBuilder();
+            for(int i = 0; i < md5Byte.Length; ++i)
             {
-                MessageQueue.Enqueue(e.Url);
-                RecvEvent.Set();
+                sb.Append(md5Byte[i].ToString("x2"));
+            }
+
+            var fileName = sb.ToString();
+
+            using (var ms = new MemoryStream(e.Data))
+            {
+                Image.FromStream(ms).Save(fileName + ".jpg");
             }
         }
     }
