@@ -11,11 +11,6 @@ namespace CozyCDK.Core
     {
         private MD5 _Md5 = new MD5CryptoServiceProvider();
 
-        public bool Check(string source)
-        {
-            throw new NotImplementedException();
-        }
-
         public string Generate(string source)
         {
             var srcByte = Encoding.UTF8.GetBytes(source);

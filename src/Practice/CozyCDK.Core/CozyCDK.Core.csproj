@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ECDEncrypt.cs" />
+    <Compile Include="ICheckedEncrypt.cs" />
     <Compile Include="IEncrypt.cs" />
     <Compile Include="MD5Encrypt.cs" />
     <Compile Include="MD5InfoEncrypt.cs" />

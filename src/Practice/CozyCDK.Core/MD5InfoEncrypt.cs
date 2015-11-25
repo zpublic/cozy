@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CozyCDK.Core
 {
-    public class MD5InfoEncrypt : IEncrypt
+    public class MD5InfoEncrypt : ICheckedEncrypt
     {
         public const string DefaultMap = @"BCDFGHJKMPQRTVWXY2346789";
 

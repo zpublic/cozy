@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CozyCDK.Core
 {
-    public interface IEncrypt
+    public interface ICheckedEncrypt : IEncrypt
     {
-        string Generate(string source);
+        bool Check(string source);
     }
 }

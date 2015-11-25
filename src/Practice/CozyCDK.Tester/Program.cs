@@ -12,11 +12,11 @@ namespace CozyCDK.Tester
         static void Main(string[] args)
         {
             IEncrypt enc1 = new MD5Encrypt();
-            IEncrypt enc2 = new ECDEncrypt()
+            ICheckedEncrypt enc2 = new ECDEncrypt()
             {
                 TestData = "Cozy最屌",
             };
-            IEncrypt enc3 = new MD5InfoEncrypt()
+            ICheckedEncrypt enc3 = new MD5InfoEncrypt()
             {
                 Info = "Cozy最屌",
             };

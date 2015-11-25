@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CozyCDK.Core
 {
-    public class ECDEncrypt : IEncrypt, IDisposable
+    public class ECDEncrypt : ICheckedEncrypt, IDisposable
     {
         private byte[] key;
         private ECDsaCng dsa = new ECDsaCng();
