@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{381F774D-3BB7-41FA-8D0F-946ADBC46219}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{3AE56EC6-711D-462A-9AA6-8C3F4AF2DA3E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyCrawler.Core</RootNamespace>
-    <AssemblyName>CozyCrawler.Core</AssemblyName>
+    <RootNamespace>CozyCrawler.Sample12306</RootNamespace>
+    <AssemblyName>CozyCrawler.Sample12306</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,7 +35,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,26 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlockedGenerateUrlRunner.cs" />
-    <Compile Include="BlockedUrl2UrlRunner.cs" />
-    <Compile Include="SingleThreadGenerateUrlRunner.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BlockedUrl2ResultRunner.cs" />
-    <Compile Include="Url2Result\JpgDownloader.cs" />
-    <Compile Include="UrlGenerater\FixedUrls.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyCrawler.Core\CozyCrawler.Core.csproj">
+      <Project>{381f774d-3bb7-41fa-8d0f-946adbc46219}</Project>
+      <Name>CozyCrawler.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyCrawler.Interface\CozyCrawler.Interface.csproj">
       <Project>{873f9083-84c8-4715-a931-24ef7a7ebb57}</Project>
       <Name>CozyCrawler.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CozyCrawler.Model\CozyCrawler.Model.csproj">
-      <Project>{451a7ae0-1442-46a5-83ba-beac6efa0ab9}</Project>
-      <Name>CozyCrawler.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Runner\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

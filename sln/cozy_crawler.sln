@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Component", "Component", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Sample1", "..\src\Practice\CozyCrawler.Sample1\CozyCrawler.Sample1.csproj", "{23271DBF-86EB-47FD-8FA8-34B85C65CA11}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Sample12306", "..\src\Practice\CozyCrawler.Sample12306\CozyCrawler.Sample12306.csproj", "{3AE56EC6-711D-462A-9AA6-8C3F4AF2DA3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,11 +39,16 @@ Global
 		{23271DBF-86EB-47FD-8FA8-34B85C65CA11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23271DBF-86EB-47FD-8FA8-34B85C65CA11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23271DBF-86EB-47FD-8FA8-34B85C65CA11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AE56EC6-711D-462A-9AA6-8C3F4AF2DA3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AE56EC6-711D-462A-9AA6-8C3F4AF2DA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AE56EC6-711D-462A-9AA6-8C3F4AF2DA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AE56EC6-711D-462A-9AA6-8C3F4AF2DA3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{23271DBF-86EB-47FD-8FA8-34B85C65CA11} = {0802395F-CEE7-444A-885E-3333704A5A20}
+		{3AE56EC6-711D-462A-9AA6-8C3F4AF2DA3E} = {0802395F-CEE7-444A-885E-3333704A5A20}
 	EndGlobalSection
 EndGlobal
