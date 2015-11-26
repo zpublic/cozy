@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CozyCrawler.Interface
 {
-    public interface IProcessUrlSetToResult : IControllable, IUrlSetIn
+    public interface IUrlIn
     {
-        void To(IResultGetter to);
+        void OnNewUrl(string url);
     }
 }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CozyCrawler.Sample1
 {
-    public class TestResultGetter : IResultGetter
+    public class TestUrl2Result : IUrl2Result
     {
-        public void NewUrl(string url)
+        public void OnNewUrl(string url)
         {
             Console.WriteLine(url);
         }

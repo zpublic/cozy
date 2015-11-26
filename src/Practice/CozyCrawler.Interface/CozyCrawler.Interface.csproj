@@ -41,13 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IControllable.cs" />
-    <Compile Include="IGenerater.cs" />
-    <Compile Include="IProcessGenerateUrlSet.cs" />
-    <Compile Include="IProcessUrlSetToResult.cs" />
-    <Compile Include="IProcessUrlSetToUrlSet.cs" />
-    <Compile Include="IResultGetter.cs" />
-    <Compile Include="IUrlSetIn.cs" />
-    <Compile Include="IUrlSetOut.cs" />
+    <Compile Include="IUrl2Url.cs" />
+    <Compile Include="IUrlGenerater.cs" />
+    <Compile Include="IGenerateUrlRunner.cs" />
+    <Compile Include="IUrl2ResultRunner.cs" />
+    <Compile Include="IUrl2UrlRunner.cs" />
+    <Compile Include="IUrl2Result.cs" />
+    <Compile Include="IUrlIn.cs" />
+    <Compile Include="IUrlOut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

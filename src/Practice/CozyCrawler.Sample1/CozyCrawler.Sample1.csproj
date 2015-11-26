@@ -45,8 +45,9 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestResultGetter.cs" />
-    <Compile Include="TestGenerater.cs" />
+    <Compile Include="TestUrl2Result.cs" />
+    <Compile Include="TestUrl2Url.cs" />
+    <Compile Include="TestUrlGenerater.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

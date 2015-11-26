@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CozyCrawler.Interface
 {
-    public interface IProcessUrlSetToUrlSet : IControllable, IUrlSetIn, IUrlSetOut
+    public interface IUrlGenerater : IControllable, IUrlOut
     {
     }
 }
