@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncUrl2ResultRunner.cs" />
     <Compile Include="BlockedGenerateUrlRunner.cs" />
     <Compile Include="BlockedUrl2UrlRunner.cs" />
     <Compile Include="SingleThreadGenerateUrlRunner.cs" />
