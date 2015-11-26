@@ -8,10 +8,12 @@ namespace CozySpider.Core.Event
 {
     public class DataReceivedEventArgs : EventArgsBase
     {
-        public DataReceivedEventArgs(string url)
+        public byte[] Data { get; set; }
+
+        public DataReceivedEventArgs(string url, byte[] data)
             :base(url)
         {
-
+            Data = data;
         }
     }
 }

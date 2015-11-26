@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Net;
+using CozySpider.Core.Reader;
 
-namespace CozySpider.Core.Reader
+namespace CozySpider.Image12306
 {
-    public class DefaultReader : IUrlReader
+    public class ImageReader : IUrlReader
     {
-        public DefaultReader()
+        public ImageReader()
         {
             ServicePointManager.ServerCertificateValidationCallback += (s, c, ch, ssl) => true;
         }
@@ -30,9 +31,9 @@ namespace CozySpider.Core.Reader
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url.Trim());
             request.AllowAutoRedirect = true;
-            request.UserAgent = @"Mozilla/5.2 (Windows NT 6.1) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
-            request.Accept = @"*/*";
-            request.Timeout = 3000;
+            request.Method = "GET";
+            request.KeepAlive = true;
+            request.ContentType = "image/jpeg";
 
             WebResponse respone = request.GetResponse();
             return respone.GetResponseStream();
