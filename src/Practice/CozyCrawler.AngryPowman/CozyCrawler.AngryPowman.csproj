@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{451A7AE0-1442-46A5-83BA-BEAC6EFA0AB9}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{8056CFF1-F42E-4864-92E6-A2C746644845}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyCrawler.Model</RootNamespace>
-    <AssemblyName>CozyCrawler.Model</AssemblyName>
+    <RootNamespace>CozyCrawler.AngryPowman</RootNamespace>
+    <AssemblyName>CozyCrawler.AngryPowman</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,9 +47,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AsyncInvoker.cs" />
+    <Compile Include="ZhihuUrl2Url.cs" />
+    <Compile Include="ZhihuUrlGenerater.cs" />
+    <Compile Include="ZhihuUrl2Result.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UrlSet.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyCrawler.Core\CozyCrawler.Core.csproj">
+      <Project>{381f774d-3bb7-41fa-8d0f-946adbc46219}</Project>
+      <Name>CozyCrawler.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyCrawler.Interface\CozyCrawler.Interface.csproj">
+      <Project>{873f9083-84c8-4715-a931-24ef7a7ebb57}</Project>
+      <Name>CozyCrawler.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyCrawler.Model\CozyCrawler.Model.csproj">
+      <Project>{451a7ae0-1442-46a5-83ba-beac6efa0ab9}</Project>
+      <Name>CozyCrawler.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

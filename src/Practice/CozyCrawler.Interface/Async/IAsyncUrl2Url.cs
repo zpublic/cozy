@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyCrawler.Model
+namespace CozyCrawler.Interface.Async
 {
-    public class UrlSet
+    public interface IAsyncUrl2Url : IUrl2Url, IControllable
     {
-        public HashSet<string> urls = new HashSet<string>();
     }
 }
