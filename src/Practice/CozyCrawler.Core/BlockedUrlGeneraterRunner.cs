@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CozyCrawler.Core
 {
-    public class BlockedGenerateUrlRunner : IGenerateUrlRunner
+    public class BlockedUrlGeneraterRunner : IUrlGeneraterRunner
     {
         IUrlGenerater gen_ = null;
         IUrlIn to_ = null;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CozyCrawler.Core
 {
-    public class SingleThreadMultSourceMultTargetGenerateUrlRunner : IGenerateUrlRunner
+    public class SingleThreadMultSourceMultTargetUrlGeneraterRunner : IUrlGeneraterRunner
     {
         List<IUrlGenerater> gens_ = new List<IUrlGenerater>();
         List<IUrlIn> tos_ = new List<IUrlIn>();
