@@ -32,6 +32,7 @@ namespace CozyCrawler.AngryPowman
 
         public void OnNewUrl(string url)
         {
+            Urls.Add(url);
             OnNewUrl(url, 0);
         }
 
@@ -63,36 +64,42 @@ namespace CozyCrawler.AngryPowman
         private readonly Uri Zhihu = new Uri(@"http://www.zhihu.com/");
         private void ParseUrl(KeyValuePair<string, int> url)
         {
-            if(!Urls.Contains(url.Key))
+            HtmlDocument doc = new HtmlDocument();
+            try
             {
-                Urls.Add(url.Key);
-
-                HtmlDocument doc = new HtmlDocument();
                 doc.LoadHtml(ReadData(url.Key));
+            }
+            catch(Exception)
+            {
 
-                HtmlNodeCollection hrefs = doc.DocumentNode.SelectNodes(@"//a[@href]");
-                if (hrefs == null)
+            }
+
+            HtmlNodeCollection hrefs = doc.DocumentNode.SelectNodes(@"//a[@href and not(contains(@href, 'javascript'))]");
+            if (hrefs == null)
+            {
+                return;
+            }
+
+            foreach (HtmlNode nodeA in hrefs)
+            {
+                var Ref = nodeA.Attributes["href"].Value.Trim();
+                if (!Ref.StartsWith(Zhihu.ToString()))
                 {
-                    return;
+                    Uri newUri = null;
+                    if(Uri.TryCreate(Zhihu, Ref, out newUri))
+                    {
+                        Ref = newUri.ToString();
+                    }
                 }
 
-                foreach (HtmlNode nodeA in hrefs)
+                if (!Urls.Contains(Ref))
                 {
-                    var Ref = nodeA.Attributes["href"].Value.Trim();
-                    if(!Ref.StartsWith(Zhihu.ToString()))
-                    {
-                        Ref = new Uri(Zhihu, Ref).ToString();
-                    }
+                    Urls.Add(Ref);
+                    _To.OnNewUrl(Ref);
 
-                    if(!Urls.Contains(Ref))
+                    if (url.Value < MaxTire)
                     {
-                        Urls.Add(Ref);
-                        _To.OnNewUrl(Ref);
-
-                        if (url.Value < MaxTire)
-                        {
-                            OnNewUrl(Ref, url.Value + 1);
-                        }
+                        OnNewUrl(Ref, url.Value + 1);
                     }
                 }
             }

@@ -19,7 +19,11 @@ namespace CozyCrawler.AngryPowman
             p1.From(new ZhihuUrlGenerater("kingwl"));
             p1.To(p2);
             p2.To(p3);
-            var url = new ZhihuUrl2Url();
+            var url = new ZhihuUrl2Url(4)
+            {
+                MaxTire = 1,
+            };
+
             url.Start();
             p2.SetProcessor(url);
             p3.To(new ZhihuUrl2Result());
