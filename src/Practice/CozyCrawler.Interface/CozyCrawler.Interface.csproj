@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Async\IAsyncUrl2Url.cs" />
     <Compile Include="IControllable.cs" />
     <Compile Include="IUrl2Url.cs" />
     <Compile Include="IUrlGenerater.cs" />

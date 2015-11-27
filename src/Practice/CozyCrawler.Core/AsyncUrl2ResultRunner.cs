@@ -4,40 +4,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CozyCrawler.Core.Runner;
+using CozyCrawler.Model;
 
 namespace CozyCrawler.Core
 {
     public class AsyncUrl2ResultRunner : IUrl2ResultRunner
     {
-        private AsyncRunner<string> InnerRunner { get; set; }
+        private AsyncInvoker<string> InnerInvoker { get; set; }
 
         private IUrl2Result ToResult { get; set; }
        
-        public AsyncUrl2ResultRunner(int maxRunner = 1)
+        public AsyncUrl2ResultRunner(int maxInvoker = 1)
         {
-            InnerRunner = new AsyncRunner<string>(maxRunner);
-            InnerRunner.RunnerAction = str => ToResult?.OnNewUrl(str);
+            InnerInvoker = new AsyncInvoker<string>(maxInvoker);
+            InnerInvoker.InvokerAction = str => ToResult?.OnNewUrl(str);
         }
 
         public void OnNewUrl(string url)
         {
-            InnerRunner.Add(url);
+            InnerInvoker.Add(url);
         }
 
         public void Start()
         {
-            InnerRunner.Start();
+            InnerInvoker.Start();
         }
 
         public void Stop()
         {
-            InnerRunner.Stop();
+            InnerInvoker.Stop();
         }
 
         public void To(IUrl2Result to)
         {
-            if(InnerRunner.IsRunning)
+            if(InnerInvoker.IsRunning)
             {
                 throw new Exception("Result is running");
             }

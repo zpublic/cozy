@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.SampleMuitUrlGe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.SampleMultSourceMultTarget", "..\src\Practice\CozyCrawler.SampleMultSourceMultTarget\CozyCrawler.SampleMultSourceMultTarget.csproj", "{1F47F8C5-138D-43BE-931F-614A6E2FF8A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.AngryPowman", "..\src\Practice\CozyCrawler.AngryPowman\CozyCrawler.AngryPowman.csproj", "{8056CFF1-F42E-4864-92E6-A2C746644845}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{1F47F8C5-138D-43BE-931F-614A6E2FF8A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F47F8C5-138D-43BE-931F-614A6E2FF8A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F47F8C5-138D-43BE-931F-614A6E2FF8A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8056CFF1-F42E-4864-92E6-A2C746644845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8056CFF1-F42E-4864-92E6-A2C746644845}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8056CFF1-F42E-4864-92E6-A2C746644845}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8056CFF1-F42E-4864-92E6-A2C746644845}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +70,6 @@ Global
 		{3AE56EC6-711D-462A-9AA6-8C3F4AF2DA3E} = {0802395F-CEE7-444A-885E-3333704A5A20}
 		{C8422B27-968D-42EB-A1D7-3368D113692A} = {0802395F-CEE7-444A-885E-3333704A5A20}
 		{1F47F8C5-138D-43BE-931F-614A6E2FF8A5} = {0802395F-CEE7-444A-885E-3333704A5A20}
+		{8056CFF1-F42E-4864-92E6-A2C746644845} = {0802395F-CEE7-444A-885E-3333704A5A20}
 	EndGlobalSection
 EndGlobal
