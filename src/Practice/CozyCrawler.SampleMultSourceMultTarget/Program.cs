@@ -12,7 +12,7 @@ namespace CozyCrawler.SampleMultSourceMultTarget
     {
         static void Main(string[] args)
         {
-            IGenerateUrlRunner p1 = new SingleThreadMultSourceMultTargetGenerateUrlRunner();
+            IUrlGeneraterRunner p1 = new SingleThreadMultSourceMultTargetUrlGeneraterRunner();
             IUrl2ResultRunner p3 = new AsyncUrl2ResultRunner();
 
             IUrlGenerater gen1 = new TestUrlGenerater();

@@ -43,7 +43,7 @@
     <Compile Include="IControllable.cs" />
     <Compile Include="IUrl2Url.cs" />
     <Compile Include="IUrlGenerater.cs" />
-    <Compile Include="IGenerateUrlRunner.cs" />
+    <Compile Include="IUrlGeneraterRunner.cs" />
     <Compile Include="IUrl2ResultRunner.cs" />
     <Compile Include="IUrl2UrlRunner.cs" />
     <Compile Include="IUrl2Result.cs" />

@@ -12,7 +12,7 @@ namespace CozyCrawler.Sample12306
         static Random r = new Random();
         static void Main(string[] args)
         {
-            var p1 = new BlockedGenerateUrlRunner();
+            var p1 = new BlockedUrlGeneraterRunner();
             var p2 = new BlockedUrl2ResultRunner();
 
             var urls = new Core.UrlGenerater.FixedUrls();
