@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,9 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SimpleProcessGenerateUrlSet.cs" />
+    <Compile Include="AsyncUrl2ResultRunner.cs" />
+    <Compile Include="BlockedGenerateUrlRunner.cs" />
+    <Compile Include="BlockedUrl2UrlRunner.cs" />
+    <Compile Include="SingleThreadGenerateUrlRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleProcessUrlSetToResult.cs" />
+    <Compile Include="BlockedUrl2ResultRunner.cs" />
+    <Compile Include="Url2Result\JpgDownloader.cs" />
+    <Compile Include="UrlGenerater\FixedUrls.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CozyCrawler.Interface\CozyCrawler.Interface.csproj">
@@ -53,6 +59,9 @@
       <Project>{451a7ae0-1442-46a5-83ba-beac6efa0ab9}</Project>
       <Name>CozyCrawler.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Runner\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

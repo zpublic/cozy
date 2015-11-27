@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CozyCrawler.Interface
 {
-    public interface IUrlSetIn
+    public interface IUrlOut
     {
-        void NewUrl(string url);
+        void To(IUrlIn to);
     }
 }

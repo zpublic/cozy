@@ -13,16 +13,17 @@ namespace CozyCrawler.Sample1
     {
         static void Main(string[] args)
         {
-            TestGenerater gen = new TestGenerater();
-            TestResultGetter getter = new TestResultGetter();
+            IGenerateUrlRunner p1   = new SingleThreadGenerateUrlRunner();
+            IUrl2UrlRunner p2       = new BlockedUrl2UrlRunner();
+            IUrl2ResultRunner p3    = new AsyncUrl2ResultRunner();
 
-            SimpleProcessGenerateUrlSet p1 = new SimpleProcessGenerateUrlSet();
-            SimpleProcessUrlSetToResult p2 = new SimpleProcessUrlSetToResult();
-
-            p1.From(gen);
+            p1.From(new TestUrlGenerater());
             p1.To(p2);
-            p2.To(getter);
+            p2.To(p3);
+            p2.SetProcessor(new TestUrl2Url());
+            p3.To(new TestUrl2Result());
 
+            p3.Start();
             p2.Start();
             p1.Start();
         }

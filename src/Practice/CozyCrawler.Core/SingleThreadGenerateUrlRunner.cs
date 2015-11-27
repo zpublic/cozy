@@ -8,23 +8,24 @@ using System.Threading.Tasks;
 
 namespace CozyCrawler.Core
 {
-    public class SimpleProcessUrlSetToResult : IProcessUrlSetToResult
+    public class SingleThreadGenerateUrlRunner : IGenerateUrlRunner
     {
-        IResultGetter getter_;
+        IUrlGenerater gen_ = null;
+        IUrlIn to_ = null;
 
-        public void To(IResultGetter to)
+        public void OnNewUrl(string url)
         {
-            getter_ = to;
+            to_?.OnNewUrl(url);
         }
 
-        public void NewUrl(string url)
+        public void From(IUrlGenerater i)
         {
-            // 可以添加到一个列表，然后异步处理，这里直接同步干活
-            getter_.NewUrl(url);
+            gen_ = i;
         }
 
-        public void OnEvent(ControllableEvent ev)
+        public void To(IUrlIn to)
         {
+            to_ = to;
         }
 
         Thread thread = null;
@@ -36,13 +37,14 @@ namespace CozyCrawler.Core
 
         public void Stop()
         {
-            thread.Abort();
+            gen_?.Stop();
+            thread?.Join();
         }
 
         private void Method()
         {
-            // 可以异步处理取到的url结果
-            //getter_.NewUrl(url);
+            gen_?.To(this);
+            gen_?.Start();
         }
     }
 }

@@ -8,20 +8,16 @@ using System.Threading.Tasks;
 
 namespace CozyCrawler.Sample1
 {
-    public class TestGenerater : IGenerater
+    public class TestUrlGenerater : IUrlGenerater
     {
-        IUrlSetIn to_;
-
-        public void OnEvent(ControllableEvent ev)
-        {
-        }
+        IUrlIn to_;
 
         Thread thread = null;
         private void Method()
         {
             while (true)
             {
-                to_.NewUrl("https://coding.net/u/zapline/p/cozy/git" + DateTime.Now.ToLongTimeString());
+                to_.OnNewUrl("https://coding.net/u/zapline/p/cozy/git" + DateTime.Now.ToLongTimeString());
                 Thread.Sleep(1000);
             }
         }
@@ -37,7 +33,7 @@ namespace CozyCrawler.Sample1
             thread.Abort();
         }
 
-        public void To(IUrlSetIn to)
+        public void To(IUrlIn to)
         {
             to_ = to;
         }
