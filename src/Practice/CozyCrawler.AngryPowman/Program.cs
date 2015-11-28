@@ -13,22 +13,31 @@ namespace CozyCrawler.AngryPowman
     {
         static void Main(string[] args)
         {
-            IUrlGeneraterRunner p1 = new SingleThreadUrlGeneraterRunner();
-            IUrl2UrlRunner p2 = new BlockedUrl2UrlRunner();
-            IUrl2ResultRunner p3 = new AsyncUrl2ResultRunner();
+            IUrlGeneraterRunner gen = new SingleThreadMultSourceMultTargetUrlGeneraterRunner();
+            IUrl2UrlRunner AskRunner = new BlockedUrl2UrlRunner();
+            IUrl2UrlRunner AnswerRunner = new BlockedUrl2UrlRunner();
+            IUrl2ResultRunner ResultRunner = new AsyncUrl2ResultRunner();
 
-            p1.From(new ZhihuUrlGenerater("zapline"));
-            p1.To(p2);
-            p2.To(p3);
-            var url = new ZhihuAnswerUrl2Url("zapline", 4);
+            gen.From(new ZhihuUrlGenerater("zapline"));
+            gen.To(AskRunner);
+            gen.To(AnswerRunner);
+            AskRunner.To(ResultRunner);
+            AnswerRunner.To(ResultRunner);
 
+            var url = new ZhihuAskUrl2Url("zapline", 4);
             url.Start();
-            p2.SetProcessor(url);
-            p3.To(new ZhihuUrl2Result());
+            AskRunner.SetProcessor(url);
 
-            p3.Start();
-            p2.Start();
-            p1.Start();
+            var url1 = new ZhihuAnswerUrl2Url("zapline", 4);
+            url1.Start();
+            AnswerRunner.SetProcessor(url1);
+
+            ResultRunner.To(new ZhihuUrl2Result());
+
+            ResultRunner.Start();
+            AskRunner.Start();
+            AnswerRunner.Start();
+            gen.Start();
 
             Console.ReadKey();
         }

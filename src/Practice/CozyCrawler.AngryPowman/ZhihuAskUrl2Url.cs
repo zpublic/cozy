@@ -12,7 +12,7 @@ using System.Collections.Concurrent;
 
 namespace CozyCrawler.AngryPowman
 {
-    public class ZhihuAnswerUrl2Url : IAsyncUrl2Url
+    public class ZhihuAskUrl2Url : IAsyncUrl2Url
     {
         private ConcurrentBag<string> Urls { get; set; }
             = new ConcurrentBag<string>();
@@ -25,9 +25,9 @@ namespace CozyCrawler.AngryPowman
 
         public IUrlReader InnerReader { get; set; } = new DefaultUrlReader();
 
-        public ZhihuAnswerUrl2Url(string name, int maxInvoker = 1)
+        public ZhihuAskUrl2Url(string name, int maxInvoker = 1)
         {
-            Url = new Uri(@"http://www.zhihu.com/people/" + name + @"/answers");
+            Url = new Uri(@"http://www.zhihu.com/people/" + name + @"/asks");
 
             InnerInvoker = new AsyncInvoker<string>(maxInvoker);
             InnerInvoker.InvokerAction = InvokerProc;
@@ -53,8 +53,8 @@ namespace CozyCrawler.AngryPowman
             _To = to;
         }
 
-        private readonly string AnsersPath = @"//a[@href and boolean(contains(@href, 'page=') or boolean(contains(@href, 'answers')))]";
-        private readonly string AnserPath = @"//div[@class='zm-profile-section-list profile-answer-wrap']//a[@href and contains(@href, 'answer') and contains(@href, 'question')]";
+        private readonly string AnsersPath = @"//a[@href and boolean(contains(@href, 'page=') or boolean(contains(@href, 'asks')))]";
+        private readonly string AnserPath = @"//div[@class='zm-profile-section-wrap zm-profile-ask-wrap']//a[@href and contains(@href, 'question')]";
 
         private void InvokerProc(string url)
         {
