@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyCrawler.Core;
+using CozyCrawler.Core.Url2Url;
 using CozyCrawler.Interface;
 
 namespace CozyCrawler.AngryPowman

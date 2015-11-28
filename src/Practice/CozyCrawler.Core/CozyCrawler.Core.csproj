@@ -48,6 +48,7 @@
     <Compile Include="AsyncUrl2ResultRunner.cs" />
     <Compile Include="BlockedUrlGeneraterRunner.cs" />
     <Compile Include="BlockedUrl2UrlRunner.cs" />
+    <Compile Include="UrlReader\DefaultUrlReader.cs" />
     <Compile Include="SingleThreadMultSourceMultTargetUrlGeneraterRunner.cs" />
     <Compile Include="SingleThreadMultSourceUrlGeneraterRunner.cs" />
     <Compile Include="SingleThreadUrlGeneraterRunner.cs" />

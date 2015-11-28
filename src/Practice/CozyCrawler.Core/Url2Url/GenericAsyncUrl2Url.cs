@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 using CozyCrawler.Interface;
 using CozyCrawler.Interface.Async;
 using CozyCrawler.Model;
-using System.IO;
-using System.Net;
 using HtmlAgilityPack;
+using CozyCrawler.Core.UrlReader;
 
 namespace CozyCrawler.Core.Url2Url
 {
-    public class GenericUrl2Url : IAsyncUrl2Url
+    public class GenericAsyncUrl2Url : IAsyncUrl2Url
     {
         private ConcurrentBag<string> Urls { get; set; }
             = new ConcurrentBag<string>();
@@ -22,11 +21,13 @@ namespace CozyCrawler.Core.Url2Url
 
         private IUrlIn _To { get; set; }
 
+        private IUrlReader InnerReader { get; set; } = new DefaultUrlReader();
+
         public int MaxTire { get; set; }
 
         public Uri Url { get; private set; }
 
-        public GenericUrl2Url(string url, int maxInvoer = 1)
+        public GenericAsyncUrl2Url(string url, int maxInvoer = 1)
         {
             Url             = new Uri(url);
             InnerInvoker    = new AsyncInvoker<KeyValuePair<string, int>>(maxInvoer);
@@ -70,7 +71,7 @@ namespace CozyCrawler.Core.Url2Url
             HtmlDocument doc = new HtmlDocument();
             try
             {
-                doc.LoadHtml(ReadData(url.Key));
+                doc.LoadHtml(InnerReader.ReadHtml(url.Key));
             }
             catch(Exception)
             {
@@ -104,26 +105,6 @@ namespace CozyCrawler.Core.Url2Url
                     {
                         OnNewUrl(Ref, url.Value + 1);
                     }
-                }
-            }
-        }
-
-        private const string DefaultUA = @"Mozilla / 5.0(Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1667.0 Safari/537.36";
-        private string ReadData(string url)
-        {
-            var req = (HttpWebRequest)WebRequest.Create(url);
-
-            req.ServicePoint.Expect100Continue = false;
-            req.Method      = "GET";
-            req.KeepAlive   = true;
-            req.UserAgent   = DefaultUA;
-            req.ContentType = "text/html";
-
-            using (var rsp = (HttpWebResponse)req.GetResponse())
-            {
-                using (var sr = new StreamReader(rsp.GetResponseStream()))
-                {
-                    return sr.ReadToEnd();
                 }
             }
         }
