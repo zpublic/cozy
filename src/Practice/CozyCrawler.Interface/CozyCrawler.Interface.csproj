@@ -50,6 +50,7 @@
     <Compile Include="IUrl2Result.cs" />
     <Compile Include="IUrlIn.cs" />
     <Compile Include="IUrlOut.cs" />
+    <Compile Include="IUrlReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

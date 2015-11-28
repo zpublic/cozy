@@ -47,7 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ZhihuUrl2Url.cs" />
+    <Compile Include="ZhihuAskUrl2Url.cs" />
+    <Compile Include="ZhihuAnswerUrl2Url.cs" />
     <Compile Include="ZhihuUrlGenerater.cs" />
     <Compile Include="ZhihuUrl2Result.cs" />
     <Compile Include="Program.cs" />
