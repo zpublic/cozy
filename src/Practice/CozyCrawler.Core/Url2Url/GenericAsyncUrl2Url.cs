@@ -11,9 +11,9 @@ using System.IO;
 using System.Net;
 using HtmlAgilityPack;
 
-namespace CozyCrawler.AngryPowman
+namespace CozyCrawler.Core.Url2Url
 {
-    public class ZhihuUrl2Url : IAsyncUrl2Url
+    public class GenericUrl2Url : IAsyncUrl2Url
     {
         private ConcurrentBag<string> Urls { get; set; }
             = new ConcurrentBag<string>();
@@ -24,9 +24,13 @@ namespace CozyCrawler.AngryPowman
 
         public int MaxTire { get; set; }
 
-        public ZhihuUrl2Url(int maxInvoer = 1)
+        public Uri Url { get; private set; }
+
+        public GenericUrl2Url(string url, int maxInvoer = 1)
         {
-            InnerInvoker = new AsyncInvoker<KeyValuePair<string, int>>(maxInvoer);
+            Url             = new Uri(url);
+            InnerInvoker    = new AsyncInvoker<KeyValuePair<string, int>>(maxInvoer);
+
             InnerInvoker.InvokerAction = ParseUrl;
         }
 
@@ -61,7 +65,6 @@ namespace CozyCrawler.AngryPowman
             InnerInvoker.Stop();
         }
 
-        private readonly Uri Zhihu = new Uri(@"http://www.zhihu.com/");
         private void ParseUrl(KeyValuePair<string, int> url)
         {
             HtmlDocument doc = new HtmlDocument();
@@ -83,10 +86,10 @@ namespace CozyCrawler.AngryPowman
             foreach (HtmlNode nodeA in hrefs)
             {
                 var Ref = nodeA.Attributes["href"].Value.Trim();
-                if (!Ref.StartsWith(Zhihu.ToString()))
+                if (!Ref.StartsWith(Url.ToString()))
                 {
                     Uri newUri = null;
-                    if(Uri.TryCreate(Zhihu, Ref, out newUri))
+                    if(Uri.TryCreate(Url, Ref, out newUri))
                     {
                         Ref = newUri.ToString();
                     }
