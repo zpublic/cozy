@@ -17,13 +17,10 @@ namespace CozyCrawler.AngryPowman
             IUrl2UrlRunner p2 = new BlockedUrl2UrlRunner();
             IUrl2ResultRunner p3 = new AsyncUrl2ResultRunner();
 
-            p1.From(new ZhihuUrlGenerater("kingwl"));
+            p1.From(new ZhihuUrlGenerater("zapline"));
             p1.To(p2);
             p2.To(p3);
-            var url = new GenericAsyncUrl2Url("http://www.zhihu.com/", 4)
-            {
-                MaxTire = 1,
-            };
+            var url = new ZhihuAnswerUrl2Url("zapline", 4);
 
             url.Start();
             p2.SetProcessor(url);
