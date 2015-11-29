@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CozyCrawler.Core;
 using CozyCrawler.Core.Url2Url;
 using CozyCrawler.Interface;
+using CozyCrawler.Core.UrlReader;
 
 namespace CozyCrawler.AngryPowman
 {
@@ -13,22 +14,25 @@ namespace CozyCrawler.AngryPowman
     {
         static void Main(string[] args)
         {
+            // mail
+            var reader = new ZhihuUrlReader("xxxxxx@xxx.com", "xxxxxx");
+
             IUrlGeneraterRunner gen = new SingleThreadMultSourceMultTargetUrlGeneraterRunner();
             IUrl2UrlRunner AskRunner = new BlockedUrl2UrlRunner();
             IUrl2UrlRunner AnswerRunner = new BlockedUrl2UrlRunner();
             IUrl2ResultRunner ResultRunner = new AsyncUrl2ResultRunner();
 
-            gen.From(new ZhihuUrlGenerater("zapline"));
+            gen.From(new ZhihuUrlGenerater("AngryPowman"));
             gen.To(AskRunner);
             gen.To(AnswerRunner);
             AskRunner.To(ResultRunner);
             AnswerRunner.To(ResultRunner);
 
-            var url = new ZhihuAskUrl2Url("zapline", 4);
+            var url = new ZhihuAskUrl2Url("AngryPowman", 4) { InnerReader = reader, };
             url.Start();
             AskRunner.SetProcessor(url);
 
-            var url1 = new ZhihuAnswerUrl2Url("zapline", 4);
+            var url1 = new ZhihuAnswerUrl2Url("AngryPowman", 4) { InnerReader = reader, };
             url1.Start();
             AnswerRunner.SetProcessor(url1);
 
