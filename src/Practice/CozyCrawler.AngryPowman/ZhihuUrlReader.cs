@@ -15,7 +15,7 @@ using CozyCrawler.Base;
 
 namespace CozyCrawler.AngryPowman
 {
-    public class ZhihuUrlReader : IUrlReader
+    public class ZhihuUrlReader
     {
         public string Name { get; set; }
 
@@ -36,19 +36,21 @@ namespace CozyCrawler.AngryPowman
         {
             if (!GetXSRF()) return false;
             if (!GetCaptcha()) return false;
-            TryPost();
+            Login();
 
             return true; 
         }
 
         public HttpContent GetLoginContent()
         {
-            var v = new Dictionary<string, string>();
-            v.Add("_xsrf", XSRF);
-            v.Add("password", Pass);
-            v.Add("remember_me", "true");
-            v.Add("email", Name);
-            v.Add("captcha", Cap);
+            var v = new Dictionary<string, string>()
+            {
+                {"_xsrf", XSRF},
+                {"password", Pass},
+                {"remember_me", "true"},
+                {"email", Name},
+                {"captcha", Cap},
+            };
 
             return new FormUrlEncodedContent(v);
         }
@@ -58,7 +60,7 @@ namespace CozyCrawler.AngryPowman
             HtmlDocument doc = new HtmlDocument();
             try
             {
-                doc.LoadHtml(ReadHtml(@"http://www.zhihu.com"));
+                doc.LoadHtml(HttpGet.Get(@"http://www.zhihu.com").Content.ReadAsStringAsync().Result);
             }
             catch (Exception)
             {
@@ -80,39 +82,18 @@ namespace CozyCrawler.AngryPowman
         {
             var CapId   = rd.Next().ToString();
             var capUrl  = @"http://www.zhihu.com/captcha.gif?r=" + CapId;
-            Image img   = Image.FromStream(ReadImg(capUrl));
+            Image img   = Image.FromStream(HttpGet.Get(capUrl).Content.ReadAsStreamAsync().Result);
             img.Save(CapId + ".gif");
 
             Cap = Console.ReadLine();
             return true;
         }
 
-        private void TryPost()
+        private void Login()
         {
             var fromUrl = @"http://www.zhihu.com/login/email";  
             var cont = GetLoginContent();
-            var rsp = HttpPost.Post(fromUrl, cont);
-            var s = rsp.Content.ReadAsStringAsync().Result;
-        }
-
-        public Stream ReadImg(string url)
-        {
-            var req = HttpGet.Get(url);
-            return req.Content.ReadAsStreamAsync().Result;
-        }
-
-        public Stream ReadData(string url)
-        {
-            var req = HttpGet.Get(url);
-            return req.Content.ReadAsStreamAsync().Result;
-        }
-
-        public string ReadHtml(string url)
-        {
-            using (var sr = new StreamReader(ReadData(url)))
-            {
-                return sr.ReadToEnd();
-            }
+            var rsp = HttpPost.Post(fromUrl, cont).Content.ReadAsStringAsync().Result;
         }
     }
 }

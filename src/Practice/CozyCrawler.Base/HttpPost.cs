@@ -12,7 +12,7 @@ namespace CozyCrawler.Base
     {
         public static HttpResponseMessage Post(string url, HttpContent content)
         {
-            Uri uri = new Uri(RequestBuilderCommon.Host);
+            Uri uri = new Uri(HttpCommon.Host);
             HttpClientHandler handler = new HttpClientHandler { UseCookies = true };
             CookieContainer CookieContainer = HttpCookie.GetUriCookieContainer(uri);
             if (CookieContainer != null)
@@ -25,7 +25,7 @@ namespace CozyCrawler.Base
             }
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url) { Content = content };
 
-            request.Headers.Add("User-Agent", RequestBuilderCommon.DefaultUA);
+            request.Headers.Add("User-Agent", HttpCommon.DefaultUA);
             request.Headers.Add("Host", "www.zhihu.com");
             request.Headers.Add("Origin", "http://www.zhihu.com");
             request.Headers.Add("Pragma", "no-cache");
@@ -38,7 +38,7 @@ namespace CozyCrawler.Base
             var c = handler.CookieContainer.GetCookies(uri);
             foreach (Cookie e in c)
             {
-                HttpCookie.InternetSetCookie(RequestBuilderCommon.Host, e.Name, e.Value + ";path=/;expires=Sun,22-Feb-2099 00:00:00 GMT");
+                HttpCookie.InternetSetCookie(HttpCommon.Host, e.Name, e.Value + ";path=/;expires=Sun,22-Feb-2099 00:00:00 GMT");
             }
             return response;
         }

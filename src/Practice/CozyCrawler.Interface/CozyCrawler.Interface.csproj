@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Async\IAsyncUrl2Url.cs" />
     <Compile Include="IControllable.cs" />
     <Compile Include="IUrl2Url.cs" />
     <Compile Include="IUrlGenerater.cs" />
@@ -50,7 +49,6 @@
     <Compile Include="IUrl2Result.cs" />
     <Compile Include="IUrlIn.cs" />
     <Compile Include="IUrlOut.cs" />
-    <Compile Include="IUrlReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

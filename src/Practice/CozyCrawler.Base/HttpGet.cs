@@ -12,7 +12,7 @@ namespace CozyCrawler.Base
     {
         public static HttpResponseMessage Get(string url)
         {
-            Uri uri = new Uri(RequestBuilderCommon.Host);
+            Uri uri = new Uri(HttpCommon.Host);
             HttpClientHandler handler = new HttpClientHandler { UseCookies = true };
             CookieContainer CookieContainer = HttpCookie.GetUriCookieContainer(uri);
             if (CookieContainer != null)
@@ -25,7 +25,7 @@ namespace CozyCrawler.Base
             }
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
 
-            request.Headers.Add("User-Agent", RequestBuilderCommon.DefaultUA);
+            request.Headers.Add("User-Agent", HttpCommon.DefaultUA);
 
             HttpClient client = new HttpClient(handler);
             HttpResponseMessage response = client.SendAsync(request).Result;

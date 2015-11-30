@@ -5,14 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyCrawler.Interface;
-using CozyCrawler.Interface.Async;
 using HtmlAgilityPack;
 using CozyCrawler.Base;
-using CozyCrawler.Component.UrlReader;
 
 namespace CozyCrawler.Component.Url2Url
 {
-    public class GenericAsyncUrl2Url : IAsyncUrl2Url
+    public class GenericAsyncUrl2Url : IUrl2Url
     {
         private ConcurrentBag<string> Urls { get; set; }
             = new ConcurrentBag<string>();
@@ -20,8 +18,6 @@ namespace CozyCrawler.Component.Url2Url
         private AsyncInvoker<KeyValuePair<string, int>> InnerInvoker { get; set; }
 
         private IUrlIn _To { get; set; }
-
-        private IUrlReader InnerReader { get; set; } = new DefaultUrlReader();
 
         public int MaxTire { get; set; }
 
@@ -71,7 +67,7 @@ namespace CozyCrawler.Component.Url2Url
             HtmlDocument doc = new HtmlDocument();
             try
             {
-                doc.LoadHtml(InnerReader.ReadHtml(url.Key));
+                doc.LoadHtml(HttpGet.Get(url.Key).Content.ReadAsStringAsync().Result);
             }
             catch(Exception)
             {
