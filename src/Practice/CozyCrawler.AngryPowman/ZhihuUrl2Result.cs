@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using CozyCrawler.Interface;
 
-
 namespace CozyCrawler.AngryPowman
 {
     public class ZhihuUrl2Result : IUrl2Result
