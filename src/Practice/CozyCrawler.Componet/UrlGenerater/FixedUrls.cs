@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyCrawler.Componet.UrlGenerater
+namespace CozyCrawler.Component.UrlGenerater
 {
     public class FixedUrls : IUrlGenerater
     {

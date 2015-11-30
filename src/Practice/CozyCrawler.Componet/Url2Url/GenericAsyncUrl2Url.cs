@@ -8,9 +8,9 @@ using CozyCrawler.Interface;
 using CozyCrawler.Interface.Async;
 using HtmlAgilityPack;
 using CozyCrawler.Base;
-using CozyCrawler.Componet.UrlReader;
+using CozyCrawler.Component.UrlReader;
 
-namespace CozyCrawler.Componet.Url2Url
+namespace CozyCrawler.Component.Url2Url
 {
     public class GenericAsyncUrl2Url : IAsyncUrl2Url
     {

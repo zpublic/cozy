@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using CozyCrawler.Interface;
 using CozyCrawler.Interface.Async;
-using CozyCrawler.Componet;
+using CozyCrawler.Component;
 using HtmlAgilityPack;
 using System.Collections;
 using System.Collections.Concurrent;
 using CozyCrawler.Base;
-using CozyCrawler.Componet.UrlReader;
+using CozyCrawler.Component.UrlReader;
 
 namespace CozyCrawler.AngryPowman
 {

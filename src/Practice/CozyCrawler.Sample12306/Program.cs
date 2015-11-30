@@ -15,13 +15,13 @@ namespace CozyCrawler.Sample12306
             var p1 = new BlockedUrlGeneraterRunner();
             var p2 = new BlockedUrl2ResultRunner();
 
-            var urls = new Componet.UrlGenerater.FixedUrls();
+            var urls = new Component.UrlGenerater.FixedUrls();
             for (int i = 0; i <= 3; ++i)
             {
                 urls.Urls.Add("https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&rand=sjrand&" + r.NextDouble().ToString().Substring(0, 10));
             }
 
-            var downloader = new Componet.Url2Result.JpgDownloader();
+            var downloader = new Component.Url2Result.JpgDownloader();
             downloader.SetSavePath(@"g:\res\");
 
             p1.From(urls);

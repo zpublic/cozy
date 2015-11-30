@@ -10,7 +10,7 @@ using System.Net;
 using System.Drawing;
 using System.Web;
 using System.Net.Http;
-using CozyCrawler.Componet;
+using CozyCrawler.Component;
 using CozyCrawler.Base;
 
 namespace CozyCrawler.AngryPowman

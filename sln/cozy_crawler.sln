@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Base", "..\src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Runner", "..\src\Practice\CozyCrawler.Runner\CozyCrawler.Runner.csproj", "{E76573D8-D242-499D-9DEF-6B4B2C87CA4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Componet", "..\src\Practice\CozyCrawler.Componet\CozyCrawler.Componet.csproj", "{70444045-8D12-4155-A9AC-A122C2FE89D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Component", "..\src\Practice\CozyCrawler.Componet\CozyCrawler.Component.csproj", "{70444045-8D12-4155-A9AC-A122C2FE89D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
