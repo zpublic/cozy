@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CozyCrawler.Interface;
 using HtmlAgilityPack;
-using System.Net;
 using System.Drawing;
-using System.Web;
 using System.Net.Http;
-using CozyCrawler.Component;
 using CozyCrawler.Base;
+using Newtonsoft.Json;
 
 namespace CozyCrawler.AngryPowman
 {
@@ -29,7 +25,11 @@ namespace CozyCrawler.AngryPowman
         {
             Name = name;
             Pass = pass;
-            TryLogin();
+
+            if (!IsLogin())
+            {
+                TryLogin();
+            }
         }
 
         private bool TryLogin()
@@ -52,7 +52,9 @@ namespace CozyCrawler.AngryPowman
                 {"captcha", Cap},
             };
 
-            return new FormUrlEncodedContent(v);
+            var conn = new FormUrlEncodedContent(v);
+
+            return conn;
         }
 
         private bool GetXSRF()
@@ -89,11 +91,31 @@ namespace CozyCrawler.AngryPowman
             return true;
         }
 
+        private bool IsLogin()
+        {
+            var url = @"http://www.zhihu.com/settings/profile";
+            var rsp = HttpGet.Get(url);
+            if(rsp.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+        }
+
         private void Login()
         {
             var fromUrl = @"http://www.zhihu.com/login/email";  
-            var cont = GetLoginContent();
-            var rsp = HttpPost.Post(fromUrl, cont).Content.ReadAsStringAsync().Result;
+            var cont    = GetLoginContent();
+
+            var headers = new Dictionary<string, string>
+            {
+                {"Host", "www.zhihu.com"},
+                {"Origin", "http://www.zhihu.com"},
+                {"Pragma", "no-cache"},
+                {"Referer", "http://www.zhihu.com/"},
+                {"X-Requested-With", "XMLHttpRequest"},
+            };
+            var rsp = HttpPost.Post(fromUrl, cont, headers).Content.ReadAsStringAsync().Result;
         }
     }
 }
