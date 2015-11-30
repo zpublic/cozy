@@ -50,13 +50,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CozyCrawler.Core\CozyCrawler.Core.csproj">
-      <Project>{381f774d-3bb7-41fa-8d0f-946adbc46219}</Project>
-      <Name>CozyCrawler.Core</Name>
+    <ProjectReference Include="..\CozyCrawler.Base\CozyCrawler.Base.csproj">
+      <Project>{b3d0bd9e-bf44-4f1b-8ba1-0ca30e144f68}</Project>
+      <Name>CozyCrawler.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyCrawler.Componet\CozyCrawler.Componet.csproj">
+      <Project>{70444045-8d12-4155-a9ac-a122c2fe89d0}</Project>
+      <Name>CozyCrawler.Componet</Name>
     </ProjectReference>
     <ProjectReference Include="..\CozyCrawler.Interface\CozyCrawler.Interface.csproj">
       <Project>{873f9083-84c8-4715-a931-24ef7a7ebb57}</Project>
       <Name>CozyCrawler.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyCrawler.Runner\CozyCrawler.Runner.csproj">
+      <Project>{e76573d8-d242-499d-9def-6b4b2c87ca4e}</Project>
+      <Name>CozyCrawler.Runner</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

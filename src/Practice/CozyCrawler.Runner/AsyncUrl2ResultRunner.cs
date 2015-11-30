@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CozyCrawler.Model;
+using CozyCrawler.Base;
 
-namespace CozyCrawler.Core
+namespace CozyCrawler.Runner
 {
     public class AsyncUrl2ResultRunner : IUrl2ResultRunner
     {

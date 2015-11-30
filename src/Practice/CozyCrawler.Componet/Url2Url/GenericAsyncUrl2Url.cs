@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using CozyCrawler.Interface;
 using CozyCrawler.Interface.Async;
-using CozyCrawler.Model;
 using HtmlAgilityPack;
-using CozyCrawler.Core.UrlReader;
+using CozyCrawler.Base;
+using CozyCrawler.Componet.UrlReader;
 
-namespace CozyCrawler.Core.Url2Url
+namespace CozyCrawler.Componet.Url2Url
 {
     public class GenericAsyncUrl2Url : IAsyncUrl2Url
     {

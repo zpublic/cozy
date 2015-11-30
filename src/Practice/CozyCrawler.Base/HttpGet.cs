@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyCrawler.Model
+namespace CozyCrawler.Base
 {
     public class HttpGet
     {

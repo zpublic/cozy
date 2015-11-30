@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyCrawler.Core
+namespace CozyCrawler.Runner
 {
     public class BlockedUrl2UrlRunner : IUrl2UrlRunner
     {

@@ -3,12 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
-namespace CozyCrawler.Core
+namespace CozyCrawler.Runner
 {
-    public class SingleThreadUrlGeneraterRunner : IUrlGeneraterRunner
+    public class BlockedUrlGeneraterRunner : IUrlGeneraterRunner
     {
         IUrlGenerater gen_ = null;
         IUrlIn to_ = null;
@@ -28,23 +27,15 @@ namespace CozyCrawler.Core
             to_ = to;
         }
 
-        Thread thread = null;
         public void Start()
         {
-            thread = new Thread(new ThreadStart(Method));
-            thread.Start();
+            gen_?.To(this);
+            gen_?.Start();
         }
 
         public void Stop()
         {
             gen_?.Stop();
-            thread?.Join();
-        }
-
-        private void Method()
-        {
-            gen_?.To(this);
-            gen_?.Start();
         }
     }
 }

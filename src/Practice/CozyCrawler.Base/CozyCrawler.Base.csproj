@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{23271DBF-86EB-47FD-8FA8-34B85C65CA11}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{B3D0BD9E-BF44-4F1B-8BA1-0CA30E144F68}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyCrawler.Sample1</RootNamespace>
-    <AssemblyName>CozyCrawler.Sample1</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>CozyCrawler.Base</RootNamespace>
+    <AssemblyName>CozyCrawler.Base</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,32 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="AsyncInvoker.cs" />
+    <Compile Include="HttpCookie.cs" />
+    <Compile Include="HttpGet.cs" />
+    <Compile Include="HttpPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestUrl2Result.cs" />
-    <Compile Include="TestUrl2Url.cs" />
-    <Compile Include="TestUrlGenerater.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CozyCrawler.Base\CozyCrawler.Base.csproj">
-      <Project>{b3d0bd9e-bf44-4f1b-8ba1-0ca30e144f68}</Project>
-      <Name>CozyCrawler.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyCrawler.Componet\CozyCrawler.Componet.csproj">
-      <Project>{70444045-8d12-4155-a9ac-a122c2fe89d0}</Project>
-      <Name>CozyCrawler.Componet</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyCrawler.Interface\CozyCrawler.Interface.csproj">
-      <Project>{873f9083-84c8-4715-a931-24ef7a7ebb57}</Project>
-      <Name>CozyCrawler.Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyCrawler.Runner\CozyCrawler.Runner.csproj">
-      <Project>{e76573d8-d242-499d-9def-6b4b2c87ca4e}</Project>
-      <Name>CozyCrawler.Runner</Name>
-    </ProjectReference>
+    <Compile Include="RequestBuilderCommon.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

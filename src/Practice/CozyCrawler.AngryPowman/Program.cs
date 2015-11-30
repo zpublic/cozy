@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CozyCrawler.Core;
-using CozyCrawler.Core.Url2Url;
 using CozyCrawler.Interface;
-using CozyCrawler.Core.UrlReader;
+using CozyCrawler.Runner;
 
 namespace CozyCrawler.AngryPowman
 {

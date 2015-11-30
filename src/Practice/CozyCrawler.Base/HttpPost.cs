@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 
-namespace CozyCrawler.Model
+namespace CozyCrawler.Base
 {
     public class HttpPost
     {
