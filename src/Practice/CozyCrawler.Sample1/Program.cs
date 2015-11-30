@@ -1,4 +1,4 @@
-﻿using CozyCrawler.Core;
+﻿using CozyCrawler.Runner;
 using CozyCrawler.Interface;
 using System;
 using System.Collections.Generic;

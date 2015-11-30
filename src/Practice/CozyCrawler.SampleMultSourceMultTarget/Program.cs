@@ -1,5 +1,5 @@
-﻿using CozyCrawler.Core;
-using CozyCrawler.Interface;
+﻿using CozyCrawler.Interface;
+using CozyCrawler.Runner;
 using System;
 using System.Collections.Generic;
 using System.Linq;

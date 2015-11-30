@@ -45,27 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AsyncUrl2ResultRunner.cs" />
-    <Compile Include="BlockedUrlGeneraterRunner.cs" />
-    <Compile Include="BlockedUrl2UrlRunner.cs" />
-    <Compile Include="UrlReader\DefaultUrlReader.cs" />
-    <Compile Include="SingleThreadMultSourceMultTargetUrlGeneraterRunner.cs" />
-    <Compile Include="SingleThreadMultSourceUrlGeneraterRunner.cs" />
-    <Compile Include="SingleThreadUrlGeneraterRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BlockedUrl2ResultRunner.cs" />
-    <Compile Include="Url2Result\JpgDownloader.cs" />
-    <Compile Include="Url2Url\GenericAsyncUrl2Url.cs" />
-    <Compile Include="UrlGenerater\FixedUrls.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CozyCrawler.Componet\CozyCrawler.Componet.csproj">
+      <Project>{70444045-8d12-4155-a9ac-a122c2fe89d0}</Project>
+      <Name>CozyCrawler.Componet</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyCrawler.Interface\CozyCrawler.Interface.csproj">
       <Project>{873f9083-84c8-4715-a931-24ef7a7ebb57}</Project>
       <Name>CozyCrawler.Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyCrawler.Model\CozyCrawler.Model.csproj">
-      <Project>{451a7ae0-1442-46a5-83ba-beac6efa0ab9}</Project>
-      <Name>CozyCrawler.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using CozyCrawler.Interface;
 using System.Net;
 
-namespace CozyCrawler.Core.UrlReader
+namespace CozyCrawler.Componet.UrlReader
 {
     public class DefaultUrlReader : IUrlReader
     {

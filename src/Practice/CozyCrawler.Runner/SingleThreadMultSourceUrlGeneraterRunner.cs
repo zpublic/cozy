@@ -6,19 +6,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CozyCrawler.Core
+namespace CozyCrawler.Runner
 {
-    public class SingleThreadMultSourceMultTargetUrlGeneraterRunner : IUrlGeneraterRunner
+    public class SingleThreadMultSourceUrlGeneraterRunner : IUrlGeneraterRunner
     {
         List<IUrlGenerater> gens_ = new List<IUrlGenerater>();
-        List<IUrlIn> tos_ = new List<IUrlIn>();
+        IUrlIn to_ = null;
 
         public void OnNewUrl(string url)
         {
-            foreach (var t in tos_)
-            {
-                t?.OnNewUrl(url);
-            }
+            to_?.OnNewUrl(url);
         }
 
         public void From(IUrlGenerater i)
@@ -28,7 +25,7 @@ namespace CozyCrawler.Core
 
         public void To(IUrlIn to)
         {
-            tos_.Add(to);
+            to_ = to;
         }
 
         Thread thread = null;

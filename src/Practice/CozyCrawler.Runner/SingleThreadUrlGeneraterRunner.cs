@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CozyCrawler.Core
+namespace CozyCrawler.Runner
 {
-    public class SingleThreadMultSourceUrlGeneraterRunner : IUrlGeneraterRunner
+    public class SingleThreadUrlGeneraterRunner : IUrlGeneraterRunner
     {
-        List<IUrlGenerater> gens_ = new List<IUrlGenerater>();
+        IUrlGenerater gen_ = null;
         IUrlIn to_ = null;
 
         public void OnNewUrl(string url)
@@ -20,7 +20,7 @@ namespace CozyCrawler.Core
 
         public void From(IUrlGenerater i)
         {
-            gens_.Add(i);
+            gen_ = i;
         }
 
         public void To(IUrlIn to)
@@ -37,20 +37,14 @@ namespace CozyCrawler.Core
 
         public void Stop()
         {
-            foreach (var i in gens_)
-            {
-                i?.Stop();
-            }
+            gen_?.Stop();
             thread?.Join();
         }
 
         private void Method()
         {
-            foreach (var i in gens_)
-            {
-                i?.To(this);
-                i?.Start();
-            }
+            gen_?.To(this);
+            gen_?.Start();
         }
     }
 }

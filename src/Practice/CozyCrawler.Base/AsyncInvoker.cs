@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.Concurrent;
 using System.Threading;
 
-namespace CozyCrawler.Model
+namespace CozyCrawler.Base
 {
     public class AsyncInvoker<T>
     {
