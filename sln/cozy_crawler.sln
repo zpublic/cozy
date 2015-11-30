@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Model", "..\src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Core", "..\src\Practice\CozyCrawler.Core\CozyCrawler.Core.csproj", "{381F774D-3BB7-41FA-8D0F-946ADBC46219}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Component", "Component", "{A8B933F2-6453-4AAD-8C05-1FC1CCACA457}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Sample1", "..\src\Practice\CozyCrawler.Sample1\CozyCrawler.Sample1.csproj", "{23271DBF-86EB-47FD-8FA8-34B85C65CA11}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Sample12306", "..\src\Practice\CozyCrawler.Sample12306\CozyCrawler.Sample12306.csproj", "{3AE56EC6-711D-462A-9AA6-8C3F4AF2DA3E}"
