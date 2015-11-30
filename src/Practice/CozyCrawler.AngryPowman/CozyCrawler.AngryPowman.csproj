@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoginResult.cs" />
     <Compile Include="ZhihuAskUrl2Url.cs" />
     <Compile Include="ZhihuAnswerUrl2Url.cs" />
     <Compile Include="ZhihuUrlGenerater.cs" />

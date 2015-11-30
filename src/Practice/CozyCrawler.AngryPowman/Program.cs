@@ -15,7 +15,7 @@ namespace CozyCrawler.AngryPowman
             // mail
             var reader = new ZhihuUrlReader("xxxxxx@xxx.com", "xxxxxx");
 
-            IUrlGeneraterRunner gen = new SingleThreadMultSourceMultTargetUrlGeneraterRunner();
+            IUrlGeneraterRunner gen = new MultiUrlGeneraterRunner();
             IUrl2UrlRunner AskRunner = new BlockedUrl2UrlRunner();
             IUrl2UrlRunner AnswerRunner = new BlockedUrl2UrlRunner();
             IUrl2ResultRunner ResultRunner = new AsyncUrl2ResultRunner();

@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Net.Http;
 using CozyCrawler.Base;
 using Newtonsoft.Json;
+using System.Net;
 
 namespace CozyCrawler.AngryPowman
 {
@@ -29,6 +30,10 @@ namespace CozyCrawler.AngryPowman
             if (!IsLogin())
             {
                 TryLogin();
+            }
+            else
+            {
+                Console.WriteLine("已登录");
             }
         }
 
@@ -87,6 +92,7 @@ namespace CozyCrawler.AngryPowman
             Image img   = Image.FromStream(HttpGet.Get(capUrl).Content.ReadAsStreamAsync().Result);
             img.Save(CapId + ".gif");
 
+            Console.WriteLine("输入验证码");
             Cap = Console.ReadLine();
             return true;
         }
@@ -94,8 +100,9 @@ namespace CozyCrawler.AngryPowman
         private bool IsLogin()
         {
             var url = @"http://www.zhihu.com/settings/profile";
-            var rsp = HttpGet.Get(url);
-            if(rsp.StatusCode == System.Net.HttpStatusCode.OK)
+
+            var rsp = HttpGet.Get(url, false);
+            if(rsp.StatusCode == HttpStatusCode.OK)
             {
                 return true;
             }
@@ -116,6 +123,9 @@ namespace CozyCrawler.AngryPowman
                 {"X-Requested-With", "XMLHttpRequest"},
             };
             var rsp = HttpPost.Post(fromUrl, cont, headers).Content.ReadAsStringAsync().Result;
+
+            var resObj = JsonConvert.DeserializeObject<LoginResult>(rsp);
+            Console.WriteLine(resObj.msg);
         }
     }
 }

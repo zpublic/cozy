@@ -3,22 +3,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using CozyCrawler.Base;
 
 namespace CozyCrawler.Runner
 {
-    public class SingleThreadMultSourceMultTargetUrlGeneraterRunner : IUrlGeneraterRunner
+    public class MultiUrlGeneraterRunner : IUrlGeneraterRunner
     {
         List<IUrlGenerater> gens_ = new List<IUrlGenerater>();
         List<IUrlIn> tos_ = new List<IUrlIn>();
 
+        private AsyncInvoker<string> InnerInvoker { get; set; }
+
+        public MultiUrlGeneraterRunner(int threadCount = 1)
+        {
+            InnerInvoker = new AsyncInvoker<string>(threadCount);
+            InnerInvoker.InvokerAction = Method;
+        }
+
         public void OnNewUrl(string url)
         {
-            foreach (var t in tos_)
-            {
-                t?.OnNewUrl(url);
-            }
+            InnerInvoker.Add(url);
         }
 
         public void From(IUrlGenerater i)
@@ -31,11 +36,14 @@ namespace CozyCrawler.Runner
             tos_.Add(to);
         }
 
-        Thread thread = null;
         public void Start()
         {
-            thread = new Thread(new ThreadStart(Method));
-            thread.Start();
+            InnerInvoker.Start();
+            foreach (var i in gens_)
+            {
+                i?.To(this);
+                i?.Start();
+            }
         }
 
         public void Stop()
@@ -44,15 +52,14 @@ namespace CozyCrawler.Runner
             {
                 i?.Stop();
             }
-            thread?.Join();
+            InnerInvoker.Stop();
         }
 
-        private void Method()
+        private void Method(string url)
         {
-            foreach (var i in gens_)
+            foreach (var t in tos_)
             {
-                i?.To(this);
-                i?.Start();
+                t?.OnNewUrl(url);
             }
         }
     }

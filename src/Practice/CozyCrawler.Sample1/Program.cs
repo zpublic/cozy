@@ -13,7 +13,7 @@ namespace CozyCrawler.Sample1
     {
         static void Main(string[] args)
         {
-            IUrlGeneraterRunner p1   = new SingleThreadUrlGeneraterRunner();
+            IUrlGeneraterRunner p1   = new MultiUrlGeneraterRunner();
             IUrl2UrlRunner p2       = new BlockedUrl2UrlRunner();
             IUrl2ResultRunner p3    = new AsyncUrl2ResultRunner();
 
