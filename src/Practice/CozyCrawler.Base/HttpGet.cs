@@ -10,10 +10,10 @@ namespace CozyCrawler.Base
 {
     public class HttpGet
     {
-        public static HttpResponseMessage Get(string url)
+        public static HttpResponseMessage Get(string url, bool allowAutoRedirect = true)
         {
-            Uri uri = new Uri(RequestBuilderCommon.Host);
-            HttpClientHandler handler = new HttpClientHandler { UseCookies = true };
+            Uri uri = new Uri(HttpCommon.Host);
+            HttpClientHandler handler = new HttpClientHandler { UseCookies = true, AllowAutoRedirect = allowAutoRedirect, };
             CookieContainer CookieContainer = HttpCookie.GetUriCookieContainer(uri);
             if (CookieContainer != null)
             {
@@ -25,7 +25,7 @@ namespace CozyCrawler.Base
             }
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
 
-            request.Headers.Add("User-Agent", RequestBuilderCommon.DefaultUA);
+            request.Headers.Add("User-Agent", HttpCommon.DefaultUA);
 
             HttpClient client = new HttpClient(handler);
             HttpResponseMessage response = client.SendAsync(request).Result;

@@ -11,9 +11,22 @@ namespace CozyCrawler.Sample1
     {
         IUrlIn to_;
 
+        private bool IsStart { get; set; }
+
         public void OnNewUrl(string url)
         {
-            to_?.OnNewUrl(url + "hehe");
+            if(IsStart)
+                to_?.OnNewUrl(url + "hehe");
+        }
+
+        public void Start()
+        {
+            IsStart = true;
+        }
+
+        public void Stop()
+        {
+            IsStart = false;
         }
 
         public void To(IUrlIn to)

@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CozyCrawler.Interface;
 using HtmlAgilityPack;
-using System.Net;
 using System.Drawing;
-using System.Web;
 using System.Net.Http;
-using CozyCrawler.Componet;
 using CozyCrawler.Base;
+using Newtonsoft.Json;
+using System.Net;
 
 namespace CozyCrawler.AngryPowman
 {
-    public class ZhihuUrlReader : IUrlReader
+    public class ZhihuUrlReader
     {
         public string Name { get; set; }
 
@@ -29,28 +26,40 @@ namespace CozyCrawler.AngryPowman
         {
             Name = name;
             Pass = pass;
-            TryLogin();
+
+            if (!IsLogin())
+            {
+                TryLogin();
+            }
+            else
+            {
+                Console.WriteLine("已登录");
+            }
         }
 
         private bool TryLogin()
         {
             if (!GetXSRF()) return false;
             if (!GetCaptcha()) return false;
-            TryPost();
+            Login();
 
             return true; 
         }
 
         public HttpContent GetLoginContent()
         {
-            var v = new Dictionary<string, string>();
-            v.Add("_xsrf", XSRF);
-            v.Add("password", Pass);
-            v.Add("remember_me", "true");
-            v.Add("email", Name);
-            v.Add("captcha", Cap);
+            var v = new Dictionary<string, string>()
+            {
+                {"_xsrf", XSRF},
+                {"password", Pass},
+                {"remember_me", "true"},
+                {"email", Name},
+                {"captcha", Cap},
+            };
 
-            return new FormUrlEncodedContent(v);
+            var conn = new FormUrlEncodedContent(v);
+
+            return conn;
         }
 
         private bool GetXSRF()
@@ -58,7 +67,7 @@ namespace CozyCrawler.AngryPowman
             HtmlDocument doc = new HtmlDocument();
             try
             {
-                doc.LoadHtml(ReadHtml(@"http://www.zhihu.com"));
+                doc.LoadHtml(HttpGet.Get(@"http://www.zhihu.com").Content.ReadAsStringAsync().Result);
             }
             catch (Exception)
             {
@@ -80,39 +89,43 @@ namespace CozyCrawler.AngryPowman
         {
             var CapId   = rd.Next().ToString();
             var capUrl  = @"http://www.zhihu.com/captcha.gif?r=" + CapId;
-            Image img   = Image.FromStream(ReadImg(capUrl));
+            Image img   = Image.FromStream(HttpGet.Get(capUrl).Content.ReadAsStreamAsync().Result);
             img.Save(CapId + ".gif");
 
+            Console.WriteLine("输入验证码");
             Cap = Console.ReadLine();
             return true;
         }
 
-        private void TryPost()
+        private bool IsLogin()
+        {
+            var url = @"http://www.zhihu.com/settings/profile";
+
+            var rsp = HttpGet.Get(url, false);
+            if(rsp.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void Login()
         {
             var fromUrl = @"http://www.zhihu.com/login/email";  
-            var cont = GetLoginContent();
-            var rsp = HttpPost.Post(fromUrl, cont);
-            var s = rsp.Content.ReadAsStringAsync().Result;
-        }
+            var cont    = GetLoginContent();
 
-        public Stream ReadImg(string url)
-        {
-            var req = HttpGet.Get(url);
-            return req.Content.ReadAsStreamAsync().Result;
-        }
-
-        public Stream ReadData(string url)
-        {
-            var req = HttpGet.Get(url);
-            return req.Content.ReadAsStreamAsync().Result;
-        }
-
-        public string ReadHtml(string url)
-        {
-            using (var sr = new StreamReader(ReadData(url)))
+            var headers = new Dictionary<string, string>
             {
-                return sr.ReadToEnd();
-            }
+                {"Host", "www.zhihu.com"},
+                {"Origin", "http://www.zhihu.com"},
+                {"Pragma", "no-cache"},
+                {"Referer", "http://www.zhihu.com/"},
+                {"X-Requested-With", "XMLHttpRequest"},
+            };
+            var rsp = HttpPost.Post(fromUrl, cont, headers).Content.ReadAsStringAsync().Result;
+
+            var resObj = JsonConvert.DeserializeObject<LoginResult>(rsp);
+            Console.WriteLine(resObj.msg);
         }
     }
 }

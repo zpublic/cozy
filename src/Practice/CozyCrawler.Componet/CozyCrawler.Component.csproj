@@ -50,7 +50,6 @@
     <Compile Include="Url2Result\JpgDownloader.cs" />
     <Compile Include="Url2Url\GenericAsyncUrl2Url.cs" />
     <Compile Include="UrlGenerater\FixedUrls.cs" />
-    <Compile Include="UrlReader\DefaultUrlReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CozyCrawler.Base\CozyCrawler.Base.csproj">

@@ -28,10 +28,12 @@ namespace CozyCrawler.Runner
 
         public void Start()
         {
+            p_?.Start();
         }
 
         public void Stop()
         {
+            p_?.Stop();
         }
 
         public void To(IUrlIn to)

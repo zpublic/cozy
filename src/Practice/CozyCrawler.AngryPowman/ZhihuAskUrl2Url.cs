@@ -4,16 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyCrawler.Interface;
-using CozyCrawler.Interface.Async;
-using CozyCrawler.Componet;
+using CozyCrawler.Component;
 using HtmlAgilityPack;
 using System.Collections.Concurrent;
 using CozyCrawler.Base;
-using CozyCrawler.Componet.UrlReader;
 
 namespace CozyCrawler.AngryPowman
 {
-    public class ZhihuAskUrl2Url : IAsyncUrl2Url
+    public class ZhihuAskUrl2Url : IUrl2Url
     {
         private ConcurrentBag<string> Urls { get; set; }
             = new ConcurrentBag<string>();
@@ -23,8 +21,6 @@ namespace CozyCrawler.AngryPowman
         private AsyncInvoker<string> InnerInvoker { get; set; }
 
         private Uri Url { get; set; }
-
-        public IUrlReader InnerReader { get; set; } = new DefaultUrlReader();
 
         public ZhihuAskUrl2Url(string name, int maxInvoker = 1)
         {
@@ -62,7 +58,7 @@ namespace CozyCrawler.AngryPowman
             HtmlDocument doc = new HtmlDocument();
             try
             {
-                doc.LoadHtml(InnerReader.ReadHtml(url));
+                doc.LoadHtml(HttpGet.Get(url).Content.ReadAsStringAsync().Result);
             }
             catch (Exception)
             {

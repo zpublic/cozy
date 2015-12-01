@@ -15,7 +15,7 @@ namespace CozyCrawler.AngryPowman
             // mail
             var reader = new ZhihuUrlReader("xxxxxx@xxx.com", "xxxxxx");
 
-            IUrlGeneraterRunner gen = new SingleThreadMultSourceMultTargetUrlGeneraterRunner();
+            IUrlGeneraterRunner gen = new MultiUrlGeneraterRunner();
             IUrl2UrlRunner AskRunner = new BlockedUrl2UrlRunner();
             IUrl2UrlRunner AnswerRunner = new BlockedUrl2UrlRunner();
             IUrl2ResultRunner ResultRunner = new AsyncUrl2ResultRunner();
@@ -25,16 +25,10 @@ namespace CozyCrawler.AngryPowman
             gen.To(AnswerRunner);
             AskRunner.To(ResultRunner);
             AnswerRunner.To(ResultRunner);
-
-            var url = new ZhihuAskUrl2Url("AngryPowman", 4) { InnerReader = reader, };
-            url.Start();
-            AskRunner.SetProcessor(url);
-
-            var url1 = new ZhihuAnswerUrl2Url("AngryPowman", 4) { InnerReader = reader, };
-            url1.Start();
-            AnswerRunner.SetProcessor(url1);
-
             ResultRunner.To(new ZhihuUrl2Result());
+
+            AskRunner.SetProcessor(new ZhihuAskUrl2Url("AngryPowman", 4));
+            AnswerRunner.SetProcessor(new ZhihuAnswerUrl2Url("AngryPowman", 4));
 
             ResultRunner.Start();
             AskRunner.Start();
