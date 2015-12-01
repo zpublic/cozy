@@ -8,17 +8,23 @@ using CozyCrawler.Runner;
 
 namespace CozyCrawler.AngryPowman
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            // mail
-            var reader = new ZhihuUrlReader("xxxxxx@xxx.com", "xxxxxx");
+            RunnerIoCContainerSetting setting = new RunnerIoCContainerSetting();
+            setting.RegisterType<IUrlGeneraterRunner, MultiUrlGeneraterRunner>();
+            setting.RegisterType<IUrl2UrlRunner, BlockedUrl2UrlRunner>();
+            setting.RegisterType<IUrl2ResultRunner, AsyncUrl2ResultRunner>();
+            RunnerIoCContainer.Instance.Init(setting);
 
-            IUrlGeneraterRunner gen = new MultiUrlGeneraterRunner();
-            IUrl2UrlRunner AskRunner = new BlockedUrl2UrlRunner();
-            IUrl2UrlRunner AnswerRunner = new BlockedUrl2UrlRunner();
-            IUrl2ResultRunner ResultRunner = new AsyncUrl2ResultRunner();
+            // mail
+            var reader = new ZhihuUrlReader("xxxxxxxx@xxx.com", "xxxxxx");
+
+            var gen = RunnerIoCContainer.Instance.Resolve<IUrlGeneraterRunner>();
+            var AskRunner = RunnerIoCContainer.Instance.Resolve<IUrl2UrlRunner>();
+            var AnswerRunner = RunnerIoCContainer.Instance.Resolve<IUrl2UrlRunner>();
+            var ResultRunner = RunnerIoCContainer.Instance.Resolve<IUrl2ResultRunner>();
 
             gen.From(new ZhihuUrlGenerater("AngryPowman"));
             gen.To(AskRunner);
