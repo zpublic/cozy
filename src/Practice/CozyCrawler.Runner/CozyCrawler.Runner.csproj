@@ -46,7 +46,7 @@
     <Compile Include="BlockedUrl2UrlRunner.cs" />
     <Compile Include="BlockedUrlGeneraterRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SignalThreadMultiUrlGeneraterRunner.cs" />
+    <Compile Include="MultiUrlGeneraterRunner.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CozyCrawler.Base\CozyCrawler.Base.csproj">
