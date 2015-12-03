@@ -21,5 +21,8 @@
     <ClInclude Include="Base\Semaphore.h">
       <Filter>Base</Filter>
     </ClInclude>
+    <ClInclude Include="Base\CozyInterface.h">
+      <Filter>Base</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

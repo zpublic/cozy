@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="Base\AsyncInvoker.hpp" />
     <ClInclude Include="Base\ConcurrentQueue.hpp" />
+    <ClInclude Include="Base\CozyInterface.h" />
     <ClInclude Include="Base\CozySeekerDef.h" />
     <ClInclude Include="Base\Semaphore.h" />
   </ItemGroup>
