@@ -63,7 +63,7 @@ zl_uint32 ZLHttpClient::HttpGet(
     IHttpProgress*      pProgress   = NULL)
 {
     ZLCurlWarpper curl;
-    return _HttpGet(&curl, strUrl, pWriter, nTimeLimit, pProgress);
+    return _HttpGet(curl, strUrl, pWriter, nTimeLimit, pProgress);
 }
 
 zl_uint32 ZLHttpClient::HttpGet(
@@ -78,30 +78,30 @@ zl_uint32 ZLHttpClient::HttpGet(
     {
         curl.AppendHeaderList(FormatHeader(citer->first, citer->second));
     }
-    return _HttpGet(&curl, strUrl, pWriter, nTimeLimit, pProgress);
+    return _HttpGet(curl, strUrl, pWriter, nTimeLimit, pProgress);
 }
 
 zl_uint32 ZLHttpClient::_HttpGet(
-    ZLCurlWarpper*      curl,
+    ZLCurlWarpper&      curl,
     const std::string&  strUrl,
     IHttpWriter*        pWriter,
     zl_int32            nTimeLimit,
     IHttpProgress*      pProgress)
 {
-    curl->SetWriteCallback(pWriter);
+    curl.SetWriteCallback(pWriter);
 
     if (nTimeLimit)
     {
-        curl->SetTimeLimit(nTimeLimit);
+        curl.SetTimeLimit(nTimeLimit);
     }
     if (pProgress)
     {
-        curl->SetProgressCallback(pProgress);
+        curl.SetProgressCallback(pProgress);
     }
 
-    if (!curl->Perform(strUrl))
+    if (!curl.Perform(strUrl))
     {
-        return curl->GetStatusCode();
+        return curl.GetStatusCode();
     }
     return 0;
 }
@@ -115,7 +115,7 @@ zl_uint32 ZLHttpClient::HttpPost(
     IHttpProgress*      pProgress   = NULL)
 {
     ZLCurlWarpper curl;
-    return _HttpPost(&curl, strUrl, pData, nLength, pWriter, nTimeLimit, pProgress);
+    return _HttpPost(curl, strUrl, pData, nLength, pWriter, nTimeLimit, pProgress);
 }
 
 zl_uint32 ZLHttpClient::HttpPost(
@@ -132,11 +132,11 @@ zl_uint32 ZLHttpClient::HttpPost(
     {
         curl.AppendHeaderList(FormatHeader(citer->first, citer->second));
     }
-    return _HttpPost(&curl, strUrl, pData, nLength, pWriter, nTimeLimit, pProgress);
+    return _HttpPost(curl, strUrl, pData, nLength, pWriter, nTimeLimit, pProgress);
 }
 
 zl_uint32 ZLHttpClient::_HttpPost(
-    ZLCurlWarpper*      curl,
+    ZLCurlWarpper&      curl,
     const std::string&  strUrl,
     zl_uchar*           pData,
     zl_uint32           nLength,
@@ -144,23 +144,23 @@ zl_uint32 ZLHttpClient::_HttpPost(
     zl_int32            nTimeLimit,
     IHttpProgress*      pProgress)
 {
-    curl->SetMethod(HttpMethod::PostMethod);
-    curl->SetWriteCallback(pWriter);
+    curl.SetMethod(HttpMethod::PostMethod);
+    curl.SetWriteCallback(pWriter);
 
-    curl->SetPostData(pData, nLength);
+    curl.SetPostData(pData, nLength);
 
     if (nTimeLimit)
     {
-        curl->SetTimeLimit(nTimeLimit);
+        curl.SetTimeLimit(nTimeLimit);
     }
     if (pProgress)
     {
-        curl->SetProgressCallback(pProgress);
+        curl.SetProgressCallback(pProgress);
     }
 
-    if (!curl->Perform(strUrl))
+    if (!curl.Perform(strUrl))
     {
-        return curl->GetStatusCode();
+        return curl.GetStatusCode();
     }
     return 0;
 }

@@ -70,14 +70,14 @@ protected:
     static std::string FormatHeader(const std::string& key, const std::string& value);
 
     zl_uint32 _HttpGet(
-        ZLCurlWarpper*      curl,
+        ZLCurlWarpper&      curl,
         const std::string&  strUrl,
         IHttpWriter*        pWriter,
         zl_int32            nTimeLimit,
         IHttpProgress*      pProgress);
 
     zl_uint32 _HttpPost(
-        ZLCurlWarpper*      curl,
+        ZLCurlWarpper&      curl,
         const std::string&  strUrl,
         zl_uchar*           pData,
         zl_uint32           nLength,
