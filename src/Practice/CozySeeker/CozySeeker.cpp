@@ -3,7 +3,6 @@
 
 #include "Base//AsyncInvoker.hpp"
 
-#include <string>
 #include <iostream>
 
 int main()

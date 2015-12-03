@@ -27,7 +27,7 @@ public:
     AsyncInvoker(int maxInvoker)
         :m_maxInvoker(maxInvoker), m_semaphore(0), m_cancelFlag(true)
     {
-        
+
     }
 
     ~AsyncInvoker()
