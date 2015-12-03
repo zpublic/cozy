@@ -49,7 +49,7 @@ public:
     virtual void SetProcessor(IUrl2Url& p) = 0;
 }
 
-class IUrlGeneraterRunner : IControllable, IUrlIn, IUrlOut
+class IUrlGeneraterRunner : public IControllable, public IUrlIn, public IUrlOut
 {
 public:
     virtual void From(IUrlGenerater& i) = 0;
