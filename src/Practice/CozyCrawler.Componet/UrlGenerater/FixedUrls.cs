@@ -5,29 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyCrawler.Core
+namespace CozyCrawler.Component.UrlGenerater
 {
-    public class BlockedUrl2UrlRunner : IUrl2UrlRunner
+    public class FixedUrls : IUrlGenerater
     {
         IUrlIn to_;
-        IUrl2Url p_;
-
-        public void SetProcessor(IUrl2Url p)
-        {
-            p_ = p;
-            if (to_ != null)
-            {
-                p_.To(to_);
-            }
-        }
-
-        public void OnNewUrl(string url)
-        {
-            p_?.OnNewUrl(url);
-        }
+        public List<string> Urls = new List<string>();
 
         public void Start()
         {
+            if (to_ != null)
+            {
+                foreach (var url in Urls)
+                {
+                    to_.OnNewUrl(url);
+                }
+            }
         }
 
         public void Stop()
@@ -37,7 +30,6 @@ namespace CozyCrawler.Core
         public void To(IUrlIn to)
         {
             to_ = to;
-            p_?.To(to_);
         }
     }
 }

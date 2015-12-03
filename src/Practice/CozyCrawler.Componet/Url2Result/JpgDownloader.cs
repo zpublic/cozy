@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyCrawler.Core.Url2Result
+namespace CozyCrawler.Component.Url2Result
 {
     public class JpgDownloader : IUrl2Result
     {

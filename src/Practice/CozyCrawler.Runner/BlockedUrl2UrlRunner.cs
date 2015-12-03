@@ -5,33 +5,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyCrawler.Sample1
+namespace CozyCrawler.Runner
 {
-    public class TestUrl2Url : IUrl2Url
+    public class BlockedUrl2UrlRunner : IUrl2UrlRunner
     {
         IUrlIn to_;
+        IUrl2Url p_;
 
-        private bool IsStart { get; set; }
+        public void SetProcessor(IUrl2Url p)
+        {
+            p_ = p;
+            if (to_ != null)
+            {
+                p_.To(to_);
+            }
+        }
 
         public void OnNewUrl(string url)
         {
-            if(IsStart)
-                to_?.OnNewUrl(url + "hehe");
+            p_?.OnNewUrl(url);
         }
 
         public void Start()
         {
-            IsStart = true;
+            p_?.Start();
         }
 
         public void Stop()
         {
-            IsStart = false;
+            p_?.Stop();
         }
 
         public void To(IUrlIn to)
         {
             to_ = to;
+            p_?.To(to_);
         }
     }
 }

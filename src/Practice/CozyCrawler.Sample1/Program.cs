@@ -1,4 +1,4 @@
-﻿using CozyCrawler.Core;
+﻿using CozyCrawler.Runner;
 using CozyCrawler.Interface;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace CozyCrawler.Sample1
     {
         static void Main(string[] args)
         {
-            IGenerateUrlRunner p1   = new SingleThreadGenerateUrlRunner();
+            IUrlGeneraterRunner p1   = new MultiUrlGeneraterRunner();
             IUrl2UrlRunner p2       = new BlockedUrl2UrlRunner();
             IUrl2ResultRunner p3    = new AsyncUrl2ResultRunner();
 

@@ -43,19 +43,13 @@
     <Compile Include="IControllable.cs" />
     <Compile Include="IUrl2Url.cs" />
     <Compile Include="IUrlGenerater.cs" />
-    <Compile Include="IGenerateUrlRunner.cs" />
+    <Compile Include="IUrlGeneraterRunner.cs" />
     <Compile Include="IUrl2ResultRunner.cs" />
     <Compile Include="IUrl2UrlRunner.cs" />
     <Compile Include="IUrl2Result.cs" />
     <Compile Include="IUrlIn.cs" />
     <Compile Include="IUrlOut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CozyCrawler.Model\CozyCrawler.Model.csproj">
-      <Project>{451a7ae0-1442-46a5-83ba-beac6efa0ab9}</Project>
-      <Name>CozyCrawler.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

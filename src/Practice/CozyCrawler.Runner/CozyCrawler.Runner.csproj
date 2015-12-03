@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{23271DBF-86EB-47FD-8FA8-34B85C65CA11}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{E76573D8-D242-499D-9DEF-6B4B2C87CA4E}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyCrawler.Sample1</RootNamespace>
-    <AssemblyName>CozyCrawler.Sample1</AssemblyName>
+    <RootNamespace>CozyCrawler.Runner</RootNamespace>
+    <AssemblyName>CozyCrawler.Runner</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,14 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="AsyncUrl2ResultRunner.cs" />
+    <Compile Include="BlockedUrl2ResultRunner.cs" />
+    <Compile Include="BlockedUrl2UrlRunner.cs" />
+    <Compile Include="BlockedUrlGeneraterRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestUrl2Result.cs" />
-    <Compile Include="TestUrl2Url.cs" />
-    <Compile Include="TestUrlGenerater.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <Compile Include="MultiUrlGeneraterRunner.cs" />
+    <Compile Include="RunnerIoCContainer.cs" />
+    <Compile Include="RunnerIoCContainerSetting.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CozyCrawler.Base\CozyCrawler.Base.csproj">
@@ -65,10 +67,9 @@
       <Project>{873f9083-84c8-4715-a931-24ef7a7ebb57}</Project>
       <Name>CozyCrawler.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CozyCrawler.Runner\CozyCrawler.Runner.csproj">
-      <Project>{e76573d8-d242-499d-9def-6b4b2c87ca4e}</Project>
-      <Name>CozyCrawler.Runner</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

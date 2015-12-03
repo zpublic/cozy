@@ -7,15 +7,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exe", "Exe", "{0802395F-CEE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Interface", "..\src\Practice\CozyCrawler.Interface\CozyCrawler.Interface.csproj", "{873F9083-84C8-4715-A931-24EF7A7EBB57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Model", "..\src\Practice\CozyCrawler.Model\CozyCrawler.Model.csproj", "{451A7AE0-1442-46A5-83BA-BEAC6EFA0AB9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Core", "..\src\Practice\CozyCrawler.Core\CozyCrawler.Core.csproj", "{381F774D-3BB7-41FA-8D0F-946ADBC46219}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Component", "Component", "{A8B933F2-6453-4AAD-8C05-1FC1CCACA457}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Sample1", "..\src\Practice\CozyCrawler.Sample1\CozyCrawler.Sample1.csproj", "{23271DBF-86EB-47FD-8FA8-34B85C65CA11}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Sample12306", "..\src\Practice\CozyCrawler.Sample12306\CozyCrawler.Sample12306.csproj", "{3AE56EC6-711D-462A-9AA6-8C3F4AF2DA3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.SampleMuitUrlGenerater", "..\src\Practice\CozyCrawler.SampleMuitUrlGenerater\CozyCrawler.SampleMuitUrlGenerater.csproj", "{C8422B27-968D-42EB-A1D7-3368D113692A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.SampleMultSourceMultTarget", "..\src\Practice\CozyCrawler.SampleMultSourceMultTarget\CozyCrawler.SampleMultSourceMultTarget.csproj", "{1F47F8C5-138D-43BE-931F-614A6E2FF8A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.AngryPowman", "..\src\Practice\CozyCrawler.AngryPowman\CozyCrawler.AngryPowman.csproj", "{8056CFF1-F42E-4864-92E6-A2C746644845}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Base", "..\src\Practice\CozyCrawler.Base\CozyCrawler.Base.csproj", "{B3D0BD9E-BF44-4F1B-8BA1-0CA30E144F68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Runner", "..\src\Practice\CozyCrawler.Runner\CozyCrawler.Runner.csproj", "{E76573D8-D242-499D-9DEF-6B4B2C87CA4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Component", "..\src\Practice\CozyCrawler.Componet\CozyCrawler.Component.csproj", "{70444045-8D12-4155-A9AC-A122C2FE89D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,14 +35,6 @@ Global
 		{873F9083-84C8-4715-A931-24EF7A7EBB57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{873F9083-84C8-4715-A931-24EF7A7EBB57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{873F9083-84C8-4715-A931-24EF7A7EBB57}.Release|Any CPU.Build.0 = Release|Any CPU
-		{451A7AE0-1442-46A5-83BA-BEAC6EFA0AB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{451A7AE0-1442-46A5-83BA-BEAC6EFA0AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{451A7AE0-1442-46A5-83BA-BEAC6EFA0AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{451A7AE0-1442-46A5-83BA-BEAC6EFA0AB9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{381F774D-3BB7-41FA-8D0F-946ADBC46219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{381F774D-3BB7-41FA-8D0F-946ADBC46219}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{381F774D-3BB7-41FA-8D0F-946ADBC46219}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{381F774D-3BB7-41FA-8D0F-946ADBC46219}.Release|Any CPU.Build.0 = Release|Any CPU
 		{23271DBF-86EB-47FD-8FA8-34B85C65CA11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{23271DBF-86EB-47FD-8FA8-34B85C65CA11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23271DBF-86EB-47FD-8FA8-34B85C65CA11}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -43,6 +43,30 @@ Global
 		{3AE56EC6-711D-462A-9AA6-8C3F4AF2DA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AE56EC6-711D-462A-9AA6-8C3F4AF2DA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AE56EC6-711D-462A-9AA6-8C3F4AF2DA3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8422B27-968D-42EB-A1D7-3368D113692A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8422B27-968D-42EB-A1D7-3368D113692A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8422B27-968D-42EB-A1D7-3368D113692A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8422B27-968D-42EB-A1D7-3368D113692A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F47F8C5-138D-43BE-931F-614A6E2FF8A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F47F8C5-138D-43BE-931F-614A6E2FF8A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F47F8C5-138D-43BE-931F-614A6E2FF8A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F47F8C5-138D-43BE-931F-614A6E2FF8A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8056CFF1-F42E-4864-92E6-A2C746644845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8056CFF1-F42E-4864-92E6-A2C746644845}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8056CFF1-F42E-4864-92E6-A2C746644845}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8056CFF1-F42E-4864-92E6-A2C746644845}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3D0BD9E-BF44-4F1B-8BA1-0CA30E144F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D0BD9E-BF44-4F1B-8BA1-0CA30E144F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D0BD9E-BF44-4F1B-8BA1-0CA30E144F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D0BD9E-BF44-4F1B-8BA1-0CA30E144F68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E76573D8-D242-499D-9DEF-6B4B2C87CA4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E76573D8-D242-499D-9DEF-6B4B2C87CA4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E76573D8-D242-499D-9DEF-6B4B2C87CA4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E76573D8-D242-499D-9DEF-6B4B2C87CA4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70444045-8D12-4155-A9AC-A122C2FE89D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70444045-8D12-4155-A9AC-A122C2FE89D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70444045-8D12-4155-A9AC-A122C2FE89D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70444045-8D12-4155-A9AC-A122C2FE89D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +74,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{23271DBF-86EB-47FD-8FA8-34B85C65CA11} = {0802395F-CEE7-444A-885E-3333704A5A20}
 		{3AE56EC6-711D-462A-9AA6-8C3F4AF2DA3E} = {0802395F-CEE7-444A-885E-3333704A5A20}
+		{C8422B27-968D-42EB-A1D7-3368D113692A} = {0802395F-CEE7-444A-885E-3333704A5A20}
+		{1F47F8C5-138D-43BE-931F-614A6E2FF8A5} = {0802395F-CEE7-444A-885E-3333704A5A20}
+		{8056CFF1-F42E-4864-92E6-A2C746644845} = {0802395F-CEE7-444A-885E-3333704A5A20}
 	EndGlobalSection
 EndGlobal
