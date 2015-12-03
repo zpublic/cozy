@@ -14,7 +14,7 @@ public:
 
     // IHttpWriter
     virtual zl_int32 Write(zl_uchar* pData, zl_uint32 nLength);
-    virtual zl_uchar* GetData();
+    virtual const zl_uchar* GetData();
     virtual zl_int32 GetLength();
 
 private:

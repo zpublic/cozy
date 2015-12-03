@@ -28,7 +28,7 @@ zl_int32 ZLFileWriter::Write(zl_uchar* pData, zl_uint32 nLength)
     return 1;
 }
 
-zl_uchar* ZLFileWriter::GetData()
+const zl_uchar* ZLFileWriter::GetData()
 {
     return NULL;
 }

@@ -9,7 +9,7 @@ class IHttpWriter
 {
 public:
     virtual zl_int32 Write(zl_uchar* pData, zl_uint32 nLength) = 0;
-    virtual zl_uchar* GetData() = 0;
+    virtual const zl_uchar* GetData() = 0;
     virtual zl_int32 GetLength() = 0;
 };
 
