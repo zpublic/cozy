@@ -147,6 +147,7 @@
     <ClCompile Include="MainTester.cpp" />
     <ClCompile Include="z_curl_warpper.cpp" />
     <ClCompile Include="z_file_writer.cpp" />
+    <ClCompile Include="z_http_client.cpp" />
     <ClCompile Include="z_http_def.h" />
     <ClCompile Include="z_mem_writer.cpp" />
     <ClCompile Include="z_stream_writer.cpp" />
@@ -154,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="z_file_writer.h" />
     <ClInclude Include="z_curl_warpper.h" />
+    <ClInclude Include="z_http_client.h" />
     <ClInclude Include="z_http_interface.h" />
     <ClInclude Include="z_mem_writer.h" />
     <ClInclude Include="z_stream_writer.h" />

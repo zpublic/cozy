@@ -7,6 +7,7 @@
     <ClCompile Include="z_file_writer.cpp" />
     <ClCompile Include="z_mem_writer.cpp" />
     <ClCompile Include="z_stream_writer.cpp" />
+    <ClCompile Include="z_http_client.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="z_curl_warpper.h" />
@@ -14,5 +15,6 @@
     <ClInclude Include="z_file_writer.h" />
     <ClInclude Include="z_mem_writer.h" />
     <ClInclude Include="z_stream_writer.h" />
+    <ClInclude Include="z_http_client.h" />
   </ItemGroup>
 </Project>
