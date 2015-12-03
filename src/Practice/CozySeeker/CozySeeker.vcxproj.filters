@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="CozySeeker.cpp" />
+    <ClCompile Include="MultiUrlGeneraterRunner.cpp">
+      <Filter>Runner</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Base">
+      <UniqueIdentifier>{95b786b6-6e3b-4c85-86bb-e553b27e10a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Runner">
+      <UniqueIdentifier>{4ec026af-9fa7-44fe-9539-2c03e0972e9d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Base\AsyncInvoker.hpp">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\ConcurrentQueue.hpp">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\CozySeekerDef.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Semaphore.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\CozyInterface.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiUrlGeneraterRunner.h">
+      <Filter>Runner</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="z_http_def.h" />
+    <ClCompile Include="z_curl_warpper.cpp" />
+    <ClCompile Include="MainTester.cpp" />
+    <ClCompile Include="z_file_writer.cpp" />
+    <ClCompile Include="z_mem_writer.cpp" />
+    <ClCompile Include="z_stream_writer.cpp" />
+    <ClCompile Include="z_http_client.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="z_curl_warpper.h" />
+    <ClInclude Include="z_http_interface.h" />
+    <ClInclude Include="z_file_writer.h" />
+    <ClInclude Include="z_mem_writer.h" />
+    <ClInclude Include="z_stream_writer.h" />
+    <ClInclude Include="z_http_client.h" />
+  </ItemGroup>
+</Project>
