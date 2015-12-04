@@ -123,6 +123,12 @@ Cozy
 >>
 >> CozyCrawler - 颗粒化的新爬虫  
 >>
+>> CozyApiKing - HttpApi测试工具  
+>>
+>> CozyOfficialAccounts - 新微信公众号后台  
+>>
+>> CozySeeker - 爬虫c++版  
+>>
 
 玩法一览
 --------------------------------
