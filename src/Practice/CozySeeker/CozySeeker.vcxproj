@@ -145,7 +145,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CozySeeker.cpp" />
-    <ClCompile Include="MultiUrlGeneraterRunner.cpp" />
+    <ClCompile Include="Runner\BlockedUrl2ResultRunner.cpp" />
+    <ClCompile Include="Runner\BlockedUrl2UrlRunner.cpp" />
+    <ClCompile Include="Runner\BlockedUrlGeneraterRunner.cpp" />
+    <ClCompile Include="Runner\MultiUrlGeneraterRunner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base\AsyncInvoker.hpp" />
@@ -153,7 +156,10 @@
     <ClInclude Include="Base\CozyInterface.h" />
     <ClInclude Include="Base\CozySeekerDef.h" />
     <ClInclude Include="Base\Semaphore.h" />
-    <ClInclude Include="MultiUrlGeneraterRunner.h" />
+    <ClInclude Include="Runner\BlockedUrl2ResultRunner.h" />
+    <ClInclude Include="Runner\BlockedUrl2UrlRunner.h" />
+    <ClInclude Include="Runner\BlockedUrlGeneraterRunner.h" />
+    <ClInclude Include="Runner\MultiUrlGeneraterRunner.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

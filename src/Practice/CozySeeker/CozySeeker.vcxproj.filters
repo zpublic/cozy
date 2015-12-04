@@ -2,7 +2,16 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="CozySeeker.cpp" />
-    <ClCompile Include="MultiUrlGeneraterRunner.cpp">
+    <ClCompile Include="Runner\BlockedUrl2ResultRunner.cpp">
+      <Filter>Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="Runner\BlockedUrl2UrlRunner.cpp">
+      <Filter>Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="Runner\BlockedUrlGeneraterRunner.cpp">
+      <Filter>Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="Runner\MultiUrlGeneraterRunner.cpp">
       <Filter>Runner</Filter>
     </ClCompile>
   </ItemGroup>
@@ -30,7 +39,16 @@
     <ClInclude Include="Base\CozyInterface.h">
       <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="MultiUrlGeneraterRunner.h">
+    <ClInclude Include="Runner\BlockedUrl2ResultRunner.h">
+      <Filter>Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="Runner\BlockedUrl2UrlRunner.h">
+      <Filter>Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="Runner\BlockedUrlGeneraterRunner.h">
+      <Filter>Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="Runner\MultiUrlGeneraterRunner.h">
       <Filter>Runner</Filter>
     </ClInclude>
   </ItemGroup>
