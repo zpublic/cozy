@@ -3,11 +3,12 @@
 #include "z_mem_writer.h"
 #include "z_curl_warpper.h"
 
-NS_BEGIN
+NS_ZL_BEGIN
 
-ZLHttpClient::ZLHttpClient()
+ZLHttpClient::ZLHttpClient(bool bIsEnableSSL /*= false*/)
+    :m_bIsEnableSSL(bIsEnableSSL)
 {
-
+    
 }
 
 ZLHttpClient::~ZLHttpClient()
@@ -18,12 +19,13 @@ ZLHttpClient::~ZLHttpClient()
 zl_uint32 ZLHttpClient::DownLoad(
     const std::string&  strUrl,
     IHttpWriter*        pWirter,
-    zl_uint32           nTimeLimit  = 0,
-    IHttpProgress*      pProgress   = NULL)
+    zl_uint32           nTimeLimit  /*= 0*/,
+    IHttpProgress*      pProgress   /*= NULL*/)
 {
     ZLCurlWarpper curlObj;
     curlObj.SetWriteCallback(pWirter);
     curlObj.SetProgressCallback(pProgress);
+    curlObj.SetEnableSSL(m_bIsEnableSSL);
 
     if (nTimeLimit)
     {
@@ -40,8 +42,8 @@ zl_uint32 ZLHttpClient::DownLoad(
 zl_uint32 ZLHttpClient::DownloadFile(
     const std::string&  strUrl,
     const std::string&  strFilename,
-    zl_uint32           nTimeLimit  = 0,
-    IHttpProgress*      pProgress   = NULL)
+    zl_uint32           nTimeLimit  /*= 0*/,
+    IHttpProgress*      pProgress   /*= NULL*/)
 {
     ZLFileWriter writer(strFilename);
     return DownLoad(strUrl, &writer, nTimeLimit, pProgress);
@@ -50,8 +52,8 @@ zl_uint32 ZLHttpClient::DownloadFile(
 zl_uint32 ZLHttpClient::DownloadMem(
     const std::string&  strUrl,
     ZLMemWriter*        pMem,
-    zl_uint32           nTimeLimit  = 0,
-    IHttpProgress*      pProgress   = NULL)
+    zl_uint32           nTimeLimit  /*= 0*/,
+    IHttpProgress*      pProgress   /*= NULL*/)
 {
     return DownLoad(strUrl, pMem, nTimeLimit, pProgress);
 }
@@ -59,8 +61,8 @@ zl_uint32 ZLHttpClient::DownloadMem(
 zl_uint32 ZLHttpClient::HttpGet(
     const std::string&  strUrl,
     IHttpWriter*        pWriter,
-    zl_int32            nTimeLimit  = 0,
-    IHttpProgress*      pProgress   = NULL)
+    zl_int32            nTimeLimit  /*= 0*/,
+    IHttpProgress*      pProgress   /*= NULL*/)
 {
     ZLCurlWarpper curl;
     return _HttpGet(curl, strUrl, pWriter, nTimeLimit, pProgress);
@@ -70,8 +72,8 @@ zl_uint32 ZLHttpClient::HttpGet(
     const std::string&  strUrl,
     IHttpWriter*        pWriter,
     const std::vector<HttpHeader> vecHeaders,
-    zl_int32            nTimeLimit   = 0,
-    IHttpProgress*      pProgress    = NULL)
+    zl_int32            nTimeLimit   /*= 0*/,
+    IHttpProgress*      pProgress    /*= NULL*/)
 {
     ZLCurlWarpper curl;
     for (std::vector<HttpHeader>::const_iterator citer = vecHeaders.cbegin(); citer != vecHeaders.cend(); ++citer)
@@ -89,6 +91,7 @@ zl_uint32 ZLHttpClient::_HttpGet(
     IHttpProgress*      pProgress)
 {
     curl.SetWriteCallback(pWriter);
+    curl.SetEnableSSL(m_bIsEnableSSL);
 
     if (nTimeLimit)
     {
@@ -111,8 +114,8 @@ zl_uint32 ZLHttpClient::HttpPost(
     zl_uchar*           pData,
     zl_uint32           nLength,
     IHttpWriter*        pWriter,
-    zl_int32            nTimeLimit  = 0,
-    IHttpProgress*      pProgress   = NULL)
+    zl_int32            nTimeLimit  /*= 0*/,
+    IHttpProgress*      pProgress   /*= NULL*/)
 {
     ZLCurlWarpper curl;
     return _HttpPost(curl, strUrl, pData, nLength, pWriter, nTimeLimit, pProgress);
@@ -124,8 +127,8 @@ zl_uint32 ZLHttpClient::HttpPost(
     zl_uint32           nLength,
     IHttpWriter*        pWriter,
     const std::vector<HttpHeader>& vecHeaders,
-    zl_int32            nTimeLimit  = 0,
-    IHttpProgress*      pProgress   = NULL)
+    zl_int32            nTimeLimit  /*= 0*/,
+    IHttpProgress*      pProgress   /*= NULL*/)
 {
     ZLCurlWarpper curl;
     for (std::vector<HttpHeader>::const_iterator citer = vecHeaders.cbegin(); citer != vecHeaders.cend(); ++citer)
@@ -146,6 +149,7 @@ zl_uint32 ZLHttpClient::_HttpPost(
 {
     curl.SetMethod(HttpMethod::PostMethod);
     curl.SetWriteCallback(pWriter);
+    curl.SetEnableSSL(m_bIsEnableSSL);
 
     curl.SetPostData(pData, nLength);
 
@@ -187,4 +191,4 @@ std::string ZLHttpClient::FormatHeader(const std::string& key, const std::string
     return strResult;
 }
 
-NS_END
+NS_ZL_END

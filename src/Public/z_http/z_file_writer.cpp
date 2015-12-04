@@ -1,6 +1,6 @@
 #include "z_file_writer.h"
 
-NS_BEGIN
+NS_ZL_BEGIN
 
 ZLFileWriter::ZLFileWriter(const std::string& strFileName)
     : m_strFileName(strFileName), m_pFile(NULL), m_nLength(0)
@@ -38,4 +38,4 @@ zl_int32 ZLFileWriter::GetLength()
     return m_nLength;
 }
 
-NS_END
+NS_ZL_END

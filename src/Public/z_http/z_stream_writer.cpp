@@ -1,7 +1,7 @@
 #include "z_stream_writer.h"
 #include <iterator>
 
-NS_BEGIN
+NS_ZL_BEGIN
 
 ZLStreamWriter::ZLStreamWriter()
 {
@@ -33,4 +33,4 @@ void ZLStreamWriter::Clear()
     m_vecData.clear();
 }
 
-NS_END
+NS_ZL_END

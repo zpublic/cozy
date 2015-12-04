@@ -3,7 +3,7 @@
 
 #include "z_http_def.h"
 
-NS_BEGIN
+NS_ZL_BEGIN
 
 class IHttpWriter
 {
@@ -19,6 +19,6 @@ public:
     virtual zl_int32 OnProgress(double dltotal, double dlnow, double ultotal, double ulnow) = 0;
 };
 
-NS_END
+NS_ZL_END
 
 #endif // _H_Z_HTTP_INTERFACE_H_
