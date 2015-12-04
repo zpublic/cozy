@@ -2,8 +2,32 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="CozySeeker.cpp" />
-    <ClCompile Include="MultiUrlGeneraterRunner.cpp">
+    <ClCompile Include="Runner\BlockedUrl2ResultRunner.cpp">
       <Filter>Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="Runner\BlockedUrl2UrlRunner.cpp">
+      <Filter>Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="Runner\BlockedUrlGeneraterRunner.cpp">
+      <Filter>Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="Runner\MultiUrlGeneraterRunner.cpp">
+      <Filter>Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\z_http\z_curl_warpper.cpp">
+      <Filter>http</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\z_http\z_file_writer.cpp">
+      <Filter>http</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\z_http\z_http_client.cpp">
+      <Filter>http</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\z_http\z_mem_writer.cpp">
+      <Filter>http</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Public\z_http\z_stream_writer.cpp">
+      <Filter>http</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -12,6 +36,9 @@
     </Filter>
     <Filter Include="Runner">
       <UniqueIdentifier>{4ec026af-9fa7-44fe-9539-2c03e0972e9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="http">
+      <UniqueIdentifier>{c050dd77-7250-4f92-8d18-1a5cf7f6581f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,8 +57,38 @@
     <ClInclude Include="Base\CozyInterface.h">
       <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="MultiUrlGeneraterRunner.h">
+    <ClInclude Include="Runner\BlockedUrl2ResultRunner.h">
       <Filter>Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="Runner\BlockedUrl2UrlRunner.h">
+      <Filter>Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="Runner\BlockedUrlGeneraterRunner.h">
+      <Filter>Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="Runner\MultiUrlGeneraterRunner.h">
+      <Filter>Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\z_http\z_curl_warpper.h">
+      <Filter>http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\z_http\z_file_writer.h">
+      <Filter>http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\z_http\z_http_client.h">
+      <Filter>http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\z_http\z_http_def.h">
+      <Filter>http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\z_http\z_http_interface.h">
+      <Filter>http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\z_http\z_mem_writer.h">
+      <Filter>http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\z_http\z_stream_writer.h">
+      <Filter>http</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

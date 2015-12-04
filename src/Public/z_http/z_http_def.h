@@ -16,8 +16,8 @@ enum HttpMethod
     PostMethod,
 };
 
-#define NS_BEGIN namespace zl { namespace http {
+#define NS_ZL_BEGIN namespace zl { namespace http {
 
-#define NS_END } }
+#define NS_ZL_END } }
 
 #endif // _H_Z_HTTP_DEF_H_

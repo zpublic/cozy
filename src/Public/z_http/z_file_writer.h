@@ -4,7 +4,7 @@
 #include "z_http_interface.h"
 #include <cstdio>
 
-NS_BEGIN
+NS_ZL_BEGIN
 
 class ZLFileWriter : public IHttpWriter
 {
@@ -23,6 +23,6 @@ private:
     zl_uint32       m_nLength;
 };
 
-NS_END
+NS_ZL_END
 
 #endif // _H_Z_FILE_WRITER_H_

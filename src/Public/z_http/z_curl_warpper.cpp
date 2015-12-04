@@ -1,6 +1,6 @@
 #include "z_curl_warpper.h"
 
-NS_BEGIN
+NS_ZL_BEGIN
 
 ZLCurlWarpper::ZLCurlWarpper()
 {
@@ -243,4 +243,4 @@ std::string ZLCurlWarpper::GetConnectAddr() const
     return m_strConnectAddr;
 }
 
-NS_END
+NS_ZL_END

@@ -4,7 +4,7 @@
 #include "z_http_interface.h"
 #include "z_stream_writer.h"
 
-NS_BEGIN
+NS_ZL_BEGIN
 
 class ZLMemWriter : public IHttpWriter
 {
@@ -21,7 +21,6 @@ private:
     ZLStreamWriter m_stream;
 };
 
-NS_END
-
+NS_ZL_END
 
 #endif // _H_Z_MEM_WRITER_H_

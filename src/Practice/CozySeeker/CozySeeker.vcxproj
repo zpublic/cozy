@@ -71,14 +71,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\..\Public\z_platform\;$(ProjectDir)..\..\Public\z_http\;$(ProjectDir)..\..\Public\3rd\libcurl\include\;$(IncludePath)</IncludePath>
+    <OutDir>..\..\..\bin\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\..\Public\z_platform\;$(ProjectDir)..\..\Public\z_http\;$(ProjectDir)..\..\Public\3rd\libcurl\include\;$(IncludePath)</IncludePath>
+    <OutDir>..\..\..\bin\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -94,6 +96,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\..\..\bin\</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -124,6 +127,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\..\..\bin\</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,16 +148,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Public\z_http\z_curl_warpper.cpp" />
+    <ClCompile Include="..\..\Public\z_http\z_file_writer.cpp" />
+    <ClCompile Include="..\..\Public\z_http\z_http_client.cpp" />
+    <ClCompile Include="..\..\Public\z_http\z_mem_writer.cpp" />
+    <ClCompile Include="..\..\Public\z_http\z_stream_writer.cpp" />
     <ClCompile Include="CozySeeker.cpp" />
-    <ClCompile Include="MultiUrlGeneraterRunner.cpp" />
+    <ClCompile Include="Runner\BlockedUrl2ResultRunner.cpp" />
+    <ClCompile Include="Runner\BlockedUrl2UrlRunner.cpp" />
+    <ClCompile Include="Runner\BlockedUrlGeneraterRunner.cpp" />
+    <ClCompile Include="Runner\MultiUrlGeneraterRunner.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Public\z_http\z_curl_warpper.h" />
+    <ClInclude Include="..\..\Public\z_http\z_file_writer.h" />
+    <ClInclude Include="..\..\Public\z_http\z_http_client.h" />
+    <ClInclude Include="..\..\Public\z_http\z_http_def.h" />
+    <ClInclude Include="..\..\Public\z_http\z_http_interface.h" />
+    <ClInclude Include="..\..\Public\z_http\z_mem_writer.h" />
+    <ClInclude Include="..\..\Public\z_http\z_stream_writer.h" />
     <ClInclude Include="Base\AsyncInvoker.hpp" />
     <ClInclude Include="Base\ConcurrentQueue.hpp" />
     <ClInclude Include="Base\CozyInterface.h" />
     <ClInclude Include="Base\CozySeekerDef.h" />
     <ClInclude Include="Base\Semaphore.h" />
-    <ClInclude Include="MultiUrlGeneraterRunner.h" />
+    <ClInclude Include="Runner\BlockedUrl2ResultRunner.h" />
+    <ClInclude Include="Runner\BlockedUrl2UrlRunner.h" />
+    <ClInclude Include="Runner\BlockedUrlGeneraterRunner.h" />
+    <ClInclude Include="Runner\MultiUrlGeneraterRunner.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

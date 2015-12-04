@@ -8,7 +8,7 @@
 
 struct curl_slist;
 
-NS_BEGIN
+NS_ZL_BEGIN
 
 class ZLCurlWarpper
 {
@@ -56,7 +56,7 @@ private:
     bool                        m_bEnableSSL;
 };
 
-NS_END
+NS_ZL_END
 
 
 #endif // _H_Z_CURL_WARPPER_H_

@@ -4,7 +4,7 @@
 #include "z_http_interface.h"
 #include <vector>
 
-NS_BEGIN
+NS_ZL_BEGIN
 
 class ZLStreamWriter
 {
@@ -21,6 +21,6 @@ private:
     std::vector<zl_uchar> m_vecData;
 };
 
-NS_END
+NS_ZL_END
 
 #endif // _H_Z_STREAM_WRITER_H_

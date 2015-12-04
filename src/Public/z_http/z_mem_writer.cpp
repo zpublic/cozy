@@ -1,6 +1,6 @@
 #include "z_mem_writer.h"
 
-NS_BEGIN
+NS_ZL_BEGIN
 
 ZLMemWriter::ZLMemWriter()
 {
@@ -28,4 +28,4 @@ zl_int32 ZLMemWriter::GetLength()
     return m_stream.GetLength();
 }
 
-NS_END
+NS_ZL_END
