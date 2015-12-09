@@ -29,6 +29,15 @@
     <ClCompile Include="..\..\Public\z_http\z_stream_writer.cpp">
       <Filter>http</Filter>
     </ClCompile>
+    <ClCompile Include="Componet\Generater12306.cpp">
+      <Filter>Componet</Filter>
+    </ClCompile>
+    <ClCompile Include="Componet\JpgDownloader.cpp">
+      <Filter>Componet</Filter>
+    </ClCompile>
+    <ClCompile Include="Tester\Tester12306.cpp">
+      <Filter>Tester</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Base">
@@ -39,6 +48,12 @@
     </Filter>
     <Filter Include="http">
       <UniqueIdentifier>{c050dd77-7250-4f92-8d18-1a5cf7f6581f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tester">
+      <UniqueIdentifier>{76e5421d-8d0b-4bb6-a21c-26c42ba5939e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Componet">
+      <UniqueIdentifier>{70cce15a-5ef5-4287-920d-dd2e76b72137}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +104,15 @@
     </ClInclude>
     <ClInclude Include="..\..\Public\z_http\z_stream_writer.h">
       <Filter>http</Filter>
+    </ClInclude>
+    <ClInclude Include="Tester\Tester12306.h">
+      <Filter>Tester</Filter>
+    </ClInclude>
+    <ClInclude Include="Componet\Generater12306.h">
+      <Filter>Componet</Filter>
+    </ClInclude>
+    <ClInclude Include="Componet\JpgDownloader.h">
+      <Filter>Componet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
