@@ -5,6 +5,12 @@
 
 NS_BEGIN
 
+class ISeekerTester
+{
+public:
+    virtual void Test() = 0;
+};
+
 class IUrlIn
 {
 public:

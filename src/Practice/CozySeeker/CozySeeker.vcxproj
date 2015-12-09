@@ -71,7 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(ProjectDir)..\..\Public\z_platform\;$(ProjectDir)..\..\Public\z_http\;$(ProjectDir)..\..\Public\3rd\gumbo-query\include\;$(ProjectDir)..\..\Public\3rd\gumbo-parser\include\;$(ProjectDir)..\..\Public\3rd\libcurl\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\..\Public\z_platform\;$(ProjectDir)..\..\Public\z_http\;$(ProjectDir)..\..\Public\3rd\gumbo-query\src\;$(ProjectDir)..\..\Public\3rd\gumbo-parser\src\;$(ProjectDir)..\..\Public\3rd\libcurl\include\;$(IncludePath)</IncludePath>
     <OutDir>..\..\..\bin\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -79,7 +79,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(ProjectDir)..\..\Public\z_platform\;$(ProjectDir)..\..\Public\z_http\;$(ProjectDir)..\..\Public\3rd\gumbo-query\include\;$(ProjectDir)..\..\Public\3rd\gumbo-parser\include\;$(ProjectDir)..\..\Public\3rd\libcurl\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\..\Public\z_platform\;$(ProjectDir)..\..\Public\z_http\;$(ProjectDir)..\..\Public\3rd\gumbo-query\src\;$(ProjectDir)..\..\Public\3rd\gumbo-parser\src\;$(ProjectDir)..\..\Public\3rd\libcurl\include\;$(IncludePath)</IncludePath>
     <OutDir>..\..\..\bin\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -155,11 +155,14 @@
     <ClCompile Include="..\..\Public\z_http\z_http_client.cpp" />
     <ClCompile Include="..\..\Public\z_http\z_mem_writer.cpp" />
     <ClCompile Include="..\..\Public\z_http\z_stream_writer.cpp" />
+    <ClCompile Include="Componet\Generater12306.cpp" />
+    <ClCompile Include="Componet\JpgDownloader.cpp" />
     <ClCompile Include="CozySeeker.cpp" />
     <ClCompile Include="Runner\BlockedUrl2ResultRunner.cpp" />
     <ClCompile Include="Runner\BlockedUrl2UrlRunner.cpp" />
     <ClCompile Include="Runner\BlockedUrlGeneraterRunner.cpp" />
     <ClCompile Include="Runner\MultiUrlGeneraterRunner.cpp" />
+    <ClCompile Include="Tester\Tester12306.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Public\z_http\z_curl_warpper.h" />
@@ -174,10 +177,13 @@
     <ClInclude Include="Base\CozyInterface.h" />
     <ClInclude Include="Base\CozySeekerDef.h" />
     <ClInclude Include="Base\Semaphore.h" />
+    <ClInclude Include="Componet\Generater12306.h" />
+    <ClInclude Include="Componet\JpgDownloader.h" />
     <ClInclude Include="Runner\BlockedUrl2ResultRunner.h" />
     <ClInclude Include="Runner\BlockedUrl2UrlRunner.h" />
     <ClInclude Include="Runner\BlockedUrlGeneraterRunner.h" />
     <ClInclude Include="Runner\MultiUrlGeneraterRunner.h" />
+    <ClInclude Include="Tester\Tester12306.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
