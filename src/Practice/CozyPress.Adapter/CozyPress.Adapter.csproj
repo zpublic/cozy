@@ -40,7 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CozyPressAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyPress.Implementation\CozyPress.Implementation.csproj">
+      <Project>{66b2613d-6055-4398-833c-4807b6aba5f7}</Project>
+      <Name>CozyPress.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyPress.Interface\CozyPress.Interface.csproj">
+      <Project>{f5e3d906-1102-4b24-bb48-888c6fb89a11}</Project>
+      <Name>CozyPress.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyPress.Model\CozyPress.Model.csproj">
+      <Project>{ab612556-8f41-4a02-b860-2d4917409660}</Project>
+      <Name>CozyPress.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

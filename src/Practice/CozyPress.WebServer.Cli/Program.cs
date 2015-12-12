@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CozyPress.WebServer.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,9 @@ namespace CozyPress.WebServer.Cli
     {
         static void Main(string[] args)
         {
+            CozyPressServer server = new CozyPressServer();
+            server.Run("http://localhost:12306");
+            Console.ReadKey();
         }
     }
 }

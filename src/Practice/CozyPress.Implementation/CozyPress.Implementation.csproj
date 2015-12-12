@@ -40,7 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlogEngineImpl.cs" />
+    <Compile Include="OperateBlogImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyPress.Interface\CozyPress.Interface.csproj">
+      <Project>{f5e3d906-1102-4b24-bb48-888c6fb89a11}</Project>
+      <Name>CozyPress.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyPress.Logic\CozyPress.Logic.csproj">
+      <Project>{b58a9833-0853-4495-bdb2-6a5076272d66}</Project>
+      <Name>CozyPress.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyPress.Model\CozyPress.Model.csproj">
+      <Project>{ab612556-8f41-4a02-b860-2d4917409660}</Project>
+      <Name>CozyPress.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

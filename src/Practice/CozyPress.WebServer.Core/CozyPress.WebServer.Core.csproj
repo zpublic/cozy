@@ -30,6 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Nancy, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\Nancy.1.4.2\lib\net40\Nancy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nancy.Hosting.Self, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\Nancy.Hosting.Self.1.4.1\lib\net40\Nancy.Hosting.Self.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +52,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CozyPressHolder.cs" />
+    <Compile Include="CozyPressServer.cs" />
+    <Compile Include="Module\ModuleHelper.cs" />
+    <Compile Include="Module\BlogModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyPress.Adapter\CozyPress.Adapter.csproj">
+      <Project>{9a2c5df9-ed71-4568-aaf8-b584d0055cdd}</Project>
+      <Name>CozyPress.Adapter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyPress.Interface\CozyPress.Interface.csproj">
+      <Project>{f5e3d906-1102-4b24-bb48-888c6fb89a11}</Project>
+      <Name>CozyPress.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyPress.Model\CozyPress.Model.csproj">
+      <Project>{ab612556-8f41-4a02-b860-2d4917409660}</Project>
+      <Name>CozyPress.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Module\BlogModule.Method.cs" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
