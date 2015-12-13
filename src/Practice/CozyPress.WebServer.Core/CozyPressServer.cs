@@ -14,7 +14,8 @@ namespace CozyPress.WebServer.Core
         {
             Get["/"] = x =>
             {
-                return "hello world!";
+                //return "hello world!";
+                return View["wwwroot/index.html"];
             };
         }
     }
