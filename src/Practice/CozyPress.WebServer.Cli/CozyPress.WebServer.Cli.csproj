@@ -48,12 +48,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="wwwroot\bower.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CozyPress.WebServer.Core\CozyPress.WebServer.Core.csproj">
       <Project>{b28f98a0-cfbb-4336-8ac5-e63c7342ef21}</Project>
       <Name>CozyPress.WebServer.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="wwwroot\index.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

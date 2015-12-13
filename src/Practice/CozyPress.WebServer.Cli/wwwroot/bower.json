@@ -1,0 +1,19 @@
+{
+  "name": "CozyPress",
+  "authors": [
+    "CozyTema"
+  ],
+  "description": "nothing",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "Cozy.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
