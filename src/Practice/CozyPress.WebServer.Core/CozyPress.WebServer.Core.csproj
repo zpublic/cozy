@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationBootstrapper.cs" />
     <Compile Include="CozyPressHolder.cs" />
     <Compile Include="CozyPressServer.cs" />
     <Compile Include="Module\ModuleHelper.cs" />

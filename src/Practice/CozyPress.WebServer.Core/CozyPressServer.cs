@@ -28,9 +28,9 @@ namespace CozyPress.WebServer.Core
 
             HostConfiguration hostConfigs = new HostConfiguration()
             {
-                UrlReservations = new UrlReservations() { CreateAutomatically = true }
+                UrlReservations = new UrlReservations() { CreateAutomatically = true },
             };
-            var host = new NancyHost(new Uri(uri), new DefaultNancyBootstrapper(), hostConfigs);
+            var host = new NancyHost(new Uri(uri), new ApplicationBootstrapper(), hostConfigs);
             host.Start();
         }
     }
