@@ -1,7 +1,7 @@
 {
   "name": "CozyPress",
   "authors": [
-    "CozyTema"
+    "CozyTeam"
   ],
   "description": "nothing",
   "main": "index.html",
@@ -15,5 +15,11 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-route": "~1.4.8",
+    "angular-bootstrap": "~0.14.3",
+    "bootstrap": "~3.3.6"
+  }
 }
