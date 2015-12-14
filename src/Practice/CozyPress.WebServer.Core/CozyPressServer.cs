@@ -1,10 +1,4 @@
 ﻿using Nancy;
-using Nancy.Hosting.Self;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CozyPress.WebServer.Core
 {
@@ -21,16 +15,9 @@ namespace CozyPress.WebServer.Core
 
     public class CozyPressServer
     {
-        public void Run(string uri)
+        public static void Init()
         {
             CozyPressHolder.Instance.WhosYourDaddy();
-
-            HostConfiguration hostConfigs = new HostConfiguration()
-            {
-                UrlReservations = new UrlReservations() { CreateAutomatically = true },
-            };
-            var host = new NancyHost(new Uri(uri), new DefaultNancyBootstrapper(), hostConfigs);
-            host.Start();
         }
     }
 }
