@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="wwwroot\bower.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CozyPress.WebServer.Core\CozyPress.WebServer.Core.csproj">
@@ -56,18 +55,10 @@
       <Name>CozyPress.WebServer.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="wwwroot\app.js" />
-    <Content Include="wwwroot\app.loader.js" />
-    <Content Include="wwwroot\app.main.js" />
-    <Content Include="wwwroot\app.routeConfig.js" />
-    <Content Include="wwwroot\components\test\welcomeController.js" />
-    <Content Include="wwwroot\components\test\welcomeView.html" />
-    <Content Include="wwwroot\index.html" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>xcopy /s /y /e /i "$(ProjectDir)wwwroot" "$(TargetDir)\wwwroot\"</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
