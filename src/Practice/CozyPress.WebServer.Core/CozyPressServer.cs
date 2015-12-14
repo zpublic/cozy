@@ -14,8 +14,7 @@ namespace CozyPress.WebServer.Core
         {
             Get["/"] = x =>
             {
-                //return "hello world!";
-                return View["wwwroot/index.html"];
+                return "hello world!";
             };
         }
     }
@@ -30,7 +29,7 @@ namespace CozyPress.WebServer.Core
             {
                 UrlReservations = new UrlReservations() { CreateAutomatically = true },
             };
-            var host = new NancyHost(new Uri(uri), new ApplicationBootstrapper(), hostConfigs);
+            var host = new NancyHost(new Uri(uri), new DefaultNancyBootstrapper(), hostConfigs);
             host.Start();
         }
     }

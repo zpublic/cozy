@@ -2,11 +2,12 @@
     'app.routeConfig',
     'app.loader',
     'angular',
+    'angular-resource',
     'angular-route'
 ], function (config, loader) {
     'use strict';
 
-    var app = angular.module('app', ['ngRoute', 'ngLocale']);
+    var app = angular.module('app', ['ngRoute', 'ngLocale', 'ngResource']);
     app.config(configure);
 
     configure.$inject = ['$routeProvider', '$locationProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide'];
