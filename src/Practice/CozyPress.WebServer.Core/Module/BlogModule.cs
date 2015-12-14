@@ -4,7 +4,7 @@ namespace CozyPress.WebServer.Core.Module
 {
     public partial class BlogModule : NancyModule
     {
-        public BlogModule() : base("/blog")
+        public BlogModule() : base("/api/blog")
         {
             Post["/add"] = x =>
             {
