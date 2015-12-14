@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_Client", "1_Client", "{86E8BB3C-A273-4E2B-9F59-1B127E8BB61C}"
 EndProject
@@ -28,6 +28,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5_Test", "5_Test", "{C86BECDD-75C9-433C-88CD-50C8700190D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPress.WebSite", "..\src\Practice\CozyPress.WebSite\CozyPress.WebSite.csproj", "{FF67479C-0015-45FF-9C77-E6DEA4761EEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyPress.Test.BlogReader", "..\src\Practice\CozyPress.Test.BlogReader\CozyPress.Test.BlogReader.csproj", "{7DE70ECD-860B-4AA1-ABE8-CA081A452F70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyInfrastructure.HttpClient", "..\src\Public\CozyInfrastructure.HttpClient\CozyInfrastructure.HttpClient.csproj", "{A76A9CD9-8165-484F-A192-38038344FF23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +71,14 @@ Global
 		{FF67479C-0015-45FF-9C77-E6DEA4761EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF67479C-0015-45FF-9C77-E6DEA4761EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF67479C-0015-45FF-9C77-E6DEA4761EEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DE70ECD-860B-4AA1-ABE8-CA081A452F70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DE70ECD-860B-4AA1-ABE8-CA081A452F70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DE70ECD-860B-4AA1-ABE8-CA081A452F70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DE70ECD-860B-4AA1-ABE8-CA081A452F70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A76A9CD9-8165-484F-A192-38038344FF23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A76A9CD9-8165-484F-A192-38038344FF23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A76A9CD9-8165-484F-A192-38038344FF23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A76A9CD9-8165-484F-A192-38038344FF23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,5 +92,7 @@ Global
 		{B28F98A0-CFBB-4336-8AC5-E63C7342EF21} = {D60E2010-BB61-4193-94F4-3F9A9899B94D}
 		{AB5B5447-EC6B-4EEE-AB1D-261246A3033D} = {D60E2010-BB61-4193-94F4-3F9A9899B94D}
 		{FF67479C-0015-45FF-9C77-E6DEA4761EEC} = {D60E2010-BB61-4193-94F4-3F9A9899B94D}
+		{7DE70ECD-860B-4AA1-ABE8-CA081A452F70} = {C86BECDD-75C9-433C-88CD-50C8700190D0}
+		{A76A9CD9-8165-484F-A192-38038344FF23} = {3CD2035A-F76C-4D8E-BE50-CF751B1C9078}
 	EndGlobalSection
 EndGlobal

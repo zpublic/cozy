@@ -20,6 +20,5 @@
                 $scope.title = data;
             });
         };
-
     }
 });
