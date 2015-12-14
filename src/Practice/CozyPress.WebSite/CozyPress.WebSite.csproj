@@ -79,6 +79,7 @@
     <Content Include="components\blog\index.html" />
     <Content Include="packages.config" />
     <Content Include="bower.json" />
+    <None Include="Properties\PublishProfiles\cozypress.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

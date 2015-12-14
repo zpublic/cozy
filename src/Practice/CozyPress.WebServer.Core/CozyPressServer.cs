@@ -6,7 +6,7 @@ namespace CozyPress.WebServer.Core
     {
         public HelloModule()
         {
-            Get["/"] = x =>
+            Get["/api"] = x =>
             {
                 return "hello world!";
             };
