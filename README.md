@@ -34,7 +34,7 @@ Cozy
 >>> CozySql.Exe - 主程序  
 >>> CozySql.Configure - 配置和记录  
 >>
->> CozyBlog - 用ASP.NET MVC做一个简单的博客系统。  
+>> CozyBlog(blog v1) - 用ASP.NET MVC做一个简单的博客系统。  
 >>
 >> CozyDraw - windows universal app版本的绘图（UML图？）工具  
 >>
@@ -65,7 +65,7 @@ Cozy
 >>
 >> CozyMind - 思维导图  
 >>
->> CozySpider - 爬虫  
+>> CozySpider(spider v1) - 爬虫  
 >>
 >> CozyWeixin - 微信公众号相关  
 >>
@@ -85,7 +85,7 @@ Cozy
 >>
 >> CozyMail - 邮件功能  
 >>
->> CozyMarkDown - markdown型静态博客  
+>> CozyMarkDown(blog v2) - markdown型静态博客  
 >>
 >> [CozyPoker - 可联机的扑克游戏集](doc/CozyPoker.md)  
 >>
@@ -121,13 +121,15 @@ Cozy
 >>
 >> CozyCdk - 序列化生成器  
 >>
->> CozyCrawler - 颗粒化的新爬虫  
+>> CozyCrawler(spider v2) - 颗粒化的新爬虫  
 >>
 >> CozyApiKing - HttpApi测试工具  
 >>
 >> CozyOfficialAccounts - 新微信公众号后台  
 >>
->> CozySeeker - 爬虫c++版  
+>> CozySeeker(spider v3) - 爬虫c++版  
+>>
+>> CozyPress(blog v3) - 更强大的博客  
 >>
 
 玩法一览
