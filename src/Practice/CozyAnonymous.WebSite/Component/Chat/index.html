@@ -1,21 +1,27 @@
 ﻿<div class="container">
-    <h1>{{title}}</h1>
-    <div class="row">
-        <div class="col-md-3" style="background-color: #dedef8; box-shadow:
-         inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
-            <p>{{content1}}</p>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{title}}</h3>
         </div>
-        <div class="col-md-9" style="background-color: #dedef8;box-shadow:
-         inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
-            <p>{{content2}}</p>
-        </div>
-    </div>
-
-    <div id="chat-area">
-        <h3 id="messages">hehe</h3>
-        <form id="send-message" action="#">
-            <input type="text" id="new-message" />
-            <input type="submit" id="send" value="Send" class="send" />
+        <form class="panel-body">
+            <div class="col-md-12 form-group">
+                <div class="form-control" style="height:800px">
+                    <p ng-repeat="r in recMsgList">{{r}}</p>
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
+                <textarea id="sendContent" class="form-control" ng-model="sendContent"></textarea>
+            </div>
+            <div class="col-md-offset-6 col-md-6 form-group">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" ng-click="sendMsg()">发送</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>
+
+
+
+
+
