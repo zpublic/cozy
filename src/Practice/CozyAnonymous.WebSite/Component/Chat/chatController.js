@@ -1,51 +1,61 @@
-﻿define(['app',
-        'Component/Chat/chatFactory'
-], function (app) {
+﻿define(['app'], function (app) {
     'use strict';
 
     app.registerController('ChatController', ChatController);
 
-    ChatController.$inject = ['$scope', 'ChatFactory'];
+    ChatController.$inject = ['$scope'];
 
-    function ChatController($scope, chatFactory) {
+    function ChatController($scope) {
 
-        $scope.title = "hello,blog";
-        $scope.content1 = "cozy";
-        $scope.content2 = "null";
+        $scope.title = "Cozy聊天室";
+        $scope.sendContent = '';
+        $scope.recMsgList = [];
+        $scope.connection = {};
 
-        var connection = $.connection('/xchat');
-        connection.received(function (data) {
-            console.log('received: ');
-            console.log(data);
-            $('#messages').text(data);
-        });
-        connection.error(function (error) {
+        $scope.sendMsg = sendMsg;
+
+        initChat();
+
+        function initChat() {
+            $scope.connection = $.connection('/xchat');
+            $scope.connection.received(receivedMsg);
+            $scope.connection.error(onError);
+            $scope.connection.stateChanged(onStateChanged);
+            $scope.connection.reconnected(onReconnected);
+            $scope.connection.start().done(onStart);
+        }
+
+        function onError() {
             console.warn(error);
-        });
-        connection.stateChanged(function (change) {
+        }
+
+        function onStateChanged(change) {
             if (change.newState === $.signalR.connectionState.reconnecting) {
                 console.log('Re-connecting');
             }
             else if (change.newState === $.signalR.connectionState.connected) {
                 console.log('The server is online');
             }
-        });
-        connection.reconnected(function () {
+        }
+
+        function onReconnected() {
             console.log('Reconnected');
-        });
-        connection.start().done(function () {
+        }
+
+        function onStart() {
             console.log("connection started!");
-            connection.send("Hello World");
-        });
+            $scope.connection.send("Hello World");
+        }
 
-        $('#send-message').submit(function () {
-            var command = $('#new-message').val();
+        function receivedMsg(msg) {
+            msg = new Date().toLocaleString() + '--' + msg;
+            $scope.recMsgList.push(msg);
+            $scope.$apply();
+        }
 
-            connection.send(command);
-
-            $('#new-message').val('');
-            $('#new-message').focus();
-            return false;
-        });
+        function sendMsg() {
+            $scope.connection.send($scope.sendContent);
+            $scope.sendContent = "";
+        }
     }
 });
