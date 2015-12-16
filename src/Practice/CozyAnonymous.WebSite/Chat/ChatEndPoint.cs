@@ -23,7 +23,6 @@ namespace CozyAnonymous.WebSite.Chat
 
         protected override Task OnReceived(IRequest request, string connectionId, string data)
         {
-            Connection.Send(connectionId, "hehe");
             return Connection.Broadcast("Connection " + connectionId + " sent " + data);
         }
 

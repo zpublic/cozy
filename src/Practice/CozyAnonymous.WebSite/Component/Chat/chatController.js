@@ -11,12 +11,13 @@
 
         $scope.title = "hello,blog";
         $scope.content1 = "cozy";
-        $scope.content2 = "hehe";
+        $scope.content2 = "null";
 
         var connection = $.connection('/xchat');
         connection.received(function (data) {
-            var _this = this;
-            _this.content2 = data;
+            console.log('received: ');
+            console.log(data);
+            $('#messages').text(data);
         });
         connection.error(function (error) {
             console.warn(error);
@@ -35,6 +36,16 @@
         connection.start().done(function () {
             console.log("connection started!");
             connection.send("Hello World");
+        });
+
+        $('#send-message').submit(function () {
+            var command = $('#new-message').val();
+
+            connection.send(command);
+
+            $('#new-message').val('');
+            $('#new-message').focus();
+            return false;
         });
     }
 });
