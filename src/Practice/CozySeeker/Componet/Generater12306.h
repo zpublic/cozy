@@ -6,7 +6,7 @@
 
 NS_BEGIN
 
-class Generater12306 : public Cozy::IUrlGenerater
+class Generater12306 : public IUrlGenerater
 {
 public:
     virtual void Start();

@@ -21,6 +21,7 @@ public:
     HttpMethod GetMethod() const;
     zl_int32 GetStatusCode() const;
     std::string GetConnectAddr() const;
+    std::string GetCookie() const;
 
     void SetSpeedLimit(zl_int32 nSpeedLimit);
     zl_int32 GetSpeedLimit() const;
@@ -30,6 +31,8 @@ public:
     bool SetWriteCallback(IHttpWriter* pWriterCallback);
     bool SetProgressCallback(IHttpProgress* pProgressCallback);
     void SetEnableSSL(bool bIsEnable);
+    void SetUseCookie(bool bIsUseCookie);
+    void SetCookie(const std::string& strCookie);
 
     void AppendHeaderList(const std::string& strHeader);
     bool Perform(const std::string& strUrl);
@@ -38,12 +41,14 @@ protected:
     bool _SetMethodInfo(CURL* pCurl);
     curl_slist* _GetHeaderList(CURL* pCurl);
     void _ClearHeaderList(curl_slist* pHeader);
+    std::string _GetCookie(CURL* pCurl);
 
     static size_t WriteCallback(void* pvData, size_t nSize, size_t nCount, void* pvParam);
     static size_t ProgressCallBack(void *userdata, double dltotal, double dlnow, double ultotal, double ulnow);
 
 private:
     std::vector<std::string>    m_headerList;
+    std::string                 m_strCookie;
     std::string                 m_strConnectAddr;
     zl_uchar*                   m_pPostData;
     IHttpWriter*                m_pWriter;
@@ -54,6 +59,7 @@ private:
     zl_uint32                   m_nPostDataLen;
     HttpMethod                  m_eHttpMethod;
     bool                        m_bEnableSSL;
+    bool                        m_bUseCookie;
 };
 
 NS_ZL_END

@@ -156,13 +156,16 @@
     <ClCompile Include="..\..\Public\z_http\z_mem_writer.cpp" />
     <ClCompile Include="..\..\Public\z_http\z_stream_writer.cpp" />
     <ClCompile Include="Componet\Generater12306.cpp" />
+    <ClCompile Include="Componet\GeneraterZhihu.cpp" />
     <ClCompile Include="Componet\JpgDownloader.cpp" />
+    <ClCompile Include="Componet\ZhihuUrl2Result.cpp" />
     <ClCompile Include="CozySeeker.cpp" />
     <ClCompile Include="Runner\BlockedUrl2ResultRunner.cpp" />
     <ClCompile Include="Runner\BlockedUrl2UrlRunner.cpp" />
     <ClCompile Include="Runner\BlockedUrlGeneraterRunner.cpp" />
     <ClCompile Include="Runner\MultiUrlGeneraterRunner.cpp" />
     <ClCompile Include="Tester\Tester12306.cpp" />
+    <ClCompile Include="Tester\TesterZhihu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Public\z_http\z_curl_warpper.h" />
@@ -178,12 +181,16 @@
     <ClInclude Include="Base\CozySeekerDef.h" />
     <ClInclude Include="Base\Semaphore.h" />
     <ClInclude Include="Componet\Generater12306.h" />
+    <ClInclude Include="Componet\GeneraterZhihu.h" />
     <ClInclude Include="Componet\JpgDownloader.h" />
+    <ClInclude Include="Componet\ZhihuUrl2Result.h" />
+    <ClInclude Include="ConcurrentSet.hpp" />
     <ClInclude Include="Runner\BlockedUrl2ResultRunner.h" />
     <ClInclude Include="Runner\BlockedUrl2UrlRunner.h" />
     <ClInclude Include="Runner\BlockedUrlGeneraterRunner.h" />
     <ClInclude Include="Runner\MultiUrlGeneraterRunner.h" />
     <ClInclude Include="Tester\Tester12306.h" />
+    <ClInclude Include="Tester\TesterZhihu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
