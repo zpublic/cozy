@@ -44,11 +44,13 @@
 
         function onStart() {
             console.log("connection started!");
-            $scope.connection.send("Hello World");
         }
 
         function receivedMsg(msg) {
             msg = new Date().toLocaleString() + '--' + msg;
+            if ($scope.recMsgList.length > 10) {
+                $scope.recMsgList.shift();
+            }
             $scope.recMsgList.push(msg);
             $scope.$apply();
         }
