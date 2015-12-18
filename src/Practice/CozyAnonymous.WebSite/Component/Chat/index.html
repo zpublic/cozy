@@ -1,0 +1,22 @@
+﻿<div class="container">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{title}}</h3>
+        </div>
+        <form class="panel-body">
+            <div class="col-md-12 form-group">
+                <div class="form-control" style="height:400px">
+                    <p ng-repeat="r in recMsgList">{{r}}</p>
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
+                <textarea id="sendContent" class="form-control" ng-model="sendContent"></textarea>
+            </div>
+            <div class="col-md-offset-6 col-md-6 form-group">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" ng-click="sendMsg()">发送</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
