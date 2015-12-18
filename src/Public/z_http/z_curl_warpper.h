@@ -32,6 +32,7 @@ public:
     bool SetProgressCallback(IHttpProgress* pProgressCallback);
     void SetEnableSSL(bool bIsEnable);
     void SetUseCookie(bool bIsUseCookie);
+    void SetUseAutoRedirect(bool bIsAutoRedirect);
     void SetCookie(const std::string& strCookie);
 
     void AppendHeaderList(const std::string& strHeader);
@@ -60,6 +61,7 @@ private:
     HttpMethod                  m_eHttpMethod;
     bool                        m_bEnableSSL;
     bool                        m_bUseCookie;
+    bool                        m_bAutoRedirect;
 };
 
 NS_ZL_END

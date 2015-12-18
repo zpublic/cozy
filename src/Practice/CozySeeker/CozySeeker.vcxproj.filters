@@ -47,6 +47,8 @@
     <ClCompile Include="Componet\ZhihuUrl2Result.cpp">
       <Filter>Componet</Filter>
     </ClCompile>
+    <ClCompile Include="Componet\ZhihuUrl2Url.cpp" />
+    <ClCompile Include="Componet\ZhihuEnvInit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Base">
@@ -132,8 +134,10 @@
     <ClInclude Include="Componet\ZhihuUrl2Result.h">
       <Filter>Componet</Filter>
     </ClInclude>
-    <ClInclude Include="ConcurrentSet.hpp">
+    <ClInclude Include="Base\ConcurrentSet.hpp">
       <Filter>Base</Filter>
     </ClInclude>
+    <ClInclude Include="Componet\ZhihuUrl2Url.h" />
+    <ClInclude Include="Componet\ZhihuEnvInit.h" />
   </ItemGroup>
 </Project>

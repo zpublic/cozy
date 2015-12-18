@@ -158,7 +158,9 @@
     <ClCompile Include="Componet\Generater12306.cpp" />
     <ClCompile Include="Componet\GeneraterZhihu.cpp" />
     <ClCompile Include="Componet\JpgDownloader.cpp" />
+    <ClCompile Include="Componet\ZhihuEnvInit.cpp" />
     <ClCompile Include="Componet\ZhihuUrl2Result.cpp" />
+    <ClCompile Include="Componet\ZhihuUrl2Url.cpp" />
     <ClCompile Include="CozySeeker.cpp" />
     <ClCompile Include="Runner\BlockedUrl2ResultRunner.cpp" />
     <ClCompile Include="Runner\BlockedUrl2UrlRunner.cpp" />
@@ -177,14 +179,16 @@
     <ClInclude Include="..\..\Public\z_http\z_stream_writer.h" />
     <ClInclude Include="Base\AsyncInvoker.hpp" />
     <ClInclude Include="Base\ConcurrentQueue.hpp" />
+    <ClInclude Include="Base\ConcurrentSet.hpp" />
     <ClInclude Include="Base\CozyInterface.h" />
     <ClInclude Include="Base\CozySeekerDef.h" />
     <ClInclude Include="Base\Semaphore.h" />
     <ClInclude Include="Componet\Generater12306.h" />
     <ClInclude Include="Componet\GeneraterZhihu.h" />
     <ClInclude Include="Componet\JpgDownloader.h" />
+    <ClInclude Include="Componet\ZhihuEnvInit.h" />
     <ClInclude Include="Componet\ZhihuUrl2Result.h" />
-    <ClInclude Include="ConcurrentSet.hpp" />
+    <ClInclude Include="Componet\ZhihuUrl2Url.h" />
     <ClInclude Include="Runner\BlockedUrl2ResultRunner.h" />
     <ClInclude Include="Runner\BlockedUrl2UrlRunner.h" />
     <ClInclude Include="Runner\BlockedUrlGeneraterRunner.h" />

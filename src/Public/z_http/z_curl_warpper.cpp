@@ -110,6 +110,13 @@ bool ZLCurlWarpper::Perform(const std::string& strUrl)
     nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_WRITEDATA, static_cast<void*>(m_pWriter));
     if (nRetCode != CURLE_OK) goto Exit0;
 
+    if (!m_bAutoRedirect)
+    {
+        nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_FOLLOWLOCATION, false);
+        ::curl_easy_setopt(pCurl, CURLOPT_MAXREDIRS, 1);
+        if (nRetCode != CURLE_OK) goto Exit0;
+    }
+
     if (m_pProgress != NULL)
     {
         nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_NOPROGRESS, false);
@@ -151,21 +158,21 @@ bool ZLCurlWarpper::Perform(const std::string& strUrl)
         if (nRetCode != CURLE_OK) goto Exit0;
     }
 
-    nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_FOLLOWLOCATION, 1);
+    nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_FOLLOWLOCATION, m_bAutoRedirect);
     if (nRetCode != CURLE_OK) goto Exit0;
 
     nRetCode = ::curl_easy_perform(pCurl);
-
-    ::curl_easy_getinfo(pCurl, CURLINFO_PRIMARY_IP, &strIp);
-    if (strIp)
-    {
-        m_strConnectAddr = std::string(strIp);
-    }
 
     if (nRetCode != CURLE_OK)
     {
         m_nStatusCode = nRetCode;
         goto Exit0;
+    }
+
+    if (strIp)
+    {
+        ::curl_easy_getinfo(pCurl, CURLINFO_PRIMARY_IP, &strIp);
+        m_strConnectAddr = std::string(strIp);
     }
 
     ::curl_easy_getinfo(pCurl, CURLINFO_RESPONSE_CODE, &m_nStatusCode);
@@ -298,6 +305,11 @@ std::string ZLCurlWarpper::_GetCookie(CURL* pCurl)
     }
     ::curl_slist_free_all(cookies);
     return result;
+}
+
+void ZLCurlWarpper::SetUseAutoRedirect(bool bIsAutoRedirect)
+{
+    m_bAutoRedirect = bIsAutoRedirect;
 }
 
 NS_ZL_END
