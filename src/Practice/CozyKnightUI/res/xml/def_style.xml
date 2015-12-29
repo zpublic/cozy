@@ -1,0 +1,8 @@
+﻿<style>
+<class name="msgboxhead" font="0000" crtext="000000" crbg="0B363A"/>
+<class name="msgboxbody" font="0000" crtext="000000" crbg="FFFFFF"/>
+<class name="msgboxfoot"  font="0000" crtext="000000" crbg="0FF0FF"/>
+
+<class name="dlgtitle" font="0004" crtext="4E759A"/>
+<class name="linkimage" cursor="hand"/>
+</style>

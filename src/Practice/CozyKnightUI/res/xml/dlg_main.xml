@@ -1,0 +1,13 @@
+<layer title="BkWin" width="400" height="300" appwin="1" resize="0">
+	<header class="msgboxhead" height="30">
+		<text class="dlgtitle" pos="25,10">BkWin</text>
+		<imgbtn id="1000" class="linkimage" skin="closebtn" pos="-37,1"/>
+	</header>
+
+	<body class="msgboxbody" width="full" height="full">
+    <text class="dlgtitle" pos="25,10">hello word !</text>
+	</body>
+
+	<footer class="msgboxfoot" width="full" height="45">
+	</footer>
+</layer>
