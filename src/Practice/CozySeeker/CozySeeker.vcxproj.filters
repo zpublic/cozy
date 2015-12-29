@@ -38,6 +38,17 @@
     <ClCompile Include="Tester\Tester12306.cpp">
       <Filter>Tester</Filter>
     </ClCompile>
+    <ClCompile Include="Tester\TesterZhihu.cpp">
+      <Filter>Tester</Filter>
+    </ClCompile>
+    <ClCompile Include="Componet\GeneraterZhihu.cpp">
+      <Filter>Componet</Filter>
+    </ClCompile>
+    <ClCompile Include="Componet\ZhihuUrl2Result.cpp">
+      <Filter>Componet</Filter>
+    </ClCompile>
+    <ClCompile Include="Componet\ZhihuUrl2Url.cpp" />
+    <ClCompile Include="Componet\ZhihuEnvInit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Base">
@@ -114,5 +125,19 @@
     <ClInclude Include="Componet\JpgDownloader.h">
       <Filter>Componet</Filter>
     </ClInclude>
+    <ClInclude Include="Tester\TesterZhihu.h">
+      <Filter>Tester</Filter>
+    </ClInclude>
+    <ClInclude Include="Componet\GeneraterZhihu.h">
+      <Filter>Componet</Filter>
+    </ClInclude>
+    <ClInclude Include="Componet\ZhihuUrl2Result.h">
+      <Filter>Componet</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\ConcurrentSet.hpp">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Componet\ZhihuUrl2Url.h" />
+    <ClInclude Include="Componet\ZhihuEnvInit.h" />
   </ItemGroup>
 </Project>

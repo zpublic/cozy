@@ -1,4 +1,5 @@
 #include "z_curl_warpper.h"
+#include <iterator>
 
 NS_ZL_BEGIN
 
@@ -11,6 +12,7 @@ ZLCurlWarpper::ZLCurlWarpper()
     m_pWriter       = NULL;
     m_pProgress     = NULL;
     m_bEnableSSL    = false;
+    m_bUseCookie    = false;
     m_eHttpMethod   = HttpMethod::GetMethod;
     m_nSpeedLimit   = 0;
 }
@@ -108,6 +110,13 @@ bool ZLCurlWarpper::Perform(const std::string& strUrl)
     nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_WRITEDATA, static_cast<void*>(m_pWriter));
     if (nRetCode != CURLE_OK) goto Exit0;
 
+    if (!m_bAutoRedirect)
+    {
+        nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_FOLLOWLOCATION, false);
+        ::curl_easy_setopt(pCurl, CURLOPT_MAXREDIRS, 1);
+        if (nRetCode != CURLE_OK) goto Exit0;
+    }
+
     if (m_pProgress != NULL)
     {
         nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_NOPROGRESS, false);
@@ -136,16 +145,23 @@ bool ZLCurlWarpper::Perform(const std::string& strUrl)
         ::curl_easy_setopt(pCurl, CURLOPT_TIMEOUT, static_cast<curl_off_t>(m_nTimeLimit));
     }
 
-    nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_FOLLOWLOCATION, 1);
+    if (m_bUseCookie)
+    {
+        if (m_strCookie.size() > 0)
+        {
+            nRetCode = curl_easy_setopt(pCurl, CURLOPT_COOKIE, m_strCookie.data());
+        }
+        else
+        {
+            nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_COOKIEFILE, "");
+        }
+        if (nRetCode != CURLE_OK) goto Exit0;
+    }
+
+    nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_FOLLOWLOCATION, m_bAutoRedirect);
     if (nRetCode != CURLE_OK) goto Exit0;
 
     nRetCode = ::curl_easy_perform(pCurl);
-
-    ::curl_easy_getinfo(pCurl, CURLINFO_PRIMARY_IP, &strIp);
-    if (strIp)
-    {
-        m_strConnectAddr = std::string(strIp);
-    }
 
     if (nRetCode != CURLE_OK)
     {
@@ -153,8 +169,19 @@ bool ZLCurlWarpper::Perform(const std::string& strUrl)
         goto Exit0;
     }
 
+    if (strIp)
+    {
+        ::curl_easy_getinfo(pCurl, CURLINFO_PRIMARY_IP, &strIp);
+        m_strConnectAddr = std::string(strIp);
+    }
+
     ::curl_easy_getinfo(pCurl, CURLINFO_RESPONSE_CODE, &m_nStatusCode);
     if (m_nStatusCode == 200) bRet = true;
+
+    if (m_bUseCookie)
+    {
+        m_strCookie = _GetCookie(pCurl);
+    }
 
 Exit0:
     if (pCurl)
@@ -238,9 +265,51 @@ void ZLCurlWarpper::SetSpeedLimit(zl_int32 nSpeedLimit)
 {
     m_nSpeedLimit = nSpeedLimit;
 }
+
 std::string ZLCurlWarpper::GetConnectAddr() const
 {
     return m_strConnectAddr;
+}
+
+void ZLCurlWarpper::SetUseCookie(bool bIsUseCookie)
+{
+    m_bUseCookie = bIsUseCookie;
+}
+
+std::string ZLCurlWarpper::GetCookie() const
+{
+    return m_strCookie;
+}
+
+void ZLCurlWarpper::SetCookie(const std::string& strCookie)
+{
+    m_strCookie = strCookie;
+}
+
+std::string ZLCurlWarpper::_GetCookie(CURL* pCurl)
+{
+    struct curl_slist *cookies  = nullptr;
+    struct curl_slist *nc       = nullptr;
+    std::string result;
+
+    auto res = ::curl_easy_getinfo(pCurl, CURLINFO_COOKIELIST, &cookies);
+    if (res != CURLE_OK)
+    {
+        return "";
+    }
+    nc = cookies;
+    while (nc)
+    {
+        std::copy(nc->data, nc->data + std::strlen(nc->data), std::back_inserter(result));
+        nc = nc->next;
+    }
+    ::curl_slist_free_all(cookies);
+    return result;
+}
+
+void ZLCurlWarpper::SetUseAutoRedirect(bool bIsAutoRedirect)
+{
+    m_bAutoRedirect = bIsAutoRedirect;
 }
 
 NS_ZL_END

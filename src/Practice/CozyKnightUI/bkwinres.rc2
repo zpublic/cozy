@@ -1,0 +1,10 @@
+#pragma once
+
+//////////////////////////////////////////////////////////////////////////
+// XML
+DEFINE_SKIN("res\\xml\\def_skin.xml")
+DEFINE_STYLE("res\\xml\\def_style.xml")
+DEFINE_STRING("res\\xml\\def_string.xml")
+
+DEFINE_XML(IDR_MAIN, 100, "res\\xml\\dlg_main.xml")
+DEFINE_PNG(IDR_PNG111, 11111, "res\\png\\xxx.png")

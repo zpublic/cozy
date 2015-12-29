@@ -1,0 +1,8 @@
+<layer title="Cozy Knight" width="800" height="510" appwin="1" resize="0">
+	<header class="main_header_style" height="30">
+		<text class="dlgtitle" pos="25,10">CozyKnight</text>
+	</header>
+	<body class="msgboxbody" width="full" height="full">
+		<imgbtn skin="hehehe" pos="40,40"></imgbtn>123
+	</body>
+</layer>

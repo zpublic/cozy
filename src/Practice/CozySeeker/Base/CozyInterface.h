@@ -11,6 +11,12 @@ public:
     virtual void Test() = 0;
 };
 
+class ISeekerEnvInit
+{
+public:
+    virtual bool Init() = 0;
+};
+
 class IUrlIn
 {
 public:
