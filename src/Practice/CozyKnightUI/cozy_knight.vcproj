@@ -417,10 +417,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\Public\3rd\BkWin\BkWin\CBkListItem.h"
-					>
-				</File>
-				<File
 					RelativePath="..\..\Public\3rd\BkWin\BkWin\CBkListScrollBar.h"
 					>
 				</File>
@@ -566,6 +562,10 @@
 				</File>
 				<File
 					RelativePath="..\..\Public\3rd\BkWin\wtl\atlwinx.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\Public\3rd\BkWin\BkWin\CBkListItem.h"
 					>
 				</File>
 			</Filter>
