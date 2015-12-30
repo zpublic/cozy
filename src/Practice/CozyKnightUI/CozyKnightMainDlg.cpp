@@ -12,6 +12,11 @@ CozyKnightMainDlg::~CozyKnightMainDlg()
 
 }
 
+BOOL CozyKnightMainDlg::OnInitDialog(CWindow /*wndFocus*/, LPARAM /*lInitParam*/)
+{
+    return True;
+}
+
 void CozyKnightMainDlg::OnBtnClose()
 {
 	EndDialog(IDCLOSE);

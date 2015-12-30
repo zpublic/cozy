@@ -1,3 +1,4 @@
 ﻿<skins>
-	<png name="hehehe" src="11111"/>
+    <png name="progress_bkg" src="1000"/>
+    <png name="progress_pos" src="1001"/>
 </skins>
