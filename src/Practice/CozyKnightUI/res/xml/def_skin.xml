@@ -1,4 +1,5 @@
 ﻿<skins>
     <png name="progress_bkg" src="1000"/>
     <png name="progress_pos" src="1001"/>
+    <button name="normalbtn" border="7D9EBC" bg="FBFCFD" bgup="FEFEFE" bgdown="C6E2FD" bguphover="FEFEFE" bgdownhover="DBEDFE" bguppush="C6E2FD" bgdownpush="FEFEFE" />
 </skins>

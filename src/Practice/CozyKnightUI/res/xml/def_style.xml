@@ -3,5 +3,6 @@
 <class name="msgboxbody" font="0000" crtext="000000" crbg="FFFFFF"/>
 
 <class name="dlgtitle" font="0004" crtext="4E759A"/>
+<class name="normalbtn" skin="normalbtn" font="0000" crtext="000000" textmode="25" cursor="hand" x-margin="5" />
 <class name="main_def_button_style" font="0004"/>
 </style>
