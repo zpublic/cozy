@@ -1,87 +1,90 @@
-<layer title="Cozy Knight" width="800" height="510" appwin="1" resize="0">
+﻿<layer title="Cozy Knight" width="800" height="510" appwin="1" resize="0">
     <header class="main_header_style" height="30">
         <text class="dlgtitle" pos="25,10">CozyKnight</text>
     </header>
     <body class="msgboxbody" width="full" height="full">
-        <button id="1" class="main_def_button_style" pos="10,20,82,40">选择程序</button>
-        <progress id="2" pos="92,20,780,40" min="0" max="100" value="25" showpercent="1" posskin="progress_pos" show="1" />
-        <hr pos="0,50,800,50" size="2"/>
-        <button id="3" class="main_def_button_style" pos="12,70,62,94">新建</button>
-        <button id="4" class="main_def_button_style" pos="70,70,120,94">删除</button>
-        <button id="5" class="main_def_button_style" pos="130,70,180,94">清空</button>
-        <button id="6" class="main_def_button_style" pos="12,100,92,100">清空</button>
-        <button id="7" class="main_def_button_style" pos="100,100,180,100">清空</button>
-        <listwnd id="8" pos="10,134,178,470" supportgdi="1" crbg="EFF3F7">
-            <listitem height="32">
-				<text pos="0,0,-0,-0">任务一</text>
-            </listitem>
-            <listitem height="32">
-				<text pos="0,0,-0,-0">任务二</text>
-            </listitem>
-			<listitem height="32">
-					<text pos="0,0,-0,-0">任务三</text>
-            </listitem>
-        </listwnd>
-		<richtext2 id="11" pos="215,70,419,94">
-			<text>hello</text>
-		</richtext2>
-		<listwnd id="9" pos="204,106,792,234" supportgdi="1" crbg="EFF3F7"  externline="1">
-            <listitem height="32">
-				<dlg pos="0,0,-0,-0">
-					<text pos="0,0,235,-0">地址</text>
-					<text pos="235,0,352,-0">类型</text>
-					<text pos="352,0,588,-0">数值</text>
-				</dlg>
-            </listitem>
-            <listitem height="32">
-				<dlg pos="0,0,-0,-0">
-					<text pos="0,0,235,-0">0x1000</text>
-					<text pos="235,0,352,-0">4 bytes</text>
-					<text pos="352,0,588,-0">42</text>
-				</dlg>
-            </listitem>
-			<listitem height="32">
-				<dlg pos="0,0,-0,-0">
-					<text pos="0,0,235,-0">0x1004</text>
-					<text pos="235,0,352,-0">4 bytes</text>
-					<text pos="352,0,588,-0">233</text>
-				</dlg>
-            </listitem>
-			<listitem height="32">
-				<dlg pos="0,0,-0,-0">
-					<text pos="0,0,235,-0">0x1008</text>
-					<text pos="235,0,352,-0">4 bytes</text>
-					<text pos="352,0,588,-0">512</text>
-				</dlg>
-            </listitem>
-			<listitem height="32">
-				<dlg pos="0,0,-0,-0">
-					<text pos="0,0,235,-0">0x1012</text>
-					<text pos="235,0,352,-0">4 bytes</text>
-					<text pos="352,0,588,-0">666</text>
-				</dlg>
-            </listitem>
-        </listwnd>
-		<hr pos="190,50,190,486" size="2"/>
-		<listwnd id="10" pos="204,252,792,470" supportgdi="1" crbg="EFF3F7">
-            <listitem height="32">
-				<dlg pos="0,0,-0,-0">
-					<text pos="0,0,117,-0">名称</text>
-					<text pos="117,0,234,-0">地址</text>
-					<text pos="234,0,351,-0">类型</text>
-					<text pos="351,0,468,-0">数值</text>
-					<text pos="468,0,588,-0">锁定</text>
-				</dlg>
-            </listitem>
-            <listitem height="32">
-				<dlg pos="0,0,-0,-0">
-					<text pos="0,0,117,-0">地址1</text>
-					<text pos="117,0,234,-0">0x1000</text>
-					<text pos="234,0,351,-0">4 bytes</text>
-					<text pos="351,0,468,-0">2147483647</text>
-					<check pos="468,0,588,-0"></check>
-				</dlg>
-            </listitem>
-        </listwnd>
+        <dlg pos="0,0,-0,-0">
+            <button id="1" class="normalbtn" pos="10,20,82,40">选择程序</button>
+            <progress id="2" pos="92,20,780,40" min="0" max="100" value="25" showpercent="1" posskin="progress_pos" show="1" />
+            <hr pos="0,50,800,50" size="2"/>
+            <button id="3" class="normalbtn" pos="12,70,62,94">新建</button>
+            <button id="4" class="normalbtn" pos="70,70,120,94">删除</button>
+            <button id="5" class="normalbtn" pos="130,70,180,94">清空</button>
+            <button id="6" class="normalbtn" pos="12,100,92,124">导入</button>
+            <button id="7" class="normalbtn" pos="100,100,180,124">导出</button>
+            <listwnd id="8" pos="10,134,178,470" supportgdi="1" crbg="EFF3F7">
+                <listitem height="32">
+                    <text pos="0,0,-0,-0">任务一</text>
+                </listitem>
+                <listitem height="32">
+                    <text pos="0,0,-0,-0">任务二</text>
+                </listitem>
+                <listitem height="32">
+                    <text pos="0,0,-0,-0">任务三</text>
+                </listitem>
+            </listwnd>
+            <text pos="215,70,245,94">数值</text>
+            <realwnd id="11" pos="245,70,419,94"/>
+            <realwnd id="12" pos="440,70,670,184"/>
+            <button id="13" class="normalbtn"  pos="690,70,762,94">搜索</button>
+            <listwnd id="9" pos="204,106,792,234" supportgdi="1" crbg="EFF3F7"  externline="1">
+                <listitem height="32">
+                    <dlg pos="0,0,-0,-0">
+                        <text pos="0,0,235,-0">地址</text>
+                        <text pos="235,0,352,-0">类型</text>
+                        <text pos="352,0,588,-0">数值</text>
+                    </dlg>
+                </listitem>
+                <listitem height="32">
+                    <dlg pos="0,0,-0,-0">
+                        <text pos="0,0,235,-0">0x1000</text>
+                        <text pos="235,0,352,-0">4 bytes</text>
+                        <text pos="352,0,588,-0">42</text>
+                    </dlg>
+                </listitem>
+                <listitem height="32">
+                    <dlg pos="0,0,-0,-0">
+                        <text pos="0,0,235,-0">0x1004</text>
+                        <text pos="235,0,352,-0">4 bytes</text>
+                        <text pos="352,0,588,-0">233</text>
+                    </dlg>
+                </listitem>
+                <listitem height="32">
+                    <dlg pos="0,0,-0,-0">
+                        <text pos="0,0,235,-0">0x1008</text>
+                        <text pos="235,0,352,-0">4 bytes</text>
+                        <text pos="352,0,588,-0">512</text>
+                    </dlg>
+                </listitem>
+                <listitem height="32">
+                    <dlg pos="0,0,-0,-0">
+                        <text pos="0,0,235,-0">0x1012</text>
+                        <text pos="235,0,352,-0">4 bytes</text>
+                        <text pos="352,0,588,-0">666</text>
+                    </dlg>
+                </listitem>
+            </listwnd>
+            <hr pos="190,50,190,486" size="2"/>
+            <listwnd id="10" pos="204,252,792,470" supportgdi="1" crbg="EFF3F7">
+                <listitem height="32">
+                    <dlg pos="0,0,-0,-0">
+                        <text pos="0,0,117,-0">名称</text>
+                        <text pos="117,0,234,-0">地址</text>
+                        <text pos="234,0,351,-0">类型</text>
+                        <text pos="351,0,468,-0">数值</text>
+                        <text pos="468,0,588,-0">锁定</text>
+                    </dlg>
+                </listitem>
+                <listitem height="32">
+                    <dlg pos="0,0,-0,-0">
+                        <text pos="0,0,117,-0">地址1</text>
+                        <text pos="117,0,234,-0">0x1000</text>
+                        <text pos="234,0,351,-0">4 bytes</text>
+                        <text pos="351,0,468,-0">2147483647</text>
+                        <check pos="468,0,588,-0"></check>
+                    </dlg>
+                </listitem>
+            </listwnd>
+        </dlg>
     </body>
 </layer>
