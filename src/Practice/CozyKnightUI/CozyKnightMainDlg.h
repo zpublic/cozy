@@ -14,7 +14,6 @@ public:
 	};
 
 protected:
-
 	BK_NOTIFY_MAP(IDC_RICHVIEW_WIN_EX)
 		BK_NOTIFY_ID_COMMAND(IDC_BTN_CLOSE, OnBtnClose)
 	BK_NOTIFY_MAP_END()
@@ -32,6 +31,8 @@ protected:
 	void OnSysCommand(UINT nID, CPoint point);
 
 private:
-    CEdit       m_edtValue;
-    CComboBox   m_comboValueType;
+    CEdit           m_edtValue;
+    CComboBox       m_comboValueType;
+    CListViewCtrl   m_searchList;
+    CListViewCtrl   m_selectList;
 };
