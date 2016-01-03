@@ -1,0 +1,17 @@
+﻿<layer title="Cozy Knight" width="300" height="630" appwin="1" resize="0">
+    <header class="main_header_style" height="30">
+        <text class="dlgtitle" pos="25,10">选择进程</text>
+        <button id="1000" pos="-20,1">X</button>
+    </header>
+    <body class="msgboxbody" width="full" height="full">
+        <dlg pos="0,0,-0,-0">
+            <listwnd id="1001" pos="10,10,290,543" supportgdi="1" crbg="EFF3F7">
+                    <listitem height="20">
+                        <text pos="0,0,-0,-0">任务一</text>
+                    </listitem>
+            </listwnd>
+                <button id="1002" class="normalbtn" pos="10,553,140,577">确定</button>
+                <button id="1003" class="normalbtn" pos="160,553,290,577">取消</button>
+        </dlg>
+    </body>
+</layer>

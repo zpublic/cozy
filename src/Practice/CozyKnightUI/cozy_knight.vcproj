@@ -225,6 +225,10 @@
 					RelativePath=".\res\xml\dlg_main.xml"
 					>
 				</File>
+				<File
+					RelativePath=".\res\xml\dlg_select_target.xml"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -597,6 +601,14 @@
 		</File>
 		<File
 			RelativePath=".\CozyKnightMainDlg.h"
+			>
+		</File>
+		<File
+			RelativePath=".\CozyKnightSelectTargetDlg.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\CozyKnightSelectTargetDlg.h"
 			>
 		</File>
 		<File
