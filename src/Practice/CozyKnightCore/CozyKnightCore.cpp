@@ -14,7 +14,7 @@ CozyKnightCore::~CozyKnightCore()
     Detch();
 }
 
-BOOL CozyKnightCore::SearchFirst(HANDLE hProcess, const MemoryTester lpTester, DWORD dwSize, std::vector<AddressInfo>& vecResult)
+BOOL CozyKnightCore::SearchFirst(const MemoryTester& lpTester, DWORD dwSize, std::vector<AddressInfo>& vecResult)
 {
     MEMORY_BASIC_INFORMATION mbi;
     ::ZeroMemory(&mbi, sizeof(mbi));
@@ -23,19 +23,18 @@ BOOL CozyKnightCore::SearchFirst(HANDLE hProcess, const MemoryTester lpTester, D
     LPBYTE lpMemAddress     = 0;
     BOOL bReadRet           = FALSE;
 
-    while(::VirtualQueryEx(hProcess, lpMemAddress, &mbi, sizeof(mbi)))
+    while(::VirtualQueryEx(m_hTarget, lpMemAddress, &mbi, sizeof(mbi)))
     {
-        if(mbi.Type == MEM_PRIVATE && (mbi.Protect & PAGE_EXECUTE) && (mbi.Protect & PAGE_READWRITE))
+        if(mbi.Type == MEM_PRIVATE && (mbi.Protect & PAGE_READWRITE) && mbi.State == MEM_COMMIT)
         {
             vecData.resize(mbi.RegionSize);
-            if(::ReadProcessMemory(hProcess, lpMemAddress, &vecData[0], mbi.RegionSize, NULL))
+            if(::ReadProcessMemory(m_hTarget, lpMemAddress, &vecData[0], mbi.RegionSize, NULL))
             {
                 for(DWORD i = 0; i < mbi.RegionSize; i+=dwSize)
                 {
-                    AddressInfo tAddress(hProcess, lpMemAddress);
-                    if(lpTester(tAddress))
+                    if(lpTester(&vecData[i]))
                     {
-                        vecResult.push_back(tAddress);
+                        vecResult.push_back(AddressInfo(m_hTarget, lpMemAddress + i));
                     }
                 }
             }
@@ -45,7 +44,7 @@ BOOL CozyKnightCore::SearchFirst(HANDLE hProcess, const MemoryTester lpTester, D
     return true;
 }
 
-BOOL CozyKnightCore::Search(std::vector<AddressInfo>& vecSource, const MemoryTester lpTester)
+BOOL CozyKnightCore::Search(std::vector<AddressInfo>& vecSource, const MemoryTester& lpTester)
 {
     if(vecSource.size() == 0)
     {

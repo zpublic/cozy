@@ -12,7 +12,7 @@ AddressInfo::~AddressInfo(void)
 
 }
 
-BOOL AddressInfo::Read(LPBYTE lpBuffer, DWORD dwSize)
+BOOL AddressInfo::Read(LPBYTE lpBuffer, DWORD dwSize) const
 {
     if(m_hTarget != NULL && m_lpAddress != NULL)
     {

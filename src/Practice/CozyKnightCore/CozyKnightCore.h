@@ -15,11 +15,24 @@ public:
 
     }
 
-    BOOL operator()(const AddressInfo info) const
+    BOOL operator()(const AddressInfo& info) const
     {
         if(m_lpData != NULL && info.GetAddress() != NULL && m_dwSize > 0)
         {
-            return !::memcmp(m_lpData, info.GetAddress(), m_dwSize);
+            std::vector<BYTE> vecBuffer;
+            vecBuffer.resize(m_dwSize);
+            info.Read(&vecBuffer[0], m_dwSize);
+
+            return (*this)(&vecBuffer[0]);
+        }
+        return false;
+    }
+
+    BOOL operator()(LPBYTE lpData) const
+    {
+        if(m_lpData != NULL && lpData != NULL && m_dwSize > 0)
+        {
+            return !::memcmp(m_lpData, lpData, m_dwSize);
         }
         return false;
     }
@@ -34,9 +47,9 @@ public:
     CozyKnightCore();
     ~CozyKnightCore();
 
-    BOOL SearchFirst(HANDLE hProcess, const MemoryTester lpTester, DWORD dwSize, std::vector<AddressInfo>& vecResult);
+    BOOL SearchFirst(const MemoryTester& lpTester, DWORD dwSize, std::vector<AddressInfo>& vecResult);
 
-    BOOL Search(std::vector<AddressInfo>& vecSource, const MemoryTester lpTester);
+    BOOL Search(std::vector<AddressInfo>& vecSource, const MemoryTester& lpTester);
 
     void Attch(HANDLE hProcess);
     void Detch();
