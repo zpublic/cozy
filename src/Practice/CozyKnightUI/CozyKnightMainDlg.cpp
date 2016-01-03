@@ -73,18 +73,3 @@ void CozyKnightMainDlg::OnBtnClose()
 {
 	EndDialog(IDCLOSE);
 }
-
-void CozyKnightMainDlg::OnSysCommand(UINT nID, CPoint point)
-{
-	if(nID == SC_CLOSE)
-	{
-		if( ::IsWindowEnabled(m_hWnd))
-		{
-			OnBtnClose();
-		}
-	}
-	else
-	{
-		SetMsgHandled(FALSE);
-	}
-}

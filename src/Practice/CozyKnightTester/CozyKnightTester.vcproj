@@ -17,7 +17,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\..\bin\"
+			OutputDirectory="$(ProjectDir)..\..\..\bin\"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="C:\Users\AngelC\Documents\cozy\src\Practice\CozyKnightCore\"
+				AdditionalIncludeDirectories="$(ProjectDir)..\CozyKnightCore\"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -63,7 +63,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="CozyKnightCore.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="C:\Users\AngelC\Documents\cozy\src\bin\"
+				AdditionalLibraryDirectories="$(ProjectDir)..\..\..\bin\"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -95,7 +95,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\bin\"
+			OutputDirectory="$(ProjectDir)..\..\..\bin\"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
@@ -118,7 +118,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="C:\Users\AngelC\Documents\cozy\src\Practice\CozyKnightCore\"
+				AdditionalIncludeDirectories="$(ProjectDir)..\CozyKnightCore\"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -139,7 +139,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="CozyKnightCore.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="C:\Users\AngelC\Documents\cozy\src\bin\"
+				AdditionalLibraryDirectories="$(ProjectDir)..\..\..\bin\"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"

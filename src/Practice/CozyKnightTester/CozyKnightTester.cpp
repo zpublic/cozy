@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "CozyKnightCore.h"
 #include <iostream>
+#include "CozyTask.h"
 
 union TestBlock
 {
@@ -23,21 +24,24 @@ int _tmain(int argc, _TCHAR* argv[])
         TestBlock data;
         data.dwValue = 42;
 
-        std::vector<AddressInfo> vecData;
-        core.SearchFirst(MemoryTester(data.Data, 4), 4, vecData);
-        std::cout << vecData.size() << std::endl;
+        CozyTask task;
+        core.SearchFirst(MemoryTester(data.Data, 4), 4, task);
+        std::cout << task.GetLength() << std::endl;
 
-        for(int i = 0; i < vecData.size(); ++i)
+        const AddressInfo* p = task.GetData();
+        for(int i = 0; i < task.GetLength(); ++i)
         {
-            std::printf("%p\n", vecData[i].GetAddress());
+            std::printf("%p\n", p[i].GetAddress());
         }
 
         system("pause");
         data.dwValue = 666;
-        core.Search(vecData, MemoryTester(data.Data, 4));
-        for(int i = 0; i < vecData.size(); ++i)
+        core.Search(task, MemoryTester(data.Data, 4));
+
+        p = task.GetData();
+        for(int i = 0; i < task.GetLength(); ++i)
         {
-            std::printf("%p\n", vecData[i].GetAddress());
+            std::printf("%p\n", p[i].GetAddress());
         }
 
         core.Detch();

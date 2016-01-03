@@ -14,7 +14,7 @@ CozyKnightCore::~CozyKnightCore()
     Detch();
 }
 
-BOOL CozyKnightCore::SearchFirst(const MemoryTester& lpTester, DWORD dwSize, std::vector<AddressInfo>& vecResult)
+BOOL CozyKnightCore::SearchFirst(const MemoryTester& tester, DWORD dwSize, CozyTask& taskResult)
 {
     MEMORY_BASIC_INFORMATION mbi;
     ::ZeroMemory(&mbi, sizeof(mbi));
@@ -32,9 +32,9 @@ BOOL CozyKnightCore::SearchFirst(const MemoryTester& lpTester, DWORD dwSize, std
             {
                 for(DWORD i = 0; i < mbi.RegionSize; i+=dwSize)
                 {
-                    if(lpTester(&vecData[i]))
+                    if(tester(&vecData[i]))
                     {
-                        vecResult.push_back(AddressInfo(m_hTarget, lpMemAddress + i));
+                        taskResult.AddAddress(AddressInfo(m_hTarget, lpMemAddress + i));
                     }
                 }
             }
@@ -44,14 +44,14 @@ BOOL CozyKnightCore::SearchFirst(const MemoryTester& lpTester, DWORD dwSize, std
     return true;
 }
 
-BOOL CozyKnightCore::Search(std::vector<AddressInfo>& vecSource, const MemoryTester& lpTester)
+BOOL CozyKnightCore::Search(CozyTask& taskSource, const MemoryTester& tester)
 {
-    if(vecSource.size() == 0)
+    if(taskSource.GetLength() == 0)
     {
         return FALSE;
     }
+    taskSource.ApplyFilter(tester);
 
-    vecSource.erase(std::remove_if(vecSource.begin(), vecSource.end(), lpTester), vecSource.end());
     return TRUE;
 }
 
