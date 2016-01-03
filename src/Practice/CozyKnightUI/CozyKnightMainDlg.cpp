@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "CozyKnightMainDlg.h"
+#include "CozyKnightSelectTargetDlg.h"
 
 CozyKnightMainDlg::CozyKnightMainDlg(void)
 	:CBkDialogViewImplEx<CozyKnightMainDlg>(IDR_MAIN)
@@ -72,4 +73,15 @@ BOOL CozyKnightMainDlg::OnInitDialog(CWindow /*wndFocus*/, LPARAM /*lInitParam*/
 void CozyKnightMainDlg::OnBtnClose()
 {
 	EndDialog(IDCLOSE);
+}
+
+void CozyKnightMainDlg::OnSelectTarget()
+{
+    HANDLE hTarget = NULL;
+    CozyKnightSelectTargetDlg dlg(hTarget);
+    dlg.DoModal(m_hWnd);
+    if(hTarget != NULL)
+    {
+        m_core.Attch(hTarget);
+    }
 }
