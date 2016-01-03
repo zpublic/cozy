@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cozy_knight", "..\src\Practice\CozyKnightUI\cozy_knight.vcproj", "{F66EACAE-FFA6-4102-B60D-369DC176C7B5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CozyKnightCore", "CozyKnightCore\CozyKnightCore.vcproj", "{E3F08B51-854A-4EDE-9226-C02FBC9249DC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CozyKnightTester", "..\src\Practice\CozyKnightTester\CozyKnightTester.vcproj", "{0E4438A7-B888-4F53-B3C5-006D6EA8597B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CozyKnightCore", "..\src\Practice\CozyKnightCore\CozyKnightCore.vcproj", "{E3F08B51-854A-4EDE-9226-C02FBC9249DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F66EACAE-FFA6-4102-B60D-369DC176C7B5}.Debug|Win32.Build.0 = Debug|Win32
 		{F66EACAE-FFA6-4102-B60D-369DC176C7B5}.Release|Win32.ActiveCfg = Release|Win32
 		{F66EACAE-FFA6-4102-B60D-369DC176C7B5}.Release|Win32.Build.0 = Release|Win32
+		{0E4438A7-B888-4F53-B3C5-006D6EA8597B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0E4438A7-B888-4F53-B3C5-006D6EA8597B}.Debug|Win32.Build.0 = Debug|Win32
+		{0E4438A7-B888-4F53-B3C5-006D6EA8597B}.Release|Win32.ActiveCfg = Release|Win32
+		{0E4438A7-B888-4F53-B3C5-006D6EA8597B}.Release|Win32.Build.0 = Release|Win32
 		{E3F08B51-854A-4EDE-9226-C02FBC9249DC}.Debug|Win32.ActiveCfg = Debug|Win32
 		{E3F08B51-854A-4EDE-9226-C02FBC9249DC}.Debug|Win32.Build.0 = Debug|Win32
 		{E3F08B51-854A-4EDE-9226-C02FBC9249DC}.Release|Win32.ActiveCfg = Release|Win32
