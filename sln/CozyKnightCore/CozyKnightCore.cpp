@@ -1,15 +1,21 @@
 #include "stdafx.h"
 #include "CozyKnightCore.h"
 #include <vector>
+#include <algorithm>
 
-BOOL CozyKnightCore::EnumMem(DWORD dwPid, EnumCallback lpfnCallback, DWORD dwSize)
+CozyKnightCore::CozyKnightCore()
+    :m_hTarget(NULL)
 {
-    HANDLE hProcess = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, dwPid);
-    if(hProcess == NULL)
-    {
-        return false;
-    }
 
+}
+
+CozyKnightCore::~CozyKnightCore()
+{
+    Detch();
+}
+
+BOOL CozyKnightCore::SearchFirst(HANDLE hProcess, const MemoryTester lpTester, DWORD dwSize, std::vector<AddressInfo>& vecResult)
+{
     MEMORY_BASIC_INFORMATION mbi;
     ::ZeroMemory(&mbi, sizeof(mbi));
 
@@ -26,11 +32,42 @@ BOOL CozyKnightCore::EnumMem(DWORD dwPid, EnumCallback lpfnCallback, DWORD dwSiz
             {
                 for(DWORD i = 0; i < mbi.RegionSize; i+=dwSize)
                 {
-                    lpfnCallback(&vecData[i]);
+                    AddressInfo tAddress(hProcess, lpMemAddress);
+                    if(lpTester(tAddress))
+                    {
+                        vecResult.push_back(tAddress);
+                    }
                 }
             }
         }
         lpMemAddress += mbi.RegionSize;
     }
     return true;
+}
+
+BOOL CozyKnightCore::Search(std::vector<AddressInfo>& vecSource, const MemoryTester lpTester)
+{
+    if(vecSource.size() == 0)
+    {
+        return FALSE;
+    }
+
+    vecSource.erase(std::remove_if(vecSource.begin(), vecSource.end(), lpTester), vecSource.end());
+    return TRUE;
+}
+
+void CozyKnightCore::Attch(HANDLE hProcess)
+{
+    Detch();
+
+    m_hTarget = hProcess;
+}
+
+void CozyKnightCore::Detch()
+{
+    if(m_hTarget != NULL)
+    {
+        ::CloseHandle(m_hTarget);
+        m_hTarget = NULL;
+    }
 }
