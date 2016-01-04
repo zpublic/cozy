@@ -44,7 +44,7 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="4"
@@ -117,7 +117,7 @@
 				Name="VCCLCompilerTool"
 				PreprocessorDefinitions="API_EXPORT"
 				RuntimeLibrary="2"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
@@ -188,6 +188,10 @@
 			>
 		</File>
 		<File
+			RelativePath=".\CozyInterface.h"
+			>
+		</File>
+		<File
 			RelativePath=".\CozyKnightCore.cpp"
 			>
 		</File>
@@ -205,6 +209,10 @@
 		</File>
 		<File
 			RelativePath=".\CozyTask.h"
+			>
+		</File>
+		<File
+			RelativePath=".\MemoryTester.cpp"
 			>
 		</File>
 		<File

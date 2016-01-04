@@ -14,7 +14,23 @@ CozyKnightCore::~CozyKnightCore()
     Detch();
 }
 
-BOOL CozyKnightCore::SearchFirst(const MemoryTester& tester, DWORD dwSize, CozyTask& taskResult)
+void CozyKnightCore::Attch(HANDLE hProcess)
+{
+    Detch();
+
+    m_hTarget = hProcess;
+}
+
+void CozyKnightCore::Detch()
+{
+    if(m_hTarget != NULL)
+    {
+        ::CloseHandle(m_hTarget);
+        m_hTarget = NULL;
+    }
+}
+
+BOOL CozyKnightCore::SearchFirst(const IMemoryTester& tester, DWORD dwSize, ITask& taskResult)
 {
     MEMORY_BASIC_INFORMATION mbi;
     ::ZeroMemory(&mbi, sizeof(mbi));
@@ -32,7 +48,7 @@ BOOL CozyKnightCore::SearchFirst(const MemoryTester& tester, DWORD dwSize, CozyT
             {
                 for(DWORD i = 0; i < mbi.RegionSize; i+=dwSize)
                 {
-                    if(tester(&vecData[i]))
+                    if(tester.TestMem(&vecData[i]))
                     {
                         taskResult.AddAddress(AddressInfo(m_hTarget, lpMemAddress + i));
                     }
@@ -44,7 +60,7 @@ BOOL CozyKnightCore::SearchFirst(const MemoryTester& tester, DWORD dwSize, CozyT
     return true;
 }
 
-BOOL CozyKnightCore::Search(CozyTask& taskSource, const MemoryTester& tester)
+BOOL CozyKnightCore::Search(ITask& taskSource, const IProcessMemoryTester& tester)
 {
     if(taskSource.GetLength() == 0)
     {
@@ -53,20 +69,4 @@ BOOL CozyKnightCore::Search(CozyTask& taskSource, const MemoryTester& tester)
     taskSource.ApplyFilter(tester);
 
     return TRUE;
-}
-
-void CozyKnightCore::Attch(HANDLE hProcess)
-{
-    Detch();
-
-    m_hTarget = hProcess;
-}
-
-void CozyKnightCore::Detch()
-{
-    if(m_hTarget != NULL)
-    {
-        ::CloseHandle(m_hTarget);
-        m_hTarget = NULL;
-    }
 }

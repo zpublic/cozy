@@ -2,41 +2,17 @@
 #define __COZY_MEMORY_TESTER__
 
 #include "stdafx.h"
-#include "CozyDef.h"
-#include "AddressInfo.h"
-#include <vector>
+#include "CozyInterface.h"
 
-
-class COZY_API MemoryTester
+class COZY_API MemoryTester : public IProcessMemoryTester
 {
 public:
-    MemoryTester(LPBYTE lpData, DWORD dwSize)
-        :m_lpData(lpData), m_dwSize(dwSize)
-    {
+    MemoryTester(LPBYTE lpData, DWORD dwSize);
 
-    }
+    // IProcessMemoryTester
+    virtual BOOL TestMem(LPBYTE lpData) const;
+    virtual BOOL TestProcMem(const AddressInfo& info) const;
 
-    BOOL operator()(const AddressInfo& info) const
-    {
-        if(m_lpData != NULL && info.GetAddress() != NULL && m_dwSize > 0)
-        {
-            std::vector<BYTE> vecBuffer;
-            vecBuffer.resize(m_dwSize);
-            info.Read(&vecBuffer[0], m_dwSize);
-
-            return (*this)(&vecBuffer[0]);
-        }
-        return false;
-    }
-
-    BOOL operator()(LPBYTE lpData) const
-    {
-        if(m_lpData != NULL && lpData != NULL && m_dwSize > 0)
-        {
-            return !::memcmp(m_lpData, lpData, m_dwSize);
-        }
-        return false;
-    }
 private:
     LPBYTE  m_lpData;
     DWORD   m_dwSize;

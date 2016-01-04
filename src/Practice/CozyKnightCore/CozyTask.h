@@ -2,21 +2,22 @@
 #define __COZY_KNIGHT_TASK__
 
 #include "stdafx.h"
-#include "CozyDef.h"
-#include "AddressInfo.h"
-#include "MemoryTester.h"
+#include "CozyInterface.h"
+#include <vector>
 
-class COZY_API CozyTask
+class AddressInfo;
+
+class COZY_API CozyTask : public ITask
 {
 public:
     CozyTask(void);
     ~CozyTask(void);
 
-    void AddAddress(const AddressInfo& addr);
-    void Clear();
-    void ApplyFilter(const MemoryTester& tester);
-    size_t GetLength() const;
-    const AddressInfo* GetData() const;
+    virtual void AddAddress(const AddressInfo& addr);
+    virtual void Clear();
+    virtual void ApplyFilter(const IProcessMemoryTester& tester);
+    virtual size_t GetLength() const;
+    virtual const AddressInfo* GetData() const;
 
 private:
     std::vector<AddressInfo> m_vecAddrList;
