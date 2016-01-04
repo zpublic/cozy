@@ -7,7 +7,7 @@ interface IKnight
     virtual void Release()                                  = 0;
 
     virtual void Attach(HANDLE hProcess)                    = 0;
-    virtual void Detch()                                    = 0;
+    virtual void Detach()                                   = 0;
 
     virtual IKnightTask CreateTask()                        = 0;
     virtual int GetTaskCount()                              = 0;
