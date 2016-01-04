@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyRemote.Operator", "..\src\Practice\CozyRemote.Operator\CozyRemote.Operator.csproj", "{9A460FA0-1FBF-4CFE-859F-7608E54B27CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyRemote.Puppet", "..\src\Practice\CozyRemote.Puppet\CozyRemote.Puppet.csproj", "{29604F6F-B3CF-4310-BFF5-C126179F0376}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A460FA0-1FBF-4CFE-859F-7608E54B27CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A460FA0-1FBF-4CFE-859F-7608E54B27CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A460FA0-1FBF-4CFE-859F-7608E54B27CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A460FA0-1FBF-4CFE-859F-7608E54B27CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29604F6F-B3CF-4310-BFF5-C126179F0376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29604F6F-B3CF-4310-BFF5-C126179F0376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29604F6F-B3CF-4310-BFF5-C126179F0376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29604F6F-B3CF-4310-BFF5-C126179F0376}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

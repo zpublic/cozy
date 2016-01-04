@@ -587,6 +587,22 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="interface"
+			>
+			<File
+				RelativePath="..\CozyKnightInterface\iknight.h"
+				>
+			</File>
+			<File
+				RelativePath="..\CozyKnightInterface\iknighttask.h"
+				>
+			</File>
+			<File
+				RelativePath="..\CozyKnightInterface\knightdef.h"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\cozy_knight.cpp"
 			>

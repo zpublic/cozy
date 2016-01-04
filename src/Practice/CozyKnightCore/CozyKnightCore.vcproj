@@ -175,6 +175,22 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
+		<Filter
+			Name="interface"
+			>
+			<File
+				RelativePath="..\CozyKnightInterface\iknight.h"
+				>
+			</File>
+			<File
+				RelativePath="..\CozyKnightInterface\iknighttask.h"
+				>
+			</File>
+			<File
+				RelativePath="..\CozyKnightInterface\knightdef.h"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\AddressInfo.cpp"
 			>
