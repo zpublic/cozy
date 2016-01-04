@@ -119,7 +119,7 @@ Cozy
 >>
 >> CozyGod - 放置抽卡合成游戏  
 >>
->> CozyCdk - 序列化生成器  
+>> CozyCdk - 序列号生成器  
 >>
 >> CozyCrawler(spider v2) - 颗粒化的新爬虫  
 >>
@@ -132,6 +132,12 @@ Cozy
 >> CozyPress(blog v3) - 更强大的博客  
 >>
 >> CozyAnonymous - web匿名聊天  
+>>
+>> CozyRemote(远控 v2) - 轻量级远程控制工具  
+>>
+>> CozyEditor - lua和markdown的编辑器  
+>>
+>> CozyKnight - 山寨金山游侠，游戏内存修改工具  
 >>
 
 玩法一览
