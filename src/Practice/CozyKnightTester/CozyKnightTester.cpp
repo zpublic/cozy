@@ -15,6 +15,20 @@ union TestBlock
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+    LoadLibrary;
+    GetProcAddress("GetInterface");
+    IKnight* knight = GetInterface();
+    knight->Attach(hProcess);
+
+    IKnightTask* task1 = knight->CreateTask();
+    task1->Search(1);
+    task1->SearchRange(1, 10);
+    ADDRESS_LIST r = task1->GetResultAddress();
+
+    knight->SaveAddress(r);
+    knight->ModifyValue(r, 100);
+
+
     CozyKnightCore core;
     DWORD dwPid = 0;
     std::cin >>dwPid;
