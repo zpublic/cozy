@@ -7,13 +7,12 @@
 class COZY_API AddressInfo
 {
 public:
-    AddressInfo(HANDLE hProcess, LPBYTE lpAddress);
+    AddressInfo(HANDLE hTarget, LPBYTE lpAddress);
     ~AddressInfo(void);
 
-    BOOL Read(LPBYTE lpBuffer, DWORD dwSize) const;
-    BOOL Write(const LPBYTE lpBuffer, DWORD dwSize);
-
     LPBYTE GetAddress() const;
+    HANDLE GetTarget() const;
+
 private:
     LPBYTE  m_lpAddress;
     HANDLE  m_hTarget;

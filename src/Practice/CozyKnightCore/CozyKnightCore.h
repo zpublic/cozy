@@ -2,24 +2,21 @@
 #define __COZY_KNIGHT_CORE__
 
 #include "stdafx.h"
-#include "CozyDef.h"
+#include "CozyInterface.h"
 #include "AddressInfo.h"
-#include "MemoryTester.h"
-#include "CozyTask.h"
 
-
-class COZY_API CozyKnightCore
+class COZY_API CozyKnightCore : public ISearcher
 {
 public:
     CozyKnightCore();
     ~CozyKnightCore();
 
-    BOOL SearchFirst(const MemoryTester& tester, DWORD dwSize, CozyTask& taskResult);
-
-    BOOL Search(CozyTask& TaskSource, const MemoryTester& tester);
-
     void Attch(HANDLE hProcess);
     void Detch();
+
+    // ISearcher
+    virtual BOOL SearchFirst(const IMemoryTester& tester, DWORD dwSize, ITask& taskResult);
+    virtual BOOL Search(ITask& taskSource, const IProcessMemoryTester& tester);
 
 private:
     HANDLE m_hTarget;

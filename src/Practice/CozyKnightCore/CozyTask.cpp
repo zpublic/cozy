@@ -1,5 +1,7 @@
 #include "StdAfx.h"
 #include "CozyTask.h"
+#include "AddressInfo.h"
+#include "MemoryTester.h"
 #include <algorithm>
 
 CozyTask::CozyTask(void)
@@ -22,9 +24,10 @@ void CozyTask::Clear()
     m_vecAddrList.clear();
 }
 
-void CozyTask::ApplyFilter(const MemoryTester& tester)
+void CozyTask::ApplyFilter(const IProcessMemoryTester& tester)
 {
-    m_vecAddrList.erase(std::remove_if(m_vecAddrList.begin(), m_vecAddrList.end(), tester), m_vecAddrList.end());
+    CozyTesterWrapper<IProcessMemoryTester> wrapper(tester);
+    m_vecAddrList.erase(std::remove_if(m_vecAddrList.begin(), m_vecAddrList.end(), wrapper), m_vecAddrList.end());
 }
 
 size_t CozyTask::GetLength() const

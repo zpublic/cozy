@@ -5,6 +5,7 @@
 #include "CozyKnightCore.h"
 #include <iostream>
 #include "CozyTask.h"
+#include "MemoryTester.h"
 
 union TestBlock
 {
