@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\CozyKnightCore\&quot;;&quot;$(ProjectDir)..\CozyKnightInterface\&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\CozyKnightInterface\&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,9 +61,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="CozyKnightCore.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="$(ProjectDir)..\..\..\bin\"
+				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -118,7 +117,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\CozyKnightCore\&quot;;&quot;$(ProjectDir)..\CozyKnightInterface\&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\CozyKnightInterface\&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -137,9 +136,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="CozyKnightCore.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="$(ProjectDir)..\..\..\bin\"
+				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"

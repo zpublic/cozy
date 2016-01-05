@@ -2,7 +2,6 @@
 //
 
 #include "stdafx.h"
-#include "CozyKnightCore.h"
 #include "iknight.h"
 #include <iostream>
 
@@ -21,7 +20,16 @@ int _tmain(int argc, _TCHAR* argv[])
     knight->SaveAddress(r);
     knight->ModifyValue(r, 100);*/
 
-    IKnight* core = new CozyKnightCore();
+    HMODULE hDllLib = ::LoadLibrary(_T("CozyKnightCore.dll"));
+    if(!hDllLib)
+    {
+        return 0;
+    }
+
+    typedef IKnight* (*GetInstanceFunc)();
+    GetInstanceFunc lpfnGetInstance = (GetInstanceFunc)::GetProcAddress(hDllLib, "GetInstance");
+
+    IKnight* core = lpfnGetInstance();
 
     DWORD dwPid = 0;
     std::cin >>dwPid;

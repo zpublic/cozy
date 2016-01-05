@@ -5,7 +5,7 @@ class CozyKnightSelectTargetDlg
     :public CBkDialogViewImplEx<CozyKnightSelectTargetDlg>
 {
 public:
-    CozyKnightSelectTargetDlg(HANDLE hTarget);
+    CozyKnightSelectTargetDlg(HANDLE& hTarget);
     ~CozyKnightSelectTargetDlg(void);
 
     enum
@@ -13,6 +13,8 @@ public:
         IDC_BTN_CLOSE           = 1000,
         IDC_BTN_OK              = 1002,
         IDC_BTN_CANCLE          = 1003,
+
+        IDC_PROCESS_LIST_CTRL   = 1001,
     };
 
 protected:
@@ -20,7 +22,6 @@ protected:
         BK_NOTIFY_ID_COMMAND(IDC_BTN_CLOSE, OnBtnClose)
         BK_NOTIFY_ID_COMMAND(IDC_BTN_OK, OnOk)
         BK_NOTIFY_ID_COMMAND(IDC_BTN_CANCLE, OnCalcle)
-
     BK_NOTIFY_MAP_END()
 
     BEGIN_MSG_MAP_EX(CBkDialogViewImplEx<CozyKnightSelectTargetDlg>)
@@ -35,8 +36,10 @@ protected:
     void OnCalcle();
     LRESULT OnInitDialog(HWND hDlg, LPARAM lParam);
 
+protected:
     void RefreshProcess();
 
 private:
-    HANDLE &m_hTarget;
+    std::vector<DWORD>  m_vecPid;
+    HANDLE              &m_hTarget;
 };
