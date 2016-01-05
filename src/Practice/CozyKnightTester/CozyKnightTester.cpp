@@ -3,19 +3,12 @@
 
 #include "stdafx.h"
 #include "CozyKnightCore.h"
+#include "iknight.h"
 #include <iostream>
-#include "CozyTask.h"
-#include "MemoryTester.h"
-
-union TestBlock
-{
-    DWORD dwValue;
-    BYTE Data[4];
-};
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    LoadLibrary;
+    /*LoadLibrary;
     GetProcAddress("GetInterface");
     IKnight* knight = GetInterface();
     knight->Attach(hProcess);
@@ -26,40 +19,34 @@ int _tmain(int argc, _TCHAR* argv[])
     ADDRESS_LIST r = task1->GetResultAddress();
 
     knight->SaveAddress(r);
-    knight->ModifyValue(r, 100);
+    knight->ModifyValue(r, 100);*/
 
+    IKnight* core = new CozyKnightCore();
 
-    CozyKnightCore core;
     DWORD dwPid = 0;
     std::cin >>dwPid;
+
     HANDLE hProcess = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, dwPid);
     if(hProcess != NULL)
     {
-        core.Attch(hProcess);
-        TestBlock data;
-        data.dwValue = 42;
+        core->Attach(hProcess);
 
-        CozyTask task;
-        core.SearchFirst(MemoryTester(data.Data, 4), 4, task);
-        std::cout << task.GetLength() << std::endl;
+        IKnightTask* task = core->CreateTask();
 
-        const AddressInfo* p = task.GetData();
-        for(int i = 0; i < task.GetLength(); ++i)
+        task->Search(42);
+        ADDRESS_LIST addrList = task->GetResultAddress();
+        std::cout << addrList.size() << std::endl;
+
+        typedef std::vector<ADDRESS_INFO>::iterator AddrIter;
+        for(AddrIter iter = addrList.begin(); iter != addrList.end(); ++iter)
         {
-            std::printf("%p\n", p[i].GetAddress());
+            std::printf("%p\n", iter->addr);
         }
 
-        system("pause");
-        data.dwValue = 666;
-        core.Search(task, MemoryTester(data.Data, 4));
+        core->DeleteTask(task);
 
-        p = task.GetData();
-        for(int i = 0; i < task.GetLength(); ++i)
-        {
-            std::printf("%p\n", p[i].GetAddress());
-        }
-
-        core.Detch();
+        core->Detach();
+        core->Release();
     }
     system("pause");
 

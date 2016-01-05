@@ -3,7 +3,7 @@
 
 typedef struct _ADDRESS_INFO
 {
-    LPBYTE  addr;
+    void*   addr;
     int     size;
 }ADDRESS_INFO;
 

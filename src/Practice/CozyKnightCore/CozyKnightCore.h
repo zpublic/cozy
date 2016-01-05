@@ -2,24 +2,40 @@
 #define __COZY_KNIGHT_CORE__
 
 #include "stdafx.h"
-#include "CozyInterface.h"
-#include "AddressInfo.h"
+#include "CozyDef.h"
+#include "iknight.h"
+#include <vector>
 
-class COZY_API CozyKnightCore : public ISearcher
+class COZY_API CozyKnightCore : public IKnight
 {
 public:
     CozyKnightCore();
+
+    virtual void Release();
+
+    virtual void Attach(HANDLE hProcess);
+    virtual void Detach();
+
+    virtual IKnightTask* CreateTask();
+    virtual size_t GetTaskCount();
+    virtual IKnightTask* GetTask(size_t index);
+    virtual void DeleteTask(IKnightTask* pTask);
+    virtual void ClearTask();
+
+    virtual void SaveAddress(const ADDRESS_INFO& addr);
+    virtual ADDRESS_LIST GetSavedAddress();
+    virtual void DeleteSavedAddress(size_t index);
+    virtual void ClearSavedAddress();
+
+    virtual BOOL ModifyValue(const ADDRESS_INFO& addr, int value);
+
+protected:
     ~CozyKnightCore();
 
-    void Attch(HANDLE hProcess);
-    void Detch();
-
-    // ISearcher
-    virtual BOOL SearchFirst(const IMemoryTester& tester, DWORD dwSize, ITask& taskResult);
-    virtual BOOL Search(ITask& taskSource, const IProcessMemoryTester& tester);
-
 private:
-    HANDLE m_hTarget;
+    std::vector<IKnightTask*>       m_vecTaskList;
+    ADDRESS_LIST                    m_SavedAddrList;
+    HANDLE                          m_hTarget;
 };
 
 #endif // __COZY_KNIGHT_CORE__
