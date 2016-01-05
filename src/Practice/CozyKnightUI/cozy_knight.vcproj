@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\Public\3rd\BkWin\&quot;;&quot;$(ProjectDir)..\..\Public\3rd\BkWin\wtl\&quot;;&quot;$(ProjectDir)&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\Public\3rd\BkWin\&quot;;&quot;$(ProjectDir)..\..\Public\3rd\BkWin\wtl\&quot;;&quot;$(ProjectDir)&quot;;&quot;$(ProjectDir)..\CozyKnightInterface\&quot;;&quot;$(ProjectDir)..\CozyKnightCore\&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -120,7 +120,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\Public\3rd\BkWin\&quot;;&quot;$(ProjectDir)..\..\Public\3rd\BkWin\wtl\&quot;;&quot;$(ProjectDir)&quot;;&quot;$(ProjectDir)..\CozyKnightCore\&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\Public\3rd\BkWin\&quot;;&quot;$(ProjectDir)..\..\Public\3rd\BkWin\wtl\&quot;;&quot;$(ProjectDir)&quot;;&quot;$(ProjectDir)..\CozyKnightCore\&quot;;&quot;$(ProjectDir)..\CozyKnightInterface\&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"

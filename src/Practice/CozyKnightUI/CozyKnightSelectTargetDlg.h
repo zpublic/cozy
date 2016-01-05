@@ -26,12 +26,16 @@ protected:
     BEGIN_MSG_MAP_EX(CBkDialogViewImplEx<CozyKnightSelectTargetDlg>)
         MSG_BK_NOTIFY(IDC_RICHVIEW_WIN_EX)
         CHAIN_MSG_MAP(CBkDialogViewImplEx<CozyKnightSelectTargetDlg>)
+        MSG_WM_INITDIALOG(OnInitDialog)
         REFLECT_NOTIFICATIONS_EX()
     END_MSG_MAP()
 
     void OnBtnClose();
     void OnOk();
     void OnCalcle();
+    LRESULT OnInitDialog(HWND hDlg, LPARAM lParam);
+
+    void RefreshProcess();
 
 private:
     HANDLE &m_hTarget;

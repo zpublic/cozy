@@ -40,6 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\CozyKnightInterface\&quot;"
 				PreprocessorDefinitions="API_EXPORT"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -115,6 +116,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\CozyKnightInterface\&quot;"
 				PreprocessorDefinitions="API_EXPORT"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -192,19 +194,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\AddressInfo.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\AddressInfo.h"
-			>
-		</File>
-		<File
 			RelativePath=".\CozyDef.h"
-			>
-		</File>
-		<File
-			RelativePath=".\CozyInterface.h"
 			>
 		</File>
 		<File
@@ -225,14 +215,6 @@
 		</File>
 		<File
 			RelativePath=".\CozyTask.h"
-			>
-		</File>
-		<File
-			RelativePath=".\MemoryTester.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\MemoryTester.h"
 			>
 		</File>
 		<File
