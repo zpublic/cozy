@@ -1,17 +1,26 @@
 #include "StdAfx.h"
 #include "CozyKnightMainDlg.h"
 #include "CozyKnightSelectTargetDlg.h"
-#include "CozyKnightCore.h"
 
 CozyKnightMainDlg::CozyKnightMainDlg(void)
-	:CBkDialogViewImplEx<CozyKnightMainDlg>(IDR_MAIN)
+	:CBkDialogViewImplEx<CozyKnightMainDlg>(IDR_MAIN), m_core(NULL), m_nTaskCount(0)
 {
-    m_core = new CozyKnightCore();
+    HMODULE hDllLib = ::LoadLibrary(_T("CozyKnightCore.dll"));
+    if(hDllLib)
+    {
+        typedef IKnight* (*GetInstanceFunc)();
+        GetInstanceFunc lpfnGetInstance = (GetInstanceFunc)::GetProcAddress(hDllLib, "GetInstance");
+        m_core = lpfnGetInstance();
+    }
 }
 
 CozyKnightMainDlg::~CozyKnightMainDlg()
 {
-    m_core->Release();
+    if(m_core != NULL)
+    {
+        m_core->Release();
+        m_core = NULL;
+    }
 }
 
 BOOL CozyKnightMainDlg::OnInitDialog(CWindow /*wndFocus*/, LPARAM /*lInitParam*/)
@@ -78,11 +87,25 @@ void CozyKnightMainDlg::OnBtnClose()
 
 void CozyKnightMainDlg::OnSelectTarget()
 {
-    HANDLE hTarget = NULL;
-    CozyKnightSelectTargetDlg dlg(hTarget);
-    dlg.DoModal(m_hWnd);
-    if(hTarget != NULL)
+    if(m_core != NULL)
     {
-        m_core->Attach(hTarget);
+        HANDLE hTarget = NULL;
+        CozyKnightSelectTargetDlg dlg(hTarget);
+        if(dlg.DoModal(m_hWnd) == IDOK && hTarget != NULL)
+        {
+            m_core->Attach(hTarget);
+        }
+    }
+}
+
+void CozyKnightMainDlg::OnNewTask()
+{
+    if(m_core != NULL)
+    {
+        m_core->CreateTask();
+
+        CString cs;
+        cs.Format(_T("<listitem height=\"32\"><text pos=\"0,0,-0,-0\">хннЯ%d</text></listitem>"), m_nTaskCount++);
+        AppendListItem(IDC_TASK_LIST_CTRL, CW2A(cs, CP_UTF8), -1, TRUE);
     }
 }

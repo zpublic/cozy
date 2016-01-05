@@ -1,7 +1,7 @@
 #include "CozyKnightSelectTargetDlg.h"
 #include "tlhelp32.h" 
 
-CozyKnightSelectTargetDlg::CozyKnightSelectTargetDlg(HANDLE hTarget)
+CozyKnightSelectTargetDlg::CozyKnightSelectTargetDlg(HANDLE& hTarget)
     :CBkDialogViewImplEx<CozyKnightSelectTargetDlg>(IDR_SELECT_TARGET), m_hTarget(hTarget)
 {
 }
@@ -17,25 +17,53 @@ void CozyKnightSelectTargetDlg::OnBtnClose()
 
 void CozyKnightSelectTargetDlg::OnOk()
 {
-   
+    CBkWindow* pBkWindow = FindChildByCmdID(IDC_PROCESS_LIST_CTRL);
+    if(pBkWindow && pBkWindow->IsClass(CBkListWnd::GetClassName()))
+    {
+        CBkListWnd* pListWnd = (CBkListWnd*)pBkWindow;
+        int nItem = pListWnd->GetSelectItem();
+        if(nItem >= 0 && nItem < m_vecPid.size())
+        {
+            HANDLE hProcess = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, m_vecPid[nItem]);
+            if(hProcess != NULL)
+            {
+                m_hTarget = hProcess;
+            }
+        }
+    }
+    EndDialog(IDOK);
 }
 
 void CozyKnightSelectTargetDlg::OnCalcle()
 {
-    OnBtnClose();
+    EndDialog(IDCANCEL);
 }
 
 void CozyKnightSelectTargetDlg::RefreshProcess()
 {
+    m_vecPid.clear();
+    DeleteAllListItem(IDC_PROCESS_LIST_CTRL);
+
     PROCESSENTRY32 pe32;
     pe32.dwSize = sizeof(pe32);
 
+    CString cs;
+
     HANDLE hProcessSnap = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
-    if(hProcessSnap == INVALID_HANDLE_VALUE)
+    if(hProcessSnap != INVALID_HANDLE_VALUE)
     {
         bool bMore = ::Process32First(hProcessSnap, &pe32);
+        while(bMore)
+        {
+            m_vecPid.push_back(pe32.th32ProcessID);
+            cs.Format(_T("<listitem height=\"20\"><text pos=\"0,0,-0,-0\">%d-%s</text></listitem>"), pe32.th32ProcessID, pe32.szExeFile);
+            AppendListItem(IDC_PROCESS_LIST_CTRL, CW2A(cs), -1, FALSE);
+
+            bMore =::Process32Next(hProcessSnap,&pe32);
+        }
+        UpdateLayoutList(IDC_PROCESS_LIST_CTRL);
     }
-     AppendListItem(1001, "<text pos=\"0,0,-0,-0\">123</text>");
+    ::CloseHandle(hProcessSnap);
 }
 
 LRESULT CozyKnightSelectTargetDlg::OnInitDialog(HWND hDlg, LPARAM lParam)

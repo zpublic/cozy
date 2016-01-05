@@ -38,4 +38,9 @@ private:
     HANDLE                          m_hTarget;
 };
 
+EXTERN_C COZY_API IKnight* GetInstance()
+{
+    return new CozyKnightCore();
+}
+
 #endif // __COZY_KNIGHT_CORE__
