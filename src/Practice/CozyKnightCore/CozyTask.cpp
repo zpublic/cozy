@@ -1,12 +1,11 @@
 #include "StdAfx.h"
 #include "CozyTask.h"
-#include "AddressInfo.h"
-#include "MemoryTester.h"
 #include <algorithm>
 
-CozyTask::CozyTask(void)
+CozyTask::CozyTask(HANDLE hTarget)
+    :m_hTarget(hTarget)
 {
-
+    
 }
 
 CozyTask::~CozyTask(void)
@@ -14,28 +13,63 @@ CozyTask::~CozyTask(void)
 
 }
 
-void CozyTask::AddAddress(const AddressInfo& addr)
+void CozyTask::Search(int value)
 {
-    m_vecAddrList.push_back(addr);
+    if(m_AddrList.size() == 0)
+    {
+        SearcFirst(value);
+    }
+    else
+    {
+        SearchNext(value);
+    }
 }
 
-void CozyTask::Clear()
+void CozyTask::SearchRange(int min, int max)
 {
-    m_vecAddrList.clear();
+    // not implemented
 }
 
-void CozyTask::ApplyFilter(const IProcessMemoryTester& tester)
+ADDRESS_LIST CozyTask::GetResultAddress()
 {
-    CozyTesterWrapper<IProcessMemoryTester> wrapper(tester);
-    m_vecAddrList.erase(std::remove_if(m_vecAddrList.begin(), m_vecAddrList.end(), wrapper), m_vecAddrList.end());
+    return m_AddrList;
 }
 
-size_t CozyTask::GetLength() const
+void CozyTask::SearcFirst(int value)
 {
-    return m_vecAddrList.size();
+    MEMORY_BASIC_INFORMATION mbi;
+    ::ZeroMemory(&mbi, sizeof(mbi));
+
+    int nBuffer             = 0;
+    LPBYTE lpMemAddress     = 0;
+    BOOL bReadRet           = FALSE;
+
+    while(::VirtualQueryEx(m_hTarget, lpMemAddress, &mbi, sizeof(mbi)))
+    {
+        if(mbi.Type == MEM_PRIVATE && (mbi.Protect & PAGE_READWRITE) && mbi.State == MEM_COMMIT)
+        {
+            if(::ReadProcessMemory(m_hTarget, lpMemAddress, &nBuffer, mbi.RegionSize, NULL))
+            {
+                for(DWORD i = 0; i + sizeof(int) < mbi.RegionSize; i+=sizeof(int))
+                {
+                    if(value == nBuffer)
+                    {
+                        ADDRESS_INFO result;
+                        result.addr = lpMemAddress + i;
+                        result.size = sizeof(int);
+
+                        m_AddrList.push_back(result);
+                    }
+                }
+            }
+        }
+        lpMemAddress += mbi.RegionSize;
+    }
 }
 
-const AddressInfo* CozyTask::GetData() const
+void CozyTask::SearchNext(int value)
 {
-    return &m_vecAddrList[0];
+    PredicateObject<int> pred(value, m_hTarget);
+
+    m_AddrList.erase(std::remove_if(m_AddrList.begin(), m_AddrList.end(), pred), m_AddrList.end());
 }

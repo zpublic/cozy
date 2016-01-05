@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CozyKnightCore.h"
-#include <vector>
+#include "CozyTask.h"
 #include <algorithm>
 
 CozyKnightCore::CozyKnightCore()
@@ -11,17 +11,22 @@ CozyKnightCore::CozyKnightCore()
 
 CozyKnightCore::~CozyKnightCore()
 {
-    Detch();
+
 }
 
-void CozyKnightCore::Attch(HANDLE hProcess)
+void CozyKnightCore::Release()
 {
-    Detch();
+    delete this;
+}
+
+void CozyKnightCore::Attach(HANDLE hProcess)
+{
+    Detach();
 
     m_hTarget = hProcess;
 }
 
-void CozyKnightCore::Detch()
+void CozyKnightCore::Detach()
 {
     if(m_hTarget != NULL)
     {
@@ -30,43 +35,81 @@ void CozyKnightCore::Detch()
     }
 }
 
-BOOL CozyKnightCore::SearchFirst(const IMemoryTester& tester, DWORD dwSize, ITask& taskResult)
+IKnightTask* CozyKnightCore::CreateTask()
 {
-    MEMORY_BASIC_INFORMATION mbi;
-    ::ZeroMemory(&mbi, sizeof(mbi));
-
-    std::vector<BYTE> vecData;
-    LPBYTE lpMemAddress     = 0;
-    BOOL bReadRet           = FALSE;
-
-    while(::VirtualQueryEx(m_hTarget, lpMemAddress, &mbi, sizeof(mbi)))
+    IKnightTask* retVal = NULL;
+    if(m_hTarget != NULL)
     {
-        if(mbi.Type == MEM_PRIVATE && (mbi.Protect & PAGE_READWRITE) && mbi.State == MEM_COMMIT)
-        {
-            vecData.resize(mbi.RegionSize);
-            if(::ReadProcessMemory(m_hTarget, lpMemAddress, &vecData[0], mbi.RegionSize, NULL))
-            {
-                for(DWORD i = 0; i < mbi.RegionSize; i+=dwSize)
-                {
-                    if(tester.TestMem(&vecData[i]))
-                    {
-                        taskResult.AddAddress(AddressInfo(m_hTarget, lpMemAddress + i));
-                    }
-                }
-            }
-        }
-        lpMemAddress += mbi.RegionSize;
+        retVal = new CozyTask(m_hTarget);
+        m_vecTaskList.push_back(retVal);
     }
-    return true;
+    return retVal;
 }
 
-BOOL CozyKnightCore::Search(ITask& taskSource, const IProcessMemoryTester& tester)
+size_t CozyKnightCore::GetTaskCount()
 {
-    if(taskSource.GetLength() == 0)
-    {
-        return FALSE;
-    }
-    taskSource.ApplyFilter(tester);
+    return m_vecTaskList.size();
+}
 
-    return TRUE;
+IKnightTask* CozyKnightCore::GetTask(size_t index)
+{
+    if(index < m_vecTaskList.size())
+    {
+        return m_vecTaskList[index];
+    }
+    return NULL;
+}
+
+void CozyKnightCore::DeleteTask(IKnightTask* pTask)
+{
+    typedef std::vector<IKnightTask*>::iterator TaskIter;
+    TaskIter iter = std::find(m_vecTaskList.begin(), m_vecTaskList.end(), pTask);
+
+    if(iter != m_vecTaskList.end())
+    {
+        delete *iter;
+        m_vecTaskList.erase(iter);
+    }
+}
+
+void CozyKnightCore::ClearTask()
+{
+    typedef std::vector<IKnightTask*>::iterator TaskIter;
+    for(TaskIter iter = m_vecTaskList.begin(); iter != m_vecTaskList.end(); ++iter)
+    {
+        delete *iter;
+    }
+    m_vecTaskList.clear();
+}
+
+void CozyKnightCore::SaveAddress(const ADDRESS_INFO& addr)
+{
+    m_SavedAddrList.push_back(addr);
+}
+
+ADDRESS_LIST CozyKnightCore::GetSavedAddress()
+{
+    return m_SavedAddrList;
+}
+
+void CozyKnightCore::DeleteSavedAddress(size_t index)
+{
+    if(index < m_SavedAddrList.size())
+    {
+        m_SavedAddrList.erase(m_SavedAddrList.begin() + index);
+    }
+}
+
+void CozyKnightCore::ClearSavedAddress()
+{
+    m_SavedAddrList.clear();
+}
+
+BOOL CozyKnightCore::ModifyValue(const ADDRESS_INFO& addr, int value)
+{
+    if(m_hTarget != NULL)
+    {
+        return ::WriteProcessMemory(m_hTarget, addr.addr, &value, sizeof(value), NULL);
+    }
+    return FALSE;
 }
