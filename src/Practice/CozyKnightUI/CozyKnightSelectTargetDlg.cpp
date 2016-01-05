@@ -38,7 +38,8 @@ void CozyKnightSelectTargetDlg::RefreshProcess()
      AppendListItem(1001, "<text pos=\"0,0,-0,-0\">123</text>");
 }
 
-void CozyKnightSelectTargetDlg::OnInitDialog()
+LRESULT CozyKnightSelectTargetDlg::OnInitDialog(HWND hDlg, LPARAM lParam)
 {
     RefreshProcess();
+    return S_OK;
 }

@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(ProjectDir)..\CozyKnightCore\"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\CozyKnightCore\&quot;;&quot;$(ProjectDir)..\CozyKnightInterface\&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -118,7 +118,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="$(ProjectDir)..\CozyKnightCore\"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\CozyKnightCore\&quot;;&quot;$(ProjectDir)..\CozyKnightInterface\&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"

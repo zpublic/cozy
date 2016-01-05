@@ -1,6 +1,6 @@
 #pragma once
 #include "stdafx.h"
-#include "CozyKnightCore.h"
+#include "iknight.h"
 
 class CozyKnightMainDlg
 	:public CBkDialogViewImplEx<CozyKnightMainDlg>
@@ -38,5 +38,5 @@ private:
     CComboBox       m_comboValueType;
     CListViewCtrl   m_searchList;
     CListViewCtrl   m_selectList;
-    CozyKnightCore  m_core;
+    IKnight         *m_core;
 };

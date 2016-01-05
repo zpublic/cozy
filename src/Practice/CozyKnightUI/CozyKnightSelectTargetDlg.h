@@ -33,7 +33,7 @@ protected:
     void OnBtnClose();
     void OnOk();
     void OnCalcle();
-    void OnInitDialog();
+    LRESULT OnInitDialog(HWND hDlg, LPARAM lParam);
 
     void RefreshProcess();
 
