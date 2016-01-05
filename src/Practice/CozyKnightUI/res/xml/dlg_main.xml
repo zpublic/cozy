@@ -13,17 +13,7 @@
             <button id="5" class="normalbtn" pos="130,70,180,94">清空</button>
             <button id="6" class="normalbtn" pos="12,100,92,124">导入</button>
             <button id="7" class="normalbtn" pos="100,100,180,124">导出</button>
-            <listwnd id="8" pos="10,134,178,470" supportgdi="1" crbg="EFF3F7">
-                <listitem height="32">
-                    <text pos="0,0,-0,-0">任务一</text>
-                </listitem>
-                <listitem height="32">
-                    <text pos="0,0,-0,-0">任务二</text>
-                </listitem>
-                <listitem height="32">
-                    <text pos="0,0,-0,-0">任务三</text>
-                </listitem>
-            </listwnd>
+            <listwnd id="8" pos="10,134,178,470" supportgdi="1" crbg="EFF3F7"></listwnd>
             <text pos="215,70,245,94">数值</text>
             <realwnd id="11" pos="245,70,419,94"/>
             <realwnd id="12" pos="440,70,670,184"/>

@@ -3,7 +3,7 @@
 #include "CozyKnightSelectTargetDlg.h"
 
 CozyKnightMainDlg::CozyKnightMainDlg(void)
-	:CBkDialogViewImplEx<CozyKnightMainDlg>(IDR_MAIN), m_core(NULL)
+	:CBkDialogViewImplEx<CozyKnightMainDlg>(IDR_MAIN), m_core(NULL), m_nTaskCount(0)
 {
     HMODULE hDllLib = ::LoadLibrary(_T("CozyKnightCore.dll"));
     if(hDllLib)
@@ -95,5 +95,17 @@ void CozyKnightMainDlg::OnSelectTarget()
         {
             m_core->Attach(hTarget);
         }
+    }
+}
+
+void CozyKnightMainDlg::OnNewTask()
+{
+    if(m_core != NULL)
+    {
+        m_core->CreateTask();
+
+        CString cs;
+        cs.Format(_T("<listitem height=\"32\"><text pos=\"0,0,-0,-0\">хннЯ%d</text></listitem>"), m_nTaskCount++);
+        AppendListItem(IDC_TASK_LIST_CTRL, CW2A(cs, CP_UTF8), -1, TRUE);
     }
 }
