@@ -28,6 +28,7 @@ public:
     virtual void ClearSavedAddress();
 
     virtual BOOL ModifyValue(const ADDRESS_INFO& addr, int value);
+    virtual BOOL ReadValue(const ADDRESS_INFO& addr, int& nValue);
 
 protected:
     ~CozyKnightCore();

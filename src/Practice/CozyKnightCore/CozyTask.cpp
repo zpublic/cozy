@@ -40,7 +40,7 @@ void CozyTask::SearcFirst(int value)
     MEMORY_BASIC_INFORMATION mbi;
     ::ZeroMemory(&mbi, sizeof(mbi));
 
-    int nBuffer             = 0;
+    std::vector<BYTE> vecBuffer;
     LPBYTE lpMemAddress     = 0;
     BOOL bReadRet           = FALSE;
 
@@ -48,11 +48,12 @@ void CozyTask::SearcFirst(int value)
     {
         if(mbi.Type == MEM_PRIVATE && (mbi.Protect & PAGE_READWRITE) && mbi.State == MEM_COMMIT)
         {
-            if(::ReadProcessMemory(m_hTarget, lpMemAddress, &nBuffer, mbi.RegionSize, NULL))
+            vecBuffer.resize(mbi.RegionSize);
+            if(::ReadProcessMemory(m_hTarget, lpMemAddress, &vecBuffer[0], mbi.RegionSize, NULL))
             {
-                for(DWORD i = 0; i + sizeof(int) < mbi.RegionSize; i+=sizeof(int))
+                for(DWORD i = 0; i < mbi.RegionSize; i+=sizeof(int))
                 {
-                    if(value == nBuffer)
+                    if(value == *((int*)(&vecBuffer[i])))
                     {
                         ADDRESS_INFO result;
                         result.addr = lpMemAddress + i;

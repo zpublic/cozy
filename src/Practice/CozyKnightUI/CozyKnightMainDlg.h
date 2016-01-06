@@ -18,6 +18,7 @@ public:
         IDC_BTN_DELETE_ALL_TASK = 5,
         IDC_BTN_IMPORT          = 6,
         IDC_BTN_EXPORT          = 7,
+        IDC_BTN_SEARCH          = 13,
 
         IDC_TASK_LIST_CTRL      = 8,
     };
@@ -26,7 +27,10 @@ protected:
     BK_NOTIFY_MAP(IDC_RICHVIEW_WIN_EX)
         BK_NOTIFY_ID_COMMAND(IDC_BTN_CLOSE, OnBtnClose)
         BK_NOTIFY_ID_COMMAND(IDC_BTN_SELECT_TARGET, OnSelectTarget)
-        BK_NOTIFY_ID_COMMAND(IDC_BTN_NEW_TASK, OnNewTask);
+        BK_NOTIFY_ID_COMMAND(IDC_BTN_NEW_TASK, OnNewTask)
+        BK_NOTIFY_ID_COMMAND(IDC_BTN_DELETE_TASK, OnDeleteTask)
+        BK_NOTIFY_ID_COMMAND(IDC_BTN_DELETE_ALL_TASK, OnDeleteAllTask)
+        BK_NOTIFY_ID_COMMAND(IDC_BTN_SEARCH, OnSearch)
     BK_NOTIFY_MAP_END()
 
     BEGIN_MSG_MAP_EX(CBkDialogViewImplEx<CozyKnightMainDlg>)
@@ -40,6 +44,15 @@ protected:
     void OnBtnClose();
     void OnSelectTarget();
     void OnNewTask();
+    void OnDeleteTask();
+    void OnDeleteAllTask();
+    void OnSearch();
+
+private:
+    void InitComboBox();
+    void InitEditBox();
+    void InitSearchList();
+    void InitSelectList();
 
 private:
     CEdit           m_edtValue;
