@@ -17,20 +17,16 @@ void CozyKnightSelectTargetDlg::OnBtnClose()
 
 void CozyKnightSelectTargetDlg::OnOk()
 {
-    CBkWindow* pBkWindow = FindChildByCmdID(IDC_PROCESS_LIST_CTRL);
-    if(pBkWindow && pBkWindow->IsClass(CBkListWnd::GetClassName()))
+    int nItem = GetCurSelItem(IDC_PROCESS_LIST_CTRL);
+    if(nItem >= 0 && nItem < m_vecPid.size())
     {
-        CBkListWnd* pListWnd = (CBkListWnd*)pBkWindow;
-        int nItem = pListWnd->GetSelectItem();
-        if(nItem >= 0 && nItem < m_vecPid.size())
+        HANDLE hProcess = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, m_vecPid[nItem]);
+        if(hProcess != NULL)
         {
-            HANDLE hProcess = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, m_vecPid[nItem]);
-            if(hProcess != NULL)
-            {
-                m_hTarget = hProcess;
-            }
+            m_hTarget = hProcess;
         }
     }
+
     EndDialog(IDOK);
 }
 

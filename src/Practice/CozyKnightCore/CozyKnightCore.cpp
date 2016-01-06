@@ -109,7 +109,16 @@ BOOL CozyKnightCore::ModifyValue(const ADDRESS_INFO& addr, int value)
 {
     if(m_hTarget != NULL)
     {
-        return ::WriteProcessMemory(m_hTarget, addr.addr, &value, sizeof(value), NULL);
+        return ::WriteProcessMemory(m_hTarget, addr.addr, &value, addr.size, NULL);
+    }
+    return FALSE;
+}
+
+BOOL CozyKnightCore::ReadValue(const ADDRESS_INFO& addr, int& nValue)
+{
+    if(m_hTarget != NULL)
+    {
+        return ::ReadProcessMemory(m_hTarget, addr.addr, &nValue, addr.size, NULL);
     }
     return FALSE;
 }
