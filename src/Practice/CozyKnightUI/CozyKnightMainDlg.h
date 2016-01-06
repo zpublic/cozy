@@ -1,6 +1,8 @@
 #pragma once
 #include "stdafx.h"
 #include "iknight.h"
+#include "bkwin/bklistview.h"
+
 
 class CozyKnightMainDlg
     :public CBkDialogViewImplEx<CozyKnightMainDlg>
@@ -31,12 +33,17 @@ protected:
         BK_NOTIFY_ID_COMMAND(IDC_BTN_DELETE_TASK, OnDeleteTask)
         BK_NOTIFY_ID_COMMAND(IDC_BTN_DELETE_ALL_TASK, OnDeleteAllTask)
         BK_NOTIFY_ID_COMMAND(IDC_BTN_SEARCH, OnSearch)
+
+        BK_LISTWND_NOTIFY_BEGIN(IDC_TASK_LIST_CTRL)
+            BK_LISTWND_LISTITEM_LBUTTONUP(OnTaskLBtnUp)
+        BK_LISTWND_NOTIFY_END()
     BK_NOTIFY_MAP_END()
 
-    BEGIN_MSG_MAP_EX(CBkDialogViewImplEx<CozyKnightMainDlg>)
+    BEGIN_MSG_MAP_EX(CozyKnightMainDlg)
         MSG_BK_NOTIFY(IDC_RICHVIEW_WIN_EX)
         MSG_WM_INITDIALOG(OnInitDialog)
         CHAIN_MSG_MAP(CBkDialogViewImplEx<CozyKnightMainDlg>)
+        
         REFLECT_NOTIFICATIONS_EX()
     END_MSG_MAP()
 
@@ -48,6 +55,8 @@ protected:
     void OnDeleteAllTask();
     void OnSearch();
 
+    void OnTaskLBtnUp(int nListItem);
+
 private:
     void InitComboBox();
     void InitEditBox();
@@ -55,10 +64,13 @@ private:
     void InitSelectList();
 
 private:
-    CEdit           m_edtValue;
-    CComboBox       m_comboValueType;
-    CListViewCtrl   m_searchList;
-    CListViewCtrl   m_selectList;
-    IKnight*        m_core;
-    int             m_nTaskCount;
+    void AppendSearchItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId);
+
+private:
+    CEdit               m_edtValue;
+    CComboBox           m_comboValueType;
+    CListViewCtrl       m_searchList;
+    CListViewCtrl       m_selectList;
+    IKnight*            m_core;
+    int                 m_nTaskCount;
 };

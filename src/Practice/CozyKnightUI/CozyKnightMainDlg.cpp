@@ -63,7 +63,6 @@ void CozyKnightMainDlg::OnNewTask()
             CString cs;
             cs.Format(_T("<listitem height=\"32\"><text pos=\"0,0,-0,-0\">ÈÎÎñ%d</text></listitem>"), m_nTaskCount++);
             AppendListItem(IDC_TASK_LIST_CTRL, CW2A(cs, CP_UTF8), -1, TRUE);
-
         }
     }
 }
@@ -79,6 +78,7 @@ void CozyKnightMainDlg::OnDeleteTask()
 
             IKnightTask* pSelectedTask =  m_core->GetTask(nItem);
             m_core->DeleteTask(pSelectedTask);
+            m_searchList.DeleteAllItems();
         }
     }
 }
@@ -89,6 +89,7 @@ void CozyKnightMainDlg::OnDeleteAllTask()
     {
         DeleteAllListItem(IDC_TASK_LIST_CTRL);
         m_core->ClearTask();
+        m_searchList.DeleteAllItems();
     }
 }
 
@@ -125,10 +126,6 @@ void CozyKnightMainDlg::InitSearchList()
         m_searchList.SetColumnWidth(1, 117);
         m_searchList.SetColumnWidth(2, 235);
 
-        //m_searchList.AddItem(0, 0, _T("0x1000"));
-        //m_searchList.AddItem(0, 1, _T("4 bytes"));
-        //m_searchList.AddItem(0, 2, _T("2147483647"));
-
         m_searchList.SetDlgCtrlID(9);
     }
 }
@@ -150,14 +147,22 @@ void CozyKnightMainDlg::InitSelectList()
         m_selectList.SetColumnWidth(3, 117);
         m_selectList.SetColumnWidth(4, 117);
 
-        //m_selectList.AddItem(0, 0, _T("µØÖ·1"));
-        //m_selectList.AddItem(0, 1, _T("0x1000"));
-        //m_selectList.AddItem(0, 2, _T("4 bytes"));
-        //m_selectList.AddItem(0, 3, _T("2147483647"));
-        //m_selectList.AddItem(0, 4, _T("2147483647"));
-
         m_selectList.SetDlgCtrlID(10);
     }
+}
+
+void CozyKnightMainDlg::AppendSearchItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId)
+{
+    CString strBuff;
+
+    strBuff.Format(_T("%p"), lpAddr);
+    m_searchList.AddItem(nItemId, 0, strBuff);
+
+    strBuff.Format(_T("%d"), nSize);
+    m_searchList.AddItem(nItemId, 1, strBuff);
+
+    strBuff.Format(_T("%d"), nValue);
+    m_searchList.AddItem(nItemId, 2, strBuff);
 }
 
 void CozyKnightMainDlg::OnSearch()
@@ -180,18 +185,36 @@ void CozyKnightMainDlg::OnSearch()
                 pTask->Search(nData);
 
                 ADDRESS_LIST addrlist = pTask->GetResultAddress();
-                CString strBuff;
+
+                int i = 0;
                 for(ADDRESS_LIST::iterator iter = addrlist.begin(); iter != addrlist.end(); ++iter)
                 {
-                    strBuff.Format(_T("%p"), iter->addr);
-                    m_searchList.AddItem(0, 0, strBuff);
-                    strBuff.Format(_T("%d"), iter->size);
-                    m_searchList.AddItem(0, 1, strBuff);
                     int nValue = 0;
                     m_core->ReadValue(*iter, nValue);
-                    strBuff.Format(_T("%d"), nValue);
-                    m_searchList.AddItem(0, 2, strBuff);
+                    AppendSearchItem(iter->addr, iter->size, nValue, i++);
                 }
+            }
+        }
+    }
+}
+
+void CozyKnightMainDlg::OnTaskLBtnUp(int nListItem)
+{
+    if(nListItem < m_core->GetTaskCount())
+    {
+        IKnightTask* pTask = m_core->GetTask(nListItem);
+        if(pTask)
+        {
+            m_searchList.DeleteAllItems();
+
+            ADDRESS_LIST addrlist = pTask->GetResultAddress();
+
+            int i = 0;
+            for(ADDRESS_LIST::iterator iter = addrlist.begin(); iter != addrlist.end(); ++iter)
+            {
+                int nValue = 0;
+                m_core->ReadValue(*iter, nValue);
+                AppendSearchItem(iter->addr, iter->size, nValue, i++);
             }
         }
     }
