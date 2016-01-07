@@ -19,6 +19,7 @@ public:
 
     virtual void SaveAddress(const ADDRESS_INFO& addr)      = 0;
     virtual ADDRESS_LIST GetSavedAddress()                  = 0;
+    virtual size_t GetSavedAddressCount()                   = 0;
     virtual void DeleteSavedAddress(size_t index)           = 0;
     virtual void ClearSavedAddress()                        = 0;
 

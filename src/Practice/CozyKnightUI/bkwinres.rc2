@@ -8,4 +8,5 @@ DEFINE_STRING("res\\xml\\def_string.xml")
 
 DEFINE_XML(IDR_MAIN, 100, "res\\xml\\dlg_main.xml")
 DEFINE_XML(IDR_SELECT_TARGET, 101, "res\\xml\\dlg_select_target.xml")
+DEFINE_XML(IDR_MODIFY, 102, "res\\xml\\dlg_modify.xml")
 DEFINE_PNG(IDR_PROGRESS_POS, 1001, "res\\png\\progresspos.png")
