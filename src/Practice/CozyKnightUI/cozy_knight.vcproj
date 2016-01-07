@@ -618,6 +618,14 @@
 			>
 		</File>
 		<File
+			RelativePath=".\CozyKnightModifyDlg.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\CozyKnightModifyDlg.h"
+			>
+		</File>
+		<File
 			RelativePath=".\CozyKnightSelectTargetDlg.cpp"
 			>
 		</File>

@@ -1,9 +1,10 @@
 #include "StdAfx.h"
 #include "CozyKnightMainDlg.h"
 #include "CozyKnightSelectTargetDlg.h"
+#include "CozyKnightModifyDlg.h"
 
 CozyKnightMainDlg::CozyKnightMainDlg(void)
-	:CBkDialogViewImplEx<CozyKnightMainDlg>(IDR_MAIN), m_core(NULL), m_nTaskCount(0)
+	:CBkDialogViewImplEx<CozyKnightMainDlg>(IDR_MAIN), m_core(NULL), m_nTaskCount(0), m_nSelectCount(0)
 {
     HMODULE hDllLib = ::LoadLibrary(_T("CozyKnightCore.dll"));
     if(hDllLib)
@@ -115,7 +116,7 @@ void CozyKnightMainDlg::InitEditBox()
 
 void CozyKnightMainDlg::InitSearchList()
 {
-    DWORD dwStyle = WS_CHILD|LVS_REPORT|LVS_SHOWSELALWAYS;
+    DWORD dwStyle = WS_CHILD | WS_TABSTOP | WS_VISIBLE | LVS_REPORT | LVS_SHOWSELALWAYS | LVS_SINGLESEL;
 
     if(m_searchList.Create(m_hWnd, NULL, NULL, dwStyle, 0, 101))
     {
@@ -126,13 +127,13 @@ void CozyKnightMainDlg::InitSearchList()
         m_searchList.SetColumnWidth(1, 117);
         m_searchList.SetColumnWidth(2, 235);
 
-        m_searchList.SetDlgCtrlID(9);
+        m_searchList.SetDlgCtrlID(IDC_SEARCH_LIST_CTRL);
     }
 }
 
 void CozyKnightMainDlg::InitSelectList()
 {
-    DWORD dwStyle = WS_CHILD|LVS_REPORT|LVS_SHOWSELALWAYS;
+    DWORD dwStyle = WS_CHILD | WS_TABSTOP | WS_VISIBLE | LVS_REPORT | LVS_SHOWSELALWAYS | LVS_SINGLESEL;
 
     if(m_selectList.Create(m_hWnd, NULL, NULL,  dwStyle, 0, 101))
     {
@@ -163,6 +164,25 @@ void CozyKnightMainDlg::AppendSearchItem(LPVOID lpAddr, INT nSize, int nValue, i
 
     strBuff.Format(_T("%d"), nValue);
     m_searchList.AddItem(nItemId, 2, strBuff);
+}
+
+void CozyKnightMainDlg::AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId)
+{
+    CString strBuff;
+
+    strBuff.Format(_T("µØÖ·%d"), m_nSelectCount++);
+    m_selectList.AddItem(nItemId, 0, strBuff);
+
+    strBuff.Format(_T("%p"), lpAddr);
+    m_selectList.AddItem(nItemId, 1, strBuff);
+
+    strBuff.Format(_T("%d"), nSize);
+    m_selectList.AddItem(nItemId, 2, strBuff);
+
+    strBuff.Format(_T("%d"), nValue);
+    m_selectList.AddItem(nItemId, 3, strBuff);
+
+    m_selectList.AddItem(nItemId, 4, _T("FALSE"));
 }
 
 void CozyKnightMainDlg::OnSearch()
@@ -218,4 +238,43 @@ void CozyKnightMainDlg::OnTaskLBtnUp(int nListItem)
             }
         }
     }
+}
+
+LRESULT CozyKnightMainDlg::OnSearchDBListClick(LPNMHDR pnmh)
+{
+    if(m_core != NULL)
+    {
+        int nItem = GetCurSelItem(IDC_TASK_LIST_CTRL);
+        if(nItem >= 0 && nItem < m_core->GetTaskCount())
+        {
+            IKnightTask* pTask = m_core->GetTask(nItem);
+            if(pTask)
+            {
+                ADDRESS_LIST addrList = pTask->GetResultAddress();
+                if(addrList.size() > 0)
+                {
+                    int nIndex = m_searchList.GetSelectedIndex();
+                    if(nIndex >= 0)
+                    {
+                        int nValue = 0;
+                        m_core->ReadValue(addrList[nIndex], nValue);
+
+                        size_t nSavedCount = m_core->GetSavedAddressCount();
+                        m_core->SaveAddress(addrList[nIndex]);
+                        AppendSelectedItem(addrList[nIndex].addr, addrList[nIndex].size, nValue, nSavedCount);
+                    }
+                }
+            }
+        }
+    }
+
+    return S_OK;
+}
+
+LRESULT CozyKnightMainDlg::OnSelectedDBListClick(LPNMHDR pnmh)
+{
+    CozyKnightModifyDlg dlg;
+    dlg.DoModal(m_hWnd);
+
+    return S_OK;
 }

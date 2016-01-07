@@ -23,6 +23,8 @@ public:
         IDC_BTN_SEARCH          = 13,
 
         IDC_TASK_LIST_CTRL      = 8,
+        IDC_SEARCH_LIST_CTRL    = 9,
+        IDC_SELECTED_LIST_CTRL  = 10,
     };
 
 protected:
@@ -42,8 +44,11 @@ protected:
     BEGIN_MSG_MAP_EX(CozyKnightMainDlg)
         MSG_BK_NOTIFY(IDC_RICHVIEW_WIN_EX)
         MSG_WM_INITDIALOG(OnInitDialog)
+
+        NOTIFY_HANDLER_EX(IDC_SEARCH_LIST_CTRL, NM_DBLCLK, OnSearchDBListClick)
+        NOTIFY_HANDLER_EX(IDC_SELECTED_LIST_CTRL, NM_DBLCLK, OnSelectedDBListClick)
+
         CHAIN_MSG_MAP(CBkDialogViewImplEx<CozyKnightMainDlg>)
-        
         REFLECT_NOTIFICATIONS_EX()
     END_MSG_MAP()
 
@@ -57,6 +62,9 @@ protected:
 
     void OnTaskLBtnUp(int nListItem);
 
+    LRESULT OnSearchDBListClick(LPNMHDR pnmh);
+    LRESULT OnSelectedDBListClick(LPNMHDR pnmh);
+
 private:
     void InitComboBox();
     void InitEditBox();
@@ -65,6 +73,7 @@ private:
 
 private:
     void AppendSearchItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId);
+    void AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId);
 
 private:
     CEdit               m_edtValue;
@@ -73,4 +82,5 @@ private:
     CListViewCtrl       m_selectList;
     IKnight*            m_core;
     int                 m_nTaskCount;
+    int                 m_nSelectCount;
 };

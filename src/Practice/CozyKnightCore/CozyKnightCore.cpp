@@ -122,3 +122,8 @@ BOOL CozyKnightCore::ReadValue(const ADDRESS_INFO& addr, int& nValue)
     }
     return FALSE;
 }
+
+size_t CozyKnightCore::GetSavedAddressCount()
+{
+    return m_SavedAddrList.size();
+}

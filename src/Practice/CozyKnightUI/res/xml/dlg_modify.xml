@@ -1,0 +1,11 @@
+﻿<layer title="Cozy Knight" width="300" height="630" appwin="1" resize="0">
+    <header class="main_header_style" height="30">
+        <text class="dlgtitle" pos="25,10">修改</text>
+        <button id="1000" pos="-20,1">X</button>
+    </header>
+    <body class="msgboxbody" width="full" height="full">
+        <dlg pos="0,0,-0,-0">
+            
+        </dlg>
+    </body>
+</layer>
