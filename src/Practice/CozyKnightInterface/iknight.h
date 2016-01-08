@@ -22,6 +22,7 @@ public:
     virtual size_t GetSavedAddressCount()                   = 0;
     virtual void DeleteSavedAddress(size_t index)           = 0;
     virtual void ClearSavedAddress()                        = 0;
+    virtual void UpdateSavedAddress(size_t index, const ADDRESS_INFO& addr) = 0;
 
     virtual BOOL ReadValue(const ADDRESS_INFO& addr, int& nValue)       = 0;
     virtual BOOL ModifyValue(const ADDRESS_INFO& addr, int value)       = 0;

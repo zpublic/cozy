@@ -2,11 +2,15 @@
 #include "stdafx.h"
 #include "iknight.h"
 #include "bkwin/bklistview.h"
+#include "vector"
 
 
 class CozyKnightMainDlg
     :public CBkDialogViewImplEx<CozyKnightMainDlg>
 {
+public:
+    typedef std::pair<CString, BOOL> MetaInfo;
+
 public:
     CozyKnightMainDlg(void);
     ~CozyKnightMainDlg();
@@ -73,9 +77,10 @@ private:
 
 private:
     void AppendSearchItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId);
-    void AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId);
+    void AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bChekced = FALSE);
 
 private:
+    std::vector<MetaInfo >   m_SelectedMetaInfo;
     CEdit               m_edtValue;
     CComboBox           m_comboValueType;
     CListViewCtrl       m_searchList;
