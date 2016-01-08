@@ -27,6 +27,7 @@ public:
     virtual size_t GetSavedAddressCount();
     virtual void DeleteSavedAddress(size_t index);
     virtual void ClearSavedAddress();
+    virtual void CozyKnightCore::UpdateSavedAddress(size_t index, const ADDRESS_INFO& addr);
 
     virtual BOOL ModifyValue(const ADDRESS_INFO& addr, int value);
     virtual BOOL ReadValue(const ADDRESS_INFO& addr, int& nValue);

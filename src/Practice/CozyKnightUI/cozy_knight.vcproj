@@ -224,6 +224,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\res\xml\dlg_modify.xml"
+					>
+				</File>
+				<File
 					RelativePath=".\res\xml\dlg_select_target.xml"
 					>
 				</File>

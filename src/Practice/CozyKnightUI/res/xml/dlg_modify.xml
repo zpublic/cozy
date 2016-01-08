@@ -1,11 +1,24 @@
-﻿<layer title="Cozy Knight" width="300" height="630" appwin="1" resize="0">
+﻿<layer title="Cozy Knight" width="400" height="250" appwin="1" resize="0">
     <header class="main_header_style" height="30">
         <text class="dlgtitle" pos="25,10">修改</text>
         <button id="1000" pos="-20,1">X</button>
     </header>
     <body class="msgboxbody" width="full" height="full">
         <dlg pos="0,0,-0,-0">
-            
+            <text pos="59,24,83,40">名称</text>
+            <realwnd id="1"  pos="93,20,343,44"/>
+
+            <text pos="59,58,83,74">地址</text>
+            <realwnd id="2"  pos="93,54,343,78"/>
+
+            <text pos="59,88,83,104">类型</text>
+            <realwnd id="3"  pos="93,84,343,108"/>
+
+            <text pos="59,122,83,138">数值</text>
+            <realwnd id="4"  pos="93,118,343,142"/>
+
+            <check id="5" pos="59,158,129,186">自动锁定</check>
+            <button id="6" class="normalbtn" pos="273,158,343,186">确定</button>
         </dlg>
     </body>
 </layer>

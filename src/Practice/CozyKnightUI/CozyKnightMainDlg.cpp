@@ -166,12 +166,13 @@ void CozyKnightMainDlg::AppendSearchItem(LPVOID lpAddr, INT nSize, int nValue, i
     m_searchList.AddItem(nItemId, 2, strBuff);
 }
 
-void CozyKnightMainDlg::AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId)
+void CozyKnightMainDlg::AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bChecked /*= FALSE*/)
 {
     CString strBuff;
 
     strBuff.Format(_T("地址%d"), m_nSelectCount++);
     m_selectList.AddItem(nItemId, 0, strBuff);
+    m_SelectedMetaInfo.push_back(std::make_pair(strBuff, FALSE));
 
     strBuff.Format(_T("%p"), lpAddr);
     m_selectList.AddItem(nItemId, 1, strBuff);
@@ -182,7 +183,7 @@ void CozyKnightMainDlg::AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue,
     strBuff.Format(_T("%d"), nValue);
     m_selectList.AddItem(nItemId, 3, strBuff);
 
-    m_selectList.AddItem(nItemId, 4, _T("FALSE"));
+    m_selectList.AddItem(nItemId, 4, (bChecked ? _T("TRUE") : _T("FALSE")));
 }
 
 void CozyKnightMainDlg::OnSearch()
@@ -273,8 +274,31 @@ LRESULT CozyKnightMainDlg::OnSearchDBListClick(LPNMHDR pnmh)
 
 LRESULT CozyKnightMainDlg::OnSelectedDBListClick(LPNMHDR pnmh)
 {
-    CozyKnightModifyDlg dlg;
-    dlg.DoModal(m_hWnd);
+    if(m_core != NULL)
+    {
+        int nSelected = m_selectList.GetSelectedIndex();
+        if(nSelected >= 0 && nSelected < m_core->GetSavedAddressCount())
+        {
+            ADDRESS_LIST addrList = m_core->GetSavedAddress();
+            {
+                int nValue              = 0;
+                ADDRESS_INFO addrInfo   = addrList[nSelected];
+                MetaInfo metaInfo       = m_SelectedMetaInfo[nSelected];
+
+                m_core->ReadValue(addrInfo, nValue);
+                CozyKnightModifyDlg dlg(metaInfo.first, addrInfo,  nValue, metaInfo.second);
+
+                if(dlg.DoModal(m_hWnd) == IDOK)
+                {
+                    m_core->ModifyValue(addrInfo, nValue);
+                    m_core->UpdateSavedAddress(nSelected, addrInfo);
+                    m_SelectedMetaInfo[nSelected] = metaInfo;
+                    // 应该为更新UI数据
+                    AppendSelectedItem(addrInfo.addr, addrInfo.size, nValue, nSelected);
+                }
+            }
+        }
+    }
 
     return S_OK;
 }

@@ -127,3 +127,11 @@ size_t CozyKnightCore::GetSavedAddressCount()
 {
     return m_SavedAddrList.size();
 }
+
+void CozyKnightCore::UpdateSavedAddress(size_t index, const ADDRESS_INFO& addr)
+{
+    if(index < m_SavedAddrList.size())
+    {
+        m_SavedAddrList[index] = addr;
+    }
+}
