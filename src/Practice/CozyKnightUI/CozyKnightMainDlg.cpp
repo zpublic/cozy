@@ -172,7 +172,7 @@ void CozyKnightMainDlg::AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue,
 
     strBuff.Format(_T("地址%d"), m_nSelectCount++);
     m_selectList.AddItem(nItemId, 0, strBuff);
-    m_SelectedMetaInfo.push_back(std::make_pair(strBuff, FALSE));
+    m_SelectedMetaInfo.push_back(MetaInfo(strBuff, FALSE));
 
     strBuff.Format(_T("%p"), lpAddr);
     m_selectList.AddItem(nItemId, 1, strBuff);
@@ -293,12 +293,81 @@ LRESULT CozyKnightMainDlg::OnSelectedDBListClick(LPNMHDR pnmh)
                     m_core->ModifyValue(addrInfo, nValue);
                     m_core->UpdateSavedAddress(nSelected, addrInfo);
                     m_SelectedMetaInfo[nSelected] = metaInfo;
-                    // 应该为更新UI数据
-                    AppendSelectedItem(addrInfo.addr, addrInfo.size, nValue, nSelected);
+
+                    UpdateSelectedItem(metaInfo.first, addrInfo.addr, addrInfo.size, nValue, nSelected, metaInfo.second);
                 }
             }
         }
     }
 
     return S_OK;
+}
+
+void CozyKnightMainDlg::UpdateSelectedItem(const CString& strName, LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bChekced/* = FALSE*/)
+{
+    CString strBuff;
+
+    m_selectList.SetItemText(nItemId, 0, strName);
+
+    strBuff.Format(_T("%p"), lpAddr);
+    m_selectList.SetItemText(nItemId, 1, strBuff);
+
+    strBuff.Format(_T("%d"), nSize);
+    m_selectList.SetItemText(nItemId, 2, strBuff);
+
+    strBuff.Format(_T("%d"), nValue);
+    m_selectList.SetItemText(nItemId, 3, strBuff);
+
+    m_selectList.SetItemText(nItemId, 4, (bChekced ? _T("TRUE") : _T("FALSE")));
+
+    std::map<LPVOID, SelectedInfo>::iterator iter = m_AutoLockList.find(lpAddr);
+    if(bChekced)
+    {
+        BOOL bEmpty = m_AutoLockList.empty();
+        if(iter == m_AutoLockList.end())
+        {
+            ADDRESS_INFO addr;
+            addr.addr = lpAddr;
+            addr.size = nSize;
+
+            m_AutoLockList[lpAddr] = std::make_pair(addr, nValue);
+            if(bEmpty)
+            {
+                ::SetTimer(m_hWnd, IDC_TIMER_LOCK, 1000, NULL);
+            }
+        }
+    }
+    else
+    {
+        if(iter != m_AutoLockList.end())
+        {
+            m_AutoLockList.erase(iter);
+            if(m_AutoLockList.empty())
+            {
+                ::KillTimer(m_hWnd, IDC_TIMER_LOCK);
+            }
+        }
+    }
+}
+
+void CozyKnightMainDlg::OnExport()
+{
+    
+}
+
+void CozyKnightMainDlg::OnImport()
+{
+    
+}
+
+void CozyKnightMainDlg::OnTimer(UINT_PTR nIDEvent)
+{
+    if(m_core != NULL)
+    {
+        typedef std::map<LPVOID, SelectedInfo>::iterator DataIter;
+        for(DataIter iter = m_AutoLockList.begin(); iter != m_AutoLockList.end(); ++iter)
+        {
+            m_core->ModifyValue(iter->second.first, iter->second.second);
+        }
+    }
 }
