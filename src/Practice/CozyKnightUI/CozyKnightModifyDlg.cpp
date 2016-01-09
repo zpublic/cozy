@@ -91,6 +91,6 @@ CString CozyKnightModifyDlg::GetEditText(const CEdit& editCtrl)
     int nLenght = editCtrl.LineLength(1);
     CString strValue;
     editCtrl.GetLine(1, strValue.GetBuffer(nLenght), nLenght);
-
+    strValue.ReleaseBuffer(nLenght);
     return strValue;
 }

@@ -293,12 +293,30 @@ LRESULT CozyKnightMainDlg::OnSelectedDBListClick(LPNMHDR pnmh)
                     m_core->ModifyValue(addrInfo, nValue);
                     m_core->UpdateSavedAddress(nSelected, addrInfo);
                     m_SelectedMetaInfo[nSelected] = metaInfo;
-                    // 应该为更新UI数据
-                    AppendSelectedItem(addrInfo.addr, addrInfo.size, nValue, nSelected);
+
+                    UpdateSelectedItem(metaInfo.first, addrInfo.addr, addrInfo.size, nValue, nSelected, metaInfo.second);
                 }
             }
         }
     }
 
     return S_OK;
+}
+
+void CozyKnightMainDlg::UpdateSelectedItem(const CString& strName, LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bChekced/* = FALSE*/)
+{
+    CString strBuff;
+
+    m_selectList.SetItemText(nItemId, 0, strName);
+
+    strBuff.Format(_T("%p"), lpAddr);
+    m_selectList.SetItemText(nItemId, 1, strBuff);
+
+    strBuff.Format(_T("%d"), nSize);
+    m_selectList.SetItemText(nItemId, 2, strBuff);
+
+    strBuff.Format(_T("%d"), nValue);
+    m_selectList.SetItemText(nItemId, 3, strBuff);
+
+    m_selectList.SetItemText(nItemId, 4, (bChekced ? _T("TRUE") : _T("FALSE")));
 }

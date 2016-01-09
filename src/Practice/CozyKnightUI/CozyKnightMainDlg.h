@@ -78,6 +78,7 @@ private:
 private:
     void AppendSearchItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId);
     void AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bChekced = FALSE);
+    void UpdateSelectedItem(const CString& strName, LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bChekced = FALSE);
 
 private:
     std::vector<MetaInfo >   m_SelectedMetaInfo;
