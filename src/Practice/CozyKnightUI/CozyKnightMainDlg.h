@@ -1,9 +1,9 @@
 #pragma once
 #include "stdafx.h"
 #include "iknight.h"
+#include "rapidjson/prettywriter.h"
 #include <vector>
 #include <map>
-
 
 class CozyKnightMainDlg
     :public CBkDialogViewImplEx<CozyKnightMainDlg>
@@ -80,8 +80,6 @@ protected:
 
     LRESULT OnSearchDBListClick(LPNMHDR pnmh);
     LRESULT OnSelectedDBListClick(LPNMHDR pnmh);
-
-    void CALLBACK TimerProc(HWND hWnd,UINT nMsg,UINT nTimerid,DWORD dwTime);
 
 private:
     void InitComboBox();
