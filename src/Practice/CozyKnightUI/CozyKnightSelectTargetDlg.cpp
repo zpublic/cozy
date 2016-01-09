@@ -35,6 +35,19 @@ void CozyKnightSelectTargetDlg::OnCalcle()
     EndDialog(IDCANCEL);
 }
 
+void CozyKnightSelectTargetDlg::OnLDbClick(int nItem)
+{
+    if(nItem >= 0 && nItem < m_vecPid.size())
+    {
+        HANDLE hProcess = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, m_vecPid[nItem]);
+        if(hProcess != NULL)
+        {
+            m_hTarget = hProcess;
+        }
+        EndDialog(IDOK);
+    }
+}
+
 void CozyKnightSelectTargetDlg::RefreshProcess()
 {
     m_vecPid.clear();

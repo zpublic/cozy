@@ -22,9 +22,13 @@ protected:
         BK_NOTIFY_ID_COMMAND(IDC_BTN_CLOSE, OnBtnClose)
         BK_NOTIFY_ID_COMMAND(IDC_BTN_OK, OnOk)
         BK_NOTIFY_ID_COMMAND(IDC_BTN_CANCLE, OnCalcle)
+
+        BK_LISTWND_NOTIFY_BEGIN(IDC_PROCESS_LIST_CTRL)
+            BK_LISTWND_LISTITEM_LBUTTON_DBCLICK(OnLDbClick)
+        BK_LISTWND_NOTIFY_END()
     BK_NOTIFY_MAP_END()
 
-    BEGIN_MSG_MAP_EX(CBkDialogViewImplEx<CozyKnightSelectTargetDlg>)
+    BEGIN_MSG_MAP_EX(CozyKnightSelectTargetDlg)
         MSG_BK_NOTIFY(IDC_RICHVIEW_WIN_EX)
         CHAIN_MSG_MAP(CBkDialogViewImplEx<CozyKnightSelectTargetDlg>)
         MSG_WM_INITDIALOG(OnInitDialog)
@@ -34,6 +38,7 @@ protected:
     void OnBtnClose();
     void OnOk();
     void OnCalcle();
+    void OnLDbClick(int nItem);
     LRESULT OnInitDialog(HWND hDlg, LPARAM lParam);
 
 protected:
