@@ -1,7 +1,15 @@
 #include "StdAfx.h"
+#include "atldlgs.h"
 #include "CozyKnightMainDlg.h"
 #include "CozyKnightSelectTargetDlg.h"
 #include "CozyKnightModifyDlg.h"
+#include "rapidjson/document.h"
+#include "rapidjson/prettywriter.h"
+#include "rapidjson/filereadstream.h"
+#include "rapidjson/reader.h"
+#include "rapidjson/encodedstream.h"
+#include "rapidjson/filewritestream.h"
+#include <fstream>
 
 CozyKnightMainDlg::CozyKnightMainDlg(void)
 	:CBkDialogViewImplEx<CozyKnightMainDlg>(IDR_MAIN), m_core(NULL), m_nTaskCount(0), m_nSelectCount(0)
@@ -380,12 +388,84 @@ void CozyKnightMainDlg::UpdateSelectedItem(
 
 void CozyKnightMainDlg::OnExport()
 {
-    
+    using namespace RAPIDJSON_NAMESPACE;
+
+    if(m_core != NULL)
+    {
+        Document doc;
+        Document::AllocatorType& alloc = doc.GetAllocator();
+
+        Value root;
+        root.SetObject();
+
+        Value arr;
+        arr.SetArray();
+
+        int c = 0;
+        ADDRESS_LIST selectedList = m_core->GetSavedAddress();
+        for(ADDRESS_LIST::iterator iter = selectedList.begin(); iter != selectedList.end(); ++iter)
+        {
+            Value obj;
+            obj.SetObject();
+
+            Value name;
+            std::string strBuffer = CW2A(m_SelectedMetaInfo[c].first, CP_UTF8);
+            name.SetString(strBuffer.c_str(), strBuffer.size(), alloc);
+
+            int nValue = 0;
+            m_core->ReadValue(*iter, nValue);
+
+            obj.AddMember("name", name, alloc);
+            obj.AddMember("addr", reinterpret_cast<uint64_t>(iter->addr), alloc);
+            obj.AddMember("size", iter->size, alloc);
+            obj.AddMember("value", nValue, alloc);
+            obj.AddMember("check", m_SelectedMetaInfo[c].second, alloc);
+
+            arr.PushBack(obj, alloc);
+            ++c;
+        }
+
+        root.AddMember("content", arr, alloc);
+
+        CFileDialog fileDlg(FALSE, _T("json"), _T("data"), OFN_HIDEREADONLY |OFN_OVERWRITEPROMPT, _T("*.json|*.json"), m_hWnd);
+        if(fileDlg.DoModal() == IDOK)
+        {
+            FILE* pFile = ::_tfopen (fileDlg.m_szFileName, _T("w+"));
+            if(pFile != NULL)
+            {
+                char writeBuffer[65536];
+                FileWriteStream os(pFile, writeBuffer, sizeof(writeBuffer));
+                PrettyWriter<FileWriteStream, UTF8<> > writer(os);
+                root.Accept(writer);
+
+                ::fclose(pFile);
+            }
+        }
+    }
 }
 
 void CozyKnightMainDlg::OnImport()
 {
-    
+    using namespace RAPIDJSON_NAMESPACE;
+
+    if(m_core != NULL)
+    {
+        CFileDialog fileDlg(TRUE, _T("json"), _T("data"), OFN_HIDEREADONLY |OFN_OVERWRITEPROMPT, _T("*.json|*.json"), m_hWnd);
+        if(fileDlg.DoModal() == IDOK)
+        {
+            FILE* pFile = ::_tfopen(fileDlg.m_szFileName, _T("r"));
+
+            char readBuffer[256];
+            FileReadStream bis(pFile, readBuffer, sizeof(readBuffer));
+            AutoUTFInputStream<unsigned, FileReadStream> eis(bis);
+
+            Document doc;
+            doc.ParseStream<0, AutoUTF<unsigned> >(eis);
+            bool b = doc.HasParseError();
+
+            ::fclose(pFile);
+        }
+    }
 }
 
 void CozyKnightMainDlg::OnTimer(UINT_PTR nIDEvent)
