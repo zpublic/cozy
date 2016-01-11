@@ -31,7 +31,14 @@ BOOL CozyKnightMainDlg::OnInitDialog(CWindow /*wndFocus*/, LPARAM /*lInitParam*/
     InitSearchList();
     InitSelectList();
 
+    SetTimer(IDC_TIMER_UPDATE, 1000);
+
     return True;
+}
+
+void CozyKnightMainDlg::OnClose()
+{
+    KillTimer(IDC_TIMER_UPDATE);
 }
 
 void CozyKnightMainDlg::OnBtnClose()
@@ -49,7 +56,6 @@ void CozyKnightMainDlg::OnSelectTarget()
         {
             m_core->Attach(hTarget);
             OnDeleteAllTask();
-            m_searchList.DeleteAllItems();
             m_searchList.DeleteAllItems();
         }
     }
@@ -120,6 +126,10 @@ void CozyKnightMainDlg::InitSearchList()
 
     if(m_searchList.Create(m_hWnd, NULL, NULL, dwStyle, 0, 101))
     {
+        DWORD dwexStyle = m_searchList.GetExtendedListViewStyle();
+        dwexStyle |= (LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
+        m_searchList.SetExtendedListViewStyle(dwexStyle);
+
         m_searchList.AddColumn(_T("地址"), 0);
         m_searchList.AddColumn(_T("类型"), 1);
         m_searchList.AddColumn(_T("数值"), 2);
@@ -137,6 +147,10 @@ void CozyKnightMainDlg::InitSelectList()
 
     if(m_selectList.Create(m_hWnd, NULL, NULL,  dwStyle, 0, 101))
     {
+        DWORD dwexStyle = m_selectList.GetExtendedListViewStyle();
+        dwexStyle |= (LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
+        m_selectList.SetExtendedListViewStyle(dwexStyle);
+
         m_selectList.AddColumn(_T("名称"), 0);
         m_selectList.AddColumn(_T("地址"), 1);
         m_selectList.AddColumn(_T("类型"), 2);
@@ -166,7 +180,7 @@ void CozyKnightMainDlg::AppendSearchItem(LPVOID lpAddr, INT nSize, int nValue, i
     m_searchList.AddItem(nItemId, 2, strBuff);
 }
 
-void CozyKnightMainDlg::AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bChecked /*= FALSE*/)
+void CozyKnightMainDlg::AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId)
 {
     CString strBuff;
 
@@ -183,7 +197,7 @@ void CozyKnightMainDlg::AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue,
     strBuff.Format(_T("%d"), nValue);
     m_selectList.AddItem(nItemId, 3, strBuff);
 
-    m_selectList.AddItem(nItemId, 4, (bChecked ? _T("TRUE") : _T("FALSE")));
+    m_selectList.AddItem(nItemId, 4, _T("FALSE"));
 }
 
 void CozyKnightMainDlg::OnSearch()
@@ -303,7 +317,14 @@ LRESULT CozyKnightMainDlg::OnSelectedDBListClick(LPNMHDR pnmh)
     return S_OK;
 }
 
-void CozyKnightMainDlg::UpdateSelectedItem(const CString& strName, LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bChekced/* = FALSE*/)
+void CozyKnightMainDlg::UpdateSelectedItem(
+    const CString& strName, 
+    LPVOID lpAddr, 
+    int nSize, 
+    int nValue, 
+    int nItemId, 
+    BOOL bChekced/* = FALSE*/,
+    BOOL bUsable/* = TRUE*/)
 {
     CString strBuff;
 
@@ -315,7 +336,14 @@ void CozyKnightMainDlg::UpdateSelectedItem(const CString& strName, LPVOID lpAddr
     strBuff.Format(_T("%d"), nSize);
     m_selectList.SetItemText(nItemId, 2, strBuff);
 
-    strBuff.Format(_T("%d"), nValue);
+    if(bUsable)
+    {
+        strBuff.Format(_T("%d"), nValue);
+    }
+    else
+    {
+        strBuff = _T("???");
+    }
     m_selectList.SetItemText(nItemId, 3, strBuff);
 
     m_selectList.SetItemText(nItemId, 4, (bChekced ? _T("TRUE") : _T("FALSE")));
@@ -333,7 +361,7 @@ void CozyKnightMainDlg::UpdateSelectedItem(const CString& strName, LPVOID lpAddr
             m_AutoLockList[lpAddr] = std::make_pair(addr, nValue);
             if(bEmpty)
             {
-                ::SetTimer(m_hWnd, IDC_TIMER_LOCK, 1000, NULL);
+                SetTimer(IDC_TIMER_LOCK, 1000);
             }
         }
     }
@@ -344,7 +372,7 @@ void CozyKnightMainDlg::UpdateSelectedItem(const CString& strName, LPVOID lpAddr
             m_AutoLockList.erase(iter);
             if(m_AutoLockList.empty())
             {
-                ::KillTimer(m_hWnd, IDC_TIMER_LOCK);
+                KillTimer(IDC_TIMER_LOCK);
             }
         }
     }
@@ -361,6 +389,74 @@ void CozyKnightMainDlg::OnImport()
 }
 
 void CozyKnightMainDlg::OnTimer(UINT_PTR nIDEvent)
+{
+    if(nIDEvent == IDC_TIMER_LOCK)
+    {
+        AutoLockProc();
+    }
+    else if(nIDEvent == IDC_TIMER_UPDATE)
+    {
+        UpdateDataProc();
+    }
+}
+
+void CozyKnightMainDlg::UpdateSearchItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bUsable/* = TRUE*/)
+{
+    CString strBuff;
+
+    strBuff.Format(_T("%p"), lpAddr);
+    m_searchList.SetItemText(nItemId, 0, strBuff);
+
+    strBuff.Format(_T("%d"), nSize);
+    m_searchList.SetItemText(nItemId, 1, strBuff);
+
+    if(bUsable)
+    {
+        strBuff.Format(_T("%d"), nValue);
+    }
+    else
+    {
+        strBuff = _T("???");
+    }
+    m_searchList.SetItemText(nItemId, 2, strBuff);
+}
+
+void CozyKnightMainDlg::UpdateDataProc()
+{
+    if(m_core != NULL)
+    {
+        int nItem = GetCurSelItem(IDC_TASK_LIST_CTRL);
+        if(nItem >= 0 && nItem < m_core->GetTaskCount())
+        {
+            IKnightTask* pTask = m_core->GetTask(nItem);
+            if(pTask)
+            {
+                ADDRESS_LIST addrList = pTask->GetResultAddress();
+
+                int c = 0;
+                for(ADDRESS_LIST::iterator iter = addrList.begin(); iter != addrList.end(); ++iter)
+                {
+                    int nValue = 0;
+                    BOOL bRead = m_core->ReadValue(*iter, nValue);
+                    UpdateSearchItem(iter->addr, iter->size, nValue, c++, bRead);
+                }
+            }
+        }
+
+        int c                       = 0;
+        ADDRESS_LIST selectedList   = m_core->GetSavedAddress();
+
+        for(ADDRESS_LIST::iterator iter = selectedList.begin(); iter != selectedList.end(); ++iter)
+        {
+            int nValue = 0;
+            BOOL bRead = m_core->ReadValue(*iter, nValue);
+            UpdateSelectedItem(m_SelectedMetaInfo[c].first, iter->addr, iter->size, nValue, c, m_SelectedMetaInfo[c].second,bRead);
+            ++c;
+        }
+    }
+}
+
+void CozyKnightMainDlg::AutoLockProc()
 {
     if(m_core != NULL)
     {

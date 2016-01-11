@@ -35,6 +35,7 @@ public:
     enum
     {
         IDC_TIMER_LOCK          = 23,
+        IDC_TIMER_UPDATE        = 24,
     };
 
 protected:
@@ -57,6 +58,7 @@ protected:
         MSG_BK_NOTIFY(IDC_RICHVIEW_WIN_EX)
         MSG_WM_INITDIALOG(OnInitDialog)
         MSG_WM_TIMER(OnTimer)
+        MSG_WM_CLOSE(OnClose)
 
         NOTIFY_HANDLER_EX(IDC_SEARCH_LIST_CTRL, NM_DBLCLK, OnSearchDBListClick)
         NOTIFY_HANDLER_EX(IDC_SELECTED_LIST_CTRL, NM_DBLCLK, OnSelectedDBListClick)
@@ -66,6 +68,7 @@ protected:
     END_MSG_MAP()
 
     BOOL OnInitDialog(CWindow /*wndFocus*/, LPARAM /*lInitParam*/);
+    void OnClose();
     void OnBtnClose();
     void OnSelectTarget();
     void OnNewTask();
@@ -89,8 +92,12 @@ private:
 
 private:
     void AppendSearchItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId);
-    void AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bChekced = FALSE);
-    void UpdateSelectedItem(const CString& strName, LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bChekced = FALSE);
+    void AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId);
+    void UpdateSearchItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bUsable = TRUE);
+    void UpdateSelectedItem(const CString& strName, LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bChekced = FALSE, BOOL bUsable = TRUE);
+
+    void UpdateDataProc();
+    void AutoLockProc();
 
 private:
     std::vector<MetaInfo >          m_SelectedMetaInfo;
