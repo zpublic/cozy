@@ -188,13 +188,21 @@ void CozyKnightMainDlg::AppendSearchItem(LPVOID lpAddr, INT nSize, int nValue, i
     m_searchList.AddItem(nItemId, 2, strBuff);
 }
 
-void CozyKnightMainDlg::AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId)
+void CozyKnightMainDlg::AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId, LPCTSTR lpName/* = NULL*/)
 {
     CString strBuff;
 
-    strBuff.Format(_T("µØÖ·%d"), m_nSelectCount++);
-    m_selectList.AddItem(nItemId, 0, strBuff);
-    m_SelectedMetaInfo.push_back(MetaInfo(strBuff, FALSE));
+    if(lpName == NULL)
+    {
+        strBuff.Format(_T("µØÖ·%d"), m_nSelectCount++);
+        m_selectList.AddItem(nItemId, 0, strBuff);
+        m_SelectedMetaInfo.push_back(MetaInfo(strBuff, FALSE));
+    }
+    else
+    {
+        m_selectList.AddItem(nItemId, 0, lpName);
+        m_SelectedMetaInfo.push_back(MetaInfo(lpName, FALSE));
+    }
 
     strBuff.Format(_T("%p"), lpAddr);
     m_selectList.AddItem(nItemId, 1, strBuff);
@@ -225,7 +233,7 @@ void CozyKnightMainDlg::OnSearch()
                 int nData = ::_ttoi(strValue);
                 strValue.ReleaseBuffer(nLenght);
 
-                pTask->Search(nData);
+                pTask->SearchDoubleWord(nData);
 
                 ADDRESS_LIST addrlist = pTask->GetResultAddress();
 
@@ -461,8 +469,86 @@ void CozyKnightMainDlg::OnImport()
 
             Document doc;
             doc.ParseStream<0, AutoUTF<unsigned> >(eis);
-            bool b = doc.HasParseError();
+            if(doc.HasParseError())
+            {
+                goto EXIT0;
+            }
 
+            if(!doc.IsObject() || !doc.HasMember("content"))
+            {
+                goto EXIT0;
+            }
+
+            const Value& content = doc["content"];
+            if(!content.IsArray())
+            {
+                goto EXIT0;
+            }
+
+            for(int i = 0; i < content.Size(); ++i)
+            {
+                const Value& obj = content[i];
+                if(obj.IsObject())
+                {
+                    CString strName;
+                    if(obj.HasMember("name"))
+                    {
+                        const Value& name = obj["name"];
+                        if(name.IsString())
+                        {
+                            strName = CA2W(name.GetString(), CP_UTF8);
+                        }
+                    }
+
+                    uint64_t uaddr = 0;
+                    if(obj.HasMember("addr"))
+                    {
+                        const Value& addr = obj["addr"];
+                        if(addr.IsUint64())
+                        {
+                            uaddr = addr.GetUint64();
+                        }
+                    }
+
+                    int nValue = 0;
+                    if(obj.HasMember("value"))
+                    {
+                        const Value& value = obj["value"];
+                        if(value.IsInt())
+                        {
+                            nValue = value.GetInt();
+                        }
+                    }
+
+                    int nSize = 0;
+                    if(obj.HasMember("size"))
+                    {
+                        const Value& size = obj["size"];
+                        if(size.IsInt())
+                        {
+                            nSize = size.GetInt();
+                        }
+                    }
+
+                    bool bCheck = FALSE;
+                    if(obj.HasMember("check"))
+                    {
+                        const Value& check = obj["check"];
+                        if(check.IsBool())
+                        {
+                            nSize = check.GetBool();
+                        }
+                    }
+
+                    ADDRESS_INFO addrInfo;
+                    addrInfo.addr = reinterpret_cast<LPVOID>(uaddr);
+                    addrInfo.size = nSize;
+
+                    m_core->SaveAddress(addrInfo);
+                    AppendSelectedItem(addrInfo.addr, addrInfo.size, nValue, i, strName);
+                }
+            }
+EXIT0:
             ::fclose(pFile);
         }
     }

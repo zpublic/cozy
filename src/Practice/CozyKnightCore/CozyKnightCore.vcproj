@@ -218,6 +218,14 @@
 			>
 		</File>
 		<File
+			RelativePath=".\PredicateObject.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\PredicateObject.h"
+			>
+		</File>
+		<File
 			RelativePath=".\ReadMe.txt"
 			>
 		</File>

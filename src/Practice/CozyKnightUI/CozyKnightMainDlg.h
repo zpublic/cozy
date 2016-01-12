@@ -50,7 +50,7 @@ protected:
         BK_NOTIFY_ID_COMMAND(IDC_BTN_EXPORT, OnExport)
 
         BK_LISTWND_NOTIFY_BEGIN(IDC_TASK_LIST_CTRL)
-            BK_LISTWND_LISTITEM_LBUTTON_DBCLICK(OnTaskLBtnUp)
+            BK_LISTWND_LISTITEM_LBUTTONDOWN(OnTaskLBtnUp)
         BK_LISTWND_NOTIFY_END()
     BK_NOTIFY_MAP_END()
 
@@ -92,7 +92,7 @@ private:
 
 private:
     void AppendSearchItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId);
-    void AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId);
+    void AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId, LPCTSTR lpName = NULL);
     void UpdateSearchItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bUsable = TRUE);
     void UpdateSelectedItem(const CString& strName, LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bChekced = FALSE, BOOL bUsable = TRUE);
 

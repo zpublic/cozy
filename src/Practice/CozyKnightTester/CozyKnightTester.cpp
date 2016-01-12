@@ -41,7 +41,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
         IKnightTask* task = core->CreateTask();
 
-        task->Search(42);
+        task->SearchDoubleWord(42);
         ADDRESS_LIST addrList = task->GetResultAddress();
         std::cout << addrList.size() << std::endl;
 
