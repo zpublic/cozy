@@ -92,7 +92,7 @@ private:
 
 private:
     void AppendSearchItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId);
-    void AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId);
+    void AppendSelectedItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId, LPCTSTR lpName = NULL);
     void UpdateSearchItem(LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bUsable = TRUE);
     void UpdateSelectedItem(const CString& strName, LPVOID lpAddr, INT nSize, int nValue, int nItemId, BOOL bChekced = FALSE, BOOL bUsable = TRUE);
 
