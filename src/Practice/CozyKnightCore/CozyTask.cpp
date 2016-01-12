@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "CozyTask.h"
 #include <algorithm>
+#include "PredicateObject.h"
 
 CozyTask::CozyTask(HANDLE hTarget)
     :m_hTarget(hTarget)
