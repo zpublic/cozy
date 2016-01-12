@@ -225,7 +225,7 @@ void CozyKnightMainDlg::OnSearch()
                 int nData = ::_ttoi(strValue);
                 strValue.ReleaseBuffer(nLenght);
 
-                pTask->Search(nData);
+                pTask->SearchDoubleWord(nData);
 
                 ADDRESS_LIST addrlist = pTask->GetResultAddress();
 

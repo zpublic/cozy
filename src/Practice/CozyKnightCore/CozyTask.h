@@ -11,34 +11,55 @@ public:
     CozyTask(HANDLE hTarget);
     ~CozyTask(void);
 
-    virtual void Search(int value);
+    virtual void SearchDoubleWord(DWORD value);
+    virtual void SearchWord(WORD value);
+    virtual void SearchByte(BYTE value);
+    virtual void SearchBytes(LPCVOID lpData, DWORD dwSize);
+
     virtual void SearchRange(int min, int max);
     virtual ADDRESS_LIST GetResultAddress();
 
 private:
-    void SearcFirst(int value);
-    void SearchNext(int value);
+    void SearcFirst(LPCVOID lpData, DWORD dwSize);
+    void SearchNext(LPCVOID lpData, DWORD dwSize);
 
 private:
-    template<class T>
     class PredicateObject
     {
     public:
-        PredicateObject(const T& val, HANDLE hTarget)
-            :m_val(val), m_hTarget(hTarget)
+        PredicateObject(LPCVOID lpData, DWORD dwSize, HANDLE hTarget)
+            :m_lpData(lpData), m_dwSize(dwSize), m_hTarget(hTarget)
         {
 
         }
 
         bool operator()(const ADDRESS_INFO& val)
         {
-            T buffer = T();
-            ::ReadProcessMemory(m_hTarget, val.addr, &buffer, val.size, NULL);
-            return m_val == buffer;
+            BOOL bRetVal = FALSE;
+            if(val.addr != NULL && val.size == m_dwSize)
+            {
+                LPBYTE lpData = new BYTE[val.size];
+                if(::ReadProcessMemory(m_hTarget, val.addr, lpData, val.size, NULL))
+                {
+                    bRetVal = this->operator()(lpData, val.size);
+                }
+                delete[] lpData;
+            }
+            return bRetVal;
+        }
+
+        bool operator() (const LPBYTE lpData, DWORD dwSize)
+        {
+            if(dwSize == m_dwSize)
+            {
+                return !::memcmp(lpData, m_lpData, dwSize);
+            }
+            return FALSE;
         }
 
     private:
-        const T&    m_val;
+        LPCVOID     m_lpData;
+        DWORD       m_dwSize;
         HANDLE      m_hTarget;
     };
 
