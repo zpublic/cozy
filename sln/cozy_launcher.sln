@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher", "..\src\Practice\CozyLauncher\CozyLauncher.csproj", "{36C16B10-D17D-4A58-BD46-0F938DA82CC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Core", "..\src\Practice\CozyLauncher.Core\CozyLauncher.Core.csproj", "{CE088805-E664-42EB-B943-C2A421EA8551}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Infrastructure", "..\src\Practice\CozyLauncher.Infrastructure\CozyLauncher.Infrastructure.csproj", "{58C2D24E-55DE-4E57-A1C1-18EFA0D4A5A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugin", "Plugin", "{B1502C3F-B929-4EE6-90D1-39C548CECAE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Program", "..\src\Practice\CozyLauncher.Plugin.Program\CozyLauncher.Plugin.Program.csproj", "{27B8819D-01EA-47A1-8CD9-75BA99BA08CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.PluginBase", "..\src\Practice\CozyLauncher.PluginBase\CozyLauncher.PluginBase.csproj", "{B2E70E72-BC0A-459D-BE2A-41DD5074A3E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36C16B10-D17D-4A58-BD46-0F938DA82CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36C16B10-D17D-4A58-BD46-0F938DA82CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36C16B10-D17D-4A58-BD46-0F938DA82CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36C16B10-D17D-4A58-BD46-0F938DA82CC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE088805-E664-42EB-B943-C2A421EA8551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE088805-E664-42EB-B943-C2A421EA8551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE088805-E664-42EB-B943-C2A421EA8551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE088805-E664-42EB-B943-C2A421EA8551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58C2D24E-55DE-4E57-A1C1-18EFA0D4A5A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58C2D24E-55DE-4E57-A1C1-18EFA0D4A5A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58C2D24E-55DE-4E57-A1C1-18EFA0D4A5A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58C2D24E-55DE-4E57-A1C1-18EFA0D4A5A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27B8819D-01EA-47A1-8CD9-75BA99BA08CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27B8819D-01EA-47A1-8CD9-75BA99BA08CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27B8819D-01EA-47A1-8CD9-75BA99BA08CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27B8819D-01EA-47A1-8CD9-75BA99BA08CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2E70E72-BC0A-459D-BE2A-41DD5074A3E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E70E72-BC0A-459D-BE2A-41DD5074A3E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E70E72-BC0A-459D-BE2A-41DD5074A3E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E70E72-BC0A-459D-BE2A-41DD5074A3E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{27B8819D-01EA-47A1-8CD9-75BA99BA08CB} = {B1502C3F-B929-4EE6-90D1-39C548CECAE7}
+	EndGlobalSection
+EndGlobal
