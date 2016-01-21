@@ -15,6 +15,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Program
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.PluginBase", "..\src\Practice\CozyLauncher.PluginBase\CozyLauncher.PluginBase.csproj", "{B2E70E72-BC0A-459D-BE2A-41DD5074A3E1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{7A0D3583-5847-4CCE-A7AA-690C34127EE3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Primary", "Primary", "{6B37D2AC-6C6D-444F-8492-DA47118C7625}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Secondary", "Secondary", "{DED63B3E-03D2-4DDD-8229-F180A8E6515E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.ManualRun", "..\src\Practice\CozyLauncher.Plugin.ManualRun\CozyLauncher.Plugin.ManualRun.csproj", "{728F9DBE-8312-47A8-B713-A911571A5DD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,11 +49,19 @@ Global
 		{B2E70E72-BC0A-459D-BE2A-41DD5074A3E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2E70E72-BC0A-459D-BE2A-41DD5074A3E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2E70E72-BC0A-459D-BE2A-41DD5074A3E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{728F9DBE-8312-47A8-B713-A911571A5DD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{728F9DBE-8312-47A8-B713-A911571A5DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{728F9DBE-8312-47A8-B713-A911571A5DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{728F9DBE-8312-47A8-B713-A911571A5DD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{27B8819D-01EA-47A1-8CD9-75BA99BA08CB} = {B1502C3F-B929-4EE6-90D1-39C548CECAE7}
+		{27B8819D-01EA-47A1-8CD9-75BA99BA08CB} = {6B37D2AC-6C6D-444F-8492-DA47118C7625}
+		{7A0D3583-5847-4CCE-A7AA-690C34127EE3} = {B1502C3F-B929-4EE6-90D1-39C548CECAE7}
+		{6B37D2AC-6C6D-444F-8492-DA47118C7625} = {B1502C3F-B929-4EE6-90D1-39C548CECAE7}
+		{DED63B3E-03D2-4DDD-8229-F180A8E6515E} = {B1502C3F-B929-4EE6-90D1-39C548CECAE7}
+		{728F9DBE-8312-47A8-B713-A911571A5DD8} = {6B37D2AC-6C6D-444F-8492-DA47118C7625}
 	EndGlobalSection
 EndGlobal
