@@ -114,6 +114,18 @@ namespace CozyLauncher.ViewModel
             }
         }
 
+        private ICommand _ShowCommand;
+        public ICommand ShowCommand
+        {
+            get
+            {
+                return _ShowCommand = _ShowCommand ?? new DelegateCommand(x => 
+                {
+                    ShowApp();
+                });
+            }
+        }
+
         public MainWindowViewModel()
         {
             pm.Init(this);

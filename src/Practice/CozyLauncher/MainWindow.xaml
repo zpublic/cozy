@@ -9,12 +9,13 @@
         xmlns:converter="clr-namespace:CozyLauncher.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Width="450" SizeToContent="Height" WindowStyle="None" Topmost="True" ResizeMode="NoResize" 
-        KeyUp="OnQueryKeyUp" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="OnWindowMouseLeftButtonDown"
-        SourceInitialized="MainWindow_SourceInitialized" Closed="MainWindow_Closed">
+        KeyUp="OnQueryKeyUp" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="OnWindowMouseLeftButtonDown">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
     </Window.DataContext>
-
+    <Window.InputBindings>
+        <KeyBinding Gesture="Ctrl+Q" Command="{Binding ShowCommand}" HotkeyManager.RegisterGlobalHotkey="True"></KeyBinding>
+    </Window.InputBindings>
     <StackPanel>
         <StackPanel.Resources>
             <converter:BoolToVisibilityConverter x:Key="VisibilityConverter"></converter:BoolToVisibilityConverter>
