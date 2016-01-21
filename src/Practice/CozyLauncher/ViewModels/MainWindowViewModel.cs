@@ -48,7 +48,7 @@ namespace CozyLauncher.ViewModel
                 return _QueryCommand = _QueryCommand ?? new DelegateCommand(x =>
                 {
                     var text = x as string;
-                    if(text != null)
+                    if (text != null)
                     {
                         Query q = new Query();
                         q.RawQuery = text;
@@ -63,7 +63,7 @@ namespace CozyLauncher.ViewModel
         {
             get
             {
-                return _DoCommand = _DoCommand ?? new DelegateCommand(x => 
+                return _DoCommand = _DoCommand ?? new DelegateCommand(x =>
                 {
                     SelectedResult?.Action(null);
                 });
@@ -75,7 +75,7 @@ namespace CozyLauncher.ViewModel
         {
             get
             {
-                return _UpCommand = _UpCommand ?? new DelegateCommand(x => 
+                return _UpCommand = _UpCommand ?? new DelegateCommand(x =>
                 {
                     if (SelectedResultIndex == -1)
                     {
@@ -99,7 +99,7 @@ namespace CozyLauncher.ViewModel
             {
                 return _DwonCommand = _DwonCommand ?? new DelegateCommand(x =>
                 {
-                    if(SelectedResultIndex == -1)
+                    if (SelectedResultIndex == -1)
                     {
                         SelectedResultIndex = 0;
                     }
@@ -140,7 +140,7 @@ namespace CozyLauncher.ViewModel
 
             if (results.Count > 0)
             {
-                if(!IsResultViewVisiable)
+                if (!IsResultViewVisiable)
                 {
                     IsResultViewVisiable = true;
                 }
