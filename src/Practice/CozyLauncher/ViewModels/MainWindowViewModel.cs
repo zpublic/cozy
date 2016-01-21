@@ -9,6 +9,7 @@ using CozyLauncher.Commands;
 using System.Windows.Input;
 using CozyLauncher.Core.Plugin;
 using CozyLauncher.Ext;
+using System.ComponentModel;
 
 namespace CozyLauncher.ViewModel
 {
@@ -17,13 +18,6 @@ namespace CozyLauncher.ViewModel
         private PluginMgr pm = new PluginMgr();
 
         public ExtObservableCollection<Result> ResultListView { get; set; } = new ExtObservableCollection<Result>();
-
-        private string _InputText;
-        public string InputText
-        {
-            get { return _InputText; }
-            set { this.Set(ref _InputText, value); }
-        }
 
         private bool _IsResultViewVisiable;
         public bool IsResultViewVisiable
@@ -46,9 +40,13 @@ namespace CozyLauncher.ViewModel
             {
                 return _QueryCommand = _QueryCommand ?? new DelegateCommand(x =>
                 {
-                    Query q = new Query();
-                    q.RawQuery = InputText;
-                    pm.Query(q);
+                    var text = x as string;
+                    if(text != null)
+                    {
+                        Query q = new Query();
+                        q.RawQuery = text;
+                        pm.Query(q);
+                    }
                 });
             }
         }
@@ -60,10 +58,7 @@ namespace CozyLauncher.ViewModel
             {
                 return _DoCommand = _DoCommand ?? new DelegateCommand(x => 
                 {
-                    if(SelectedResult != null)
-                    {
-                        SelectedResult.Action(null);
-                    }
+                    SelectedResult?.Action(null);
                 });
             }
         }

@@ -27,6 +27,14 @@ namespace CozyLauncher
         {
             InitializeComponent();
             this.ViewModel.PropertyChanged += OnViewModelPropertyChanged;
+            this.InnerTextBox.TextChanged += (o, e) =>
+            {
+                var text = InnerTextBox.Text.Trim();
+                if (!string.IsNullOrWhiteSpace(text))
+                {
+                    this.ViewModel.QueryCommand.Execute(text);
+                }
+            };
         }
 
         private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
