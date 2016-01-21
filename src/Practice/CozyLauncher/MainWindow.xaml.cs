@@ -14,20 +14,39 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
 namespace CozyLauncher
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IPublicApi
+    public partial class MainWindow : Window
     {
-        PluginMgr pm = new PluginMgr();
-
         public MainWindow()
         {
             InitializeComponent();
-            pm.Init(this);
+            this.ViewModel.PropertyChanged += OnViewModelPropertyChanged;
+            this.InnerTextBox.TextChanged += (o, e) =>
+            {
+                var text = InnerTextBox.Text.Trim();
+                if (!string.IsNullOrWhiteSpace(text))
+                {
+                    this.ViewModel.QueryCommand.Execute(text);
+                }
+            };
+        }
+
+        private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == "HideApp")
+            {
+                HideApp();
+            }
+            else if(e.PropertyName == "CloseApp")
+            {
+                CloseApp();
+            }
         }
 
         private void HideWox()
@@ -43,18 +62,6 @@ namespace CozyLauncher
         public void HideApp()
         {
             Dispatcher.Invoke(HideWox);
-        }
-
-        public void PushResults(List<Result> results)
-        {
-            ;
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            Query q = new Query();
-            q.RawQuery = textBox.Text;
-            pm.Query(q);
         }
     }
 }
