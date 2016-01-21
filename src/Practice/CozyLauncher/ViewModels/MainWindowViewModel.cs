@@ -33,6 +33,13 @@ namespace CozyLauncher.ViewModel
             set { this.Set(ref _SelectedResult, value); }
         }
 
+        private int _SelectedResultIndex;
+        public int SelectedResultIndex
+        {
+            get { return _SelectedResultIndex; }
+            set { this.Set(ref _SelectedResultIndex, value); }
+        }
+
         private ICommand _QueryCommand;
         public ICommand QueryCommand
         {
@@ -63,6 +70,49 @@ namespace CozyLauncher.ViewModel
             }
         }
 
+        private ICommand _UpCommand;
+        public ICommand UpCommand
+        {
+            get
+            {
+                return _UpCommand = _UpCommand ?? new DelegateCommand(x => 
+                {
+                    if (SelectedResultIndex == -1)
+                    {
+                        SelectedResultIndex = 0;
+                    }
+                    else
+                    {
+                        if (SelectedResultIndex > 0 && ResultListView.Count > 1)
+                        {
+                            SelectedResultIndex--;
+                        }
+                    }
+                });
+            }
+        }
+
+        private ICommand _DwonCommand;
+        public ICommand DownCommand
+        {
+            get
+            {
+                return _DwonCommand = _DwonCommand ?? new DelegateCommand(x =>
+                {
+                    if(SelectedResultIndex == -1)
+                    {
+                        SelectedResultIndex = 0;
+                    }
+                    else
+                    {
+                        if (SelectedResultIndex < ResultListView.Count - 1 && ResultListView.Count > 1)
+                        {
+                            SelectedResultIndex++;
+                        }
+                    }
+                });
+            }
+        }
 
         public MainWindowViewModel()
         {

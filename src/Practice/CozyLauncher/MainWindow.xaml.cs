@@ -26,15 +26,50 @@ namespace CozyLauncher
         public MainWindow()
         {
             InitializeComponent();
-            this.ViewModel.PropertyChanged += OnViewModelPropertyChanged;
-            this.InnerTextBox.TextChanged += (o, e) =>
+            this.ViewModel.PropertyChanged  += OnViewModelPropertyChanged;
+            this.MouseLeftButtonDown        += (s, e) =>
             {
-                var text = InnerTextBox.Text.Trim();
+                base.DragMove();
+            };
+        }
+
+        private void OnQueryKeyUp(object sender, KeyEventArgs e)
+        {
+            var oldHandle   = e.Handled;
+            e.Handled       = true;
+            Key key         = (e.Key == Key.System ? e.SystemKey : e.Key);
+
+            switch(key)
+            {
+                case Key.Up:
+                    this.ViewModel.UpCommand.Execute(null);
+                    break;
+                case Key.Down:
+                    this.ViewModel.DownCommand.Execute(null);
+                    break;
+                case Key.Enter:
+                    this.ViewModel.DoCommand.Execute(null);
+                    break;
+                case Key.Escape:
+                    this.ViewModel.CloseApp();
+                    break;
+                default:
+                    e.Handled = oldHandle;
+                    break;
+            }
+        }
+
+        private void OnQueryTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textbox = sender as TextBox;
+            if(textbox != null)
+            {
+                var text = textbox.Text.Trim();
                 if (!string.IsNullOrWhiteSpace(text))
                 {
                     this.ViewModel.QueryCommand.Execute(text);
                 }
-            };
+            }
         }
 
         private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
