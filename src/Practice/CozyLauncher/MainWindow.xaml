@@ -8,7 +8,7 @@
         xmlns:viewmodel="clr-namespace:CozyLauncher.ViewModel"
         xmlns:converter="clr-namespace:CozyLauncher.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Width="450" SizeToContent="Height" WindowStyle="None">
+        Title="MainWindow" Width="450" SizeToContent="Height" WindowStyle="None" Topmost="True">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
     </Window.DataContext>
@@ -16,11 +16,10 @@
         <StackPanel.Resources>
             <converter:BoolToVisibilityConverter x:Key="VisibilityConverter"></converter:BoolToVisibilityConverter>
         </StackPanel.Resources>
+        <TextBox x:Name="InnerTextBox" HorizontalAlignment="Left" Height="23" Margin="10" TextWrapping="Wrap"
+                 VerticalAlignment="Top" Width="410"/>
 
-        <TextBox x:Name="InnerTextBox" HorizontalAlignment="Left" Height="23" Margin="10,10" TextWrapping="Wrap" 
-                 VerticalAlignment="Top" Width="300" />
-
-            <ListView MaxHeight="400" Margin="10,10, 0, 0" ItemsSource="{Binding ResultListView}" SelectedItem="{Binding SelectedResult}" 
+        <ListView MaxHeight="410" Margin="10" ItemsSource="{Binding ResultListView}" SelectedItem="{Binding SelectedResult}"
                   Visibility="{Binding IsResultViewVisiable, Converter={StaticResource VisibilityConverter}}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonUp">
