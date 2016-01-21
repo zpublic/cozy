@@ -47,11 +47,20 @@ namespace CozyLauncher
             {
                 CloseApp();
             }
+            else if(e.PropertyName == "ShowApp")
+            {
+                ShowApp();
+            }
         }
 
         private void HideWox()
         {
             Hide();
+        }
+
+        private void ShowWox()
+        {
+
         }
 
         public void CloseApp()
@@ -62,6 +71,11 @@ namespace CozyLauncher
         public void HideApp()
         {
             Dispatcher.Invoke(HideWox);
+        }
+
+        public void ShowApp()
+        {
+            Dispatcher.Invoke(ShowWox);
         }
     }
 }

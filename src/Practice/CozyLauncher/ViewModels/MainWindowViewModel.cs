@@ -79,6 +79,11 @@ namespace CozyLauncher.ViewModel
             this.OnPropertyChanged("HideApp");
         }
 
+        public void ShowApp()
+        {
+            this.OnPropertyChanged("ShowApp");
+        }
+
         public void PushResults(List<Result> results)
         {
             ResultListView.Clear();

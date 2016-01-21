@@ -8,7 +8,7 @@
         xmlns:viewmodel="clr-namespace:CozyLauncher.ViewModel"
         xmlns:converter="clr-namespace:CozyLauncher.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Width="450" SizeToContent="Height" WindowStyle="None" Topmost="True">
+        Title="MainWindow" Width="450" SizeToContent="Height" WindowStyle="None" Topmost="True" ResizeMode="NoResize">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
     </Window.DataContext>
