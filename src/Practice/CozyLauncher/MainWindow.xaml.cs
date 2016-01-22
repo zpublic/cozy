@@ -78,17 +78,21 @@ namespace CozyLauncher
 
         private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "HideApp")
+            if (e.PropertyName == "SystemCommand.HideApp")
             {
                 HideApp();
             }
-            else if (e.PropertyName == "CloseApp")
+            else if (e.PropertyName == "SystemCommand.CloseApp")
             {
                 CloseApp();
             }
-            else if (e.PropertyName == "ShowApp")
+            else if (e.PropertyName == "SystemCommand.ShowApp")
             {
                 ShowApp();
+            }
+            else if(e.PropertyName == "SystemCommand.ShowConfig")
+            {
+                ShowConfig();
             }
         }
 
@@ -115,6 +119,12 @@ namespace CozyLauncher
         public void ShowApp()
         {
             Dispatcher.Invoke(ShowWox);
+        }
+
+        public void ShowConfig()
+        {
+            var config = new ConfigWindow();
+            config.ShowDialog();
         }
     }
 }

@@ -45,21 +45,6 @@ namespace CozyLauncher.Plugin.Program
                 }
             }
 
-            if (query.RawQuery == "hehe")
-            {
-                var r       = new Result();
-                r.Title     = "Hehe";
-                r.SubTitle  = "关闭";
-                r.IcoPath   = "exe";
-                r.Score     = 100;
-                r.Action    = e =>
-                {
-                    context_.Api.CloseApp();
-                    return true;
-                };
-                rl.Add(r);
-            }
-
             if(rl.Count > 0)
             {
                 return rl;

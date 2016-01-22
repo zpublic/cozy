@@ -133,17 +133,22 @@ namespace CozyLauncher.ViewModel
 
         public void CloseApp()
         {
-            this.OnPropertyChanged("CloseApp");
+            this.OnPropertyChanged("SystemCommand.CloseApp");
         }
 
         public void HideApp()
         {
-            this.OnPropertyChanged("HideApp");
+            this.OnPropertyChanged("SystemCommand.HideApp");
         }
 
         public void ShowApp()
         {
-            this.OnPropertyChanged("ShowApp");
+            this.OnPropertyChanged("SystemCommand.ShowApp");
+        }
+
+        public void Config()
+        {
+            this.OnPropertyChanged("SystemCommand.ShowConfig");
         }
 
         public void PushResults(List<Result> results)
