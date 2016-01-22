@@ -1,6 +1,8 @@
 ﻿using CozyLauncher.PluginBase;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 
 namespace CozyLauncher.Plugin.Program
 {
@@ -18,10 +20,34 @@ namespace CozyLauncher.Plugin.Program
 
         public List<Result> Query(Query query)
         {
+            var rl = new List<Result>();
+
+            var EnvVar = Environment.GetEnvironmentVariable("Path").Split(';');
+            foreach (var path in EnvVar)
+            {
+                var ActPath = Path.Combine(path, query.RawQuery + ".exe");
+                if (File.Exists(ActPath))
+                {
+                    var r = new Result()
+                    {
+                        Title = query.RawQuery,
+                        SubTitle = ActPath,
+                        IcoPath = "exe",
+                        Score = 100,
+                        Action = e =>
+                        {
+                            context_.Api.HideApp();
+                            Process.Start(ActPath);
+                            return true;
+                        },
+                    };
+                    rl.Add(r);
+                }
+            }
+
             if (query.RawQuery == "hehe")
             {
-                var rl  = new List<Result>();
-                var r   = new Result();
+                var r       = new Result();
                 r.Title     = "Hehe";
                 r.SubTitle  = "关闭";
                 r.IcoPath   = "exe";
@@ -32,25 +58,13 @@ namespace CozyLauncher.Plugin.Program
                     return true;
                 };
                 rl.Add(r);
-                return rl;
             }
-            else if (query.RawQuery == "calc")
+
+            if(rl.Count > 0)
             {
-                var rl  = new List<Result>();
-                var r   = new Result();
-                r.Title     = "Calc";
-                r.SubTitle  = "打开计算器";
-                r.IcoPath   = "exe";
-                r.Score     = 100;
-                r.Action    = e =>
-                {
-                    context_.Api.HideApp();
-                    Process.Start("calc");
-                    return true;
-                };
-                rl.Add(r);
                 return rl;
             }
+
             return null;
         }
     }
