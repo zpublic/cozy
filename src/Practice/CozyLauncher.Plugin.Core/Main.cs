@@ -56,6 +56,8 @@ namespace CozyLauncher.Plugin.Core
                         return true;
                     }
                 };
+
+                rl.Add(r);
             }
 
             return rl;
