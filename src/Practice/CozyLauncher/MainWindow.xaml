@@ -16,15 +16,20 @@
     <Window.InputBindings>
         <KeyBinding Gesture="Ctrl+Q" Command="{Binding ShowCommand}" HotkeyManager.RegisterGlobalHotkey="True"></KeyBinding>
     </Window.InputBindings>
-    <StackPanel>
-        <StackPanel.Resources>
+    <Grid>
+        <Grid.Resources>
             <converter:BoolToVisibilityConverter x:Key="VisibilityConverter"></converter:BoolToVisibilityConverter>
-        </StackPanel.Resources>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="10" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="410" TextChanged="OnQueryTextChanged"/>
+        </Grid.Resources>
 
-        <ListView MaxHeight="410" Margin="10" ItemsSource="{Binding ResultListView}" SelectedItem="{Binding SelectedResult}" 
-                  SelectedIndex="{Binding SelectedResultIndex}" Focusable="False"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10" TextWrapping="Wrap" Grid.Row="0"
+                 VerticalAlignment="Top" Width="410" TextChanged="OnQueryTextChanged" x:Name="QueryTextBox"/>
+
+        <ListView MaxHeight="410" ItemsSource="{Binding ResultListView}" SelectedItem="{Binding SelectedResult}" 
+                  SelectedIndex="{Binding SelectedResultIndex}" Focusable="False" Grid.Row="1"
                   Visibility="{Binding IsResultViewVisiable, Converter={StaticResource VisibilityConverter}}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonUp">
@@ -40,5 +45,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackPanel>
+    </Grid>
 </Window>
