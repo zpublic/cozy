@@ -38,9 +38,18 @@ namespace CozyLauncher.Core.Plugin
                     plugins_.Add(plugin);
                 }
 
-                Assembly asm2 = Assembly.Load(AssemblyName.GetAssemblyName("./CozyLauncher.Plugin.Core.dll"));
+                Assembly asm2 = Assembly.Load(AssemblyName.GetAssemblyName("./CozyLauncher.Plugin.Dirctory.dll"));
                 List<Type> types2 = asm2.GetTypes().Where(o => o.IsClass && !o.IsAbstract && o.GetInterfaces().Contains(typeof(IPlugin))).ToList();
                 foreach (Type type in types2)
+                {
+                    var plugin = Activator.CreateInstance(type) as IPlugin;
+                    plugin.Init(context);
+                    plugins_.Add(plugin);
+                }
+
+                Assembly asm3 = Assembly.Load(AssemblyName.GetAssemblyName("./CozyLauncher.Plugin.Core.dll"));
+                List<Type> types3 = asm3.GetTypes().Where(o => o.IsClass && !o.IsAbstract && o.GetInterfaces().Contains(typeof(IPlugin))).ToList();
+                foreach (Type type in types3)
                 {
                     var plugin = Activator.CreateInstance(type) as IPlugin;
                     plugin.Init(context);
