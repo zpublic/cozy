@@ -8,18 +8,23 @@
         xmlns:viewmodel="clr-namespace:CozyLauncher.ViewModel"
         xmlns:converter="clr-namespace:CozyLauncher.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Width="450" SizeToContent="Height" WindowStyle="None" Topmost="True" ResizeMode="NoResize">
+        Title="MainWindow" Width="450" SizeToContent="Height" WindowStyle="None" Topmost="True" ResizeMode="NoResize" 
+        KeyUp="OnQueryKeyUp" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="OnWindowMouseLeftButtonDown">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
     </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Gesture="Ctrl+Q" Command="{Binding ShowCommand}" HotkeyManager.RegisterGlobalHotkey="True"></KeyBinding>
+    </Window.InputBindings>
     <StackPanel>
         <StackPanel.Resources>
             <converter:BoolToVisibilityConverter x:Key="VisibilityConverter"></converter:BoolToVisibilityConverter>
         </StackPanel.Resources>
-        <TextBox x:Name="InnerTextBox" HorizontalAlignment="Left" Height="23" Margin="10" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="410"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10" TextWrapping="Wrap"
+                 VerticalAlignment="Top" Width="410" TextChanged="OnQueryTextChanged"/>
 
-        <ListView MaxHeight="410" Margin="10" ItemsSource="{Binding ResultListView}" SelectedItem="{Binding SelectedResult}"
+        <ListView MaxHeight="410" Margin="10" ItemsSource="{Binding ResultListView}" SelectedItem="{Binding SelectedResult}" 
+                  SelectedIndex="{Binding SelectedResultIndex}" Focusable="False"
                   Visibility="{Binding IsResultViewVisiable, Converter={StaticResource VisibilityConverter}}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonUp">

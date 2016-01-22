@@ -33,6 +33,13 @@ namespace CozyLauncher.ViewModel
             set { this.Set(ref _SelectedResult, value); }
         }
 
+        private int _SelectedResultIndex;
+        public int SelectedResultIndex
+        {
+            get { return _SelectedResultIndex; }
+            set { this.Set(ref _SelectedResultIndex, value); }
+        }
+
         private ICommand _QueryCommand;
         public ICommand QueryCommand
         {
@@ -41,7 +48,7 @@ namespace CozyLauncher.ViewModel
                 return _QueryCommand = _QueryCommand ?? new DelegateCommand(x =>
                 {
                     var text = x as string;
-                    if(text != null)
+                    if (text != null)
                     {
                         Query q = new Query();
                         q.RawQuery = text;
@@ -56,13 +63,68 @@ namespace CozyLauncher.ViewModel
         {
             get
             {
-                return _DoCommand = _DoCommand ?? new DelegateCommand(x => 
+                return _DoCommand = _DoCommand ?? new DelegateCommand(x =>
                 {
                     SelectedResult?.Action(null);
                 });
             }
         }
 
+        private ICommand _UpCommand;
+        public ICommand UpCommand
+        {
+            get
+            {
+                return _UpCommand = _UpCommand ?? new DelegateCommand(x =>
+                {
+                    if (SelectedResultIndex == -1)
+                    {
+                        SelectedResultIndex = 0;
+                    }
+                    else
+                    {
+                        if (SelectedResultIndex > 0 && ResultListView.Count > 1)
+                        {
+                            SelectedResultIndex--;
+                        }
+                    }
+                });
+            }
+        }
+
+        private ICommand _DwonCommand;
+        public ICommand DownCommand
+        {
+            get
+            {
+                return _DwonCommand = _DwonCommand ?? new DelegateCommand(x =>
+                {
+                    if (SelectedResultIndex == -1)
+                    {
+                        SelectedResultIndex = 0;
+                    }
+                    else
+                    {
+                        if (SelectedResultIndex < ResultListView.Count - 1 && ResultListView.Count > 1)
+                        {
+                            SelectedResultIndex++;
+                        }
+                    }
+                });
+            }
+        }
+
+        private ICommand _ShowCommand;
+        public ICommand ShowCommand
+        {
+            get
+            {
+                return _ShowCommand = _ShowCommand ?? new DelegateCommand(x => 
+                {
+                    ShowApp();
+                });
+            }
+        }
 
         public MainWindowViewModel()
         {
@@ -90,7 +152,7 @@ namespace CozyLauncher.ViewModel
 
             if (results.Count > 0)
             {
-                if(!IsResultViewVisiable)
+                if (!IsResultViewVisiable)
                 {
                     IsResultViewVisiable = true;
                 }
