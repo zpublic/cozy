@@ -1,0 +1,51 @@
+﻿using CozyLauncher.PluginBase;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+
+namespace CozyLauncher.Plugin.Dirctory
+{
+    public class Main : IPlugin
+    {
+        private PluginInitContext context_;
+        private Dictionary<string, Environment.SpecialFolder> paths_ = new Dictionary<string, Environment.SpecialFolder>();
+
+        public PluginInfo Init(PluginInitContext context)
+        {
+            context_ = context;
+            InitPathList();
+            var info = new PluginInfo();
+            info.Keyword = "p";
+            return info;
+        }
+
+        public List<Result> Query(Query query)
+        {
+            Environment.SpecialFolder f;
+            if (paths_.TryGetValue(query.RawQuery, out f))
+            {
+                var path = Environment.GetFolderPath(f);
+                var rl = new List<Result>();
+                var r = new Result();
+                r.Title = f.ToString();
+                r.SubTitle = path;
+                r.IcoPath = "dir";
+                r.Score = 50;
+                r.Action = e =>
+                {
+                    context_.Api.HideApp();
+                    Process.Start("explorer.exe", path);
+                    return true;
+                };
+                rl.Add(r);
+                return rl;
+            }
+            return null;
+        }
+
+        void InitPathList()
+        {
+            paths_.Add("p zm", Environment.SpecialFolder.Desktop);
+        }
+    }
+}
