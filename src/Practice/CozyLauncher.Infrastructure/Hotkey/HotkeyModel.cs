@@ -20,6 +20,12 @@ namespace CozyLauncher.Infrastructure.Hotkey
             Parse(hotKeyString);
         }
 
+        public HotkeyModel(ModifyKeyStatus status, Key key)
+            :this(status.Ctrl, status.Shift, status.Alt, status.Win, key)
+        {
+
+        }
+
         public HotkeyModel(bool ctrl, bool shift, bool alt, bool win, Key key)
         {
             Ctrl    = ctrl;
@@ -29,7 +35,7 @@ namespace CozyLauncher.Infrastructure.Hotkey
             CharKey = key;
         }
 
-        ModifierKeys ModifierKeyStatus
+        public ModifierKeys ModifierKeyStatus
         {
             get
             {
