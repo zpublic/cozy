@@ -14,7 +14,7 @@
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
     </Window.DataContext>
     <Window.InputBindings>
-        <KeyBinding Gesture="Ctrl+Q" Command="{Binding ShowCommand}" HotkeyManager.RegisterGlobalHotkey="True"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+Alt+Space" Command="{Binding ShowCommand}" HotkeyManager.RegisterGlobalHotkey="True"></KeyBinding>
     </Window.InputBindings>
     <Grid>
         <Grid.Resources>
