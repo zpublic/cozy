@@ -62,26 +62,26 @@ namespace CozyLauncher.Infrastructure.Hotkey
 
         private void Parse(string hotkeyString)
         {
-            List<string> keyStrs = hotkeyString.Replace(" ", "").ToLower().Split('+').ToList();
-            if(keyStrs.Contains("ctrl"))
+            List<string> keyStrs = hotkeyString.Replace(" ", "").Split('+').ToList();
+            if(keyStrs.Contains("Ctrl"))
             {
                 Ctrl = true;
-                keyStrs.Remove("ctrl");
+                keyStrs.Remove("Ctrl");
             }
-            if(keyStrs.Contains("shift"))
+            if(keyStrs.Contains("Shift"))
             {
                 Shift = true;
-                keyStrs.Remove("shift");
+                keyStrs.Remove("Shift");
             }
-            if(keyStrs.Contains("alt"))
+            if(keyStrs.Contains("Alt"))
             {
                 Alt = true;
-                keyStrs.Remove("alt");
+                keyStrs.Remove("Alt");
             }
-            if(keyStrs.Contains("win"))
+            if(keyStrs.Contains("Win"))
             {
                 Win = true;
-                keyStrs.Remove("win");
+                keyStrs.Remove("Win");
             }
             if(keyStrs.Count > 0)
             {

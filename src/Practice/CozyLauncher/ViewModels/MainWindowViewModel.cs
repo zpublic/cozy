@@ -11,7 +11,7 @@ using CozyLauncher.Core.Plugin;
 using CozyLauncher.Ext;
 using System.ComponentModel;
 
-namespace CozyLauncher.ViewModel
+namespace CozyLauncher.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel, IPublicApi
     {

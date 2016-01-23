@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CozyLauncher.Infrastructure.Hotkey;
+using NHotkey.Wpf;
 
 namespace CozyLauncher
 {
@@ -23,35 +24,6 @@ namespace CozyLauncher
         public ConfigWindow()
         {
             InitializeComponent();
-        }
-
-        private void HotkeyBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            e.Handled   = true;
-            Key key     = (e.Key == Key.System ? e.SystemKey : e.Key);
-
-            ModifyKeyStatus status = GlobalHotkey.Instance.ModifyKeyStatus;
-
-            var hkm         = new HotkeyModel(status, key);
-            var hotkeyStr   = hkm.ToString();
-            if(hotkeyStr == this.HotkeyBox.Text)
-            {
-                return;
-            }
-            this.HotkeyBox.Text = hotkeyStr;
-        }
-
-        private void submit_Click(object sender, RoutedEventArgs e)
-        {
-            var hkm = new HotkeyModel(this.HotkeyBox.Text);
-
-            ModifierKeys keys = hkm.ModifierKeyStatus;
-            GlobalHotkey.Instance.RegisterHotkey("HotKey.ShowApp", hkm);
-
-            //NHotkey.Wpf.HotkeyManager.Current.AddOrReplace("HotKey.ShowApp", Key.Q, keys, (s, ee) =>
-            //{
-            //    GlobalHotkey.Instance.InvokeHotkeyAction("HotKey.ShowApp");
-            //});
         }
     }
 }
