@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.IO;
 
 namespace CozyLauncher.ViewModels
 {
@@ -34,6 +35,26 @@ namespace CozyLauncher.ViewModels
                     if (!string.IsNullOrEmpty(HotkeyTextStr))
                     {
                         GlobalHotkey.Instance.RegistHotkey("HotKey.ShowApp", new HotkeyModel(HotkeyTextStr));
+
+                        try
+                        {
+                            using (var fs = new FileStream(@"./config.json", FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                            {
+                                using (var sw = new StreamWriter(fs))
+                                {
+                                    string result = null;
+                                    GlobalHotkey.Instance.Save(out result);
+                                    if (!string.IsNullOrEmpty(result))
+                                    {
+                                        sw.Write(result);
+                                    }
+                                }
+                            }
+                        }
+                        catch(Exception)
+                        {
+                            // Do something
+                        }
                     }
                 });
             }

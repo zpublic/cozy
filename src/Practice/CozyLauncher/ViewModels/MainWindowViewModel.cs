@@ -9,8 +9,8 @@ using CozyLauncher.Commands;
 using System.Windows.Input;
 using CozyLauncher.Core.Plugin;
 using CozyLauncher.Ext;
-using System.ComponentModel;
 using CozyLauncher.Infrastructure.Hotkey;
+using System.IO;
 
 namespace CozyLauncher.ViewModels
 {
@@ -129,6 +129,25 @@ namespace CozyLauncher.ViewModels
 
         public MainWindowViewModel()
         {
+            try
+            {
+                using (var fs = new FileStream(@"./config.json", FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                {
+                    using (var sr = new StreamReader(fs))
+                    {
+                        var result = sr.ReadToEnd();
+                        if(!string.IsNullOrEmpty(result))
+                        {
+                            GlobalHotkey.Instance.Load(result);
+                        }
+                    }
+                }
+            }
+            catch(Exception)
+            {
+                // Do something
+            }
+
             pm.Init(this);
 
             GlobalHotkey.Instance.RegistHotkeyAction("HotKey.ShowApp", ()=> 

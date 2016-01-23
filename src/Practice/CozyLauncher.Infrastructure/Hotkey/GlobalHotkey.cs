@@ -10,8 +10,6 @@ namespace CozyLauncher.Infrastructure.Hotkey
 {
     public class GlobalHotkey
     {
-        public Action<HotkeyModel> AddHotKeyDelegate { get; set; }
-
         private static GlobalHotkey _Instance = new GlobalHotkey();
         public static GlobalHotkey Instance
         {
@@ -85,12 +83,16 @@ namespace CozyLauncher.Infrastructure.Hotkey
 
         public void Save(out string result)
         {
-            result = null;
+            result = JsonConvert.SerializeObject(RegistedHotKey);
         }
 
         public void Load(string val)
         {
-
+            var loadData = JsonConvert.DeserializeObject<Dictionary<string, HotkeyModel>>(val);
+            foreach(var obj in loadData)
+            {
+                RegistHotkey(obj.Key, obj.Value);
+            }
         }
     }
 }
