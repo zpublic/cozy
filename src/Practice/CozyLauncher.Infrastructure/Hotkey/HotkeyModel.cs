@@ -15,6 +15,11 @@ namespace CozyLauncher.Infrastructure.Hotkey
         public bool Shift { get; set; }
         public Key CharKey { get; set; }
 
+        HotkeyModel()
+        {
+
+        }
+
         public HotkeyModel(string hotKeyString)
         {
             Parse(hotKeyString);
