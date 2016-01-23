@@ -12,16 +12,16 @@ namespace CozyLauncher.ViewModels
 {
     public class ConfigWindowViewModel : BaseViewModel
     {
-        private string _HotkeyText;
-        public string HotkeyText
+        private string _HotkeyTextStr;
+        public string HotkeyTextStr
         {
             get
             {
-                return _HotkeyText;
+                return _HotkeyTextStr;
             }
             set
             {
-                Set(ref _HotkeyText, value);
+                Set(ref _HotkeyTextStr, value);
             }
         }
 
@@ -32,9 +32,9 @@ namespace CozyLauncher.ViewModels
             {
                 return _SubmitCommand = _SubmitCommand ?? new DelegateCommand(x =>
                 {
-                    if (!string.IsNullOrEmpty(HotkeyText))
+                    if (!string.IsNullOrEmpty(HotkeyTextStr))
                     {
-                        var hkm = new HotkeyModel(HotkeyText);
+                        var hkm = new HotkeyModel(HotkeyTextStr);
                         if (hkm.CharKey != Key.None)
                         {
                             GlobalHotkey.Instance.RegistHotkey("HotKey.ShowApp", hkm);
@@ -45,6 +45,17 @@ namespace CozyLauncher.ViewModels
                         }
                     }
                 });
+            }
+        }
+
+
+
+        public ConfigWindowViewModel()
+        {
+            var hkm1 = GlobalHotkey.Instance.GetRegistedHotkey("HotKey.ShowApp");
+            if (hkm1 != null)
+            {
+                HotkeyTextStr = hkm1.ToString();
             }
         }
     }
