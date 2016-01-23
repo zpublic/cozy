@@ -4,7 +4,22 @@ namespace CozyLauncher.PluginBase
 {
     public class Query
     {
-        public string RawQuery { get; set; }
+        private string _RawQuery;
+        public string RawQuery
+        {
+            get { return _RawQuery; }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    _RawQuery = value.ToLower();
+                }
+                else
+                {
+                    _RawQuery = value;
+                }
+            }
+        }
         public string Search { get; set; }
         public string[] Terms { get; set; }
         public string ActionKeyword { get; set; }

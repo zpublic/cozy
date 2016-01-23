@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher", "..\src\Practice\CozyLauncher\CozyLauncher.csproj", "{36C16B10-D17D-4A58-BD46-0F938DA82CC8}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Secondary", "Secondary", "{DED63B3E-03D2-4DDD-8229-F180A8E6515E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.ManualRun", "..\src\Practice\CozyLauncher.Plugin.ManualRun\CozyLauncher.Plugin.ManualRun.csproj", "{728F9DBE-8312-47A8-B713-A911571A5DD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Core", "..\src\Practice\CozyLauncher.Plugin.Core\CozyLauncher.Plugin.Core.csproj", "{909E8061-B711-45F5-8B7B-DF6854FE55A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Dirctory", "..\src\Practice\CozyLauncher.Plugin.Dirctory\CozyLauncher.Plugin.Dirctory.csproj", "{EBF482FC-3E9E-4AB9-BFBE-CAF500964F33}"
 EndProject
@@ -55,6 +57,10 @@ Global
 		{728F9DBE-8312-47A8-B713-A911571A5DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{728F9DBE-8312-47A8-B713-A911571A5DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{728F9DBE-8312-47A8-B713-A911571A5DD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{909E8061-B711-45F5-8B7B-DF6854FE55A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{909E8061-B711-45F5-8B7B-DF6854FE55A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{909E8061-B711-45F5-8B7B-DF6854FE55A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{909E8061-B711-45F5-8B7B-DF6854FE55A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EBF482FC-3E9E-4AB9-BFBE-CAF500964F33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EBF482FC-3E9E-4AB9-BFBE-CAF500964F33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBF482FC-3E9E-4AB9-BFBE-CAF500964F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +75,7 @@ Global
 		{6B37D2AC-6C6D-444F-8492-DA47118C7625} = {B1502C3F-B929-4EE6-90D1-39C548CECAE7}
 		{DED63B3E-03D2-4DDD-8229-F180A8E6515E} = {B1502C3F-B929-4EE6-90D1-39C548CECAE7}
 		{728F9DBE-8312-47A8-B713-A911571A5DD8} = {6B37D2AC-6C6D-444F-8492-DA47118C7625}
+		{909E8061-B711-45F5-8B7B-DF6854FE55A1} = {7A0D3583-5847-4CCE-A7AA-690C34127EE3}
 		{EBF482FC-3E9E-4AB9-BFBE-CAF500964F33} = {6B37D2AC-6C6D-444F-8492-DA47118C7625}
 	EndGlobalSection
 EndGlobal
