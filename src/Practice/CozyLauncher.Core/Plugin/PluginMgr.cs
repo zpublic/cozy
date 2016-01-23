@@ -55,6 +55,15 @@ namespace CozyLauncher.Core.Plugin
                     plugin.Init(context);
                     plugins_.Add(plugin);
                 }
+
+                Assembly asm4 = Assembly.Load(AssemblyName.GetAssemblyName("./CozyLauncher.Plugin.WebSearch.dll"));
+                List<Type> types4 = asm4.GetTypes().Where(o => o.IsClass && !o.IsAbstract && o.GetInterfaces().Contains(typeof(IPlugin))).ToList();
+                foreach (Type type in types4)
+                {
+                    var plugin = Activator.CreateInstance(type) as IPlugin;
+                    plugin.Init(context);
+                    plugins_.Add(plugin);
+                }
             }
             catch (Exception)
             {
