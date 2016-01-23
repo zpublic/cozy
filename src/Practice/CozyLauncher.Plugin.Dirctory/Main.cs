@@ -46,6 +46,14 @@ namespace CozyLauncher.Plugin.Dirctory
         void InitPathList()
         {
             paths_.Add("p zm", Environment.SpecialFolder.Desktop);
+            paths_.Add("p cookie", Environment.SpecialFolder.Cookies);
+            paths_.Add("p font", Environment.SpecialFolder.Fonts);
+            paths_.Add("p history", Environment.SpecialFolder.History);
+            paths_.Add("p doc", Environment.SpecialFolder.MyDocuments);
+            paths_.Add("p prog", Environment.SpecialFolder.ProgramFiles);
+            paths_.Add("p start", Environment.SpecialFolder.StartMenu);
+            paths_.Add("p sys", Environment.SpecialFolder.System);
+            paths_.Add("p win", Environment.SpecialFolder.Windows);
         }
     }
 }

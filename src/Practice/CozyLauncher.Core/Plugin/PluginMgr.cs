@@ -18,43 +18,35 @@ namespace CozyLauncher.Core.Plugin
             PluginInitContext context = new PluginInitContext();
             context.Api = api;
 
+            var PluginFilleList = new List<string>()
+            {
+                // Core
+                "./CozyLauncher.Plugin.Core.dll",
+
+                // Primary
+                "./CozyLauncher.Plugin.Program.dll",
+                "./CozyLauncher.Plugin.ManualRun.dll",
+                "./CozyLauncher.Plugin.Dirctory.dll",
+                "./CozyLauncher.Plugin.WebSearch.dll",
+
+                // Secondary
+                "./CozyLauncher.Plugin.MouseClick.dll",
+            };
+
             try
             {
-                Assembly asm = Assembly.Load(AssemblyName.GetAssemblyName("./CozyLauncher.Plugin.Program.dll"));
-                List<Type> types = asm.GetTypes().Where(o => o.IsClass && !o.IsAbstract && o.GetInterfaces().Contains(typeof(IPlugin))).ToList();
-                foreach (Type type in types)
+                foreach (var p in PluginFilleList)
                 {
-                    var plugin = Activator.CreateInstance(type) as IPlugin;
-                    plugin.Init(context);
-                    plugins_.Add(plugin);
+                    Assembly asm = Assembly.Load(AssemblyName.GetAssemblyName(p));
+                    List<Type> types = asm.GetTypes().Where(o => o.IsClass && !o.IsAbstract && o.GetInterfaces().Contains(typeof(IPlugin))).ToList();
+                    foreach (Type type in types)
+                    {
+                        var plugin = Activator.CreateInstance(type) as IPlugin;
+                        plugin.Init(context);
+                        plugins_.Add(plugin);
+                    }
                 }
-
-                Assembly asm1 = Assembly.Load(AssemblyName.GetAssemblyName("./CozyLauncher.Plugin.ManualRun.dll"));
-                List<Type> types1 = asm1.GetTypes().Where(o => o.IsClass && !o.IsAbstract && o.GetInterfaces().Contains(typeof(IPlugin))).ToList();
-                foreach (Type type in types1)
-                {
-                    var plugin = Activator.CreateInstance(type) as IPlugin;
-                    plugin.Init(context);
-                    plugins_.Add(plugin);
-                }
-
-                Assembly asm2 = Assembly.Load(AssemblyName.GetAssemblyName("./CozyLauncher.Plugin.Dirctory.dll"));
-                List<Type> types2 = asm2.GetTypes().Where(o => o.IsClass && !o.IsAbstract && o.GetInterfaces().Contains(typeof(IPlugin))).ToList();
-                foreach (Type type in types2)
-                {
-                    var plugin = Activator.CreateInstance(type) as IPlugin;
-                    plugin.Init(context);
-                    plugins_.Add(plugin);
-                }
-
-                Assembly asm3 = Assembly.Load(AssemblyName.GetAssemblyName("./CozyLauncher.Plugin.Core.dll"));
-                List<Type> types3 = asm3.GetTypes().Where(o => o.IsClass && !o.IsAbstract && o.GetInterfaces().Contains(typeof(IPlugin))).ToList();
-                foreach (Type type in types3)
-                {
-                    var plugin = Activator.CreateInstance(type) as IPlugin;
-                    plugin.Init(context);
-                    plugins_.Add(plugin);
-                }
+                
             }
             catch (Exception)
             {

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher", "..\src\Practice\CozyLauncher\CozyLauncher.csproj", "{36C16B10-D17D-4A58-BD46-0F938DA82CC8}"
 EndProject
@@ -26,6 +26,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Core", "..\src\Practice\CozyLauncher.Plugin.Core\CozyLauncher.Plugin.Core.csproj", "{909E8061-B711-45F5-8B7B-DF6854FE55A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Dirctory", "..\src\Practice\CozyLauncher.Plugin.Dirctory\CozyLauncher.Plugin.Dirctory.csproj", "{EBF482FC-3E9E-4AB9-BFBE-CAF500964F33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.WebSearch", "..\src\Practice\CozyLauncher.Plugin.WebSearch\CozyLauncher.Plugin.WebSearch.csproj", "{7BDDD754-0CA2-4772-B25D-CF4998146FA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.MouseClick", "..\src\Practice\CozyLauncher.Plugin.MouseClick\CozyLauncher.Plugin.MouseClick.csproj", "{86935658-10A9-4C80-A20A-E2BFA77347E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +69,14 @@ Global
 		{EBF482FC-3E9E-4AB9-BFBE-CAF500964F33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBF482FC-3E9E-4AB9-BFBE-CAF500964F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBF482FC-3E9E-4AB9-BFBE-CAF500964F33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BDDD754-0CA2-4772-B25D-CF4998146FA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BDDD754-0CA2-4772-B25D-CF4998146FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BDDD754-0CA2-4772-B25D-CF4998146FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BDDD754-0CA2-4772-B25D-CF4998146FA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86935658-10A9-4C80-A20A-E2BFA77347E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86935658-10A9-4C80-A20A-E2BFA77347E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86935658-10A9-4C80-A20A-E2BFA77347E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86935658-10A9-4C80-A20A-E2BFA77347E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,5 +89,7 @@ Global
 		{728F9DBE-8312-47A8-B713-A911571A5DD8} = {6B37D2AC-6C6D-444F-8492-DA47118C7625}
 		{909E8061-B711-45F5-8B7B-DF6854FE55A1} = {7A0D3583-5847-4CCE-A7AA-690C34127EE3}
 		{EBF482FC-3E9E-4AB9-BFBE-CAF500964F33} = {6B37D2AC-6C6D-444F-8492-DA47118C7625}
+		{7BDDD754-0CA2-4772-B25D-CF4998146FA4} = {6B37D2AC-6C6D-444F-8492-DA47118C7625}
+		{86935658-10A9-4C80-A20A-E2BFA77347E7} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
 	EndGlobalSection
 EndGlobal
