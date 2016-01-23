@@ -4,18 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CozyLauncher"
+        xmlns:controls="clr-namespace:CozyLauncher.Controls"
+        xmlns:viewmodel="clr-namespace:CozyLauncher.ViewModels"
         mc:Ignorable="d"
         Title="ConfigWindow" Height="300" Width="300">
+    <Window.DataContext>
+        <viewmodel:ConfigWindowViewModel x:Name="ViewModel"></viewmodel:ConfigWindowViewModel>
+    </Window.DataContext>
     <StackPanel>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBox x:Name="HotkeyBox" Grid.Column="0" PreviewKeyDown="HotkeyBox_PreviewKeyDown"></TextBox>
-            <TextBlock Grid.Column="1"></TextBlock>
-        </Grid>
-        <Button Content="submit" x:Name="submit" Click="submit_Click"></Button>
+        <controls:HotkeyControl HotkeyText="{Binding HotkeyText, Mode=TwoWay}"></controls:HotkeyControl>
+        <Button Content="submit" Command="{Binding SubmitCommand}"></Button>
         <ListView Height="235">
         </ListView>        
     </StackPanel>
