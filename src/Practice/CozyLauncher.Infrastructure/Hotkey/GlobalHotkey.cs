@@ -48,28 +48,17 @@ namespace CozyLauncher.Infrastructure.Hotkey
 
         private Dictionary<string, HotkeyModel> RegistedHotKey { get; set; }
             = new Dictionary<string, HotkeyModel>();
-        private Dictionary<string, Action> RegistedHotkeyAction { get; set; }
-            = new Dictionary<string, Action>();
-
-        private Dictionary<string, HotkeyModel> RegistedCommandHotkey { get; set; }
-            = new Dictionary<string, HotkeyModel>();
-        private Dictionary<string, string> RegistedCommand { get; set; }
-            = new Dictionary<string, string>();
+        private Dictionary<string, ICommand> RegistedHotkeyCommand { get; set; }
+            = new Dictionary<string, ICommand>();
 
         public void RegistHotkey(string hotkeyName, HotkeyModel keyModel)
         {
             RegistedHotKey[hotkeyName] = keyModel;
         }
 
-        public void RegistHotkeyAction(string hotkeyName, Action action)
+        public void RegistHotkeyAction(string hotkeyName, ICommand command)
         {
-            RegistedHotkeyAction[hotkeyName] = action;
-        }
-
-        public void RegistCommandHotkey(string hotkeyName, HotkeyModel keyModel, string hotkeyCommand)
-        {
-            RegistedCommandHotkey[hotkeyName] = keyModel;
-            RegistedCommand[hotkeyName] = hotkeyCommand;
+            RegistedHotkeyCommand[hotkeyName] = command;
         }
 
         public HotkeyModel GetRegistedHotkey(string hotkeyName)
@@ -81,30 +70,15 @@ namespace CozyLauncher.Infrastructure.Hotkey
             return null;
         }
 
-        public HotkeyModel GetRegistedCommandHotkey(string hotkeyName)
+        public void InvokeHotkeyCommand(string hotkeyName)
         {
-            if (RegistedCommandHotkey.ContainsKey(hotkeyName))
+            if(RegistedHotkeyCommand.ContainsKey(hotkeyName))
             {
-                return RegistedCommandHotkey[hotkeyName];
-            }
-            return null;
-        }
-
-        public string GetRegistedCommand(string hotkeyName)
-        {
-            if (RegistedCommand.ContainsKey(hotkeyName))
-            {
-                return RegistedCommand[hotkeyName];
-            }
-            return null;
-        }
-
-        public void InvokeHotkeyAction(string hotkeyName)
-        {
-            if(RegistedHotkeyAction.ContainsKey(hotkeyName))
-            {
-                var act = RegistedHotkeyAction[hotkeyName];
-                act?.Invoke();
+                var command = RegistedHotkeyCommand[hotkeyName];
+                if(command != null && command.CanExecute(null))
+                {
+                    command.Execute(null);
+                }
             }
         }
 

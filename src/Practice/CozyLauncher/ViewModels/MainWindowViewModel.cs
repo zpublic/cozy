@@ -10,6 +10,7 @@ using System.Windows.Input;
 using CozyLauncher.Core.Plugin;
 using CozyLauncher.Ext;
 using System.ComponentModel;
+using CozyLauncher.Infrastructure.Hotkey;
 
 namespace CozyLauncher.ViewModels
 {
@@ -129,6 +130,8 @@ namespace CozyLauncher.ViewModels
         public MainWindowViewModel()
         {
             pm.Init(this);
+
+            GlobalHotkey.Instance.RegistHotkeyAction("HotKey.ShowApp", ShowCommand);
         }
 
         public void CloseApp()

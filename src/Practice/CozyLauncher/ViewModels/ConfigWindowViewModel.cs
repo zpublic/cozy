@@ -40,7 +40,7 @@ namespace CozyLauncher.ViewModels
                             GlobalHotkey.Instance.RegistHotkey("HotKey.ShowApp", hkm);
                             HotkeyManager.Current.AddOrReplace("HotKey.ShowApp", hkm.CharKey, hkm.ModifierKeyStatus, (s, ee) =>
                             {
-                                GlobalHotkey.Instance.InvokeHotkeyAction("HotKey.ShowApp");
+                                GlobalHotkey.Instance.InvokeHotkeyCommand("HotKey.ShowApp");
                             });
                         }
                     }
