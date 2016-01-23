@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Collections.Concurrent;
+using Newtonsoft.Json;
 
 namespace CozyLauncher.Infrastructure.Hotkey
 {
@@ -48,17 +48,30 @@ namespace CozyLauncher.Infrastructure.Hotkey
 
         private Dictionary<string, HotkeyModel> RegistedHotKey { get; set; }
             = new Dictionary<string, HotkeyModel>();
-        private Dictionary<string, ICommand> RegistedHotkeyCommand { get; set; }
-            = new Dictionary<string, ICommand>();
+        private Dictionary<string, Action> RegistedHotkeyAction { get; set; }
+            = new Dictionary<string, Action>();
 
         public void RegistHotkey(string hotkeyName, HotkeyModel keyModel)
         {
             RegistedHotKey[hotkeyName] = keyModel;
+
+            HotkeyRegister.Regist(hotkeyName, keyModel, () =>
+            {
+                InvokeHotkeyAction(hotkeyName);
+            });
         }
 
-        public void RegistHotkeyAction(string hotkeyName, ICommand command)
+        private void InvokeHotkeyAction(string hotkeyName)
         {
-            RegistedHotkeyCommand[hotkeyName] = command;
+            if (RegistedHotkeyAction.ContainsKey(hotkeyName))
+            {
+                RegistedHotkeyAction[hotkeyName]?.Invoke();
+            }
+        }
+
+        public void RegistHotkeyAction(string hotkeyName, Action action)
+        {
+            RegistedHotkeyAction[hotkeyName] = action;
         }
 
         public HotkeyModel GetRegistedHotkey(string hotkeyName)
@@ -70,24 +83,12 @@ namespace CozyLauncher.Infrastructure.Hotkey
             return null;
         }
 
-        public void InvokeHotkeyCommand(string hotkeyName)
+        public void Save(out string result)
         {
-            if(RegistedHotkeyCommand.ContainsKey(hotkeyName))
-            {
-                var command = RegistedHotkeyCommand[hotkeyName];
-                if(command != null && command.CanExecute(null))
-                {
-                    command.Execute(null);
-                }
-            }
+            result = null;
         }
 
-        public void Save()
-        {
-
-        }
-
-        public void Load()
+        public void Load(string val)
         {
 
         }

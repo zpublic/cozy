@@ -131,7 +131,13 @@ namespace CozyLauncher.ViewModels
         {
             pm.Init(this);
 
-            GlobalHotkey.Instance.RegistHotkeyAction("HotKey.ShowApp", ShowCommand);
+            GlobalHotkey.Instance.RegistHotkeyAction("HotKey.ShowApp", ()=> 
+            {
+                if(ShowCommand.CanExecute(null))
+                {
+                    ShowCommand.Execute(null);
+                }
+            });
         }
 
         public void CloseApp()

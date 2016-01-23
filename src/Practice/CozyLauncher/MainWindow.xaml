@@ -13,9 +13,6 @@
     <Window.DataContext>
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
     </Window.DataContext>
-    <Window.InputBindings>
-        <KeyBinding Gesture="Ctrl+Alt+Space" Command="{Binding ShowCommand}" HotkeyManager.RegisterGlobalHotkey="True"></KeyBinding>
-    </Window.InputBindings>
     <Grid>
         <Grid.Resources>
             <converter:BoolToVisibilityConverter x:Key="VisibilityConverter"></converter:BoolToVisibilityConverter>

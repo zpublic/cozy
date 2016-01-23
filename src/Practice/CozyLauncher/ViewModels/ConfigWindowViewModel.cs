@@ -1,6 +1,5 @@
 ﻿using CozyLauncher.Commands;
 using CozyLauncher.Infrastructure.Hotkey;
-using NHotkey.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,21 +33,11 @@ namespace CozyLauncher.ViewModels
                 {
                     if (!string.IsNullOrEmpty(HotkeyTextStr))
                     {
-                        var hkm = new HotkeyModel(HotkeyTextStr);
-                        if (hkm.CharKey != Key.None)
-                        {
-                            GlobalHotkey.Instance.RegistHotkey("HotKey.ShowApp", hkm);
-                            HotkeyManager.Current.AddOrReplace("HotKey.ShowApp", hkm.CharKey, hkm.ModifierKeyStatus, (s, ee) =>
-                            {
-                                GlobalHotkey.Instance.InvokeHotkeyCommand("HotKey.ShowApp");
-                            });
-                        }
+                        GlobalHotkey.Instance.RegistHotkey("HotKey.ShowApp", new HotkeyModel(HotkeyTextStr));
                     }
                 });
             }
         }
-
-
 
         public ConfigWindowViewModel()
         {
