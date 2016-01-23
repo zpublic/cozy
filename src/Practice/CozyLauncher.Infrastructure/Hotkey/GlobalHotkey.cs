@@ -60,6 +60,15 @@ namespace CozyLauncher.Infrastructure.Hotkey
             RegistedHotkeyAction[hotkeyName] = action;
         }
 
+        public HotkeyModel GetRegistedHotkey(string hotkeyName)
+        {
+            if(RegistedHotKey.ContainsKey(hotkeyName))
+            {
+                return RegistedHotKey[hotkeyName];
+            }
+            return null;
+        }
+
         public void InvokeHotkeyAction(string hotkeyName)
         {
             if(RegistedHotkeyAction.ContainsKey(hotkeyName))

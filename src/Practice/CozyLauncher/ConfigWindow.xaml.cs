@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CozyLauncher.Infrastructure.Hotkey;
+using NHotkey.Wpf;
 
 namespace CozyLauncher
 {
@@ -23,6 +24,16 @@ namespace CozyLauncher
         public ConfigWindow()
         {
             InitializeComponent();
+            ReadHotkeyConfig();
+        }
+
+        private void ReadHotkeyConfig()
+        {
+            var hkm = GlobalHotkey.Instance.GetRegistedHotkey("HotKey.ShowApp");
+            if(hkm != null)
+            {
+                this.HotkeyBox.Text = hkm.ToString();
+            }
         }
 
         private void HotkeyBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -30,9 +41,7 @@ namespace CozyLauncher
             e.Handled   = true;
             Key key     = (e.Key == Key.System ? e.SystemKey : e.Key);
 
-            ModifyKeyStatus status = GlobalHotkey.Instance.ModifyKeyStatus;
-
-            var hkm         = new HotkeyModel(status, key);
+            var hkm         = new HotkeyModel(GlobalHotkey.Instance.ModifyKeyStatus, key);
             var hotkeyStr   = hkm.ToString();
             if(hotkeyStr == this.HotkeyBox.Text)
             {
@@ -44,14 +53,19 @@ namespace CozyLauncher
         private void submit_Click(object sender, RoutedEventArgs e)
         {
             var hkm = new HotkeyModel(this.HotkeyBox.Text);
+            if(hkm.CharKey != Key.None)
+            {
+                GlobalHotkey.Instance.RegisterHotkey("HotKey.ShowApp", hkm);
 
-            ModifierKeys keys = hkm.ModifierKeyStatus;
-            GlobalHotkey.Instance.RegisterHotkey("HotKey.ShowApp", hkm);
-
-            //NHotkey.Wpf.HotkeyManager.Current.AddOrReplace("HotKey.ShowApp", Key.Q, keys, (s, ee) =>
-            //{
-            //    GlobalHotkey.Instance.InvokeHotkeyAction("HotKey.ShowApp");
-            //});
+                HotkeyManager.Current.AddOrReplace("HotKey.ShowApp", hkm.CharKey, hkm.ModifierKeyStatus, (s, ee) =>
+                {
+                    GlobalHotkey.Instance.InvokeHotkeyAction("HotKey.ShowApp");
+                });
+            }
+            else
+            {
+                MessageBox.Show("regist hotkey failed");
+            }
         }
     }
 }
