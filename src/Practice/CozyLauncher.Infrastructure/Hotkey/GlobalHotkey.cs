@@ -56,10 +56,9 @@ namespace CozyLauncher.Infrastructure.Hotkey
         private Dictionary<string, string> RegistedCommand { get; set; }
             = new Dictionary<string, string>();
 
-        public void RegistHotkey(string hotkeyName, HotkeyModel keyModel, Action action = null)
+        public void RegistHotkey(string hotkeyName, HotkeyModel keyModel)
         {
             RegistedHotKey[hotkeyName] = keyModel;
-            RegistHotkeyAction(hotkeyName, action);
         }
 
         public void RegistHotkeyAction(string hotkeyName, Action action)
