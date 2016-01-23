@@ -30,6 +30,7 @@ namespace CozyLauncher.Core.Plugin
                 "./CozyLauncher.Plugin.WebSearch.dll",
 
                 // Secondary
+                "./CozyLauncher.Plugin.MouseClick.dll",
             };
 
             try
