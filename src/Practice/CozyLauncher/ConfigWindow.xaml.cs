@@ -55,7 +55,7 @@ namespace CozyLauncher
             var hkm = new HotkeyModel(this.HotkeyBox.Text);
             if(hkm.CharKey != Key.None)
             {
-                GlobalHotkey.Instance.RegisterHotkey("HotKey.ShowApp", hkm);
+                GlobalHotkey.Instance.RegistHotkey("HotKey.ShowApp", hkm);
 
                 HotkeyManager.Current.AddOrReplace("HotKey.ShowApp", hkm.CharKey, hkm.ModifierKeyStatus, (s, ee) =>
                 {
