@@ -22,7 +22,16 @@ namespace CozyLauncher.Controls
     public partial class HotkeyControl : UserControl
     {
         public static readonly DependencyProperty HotkeyTextProperty =
-            DependencyProperty.Register("HotkeyText", typeof(string), typeof(HotkeyControl));
+            DependencyProperty.Register("HotkeyText", typeof(string), typeof(HotkeyControl), new PropertyMetadata(new PropertyChangedCallback(OnHotkeyTextChanged)));
+
+        private static void OnHotkeyTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var obj = d as HotkeyControl;
+            if (obj != null)
+            {
+                obj.HotkeyTextBox.Text = (string)e.NewValue;
+            }
+        }
 
         public string HotkeyText
         {
@@ -33,7 +42,6 @@ namespace CozyLauncher.Controls
             set
             {
                 this.SetValue(HotkeyTextProperty, value);
-                this.HotkeyTextBox.Text = value;
             }
         }
 

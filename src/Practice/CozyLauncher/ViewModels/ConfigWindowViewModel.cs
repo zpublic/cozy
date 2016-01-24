@@ -1,27 +1,27 @@
 ﻿using CozyLauncher.Commands;
 using CozyLauncher.Infrastructure.Hotkey;
-using NHotkey.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.IO;
 
 namespace CozyLauncher.ViewModels
 {
     public class ConfigWindowViewModel : BaseViewModel
     {
-        private string _HotkeyText;
-        public string HotkeyText
+        private string _HotkeyTextStr;
+        public string HotkeyTextStr
         {
             get
             {
-                return _HotkeyText;
+                return _HotkeyTextStr;
             }
             set
             {
-                Set(ref _HotkeyText, value);
+                Set(ref _HotkeyTextStr, value);
             }
         }
 
@@ -32,19 +32,40 @@ namespace CozyLauncher.ViewModels
             {
                 return _SubmitCommand = _SubmitCommand ?? new DelegateCommand(x =>
                 {
-                    if (!string.IsNullOrEmpty(HotkeyText))
+                    if (!string.IsNullOrEmpty(HotkeyTextStr))
                     {
-                        var hkm = new HotkeyModel(HotkeyText);
-                        if (hkm.CharKey != Key.None)
+                        GlobalHotkey.Instance.RegistHotkey("HotKey.ShowApp", new HotkeyModel(HotkeyTextStr));
+
+                        try
                         {
-                            GlobalHotkey.Instance.RegistHotkey("HotKey.ShowApp", hkm);
-                            HotkeyManager.Current.AddOrReplace("HotKey.ShowApp", hkm.CharKey, hkm.ModifierKeyStatus, (s, ee) =>
+                            using (var fs = new FileStream(@"./config.json", FileMode.OpenOrCreate, FileAccess.ReadWrite))
                             {
-                                GlobalHotkey.Instance.InvokeHotkeyAction("HotKey.ShowApp");
-                            });
+                                using (var sw = new StreamWriter(fs))
+                                {
+                                    string result = null;
+                                    GlobalHotkey.Instance.Save(out result);
+                                    if (!string.IsNullOrEmpty(result))
+                                    {
+                                        sw.Write(result);
+                                    }
+                                }
+                            }
+                        }
+                        catch(Exception)
+                        {
+                            // Do something
                         }
                     }
                 });
+            }
+        }
+
+        public ConfigWindowViewModel()
+        {
+            var hkm1 = GlobalHotkey.Instance.GetRegistedHotkey("HotKey.ShowApp");
+            if (hkm1 != null)
+            {
+                HotkeyTextStr = hkm1.ToString();
             }
         }
     }

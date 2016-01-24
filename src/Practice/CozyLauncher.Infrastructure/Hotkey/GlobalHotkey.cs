@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Collections.Concurrent;
+using Newtonsoft.Json;
 
 namespace CozyLauncher.Infrastructure.Hotkey
 {
     public class GlobalHotkey
     {
-        public Action<HotkeyModel> AddHotKeyDelegate { get; set; }
-
         private static GlobalHotkey _Instance = new GlobalHotkey();
         public static GlobalHotkey Instance
         {
@@ -51,26 +49,27 @@ namespace CozyLauncher.Infrastructure.Hotkey
         private Dictionary<string, Action> RegistedHotkeyAction { get; set; }
             = new Dictionary<string, Action>();
 
-        private Dictionary<string, HotkeyModel> RegistedCommandHotkey { get; set; }
-            = new Dictionary<string, HotkeyModel>();
-        private Dictionary<string, string> RegistedCommand { get; set; }
-            = new Dictionary<string, string>();
-
-        public void RegistHotkey(string hotkeyName, HotkeyModel keyModel, Action action = null)
+        public void RegistHotkey(string hotkeyName, HotkeyModel keyModel)
         {
             RegistedHotKey[hotkeyName] = keyModel;
-            RegistHotkeyAction(hotkeyName, action);
+
+            HotkeyRegister.Regist(hotkeyName, keyModel, () =>
+            {
+                InvokeHotkeyAction(hotkeyName);
+            });
+        }
+
+        private void InvokeHotkeyAction(string hotkeyName)
+        {
+            if (RegistedHotkeyAction.ContainsKey(hotkeyName))
+            {
+                RegistedHotkeyAction[hotkeyName]?.Invoke();
+            }
         }
 
         public void RegistHotkeyAction(string hotkeyName, Action action)
         {
             RegistedHotkeyAction[hotkeyName] = action;
-        }
-
-        public void RegistCommandHotkey(string hotkeyName, HotkeyModel keyModel, string hotkeyCommand)
-        {
-            RegistedCommandHotkey[hotkeyName] = keyModel;
-            RegistedCommand[hotkeyName] = hotkeyCommand;
         }
 
         public HotkeyModel GetRegistedHotkey(string hotkeyName)
@@ -82,41 +81,18 @@ namespace CozyLauncher.Infrastructure.Hotkey
             return null;
         }
 
-        public HotkeyModel GetRegistedCommandHotkey(string hotkeyName)
+        public void Save(out string result)
         {
-            if (RegistedCommandHotkey.ContainsKey(hotkeyName))
+            result = JsonConvert.SerializeObject(RegistedHotKey);
+        }
+
+        public void Load(string val)
+        {
+            var loadData = JsonConvert.DeserializeObject<Dictionary<string, HotkeyModel>>(val);
+            foreach(var obj in loadData)
             {
-                return RegistedCommandHotkey[hotkeyName];
+                RegistHotkey(obj.Key, obj.Value);
             }
-            return null;
-        }
-
-        public string GetRegistedCommand(string hotkeyName)
-        {
-            if (RegistedCommand.ContainsKey(hotkeyName))
-            {
-                return RegistedCommand[hotkeyName];
-            }
-            return null;
-        }
-
-        public void InvokeHotkeyAction(string hotkeyName)
-        {
-            if(RegistedHotkeyAction.ContainsKey(hotkeyName))
-            {
-                var act = RegistedHotkeyAction[hotkeyName];
-                act?.Invoke();
-            }
-        }
-
-        public void Save()
-        {
-
-        }
-
-        public void Load()
-        {
-
         }
     }
 }
