@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.WebSear
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.MouseClick", "..\src\Practice\CozyLauncher.Plugin.MouseClick\CozyLauncher.Plugin.MouseClick.csproj", "{86935658-10A9-4C80-A20A-E2BFA77347E7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tool", "Tool", "{99CDD04F-DFAB-46F3-8F43-ECBA51665848}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Tool.MakePacket", "..\src\Practice\CozyLauncher.Tool.MakePacket\CozyLauncher.Tool.MakePacket.csproj", "{61D31322-97D6-4552-9167-B94EB6B62B17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,10 @@ Global
 		{86935658-10A9-4C80-A20A-E2BFA77347E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86935658-10A9-4C80-A20A-E2BFA77347E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86935658-10A9-4C80-A20A-E2BFA77347E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61D31322-97D6-4552-9167-B94EB6B62B17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D31322-97D6-4552-9167-B94EB6B62B17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61D31322-97D6-4552-9167-B94EB6B62B17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61D31322-97D6-4552-9167-B94EB6B62B17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,5 +99,6 @@ Global
 		{EBF482FC-3E9E-4AB9-BFBE-CAF500964F33} = {6B37D2AC-6C6D-444F-8492-DA47118C7625}
 		{7BDDD754-0CA2-4772-B25D-CF4998146FA4} = {6B37D2AC-6C6D-444F-8492-DA47118C7625}
 		{86935658-10A9-4C80-A20A-E2BFA77347E7} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
+		{61D31322-97D6-4552-9167-B94EB6B62B17} = {99CDD04F-DFAB-46F3-8F43-ECBA51665848}
 	EndGlobalSection
 EndGlobal

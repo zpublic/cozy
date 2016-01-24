@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{61D31322-97D6-4552-9167-B94EB6B62B17}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CozyLauncher.Tool.MakePacket</RootNamespace>
+    <AssemblyName>CozyLauncher.Tool.MakePacket</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin\CozyLauncher\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyLauncher.Plugin.Core\CozyLauncher.Plugin.Core.csproj">
+      <Project>{909e8061-b711-45f5-8b7b-df6854fe55a1}</Project>
+      <Name>CozyLauncher.Plugin.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.Dirctory\CozyLauncher.Plugin.Dirctory.csproj">
+      <Project>{ebf482fc-3e9e-4ab9-bfbe-caf500964f33}</Project>
+      <Name>CozyLauncher.Plugin.Dirctory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.ManualRun\CozyLauncher.Plugin.ManualRun.csproj">
+      <Project>{728f9dbe-8312-47a8-b713-a911571a5dd8}</Project>
+      <Name>CozyLauncher.Plugin.ManualRun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.MouseClick\CozyLauncher.Plugin.MouseClick.csproj">
+      <Project>{86935658-10a9-4c80-a20a-e2bfa77347e7}</Project>
+      <Name>CozyLauncher.Plugin.MouseClick</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.Program\CozyLauncher.Plugin.Program.csproj">
+      <Project>{27b8819d-01ea-47a1-8cd9-75ba99ba08cb}</Project>
+      <Name>CozyLauncher.Plugin.Program</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.WebSearch\CozyLauncher.Plugin.WebSearch.csproj">
+      <Project>{7bddd754-0ca2-4772-b25d-cf4998146fa4}</Project>
+      <Name>CozyLauncher.Plugin.WebSearch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher\CozyLauncher.csproj">
+      <Project>{36c16b10-d17d-4a58-bd46-0f938da82cc8}</Project>
+      <Name>CozyLauncher</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
