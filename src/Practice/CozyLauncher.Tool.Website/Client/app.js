@@ -2,7 +2,8 @@ define([
     'app.routeConfig',
     'app.loader',
     'angular',
-    'angular-route'
+    'angular-route',
+    'bootstrap'
 ], function(config, loader) {
     'use strict';
     var app = angular.module('app',['ngRoute','ngLocale']);
