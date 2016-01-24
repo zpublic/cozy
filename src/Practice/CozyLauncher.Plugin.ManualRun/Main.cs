@@ -39,7 +39,7 @@ namespace CozyLauncher.Plugin.ManualRun
                 var r = new Result();
                 r.Title = acDir.Key;
                 r.SubTitle = acDir.Dirctory;
-                r.IcoPath = "dir";
+                r.IcoPath = "folder_open";
                 r.Score = 100;
                 r.Action = e =>
                 {
@@ -58,7 +58,7 @@ namespace CozyLauncher.Plugin.ManualRun
                 var r = new Result();
                 r.Title = acExe.Key;
                 r.SubTitle = acExe.Exe;
-                r.IcoPath = "exe";
+                r.IcoPath = "app";
                 r.Score = 100;
                 r.Action = e =>
                 {

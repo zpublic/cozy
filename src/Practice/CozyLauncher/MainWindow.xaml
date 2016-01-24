@@ -35,10 +35,20 @@
             </i:Interaction.Triggers>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Title}"></TextBlock>
-                        <TextBlock Text="{Binding SubTitle}"></TextBlock>
-                    </StackPanel>
+                    <Grid>
+                        <Grid.Resources>
+                            <converter:NameToDataConverter x:Key="IconConverter"></converter:NameToDataConverter>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="52"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding IcoPath, Converter={StaticResource IconConverter}}"/>
+                            <StackPanel Grid.Column="1">
+                            <TextBlock Text="{Binding Title}"></TextBlock>
+                            <TextBlock Text="{Binding SubTitle}"></TextBlock>
+                        </StackPanel>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

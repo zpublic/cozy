@@ -33,7 +33,7 @@ namespace CozyLauncher.Plugin.Program
                     {
                         Title       = query.RawQuery,
                         SubTitle    = ActPath,
-                        IcoPath     = "exe",
+                        IcoPath     = "app",
                         Score       = 100,
                         Action      = e =>
                         {

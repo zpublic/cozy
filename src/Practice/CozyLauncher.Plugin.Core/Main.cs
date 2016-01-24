@@ -31,7 +31,7 @@ namespace CozyLauncher.Plugin.Core
                 {
                     Title       = "Exit",
                     SubTitle    = "关闭",
-                    IcoPath     = "exe",
+                    IcoPath     = "exit",
                     Score       = 100,
                     Action      = e =>
                     {
@@ -42,13 +42,13 @@ namespace CozyLauncher.Plugin.Core
 
                 rl.Add(r);
             }
-            else if(query.RawQuery == "config")
+            else if(query.RawQuery == "config" || query.RawQuery == "setting")
             {
                 var r = new Result()
                 {
-                    Title       = "Config",
+                    Title       = "Config / Setting",
                     SubTitle    = "设置",
-                    IcoPath     = "exe",
+                    IcoPath     = "setting",
                     Score       = 100,
                     Action = e  =>
                     {
