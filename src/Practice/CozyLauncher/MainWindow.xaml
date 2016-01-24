@@ -43,10 +43,11 @@
                             <ColumnDefinition Width="52"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding IcoPath, Converter={StaticResource IconConverter}}"/>
-                            <StackPanel Grid.Column="1">
-                            <TextBlock Text="{Binding Title}"></TextBlock>
-                            <TextBlock Text="{Binding SubTitle}"></TextBlock>
+                        <Image Width="48" Height="48" Margin="2"  Grid.Column="0"
+                               Source="{Binding IcoPath, Converter={StaticResource IconConverter}}"/>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Title}" FontSize="22"></TextBlock>
+                            <TextBlock Text="{Binding SubTitle}" FontSize="14"></TextBlock>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
