@@ -28,6 +28,7 @@ namespace CozyLauncher.Core.Plugin
                 "./CozyLauncher.Plugin.ManualRun.dll",
                 "./CozyLauncher.Plugin.Dirctory.dll",
                 "./CozyLauncher.Plugin.WebSearch.dll",
+                "./CozyLauncher.Plugin.Sys.dll",
 
                 // Secondary
                 "./CozyLauncher.Plugin.MouseClick.dll",

@@ -27,6 +27,7 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Plugin.Dirctory.dll",
                 "CozyLauncher.Plugin.ManualRun.dll",
                 "CozyLauncher.Plugin.WebSearch.dll",
+                "CozyLauncher.Plugin.Sys.dll",
 
                 "CozyLauncher.Plugin.MouseClick.dll",
             };
@@ -34,7 +35,14 @@ namespace CozyLauncher.Tool.MakePacket
             Directory.CreateDirectory("./cozy_launcher");
             foreach (var f in filelist)
             {
-                File.Replace(f, "./cozy_launcher/" + f, null);
+                if (File.Exists("./cozy_launcher/" + f))
+                {
+                    File.Replace(f, "./cozy_launcher/" + f, null);
+                }
+                else
+                {
+                    File.Copy(f, "./cozy_launcher/" + f);
+                }
             }
         }
     }

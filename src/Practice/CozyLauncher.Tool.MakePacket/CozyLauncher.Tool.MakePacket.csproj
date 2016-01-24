@@ -70,6 +70,10 @@
       <Project>{27b8819d-01ea-47a1-8cd9-75ba99ba08cb}</Project>
       <Name>CozyLauncher.Plugin.Program</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.Sys\CozyLauncher.Plugin.Sys.csproj">
+      <Project>{5d3aa1b8-dbc5-44f1-b9f4-44a4ea651df8}</Project>
+      <Name>CozyLauncher.Plugin.Sys</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.Plugin.WebSearch\CozyLauncher.Plugin.WebSearch.csproj">
       <Project>{7bddd754-0ca2-4772-b25d-cf4998146fa4}</Project>
       <Name>CozyLauncher.Plugin.WebSearch</Name>
