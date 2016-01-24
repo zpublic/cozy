@@ -161,3 +161,4 @@ sln/packages/
 /sln/saves
 /BiliDanmaku.exe
 bower_components/
+node_modules/
