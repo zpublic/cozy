@@ -191,6 +191,8 @@ namespace CozyLauncher.ViewModels
                 }
 
                 ResultListView.AddRange(results);
+
+                SelectedResultIndex = 0;
             }
             else
             {
