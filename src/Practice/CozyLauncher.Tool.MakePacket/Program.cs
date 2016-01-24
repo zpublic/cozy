@@ -34,7 +34,7 @@ namespace CozyLauncher.Tool.MakePacket
             Directory.CreateDirectory("./cozy_launcher");
             foreach (var f in filelist)
             {
-                File.Copy(f, "./cozy_launcher/" + f);
+                File.Replace(f, "./cozy_launcher/" + f, null);
             }
         }
     }
