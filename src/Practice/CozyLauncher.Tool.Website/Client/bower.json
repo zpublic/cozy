@@ -20,6 +20,7 @@
     "angular": "~1.4.9",
     "angular-route": "~1.4.9",
     "requirejs": "~2.1.22",
-    "bootstrap": "~3.3.6"
+    "bootstrap": "~3.3.6",
+    "font-awesome": "Font-Awesome#~4.5.0"
   }
 }
