@@ -54,10 +54,18 @@ namespace CozyLauncher.Infrastructure.Hotkey
         {
             RegistedHotKey[hotkeyName] = keyModel;
 
-            HotkeyRegister.Regist(hotkeyName, keyModel, () =>
+            try
             {
-                InvokeHotkeyAction(hotkeyName);
-            });
+                HotkeyRegister.Regist(hotkeyName, keyModel, () =>
+                {
+                    InvokeHotkeyAction(hotkeyName);
+                });
+            }
+            catch (NHotkey.HotkeyAlreadyRegisteredException)
+            {
+                RegistedHotKey.Remove(hotkeyName);
+                throw new Exception("Register failed");
+            }
         }
 
         private void InvokeHotkeyAction(string hotkeyName)

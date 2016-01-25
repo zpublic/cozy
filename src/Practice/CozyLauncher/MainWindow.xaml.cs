@@ -28,6 +28,15 @@ namespace CozyLauncher
         {
             InitializeComponent();
 
+            try
+            {
+                GlobalHotkey.Instance.Load();
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("热键冲突 注册失败");
+            }
+
             this.ViewModel.PropertyChanged += OnViewModelPropertyChanged;
 
             this.QueryTextBox.Focus();
