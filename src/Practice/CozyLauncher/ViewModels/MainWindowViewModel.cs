@@ -162,6 +162,11 @@ namespace CozyLauncher.ViewModels
             this.OnPropertyChanged("SystemCommand.ShowConfig");
         }
 
+        public void About()
+        {
+            this.OnPropertyChanged("SystemCommand.About");
+        }
+
         public void PushResults(List<Result> results)
         {
             ResultListView.Clear();

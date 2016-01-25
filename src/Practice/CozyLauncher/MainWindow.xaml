@@ -9,7 +9,7 @@
         xmlns:converter="clr-namespace:CozyLauncher.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Width="450" SizeToContent="Height" WindowStyle="None" Topmost="True" ResizeMode="NoResize" 
-        KeyUp="OnQueryKeyUp" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="OnWindowMouseLeftButtonDown">
+        KeyUp="OnQueryKeyUp" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="OnWindowMouseLeftButtonDown" Background="#1E1C20">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
     </Window.DataContext>
@@ -22,12 +22,14 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="10" TextWrapping="Wrap" Grid.Row="0"
+        
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10" TextWrapping="Wrap" Grid.Row="0" Foreground="#B81D7F" Background="#1E1C20"
                  VerticalAlignment="Top" Width="410" TextChanged="OnQueryTextChanged" x:Name="QueryTextBox"/>
 
         <ListView MaxHeight="410" ItemsSource="{Binding ResultListView}" SelectedItem="{Binding SelectedResult}" 
-                  SelectedIndex="{Binding SelectedResultIndex}" Focusable="False" Grid.Row="1"
+                  SelectedIndex="{Binding SelectedResultIndex}" Focusable="False" Grid.Row="1" Background="#1E1C20"
                   Visibility="{Binding IsResultViewVisiable, Converter={StaticResource VisibilityConverter}}">
+
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonUp">
                     <i:InvokeCommandAction Command="{Binding DoCommand}"/>
@@ -46,8 +48,8 @@
                         <Image Width="48" Height="48" Margin="2"  Grid.Column="0"
                                Source="{Binding IcoPath, Converter={StaticResource IconConverter}}"/>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding Title}" FontSize="22"></TextBlock>
-                            <TextBlock Text="{Binding SubTitle}" FontSize="14"></TextBlock>
+                            <TextBlock Text="{Binding Title}" FontSize="22" Foreground="#F0F0F0"></TextBlock>
+                            <TextBlock Text="{Binding SubTitle}" FontSize="14" Foreground="#C1C1C1"></TextBlock>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

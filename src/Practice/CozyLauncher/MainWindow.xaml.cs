@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using CozyLauncher.Infrastructure.Hotkey;
 
 namespace CozyLauncher
 {
@@ -94,6 +95,10 @@ namespace CozyLauncher
             {
                 ShowConfig();
             }
+            else if(e.PropertyName == "SystemCommand.About")
+            {
+                About();
+            }
         }
 
         private void HideWox()
@@ -125,6 +130,12 @@ namespace CozyLauncher
         {
             var config = new ConfigWindow();
             config.ShowDialog();
+        }
+
+        public void About()
+        {
+            var about = new AboutWindow();
+            about.ShowDialog();
         }
     }
 }
