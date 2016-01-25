@@ -37,6 +37,29 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Tool.MakePacke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Sys", "..\src\Practice\CozyLauncher.Plugin.Sys\CozyLauncher.Plugin.Sys.csproj", "{5D3AA1B8-DBC5-44F1-B9F4-44A4EA651DF8}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CozyLauncher.Tool.Website", "..\src\Practice\CozyLauncher.Tool.Website\", "{C52B6FFE-729F-4FC4-96E8-5F97FC9B74A4}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_49719"
+		Debug.AspNetCompiler.PhysicalPath = "..\src\Practice\CozyLauncher.Tool.Website\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49719\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_49719"
+		Release.AspNetCompiler.PhysicalPath = "..\src\Practice\CozyLauncher.Tool.Website\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49719\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "49719"
+		SlnRelativePath = "..\src\Practice\CozyLauncher.Tool.Website\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Tool.UpdateFeedGenerator", "..\src\Practice\CozyLauncher.Tool.UpdateFeedGenerator\CozyLauncher.Tool.UpdateFeedGenerator.csproj", "{310F3415-9294-42BD-8864-3149981C555F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +114,14 @@ Global
 		{5D3AA1B8-DBC5-44F1-B9F4-44A4EA651DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D3AA1B8-DBC5-44F1-B9F4-44A4EA651DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D3AA1B8-DBC5-44F1-B9F4-44A4EA651DF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C52B6FFE-729F-4FC4-96E8-5F97FC9B74A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C52B6FFE-729F-4FC4-96E8-5F97FC9B74A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C52B6FFE-729F-4FC4-96E8-5F97FC9B74A4}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{C52B6FFE-729F-4FC4-96E8-5F97FC9B74A4}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{310F3415-9294-42BD-8864-3149981C555F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{310F3415-9294-42BD-8864-3149981C555F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{310F3415-9294-42BD-8864-3149981C555F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{310F3415-9294-42BD-8864-3149981C555F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,5 +138,7 @@ Global
 		{86935658-10A9-4C80-A20A-E2BFA77347E7} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
 		{61D31322-97D6-4552-9167-B94EB6B62B17} = {99CDD04F-DFAB-46F3-8F43-ECBA51665848}
 		{5D3AA1B8-DBC5-44F1-B9F4-44A4EA651DF8} = {6B37D2AC-6C6D-444F-8492-DA47118C7625}
+		{C52B6FFE-729F-4FC4-96E8-5F97FC9B74A4} = {99CDD04F-DFAB-46F3-8F43-ECBA51665848}
+		{310F3415-9294-42BD-8864-3149981C555F} = {99CDD04F-DFAB-46F3-8F43-ECBA51665848}
 	EndGlobalSection
 EndGlobal

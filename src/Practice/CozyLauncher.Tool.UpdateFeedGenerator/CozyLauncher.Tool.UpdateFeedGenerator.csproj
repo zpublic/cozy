@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{58C2D24E-55DE-4E57-A1C1-18EFA0D4A5A6}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{310F3415-9294-42BD-8864-3149981C555F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyLauncher.Infrastructure</RootNamespace>
-    <AssemblyName>CozyLauncher.Infrastructure</AssemblyName>
+    <RootNamespace>CozyLauncher.Tool.UpdateFeedGenerator</RootNamespace>
+    <AssemblyName>CozyLauncher.Tool.UpdateFeedGenerator</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,42 +33,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\sln\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NHotkey, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\sln\packages\NHotkey.1.2.1\lib\net20\NHotkey.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NHotkey.Wpf, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\sln\packages\NHotkey.Wpf.1.2.1\lib\net35\NHotkey.Wpf.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileMd5.cs" />
-    <Compile Include="Hotkey\GlobalHotkey.cs" />
-    <Compile Include="Hotkey\HotkeyModel.cs" />
-    <Compile Include="Hotkey\HotkeyRegister.cs" />
-    <Compile Include="Hotkey\ModifyKeyStatus.cs" />
-    <Compile Include="Http\HttpDownload.cs" />
-    <Compile Include="PathTransform.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyLauncher.Core\CozyLauncher.Core.csproj">
+      <Project>{ce088805-e664-42eb-b943-c2a421ea8551}</Project>
+      <Name>CozyLauncher.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Infrastructure\CozyLauncher.Infrastructure.csproj">
+      <Project>{58c2d24e-55de-4e57-a1c1-18efa0d4a5a6}</Project>
+      <Name>CozyLauncher.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
