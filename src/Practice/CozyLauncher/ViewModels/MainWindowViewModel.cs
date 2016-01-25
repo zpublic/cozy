@@ -129,26 +129,9 @@ namespace CozyLauncher.ViewModels
 
         public MainWindowViewModel()
         {
-            try
-            {
-                using (var fs = new FileStream(@"./config.json", FileMode.OpenOrCreate, FileAccess.ReadWrite))
-                {
-                    using (var sr = new StreamReader(fs))
-                    {
-                        var result = sr.ReadToEnd();
-                        if(!string.IsNullOrEmpty(result))
-                        {
-                            GlobalHotkey.Instance.Load(result);
-                        }
-                    }
-                }
-            }
-            catch(Exception)
-            {
-                // Do something
-            }
-
             pm.Init(this);
+
+            GlobalHotkey.Instance.Load();
 
             GlobalHotkey.Instance.RegistHotkeyAction("HotKey.ShowApp", ()=> 
             {
@@ -191,6 +174,8 @@ namespace CozyLauncher.ViewModels
                 }
 
                 ResultListView.AddRange(results);
+
+                SelectedResultIndex = 0;
             }
             else
             {

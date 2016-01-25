@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace CozyLauncher.Infrastructure.Hotkey
 {
@@ -81,17 +82,61 @@ namespace CozyLauncher.Infrastructure.Hotkey
             return null;
         }
 
-        public void Save(out string result)
+        public static string ConfigFilePath { get { return @"./config.json"; } }
+
+        public void Save()
         {
-            result = JsonConvert.SerializeObject(RegistedHotKey);
+            try
+            {
+                using (var fs = new FileStream(ConfigFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                {
+                    using (var sw = new StreamWriter(fs))
+                    {
+                        string result = JsonConvert.SerializeObject(RegistedHotKey); ;
+                        if (!string.IsNullOrEmpty(result))
+                        {
+                            sw.Write(result);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // Do something
+            }
         }
 
-        public void Load(string val)
+        public void Load()
         {
-            var loadData = JsonConvert.DeserializeObject<Dictionary<string, HotkeyModel>>(val);
-            foreach(var obj in loadData)
+            string result = null;
+
+            try
             {
-                RegistHotkey(obj.Key, obj.Value);
+                using (var fs = new FileStream(ConfigFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                {
+                    using (var sr = new StreamReader(fs))
+                    {
+                        result = sr.ReadToEnd();
+                    }
+                }
+            }
+            catch(Exception)
+            {
+
+            }
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                var loadData = JsonConvert.DeserializeObject<Dictionary<string, HotkeyModel>>(result);
+                foreach (var obj in loadData)
+                {
+                    RegistHotkey(obj.Key, obj.Value);
+                }
+            }
+            else
+            {
+                RegistHotkey("HotKey.ShowApp", new HotkeyModel("Ctrl+Alt+Space"));
+                Save();
             }
         }
     }

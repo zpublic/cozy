@@ -29,7 +29,7 @@ namespace CozyLauncher.Plugin.Dirctory
                 var r = new Result();
                 r.Title = f.ToString();
                 r.SubTitle = path;
-                r.IcoPath = "dir";
+                r.IcoPath = "folder_open";
                 r.Score = 50;
                 r.Action = e =>
                 {
