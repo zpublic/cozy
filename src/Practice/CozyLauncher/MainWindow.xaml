@@ -8,8 +8,9 @@
         xmlns:viewmodel="clr-namespace:CozyLauncher.ViewModels"
         xmlns:converter="clr-namespace:CozyLauncher.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Width="450" SizeToContent="Height" WindowStyle="None" Topmost="True" ResizeMode="NoResize" 
-        KeyUp="OnQueryKeyUp" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="OnWindowMouseLeftButtonDown" Background="#1E1C20">
+        Title="MainWindow" Width="450" SizeToContent="Height" WindowStyle="None" Topmost="True"
+        WindowStartupLocation="CenterScreen" Background="#1E1C20" ResizeMode="NoResize" 
+        MouseLeftButtonDown="OnWindowMouseLeftButtonDown" KeyUp="OnQueryKeyUp" Closed="Window_Closed">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
     </Window.DataContext>

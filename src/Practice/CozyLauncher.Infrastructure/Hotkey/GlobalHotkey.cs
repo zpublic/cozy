@@ -82,6 +82,29 @@ namespace CozyLauncher.Infrastructure.Hotkey
             return null;
         }
 
+        public void UnregistHotkey(string hotkeyName)
+        {
+            if(RegistedHotKey.ContainsKey(hotkeyName))
+            {
+                RegistedHotKey.Remove(hotkeyName);
+                HotkeyRegister.UnRegist(hotkeyName);
+            }
+            if(RegistedHotkeyAction.ContainsKey(hotkeyName))
+            {
+                RegistedHotkeyAction.Remove(hotkeyName);
+            }
+        }
+
+        public void UnregistAllHotkey()
+        {
+            foreach(var obj in RegistedHotKey)
+            {
+                HotkeyRegister.UnRegist(obj.Key);
+            }
+            RegistedHotKey.Clear();
+            RegistedHotkeyAction.Clear();
+        }
+
         public static string ConfigFilePath { get { return @"./config.json"; } }
 
         public void Save()

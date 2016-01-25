@@ -137,5 +137,10 @@ namespace CozyLauncher
             var about = new AboutWindow();
             about.ShowDialog();
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            GlobalHotkey.Instance.UnregistAllHotkey();
+        }
     }
 }
