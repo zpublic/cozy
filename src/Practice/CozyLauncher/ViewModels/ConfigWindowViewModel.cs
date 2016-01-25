@@ -33,9 +33,15 @@ namespace CozyLauncher.ViewModels
                 {
                     if (!string.IsNullOrEmpty(HotkeyTextStr))
                     {
-                        GlobalHotkey.Instance.RegistHotkey("HotKey.ShowApp", new HotkeyModel(HotkeyTextStr));
-
-                        GlobalHotkey.Instance.Save();
+                        try
+                        {
+                            GlobalHotkey.Instance.RegistHotkey("HotKey.ShowApp", new HotkeyModel(HotkeyTextStr));
+                            GlobalHotkey.Instance.Save();
+                        }
+                        catch(Exception)
+                        {
+                            // failed
+                        }
                     }
                 });
             }

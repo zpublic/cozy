@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using CozyLauncher.Infrastructure.Hotkey;
 
 namespace CozyLauncher
 {
@@ -26,6 +27,15 @@ namespace CozyLauncher
         public MainWindow()
         {
             InitializeComponent();
+
+            try
+            {
+                GlobalHotkey.Instance.Load();
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("热键冲突 注册失败");
+            }
 
             this.ViewModel.PropertyChanged += OnViewModelPropertyChanged;
 
@@ -94,6 +104,10 @@ namespace CozyLauncher
             {
                 ShowConfig();
             }
+            else if(e.PropertyName == "SystemCommand.About")
+            {
+                About();
+            }
         }
 
         private void HideWox()
@@ -125,6 +139,17 @@ namespace CozyLauncher
         {
             var config = new ConfigWindow();
             config.ShowDialog();
+        }
+
+        public void About()
+        {
+            var about = new AboutWindow();
+            about.ShowDialog();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            GlobalHotkey.Instance.UnregistAllHotkey();
         }
     }
 }

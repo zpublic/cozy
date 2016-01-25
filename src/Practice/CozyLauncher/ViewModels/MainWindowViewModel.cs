@@ -131,7 +131,7 @@ namespace CozyLauncher.ViewModels
         {
             pm.Init(this);
 
-            GlobalHotkey.Instance.Load();
+           
 
             GlobalHotkey.Instance.RegistHotkeyAction("HotKey.ShowApp", ()=> 
             {
@@ -160,6 +160,11 @@ namespace CozyLauncher.ViewModels
         public void Config()
         {
             this.OnPropertyChanged("SystemCommand.ShowConfig");
+        }
+
+        public void About()
+        {
+            this.OnPropertyChanged("SystemCommand.About");
         }
 
         public void PushResults(List<Result> results)

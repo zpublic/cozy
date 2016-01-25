@@ -54,10 +54,18 @@ namespace CozyLauncher.Infrastructure.Hotkey
         {
             RegistedHotKey[hotkeyName] = keyModel;
 
-            HotkeyRegister.Regist(hotkeyName, keyModel, () =>
+            try
             {
-                InvokeHotkeyAction(hotkeyName);
-            });
+                HotkeyRegister.Regist(hotkeyName, keyModel, () =>
+                {
+                    InvokeHotkeyAction(hotkeyName);
+                });
+            }
+            catch (NHotkey.HotkeyAlreadyRegisteredException)
+            {
+                RegistedHotKey.Remove(hotkeyName);
+                throw new Exception("Register failed");
+            }
         }
 
         private void InvokeHotkeyAction(string hotkeyName)
@@ -80,6 +88,29 @@ namespace CozyLauncher.Infrastructure.Hotkey
                 return RegistedHotKey[hotkeyName];
             }
             return null;
+        }
+
+        public void UnregistHotkey(string hotkeyName)
+        {
+            if(RegistedHotKey.ContainsKey(hotkeyName))
+            {
+                RegistedHotKey.Remove(hotkeyName);
+                HotkeyRegister.UnRegist(hotkeyName);
+            }
+            if(RegistedHotkeyAction.ContainsKey(hotkeyName))
+            {
+                RegistedHotkeyAction.Remove(hotkeyName);
+            }
+        }
+
+        public void UnregistAllHotkey()
+        {
+            foreach(var obj in RegistedHotKey)
+            {
+                HotkeyRegister.UnRegist(obj.Key);
+            }
+            RegistedHotKey.Clear();
+            RegistedHotkeyAction.Clear();
         }
 
         public static string ConfigFilePath { get { return @"./config.json"; } }
