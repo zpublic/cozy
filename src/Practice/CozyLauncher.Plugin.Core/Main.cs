@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CozyLauncher.PluginBase;
+using System.Diagnostics;
 
 namespace CozyLauncher.Plugin.Core
 {
@@ -70,6 +71,24 @@ namespace CozyLauncher.Plugin.Core
                     Action      = e =>
                     {
                         _context.Api.About();
+                        return true;
+                    }
+                };
+
+                rl.Add(r);
+            }
+
+            else if(query.RawQuery == "cozy")
+            {
+                var r = new Result()
+                {
+                    Title = "Cozy",
+                    SubTitle = "主页",
+                    IcoPath = "help",
+                    Score = 100,
+                    Action = e =>
+                    {
+                        Process.Start(@"http://cozy.laorouji.com");
                         return true;
                     }
                 };
