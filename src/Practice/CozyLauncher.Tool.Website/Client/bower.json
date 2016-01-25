@@ -1,0 +1,26 @@
+{
+  "name": "CozyLauncher.Website",
+  "authors": [
+    "Max <763305825@qq.com>"
+  ],
+  "description": "CozyLauncher展示网站",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.9",
+    "angular-route": "~1.4.9",
+    "requirejs": "~2.1.22",
+    "bootstrap": "~3.3.6",
+    "font-awesome": "Font-Awesome#~4.5.0"
+  }
+}
