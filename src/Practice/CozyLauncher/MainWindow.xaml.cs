@@ -65,7 +65,7 @@ namespace CozyLauncher
                     this.ViewModel.DoCommand.Execute(null);
                     break;
                 case Key.Escape:
-                    this.ViewModel.CloseApp();
+                    this.ViewModel.HideAndClear();
                     break;
                 default:
                     e.Handled = oldHandle;
@@ -108,6 +108,10 @@ namespace CozyLauncher
             {
                 About();
             }
+            else if (e.PropertyName == "SystemCommand.ClearEditBox")
+            {
+                ClearEditBox();
+            }
         }
 
         private void HideWox()
@@ -145,6 +149,11 @@ namespace CozyLauncher
         {
             var about = new AboutWindow();
             about.ShowDialog();
+        }
+
+        public void ClearEditBox()
+        {
+            QueryTextBox.Clear();
         }
 
         private void Window_Closed(object sender, EventArgs e)
