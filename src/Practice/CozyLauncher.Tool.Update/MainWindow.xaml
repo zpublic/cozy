@@ -4,19 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CozyLauncher.Tool.Update"
+        xmlns:viewmodels="clr-namespace:CozyLauncher.Tool.Update.ViewModels"
         mc:Ignorable="d"
         Title="CoztLaunch Update" Height="325" Width="525" Visibility="Visible">
+    <Window.DataContext>
+        <viewmodels:MainWindowViewModel x:Name="ViewModel"></viewmodels:MainWindowViewModel>
+    </Window.DataContext>
     <Grid>
         <StackPanel>
-            <ProgressBar Height="20" Margin="8" Value="50"></ProgressBar>
-            <ListView Height="200" Margin="8"></ListView>
+            <ProgressBar Height="20" Margin="8" Minimum="0" Maximum="{Binding UpdateCount}" Value="{Binding UpdateNow}"></ProgressBar>
+            <ListView Height="200" Margin="8" ItemsSource="{Binding FileInfoList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <Grid Margin="8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Content="calcle" Grid.Column="0"></Button>
-                <Button Content="ok" Grid.Column="1"></Button>
+                <Button Content="calcle" Grid.Column="0" Command="{Binding CancleCommand}"></Button>
+                <Button Content="ok" Grid.Column="1" Command="{Binding OkCommand}"></Button>
             </Grid>
         </StackPanel>
     </Grid>
