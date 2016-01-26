@@ -9,6 +9,7 @@ using System.Windows.Input;
 using CozyLauncher.Tool.Update.Commands;
 using CozyLauncher.Infrastructure.Http;
 using System.IO;
+using System.Threading;
 
 namespace CozyLauncher.Tool.Update.ViewModels
 {
@@ -41,8 +42,6 @@ namespace CozyLauncher.Tool.Update.ViewModels
 
         private UpdateMgr UpdateManager { get; set; } = new UpdateMgr();
 
-        private bool IsCancle { get; set; }
-
         private ICommand _OkCommand;
         public ICommand OkCommand
         {
@@ -50,37 +49,7 @@ namespace CozyLauncher.Tool.Update.ViewModels
             {
                 return _OkCommand = _OkCommand ?? new DelegateCommand(x =>
                 {
-                    Task.Run( () => 
-                    {
-                        if (UpdateManager.CheckUpdate())
-                        {
-                            // TODO Close CozyLauncher
-
-                            var res = UpdateManager.GetUpdateResult();
-
-                            UpdateCount = res.Count;
-                            UpdateNow = 0;
-                            IsCancle = false;
-
-                            var fn = Path.Combine("./", "backup/");
-                            if (!Directory.Exists(fn))
-                            {
-                                Directory.CreateDirectory(fn);
-                            }
-
-                            foreach (var file in res)
-                            {
-                                if (IsCancle)
-                                {
-                                    return;
-                                }
-
-                                System.Threading.Thread.Sleep(300);
-                                HttpDownload.HttpDownloadFile(UpdateManager.GetDownloadUrl(file.Name), fn + file.Name + ".cozy_update");
-                                UpdateNow++;
-                            }
-                        }
-                    });
+                    
                 });
             }
         }
@@ -92,8 +61,90 @@ namespace CozyLauncher.Tool.Update.ViewModels
             {
                 return _CancleCommand = _CancleCommand ?? new DelegateCommand(x => 
                 {
-                    IsCancle = true;
+                    cancleSource?.Cancel();
+                    UpdateTask?.Wait();
                 });
+            }
+        }
+
+        private bool _CancleEnable = true;
+        public bool CancleEnable
+        {
+            get
+            { return _CancleEnable; }
+            set
+            {
+                Set(ref _CancleEnable, value);
+            }
+        }
+
+        private bool _OkEnable = false;
+        public bool OkEnable
+        {
+            get
+            { return _OkEnable; }
+            set
+            {
+                Set(ref _OkEnable, value);
+            }
+        }
+
+        private CancellationTokenSource cancleSource { get; set; }
+        private Task UpdateTask { get; set; }
+
+        public void DoUpdate()
+        {
+            bool needToUpdate = false;
+            try
+            {
+                needToUpdate = UpdateManager.CheckUpdate();
+            }
+            catch(Exception)
+            {
+                needToUpdate = false;
+            }
+
+            if(needToUpdate)
+            {
+                OnPropertyChanged("UpdateCommand.Show");
+
+                cancleSource = new CancellationTokenSource();
+
+                // TODO Close CozyLauncher
+
+                var res     = UpdateManager.GetUpdateResult();
+                var fn      = Path.Combine("./", "backup/");
+                UpdateCount = res.Count;
+                UpdateNow   = 0;
+
+                if (!Directory.Exists(fn))
+                {
+                    Directory.CreateDirectory(fn);
+                }
+
+                UpdateTask = Task.Run(() =>
+                {
+                    foreach (var file in res)
+                    {
+                        if (cancleSource.IsCancellationRequested)
+                        {
+                            break;
+                        }
+
+                        HttpDownload.HttpDownloadFile(UpdateManager.GetDownloadUrl(file.Name), fn + file.Name + ".cozy_update");
+                        UpdateNow++;
+                    }
+                    OkEnable        = false;
+                    CancleEnable    = false;
+
+                }, cancleSource.Token);
+
+                CancleEnable    = true;
+                OkEnable        = false;
+            }
+            else
+            {
+                OnPropertyChanged("UpdateCommand.Exit");
             }
         }
     }

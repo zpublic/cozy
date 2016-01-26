@@ -23,6 +23,21 @@ namespace CozyLauncher.Tool.Update
         public MainWindow()
         {
             InitializeComponent();
+
+            this.ViewModel.DoUpdate();
+            this.ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+        }
+
+        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == "UpdateCommand.Show")
+            {
+                Show();
+            }
+            else if(e.PropertyName == "UpdateCommand.Exit")
+            {
+                Close();
+            }
         }
     }
 }

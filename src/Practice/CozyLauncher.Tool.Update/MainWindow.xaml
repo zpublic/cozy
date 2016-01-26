@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CozyLauncher.Tool.Update"
         xmlns:viewmodels="clr-namespace:CozyLauncher.Tool.Update.ViewModels"
         mc:Ignorable="d"
-        Title="CoztLaunch Update" Height="325" Width="525" Visibility="Visible">
+        Title="CoztLaunch Update" Height="325" Width="525" Visibility="Hidden">
     <Window.DataContext>
         <viewmodels:MainWindowViewModel x:Name="ViewModel"></viewmodels:MainWindowViewModel>
     </Window.DataContext>
@@ -25,8 +25,8 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Content="calcle" Grid.Column="0" Command="{Binding CancleCommand}"></Button>
-                <Button Content="ok" Grid.Column="1" Command="{Binding OkCommand}"></Button>
+                <Button Content="calcle" Grid.Column="0" Command="{Binding CancleCommand}" IsEnabled="{Binding CalcleEnable}"></Button>
+                <Button Content="ok" Grid.Column="1" Command="{Binding OkCommand}" IsEnabled="{Binding OkEnable}"></Button>
             </Grid>
         </StackPanel>
     </Grid>
