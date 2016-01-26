@@ -49,7 +49,7 @@ namespace CozyLauncher.ViewModels
                 return _QueryCommand = _QueryCommand ?? new DelegateCommand(x =>
                 {
                     var text = x as string;
-                    if (text != null)
+                    if (text != null && text != "")
                     {
                         Query q = new Query();
                         q.RawQuery = text;
@@ -148,6 +148,18 @@ namespace CozyLauncher.ViewModels
         public void HideApp()
         {
             this.OnPropertyChanged("SystemCommand.HideApp");
+        }
+
+        public void Clear()
+        {
+            this.OnPropertyChanged("SystemCommand.ClearEditBox");
+            ResultListView.Clear();
+        }
+
+        public void HideAndClear()
+        {
+            HideApp();
+            Clear();
         }
 
         public void ShowApp()

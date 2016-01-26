@@ -19,6 +19,7 @@ namespace CozyLauncher.Tool.MakePacket
 
                 "NHotkey.dll",
                 "NHotkey.Wpf.dll",
+                "Newtonsoft.Json.dll",
                 "System.Windows.Interactivity.dll",
 
                 "CozyLauncher.Plugin.Core.dll",
