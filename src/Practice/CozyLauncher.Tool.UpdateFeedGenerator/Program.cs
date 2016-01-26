@@ -2,15 +2,17 @@
 using CozyLauncher.Infrastructure;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
+using System;
 
 namespace CozyLauncher.Tool.UpdateFeedGenerator
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
             List<FileVersionInfo> filelist = new List<FileVersionInfo>();
-            foreach (var file in Directory.GetFiles(args[1]))
+            foreach (var file in Directory.GetFiles(args[0]))
             {
                 filelist.Add(new FileVersionInfo
                 {
@@ -18,7 +20,17 @@ namespace CozyLauncher.Tool.UpdateFeedGenerator
                     Md5 = FileMd5.GetMD5HashFromFile(PathTransform.LocalFullPath(file)),
                 });
             }
+
             // to json
+            var filename = (args.Length < 2 || string.IsNullOrEmpty(args[1])) ? "./publish.json" : args[1];
+
+            using (var fs = new FileStream(filename, FileMode.Create, FileAccess.ReadWrite))
+            {
+                using (var sr = new StreamWriter(fs))
+                {
+                    sr.Write(JsonConvert.SerializeObject(filelist));
+                }
+            }
         }
     }
 }
