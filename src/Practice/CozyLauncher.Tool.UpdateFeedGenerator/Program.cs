@@ -16,8 +16,8 @@ namespace CozyLauncher.Tool.UpdateFeedGenerator
             {
                 filelist.Add(new FileVersionInfo
                 {
-                    Name = file,
-                    Md5 = FileMd5.GetMD5HashFromFile(PathTransform.LocalFullPath(file)),
+                    Name    = Path.GetFileName(file),
+                    Md5     = FileMd5.GetMD5HashFromFile(PathTransform.LocalFullPath(file)),
                 });
             }
 

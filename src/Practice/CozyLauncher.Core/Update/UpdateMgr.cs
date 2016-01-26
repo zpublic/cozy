@@ -1,6 +1,8 @@
 ﻿using CozyLauncher.Infrastructure;
 using CozyLauncher.Infrastructure.Http;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.Linq;
 
 namespace CozyLauncher.Core.Update
 {
@@ -23,7 +25,17 @@ namespace CozyLauncher.Core.Update
         public bool CheckUpdate()
         {
             remote_ = GetRemoteFileVersionInfo();
-            local_ = GetLocalFileVersionInfo();
+            local_  = GetLocalFileVersionInfo();
+
+            var fileDict = local_.ToDictionary(x => x.Name);
+            foreach(var file in remote_)
+            {
+                if(!fileDict.ContainsKey(file.Name) || fileDict[file.Name].Md5 != file.Md5)
+                {
+                    return true;
+                }
+            }
+
             return false;
         }
 
@@ -38,16 +50,40 @@ namespace CozyLauncher.Core.Update
 
         private List<FileVersionInfo> GetRemoteFileVersionInfo()
         {
-            if (HttpDownload.HttpDownloadFile(RemoteFileList, PathTransform.LocalFullPath("./a.list")))
+            var data = HttpDownload.HttpGetString(RemoteFileList);
+            if (!string.IsNullOrEmpty(data))
             {
-
+                return JsonConvert.DeserializeObject<List<FileVersionInfo>>(data);
             }
             return null;
         }
 
         private List<FileVersionInfo> GetLocalFileVersionInfo()
         {
-            return null;
+            var filelist = new List<string> {
+                "CozyLauncher.exe",
+                "CozyLauncher.Core.dll",
+                "CozyLauncher.Infrastructure.dll",
+                "CozyLauncher.PluginBase.dll",
+
+                "NHotkey.dll",
+                "NHotkey.Wpf.dll",
+                "Newtonsoft.Json.dll",
+                "YAMP.dll",
+                "System.Windows.Interactivity.dll",
+
+                "CozyLauncher.Plugin.Core.dll",
+
+                "CozyLauncher.Plugin.Program.dll",
+                "CozyLauncher.Plugin.Dirctory.dll",
+                "CozyLauncher.Plugin.ManualRun.dll",
+                "CozyLauncher.Plugin.WebSearch.dll",
+                "CozyLauncher.Plugin.Sys.dll",
+                "CozyLauncher.Plugin.Calculator.dll",
+
+                "CozyLauncher.Plugin.MouseClick.dll",
+            };
+            return filelist.Select(x => new FileVersionInfo { Name = x, Md5 = FileMd5.GetMD5HashFromFile(x) }).ToList();
         }
     }
 }
