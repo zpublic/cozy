@@ -14,9 +14,6 @@
     <Window.DataContext>
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
     </Window.DataContext>
-    <Window.Resources>
-
-    </Window.Resources>
     <Grid>
         <Grid.Resources>
             <converter:BoolToVisibilityConverter x:Key="VisibilityConverter"></converter:BoolToVisibilityConverter>
@@ -27,8 +24,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="10" TextWrapping="Wrap" Grid.Row="0" Foreground="#B81D7F" Background="#1E1C20"
-                 VerticalAlignment="Top" Width="410" TextChanged="OnQueryTextChanged" x:Name="QueryTextBox" BorderThickness="0" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Grid.Row="0" Foreground="#B81D7F" Background="#1E1C20"
+                 VerticalAlignment="Top" Width="410" TextChanged="OnQueryTextChanged" x:Name="QueryTextBox" BorderThickness="0" FontSize="24"/>
 
         <ListView MaxHeight="410" ItemsSource="{Binding ResultListView}" SelectedItem="{Binding SelectedResult}"  BorderThickness="0"
                   SelectedIndex="{Binding SelectedResultIndex}" Focusable="False" Grid.Row="1" Background="#1E1C20"

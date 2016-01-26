@@ -1,0 +1,33 @@
+﻿<Window x:Class="CozyLauncher.Tool.Update.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CozyLauncher.Tool.Update"
+        xmlns:viewmodels="clr-namespace:CozyLauncher.Tool.Update.ViewModels"
+        mc:Ignorable="d"
+        Title="CoztLaunch Update" Height="325" Width="525" Visibility="Collapsed">
+    <Window.DataContext>
+        <viewmodels:MainWindowViewModel x:Name="ViewModel"></viewmodels:MainWindowViewModel>
+    </Window.DataContext>
+    <Grid>
+        <StackPanel>
+            <ProgressBar Height="20" Margin="8" Minimum="0" Maximum="{Binding UpdateCount}" Value="{Binding UpdateNow}"></ProgressBar>
+            <ListView Height="200" Margin="8" ItemsSource="{Binding FileInfoList}">
+                <!--<ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Md5}" FontSize="14" Foreground="Red"></TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>-->
+            </ListView>
+            <Grid Margin="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Content="calcle" Grid.Column="0" Command="{Binding CancleCommand}" IsEnabled="{Binding CancleEnable}"></Button>
+                <Button Content="ok" Grid.Column="1" Command="{Binding OkCommand}" IsEnabled="{Binding OkEnable}"></Button>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
