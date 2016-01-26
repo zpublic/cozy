@@ -24,8 +24,8 @@ namespace CozyLauncher.Tool.Update
         {
             InitializeComponent();
 
-            this.ViewModel.DoUpdate();
             this.ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+            this.ViewModel.DoUpdate();
         }
 
         private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -36,7 +36,7 @@ namespace CozyLauncher.Tool.Update
             }
             else if(e.PropertyName == "UpdateCommand.Exit")
             {
-                Close();
+                App.Current.Shutdown();
             }
         }
     }
