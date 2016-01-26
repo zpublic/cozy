@@ -20,21 +20,22 @@ namespace CozyLauncher.Plugin.Program
 
         public List<Result> Query(Query query)
         {
-            var rl = new List<Result>();
+            var rl      = new List<Result>();
+            var fileSet = new HashSet<string>();
+            var EnvVar  = Environment.GetEnvironmentVariable("Path").Split(';');
 
-            var EnvVar = Environment.GetEnvironmentVariable("Path").Split(';');
             foreach (var path in EnvVar)
             {
-                var ActPath = Path.Combine(path, query.RawQuery + ".exe");
-                if (File.Exists(ActPath))
+                var ActPath = Path.Combine(path, query.RawQuery + ".exe").ToLower();
+                if (!fileSet.Contains(ActPath) && File.Exists(ActPath))
                 {
                     var r = new Result()
                     {
-                        Title = query.RawQuery,
-                        SubTitle = ActPath,
-                        IcoPath = "exe",
-                        Score = 100,
-                        Action = e =>
+                        Title       = query.RawQuery,
+                        SubTitle    = ActPath,
+                        IcoPath     = "app",
+                        Score       = 100,
+                        Action      = e =>
                         {
                             context_.Api.HideApp();
                             Process.Start(ActPath);
@@ -42,6 +43,7 @@ namespace CozyLauncher.Plugin.Program
                         },
                     };
                     rl.Add(r);
+                    fileSet.Add(ActPath);
                 }
             }
 

@@ -49,7 +49,7 @@ namespace CozyLauncher.ViewModels
                 return _QueryCommand = _QueryCommand ?? new DelegateCommand(x =>
                 {
                     var text = x as string;
-                    if (text != null)
+                    if (text != null && text != "")
                     {
                         Query q = new Query();
                         q.RawQuery = text;
@@ -129,25 +129,6 @@ namespace CozyLauncher.ViewModels
 
         public MainWindowViewModel()
         {
-            try
-            {
-                using (var fs = new FileStream(@"./config.json", FileMode.OpenOrCreate, FileAccess.ReadWrite))
-                {
-                    using (var sr = new StreamReader(fs))
-                    {
-                        var result = sr.ReadToEnd();
-                        if(!string.IsNullOrEmpty(result))
-                        {
-                            GlobalHotkey.Instance.Load(result);
-                        }
-                    }
-                }
-            }
-            catch(Exception)
-            {
-                // Do something
-            }
-
             pm.Init(this);
 
             GlobalHotkey.Instance.RegistHotkeyAction("HotKey.ShowApp", ()=> 
@@ -169,6 +150,18 @@ namespace CozyLauncher.ViewModels
             this.OnPropertyChanged("SystemCommand.HideApp");
         }
 
+        public void Clear()
+        {
+            this.OnPropertyChanged("SystemCommand.ClearEditBox");
+            ResultListView.Clear();
+        }
+
+        public void HideAndClear()
+        {
+            HideApp();
+            Clear();
+        }
+
         public void ShowApp()
         {
             this.OnPropertyChanged("SystemCommand.ShowApp");
@@ -177,6 +170,11 @@ namespace CozyLauncher.ViewModels
         public void Config()
         {
             this.OnPropertyChanged("SystemCommand.ShowConfig");
+        }
+
+        public void About()
+        {
+            this.OnPropertyChanged("SystemCommand.About");
         }
 
         public void PushResults(List<Result> results)
@@ -191,6 +189,8 @@ namespace CozyLauncher.ViewModels
                 }
 
                 ResultListView.AddRange(results);
+
+                SelectedResultIndex = 0;
             }
             else
             {

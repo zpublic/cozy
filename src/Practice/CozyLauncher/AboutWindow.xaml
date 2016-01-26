@@ -1,0 +1,26 @@
+﻿<Window x:Class="CozyLauncher.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel="clr-namespace:CozyLauncher.ViewModels"
+        xmlns:local="clr-namespace:CozyLauncher"
+        mc:Ignorable="d"
+        Title="AboutWindow" Height="300" Width="400">
+    <Window.DataContext>
+        <viewmodel:AboutWindowViewModel x:Name="ViewModel"></viewmodel:AboutWindowViewModel>
+    </Window.DataContext>
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock TextAlignment="Center" Margin="15">
+                <Hyperlink NavigateUri="http://cozy.laorouji.com/">
+                    CozyLauncher v0.2
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock Text="最好用最有情怀的快速启动工具" TextAlignment="Center" Margin="15"></TextBlock>
+            <TextBlock Text="开发者：Zapline Kingwl MaxTan" TextAlignment="Center" Margin="15"></TextBlock>
+            <TextBlock Text="友情客串：AngryPowman" TextAlignment="Center" Margin="15"></TextBlock>
+            <Button Content="确定" Margin="15" Command="{Binding OkCommand}"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

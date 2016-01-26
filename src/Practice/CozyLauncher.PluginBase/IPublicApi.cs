@@ -6,8 +6,11 @@ namespace CozyLauncher.PluginBase
     {
         void CloseApp();
         void HideApp();
+        void Clear();
+        void HideAndClear();
         void ShowApp();
         void Config();
+        void About();
         void PushResults(List<Result> results);
     }
 }
