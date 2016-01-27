@@ -19,6 +19,8 @@ using CozyLauncher.Infrastructure.Hotkey;
 using System.Reflection;
 using System.Resources;
 using System.Drawing;
+using System.IO.Pipes;
+using System.IO;
 
 namespace CozyLauncher
 {
@@ -32,6 +34,9 @@ namespace CozyLauncher
         public MainWindow()
         {
             InitializeComponent();
+
+            InitCloseServer();
+
             InitialTray();
 
             try
@@ -186,6 +191,36 @@ namespace CozyLauncher
         {
             notifyIcon.Visible = false;
             CloseApp();
+        }
+
+        private void InitCloseServer()
+        {
+            Task.Factory.StartNew(()=> 
+            {
+                using (var nps = new NamedPipeServerStream("CozyLauncher.CloseAppPipe"))
+                {
+                    nps.WaitForConnection();
+
+                    try
+                    {
+                        using (var sr = new StreamReader(nps))
+                        {
+                            var res = sr.ReadToEnd();
+                            if(res == "SystemCommand.CloseApp")
+                            {
+                                Dispatcher.Invoke(() => 
+                                {
+                                    CloseApp();
+                                });
+                            }
+                        }
+                    }
+                    catch(IOException)
+                    {
+
+                    }
+                }
+            });
         }
     }
 }
