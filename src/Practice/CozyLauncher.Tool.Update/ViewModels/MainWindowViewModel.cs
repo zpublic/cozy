@@ -96,7 +96,7 @@ namespace CozyLauncher.Tool.Update.ViewModels
             CloseLauncher();
 
             var res = UpdateManager.GetUpdateResult();
-            var fn  = Path.Combine("./", "backup/");
+            var fn  = Path.Combine("./", "update/");
             cancleSource    = new CancellationTokenSource();
             UpdateCount     = res.Count;
             UpdateNow       = 0;
@@ -138,11 +138,22 @@ namespace CozyLauncher.Tool.Update.ViewModels
         {
             using (var npc = new NamedPipeClientStream("CozyLauncher.CloseAppPipe"))
             {
-                npc.Connect();
-                using (var sw = new StreamWriter(npc))
+                try
                 {
-                    sw.AutoFlush = true;
-                    sw.Write("SystemCommand.CloseApp");
+                    npc.Connect(0);
+                }
+                catch(TimeoutException)
+                {
+
+                }
+
+                if (npc.IsConnected)
+                {
+                    using (var sw = new StreamWriter(npc))
+                    {
+                        sw.AutoFlush = true;
+                        sw.Write("SystemCommand.CloseApp");
+                    }
                 }
             }
         }
