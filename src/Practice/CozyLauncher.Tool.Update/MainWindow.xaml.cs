@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CozyLauncher.Core.Update;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,16 +26,39 @@ namespace CozyLauncher.Tool.Update
             InitializeComponent();
 
             this.ViewModel.PropertyChanged += ViewModel_PropertyChanged;
-            this.ViewModel.DoUpdate();
+
+            var updatemgr       = new UpdateMgr();
+            bool needToUpdate   = false;
+            try
+            {
+                needToUpdate = updatemgr.CheckUpdate();
+            }
+            catch (Exception)
+            {
+                needToUpdate = false;
+            }
+
+            if (needToUpdate)
+            {
+                if(MessageBox.Show("检测到更新 是否升级", "Update", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    Show();
+                    this.ViewModel.DoUpdate(updatemgr);
+                }
+                else
+                {
+                    App.Current.Shutdown();
+                }
+            }
+            else
+            {
+                App.Current.Shutdown();
+            }
         }
 
         private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == "UpdateCommand.Show")
-            {
-                Show();
-            }
-            else if(e.PropertyName == "UpdateCommand.Exit")
+            if(e.PropertyName == "UpdateCommand.Exit")
             {
                 App.Current.Shutdown();
             }

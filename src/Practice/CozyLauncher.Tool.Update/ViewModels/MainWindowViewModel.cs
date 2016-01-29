@@ -9,6 +9,7 @@ using System.Windows.Input;
 using CozyLauncher.Tool.Update.Commands;
 using CozyLauncher.Infrastructure.Http;
 using System.IO;
+using System.IO.Pipes;
 using System.Threading;
 using System.Windows.Threading;
 
@@ -41,8 +42,6 @@ namespace CozyLauncher.Tool.Update.ViewModels
         public ObservableCollection<string> FileInfoList { get; set; }
             = new ObservableCollection<string>();
 
-        private UpdateMgr UpdateManager { get; set; } = new UpdateMgr();
-
         private ICommand _OkCommand;
         public ICommand OkCommand
         {
@@ -60,7 +59,7 @@ namespace CozyLauncher.Tool.Update.ViewModels
         {
             get
             {
-                return _CancleCommand = _CancleCommand ?? new DelegateCommand(x => 
+                return _CancleCommand = _CancleCommand ?? new DelegateCommand(x =>
                 {
                     cancleSource?.Cancel();
                 });
@@ -92,75 +91,71 @@ namespace CozyLauncher.Tool.Update.ViewModels
         private CancellationTokenSource cancleSource { get; set; }
         private Task UpdateTask { get; set; }
 
-        public void DoUpdate()
+        public void DoUpdate(UpdateMgr UpdateManager)
         {
-            bool needToUpdate = false;
-            try
+            CloseLauncher();
+
+            var res = UpdateManager.GetUpdateResult();
+            var fn  = Path.Combine("./", "update/");
+            cancleSource    = new CancellationTokenSource();
+            UpdateCount     = res.Count;
+            UpdateNow       = 0;
+
+            if (!Directory.Exists(fn))
             {
-                needToUpdate = UpdateManager.CheckUpdate();
+                Directory.CreateDirectory(fn);
             }
-            catch(Exception)
+
+            UpdateTask = Task.Factory.StartNew(() =>
             {
-                needToUpdate = false;
-            }
-
-            if(needToUpdate)
-            {
-                OnPropertyChanged("UpdateCommand.Show");
-
-                cancleSource = new CancellationTokenSource();
-
-                CloseLauncher();
-
-                var res     = UpdateManager.GetUpdateResult();
-                var fn      = Path.Combine("./", "backup/");
-                UpdateCount = res.Count;
-                UpdateNow   = 0;
-
-                if (!Directory.Exists(fn))
+                SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(System.Windows.Application.Current.Dispatcher));
+                foreach (var file in res)
                 {
-                    Directory.CreateDirectory(fn);
-                }
-
-                UpdateTask = Task.Factory.StartNew(() =>
-                {
-                    SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(System.Windows.Application.Current.Dispatcher));
-                    foreach (var file in res)
+                    if (cancleSource.IsCancellationRequested)
                     {
-                        if (cancleSource.IsCancellationRequested)
-                        {
-                            break;
-                        }
-
-                        HttpDownload.HttpDownloadFile(UpdateManager.GetDownloadUrl(file.Name), fn + file.Name + ".cozy_update");
-
-                        SynchronizationContext.Current.Send(x =>
-                        {
-                            FileInfoList.Add(file.Name);
-                            UpdateNow++;
-                        }, null);
+                        break;
                     }
+
+                    HttpDownload.HttpDownloadFile(UpdateManager.GetDownloadUrl(file.Name), fn + file.Name + ".cozy_update");
 
                     SynchronizationContext.Current.Send(x =>
                     {
-                        OkEnable        = true;
-                        CancleEnable    = false;
+                        FileInfoList.Add(file.Name);
+                        UpdateNow++;
                     }, null);
-                    
-                }, cancleSource.Token);
+                }
 
-                CancleEnable    = true;
-                OkEnable        = false;
-            }
-            else
-            {
-                OnPropertyChanged("UpdateCommand.Exit");
-            }
+                OkEnable        = true;
+                CancleEnable    = false;
+
+            }, cancleSource.Token);
+
+            CancleEnable    = true;
+            OkEnable        = false;
         }
 
         private void CloseLauncher()
         {
+            using (var npc = new NamedPipeClientStream("CozyLauncher.CloseAppPipe"))
+            {
+                try
+                {
+                    npc.Connect(0);
+                }
+                catch(TimeoutException)
+                {
 
+                }
+
+                if (npc.IsConnected)
+                {
+                    using (var sw = new StreamWriter(npc))
+                    {
+                        sw.AutoFlush = true;
+                        sw.Write("SystemCommand.CloseApp");
+                    }
+                }
+            }
         }
     }
 }
