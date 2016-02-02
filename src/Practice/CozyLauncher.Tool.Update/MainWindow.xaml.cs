@@ -43,21 +43,29 @@ namespace CozyLauncher.Tool.Update
                 needToUpdate = false;
             }
 
-            if (needToUpdate)
+            try
             {
-                if (MessageBox.Show("检测到更新 是否升级", "Update", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (needToUpdate)
                 {
-                    Show();
-                    this.ViewModel.DoUpdate(Loader);
+                    if (MessageBox.Show("检测到更新 是否升级", "Update", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        Show();
+                        this.ViewModel.DoUpdate(Loader);
+                        Loader = null;
+                    }
+                    else
+                    {
+                        App.Current.Shutdown();
+                    }
                 }
                 else
                 {
                     App.Current.Shutdown();
                 }
             }
-            else
+            finally
             {
-                App.Current.Shutdown();
+                Loader?.Dispose();
             }
         }
 
@@ -67,11 +75,6 @@ namespace CozyLauncher.Tool.Update
             {
                 App.Current.Shutdown();
             }
-        }
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            Loader?.Dispose();
         }
     }
 }

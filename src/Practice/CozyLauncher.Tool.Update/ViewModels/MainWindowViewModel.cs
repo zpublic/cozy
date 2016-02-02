@@ -90,12 +90,14 @@ namespace CozyLauncher.Tool.Update.ViewModels
         private CancellationTokenSource cancleSource { get; set; }
         private Task UpdateTask { get; set; }
 
+        private const string UpdatePath = @"update\";
+
         public void DoUpdate(InfrastructureLoader UpdateManager)
         {
             CloseLauncher();
 
             var res = (List<Tuple<string, string>>)UpdateManager.Invoke("GetRawUpdateResult");
-            var fn  = Path.Combine("./", "update/");
+            var fn  = Path.Combine("./", UpdatePath);
             cancleSource    = new CancellationTokenSource();
             UpdateCount     = res.Count;
             UpdateNow       = 0;
@@ -130,10 +132,17 @@ namespace CozyLauncher.Tool.Update.ViewModels
                             UpdateNow++;
                         }, null);
                     }
-
-                    OkEnable = true;
-                    CancleEnable = false;
                 }
+
+                SynchronizationContext.Current.Send(x =>
+                {
+                    UpdateManager.Dispose();
+                }, null);
+
+                MoveFile();
+
+                OkEnable        = true;
+                CancleEnable    = false;
 
             }, cancleSource.Token);
 
@@ -161,6 +170,20 @@ namespace CozyLauncher.Tool.Update.ViewModels
                         sw.AutoFlush = true;
                         sw.Write("SystemCommand.CloseApp");
                     }
+                }
+            }
+        }
+
+        private void MoveFile()
+        {
+            if (Directory.Exists(UpdatePath))
+            {
+                var files = Directory.GetFiles(UpdatePath);
+                var filelist = files.Where(x => x.EndsWith(".cozy_update"));
+                foreach (var file in filelist)
+                {
+                    File.Copy(file, Path.GetFileName(file.Replace(".cozy_update", "")), true);
+                    File.Delete(file);
                 }
             }
         }
