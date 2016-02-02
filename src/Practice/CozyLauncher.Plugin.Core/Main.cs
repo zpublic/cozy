@@ -77,7 +77,6 @@ namespace CozyLauncher.Plugin.Core
 
                 rl.Add(r);
             }
-
             else if(query.RawQuery == "cozy")
             {
                 var r = new Result()
@@ -89,6 +88,22 @@ namespace CozyLauncher.Plugin.Core
                     Action = e =>
                     {
                         Process.Start(@"http://cozy.laorouji.com");
+                        return true;
+                    }
+                };
+
+                rl.Add(r);
+            }
+            else if(query.RawQuery == "update")
+            {
+                var r = new Result()
+                {
+                    Title = "Update",
+                    SubTitle = "更新",
+                    Score = 100,
+                    Action = e =>
+                    {
+                        Process.Start(@"CozyLauncher.Tool.Update.exe");
                         return true;
                     }
                 };

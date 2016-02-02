@@ -11,6 +11,7 @@ using System.IO.Pipes;
 using System.Threading;
 using System.Windows.Threading;
 using CozyLauncher.Tool.Update.Helper;
+using System.Diagnostics;
 
 namespace CozyLauncher.Tool.Update.ViewModels
 {
@@ -48,6 +49,7 @@ namespace CozyLauncher.Tool.Update.ViewModels
             {
                 return _OkCommand = _OkCommand ?? new DelegateCommand(x =>
                 {
+                    Process.Start(@"CozyLauncher.exe");
                     OnPropertyChanged("UpdateCommand.Exit");
                 });
             }
