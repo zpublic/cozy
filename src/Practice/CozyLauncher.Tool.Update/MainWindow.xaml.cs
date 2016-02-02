@@ -1,4 +1,4 @@
-﻿using CozyLauncher.Core.Update;
+﻿using CozyLauncher.Tool.Update.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,17 +21,22 @@ namespace CozyLauncher.Tool.Update
     /// </summary>
     public partial class MainWindow : Window
     {
+        private InfrastructureLoader Loader { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
 
             this.ViewModel.PropertyChanged += ViewModel_PropertyChanged;
 
-            var updatemgr       = new UpdateMgr();
-            bool needToUpdate   = false;
+            Loader = InfrastructureLoader.Create("CozyLauncher.Core.Dll");
+            Loader.LoadType(@"CozyLauncher.Core.Update.UpdateMgr");
+            Loader.LoadObject();
+
+            bool needToUpdate = false;
             try
             {
-                needToUpdate = updatemgr.CheckUpdate();
+                needToUpdate = (bool)Loader.Invoke("CheckUpdate");
             }
             catch (Exception)
             {
@@ -40,10 +45,10 @@ namespace CozyLauncher.Tool.Update
 
             if (needToUpdate)
             {
-                if(MessageBox.Show("检测到更新 是否升级", "Update", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("检测到更新 是否升级", "Update", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     Show();
-                    this.ViewModel.DoUpdate(updatemgr);
+                    this.ViewModel.DoUpdate(Loader);
                 }
                 else
                 {
@@ -62,6 +67,11 @@ namespace CozyLauncher.Tool.Update
             {
                 App.Current.Shutdown();
             }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Loader?.Dispose();
         }
     }
 }

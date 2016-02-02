@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CozyLauncher.Tool.Update"
         xmlns:viewmodels="clr-namespace:CozyLauncher.Tool.Update.ViewModels"
         mc:Ignorable="d"
-        Title="CoztLaunch Update" Height="325" Width="525" Visibility="Collapsed">
+        Title="CoztLaunch Update" Height="325" Width="525" Visibility="Collapsed" Closed="Window_Closed">
     <Window.DataContext>
         <viewmodels:MainWindowViewModel x:Name="ViewModel"></viewmodels:MainWindowViewModel>
     </Window.DataContext>
