@@ -3,6 +3,7 @@ using CozyLauncher.Infrastructure.Http;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Linq;
+using System;
 
 namespace CozyLauncher.Core.Update
 {
@@ -54,6 +55,11 @@ namespace CozyLauncher.Core.Update
         public List<FileVersionInfo> GetUpdateResult()
         {
             return GetUpdateInfo(local_, remote_);
+        }
+
+        public List<Tuple<string, string>> GetRawUpdateResult()
+        {
+            return GetUpdateInfo(local_, remote_).Select(x => Tuple.Create(x.Name, x.Md5)).ToList();
         }
 
         public List<FileVersionInfo> GetFileVersionInfo(bool bLocal = false)

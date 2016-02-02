@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
-using CozyLauncher.Core.Update;
 using System.Windows.Input;
 using CozyLauncher.Tool.Update.Commands;
-using CozyLauncher.Infrastructure.Http;
 using System.IO;
 using System.IO.Pipes;
 using System.Threading;
 using System.Windows.Threading;
+using CozyLauncher.Tool.Update.Helper;
 
 namespace CozyLauncher.Tool.Update.ViewModels
 {
@@ -91,12 +90,14 @@ namespace CozyLauncher.Tool.Update.ViewModels
         private CancellationTokenSource cancleSource { get; set; }
         private Task UpdateTask { get; set; }
 
-        public void DoUpdate(UpdateMgr UpdateManager)
+        private const string UpdatePath = @"update\";
+
+        public void DoUpdate(InfrastructureLoader UpdateManager)
         {
             CloseLauncher();
 
-            var res = UpdateManager.GetUpdateResult();
-            var fn  = Path.Combine("./", "update/");
+            var res = (List<Tuple<string, string>>)UpdateManager.Invoke("GetRawUpdateResult");
+            var fn  = Path.Combine("./", UpdatePath);
             cancleSource    = new CancellationTokenSource();
             UpdateCount     = res.Count;
             UpdateNow       = 0;
@@ -109,21 +110,36 @@ namespace CozyLauncher.Tool.Update.ViewModels
             UpdateTask = Task.Factory.StartNew(() =>
             {
                 SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(System.Windows.Application.Current.Dispatcher));
-                foreach (var file in res)
+
+                using (var loader = InfrastructureLoader.Create(@"./CozyLauncher.Infrastructure.Dll"))
                 {
-                    if (cancleSource.IsCancellationRequested)
+                    loader.LoadType(@"CozyLauncher.Infrastructure.Http.HttpDownload");
+
+                    foreach (var file in res)
                     {
-                        break;
+                        if (cancleSource.IsCancellationRequested)
+                        {
+                            break;
+                        }
+
+                        var url = UpdateManager.Invoke("GetDownloadUrl", file.Item1);
+
+                        loader.InvokeStaticMethod("HttpDownloadFile", url, fn + file.Item1 + ".cozy_update");
+
+                        SynchronizationContext.Current.Send(x =>
+                        {
+                            FileInfoList.Add(file.Item1);
+                            UpdateNow++;
+                        }, null);
                     }
-
-                    HttpDownload.HttpDownloadFile(UpdateManager.GetDownloadUrl(file.Name), fn + file.Name + ".cozy_update");
-
-                    SynchronizationContext.Current.Send(x =>
-                    {
-                        FileInfoList.Add(file.Name);
-                        UpdateNow++;
-                    }, null);
                 }
+
+                SynchronizationContext.Current.Send(x =>
+                {
+                    UpdateManager.Dispose();
+                }, null);
+
+                MoveFile();
 
                 OkEnable        = true;
                 CancleEnable    = false;
@@ -154,6 +170,20 @@ namespace CozyLauncher.Tool.Update.ViewModels
                         sw.AutoFlush = true;
                         sw.Write("SystemCommand.CloseApp");
                     }
+                }
+            }
+        }
+
+        private void MoveFile()
+        {
+            if (Directory.Exists(UpdatePath))
+            {
+                var files = Directory.GetFiles(UpdatePath);
+                var filelist = files.Where(x => x.EndsWith(".cozy_update"));
+                foreach (var file in filelist)
+                {
+                    File.Copy(file, Path.GetFileName(file.Replace(".cozy_update", "")), true);
+                    File.Delete(file);
                 }
             }
         }

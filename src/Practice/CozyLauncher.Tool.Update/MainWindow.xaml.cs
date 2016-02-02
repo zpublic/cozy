@@ -1,4 +1,4 @@
-﻿using CozyLauncher.Core.Update;
+﻿using CozyLauncher.Tool.Update.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,38 +21,51 @@ namespace CozyLauncher.Tool.Update
     /// </summary>
     public partial class MainWindow : Window
     {
+        private InfrastructureLoader Loader { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
 
             this.ViewModel.PropertyChanged += ViewModel_PropertyChanged;
 
-            var updatemgr       = new UpdateMgr();
-            bool needToUpdate   = false;
+            Loader = InfrastructureLoader.Create("CozyLauncher.Core.Dll");
+            Loader.LoadType(@"CozyLauncher.Core.Update.UpdateMgr");
+            Loader.LoadObject();
+
+            bool needToUpdate = false;
             try
             {
-                needToUpdate = updatemgr.CheckUpdate();
+                needToUpdate = (bool)Loader.Invoke("CheckUpdate");
             }
             catch (Exception)
             {
                 needToUpdate = false;
             }
 
-            if (needToUpdate)
+            try
             {
-                if(MessageBox.Show("检测到更新 是否升级", "Update", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (needToUpdate)
                 {
-                    Show();
-                    this.ViewModel.DoUpdate(updatemgr);
+                    if (MessageBox.Show("检测到更新 是否升级", "Update", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        Show();
+                        this.ViewModel.DoUpdate(Loader);
+                        Loader = null;
+                    }
+                    else
+                    {
+                        App.Current.Shutdown();
+                    }
                 }
                 else
                 {
                     App.Current.Shutdown();
                 }
             }
-            else
+            finally
             {
-                App.Current.Shutdown();
+                Loader?.Dispose();
             }
         }
 
