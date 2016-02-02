@@ -82,6 +82,10 @@
       <Project>{7bddd754-0ca2-4772-b25d-cf4998146fa4}</Project>
       <Name>CozyLauncher.Plugin.WebSearch</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Tool.Update\CozyLauncher.Tool.Update.csproj">
+      <Project>{03126f33-4289-4b37-9e51-2c36e298aa0a}</Project>
+      <Name>CozyLauncher.Tool.Update</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyLauncher\CozyLauncher.csproj">
       <Project>{36c16b10-d17d-4a58-bd46-0f938da82cc8}</Project>
       <Name>CozyLauncher</Name>

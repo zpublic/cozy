@@ -11,7 +11,8 @@ namespace CozyLauncher.Tool.MakePacket
     {
         static void Main(string[] args)
         {
-            var filelist = new List<string> {
+            var filelist = new List<string>
+            {
                 "CozyLauncher.exe",
                 "CozyLauncher.Core.dll",
                 "CozyLauncher.Infrastructure.dll",
@@ -34,9 +35,26 @@ namespace CozyLauncher.Tool.MakePacket
 
                 "CozyLauncher.Plugin.MouseClick.dll",
             };
-
             Directory.CreateDirectory("./cozy_launcher");
             foreach (var f in filelist)
+            {
+                if (File.Exists("./cozy_launcher/" + f))
+                {
+                    File.Replace(f, "./cozy_launcher/" + f, null);
+                }
+                else
+                {
+                    File.Copy(f, "./cozy_launcher/" + f);
+                }
+            }
+
+            var updateFileList = new List<string>
+            {
+                "update/CozyLauncher.Tool.Update.exe",
+                "update/CozyLauncher.Core.dll",
+            };
+            Directory.CreateDirectory("./cozy_launcher/update");
+            foreach (var f in updateFileList)
             {
                 if (File.Exists("./cozy_launcher/" + f))
                 {
