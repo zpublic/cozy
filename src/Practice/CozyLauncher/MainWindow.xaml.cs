@@ -16,6 +16,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using CozyLauncher.Infrastructure.Hotkey;
+using System.Reflection;
+using System.Resources;
+using System.Drawing;
+using System.IO.Pipes;
+using System.IO;
 
 namespace CozyLauncher
 {
@@ -24,9 +29,15 @@ namespace CozyLauncher
     /// </summary>
     public partial class MainWindow : Window
     {
+        private System.Windows.Forms.NotifyIcon notifyIcon = null;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            InitCloseServer();
+
+            InitialTray();
 
             try
             {
@@ -159,6 +170,57 @@ namespace CozyLauncher
         private void Window_Closed(object sender, EventArgs e)
         {
             GlobalHotkey.Instance.UnregistAllHotkey();
+        }
+
+        private void InitialTray()
+        {
+            notifyIcon = new System.Windows.Forms.NotifyIcon();
+            notifyIcon.BalloonTipText = "我在这里";
+            notifyIcon.Text = "CozyLauncher";
+            notifyIcon.Icon = CozyLauncher.Resource.AppTray;
+            notifyIcon.Visible = true;
+
+            System.Windows.Forms.MenuItem exit = new System.Windows.Forms.MenuItem("退出");
+            exit.Click += Exit_Click;
+
+            System.Windows.Forms.MenuItem[] childen = new System.Windows.Forms.MenuItem[] { exit };
+            notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(childen);
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            notifyIcon.Visible = false;
+            CloseApp();
+        }
+
+        private void InitCloseServer()
+        {
+            Task.Factory.StartNew(()=> 
+            {
+                using (var nps = new NamedPipeServerStream("CozyLauncher.CloseAppPipe"))
+                {
+                    nps.WaitForConnection();
+
+                    try
+                    {
+                        using (var sr = new StreamReader(nps))
+                        {
+                            var res = sr.ReadToEnd();
+                            if(res == "SystemCommand.CloseApp")
+                            {
+                                Dispatcher.Invoke(() => 
+                                {
+                                    CloseApp();
+                                });
+                            }
+                        }
+                    }
+                    catch(IOException)
+                    {
+
+                    }
+                }
+            });
         }
     }
 }
