@@ -18,7 +18,7 @@ namespace CozyLauncher.Core.Update
     */
     public class UpdateMgr
     {
-        const string RemoteFileList = @"http://127.0.0.1:8000/hehe.json";
+        const string RemoteFileList = @"http://127.0.0.1:8000/publish.json";
         const string RemoteFilePath = @"http://127.0.0.1:8000/";
 
         List<FileVersionInfo> local_;
