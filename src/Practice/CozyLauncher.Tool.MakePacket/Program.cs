@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -36,12 +37,9 @@ namespace CozyLauncher.Tool.MakePacket
             {
                 if (File.Exists("./cozy_launcher/" + f))
                 {
-                    File.Replace(f, "./cozy_launcher/" + f, null);
+                    File.Delete("./cozy_launcher/" + f);
                 }
-                else
-                {
-                    File.Copy(f, "./cozy_launcher/" + f);
-                }
+                File.Copy(f, "./cozy_launcher/" + f);
             }
 
             var updateFileList = new List<string>
@@ -59,12 +57,21 @@ namespace CozyLauncher.Tool.MakePacket
             {
                 if (File.Exists("./cozy_launcher/" + f))
                 {
-                    File.Replace(f, "./cozy_launcher/" + f, null);
+                    File.Delete("./cozy_launcher/" + f);
                 }
-                else
-                {
-                    File.Copy(f, "./cozy_launcher/" + f);
-                }
+                File.Copy(f, "./cozy_launcher/" + f);
+            }
+
+            try
+            {
+                var gen = Path.Combine(Environment.CurrentDirectory, @"CozyLauncher.Tool.UpdateFeedGenerator.exe");
+                var dir = Path.Combine(Environment.CurrentDirectory, @"cozy_launcher/");
+                var dest = Path.Combine(Environment.CurrentDirectory, @"cozy_launcher/publish.json");
+                Process.Start(gen, dir + " " + dest);
+            }
+            catch(Exception)
+            {
+
             }
         }
     }

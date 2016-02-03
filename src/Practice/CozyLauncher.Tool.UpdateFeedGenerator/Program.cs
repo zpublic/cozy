@@ -14,11 +14,14 @@ namespace CozyLauncher.Tool.UpdateFeedGenerator
             List<FileVersionInfo> filelist = new List<FileVersionInfo>();
             foreach (var file in Directory.GetFiles(args[0]))
             {
-                filelist.Add(new FileVersionInfo
+                if(Path.GetExtension(file) == ".exe" || Path.GetExtension(file) == ".dll")
                 {
-                    Name    = Path.GetFileName(file),
-                    Md5     = FileMd5.GetMD5HashFromFile(PathTransform.LocalFullPath(file)),
-                });
+                    filelist.Add(new FileVersionInfo
+                    {
+                        Name = Path.GetFileName(file),
+                        Md5 = FileMd5.GetMD5HashFromFile(PathTransform.LocalFullPath(file)),
+                    });
+                }
             }
 
             // to json

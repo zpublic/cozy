@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Linq;
 using System;
+using System.IO;
 
 namespace CozyLauncher.Core.Update
 {
@@ -18,7 +19,7 @@ namespace CozyLauncher.Core.Update
     */
     public class UpdateMgr
     {
-        const string RemoteFileList = @"http://127.0.0.1:8000/hehe.json";
+        const string RemoteFileList = @"http://127.0.0.1:8000/publish.json";
         const string RemoteFilePath = @"http://127.0.0.1:8000/";
 
         List<FileVersionInfo> local_;
@@ -106,7 +107,11 @@ namespace CozyLauncher.Core.Update
 
                 "CozyLauncher.Plugin.MouseClick.dll",
             };
-            return filelist.Select(x => new FileVersionInfo { Name = x, Md5 = FileMd5.GetMD5HashFromFile(x) }).ToList();
+            return filelist.Select(x => new FileVersionInfo
+            {
+                Name = x,
+                Md5 = FileMd5.GetMD5HashFromFile((PathTransform.LocalFullPath(Path.Combine("..\\", x)))),
+            }).ToList();
         }
     }
 }
