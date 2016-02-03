@@ -180,6 +180,13 @@ namespace CozyLauncher
 
             System.Windows.Forms.MenuItem[] childen = new System.Windows.Forms.MenuItem[] { exit };
             notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(childen);
+
+            notifyIcon.Click += NotifyIcon_Click;
+        }
+
+        private void NotifyIcon_Click(object sender, EventArgs e)
+        {
+            ShowWox();
         }
 
         private void Exit_Click(object sender, EventArgs e)
