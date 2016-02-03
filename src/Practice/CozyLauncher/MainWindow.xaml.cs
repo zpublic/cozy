@@ -39,7 +39,14 @@ namespace CozyLauncher
 
             InitCloseServer();
 
-            Process.Start(PathTransform.LocalFullPath(@"update/CozyLauncher.Tool.Update.exe"));
+            try
+            {
+                Process.Start(PathTransform.LocalFullPath(@"update/CozyLauncher.Tool.Update.exe"));
+            }
+            catch (Exception)
+            {
+
+            }
 
             InitialTray();
 

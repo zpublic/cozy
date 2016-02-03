@@ -182,7 +182,14 @@ namespace CozyLauncher.ViewModels
 
         public void Update()
         {
-            Process.Start(PathTransform.LocalFullPath(@"update/CozyLauncher.Tool.Update.exe"));
+            try
+            {
+                Process.Start(PathTransform.LocalFullPath(@"update/CozyLauncher.Tool.Update.exe"));
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         public void PushResults(List<Result> results)
