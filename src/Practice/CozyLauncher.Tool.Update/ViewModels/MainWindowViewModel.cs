@@ -12,6 +12,7 @@ using System.Threading;
 using System.Windows.Threading;
 using CozyLauncher.Tool.Update.Helper;
 using System.Diagnostics;
+using System.Windows;
 
 namespace CozyLauncher.Tool.Update.ViewModels
 {
@@ -49,7 +50,13 @@ namespace CozyLauncher.Tool.Update.ViewModels
             {
                 return _OkCommand = _OkCommand ?? new DelegateCommand(x =>
                 {
-                    Process.Start(@"..\\CozyLauncher.exe");
+                    var psi = new ProcessStartInfo()
+                    {
+                        FileName = "CozyLauncher.exe",
+                        WorkingDirectory = Path.Combine(Environment.CurrentDirectory, "..\\"),
+                    };
+                    Process.Start(psi);
+
                     OnPropertyChanged("UpdateCommand.Exit");
                 });
             }
@@ -99,7 +106,7 @@ namespace CozyLauncher.Tool.Update.ViewModels
             CloseLauncher();
 
             var res = (List<Tuple<string, string>>)UpdateManager.Invoke("GetRawUpdateResult");
-            var fn  = Path.Combine("./", UpdatePath);
+            var fn  = Path.Combine(Environment.CurrentDirectory, UpdatePath);
             cancleSource    = new CancellationTokenSource();
             UpdateCount     = res.Count;
             UpdateNow       = 0;
@@ -184,7 +191,7 @@ namespace CozyLauncher.Tool.Update.ViewModels
                 var filelist = files.Where(x => x.EndsWith(".cozy_update"));
                 foreach (var file in filelist)
                 {
-                    File.Copy(file, Path.Combine("..\\..\\", Path.GetFileName(file.Replace(".cozy_update", ""))), true);
+                    File.Copy(file, Path.Combine("..\\", Path.GetFileName(file.Replace(".cozy_update", ""))), true);
                     File.Delete(file);
                 }
             }
