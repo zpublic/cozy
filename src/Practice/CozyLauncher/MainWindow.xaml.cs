@@ -21,6 +21,7 @@ using System.Resources;
 using System.Drawing;
 using System.IO.Pipes;
 using System.IO;
+using System.Diagnostics;
 
 namespace CozyLauncher
 {
@@ -37,13 +38,15 @@ namespace CozyLauncher
 
             InitCloseServer();
 
+            Process.Start(@"CozyLauncher.Tool.Update.exe");
+
             InitialTray();
 
             try
             {
                 GlobalHotkey.Instance.Load();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show("热键冲突 注册失败");
             }
@@ -111,11 +114,11 @@ namespace CozyLauncher
             {
                 ShowApp();
             }
-            else if(e.PropertyName == "SystemCommand.ShowConfig")
+            else if (e.PropertyName == "SystemCommand.ShowConfig")
             {
                 ShowConfig();
             }
-            else if(e.PropertyName == "SystemCommand.About")
+            else if (e.PropertyName == "SystemCommand.About")
             {
                 About();
             }
@@ -137,6 +140,30 @@ namespace CozyLauncher
 
         public void CloseApp()
         {
+            if(!ClosePipeConnected)
+            {
+                using (var npc = new NamedPipeClientStream("CozyLauncher.CloseAppPipe"))
+                {
+                    try
+                    {
+                        npc.Connect(0);
+                    }
+                    catch (TimeoutException)
+                    {
+
+                    }
+
+                    if (npc.IsConnected)
+                    {
+                        using (var sw = new StreamWriter(npc))
+                        {
+                            sw.AutoFlush = true;
+                            sw.Write("SystemCommand.Clear");
+                        }
+                    }
+                }
+            }
+
             Application.Current.Shutdown();
         }
 
@@ -193,6 +220,8 @@ namespace CozyLauncher
             CloseApp();
         }
 
+        public bool ClosePipeConnected { get; set; }
+
         private void InitCloseServer()
         {
             Task.Factory.StartNew(()=> 
@@ -200,6 +229,8 @@ namespace CozyLauncher
                 using (var nps = new NamedPipeServerStream("CozyLauncher.CloseAppPipe"))
                 {
                     nps.WaitForConnection();
+
+                    ClosePipeConnected = true;
 
                     try
                     {

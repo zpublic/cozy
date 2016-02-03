@@ -33,12 +33,12 @@
     <GeometryDrawing Brush="{DynamicResource {x:Static CozyLauncher:IconRes.baiduKeyColor5BrushKey}}" Geometry="{StaticResource {x:Static CozyLauncher:IconRes.baiduKeyGeometryKey}}" />
   </DrawingGroup>
   <DrawingImage x:Key="{x:Static CozyLauncher:IconRes.baiduDrawingImageKey}" Drawing="{StaticResource {x:Static CozyLauncher:IconRes.baiduDrawingGroupKey}}" />
-  <Geometry x:Key="{x:Static CozyLauncher:IconRes.appKeyGeometryKey}">F1 M48,48z M0,0z M38,8L10,8C7.78,8,6,9.8,6,12L6,36C6,38.2,7.78,40,10,40L38,40C40.2,40,42,38.2,42,36L42,12C42,9.8,40.22,8,38,8z M38,36L10,36 10,16 38,16 38,36z</Geometry>
-  <SolidColorBrush x:Key="{x:Static CozyLauncher:IconRes.appKeyColorBrushKey}" Color="{Binding Color, Source={StaticResource {x:Static CozyLauncher:IconRes.Color2BrushKey}}}" />
-  <DrawingGroup x:Key="{x:Static CozyLauncher:IconRes.appDrawingGroupKey}" ClipGeometry="M0,0 V48 H48 V0 H0 Z">
-    <GeometryDrawing Brush="{DynamicResource {x:Static CozyLauncher:IconRes.appKeyColorBrushKey}}" Geometry="{StaticResource {x:Static CozyLauncher:IconRes.appKeyGeometryKey}}" />
+  <Geometry x:Key="{x:Static CozyLauncher:IconRes.defaultKeyGeometryKey}">F1 M48,48z M0,0z M28,34L8,34 8,38 28,38 28,34z M40,18L8,18 8,22 40,22 40,18z M8,30L40,30 40,26 8,26 8,30z M8,10L8,14 40,14 40,10 8,10z</Geometry>
+  <SolidColorBrush x:Key="{x:Static CozyLauncher:IconRes.defaultKeyColorBrushKey}" Color="{Binding Color, Source={StaticResource {x:Static CozyLauncher:IconRes.Color1BrushKey}}}" />
+  <DrawingGroup x:Key="{x:Static CozyLauncher:IconRes.defaultDrawingGroupKey}" ClipGeometry="M0,0 V48 H48 V0 H0 Z">
+    <GeometryDrawing Brush="{DynamicResource {x:Static CozyLauncher:IconRes.defaultKeyColorBrushKey}}" Geometry="{StaticResource {x:Static CozyLauncher:IconRes.defaultKeyGeometryKey}}" />
   </DrawingGroup>
-  <DrawingImage x:Key="{x:Static CozyLauncher:IconRes.appDrawingImageKey}" Drawing="{StaticResource {x:Static CozyLauncher:IconRes.appDrawingGroupKey}}" />
+  <DrawingImage x:Key="{x:Static CozyLauncher:IconRes.defaultDrawingImageKey}" Drawing="{StaticResource {x:Static CozyLauncher:IconRes.defaultDrawingGroupKey}}" />
   <Geometry x:Key="{x:Static CozyLauncher:IconRes.helpKeyGeometryKey}">F1 M48,48z M0,0z M24,4C12.95,4 4,12.95 4,24 4,35.05 12.95,44 24,44 35.05,44 44,35.05 44,24 44,12.95 35.05,4 24,4z M26,38L22,38 22,34 26,34 26,38z M30.13,22.51L28.34,24.35C26.9,25.79,26,27,26,30L22,30 22,29C22,26.79,22.9,24.79,24.34,23.34L26.83,20.82C27.55,20.1 28,19.1 28,18 28,15.79 26.21,14 24,14 21.79,14 20,15.79 20,18L16,18C16,13.58 19.58,10 24,10 28.42,10 32,13.58 32,18 32,19.76 31.29,21.35 30.13,22.51z</Geometry>
   <SolidColorBrush x:Key="{x:Static CozyLauncher:IconRes.helpKeyColorBrushKey}" Color="{Binding Color, Source={StaticResource {x:Static CozyLauncher:IconRes.Color1BrushKey}}}" />
   <DrawingGroup x:Key="{x:Static CozyLauncher:IconRes.helpDrawingGroupKey}" ClipGeometry="M0,0 V48 H48 V0 H0 Z">
@@ -57,6 +57,12 @@
     <GeometryDrawing Brush="{DynamicResource {x:Static CozyLauncher:IconRes.exitKeyColorBrushKey}}" Geometry="{StaticResource {x:Static CozyLauncher:IconRes.exitKeyGeometryKey}}" />
   </DrawingGroup>
   <DrawingImage x:Key="{x:Static CozyLauncher:IconRes.exitDrawingImageKey}" Drawing="{StaticResource {x:Static CozyLauncher:IconRes.exitDrawingGroupKey}}" />
+  <Geometry x:Key="{x:Static CozyLauncher:IconRes.appKeyGeometryKey}">F1 M48,48z M0,0z M38,8L10,8C7.78,8,6,9.8,6,12L6,36C6,38.2,7.78,40,10,40L38,40C40.2,40,42,38.2,42,36L42,12C42,9.8,40.22,8,38,8z M38,36L10,36 10,16 38,16 38,36z</Geometry>
+  <SolidColorBrush x:Key="{x:Static CozyLauncher:IconRes.appKeyColorBrushKey}" Color="{Binding Color, Source={StaticResource {x:Static CozyLauncher:IconRes.Color2BrushKey}}}" />
+  <DrawingGroup x:Key="{x:Static CozyLauncher:IconRes.appDrawingGroupKey}" ClipGeometry="M0,0 V48 H48 V0 H0 Z">
+    <GeometryDrawing Brush="{DynamicResource {x:Static CozyLauncher:IconRes.appKeyColorBrushKey}}" Geometry="{StaticResource {x:Static CozyLauncher:IconRes.appKeyGeometryKey}}" />
+  </DrawingGroup>
+  <DrawingImage x:Key="{x:Static CozyLauncher:IconRes.appDrawingImageKey}" Drawing="{StaticResource {x:Static CozyLauncher:IconRes.appDrawingGroupKey}}" />
   <Geometry x:Key="{x:Static CozyLauncher:IconRes.folder_openKeyGeometryKey}">F1 M48,48z M0,0z M40,12L24,12 20,8 8,8C5.79,8,4.02,9.79,4.02,12L4,36C4,38.21,5.79,40,8,40L40,40C42.21,40,44,38.21,44,36L44,16C44,13.79,42.21,12,40,12z M40,36L8,36 8,16 40,16 40,36z</Geometry>
   <SolidColorBrush x:Key="{x:Static CozyLauncher:IconRes.folder_openKeyColorBrushKey}" Color="{Binding Color, Source={StaticResource {x:Static CozyLauncher:IconRes.Color1BrushKey}}}" />
   <DrawingGroup x:Key="{x:Static CozyLauncher:IconRes.folder_openDrawingGroupKey}" ClipGeometry="M0,0 V48 H48 V0 H0 Z">

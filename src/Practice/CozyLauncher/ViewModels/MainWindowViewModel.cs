@@ -11,6 +11,7 @@ using CozyLauncher.Core.Plugin;
 using CozyLauncher.Ext;
 using CozyLauncher.Infrastructure.Hotkey;
 using System.IO;
+using System.IO.Pipes;
 
 namespace CozyLauncher.ViewModels
 {
