@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher", "..\src\Practice\CozyLauncher\CozyLauncher.csproj", "{36C16B10-D17D-4A58-BD46-0F938DA82CC8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{03126F33-4289-4B37-9E51-2C36E298AA0A} = {03126F33-4289-4B37-9E51-2C36E298AA0A}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Core", "..\src\Practice\CozyLauncher.Core\CozyLauncher.Core.csproj", "{CE088805-E664-42EB-B943-C2A421EA8551}"
 EndProject

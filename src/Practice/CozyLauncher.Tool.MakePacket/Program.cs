@@ -17,22 +17,18 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Core.dll",
                 "CozyLauncher.Infrastructure.dll",
                 "CozyLauncher.PluginBase.dll",
-
                 "NHotkey.dll",
                 "NHotkey.Wpf.dll",
                 "Newtonsoft.Json.dll",
                 "YAMP.dll",
                 "System.Windows.Interactivity.dll",
-
                 "CozyLauncher.Plugin.Core.dll",
-
                 "CozyLauncher.Plugin.Program.dll",
                 "CozyLauncher.Plugin.Dirctory.dll",
                 "CozyLauncher.Plugin.ManualRun.dll",
                 "CozyLauncher.Plugin.WebSearch.dll",
                 "CozyLauncher.Plugin.Sys.dll",
                 "CozyLauncher.Plugin.Calculator.dll",
-
                 "CozyLauncher.Plugin.MouseClick.dll",
             };
             Directory.CreateDirectory("./cozy_launcher");
@@ -52,6 +48,11 @@ namespace CozyLauncher.Tool.MakePacket
             {
                 "update/CozyLauncher.Tool.Update.exe",
                 "update/CozyLauncher.Core.dll",
+                "update/CozyLauncher.Infrastructure.dll",
+                "update/CozyLauncher.PluginBase.dll",
+                "update/NHotkey.dll",
+                "update/NHotkey.Wpf.dll",
+                "update/Newtonsoft.Json.dll",
             };
             Directory.CreateDirectory("./cozy_launcher/update");
             foreach (var f in updateFileList)

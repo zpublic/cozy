@@ -103,7 +103,7 @@ namespace CozyLauncher.Plugin.Core
                     Score = 100,
                     Action = e =>
                     {
-                        Process.Start(@"CozyLauncher.Tool.Update.exe");
+                        _context.Api.Update();
                         return true;
                     }
                 };

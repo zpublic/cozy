@@ -22,6 +22,7 @@ using System.Drawing;
 using System.IO.Pipes;
 using System.IO;
 using System.Diagnostics;
+using CozyLauncher.Infrastructure;
 
 namespace CozyLauncher
 {
@@ -38,7 +39,7 @@ namespace CozyLauncher
 
             InitCloseServer();
 
-            Process.Start(@"CozyLauncher.Tool.Update.exe");
+            Process.Start(PathTransform.LocalFullPath(@"update/CozyLauncher.Tool.Update.exe"));
 
             InitialTray();
 

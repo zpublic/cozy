@@ -12,6 +12,8 @@ using CozyLauncher.Ext;
 using CozyLauncher.Infrastructure.Hotkey;
 using System.IO;
 using System.IO.Pipes;
+using CozyLauncher.Infrastructure;
+using System.Diagnostics;
 
 namespace CozyLauncher.ViewModels
 {
@@ -121,7 +123,7 @@ namespace CozyLauncher.ViewModels
         {
             get
             {
-                return _ShowCommand = _ShowCommand ?? new DelegateCommand(x => 
+                return _ShowCommand = _ShowCommand ?? new DelegateCommand(x =>
                 {
                     ShowApp();
                 });
@@ -132,9 +134,9 @@ namespace CozyLauncher.ViewModels
         {
             pm.Init(this);
 
-            GlobalHotkey.Instance.RegistHotkeyAction("HotKey.ShowApp", ()=> 
+            GlobalHotkey.Instance.RegistHotkeyAction("HotKey.ShowApp", () =>
             {
-                if(ShowCommand.CanExecute(null))
+                if (ShowCommand.CanExecute(null))
                 {
                     ShowCommand.Execute(null);
                 }
@@ -176,6 +178,11 @@ namespace CozyLauncher.ViewModels
         public void About()
         {
             this.OnPropertyChanged("SystemCommand.About");
+        }
+
+        public void Update()
+        {
+            Process.Start(PathTransform.LocalFullPath(@"update/CozyLauncher.Tool.Update.exe"));
         }
 
         public void PushResults(List<Result> results)

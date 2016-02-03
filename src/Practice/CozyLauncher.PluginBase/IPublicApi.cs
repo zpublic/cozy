@@ -11,6 +11,7 @@ namespace CozyLauncher.PluginBase
         void ShowApp();
         void Config();
         void About();
+        void Update();
         void PushResults(List<Result> results);
     }
 }
