@@ -66,7 +66,7 @@ namespace CozyLauncher.Tool.MakePacket
             {
                 var gen = Path.Combine(Environment.CurrentDirectory, @"CozyLauncher.Tool.UpdateFeedGenerator.exe");
                 var dir = Path.Combine(Environment.CurrentDirectory, @"cozy_launcher/");
-                var dest = Path.Combine(Environment.CurrentDirectory, @"cozy_launcher/update/publish.json");
+                var dest = Path.Combine(Environment.CurrentDirectory, @"cozy_launcher/publish.json");
                 Process.Start(gen, dir + " " + dest);
             }
             catch(Exception)

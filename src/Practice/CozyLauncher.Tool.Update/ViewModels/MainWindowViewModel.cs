@@ -49,7 +49,7 @@ namespace CozyLauncher.Tool.Update.ViewModels
             {
                 return _OkCommand = _OkCommand ?? new DelegateCommand(x =>
                 {
-                    Process.Start(@"CozyLauncher.exe");
+                    Process.Start(@"..\\CozyLauncher.exe");
                     OnPropertyChanged("UpdateCommand.Exit");
                 });
             }
@@ -184,7 +184,7 @@ namespace CozyLauncher.Tool.Update.ViewModels
                 var filelist = files.Where(x => x.EndsWith(".cozy_update"));
                 foreach (var file in filelist)
                 {
-                    File.Copy(file, Path.GetFileName(file.Replace(".cozy_update", "")), true);
+                    File.Copy(file, Path.Combine("..\\..\\", Path.GetFileName(file.Replace(".cozy_update", ""))), true);
                     File.Delete(file);
                 }
             }

@@ -62,6 +62,8 @@ namespace CozyLauncher
             this.ViewModel.PropertyChanged += OnViewModelPropertyChanged;
 
             this.QueryTextBox.Focus();
+
+            this.ViewModel.Update();
         }
 
         private void OnWindowMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
