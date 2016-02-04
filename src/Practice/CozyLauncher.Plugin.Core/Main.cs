@@ -100,6 +100,7 @@ namespace CozyLauncher.Plugin.Core
                 {
                     Title = "Update",
                     SubTitle = "更新",
+                    IcoPath = "",
                     Score = 100,
                     Action = e =>
                     {

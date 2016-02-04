@@ -1,6 +1,7 @@
 ﻿using CozyLauncher.PluginBase;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 
@@ -21,26 +22,26 @@ namespace CozyLauncher.Core.Plugin
             var PluginFilleList = new List<string>()
             {
                 // Core
-                "./CozyLauncher.Plugin.Core.dll",
+                "CozyLauncher.Plugin.Core.dll",
 
                 // Primary
-                "./CozyLauncher.Plugin.Program.dll",
-                "./CozyLauncher.Plugin.ManualRun.dll",
-                "./CozyLauncher.Plugin.Dirctory.dll",
-                "./CozyLauncher.Plugin.WebSearch.dll",
-                "./CozyLauncher.Plugin.Sys.dll",
-                "./CozyLauncher.Plugin.Calculator.dll",
+                "CozyLauncher.Plugin.Program.dll",
+                "CozyLauncher.Plugin.ManualRun.dll",
+                "CozyLauncher.Plugin.Dirctory.dll",
+                "CozyLauncher.Plugin.WebSearch.dll",
+                "CozyLauncher.Plugin.Sys.dll",
+                "CozyLauncher.Plugin.Calculator.dll",
 
                 // Secondary
-                "./CozyLauncher.Plugin.MouseClick.dll",
-                "./CozyLauncher.Plugin.Ip.dll",
+                "CozyLauncher.Plugin.MouseClick.dll",
+                "CozyLauncher.Plugin.Ip.dll",
             };
 
-            try
+            foreach (var p in PluginFilleList)
             {
-                foreach (var p in PluginFilleList)
+                try
                 {
-                    Assembly asm = Assembly.Load(AssemblyName.GetAssemblyName(p));
+                    Assembly asm = Assembly.LoadFile(Path.Combine(Environment.CurrentDirectory, p));
                     List<Type> types = asm.GetTypes().Where(o => o.IsClass && !o.IsAbstract && o.GetInterfaces().Contains(typeof(IPlugin))).ToList();
                     foreach (Type type in types)
                     {
@@ -49,10 +50,9 @@ namespace CozyLauncher.Core.Plugin
                         plugins_.Add(plugin);
                     }
                 }
-                
-            }
-            catch (Exception)
-            {
+                catch (Exception)
+                {
+                }
             }
         }
 
