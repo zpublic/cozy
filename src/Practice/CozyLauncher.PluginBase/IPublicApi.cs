@@ -9,8 +9,7 @@ namespace CozyLauncher.PluginBase
         void Clear();
         void HideAndClear();
         void ShowApp();
-        void Config();
-        void About();
+        void ShowPanel(string command);
         void Update();
         void PushResults(List<Result> results);
     }

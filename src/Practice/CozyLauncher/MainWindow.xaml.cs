@@ -50,6 +50,9 @@ namespace CozyLauncher
 
             InitialTray();
 
+            GlobalHotkey.Instance.Init();
+            GlobalHotkey.Instance.ReplaceWindowRAction = new Action(ShowApp);
+
             try
             {
                 GlobalHotkey.Instance.Load();
@@ -206,7 +209,7 @@ namespace CozyLauncher
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            GlobalHotkey.Instance.UnregistAllHotkey();
+            GlobalHotkey.Instance.Release();
         }
 
         private void InitialTray()

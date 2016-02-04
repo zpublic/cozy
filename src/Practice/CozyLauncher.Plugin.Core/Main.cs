@@ -53,7 +53,7 @@ namespace CozyLauncher.Plugin.Core
                     Score       = 100,
                     Action = e  =>
                     {
-                        _context.Api.Config();
+                        _context.Api.ShowPanel("config");
                         return true;
                     }
                 };
@@ -70,7 +70,7 @@ namespace CozyLauncher.Plugin.Core
                     Score       = 100,
                     Action      = e =>
                     {
-                        _context.Api.About();
+                        _context.Api.ShowPanel("about");
                         return true;
                     }
                 };

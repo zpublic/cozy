@@ -24,6 +24,20 @@ namespace CozyLauncher.ViewModels
             }
         }
 
+        private bool _ReplaceWinR;
+        public bool ReplaceWinR
+        {
+            get
+            {
+                return _ReplaceWinR;
+            }
+            set
+            {
+                Set(ref _ReplaceWinR, value);
+                GlobalHotkey.Instance.ReplaceWindowR = value;
+            }
+        }
+
         private ICommand _SubmitCommand;
         public ICommand SubmitCommand
         {
@@ -54,6 +68,7 @@ namespace CozyLauncher.ViewModels
             {
                 HotkeyTextStr = hkm1.ToString();
             }
+            ReplaceWinR = GlobalHotkey.Instance.ReplaceWindowR;
         }
     }
 }
