@@ -30,6 +30,7 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Plugin.Sys.dll",
                 "CozyLauncher.Plugin.Calculator.dll",
                 "CozyLauncher.Plugin.MouseClick.dll",
+                "CozyLauncher.Plugin.Ip.dll",
             };
             Directory.CreateDirectory("./cozy_launcher");
             foreach (var f in filelist)

@@ -33,6 +33,7 @@ namespace CozyLauncher.Core.Plugin
 
                 // Secondary
                 "./CozyLauncher.Plugin.MouseClick.dll",
+                "./CozyLauncher.Plugin.Ip.dll",
             };
 
             try

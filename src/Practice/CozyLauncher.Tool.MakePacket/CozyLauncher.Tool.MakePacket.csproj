@@ -62,6 +62,10 @@
       <Project>{ebf482fc-3e9e-4ab9-bfbe-caf500964f33}</Project>
       <Name>CozyLauncher.Plugin.Dirctory</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.Ip\CozyLauncher.Plugin.Ip.csproj">
+      <Project>{6f153c9d-84b4-4c54-a7c8-e75c2c0da0f2}</Project>
+      <Name>CozyLauncher.Plugin.Ip</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.Plugin.ManualRun\CozyLauncher.Plugin.ManualRun.csproj">
       <Project>{728f9dbe-8312-47a8-b713-a911571a5dd8}</Project>
       <Name>CozyLauncher.Plugin.ManualRun</Name>
