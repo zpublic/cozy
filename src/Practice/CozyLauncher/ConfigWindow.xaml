@@ -7,14 +7,13 @@
         xmlns:controls="clr-namespace:CozyLauncher.Controls"
         xmlns:viewmodel="clr-namespace:CozyLauncher.ViewModels"
         mc:Ignorable="d"
-        Title="ConfigWindow" Height="80" Width="300">
+        Title="ConfigWindow" Height="100" Width="300">
     <Window.DataContext>
         <viewmodel:ConfigWindowViewModel x:Name="ViewModel"></viewmodel:ConfigWindowViewModel>
     </Window.DataContext>
     <StackPanel>
-        <controls:HotkeyControl HotkeyText="{Binding HotkeyTextStr, Mode=TwoWay}"></controls:HotkeyControl>
-        <Button Content="submit" Command="{Binding SubmitCommand}"></Button>
-        <ListView Height="235">
-        </ListView>        
+        <controls:HotkeyControl HotkeyText="{Binding HotkeyTextStr, Mode=TwoWay}" Margin="2"></controls:HotkeyControl>
+        <CheckBox Content="Replace Win+R" IsChecked="{Binding ReplaceWinR, Mode=TwoWay}" Margin="2"></CheckBox>
+        <Button Content="submit" Command="{Binding SubmitCommand}" Margin="2"></Button>
     </StackPanel>
 </Window>

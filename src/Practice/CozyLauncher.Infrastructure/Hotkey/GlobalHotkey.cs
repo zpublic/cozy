@@ -181,7 +181,11 @@ namespace CozyLauncher.Infrastructure.Hotkey
                 {
                     using (var sw = new StreamWriter(fs))
                     {
-                        string result = JsonConvert.SerializeObject(RegistedHotKey); ;
+                        var result = JsonConvert.SerializeObject(new HotkeySettingInfo()
+                        {
+                            HotkeyList = RegistedHotKey,
+                            ReplaceWinR = ReplaceWindowR,
+                        });
                         if (!string.IsNullOrEmpty(result))
                         {
                             sw.Write(result);
@@ -216,15 +220,17 @@ namespace CozyLauncher.Infrastructure.Hotkey
 
             if (!string.IsNullOrEmpty(result))
             {
-                var loadData = JsonConvert.DeserializeObject<Dictionary<string, HotkeyModel>>(result);
-                foreach (var obj in loadData)
+                var loadData = JsonConvert.DeserializeObject<HotkeySettingInfo>(result);
+                foreach (var obj in loadData.HotkeyList)
                 {
                     RegistHotkey(obj.Key, obj.Value);
                 }
+                ReplaceWindowR = loadData.ReplaceWinR;
             }
             else
             {
                 RegistHotkey("HotKey.ShowApp", new HotkeyModel("Ctrl+Alt+Space"));
+                ReplaceWindowR = false;
                 Save();
             }
         }

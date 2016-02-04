@@ -50,6 +50,9 @@ namespace CozyLauncher
 
             InitialTray();
 
+            GlobalHotkey.Instance.Init();
+            GlobalHotkey.Instance.ReplaceWindowRAction = new Action(ShowApp);
+
             try
             {
                 GlobalHotkey.Instance.Load();
@@ -58,10 +61,6 @@ namespace CozyLauncher
             {
                 MessageBox.Show("热键冲突 注册失败");
             }
-
-            GlobalHotkey.Instance.Init();
-            GlobalHotkey.Instance.ReplaceWindowR = true;
-            GlobalHotkey.Instance.ReplaceWindowRAction = new Action(ShowApp);
 
             this.ViewModel.PropertyChanged += OnViewModelPropertyChanged;
 
