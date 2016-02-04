@@ -20,24 +20,29 @@ namespace CozyLauncher.Infrastructure.Hotkey
             }
         }
 
+        private const int VK_SHIFT = 0x10;
+        private const int VK_CONTROL = 0x11;
+        private const int VK_ALT = 0x12;
+        private const int VK_WIN = 91;
+
         public ModifyKeyStatus ModifyKeyStatus
         {
             get
             {
                 ModifyKeyStatus result = new ModifyKeyStatus();
-                if ((Keyboard.Modifiers & ModifierKeys.Control) != ModifierKeys.None)
+                if ((HotkeyNative.GetKeyState(VK_CONTROL) & 0x8000) != 0)
                 {
                     result.Ctrl = true;
                 }
-                if ((Keyboard.Modifiers & ModifierKeys.Alt) != ModifierKeys.None)
+                if ((HotkeyNative.GetKeyState(VK_ALT) & 0x8000) != 0)
                 {
                     result.Alt = true;
                 }
-                if ((Keyboard.Modifiers & ModifierKeys.Shift) != ModifierKeys.None)
+                if ((HotkeyNative.GetKeyState(VK_SHIFT) & 0x8000) != 0)
                 {
                     result.Shift = true;
                 }
-                if ((Keyboard.Modifiers & ModifierKeys.Windows) != ModifierKeys.None)
+                if ((HotkeyNative.GetKeyState(VK_WIN) & 0x8000) != 0)
                 {
                     result.Win = true;
                 }
@@ -49,6 +54,17 @@ namespace CozyLauncher.Infrastructure.Hotkey
             = new Dictionary<string, HotkeyModel>();
         private Dictionary<string, Action> RegistedHotkeyAction { get; set; }
             = new Dictionary<string, Action>();
+
+        public void Init()
+        {
+            HotkeyNative.Init();
+        }
+
+        public void Release()
+        {
+            HotkeyNative.Release();
+            UnregistAllHotkey();
+        }
 
         public void RegistHotkey(string hotkeyName, HotkeyModel keyModel)
         {
@@ -111,6 +127,48 @@ namespace CozyLauncher.Infrastructure.Hotkey
             }
             RegistedHotKey.Clear();
             RegistedHotkeyAction.Clear();
+        }
+
+        private static Func<int, int, bool> ReplaceWindowRProcAction { get; set; }
+
+        private bool _ReplaceWindowR;
+        public bool ReplaceWindowR
+        {
+            get
+            {
+                return _ReplaceWindowR;
+            }
+            set
+            {
+                if(_ReplaceWindowR != value)
+                {
+                    _ReplaceWindowR = value;
+                    if(ReplaceWindowR)
+                    {
+                        ReplaceWindowRProcAction = new Func<int, int, bool>(ReplaceWindowRProc);
+                        HotkeyNative.ProcessCallback = ReplaceWindowRProcAction;
+                    }
+                    else
+                    {
+                        HotkeyNative.ProcessCallback = null;
+                    }
+                }
+            }
+        }
+
+        public Action ReplaceWindowRAction;
+
+        private bool ReplaceWindowRProc(int vkey, int scankey)
+        {
+            if(ReplaceWindowR)
+            {
+                if (ModifyKeyStatus.Win && KeyInterop.KeyFromVirtualKey(vkey) == Key.R)
+                {
+                    ReplaceWindowRAction?.Invoke();
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static string ConfigFilePath { get { return @"./config.json"; } }

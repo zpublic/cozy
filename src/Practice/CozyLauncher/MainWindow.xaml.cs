@@ -59,6 +59,10 @@ namespace CozyLauncher
                 MessageBox.Show("热键冲突 注册失败");
             }
 
+            GlobalHotkey.Instance.Init();
+            GlobalHotkey.Instance.ReplaceWindowR = true;
+            GlobalHotkey.Instance.ReplaceWindowRAction = new Action(ShowApp);
+
             this.ViewModel.PropertyChanged += OnViewModelPropertyChanged;
 
             this.QueryTextBox.Focus();
@@ -206,7 +210,7 @@ namespace CozyLauncher
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            GlobalHotkey.Instance.UnregistAllHotkey();
+            GlobalHotkey.Instance.Release();
         }
 
         private void InitialTray()
