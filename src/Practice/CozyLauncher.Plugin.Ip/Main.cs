@@ -1,11 +1,8 @@
 ﻿using CozyLauncher.PluginBase;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CozyLauncher.Plugin.Ip
 {
@@ -42,8 +39,16 @@ namespace CozyLauncher.Plugin.Ip
                         r.Score = 60;
                         r.Action = e =>
                         {
-                            context_.Api.HideApp();
-                            return true;
+                            context_.Api.HideAndClear();
+                            try
+                            {
+                                Clipboard.SetText(ip.ToString());
+                                return true;
+                            }
+                            catch (System.Runtime.InteropServices.ExternalException)
+                            {
+                                return false;
+                            }
                         };
                         rl.Add(r);
                     }
