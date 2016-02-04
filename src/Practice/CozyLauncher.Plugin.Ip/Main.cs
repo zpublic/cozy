@@ -33,8 +33,8 @@ namespace CozyLauncher.Plugin.Ip
                     foreach (var ip in localhost.AddressList)
                     {
                         var r = new Result();
-                        r.Title = "Local IP Address";
-                        r.SubTitle = ip.ToString();
+                        r.Title = ip.ToString();
+                        r.SubTitle = "Copy this number to the clipboard";
                         r.IcoPath = "sys";
                         r.Score = 60;
                         r.Action = e =>
