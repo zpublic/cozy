@@ -175,18 +175,41 @@ namespace CozyLauncher
             notifyIcon.Icon = CozyLauncher.Resource.AppTray;
             notifyIcon.Visible = true;
 
+            notifyIcon.Click += NotifyIcon_Click;
+
+            InitialTrayMenu();
+        }
+
+        private void InitialTrayMenu()
+        {
+            if (null == notifyIcon)
+            {
+                return;
+            }
+
+            System.Windows.Forms.MenuItem about = new System.Windows.Forms.MenuItem("关于");
+            about.Click += About_Click;
+
             System.Windows.Forms.MenuItem exit = new System.Windows.Forms.MenuItem("退出");
             exit.Click += Exit_Click;
 
-            System.Windows.Forms.MenuItem[] childen = new System.Windows.Forms.MenuItem[] { exit };
+            System.Windows.Forms.MenuItem[] childen = new System.Windows.Forms.MenuItem[] { about, exit };
             notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(childen);
-
-            notifyIcon.Click += NotifyIcon_Click;
         }
 
         private void NotifyIcon_Click(object sender, EventArgs e)
         {
-            ShowWox();
+            System.Windows.Forms.MouseEventArgs mouse_e = (System.Windows.Forms.MouseEventArgs)e;
+
+            if (mouse_e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                ShowWox();
+            }
+        }
+
+        private void About_Click(object sender, EventArgs e)
+        {
+            About();
         }
 
         private void Exit_Click(object sender, EventArgs e)
