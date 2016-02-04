@@ -9,6 +9,8 @@ List of contributors
     zealotsean(zxsean@126.com)
     Torai(douglesmi@163.com)
     小才(hugewave@yeah.net)
+	whuthj
+	wjcsharp(wjcsharp@gmail.com)
 
     ☆
     狗蛋（654997004）
