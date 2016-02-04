@@ -170,16 +170,6 @@ namespace CozyLauncher.ViewModels
             this.OnPropertyChanged("SystemCommand.ShowApp");
         }
 
-        public void Config()
-        {
-            this.OnPropertyChanged("SystemCommand.ShowConfig");
-        }
-
-        public void About()
-        {
-            this.OnPropertyChanged("SystemCommand.About");
-        }
-
         public void Update()
         {
             try
@@ -210,6 +200,18 @@ namespace CozyLauncher.ViewModels
             else
             {
                 IsResultViewVisiable = false;
+            }
+        }
+
+        public void ShowPanel(string command)
+        {
+            if (command == "config")
+            {
+                this.OnPropertyChanged("SystemCommand.ShowConfig");
+            }
+            else if (command == "about")
+            {
+                this.OnPropertyChanged("SystemCommand.About");
             }
         }
     }
