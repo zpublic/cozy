@@ -213,6 +213,10 @@ namespace CozyLauncher.ViewModels
             {
                 this.OnPropertyChanged("SystemCommand.About");
             }
+            else if(command == "help")
+            {
+                this.OnPropertyChanged("SystemCommand.Help");
+            }
         }
     }
 }

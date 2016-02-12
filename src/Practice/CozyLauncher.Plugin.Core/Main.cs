@@ -77,6 +77,23 @@ namespace CozyLauncher.Plugin.Core
 
                 rl.Add(r);
             }
+            else if(query.RawQuery == "help")
+            {
+                var r = new Result()
+                {
+                    Title = "Help",
+                    SubTitle = "帮助",
+                    IcoPath = "help",
+                    Score = 100,
+                    Action = e =>
+                    {
+                        _context.Api.ShowPanel("help");
+                        return true;
+                    }
+                };
+
+                rl.Add(r);
+            }
             else if(query.RawQuery == "cozy")
             {
                 var r = new Result()
