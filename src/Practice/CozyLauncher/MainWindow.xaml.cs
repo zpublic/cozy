@@ -131,6 +131,10 @@ namespace CozyLauncher
             {
                 ShowConfig();
             }
+            else if(e.PropertyName == "SystemCommand.Help")
+            {
+                Help();
+            }
             else if (e.PropertyName == "SystemCommand.About")
             {
                 About();
@@ -200,6 +204,12 @@ namespace CozyLauncher
         {
             var about = new AboutWindow();
             about.ShowDialog();
+        }
+
+        public void Help()
+        {
+            var help = new HelpWindow();
+            help.ShowDialog();
         }
 
         public void ClearEditBox()
