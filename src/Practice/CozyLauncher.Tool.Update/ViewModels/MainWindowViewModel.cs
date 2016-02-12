@@ -13,6 +13,7 @@ using System.Windows.Threading;
 using CozyLauncher.Tool.Update.Helper;
 using System.Diagnostics;
 using System.Windows;
+using System.Reflection;
 
 namespace CozyLauncher.Tool.Update.ViewModels
 {
@@ -53,7 +54,7 @@ namespace CozyLauncher.Tool.Update.ViewModels
                     var psi = new ProcessStartInfo()
                     {
                         FileName = "CozyLauncher.exe",
-                        WorkingDirectory = Path.Combine(Environment.CurrentDirectory, "..\\"),
+                        WorkingDirectory = Path.Combine(Assembly.GetEntryAssembly().Location, "..\\"),
                     };
                     Process.Start(psi);
 
@@ -106,7 +107,7 @@ namespace CozyLauncher.Tool.Update.ViewModels
             CloseLauncher();
 
             var res = (List<Tuple<string, string>>)UpdateManager.Invoke("GetRawUpdateResult");
-            var fn  = Path.Combine(Environment.CurrentDirectory, UpdatePath);
+            var fn  = Path.Combine(Assembly.GetEntryAssembly().Location, UpdatePath);
             cancleSource    = new CancellationTokenSource();
             UpdateCount     = res.Count;
             UpdateNow       = 0;
@@ -118,7 +119,7 @@ namespace CozyLauncher.Tool.Update.ViewModels
 
             UpdateTask = Task.Factory.StartNew(() =>
             {
-                SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(System.Windows.Application.Current.Dispatcher));
+                SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(Application.Current.Dispatcher));
 
                 using (var loader = InfrastructureLoader.Create(@"./CozyLauncher.Infrastructure.Dll"))
                 {

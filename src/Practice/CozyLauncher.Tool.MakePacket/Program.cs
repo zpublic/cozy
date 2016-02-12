@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -65,9 +66,9 @@ namespace CozyLauncher.Tool.MakePacket
 
             try
             {
-                var gen = Path.Combine(Environment.CurrentDirectory, @"CozyLauncher.Tool.UpdateFeedGenerator.exe");
-                var dir = Path.Combine(Environment.CurrentDirectory, @"cozy_launcher/");
-                var dest = Path.Combine(Environment.CurrentDirectory, @"cozy_launcher/publish.json");
+                var gen = Path.Combine(Assembly.GetEntryAssembly().Location, @"CozyLauncher.Tool.UpdateFeedGenerator.exe");
+                var dir = Path.Combine(Assembly.GetEntryAssembly().Location, @"cozy_launcher/");
+                var dest = Path.Combine(Assembly.GetEntryAssembly().Location, @"cozy_launcher/publish.json");
                 Process.Start(gen, dir + " " + dest);
             }
             catch(Exception)
