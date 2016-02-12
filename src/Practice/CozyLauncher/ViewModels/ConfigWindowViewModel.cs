@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CozyLauncher.Core.StartUp;
 
 namespace CozyLauncher.ViewModels
 {
@@ -34,7 +35,19 @@ namespace CozyLauncher.ViewModels
             set
             {
                 Set(ref _ReplaceWinR, value);
-                GlobalHotkey.Instance.ReplaceWindowR = value;
+            }
+        }
+
+        private bool _AutoStartUp;
+        public bool AutoStartUp
+        {
+            get
+            {
+                return _AutoStartUp;
+            }
+            set
+            {
+                _AutoStartUp = value;
             }
         }
 
@@ -45,6 +58,10 @@ namespace CozyLauncher.ViewModels
             {
                 return _SubmitCommand = _SubmitCommand ?? new DelegateCommand(x =>
                 {
+                    StartUpManager.Instance.IsAutoStartUp = AutoStartUp;
+
+                    GlobalHotkey.Instance.ReplaceWindowR = ReplaceWinR;
+
                     if (!string.IsNullOrEmpty(HotkeyTextStr))
                     {
                         try
@@ -69,6 +86,7 @@ namespace CozyLauncher.ViewModels
                 HotkeyTextStr = hkm1.ToString();
             }
             ReplaceWinR = GlobalHotkey.Instance.ReplaceWindowR;
+            AutoStartUp = StartUpManager.Instance.IsAutoStartUp;
         }
     }
 }
