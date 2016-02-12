@@ -177,7 +177,7 @@ namespace CozyLauncher.Infrastructure.Hotkey
         {
             try
             {
-                using (var fs = new FileStream(ConfigFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                using (var fs = new FileStream(ConfigFilePath, FileMode.Create, FileAccess.ReadWrite))
                 {
                     using (var sw = new StreamWriter(fs))
                     {
