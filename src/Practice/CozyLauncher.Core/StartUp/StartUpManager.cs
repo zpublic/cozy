@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -29,7 +30,7 @@ namespace CozyLauncher.Core.StartUp
 
         private bool GetAutoStartUpStatus()
         {
-            var path = Assembly.GetEntryAssembly().Location;
+            var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             using (RegistryKey rk = Registry.CurrentUser)
             {
                 using (RegistryKey run = rk.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run"))
@@ -42,7 +43,7 @@ namespace CozyLauncher.Core.StartUp
 
         private void SetAutoStartUpStatus(bool status)
         {
-            var path = Assembly.GetEntryAssembly().Location;
+            var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             using (RegistryKey rk = Registry.CurrentUser)
             {
                 using (RegistryKey run = rk.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run"))

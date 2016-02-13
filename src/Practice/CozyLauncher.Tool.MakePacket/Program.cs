@@ -71,7 +71,7 @@ namespace CozyLauncher.Tool.MakePacket
                 var dest = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), @"cozy_launcher/publish.json");
                 Process.Start(gen, dir + " " + dest);
             }
-            catch(Exception e)
+            catch(Exception)
             {
             }
         }

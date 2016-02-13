@@ -55,7 +55,7 @@ namespace CozyLauncher.Tool.Update.ViewModels
                     var psi = new ProcessStartInfo()
                     {
                         FileName = "CozyLauncher.exe",
-                        WorkingDirectory = Path.Combine(Assembly.GetEntryAssembly().Location, "..\\"),
+                        WorkingDirectory = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "..\\"),
                     };
                     Process.Start(psi);
 
@@ -108,7 +108,7 @@ namespace CozyLauncher.Tool.Update.ViewModels
             CloseLauncher();
 
             var res = UpdateManager.GetUpdateResult();
-            var fn  = Path.Combine(Assembly.GetEntryAssembly().Location, UpdatePath);
+            var fn  = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), UpdatePath);
             cancleSource    = new CancellationTokenSource();
             UpdateCount     = res.Count;
             UpdateNow       = 0;

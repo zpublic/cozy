@@ -7,7 +7,7 @@ namespace CozyLauncher.Infrastructure
     {
         public static string LocalFullPath(string file)
         {
-            string cur = Assembly.GetEntryAssembly().Location;
+            string cur = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             return Path.Combine(cur, file);
         }
     }
