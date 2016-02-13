@@ -66,14 +66,13 @@ namespace CozyLauncher.Tool.MakePacket
 
             try
             {
-                var gen = Path.Combine(Assembly.GetEntryAssembly().Location, @"CozyLauncher.Tool.UpdateFeedGenerator.exe");
-                var dir = Path.Combine(Assembly.GetEntryAssembly().Location, @"cozy_launcher/");
-                var dest = Path.Combine(Assembly.GetEntryAssembly().Location, @"cozy_launcher/publish.json");
+                var gen = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), @"CozyLauncher.Tool.UpdateFeedGenerator.exe");
+                var dir = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), @"cozy_launcher/");
+                var dest = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), @"cozy_launcher/publish.json");
                 Process.Start(gen, dir + " " + dest);
             }
-            catch(Exception)
+            catch(Exception e)
             {
-
             }
         }
     }

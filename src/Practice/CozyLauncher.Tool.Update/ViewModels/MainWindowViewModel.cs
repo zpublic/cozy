@@ -10,10 +10,11 @@ using System.IO;
 using System.IO.Pipes;
 using System.Threading;
 using System.Windows.Threading;
-using CozyLauncher.Tool.Update.Helper;
 using System.Diagnostics;
 using System.Windows;
 using System.Reflection;
+using CozyLauncher.Core.Update;
+using CozyLauncher.Infrastructure.Http;
 
 namespace CozyLauncher.Tool.Update.ViewModels
 {
@@ -102,11 +103,11 @@ namespace CozyLauncher.Tool.Update.ViewModels
 
         private const string UpdatePath = @"update\";
 
-        public void DoUpdate(InfrastructureLoader UpdateManager)
+        public void DoUpdate(UpdateMgr UpdateManager)
         {
             CloseLauncher();
 
-            var res = (List<Tuple<string, string>>)UpdateManager.Invoke("GetRawUpdateResult");
+            var res = UpdateManager.GetUpdateResult();
             var fn  = Path.Combine(Assembly.GetEntryAssembly().Location, UpdatePath);
             cancleSource    = new CancellationTokenSource();
             UpdateCount     = res.Count;
@@ -120,34 +121,23 @@ namespace CozyLauncher.Tool.Update.ViewModels
             UpdateTask = Task.Factory.StartNew(() =>
             {
                 SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(Application.Current.Dispatcher));
-
-                using (var loader = InfrastructureLoader.Create(@"./CozyLauncher.Infrastructure.Dll"))
+                foreach (var file in res)
                 {
-                    loader.LoadType(@"CozyLauncher.Infrastructure.Http.HttpDownload");
-
-                    foreach (var file in res)
+                    if (cancleSource.IsCancellationRequested)
                     {
-                        if (cancleSource.IsCancellationRequested)
-                        {
-                            break;
-                        }
-
-                        var url = UpdateManager.Invoke("GetDownloadUrl", file.Item1);
-
-                        loader.InvokeStaticMethod("HttpDownloadFile", url, fn + file.Item1 + ".cozy_update");
-
-                        SynchronizationContext.Current.Send(x =>
-                        {
-                            FileInfoList.Add(file.Item1);
-                            UpdateNow++;
-                        }, null);
+                        break;
                     }
-                }
 
-                SynchronizationContext.Current.Send(x =>
-                {
-                    UpdateManager.Dispose();
-                }, null);
+                    var url = UpdateManager.GetDownloadUrl(file.Name);
+
+                    HttpDownload.HttpDownloadFile(url, fn + file.Name + ".cozy_update");
+
+                    SynchronizationContext.Current.Send(x =>
+                    {
+                        FileInfoList.Add(file.Name);
+                        UpdateNow++;
+                    }, null);
+                }
 
                 MoveFile();
 

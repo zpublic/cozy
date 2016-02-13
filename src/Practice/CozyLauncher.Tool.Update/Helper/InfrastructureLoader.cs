@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CozyLauncher.Tool.Update.Helper
 {
-    public class InfrastructureLoader : IDisposable
+    internal class InfrastructureLoader : IDisposable
     {
         private InfrastructureLoaderHelper helper { get; set; }
         public AppDomain CurrAppDomain { get; set; }

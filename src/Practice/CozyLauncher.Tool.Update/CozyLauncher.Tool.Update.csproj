@@ -105,6 +105,10 @@
       <Project>{ce088805-e664-42eb-b943-c2a421ea8551}</Project>
       <Name>CozyLauncher.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Infrastructure\CozyLauncher.Infrastructure.csproj">
+      <Project>{58c2d24e-55de-4e57-a1c1-18efa0d4a5a6}</Project>
+      <Name>CozyLauncher.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

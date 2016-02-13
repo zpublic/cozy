@@ -19,6 +19,8 @@ namespace CozyLauncher.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel, IPublicApi
     {
+        #region Property
+
         private PluginMgr pm = new PluginMgr();
 
         public ExtObservableCollection<Result> ResultListView { get; set; } = new ExtObservableCollection<Result>();
@@ -43,6 +45,10 @@ namespace CozyLauncher.ViewModels
             get { return _SelectedResultIndex; }
             set { this.Set(ref _SelectedResultIndex, value); }
         }
+
+        #endregion
+
+        #region Commands
 
         private ICommand _QueryCommand;
         public ICommand QueryCommand
@@ -130,6 +136,8 @@ namespace CozyLauncher.ViewModels
             }
         }
 
+        #endregion
+
         public MainWindowViewModel()
         {
             pm.Init(this);
@@ -142,6 +150,8 @@ namespace CozyLauncher.ViewModels
                 }
             });
         }
+
+        #region IPublicApi Impl
 
         public void CloseApp()
         {
@@ -218,5 +228,7 @@ namespace CozyLauncher.ViewModels
                 this.OnPropertyChanged("SystemCommand.Help");
             }
         }
+
+        #endregion
     }
 }
