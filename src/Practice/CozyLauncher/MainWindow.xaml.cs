@@ -24,15 +24,6 @@ namespace CozyLauncher
 
             InitCloseServer();
 
-            try
-            {
-                Process.Start(PathTransform.LocalFullPath(@"update/CozyLauncher.Tool.Update.exe"));
-            }
-            catch (Exception)
-            {
-
-            }
-
             InitialTray();
 
             GlobalHotkey.Instance.Init();
@@ -140,9 +131,13 @@ namespace CozyLauncher
             Show();
         }
 
+        private bool IsClosed { get; set; }
         public void CloseApp()
         {
-            PipeIPCServer.TryCloseServer("CozyLauncher.CloseAppPipe");
+            if(!IsClosed)
+            {
+                PipeIPCServer.TryCloseServer("CozyLauncher.CloseAppPipe");
+            }
 
             Application.Current.Shutdown();
         }
@@ -246,6 +241,7 @@ namespace CozyLauncher
                     {
                         if (s == "SystemCommand.CloseApp")
                         {
+                            IsClosed = true;
                             Dispatcher.Invoke(() =>
                             {
                                 CloseApp();
