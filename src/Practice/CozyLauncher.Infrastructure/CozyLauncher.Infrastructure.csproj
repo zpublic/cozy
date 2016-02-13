@@ -66,6 +66,7 @@
     <Compile Include="IPC\PipeIPCClient.cs" />
     <Compile Include="IPC\PipeIPCCommon.cs" />
     <Compile Include="IPC\PipeIPCServer.cs" />
+    <Compile Include="ProcessMutex\ProcessMutexMgr.cs" />
     <Compile Include="PathTransform.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

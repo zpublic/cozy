@@ -5,8 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.ComponentModel;
 using CozyLauncher.Infrastructure.Hotkey;
-using System.Diagnostics;
-using CozyLauncher.Infrastructure;
+using CozyLauncher.Infrastructure.ProcessMutex;
 using CozyLauncher.Infrastructure.IPC;
 
 namespace CozyLauncher
@@ -20,29 +19,37 @@ namespace CozyLauncher
 
         public MainWindow()
         {
-            InitializeComponent();
-
-            InitCloseServer();
-
-            InitialTray();
-
-            GlobalHotkey.Instance.Init();
-            GlobalHotkey.Instance.ReplaceWindowRAction = new Action(ShowApp);
-
-            try
+            if (ProcessMutexMgr.Instance.CheckExist("CozyLauncher.Main"))
             {
-                GlobalHotkey.Instance.Load();
+                MessageBox.Show("多个程序实例正在运行");
+                CloseApp();
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("热键冲突 注册失败");
+                InitializeComponent();
+
+                InitCloseServer();
+
+                InitialTray();
+
+                GlobalHotkey.Instance.Init();
+                GlobalHotkey.Instance.ReplaceWindowRAction = new Action(ShowApp);
+
+                try
+                {
+                    GlobalHotkey.Instance.Load();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("热键冲突 注册失败");
+                }
+
+                this.ViewModel.PropertyChanged += OnViewModelPropertyChanged;
+
+                this.QueryTextBox.Focus();
+
+                this.ViewModel.Update();
             }
-
-            this.ViewModel.PropertyChanged += OnViewModelPropertyChanged;
-
-            this.QueryTextBox.Focus();
-
-            this.ViewModel.Update();
         }
 
         private void OnWindowMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -131,10 +138,10 @@ namespace CozyLauncher
             Show();
         }
 
-        private bool IsClosed { get; set; }
+        private bool IsNeedToClose { get; set; } = true;
         public void CloseApp()
         {
-            if(!IsClosed)
+            if(IsNeedToClose)
             {
                 PipeIPCServer.TryCloseServer("CozyLauncher.CloseAppPipe");
             }
@@ -241,7 +248,7 @@ namespace CozyLauncher
                     {
                         if (s == "SystemCommand.CloseApp")
                         {
-                            IsClosed = true;
+                            IsNeedToClose = false;
                             Dispatcher.Invoke(() =>
                             {
                                 CloseApp();
