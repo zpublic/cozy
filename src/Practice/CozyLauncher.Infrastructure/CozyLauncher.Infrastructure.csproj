@@ -63,6 +63,9 @@
     <Compile Include="Hotkey\HotkeySettingInfo.cs" />
     <Compile Include="Hotkey\ModifyKeyStatus.cs" />
     <Compile Include="Http\HttpDownload.cs" />
+    <Compile Include="IPC\PipeIPCClient.cs" />
+    <Compile Include="IPC\PipeIPCCommon.cs" />
+    <Compile Include="IPC\PipeIPCServer.cs" />
     <Compile Include="PathTransform.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

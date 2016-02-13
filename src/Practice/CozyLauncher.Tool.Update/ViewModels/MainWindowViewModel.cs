@@ -7,7 +7,6 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CozyLauncher.Tool.Update.Commands;
 using System.IO;
-using System.IO.Pipes;
 using System.Threading;
 using System.Windows.Threading;
 using System.Diagnostics;
@@ -15,6 +14,7 @@ using System.Windows;
 using System.Reflection;
 using CozyLauncher.Core.Update;
 using CozyLauncher.Infrastructure.Http;
+using CozyLauncher.Infrastructure.IPC;
 
 namespace CozyLauncher.Tool.Update.ViewModels
 {
@@ -152,25 +152,9 @@ namespace CozyLauncher.Tool.Update.ViewModels
 
         private void CloseLauncher()
         {
-            using (var npc = new NamedPipeClientStream("CozyLauncher.CloseAppPipe"))
+            using (var npc = new PipeIPCClient("CozyLauncher.CloseAppPipe"))
             {
-                try
-                {
-                    npc.Connect(0);
-                }
-                catch(TimeoutException)
-                {
-
-                }
-
-                if (npc.IsConnected)
-                {
-                    using (var sw = new StreamWriter(npc))
-                    {
-                        sw.AutoFlush = true;
-                        sw.Write("SystemCommand.CloseApp");
-                    }
-                }
+                npc.Send("SystemCommand.CloseApp");
             }
         }
 

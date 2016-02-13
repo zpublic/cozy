@@ -1,28 +1,13 @@
-﻿using CozyLauncher.Core.Plugin;
-using CozyLauncher.PluginBase;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.ComponentModel;
 using CozyLauncher.Infrastructure.Hotkey;
-using System.Reflection;
-using System.Resources;
-using System.Drawing;
-using System.IO.Pipes;
-using System.IO;
 using System.Diagnostics;
 using CozyLauncher.Infrastructure;
+using CozyLauncher.Infrastructure.IPC;
 
 namespace CozyLauncher
 {
@@ -157,29 +142,7 @@ namespace CozyLauncher
 
         public void CloseApp()
         {
-            if(!ClosePipeConnected)
-            {
-                using (var npc = new NamedPipeClientStream("CozyLauncher.CloseAppPipe"))
-                {
-                    try
-                    {
-                        npc.Connect(0);
-                    }
-                    catch (TimeoutException)
-                    {
-
-                    }
-
-                    if (npc.IsConnected)
-                    {
-                        using (var sw = new StreamWriter(npc))
-                        {
-                            sw.AutoFlush = true;
-                            sw.Write("SystemCommand.Clear");
-                        }
-                    }
-                }
-            }
+            PipeIPCServer.TryCloseServer("CozyLauncher.CloseAppPipe");
 
             Application.Current.Shutdown();
         }
@@ -273,36 +236,24 @@ namespace CozyLauncher
             CloseApp();
         }
 
-        public bool ClosePipeConnected { get; set; }
-
         private void InitCloseServer()
         {
             Task.Factory.StartNew(()=> 
             {
-                using (var nps = new NamedPipeServerStream("CozyLauncher.CloseAppPipe"))
+                using (var nps = new PipeIPCServer("CozyLauncher.CloseAppPipe"))
                 {
-                    nps.WaitForConnection();
-
-                    ClosePipeConnected = true;
-
-                    try
+                    nps.Callback = (s) =>
                     {
-                        using (var sr = new StreamReader(nps))
+                        if (s == "SystemCommand.CloseApp")
                         {
-                            var res = sr.ReadToEnd();
-                            if(res == "SystemCommand.CloseApp")
+                            Dispatcher.Invoke(() =>
                             {
-                                Dispatcher.Invoke(() => 
-                                {
-                                    CloseApp();
-                                });
-                            }
+                                CloseApp();
+                            });
                         }
-                    }
-                    catch(IOException)
-                    {
+                    };
 
-                    }
+                    nps.Wait();
                 }
             });
         }
