@@ -41,7 +41,7 @@ namespace CozyLauncher.Core.Plugin
             {
                 try
                 {
-                    Assembly asm = Assembly.LoadFile(Path.Combine(Environment.CurrentDirectory, p));
+                    Assembly asm = Assembly.LoadFile(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), p));
                     List<Type> types = asm.GetTypes().Where(o => o.IsClass && !o.IsAbstract && o.GetInterfaces().Contains(typeof(IPlugin))).ToList();
                     foreach (Type type in types)
                     {

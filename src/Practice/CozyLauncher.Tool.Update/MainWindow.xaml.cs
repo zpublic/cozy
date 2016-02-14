@@ -1,18 +1,6 @@
-﻿using CozyLauncher.Tool.Update.Helper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using CozyLauncher.Core.Update;
 
 namespace CozyLauncher.Tool.Update
 {
@@ -21,7 +9,7 @@ namespace CozyLauncher.Tool.Update
     /// </summary>
     public partial class MainWindow : Window
     {
-        private InfrastructureLoader Loader { get; set; }
+        private UpdateMgr UpdateManager { get; set; } = new UpdateMgr();
 
         public MainWindow()
         {
@@ -29,43 +17,31 @@ namespace CozyLauncher.Tool.Update
 
             this.ViewModel.PropertyChanged += ViewModel_PropertyChanged;
 
-            Loader = InfrastructureLoader.Create("CozyLauncher.Core.Dll");
-            Loader.LoadType(@"CozyLauncher.Core.Update.UpdateMgr");
-            Loader.LoadObject();
-
             bool needToUpdate = false;
             try
             {
-                needToUpdate = (bool)Loader.Invoke("CheckUpdate");
+                needToUpdate = UpdateManager.CheckUpdate();
             }
             catch (Exception)
             {
                 needToUpdate = false;
             }
 
-            try
+            if (needToUpdate)
             {
-                if (needToUpdate)
+                if (MessageBox.Show("检测到更新 是否升级", "Update", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    if (MessageBox.Show("检测到更新 是否升级", "Update", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                    {
-                        Show();
-                        this.ViewModel.DoUpdate(Loader);
-                        Loader = null;
-                    }
-                    else
-                    {
-                        App.Current.Shutdown();
-                    }
+                    Show();
+                    this.ViewModel.DoUpdate(UpdateManager);
                 }
                 else
                 {
                     App.Current.Shutdown();
                 }
             }
-            finally
+            else
             {
-                Loader?.Dispose();
+                App.Current.Shutdown();
             }
         }
 

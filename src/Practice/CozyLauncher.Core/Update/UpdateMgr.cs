@@ -102,6 +102,7 @@ namespace CozyLauncher.Core.Update
                 "CozyLauncher.Plugin.Dirctory.dll",
                 "CozyLauncher.Plugin.ManualRun.dll",
                 "CozyLauncher.Plugin.WebSearch.dll",
+                "CozyLauncher.Plugin.Ip.dll",
                 "CozyLauncher.Plugin.Sys.dll",
                 "CozyLauncher.Plugin.Calculator.dll",
 

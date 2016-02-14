@@ -7,12 +7,14 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CozyLauncher.Tool.Update.Commands;
 using System.IO;
-using System.IO.Pipes;
 using System.Threading;
 using System.Windows.Threading;
-using CozyLauncher.Tool.Update.Helper;
 using System.Diagnostics;
 using System.Windows;
+using System.Reflection;
+using CozyLauncher.Core.Update;
+using CozyLauncher.Infrastructure.Http;
+using CozyLauncher.Infrastructure.IPC;
 
 namespace CozyLauncher.Tool.Update.ViewModels
 {
@@ -53,7 +55,7 @@ namespace CozyLauncher.Tool.Update.ViewModels
                     var psi = new ProcessStartInfo()
                     {
                         FileName = "CozyLauncher.exe",
-                        WorkingDirectory = Path.Combine(Environment.CurrentDirectory, "..\\"),
+                        WorkingDirectory = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "..\\"),
                     };
                     Process.Start(psi);
 
@@ -101,12 +103,12 @@ namespace CozyLauncher.Tool.Update.ViewModels
 
         private const string UpdatePath = @"update\";
 
-        public void DoUpdate(InfrastructureLoader UpdateManager)
+        public void DoUpdate(UpdateMgr UpdateManager)
         {
             CloseLauncher();
 
-            var res = (List<Tuple<string, string>>)UpdateManager.Invoke("GetRawUpdateResult");
-            var fn  = Path.Combine(Environment.CurrentDirectory, UpdatePath);
+            var res = UpdateManager.GetUpdateResult();
+            var fn  = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), UpdatePath);
             cancleSource    = new CancellationTokenSource();
             UpdateCount     = res.Count;
             UpdateNow       = 0;
@@ -118,35 +120,24 @@ namespace CozyLauncher.Tool.Update.ViewModels
 
             UpdateTask = Task.Factory.StartNew(() =>
             {
-                SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(System.Windows.Application.Current.Dispatcher));
-
-                using (var loader = InfrastructureLoader.Create(@"./CozyLauncher.Infrastructure.Dll"))
+                SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(Application.Current.Dispatcher));
+                foreach (var file in res)
                 {
-                    loader.LoadType(@"CozyLauncher.Infrastructure.Http.HttpDownload");
-
-                    foreach (var file in res)
+                    if (cancleSource.IsCancellationRequested)
                     {
-                        if (cancleSource.IsCancellationRequested)
-                        {
-                            break;
-                        }
-
-                        var url = UpdateManager.Invoke("GetDownloadUrl", file.Item1);
-
-                        loader.InvokeStaticMethod("HttpDownloadFile", url, fn + file.Item1 + ".cozy_update");
-
-                        SynchronizationContext.Current.Send(x =>
-                        {
-                            FileInfoList.Add(file.Item1);
-                            UpdateNow++;
-                        }, null);
+                        break;
                     }
-                }
 
-                SynchronizationContext.Current.Send(x =>
-                {
-                    UpdateManager.Dispose();
-                }, null);
+                    var url = UpdateManager.GetDownloadUrl(file.Name);
+
+                    HttpDownload.HttpDownloadFile(url, fn + file.Name + ".cozy_update");
+
+                    SynchronizationContext.Current.Send(x =>
+                    {
+                        FileInfoList.Add(file.Name);
+                        UpdateNow++;
+                    }, null);
+                }
 
                 MoveFile();
 
@@ -161,25 +152,9 @@ namespace CozyLauncher.Tool.Update.ViewModels
 
         private void CloseLauncher()
         {
-            using (var npc = new NamedPipeClientStream("CozyLauncher.CloseAppPipe"))
+            using (var npc = new PipeIPCClient("CozyLauncher.CloseAppPipe"))
             {
-                try
-                {
-                    npc.Connect(0);
-                }
-                catch(TimeoutException)
-                {
-
-                }
-
-                if (npc.IsConnected)
-                {
-                    using (var sw = new StreamWriter(npc))
-                    {
-                        sw.AutoFlush = true;
-                        sw.Write("SystemCommand.CloseApp");
-                    }
-                }
+                npc.Send("SystemCommand.CloseApp");
             }
         }
 

@@ -53,6 +53,7 @@ namespace CozyLauncher.Plugin.Core
                     Score       = 100,
                     Action = e  =>
                     {
+                        _context.Api.HideAndClear();
                         _context.Api.ShowPanel("config");
                         return true;
                     }
@@ -70,7 +71,9 @@ namespace CozyLauncher.Plugin.Core
                     Score       = 100,
                     Action      = e =>
                     {
+                        _context.Api.HideAndClear();
                         _context.Api.ShowPanel("about");
+                        _context.Api.Clear();
                         return true;
                     }
                 };
@@ -87,7 +90,9 @@ namespace CozyLauncher.Plugin.Core
                     Score = 100,
                     Action = e =>
                     {
+                        _context.Api.HideAndClear();
                         _context.Api.ShowPanel("help");
+                        _context.Api.Clear();
                         return true;
                     }
                 };
@@ -105,6 +110,7 @@ namespace CozyLauncher.Plugin.Core
                     Action = e =>
                     {
                         Process.Start(@"http://cozy.laorouji.com");
+                        _context.Api.HideAndClear();
                         return true;
                     }
                 };
@@ -121,6 +127,7 @@ namespace CozyLauncher.Plugin.Core
                     Score = 100,
                     Action = e =>
                     {
+                        _context.Api.HideAndClear();
                         _context.Api.Update();
                         return true;
                     }

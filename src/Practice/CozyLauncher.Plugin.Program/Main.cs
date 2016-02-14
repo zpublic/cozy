@@ -39,8 +39,8 @@ namespace CozyLauncher.Plugin.Program
                             Score = 100,
                             Action = e =>
                            {
-                               context_.Api.HideApp();
                                Process.Start(ActPath);
+                               context_.Api.HideAndClear();
                                return true;
                            },
                         };

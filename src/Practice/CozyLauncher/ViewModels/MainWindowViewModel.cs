@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
 using CozyLauncher.PluginBase;
 using CozyLauncher.Commands;
 using System.Windows.Input;
 using CozyLauncher.Core.Plugin;
 using CozyLauncher.Ext;
 using CozyLauncher.Infrastructure.Hotkey;
-using System.IO;
-using System.IO.Pipes;
 using CozyLauncher.Infrastructure;
 using System.Diagnostics;
 
@@ -19,6 +13,8 @@ namespace CozyLauncher.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel, IPublicApi
     {
+        #region Property
+
         private PluginMgr pm = new PluginMgr();
 
         public ExtObservableCollection<Result> ResultListView { get; set; } = new ExtObservableCollection<Result>();
@@ -43,6 +39,10 @@ namespace CozyLauncher.ViewModels
             get { return _SelectedResultIndex; }
             set { this.Set(ref _SelectedResultIndex, value); }
         }
+
+        #endregion
+
+        #region Commands
 
         private ICommand _QueryCommand;
         public ICommand QueryCommand
@@ -130,6 +130,8 @@ namespace CozyLauncher.ViewModels
             }
         }
 
+        #endregion
+
         public MainWindowViewModel()
         {
             pm.Init(this);
@@ -142,6 +144,8 @@ namespace CozyLauncher.ViewModels
                 }
             });
         }
+
+        #region IPublicApi Impl
 
         public void CloseApp()
         {
@@ -218,5 +222,7 @@ namespace CozyLauncher.ViewModels
                 this.OnPropertyChanged("SystemCommand.Help");
             }
         }
+
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Reflection;
 
 namespace CozyLauncher.Infrastructure
 {
@@ -6,7 +7,7 @@ namespace CozyLauncher.Infrastructure
     {
         public static string LocalFullPath(string file)
         {
-            string cur = System.Environment.CurrentDirectory;
+            string cur = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             return Path.Combine(cur, file);
         }
     }

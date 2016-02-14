@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher", "..\src\Practice\CozyLauncher\CozyLauncher.csproj", "{36C16B10-D17D-4A58-BD46-0F938DA82CC8}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -58,7 +58,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CozyLauncher.Tool.Website",
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "49719"
-		SlnRelativePath = "..\src\Practice\CozyLauncher.Tool.Website\"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Tool.UpdateFeedGenerator", "..\src\Practice\CozyLauncher.Tool.UpdateFeedGenerator\CozyLauncher.Tool.UpdateFeedGenerator.csproj", "{310F3415-9294-42BD-8864-3149981C555F}"
