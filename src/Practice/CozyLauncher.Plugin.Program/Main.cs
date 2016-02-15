@@ -9,14 +9,14 @@ using System.Linq;
 
 namespace CozyLauncher.Plugin.Program
 {
-    public class Main : IPlugin
+    public class Main : BasePlugin
     {
         private PluginInitContext context_;
         private List<ISource> SourceList { get; set; } = new List<ISource>();
         private List<string> FileList { get; set; } = new List<string>();
         private List<string> FolderList { get; set; } = new List<string>();
 
-        public PluginInfo Init(PluginInitContext context)
+        public override PluginInfo Init(PluginInitContext context)
         {
             var types = Assembly.GetExecutingAssembly().GetTypes().Where(x =>
             {
@@ -46,7 +46,7 @@ namespace CozyLauncher.Plugin.Program
             return info;
         }
 
-        public List<Result> Query(Query query)
+        public override List<Result> Query(Query query)
         {
             var res = new List<string>();
             foreach (var source in SourceList)

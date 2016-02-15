@@ -23,6 +23,7 @@ namespace CozyLauncher.Core.Plugin
             {
                 // Core
                 "CozyLauncher.Plugin.Core.dll",
+                "CozyLauncher.Plugin.Guide.dll",
 
                 // Primary
                 "CozyLauncher.Plugin.Program.dll",
@@ -36,6 +37,7 @@ namespace CozyLauncher.Core.Plugin
                 "CozyLauncher.Plugin.MouseClick.dll",
                 "CozyLauncher.Plugin.Ip.dll",
                 "CozyLauncher.Plugin.Qrcode.dll",
+                "CozyLauncher.Plugin.Fnl.dll",
             };
 
             foreach (var p in PluginFilleList)
@@ -69,6 +71,14 @@ namespace CozyLauncher.Core.Plugin
             }
             results.Sort(CompareResult);
             api_?.PushResults(results);
+        }
+
+        public void ShowPanel(string command)
+        {
+            foreach (var p in plugins_)
+            {
+                p.ShowPanel(command);
+            }
         }
 
         private static int CompareResult(Result x, Result y)
