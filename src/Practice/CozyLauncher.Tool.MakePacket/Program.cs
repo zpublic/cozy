@@ -23,6 +23,7 @@ namespace CozyLauncher.Tool.MakePacket
                 "NHotkey.Wpf.dll",
                 "Newtonsoft.Json.dll",
                 "YAMP.dll",
+                "Gma.QrCodeNet.Encoding.dll",
                 "System.Windows.Interactivity.dll",
                 "CozyLauncher.Plugin.Core.dll",
                 "CozyLauncher.Plugin.Program.dll",
@@ -33,6 +34,7 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Plugin.Calculator.dll",
                 "CozyLauncher.Plugin.MouseClick.dll",
                 "CozyLauncher.Plugin.Ip.dll",
+                "CozyLauncher.Plugin.Qrcode.dll"
             };
             Directory.CreateDirectory("./cozy_launcher");
             foreach (var f in filelist)
