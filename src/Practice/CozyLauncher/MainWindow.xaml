@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <TextBox HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Grid.Row="0" Foreground="#B81D7F" Background="#1E1C20"
-                 VerticalAlignment="Top" Width="410" TextChanged="OnQueryTextChanged" x:Name="QueryTextBox" BorderThickness="0" FontSize="24"/>
+                 VerticalAlignment="Top" Width="410" TextChanged="OnQueryTextChanged" x:Name="QueryTextBox" BorderThickness="0" FontSize="32"/>
 
         <ListView MaxHeight="410" ItemsSource="{Binding ResultListView}" SelectedItem="{Binding SelectedResult}"  BorderThickness="0"
                   SelectedIndex="{Binding SelectedResultIndex}" Focusable="False" Grid.Row="1" Background="#1E1C20"

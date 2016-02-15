@@ -7,6 +7,8 @@ using System.ComponentModel;
 using CozyLauncher.Infrastructure.Hotkey;
 using CozyLauncher.Infrastructure.ProcessMutex;
 using CozyLauncher.Infrastructure.IPC;
+using CozyLauncher.Core.Version;
+using CozyLauncher.Core.StartUp;
 
 namespace CozyLauncher
 {
@@ -42,6 +44,12 @@ namespace CozyLauncher
                 catch (Exception)
                 {
                     MessageBox.Show("热键冲突 注册失败");
+                }
+
+                if(!VersionManager.Instance.IsExist)
+                {
+                    VersionManager.Instance.Version         = "0.4";
+                    StartUpManager.Instance.IsAutoStartUp   = true;
                 }
 
                 this.ViewModel.PropertyChanged += OnViewModelPropertyChanged;

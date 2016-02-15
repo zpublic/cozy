@@ -50,6 +50,7 @@
     <Compile Include="StartUp\StartUpManager.cs" />
     <Compile Include="Update\FileVersionInfo.cs" />
     <Compile Include="Update\UpdateMgr.cs" />
+    <Compile Include="Version\VersionManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CozyLauncher.Infrastructure\CozyLauncher.Infrastructure.csproj">
