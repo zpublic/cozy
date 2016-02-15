@@ -70,7 +70,7 @@ namespace CozyLauncher.Plugin.Program
             var res = new Result()
             {
                 SubTitle = path,
-                Score = 100,
+                Score = 50,
                 Action = x =>
                 {
                     Process.Start(path);
