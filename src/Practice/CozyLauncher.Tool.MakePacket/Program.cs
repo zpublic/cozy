@@ -13,6 +13,55 @@ namespace CozyLauncher.Tool.MakePacket
     {
         static void Main(string[] args)
         {
+            KillCl();
+
+            CozyMainFiles();
+            CozyUpdateFiles();
+
+            GenerateUpdateFeed();
+
+            StartCl();
+        }
+
+        private static void GenerateUpdateFeed()
+        {
+            try
+            {
+                var gen = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), @"CozyLauncher.Tool.UpdateFeedGenerator.exe");
+                var dir = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), @"cozy_launcher/");
+                var dest = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), @"cozy_launcher/publish.json");
+                Process.Start(gen, dir + " " + dest);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private static void CozyUpdateFiles()
+        {
+            var updateFileList = new List<string>
+            {
+                "update/CozyLauncher.Tool.Update.exe",
+                "update/CozyLauncher.Core.dll",
+                "update/CozyLauncher.Infrastructure.dll",
+                "update/CozyLauncher.PluginBase.dll",
+                "update/NHotkey.dll",
+                "update/NHotkey.Wpf.dll",
+                "update/Newtonsoft.Json.dll",
+            };
+            Directory.CreateDirectory("./cozy_launcher/update");
+            foreach (var f in updateFileList)
+            {
+                if (File.Exists("./cozy_launcher/" + f))
+                {
+                    File.Delete("./cozy_launcher/" + f);
+                }
+                File.Copy(f, "./cozy_launcher/" + f);
+            }
+        }
+
+        private static void CozyMainFiles()
+        {
             var filelist = new List<string>
             {
                 "CozyLauncher.exe",
@@ -45,36 +94,26 @@ namespace CozyLauncher.Tool.MakePacket
                 }
                 File.Copy(f, "./cozy_launcher/" + f);
             }
+        }
 
-            var updateFileList = new List<string>
+        private static void StartCl()
+        {
+            var exePath = Path.Combine(
+                Path.GetDirectoryName(Assembly.GetEntryAssembly().Location),
+                @"cozy_launcher/CozyLauncher.exe");
+            Process.Start(exePath);
+        }
+
+        private static void KillCl()
+        {
+            Process[] ps = Process.GetProcesses();
+            foreach (Process item in ps)
             {
-                "update/CozyLauncher.Tool.Update.exe",
-                "update/CozyLauncher.Core.dll",
-                "update/CozyLauncher.Infrastructure.dll",
-                "update/CozyLauncher.PluginBase.dll",
-                "update/NHotkey.dll",
-                "update/NHotkey.Wpf.dll",
-                "update/Newtonsoft.Json.dll",
-            };
-            Directory.CreateDirectory("./cozy_launcher/update");
-            foreach (var f in updateFileList)
-            {
-                if (File.Exists("./cozy_launcher/" + f))
+                if (item.ProcessName == "CozyLauncher")
                 {
-                    File.Delete("./cozy_launcher/" + f);
+                    item.Kill();
+                    item.WaitForExit();
                 }
-                File.Copy(f, "./cozy_launcher/" + f);
-            }
-
-            try
-            {
-                var gen = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), @"CozyLauncher.Tool.UpdateFeedGenerator.exe");
-                var dir = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), @"cozy_launcher/");
-                var dest = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), @"cozy_launcher/publish.json");
-                Process.Start(gen, dir + " " + dest);
-            }
-            catch(Exception)
-            {
             }
         }
     }

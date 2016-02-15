@@ -78,6 +78,10 @@
       <Project>{27b8819d-01ea-47a1-8cd9-75ba99ba08cb}</Project>
       <Name>CozyLauncher.Plugin.Program</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.Qrcode\CozyLauncher.Plugin.Qrcode.csproj">
+      <Project>{eab1cd23-bba3-414f-8810-b04415e9c9bd}</Project>
+      <Name>CozyLauncher.Plugin.Qrcode</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.Plugin.Sys\CozyLauncher.Plugin.Sys.csproj">
       <Project>{5d3aa1b8-dbc5-44f1-b9f4-44a4ea651df8}</Project>
       <Name>CozyLauncher.Plugin.Sys</Name>

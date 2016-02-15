@@ -171,7 +171,13 @@ namespace CozyLauncher.Infrastructure.Hotkey
             return false;
         }
 
-        public static string ConfigFilePath { get { return @"./config.json"; } }
+        public static string ConfigFilePath
+        {
+            get
+            {
+                return PathTransform.LocalFullPath(@"./config.json");
+            }
+        }
 
         public void Save()
         {
