@@ -1,65 +1,82 @@
-﻿using CozyLauncher.PluginBase;
+﻿using CozyLauncher.Plugin.Program.ProgramSource;
+using CozyLauncher.PluginBase;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
+using System.Linq;
 
 namespace CozyLauncher.Plugin.Program
 {
     public class Main : IPlugin
     {
         private PluginInitContext context_;
+        private List<ISource> SourceList { get; set; } = new List<ISource>();
 
         public PluginInfo Init(PluginInitContext context)
         {
+            var types = Assembly.GetExecutingAssembly().GetTypes().Where(x => 
+            {
+                return x.Namespace == @"CozyLauncher.Plugin.Program.ProgramSource" && x.GetInterface("ISource") != null; 
+            });
+
+            foreach (var type in types)
+            {
+                ISource inst = null;
+                try
+                {
+                    inst = (ISource)Activator.CreateInstance(type);
+                }
+                catch
+                {
+                    continue;
+                }
+                if (inst != null)
+                {
+                    SourceList.Add(inst);
+                }
+            }
+
             context_ = context;
             var info = new PluginInfo();
             info.Keyword = "*";
             return info;
         }
 
+        internal class ResultComparer : IEqualityComparer<Result>
+        {
+            public bool Equals(Result x, Result y)
+            {
+                return x.SubTitle.ToLower() == y.SubTitle.ToLower();
+            }
+
+            public int GetHashCode(Result obj)
+            {
+                return obj.GetHashCode();
+            }
+        }
+
         public List<Result> Query(Query query)
         {
-            var rl      = new List<Result>();
-            var fileSet = new HashSet<string>();
-            var EnvVar  = Environment.GetEnvironmentVariable("Path").Split(';');
-
-            foreach (var path in EnvVar)
+            var res = new List<Result>();
+            foreach(var source in SourceList)
             {
-                try
-                {
-                    var ActPath = Path.Combine(path, query.RawQuery + ".exe").ToLower();
-                    if (!fileSet.Contains(ActPath) && File.Exists(ActPath))
-                    {
-                        var r = new Result()
-                        {
-                            Title = query.RawQuery,
-                            SubTitle = ActPath,
-                            IcoPath = "app",
-                            Score = 100,
-                            Action = e =>
-                           {
-                               Process.Start(ActPath);
-                               context_.Api.HideAndClear();
-                               return true;
-                           },
-                        };
-                        rl.Add(r);
-                        fileSet.Add(ActPath);
-                    }
-                }
-                catch
-                {
-                    continue;
-                }
+                res.AddRange(source.LoadProgram(query));
             }
+            res.Distinct(new ResultComparer());
 
-            if(rl.Count > 0)
+            foreach(var obj in res)
             {
-                return rl;
+                obj.Action = x =>
+                {
+                    Process.Start(obj.SubTitle);
+                    context_.Api.HideAndClear();
+                    return true;
+                };
             }
-
-            return null;
+            return res;
         }
     }
 }
