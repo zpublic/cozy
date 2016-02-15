@@ -26,62 +26,32 @@ namespace CozyLauncher.Plugin.Program.ProgramSource
         private readonly string UserBasePath = Environment.GetFolderPath(Environment.SpecialFolder.Programs);
         private readonly string CommBasePath = GetPath();
 
-        public List<Result> LoadProgram(Query query)
+        public List<string> LoadProgram()
         {
-            var list = new List<Result>();
+            var list = new List<string>();
             if (Directory.Exists(UserBasePath))
             {
-                GetAppFromDirectory(UserBasePath, list, query, true);
+                GetAppFromDirectory(UserBasePath, list, true);
             }
             if (Directory.Exists(CommBasePath))
             {
-                GetAppFromDirectory(CommBasePath, list, query, true);
+                GetAppFromDirectory(CommBasePath, list, true);
             }
             return list;
         }
 
-        private void GetAppFromDirectory(string path, List<Result> list, Query query, bool isRoot)
+        private void GetAppFromDirectory(string path, List<string> list, bool isRoot)
         {
             try
             {
-                foreach (string file in Directory.GetFiles(path))
+                list.AddRange(Directory.GetFiles(path));
+                list.AddRange(Directory.GetDirectories(path));
+
+                if (isRoot)
                 {
-                    var filename = Path.GetFileNameWithoutExtension(file).ToLower();
-                    if (filename == query.RawQuery)
+                    foreach (var subDirectory in Directory.GetDirectories(path))
                     {
-                        var p = new Result()
-                        {
-                            IcoPath = "app",
-                            Title = filename,
-                            SubTitle = file,
-                            Score = 100,
-                        };
-
-                        list.Add(p);
-                    }
-                }
-
-                foreach (var subDirectory in Directory.GetDirectories(path))
-                {
-                    var fi = new DirectoryInfo(subDirectory);
-
-                    var pathname = fi.Name.ToLower();
-                    if (pathname == query.RawQuery)
-                    {
-                        var p = new Result()
-                        {
-                            IcoPath = "folder_open",
-                            Title = pathname,
-                            SubTitle = subDirectory,
-                            Score = 100,
-                        };
-
-                        list.Add(p);
-                    }
-
-                    if (isRoot)
-                    {
-                        GetAppFromDirectory(subDirectory, list, query, false);
+                        GetAppFromDirectory(subDirectory, list, false);
                     }
                 }
             }
@@ -89,5 +59,5 @@ namespace CozyLauncher.Plugin.Program.ProgramSource
             {
             }
         }
-    }
+}
 }

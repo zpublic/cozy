@@ -1,12 +1,12 @@
 ﻿using CozyLauncher.Plugin.Program.ProgramSource;
 using CozyLauncher.PluginBase;
-using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace CozyLauncher.Plugin.Program
 {
@@ -17,9 +17,9 @@ namespace CozyLauncher.Plugin.Program
 
         public PluginInfo Init(PluginInitContext context)
         {
-            var types = Assembly.GetExecutingAssembly().GetTypes().Where(x => 
+            var types = Assembly.GetExecutingAssembly().GetTypes().Where(x =>
             {
-                return x.Namespace == @"CozyLauncher.Plugin.Program.ProgramSource" && x.GetInterface("ISource") != null; 
+                return x.Namespace == @"CozyLauncher.Plugin.Program.ProgramSource" && x.GetInterface("ISource") != null;
             });
 
             foreach (var type in types)
@@ -45,36 +45,47 @@ namespace CozyLauncher.Plugin.Program
             return info;
         }
 
-        internal class ResultComparer : IEqualityComparer<Result>
-        {
-            public bool Equals(Result x, Result y)
-            {
-                return x.SubTitle.ToLower() == y.SubTitle.ToLower();
-            }
-
-            public int GetHashCode(Result obj)
-            {
-                return obj.GetHashCode();
-            }
-        }
-
         public List<Result> Query(Query query)
         {
-            var res = new List<Result>();
-            foreach(var source in SourceList)
+            var res = new List<string>();
+            foreach (var source in SourceList)
             {
-                res.AddRange(source.LoadProgram(query));
+                res.AddRange(source.LoadProgram());
             }
-            res.Distinct(new ResultComparer());
+            var dis = res.Select(x => x.ToLower()).Distinct();
 
-            foreach(var obj in res)
+            var r = new Regex(query.RawQuery);
+
+            return dis.Where(x => r.Match(x).Success).Select(x => CreateResult(x)).Distinct().ToList();
+        }
+
+        private Result CreateResult(string path)
+        {
+            var res = new Result()
             {
-                obj.Action = x =>
+                SubTitle = path,
+                Score = 100,
+                Action = x =>
                 {
-                    Process.Start(obj.SubTitle);
+                    Process.Start(path);
                     context_.Api.HideAndClear();
                     return true;
-                };
+                },
+            };
+
+            if (File.Exists(path))
+            {
+                res.Title = Path.GetFileNameWithoutExtension(path);
+                res.IcoPath = "app";
+            }
+            else if (Directory.Exists(path))
+            {
+                res.Title = new DirectoryInfo(path).Name;
+                res.IcoPath = "folder_open";
+            }
+            else
+            {
+                return null;
             }
             return res;
         }
