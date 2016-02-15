@@ -26,7 +26,8 @@ namespace CozyLauncher.Plugin.Guide
         {
             if (command == "guide")
             {
-                Process.Start("calc");
+                GuideWindow w = new GuideWindow();
+                w.Show();
             }
         }
     }

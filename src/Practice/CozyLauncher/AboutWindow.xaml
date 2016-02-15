@@ -12,9 +12,19 @@
     </Window.DataContext>
     <Grid>
         <StackPanel VerticalAlignment="Center">
-            <TextBlock TextAlignment="Center" Margin="15"><Hyperlink NavigateUri="http://cozy.laorouji.com/"><Run Text="CozyLauncher v0."/><Run Text="3"/></Hyperlink></TextBlock>
+            <TextBlock TextAlignment="Center" Margin="15">
+                <Hyperlink NavigateUri="http://cozy.laorouji.com/">
+                    <Run Text="CozyLauncher v0.4"/>
+                </Hyperlink>
+            </TextBlock>
             <TextBlock Text="最好用最有情怀的快速启动工具" TextAlignment="Center" Margin="15"></TextBlock>
-            <TextBlock TextAlignment="Center" Margin="15" Height="64"><Run Text="开发者："/><LineBreak/><Run Text="z"/><Run Text="apline"/><Run Text=" "/><Run Text="k"/><Run Text="ingwl"/><Run Text=" "/><Run Text="MaxTan"/><LineBreak/><Run Text="whuthj"/><Run Text=" wjcsharp"/></TextBlock>
+            <TextBlock TextAlignment="Center" Margin="15" Height="64">
+                <Run Text="开发者："/>
+                <LineBreak/>
+                <Run Text="zapline kingwl MaxTan"/>
+                <LineBreak/>
+                <Run Text="whuthj wjcsharp"/>
+            </TextBlock>
             <Button Content="确定" Margin="15" Command="{Binding OkCommand}"></Button>
         </StackPanel>
     </Grid>
