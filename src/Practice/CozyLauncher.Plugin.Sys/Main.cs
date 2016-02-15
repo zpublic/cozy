@@ -26,7 +26,7 @@ namespace CozyLauncher.Plugin.Sys
                 r.Title = "Hosts";
                 r.SubTitle = "open hosts file";
                 r.IcoPath = "sys";
-                r.Score = 70;
+                r.Score = 90;
                 r.Action = e =>
                 {
                     Process.Start("notepad", Environment.GetFolderPath(Environment.SpecialFolder.System) + "/drivers/etc/hosts");
