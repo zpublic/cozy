@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace CozyLauncher.Plugin.Program
 {
@@ -14,6 +13,8 @@ namespace CozyLauncher.Plugin.Program
     {
         private PluginInitContext context_;
         private List<ISource> SourceList { get; set; } = new List<ISource>();
+        private List<string> FileList { get; set; } = new List<string>();
+        private List<string> FolderList { get; set; } = new List<string>();
 
         public PluginInfo Init(PluginInitContext context)
         {
@@ -58,7 +59,7 @@ namespace CozyLauncher.Plugin.Program
             var matcher = FuzzyMatcher.Create(query.RawQuery);
             var ret =  dis.Where(x => 
             {
-                var name = Directory.Exists(x) ? new DirectoryInfo(x).Name : Path.GetFileNameWithoutExtension(x);
+                var name = Directory.Exists(x) ? new DirectoryInfo(x).Name : Path.GetFileName(x);
                 return matcher.Evaluate(name).Success;
             }).Select(x => CreateResult(x)).Distinct().ToList();
 
