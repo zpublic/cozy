@@ -36,7 +36,7 @@ namespace CozyLauncher.Plugin.Ip
                         r.Title = ip.ToString();
                         r.SubTitle = "Copy this number to the clipboard";
                         r.IcoPath = "sys";
-                        r.Score = 60;
+                        r.Score = 100;
                         r.Action = e =>
                         {
                             context_.Api.HideAndClear();

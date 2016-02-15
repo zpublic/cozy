@@ -83,10 +83,10 @@ namespace CozyLauncher.Plugin.Program
         {
             //a match found near the beginning of a string is scored more than a match found near the end
             //a match is scored more if the characters in the patterns are closer to each other, while the score is lower if they are more spread out
-            var score = 100 * (query.Length + 1) / ((1 + firstIndex) + (matchLen + 1));
+            var score = 80 * (query.Length + 1) / ((1 + firstIndex) + (matchLen + 1));
             //a match with less characters assigning more weights
             if (str.Length - query.Length < 5)
-                score = score + 20;
+                score = score + 19;
             else if (str.Length - query.Length < 10)
                 score = score + 10;
 

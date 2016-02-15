@@ -67,7 +67,13 @@ namespace CozyLauncher.Core.Plugin
                 if (e != null)
                     results.AddRange(e);
             }
+            results.Sort(CompareResult);
             api_?.PushResults(results);
+        }
+
+        private static int CompareResult(Result x, Result y)
+        {
+            return y.Score.CompareTo(x.Score);
         }
     }
 }
