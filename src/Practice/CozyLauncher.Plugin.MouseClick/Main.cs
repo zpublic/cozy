@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace CozyLauncher.Plugin.MouseClick
 {
-    public class Main : IPlugin
+    public class Main : BasePlugin
     {
         [System.Runtime.InteropServices.DllImport("user32")]
         private static extern int mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
@@ -20,7 +20,7 @@ namespace CozyLauncher.Plugin.MouseClick
 
         private PluginInitContext context_;
 
-        public PluginInfo Init(PluginInitContext context)
+        public override PluginInfo Init(PluginInitContext context)
         {
             context_ = context;
             var info = new PluginInfo();
@@ -28,7 +28,7 @@ namespace CozyLauncher.Plugin.MouseClick
             return info;
         }
 
-        public List<Result> Query(Query query)
+        public override List<Result> Query(Query query)
         {
             if (query.RawQuery.StartsWith("mouseclick "))
             {

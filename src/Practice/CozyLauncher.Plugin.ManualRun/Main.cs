@@ -4,13 +4,13 @@ using System.Diagnostics;
 
 namespace CozyLauncher.Plugin.ManualRun
 {
-    public class Main : IPlugin
+    public class Main : BasePlugin
     {
         private PluginInitContext context_;
         private Dictionary<string, ActionOpenDirctory> actions1_ = new Dictionary<string, ActionOpenDirctory>();
         private Dictionary<string, ActionOpenExe> actions2_ = new Dictionary<string, ActionOpenExe>();
 
-        public PluginInfo Init(PluginInitContext context)
+        public override PluginInfo Init(PluginInitContext context)
         {
             context_ = context;
             var info = new PluginInfo();
@@ -30,7 +30,7 @@ namespace CozyLauncher.Plugin.ManualRun
             return info;
         }
 
-        public List<Result> Query(Query query)
+        public override List<Result> Query(Query query)
         {
             ActionOpenDirctory acDir;
             if (actions1_.TryGetValue(query.RawQuery, out acDir))

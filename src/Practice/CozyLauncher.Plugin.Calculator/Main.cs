@@ -6,7 +6,7 @@ using YAMP;
 
 namespace CozyLauncher.Plugin.Calculator
 {
-    public class Main : IPlugin
+    public class Main : BasePlugin
     {
         private PluginInitContext context_;
         private static Regex regValidExpressChar = new Regex(
@@ -20,7 +20,7 @@ namespace CozyLauncher.Plugin.Calculator
         private static Regex regBrackets = new Regex(@"[\(\)\[\]]", RegexOptions.Compiled);
         private static ParseContext yampContext = null;
 
-        public PluginInfo Init(PluginInitContext context)
+        public override PluginInfo Init(PluginInitContext context)
         {
             context_ = context;
             yampContext = Parser.PrimaryContext;
@@ -31,7 +31,7 @@ namespace CozyLauncher.Plugin.Calculator
             return info;
         }
 
-        public List<Result> Query(Query query)
+        public override List<Result> Query(Query query)
         {
             if (query.RawQuery.Length <= 2          // don't affect when user only input "e" or "i" keyword
                 || !regValidExpressChar.IsMatch(query.RawQuery)

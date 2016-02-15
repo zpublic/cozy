@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using CozyLauncher.PluginBase;
 using System.Diagnostics;
 
 namespace CozyLauncher.Plugin.Core
 {
-    public class Main : IPlugin
+    public class Main : BasePlugin
     {
         private PluginInitContext _context { get; set; }
 
-        public PluginInfo Init(PluginInitContext context)
+        public override PluginInfo Init(PluginInitContext context)
         {
             _context = context;
             var info = new PluginInfo()
@@ -22,7 +18,7 @@ namespace CozyLauncher.Plugin.Core
             return info;
         }
 
-        public List<Result> Query(Query query)
+        public override List<Result> Query(Query query)
         {
             var rl = new List<Result>();
 

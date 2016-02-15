@@ -5,12 +5,12 @@ using System.Diagnostics;
 
 namespace CozyLauncher.Plugin.Dirctory
 {
-    public class Main : IPlugin
+    public class Main : BasePlugin
     {
         private PluginInitContext context_;
         private Dictionary<string, Environment.SpecialFolder> paths_ = new Dictionary<string, Environment.SpecialFolder>();
 
-        public PluginInfo Init(PluginInitContext context)
+        public override PluginInfo Init(PluginInitContext context)
         {
             context_ = context;
             InitPathList();
@@ -19,7 +19,7 @@ namespace CozyLauncher.Plugin.Dirctory
             return info;
         }
 
-        public List<Result> Query(Query query)
+        public override List<Result> Query(Query query)
         {
             Environment.SpecialFolder f;
             if (paths_.TryGetValue(query.RawQuery, out f))

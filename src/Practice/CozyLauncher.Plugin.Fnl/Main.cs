@@ -6,11 +6,11 @@ using System.Windows.Forms;
 
 namespace CozyLauncher.Plugin.Fnl
 {
-    public class Main : IPlugin
+    public class Main : BasePlugin
     {
         private PluginInitContext context_;
 
-        public PluginInfo Init(PluginInitContext context)
+        public override PluginInfo Init(PluginInitContext context)
         {
             context_ = context;
             var info = new PluginInfo();
@@ -18,7 +18,7 @@ namespace CozyLauncher.Plugin.Fnl
             return info;
         }
 
-        public List<Result> Query(Query query)
+        public override List<Result> Query(Query query)
         {
             if (query.RawQuery == "fnl")
             {

@@ -6,16 +6,15 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace CozyLauncher.Plugin.Program
 {
-    public class Main : IPlugin
+    public class Main : BasePlugin
     {
         private PluginInitContext context_;
         private List<ISource> SourceList { get; set; } = new List<ISource>();
 
-        public PluginInfo Init(PluginInitContext context)
+        public override PluginInfo Init(PluginInitContext context)
         {
             var types = Assembly.GetExecutingAssembly().GetTypes().Where(x =>
             {
@@ -45,7 +44,7 @@ namespace CozyLauncher.Plugin.Program
             return info;
         }
 
-        public List<Result> Query(Query query)
+        public override List<Result> Query(Query query)
         {
             var res = new List<string>();
             foreach (var source in SourceList)

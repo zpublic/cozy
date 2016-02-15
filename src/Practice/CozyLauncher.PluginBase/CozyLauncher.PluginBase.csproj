@@ -43,6 +43,7 @@
     <Compile Include="ActionContext.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="IPublicApi.cs" />
+    <Compile Include="BasePlugin.cs" />
     <Compile Include="PluginInfo.cs" />
     <Compile Include="PluginInitContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

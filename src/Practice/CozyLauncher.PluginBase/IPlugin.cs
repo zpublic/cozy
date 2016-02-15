@@ -6,5 +6,6 @@ namespace CozyLauncher.PluginBase
     {
         PluginInfo Init(PluginInitContext context);
         List<Result> Query(Query query);
+        void ShowPanel(string command);
     }
 }
