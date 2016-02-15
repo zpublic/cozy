@@ -93,6 +93,10 @@ namespace CozyLauncher
                 {
                     this.ViewModel.QueryCommand.Execute(text);
                 }
+                else
+                {
+                    this.ViewModel.Clear();
+                }
             }
         }
 
