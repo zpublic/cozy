@@ -52,11 +52,17 @@ namespace CozyLauncher.Plugin.Program
             {
                 res.AddRange(source.LoadProgram());
             }
-            var dis = res.Select(x => x.ToLower()).Distinct();
 
-            var r = new Regex(query.RawQuery);
+            var dis = res.Where(x => x.EndsWith(".exe") || x.EndsWith(".bat") || x.EndsWith(".lnk")).Select(x => x.ToLower()).Distinct();
 
-            return dis.Where(x => r.Match(x).Success).Select(x => CreateResult(x)).Distinct().ToList();
+            var matcher = FuzzyMatcher.Create(query.RawQuery);
+            var ret =  dis.Where(x => 
+            {
+                var name = Directory.Exists(x) ? new DirectoryInfo(x).Name : Path.GetFileNameWithoutExtension(x);
+                return matcher.Evaluate(name).Success;
+            }).Select(x => CreateResult(x)).Distinct().ToList();
+
+            return ret;
         }
 
         private Result CreateResult(string path)
@@ -73,20 +79,17 @@ namespace CozyLauncher.Plugin.Program
                 },
             };
 
-            if (File.Exists(path))
-            {
-                res.Title = Path.GetFileNameWithoutExtension(path);
-                res.IcoPath = "app";
-            }
-            else if (Directory.Exists(path))
+            if(Directory.Exists(path))
             {
                 res.Title = new DirectoryInfo(path).Name;
                 res.IcoPath = "folder_open";
             }
             else
             {
-                return null;
+                res.Title = Path.GetFileNameWithoutExtension(path);
+                res.IcoPath = "app";
             }
+            
             return res;
         }
     }
