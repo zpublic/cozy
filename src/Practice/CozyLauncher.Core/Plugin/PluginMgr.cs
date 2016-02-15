@@ -36,6 +36,7 @@ namespace CozyLauncher.Core.Plugin
                 "CozyLauncher.Plugin.MouseClick.dll",
                 "CozyLauncher.Plugin.Ip.dll",
                 "CozyLauncher.Plugin.Qrcode.dll",
+                "CozyLauncher.Plugin.Fnl.dll",
             };
 
             foreach (var p in PluginFilleList)

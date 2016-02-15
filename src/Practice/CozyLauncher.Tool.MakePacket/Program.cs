@@ -83,7 +83,8 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Plugin.Calculator.dll",
                 "CozyLauncher.Plugin.MouseClick.dll",
                 "CozyLauncher.Plugin.Ip.dll",
-                "CozyLauncher.Plugin.Qrcode.dll"
+                "CozyLauncher.Plugin.Qrcode.dll",
+                "CozyLauncher.Plugin.Fnl.dll",
             };
             Directory.CreateDirectory("./cozy_launcher");
             foreach (var f in filelist)
