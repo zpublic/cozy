@@ -38,7 +38,6 @@ namespace CozyLauncher.Plugin.Program.ProgramSource
                 GetAppFromDirectory(CommBasePath, list, query, true);
             }
             return list;
-
         }
 
         private void GetAppFromDirectory(string path, List<Result> list, Query query, bool isRoot)
@@ -47,7 +46,7 @@ namespace CozyLauncher.Plugin.Program.ProgramSource
             {
                 foreach (string file in Directory.GetFiles(path))
                 {
-                    var filename = Path.GetFileNameWithoutExtension(file);
+                    var filename = Path.GetFileNameWithoutExtension(file).ToLower();
                     if (filename == query.RawQuery)
                     {
                         var p = new Result()
@@ -62,9 +61,25 @@ namespace CozyLauncher.Plugin.Program.ProgramSource
                     }
                 }
 
-                if(isRoot)
+                foreach (var subDirectory in Directory.GetDirectories(path))
                 {
-                    foreach (var subDirectory in Directory.GetDirectories(path))
+                    var fi = new DirectoryInfo(subDirectory);
+
+                    var pathname = fi.Name.ToLower();
+                    if (pathname == query.RawQuery)
+                    {
+                        var p = new Result()
+                        {
+                            IcoPath = "folder_open",
+                            Title = pathname,
+                            SubTitle = subDirectory,
+                            Score = 100,
+                        };
+
+                        list.Add(p);
+                    }
+
+                    if (isRoot)
                     {
                         GetAppFromDirectory(subDirectory, list, query, false);
                     }
