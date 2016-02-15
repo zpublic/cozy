@@ -53,7 +53,8 @@ namespace CozyLauncher.Plugin.Core
                     Score       = 100,
                     Action = e  =>
                     {
-                        _context.Api.Config();
+                        _context.Api.HideAndClear();
+                        _context.Api.ShowPanel("config");
                         return true;
                     }
                 };
@@ -70,14 +71,34 @@ namespace CozyLauncher.Plugin.Core
                     Score       = 100,
                     Action      = e =>
                     {
-                        _context.Api.About();
+                        _context.Api.HideAndClear();
+                        _context.Api.ShowPanel("about");
+                        _context.Api.Clear();
                         return true;
                     }
                 };
 
                 rl.Add(r);
             }
+            else if(query.RawQuery == "help")
+            {
+                var r = new Result()
+                {
+                    Title = "Help",
+                    SubTitle = "帮助",
+                    IcoPath = "help",
+                    Score = 100,
+                    Action = e =>
+                    {
+                        _context.Api.HideAndClear();
+                        _context.Api.ShowPanel("help");
+                        _context.Api.Clear();
+                        return true;
+                    }
+                };
 
+                rl.Add(r);
+            }
             else if(query.RawQuery == "cozy")
             {
                 var r = new Result()
@@ -89,6 +110,25 @@ namespace CozyLauncher.Plugin.Core
                     Action = e =>
                     {
                         Process.Start(@"http://cozy.laorouji.com");
+                        _context.Api.HideAndClear();
+                        return true;
+                    }
+                };
+
+                rl.Add(r);
+            }
+            else if(query.RawQuery == "update")
+            {
+                var r = new Result()
+                {
+                    Title = "Update",
+                    SubTitle = "更新",
+                    IcoPath = "",
+                    Score = 100,
+                    Action = e =>
+                    {
+                        _context.Api.HideAndClear();
+                        _context.Api.Update();
                         return true;
                     }
                 };

@@ -40,7 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FuzzyMatcher.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="ProgramSource\AppPathsSource.cs" />
+    <Compile Include="ProgramSource\StartMenuSource.cs" />
+    <Compile Include="ProgramSource\ISource.cs" />
+    <Compile Include="ProgramSource\PathSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

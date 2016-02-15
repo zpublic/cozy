@@ -62,6 +62,10 @@
       <Project>{ebf482fc-3e9e-4ab9-bfbe-caf500964f33}</Project>
       <Name>CozyLauncher.Plugin.Dirctory</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.Ip\CozyLauncher.Plugin.Ip.csproj">
+      <Project>{6f153c9d-84b4-4c54-a7c8-e75c2c0da0f2}</Project>
+      <Name>CozyLauncher.Plugin.Ip</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.Plugin.ManualRun\CozyLauncher.Plugin.ManualRun.csproj">
       <Project>{728f9dbe-8312-47a8-b713-a911571a5dd8}</Project>
       <Name>CozyLauncher.Plugin.ManualRun</Name>
@@ -74,6 +78,10 @@
       <Project>{27b8819d-01ea-47a1-8cd9-75ba99ba08cb}</Project>
       <Name>CozyLauncher.Plugin.Program</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.Qrcode\CozyLauncher.Plugin.Qrcode.csproj">
+      <Project>{eab1cd23-bba3-414f-8810-b04415e9c9bd}</Project>
+      <Name>CozyLauncher.Plugin.Qrcode</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.Plugin.Sys\CozyLauncher.Plugin.Sys.csproj">
       <Project>{5d3aa1b8-dbc5-44f1-b9f4-44a4ea651df8}</Project>
       <Name>CozyLauncher.Plugin.Sys</Name>
@@ -81,6 +89,10 @@
     <ProjectReference Include="..\CozyLauncher.Plugin.WebSearch\CozyLauncher.Plugin.WebSearch.csproj">
       <Project>{7bddd754-0ca2-4772-b25d-cf4998146fa4}</Project>
       <Name>CozyLauncher.Plugin.WebSearch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Tool.Update\CozyLauncher.Tool.Update.csproj">
+      <Project>{03126f33-4289-4b37-9e51-2c36e298aa0a}</Project>
+      <Name>CozyLauncher.Tool.Update</Name>
     </ProjectReference>
     <ProjectReference Include="..\CozyLauncher\CozyLauncher.csproj">
       <Project>{36c16b10-d17d-4a58-bd46-0f938da82cc8}</Project>

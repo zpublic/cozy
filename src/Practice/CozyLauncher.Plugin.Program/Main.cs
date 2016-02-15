@@ -1,17 +1,44 @@
-﻿using CozyLauncher.PluginBase;
+﻿using CozyLauncher.Plugin.Program.ProgramSource;
+using CozyLauncher.PluginBase;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace CozyLauncher.Plugin.Program
 {
     public class Main : IPlugin
     {
         private PluginInitContext context_;
+        private List<ISource> SourceList { get; set; } = new List<ISource>();
 
         public PluginInfo Init(PluginInitContext context)
         {
+            var types = Assembly.GetExecutingAssembly().GetTypes().Where(x =>
+            {
+                return x.Namespace == @"CozyLauncher.Plugin.Program.ProgramSource" && x.GetInterface("ISource") != null;
+            });
+
+            foreach (var type in types)
+            {
+                ISource inst = null;
+                try
+                {
+                    inst = (ISource)Activator.CreateInstance(type);
+                }
+                catch
+                {
+                    continue;
+                }
+                if (inst != null)
+                {
+                    SourceList.Add(inst);
+                }
+            }
+
             context_ = context;
             var info = new PluginInfo();
             info.Keyword = "*";
@@ -20,46 +47,50 @@ namespace CozyLauncher.Plugin.Program
 
         public List<Result> Query(Query query)
         {
-            var rl      = new List<Result>();
-            var fileSet = new HashSet<string>();
-            var EnvVar  = Environment.GetEnvironmentVariable("Path").Split(';');
-
-            foreach (var path in EnvVar)
+            var res = new List<string>();
+            foreach (var source in SourceList)
             {
-                try
-                {
-                    var ActPath = Path.Combine(path, query.RawQuery + ".exe").ToLower();
-                    if (!fileSet.Contains(ActPath) && File.Exists(ActPath))
-                    {
-                        var r = new Result()
-                        {
-                            Title = query.RawQuery,
-                            SubTitle = ActPath,
-                            IcoPath = "app",
-                            Score = 100,
-                            Action = e =>
-                           {
-                               context_.Api.HideApp();
-                               Process.Start(ActPath);
-                               return true;
-                           },
-                        };
-                        rl.Add(r);
-                        fileSet.Add(ActPath);
-                    }
-                }
-                catch
-                {
-                    continue;
-                }
+                res.AddRange(source.LoadProgram());
             }
 
-            if(rl.Count > 0)
-            {
-                return rl;
-            }
+            var dis = res.Where(x => x.EndsWith(".exe") || x.EndsWith(".bat") || x.EndsWith(".lnk")).Select(x => x.ToLower()).Distinct();
 
-            return null;
+            var matcher = FuzzyMatcher.Create(query.RawQuery);
+            var ret =  dis.Where(x => 
+            {
+                var name = Directory.Exists(x) ? new DirectoryInfo(x).Name : Path.GetFileNameWithoutExtension(x);
+                return matcher.Evaluate(name).Success;
+            }).Select(x => CreateResult(x)).Distinct().ToList();
+
+            return ret;
+        }
+
+        private Result CreateResult(string path)
+        {
+            var res = new Result()
+            {
+                SubTitle = path,
+                Score = 100,
+                Action = x =>
+                {
+                    Process.Start(path);
+                    context_.Api.HideAndClear();
+                    return true;
+                },
+            };
+
+            if(Directory.Exists(path))
+            {
+                res.Title = new DirectoryInfo(path).Name;
+                res.IcoPath = "folder_open";
+            }
+            else
+            {
+                res.Title = Path.GetFileNameWithoutExtension(path);
+                res.IcoPath = "app";
+            }
+            
+            return res;
         }
     }
 }

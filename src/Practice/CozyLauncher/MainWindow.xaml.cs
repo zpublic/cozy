@@ -1,26 +1,12 @@
-﻿using CozyLauncher.Core.Plugin;
-using CozyLauncher.PluginBase;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.ComponentModel;
 using CozyLauncher.Infrastructure.Hotkey;
-using System.Reflection;
-using System.Resources;
-using System.Drawing;
-using System.IO.Pipes;
-using System.IO;
+using CozyLauncher.Infrastructure.ProcessMutex;
+using CozyLauncher.Infrastructure.IPC;
 
 namespace CozyLauncher
 {
@@ -33,24 +19,37 @@ namespace CozyLauncher
 
         public MainWindow()
         {
-            InitializeComponent();
-
-            InitCloseServer();
-
-            InitialTray();
-
-            try
+            if (ProcessMutexMgr.Instance.CheckExist("CozyLauncher.Main"))
             {
-                GlobalHotkey.Instance.Load();
+                MessageBox.Show("多个程序实例正在运行");
+                CloseApp();
             }
-            catch(Exception)
+            else
             {
-                MessageBox.Show("热键冲突 注册失败");
+                InitializeComponent();
+
+                InitCloseServer();
+
+                InitialTray();
+
+                GlobalHotkey.Instance.Init();
+                GlobalHotkey.Instance.ReplaceWindowRAction = new Action(ShowApp);
+
+                try
+                {
+                    GlobalHotkey.Instance.Load();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("热键冲突 注册失败");
+                }
+
+                this.ViewModel.PropertyChanged += OnViewModelPropertyChanged;
+
+                this.QueryTextBox.Focus();
+
+                this.ViewModel.Update();
             }
-
-            this.ViewModel.PropertyChanged += OnViewModelPropertyChanged;
-
-            this.QueryTextBox.Focus();
         }
 
         private void OnWindowMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -94,6 +93,10 @@ namespace CozyLauncher
                 {
                     this.ViewModel.QueryCommand.Execute(text);
                 }
+                else
+                {
+                    this.ViewModel.Clear();
+                }
             }
         }
 
@@ -111,11 +114,15 @@ namespace CozyLauncher
             {
                 ShowApp();
             }
-            else if(e.PropertyName == "SystemCommand.ShowConfig")
+            else if (e.PropertyName == "SystemCommand.ShowConfig")
             {
                 ShowConfig();
             }
-            else if(e.PropertyName == "SystemCommand.About")
+            else if(e.PropertyName == "SystemCommand.Help")
+            {
+                Help();
+            }
+            else if (e.PropertyName == "SystemCommand.About")
             {
                 About();
             }
@@ -135,8 +142,14 @@ namespace CozyLauncher
             Show();
         }
 
+        private bool IsNeedToClose { get; set; } = true;
         public void CloseApp()
         {
+            if(IsNeedToClose)
+            {
+                PipeIPCServer.TryCloseServer("CozyLauncher.CloseAppPipe");
+            }
+
             Application.Current.Shutdown();
         }
 
@@ -162,6 +175,12 @@ namespace CozyLauncher
             about.ShowDialog();
         }
 
+        public void Help()
+        {
+            var help = new HelpWindow();
+            help.ShowDialog();
+        }
+
         public void ClearEditBox()
         {
             QueryTextBox.Clear();
@@ -169,7 +188,7 @@ namespace CozyLauncher
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            GlobalHotkey.Instance.UnregistAllHotkey();
+            GlobalHotkey.Instance.Release();
         }
 
         private void InitialTray()
@@ -180,11 +199,41 @@ namespace CozyLauncher
             notifyIcon.Icon = CozyLauncher.Resource.AppTray;
             notifyIcon.Visible = true;
 
+            notifyIcon.Click += NotifyIcon_Click;
+
+            InitialTrayMenu();
+        }
+
+        private void InitialTrayMenu()
+        {
+            if (null == notifyIcon)
+            {
+                return;
+            }
+
+            System.Windows.Forms.MenuItem about = new System.Windows.Forms.MenuItem("关于");
+            about.Click += About_Click;
+
             System.Windows.Forms.MenuItem exit = new System.Windows.Forms.MenuItem("退出");
             exit.Click += Exit_Click;
 
-            System.Windows.Forms.MenuItem[] childen = new System.Windows.Forms.MenuItem[] { exit };
+            System.Windows.Forms.MenuItem[] childen = new System.Windows.Forms.MenuItem[] { about, exit };
             notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(childen);
+        }
+
+        private void NotifyIcon_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.MouseEventArgs mouse_e = (System.Windows.Forms.MouseEventArgs)e;
+
+            if (mouse_e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                ShowWox();
+            }
+        }
+
+        private void About_Click(object sender, EventArgs e)
+        {
+            About();
         }
 
         private void Exit_Click(object sender, EventArgs e)
@@ -197,28 +246,21 @@ namespace CozyLauncher
         {
             Task.Factory.StartNew(()=> 
             {
-                using (var nps = new NamedPipeServerStream("CozyLauncher.CloseAppPipe"))
+                using (var nps = new PipeIPCServer("CozyLauncher.CloseAppPipe"))
                 {
-                    nps.WaitForConnection();
-
-                    try
+                    nps.Callback = (s) =>
                     {
-                        using (var sr = new StreamReader(nps))
+                        if (s == "SystemCommand.CloseApp")
                         {
-                            var res = sr.ReadToEnd();
-                            if(res == "SystemCommand.CloseApp")
+                            IsNeedToClose = false;
+                            Dispatcher.Invoke(() =>
                             {
-                                Dispatcher.Invoke(() => 
-                                {
-                                    CloseApp();
-                                });
-                            }
+                                CloseApp();
+                            });
                         }
-                    }
-                    catch(IOException)
-                    {
+                    };
 
-                    }
+                    nps.Wait();
                 }
             });
         }

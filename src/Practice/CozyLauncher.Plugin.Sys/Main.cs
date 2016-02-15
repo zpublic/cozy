@@ -29,8 +29,8 @@ namespace CozyLauncher.Plugin.Sys
                 r.Score = 70;
                 r.Action = e =>
                 {
-                    context_.Api.HideApp();
                     Process.Start("notepad", Environment.GetFolderPath(Environment.SpecialFolder.System) + "/drivers/etc/hosts");
+                    context_.Api.HideAndClear();
                     return true;
                 };
                 rl.Add(r);

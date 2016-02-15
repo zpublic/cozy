@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Width="450" SizeToContent="Height" WindowStyle="None" Topmost="True"
         WindowStartupLocation="CenterScreen" Background="#1E1C20" ResizeMode="NoResize" 
-        MouseLeftButtonDown="OnWindowMouseLeftButtonDown" KeyUp="OnQueryKeyUp" Closed="Window_Closed">
+        MouseLeftButtonDown="OnWindowMouseLeftButtonDown" KeyUp="OnQueryKeyUp" Closed="Window_Closed" BorderBrush="#B81D7F" BorderThickness="3">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
     </Window.DataContext>

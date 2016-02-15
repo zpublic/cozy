@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
 using CozyLauncher.PluginBase;
 using CozyLauncher.Commands;
 using System.Windows.Input;
 using CozyLauncher.Core.Plugin;
 using CozyLauncher.Ext;
 using CozyLauncher.Infrastructure.Hotkey;
-using System.IO;
+using CozyLauncher.Infrastructure;
+using System.Diagnostics;
 
 namespace CozyLauncher.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel, IPublicApi
     {
+        #region Property
+
         private PluginMgr pm = new PluginMgr();
 
         public ExtObservableCollection<Result> ResultListView { get; set; } = new ExtObservableCollection<Result>();
@@ -40,6 +39,10 @@ namespace CozyLauncher.ViewModels
             get { return _SelectedResultIndex; }
             set { this.Set(ref _SelectedResultIndex, value); }
         }
+
+        #endregion
+
+        #region Commands
 
         private ICommand _QueryCommand;
         public ICommand QueryCommand
@@ -120,25 +123,29 @@ namespace CozyLauncher.ViewModels
         {
             get
             {
-                return _ShowCommand = _ShowCommand ?? new DelegateCommand(x => 
+                return _ShowCommand = _ShowCommand ?? new DelegateCommand(x =>
                 {
                     ShowApp();
                 });
             }
         }
 
+        #endregion
+
         public MainWindowViewModel()
         {
             pm.Init(this);
 
-            GlobalHotkey.Instance.RegistHotkeyAction("HotKey.ShowApp", ()=> 
+            GlobalHotkey.Instance.RegistHotkeyAction("HotKey.ShowApp", () =>
             {
-                if(ShowCommand.CanExecute(null))
+                if (ShowCommand.CanExecute(null))
                 {
                     ShowCommand.Execute(null);
                 }
             });
         }
+
+        #region IPublicApi Impl
 
         public void CloseApp()
         {
@@ -167,14 +174,16 @@ namespace CozyLauncher.ViewModels
             this.OnPropertyChanged("SystemCommand.ShowApp");
         }
 
-        public void Config()
+        public void Update()
         {
-            this.OnPropertyChanged("SystemCommand.ShowConfig");
-        }
+            try
+            {
+                Process.Start(PathTransform.LocalFullPath(@"update/CozyLauncher.Tool.Update.exe"));
+            }
+            catch (Exception)
+            {
 
-        public void About()
-        {
-            this.OnPropertyChanged("SystemCommand.About");
+            }
         }
 
         public void PushResults(List<Result> results)
@@ -197,5 +206,23 @@ namespace CozyLauncher.ViewModels
                 IsResultViewVisiable = false;
             }
         }
+
+        public void ShowPanel(string command)
+        {
+            if (command == "config")
+            {
+                this.OnPropertyChanged("SystemCommand.ShowConfig");
+            }
+            else if (command == "about")
+            {
+                this.OnPropertyChanged("SystemCommand.About");
+            }
+            else if(command == "help")
+            {
+                this.OnPropertyChanged("SystemCommand.Help");
+            }
+        }
+
+        #endregion
     }
 }

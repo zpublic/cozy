@@ -33,8 +33,9 @@ namespace CozyLauncher.Plugin.Dirctory
                 r.Score = 50;
                 r.Action = e =>
                 {
-                    context_.Api.HideApp();
                     Process.Start("explorer.exe", path);
+                    context_.Api.HideAndClear();
+
                     return true;
                 };
                 rl.Add(r);

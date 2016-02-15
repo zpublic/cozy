@@ -39,6 +39,7 @@ namespace CozyLauncher.Converters
                         resKey = IconRes.settingDrawingImageKey;
                         break;
                     default:
+                        resKey = IconRes.defaultDrawingImageKey;
                         break;
                 }
                 if(resKey != null)

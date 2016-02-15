@@ -78,29 +78,29 @@ namespace CozyLauncher
         {
             get { return baiduDrawingImageKeyCompResKey; }
         }
-        private static readonly ComponentResourceKey appKeyGeometryKeyCompResKey = MakeKey("IconRes.appKeyGeometryKey");
+        private static readonly ComponentResourceKey defaultKeyGeometryKeyCompResKey = MakeKey("IconRes.defaultKeyGeometryKey");
 
-        public static ResourceKey appKeyGeometryKey
+        public static ResourceKey defaultKeyGeometryKey
         {
-            get { return appKeyGeometryKeyCompResKey; }
+            get { return defaultKeyGeometryKeyCompResKey; }
         }
-        private static readonly ComponentResourceKey appKeyColorBrushKeyCompResKey = MakeKey("IconRes.appKeyColorBrushKey");
+        private static readonly ComponentResourceKey defaultKeyColorBrushKeyCompResKey = MakeKey("IconRes.defaultKeyColorBrushKey");
 
-        public static ResourceKey appKeyColorBrushKey
+        public static ResourceKey defaultKeyColorBrushKey
         {
-            get { return appKeyColorBrushKeyCompResKey; }
+            get { return defaultKeyColorBrushKeyCompResKey; }
         }
-        private static readonly ComponentResourceKey appDrawingGroupKeyCompResKey = MakeKey("IconRes.appDrawingGroupKey");
+        private static readonly ComponentResourceKey defaultDrawingGroupKeyCompResKey = MakeKey("IconRes.defaultDrawingGroupKey");
 
-        public static ResourceKey appDrawingGroupKey
+        public static ResourceKey defaultDrawingGroupKey
         {
-            get { return appDrawingGroupKeyCompResKey; }
+            get { return defaultDrawingGroupKeyCompResKey; }
         }
-        private static readonly ComponentResourceKey appDrawingImageKeyCompResKey = MakeKey("IconRes.appDrawingImageKey");
+        private static readonly ComponentResourceKey defaultDrawingImageKeyCompResKey = MakeKey("IconRes.defaultDrawingImageKey");
 
-        public static ResourceKey appDrawingImageKey
+        public static ResourceKey defaultDrawingImageKey
         {
-            get { return appDrawingImageKeyCompResKey; }
+            get { return defaultDrawingImageKeyCompResKey; }
         }
         private static readonly ComponentResourceKey helpKeyGeometryKeyCompResKey = MakeKey("IconRes.helpKeyGeometryKey");
 
@@ -173,6 +173,30 @@ namespace CozyLauncher
         public static ResourceKey exitDrawingImageKey
         {
             get { return exitDrawingImageKeyCompResKey; }
+        }
+        private static readonly ComponentResourceKey appKeyGeometryKeyCompResKey = MakeKey("IconRes.appKeyGeometryKey");
+
+        public static ResourceKey appKeyGeometryKey
+        {
+            get { return appKeyGeometryKeyCompResKey; }
+        }
+        private static readonly ComponentResourceKey appKeyColorBrushKeyCompResKey = MakeKey("IconRes.appKeyColorBrushKey");
+
+        public static ResourceKey appKeyColorBrushKey
+        {
+            get { return appKeyColorBrushKeyCompResKey; }
+        }
+        private static readonly ComponentResourceKey appDrawingGroupKeyCompResKey = MakeKey("IconRes.appDrawingGroupKey");
+
+        public static ResourceKey appDrawingGroupKey
+        {
+            get { return appDrawingGroupKeyCompResKey; }
+        }
+        private static readonly ComponentResourceKey appDrawingImageKeyCompResKey = MakeKey("IconRes.appDrawingImageKey");
+
+        public static ResourceKey appDrawingImageKey
+        {
+            get { return appDrawingImageKeyCompResKey; }
         }
         private static readonly ComponentResourceKey folder_openKeyGeometryKeyCompResKey = MakeKey("IconRes.folder_openKeyGeometryKey");
 
