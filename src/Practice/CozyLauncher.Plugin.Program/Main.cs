@@ -13,6 +13,8 @@ namespace CozyLauncher.Plugin.Program
     {
         private PluginInitContext context_;
         private List<ISource> SourceList { get; set; } = new List<ISource>();
+        private List<string> FileList { get; set; } = new List<string>();
+        private List<string> FolderList { get; set; } = new List<string>();
 
         public override PluginInfo Init(PluginInitContext context)
         {
@@ -38,30 +40,36 @@ namespace CozyLauncher.Plugin.Program
                 }
             }
 
+            Update();
+
             context_ = context;
             var info = new PluginInfo();
             info.Keyword = "*";
             return info;
         }
 
+        private List<string> FileCache { get; set; } = new List<string>();
+
         public override List<Result> Query(Query query)
         {
-            var res = new List<string>();
-            foreach (var source in SourceList)
-            {
-                res.AddRange(source.LoadProgram());
-            }
-
-            var dis = res.Where(x => x.EndsWith(".exe") || x.EndsWith(".bat") || x.EndsWith(".lnk")).Select(x => x.ToLower()).Distinct();
-
             var matcher = FuzzyMatcher.Create(query.RawQuery);
-            var ret =  dis.Where(x => 
+
+            var ret = FileCache.Where(x => 
             {
-                var name = Directory.Exists(x) ? new DirectoryInfo(x).Name : Path.GetFileNameWithoutExtension(x);
-                return matcher.Evaluate(name).Success;
-            }).Select(x => CreateResult(x)).Distinct().ToList();
+                return matcher.Evaluate(Path.GetFileName(x)).Success;
+            }).Select(x => CreateResult(x)).ToList();
 
             return ret;
+        }
+
+        private void Update()
+        {
+            foreach (var source in SourceList)
+            {
+                FileCache.AddRange(source.LoadProgram());
+            }
+
+            FileCache = FileCache.Where(x => x.EndsWith(".exe") || x.EndsWith(".bat") || x.EndsWith(".lnk")).Select(x => x.ToLower()).Distinct().ToList();
         }
 
         private Result CreateResult(string path)
@@ -76,18 +84,9 @@ namespace CozyLauncher.Plugin.Program
                     context_.Api.HideAndClear();
                     return true;
                 },
+                Title = Path.GetFileNameWithoutExtension(path),
+                IcoPath = "app",
             };
-
-            if(Directory.Exists(path))
-            {
-                res.Title = new DirectoryInfo(path).Name;
-                res.IcoPath = "folder_open";
-            }
-            else
-            {
-                res.Title = Path.GetFileNameWithoutExtension(path);
-                res.IcoPath = "app";
-            }
             
             return res;
         }
