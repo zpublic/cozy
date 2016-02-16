@@ -30,8 +30,12 @@ namespace CozyLauncher.Plugin.WebSearch
                 r.Score = 70;
                 r.Action = e =>
                 {
-                    Process.Start("https://www.google.com/?gws_rd=ssl#q=" + s);
                     context_.Api.HideAndClear();
+                    try
+                    {
+                        Process.Start("https://www.google.com/?gws_rd=ssl#q=" + s);
+                    }
+                    catch (Exception) { }
                     return true;
                 };
                 var r2 = new Result();
@@ -41,8 +45,12 @@ namespace CozyLauncher.Plugin.WebSearch
                 r2.Score = 69;
                 r2.Action = e =>
                 {
-                    Process.Start("https://www.baidu.com/s?wd=" + s);
                     context_.Api.HideAndClear();
+                    try
+                    {
+                        Process.Start("https://www.baidu.com/s?wd=" + s);
+                    }
+                    catch (Exception) { }
                     return true;
                 };
                 rl.Add(r);
