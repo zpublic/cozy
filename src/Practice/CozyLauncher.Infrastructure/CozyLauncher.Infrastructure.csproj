@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileMd5.cs" />
+    <Compile Include="FuzzyMatcher.cs" />
     <Compile Include="Hotkey\GlobalHotkey.cs" />
     <Compile Include="Hotkey\HotkeyModel.cs" />
     <Compile Include="Hotkey\HotkeyRegister.cs" />
@@ -69,6 +70,8 @@
     <Compile Include="ProcessMutex\ProcessMutexMgr.cs" />
     <Compile Include="PathTransform.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unidecoder.Characters.cs" />
+    <Compile Include="Unidecoder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

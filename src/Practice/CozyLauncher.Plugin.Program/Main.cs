@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Linq;
+using CozyLauncher.Infrastructure;
 
 namespace CozyLauncher.Plugin.Program
 {
@@ -54,11 +55,21 @@ namespace CozyLauncher.Plugin.Program
         {
             var matcher = FuzzyMatcher.Create(query.RawQuery);
 
-            var ret = FileCache.Where(x => 
+            var ret = new List<Result>();
+            foreach(var file in FileCache)
             {
-                return matcher.Evaluate(Path.GetFileName(x)).Success;
-            }).Select(x => CreateResult(x)).ToList();
-
+                var fn = Path.GetFileName(file);
+                var ans = matcher.Evaluate(fn);
+                if (ans.Success)
+                {
+                    ret.Add(CreateResult(file, ans.Score));
+                }
+                var pyans = matcher.EvaluatePinYin(fn);
+                if (pyans.Success)
+                {
+                    ret.Add(CreateResult(file, pyans.Score));
+                }
+            }
             return ret;
         }
 
@@ -72,12 +83,12 @@ namespace CozyLauncher.Plugin.Program
             FileCache = FileCache.Where(x => x.EndsWith(".exe") || x.EndsWith(".bat") || x.EndsWith(".lnk")).Select(x => x.ToLower()).Distinct().ToList();
         }
 
-        private Result CreateResult(string path)
+        private Result CreateResult(string path, int source)
         {
             var res = new Result()
             {
                 SubTitle = path,
-                Score = 50,
+                Score = source,
                 Action = x =>
                 {
                     Process.Start(path);
