@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyLauncher.Plugin.Program
+namespace CozyLauncher.Infrastructure
 {
     public class FuzzyMatcher
     {
@@ -25,6 +25,11 @@ namespace CozyLauncher.Plugin.Program
         public static FuzzyMatcher Create(string query, MatchOption opt)
         {
             return new FuzzyMatcher(query, opt);
+        }
+
+        public MatchResult EvaluatePinYin(string str)
+        {
+            return Evaluate(str.Unidecode());
         }
 
         public MatchResult Evaluate(string str)
