@@ -31,33 +31,30 @@ namespace CozyLauncher.Plugin.Program.ProgramSource
             var list = new List<string>();
             if (Directory.Exists(UserBasePath))
             {
-                GetAppFromDirectory(UserBasePath, list, true);
+                GetAppFromDirectory(UserBasePath, list);
             }
             if (Directory.Exists(CommBasePath))
             {
-                GetAppFromDirectory(CommBasePath, list, true);
+                GetAppFromDirectory(CommBasePath, list);
             }
             return list;
         }
 
-        private void GetAppFromDirectory(string path, List<string> list, bool isRoot)
+        private void GetAppFromDirectory(string path, List<string> list, int deep = 3)
         {
+            if (deep == 0) return;
             try
             {
                 list.AddRange(Directory.GetFiles(path));
-                list.AddRange(Directory.GetDirectories(path));
 
-                if (isRoot)
+                foreach (var subDirectory in Directory.GetDirectories(path))
                 {
-                    foreach (var subDirectory in Directory.GetDirectories(path))
-                    {
-                        GetAppFromDirectory(subDirectory, list, false);
-                    }
+                    GetAppFromDirectory(subDirectory, list, deep - 1);
                 }
             }
             catch (Exception)
             {
             }
         }
-}
+    }
 }

@@ -5,11 +5,11 @@ using System.Diagnostics;
 
 namespace CozyLauncher.Plugin.WebSearch
 {
-    public class Main : IPlugin
+    public class Main : BasePlugin
     {
         private PluginInitContext context_;
 
-        public PluginInfo Init(PluginInitContext context)
+        public override PluginInfo Init(PluginInitContext context)
         {
             context_ = context;
             var info = new PluginInfo();
@@ -17,7 +17,7 @@ namespace CozyLauncher.Plugin.WebSearch
             return info;
         }
 
-        public List<Result> Query(Query query)
+        public override List<Result> Query(Query query)
         {
             if (query.RawQuery.StartsWith("g "))
             {

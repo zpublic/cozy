@@ -221,6 +221,7 @@ namespace CozyLauncher.ViewModels
             {
                 this.OnPropertyChanged("SystemCommand.Help");
             }
+            pm.ShowPanel(command);
         }
 
         #endregion

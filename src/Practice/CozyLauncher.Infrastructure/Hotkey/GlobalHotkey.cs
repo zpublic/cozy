@@ -236,7 +236,8 @@ namespace CozyLauncher.Infrastructure.Hotkey
             else
             {
                 RegistHotkey("HotKey.ShowApp", new HotkeyModel("Ctrl+Alt+Space"));
-                ReplaceWindowR = false;
+                ReplaceWindowR = true;
+
                 Save();
             }
         }

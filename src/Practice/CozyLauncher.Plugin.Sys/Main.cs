@@ -5,11 +5,11 @@ using System.Diagnostics;
 
 namespace CozyLauncher.Plugin.Sys
 {
-    public class Main : IPlugin
+    public class Main : BasePlugin
     {
         private PluginInitContext context_;
 
-        public PluginInfo Init(PluginInitContext context)
+        public override PluginInfo Init(PluginInitContext context)
         {
             context_ = context;
             var info = new PluginInfo();
@@ -17,7 +17,7 @@ namespace CozyLauncher.Plugin.Sys
             return info;
         }
 
-        public List<Result> Query(Query query)
+        public override List<Result> Query(Query query)
         {
             if (query.RawQuery == "host" || query.RawQuery == "hosts")
             {
@@ -26,7 +26,7 @@ namespace CozyLauncher.Plugin.Sys
                 r.Title = "Hosts";
                 r.SubTitle = "open hosts file";
                 r.IcoPath = "sys";
-                r.Score = 70;
+                r.Score = 90;
                 r.Action = e =>
                 {
                     Process.Start("notepad", Environment.GetFolderPath(Environment.SpecialFolder.System) + "/drivers/etc/hosts");

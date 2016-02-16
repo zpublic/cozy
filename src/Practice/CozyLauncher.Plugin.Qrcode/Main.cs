@@ -1,14 +1,13 @@
 ﻿using CozyLauncher.PluginBase;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CozyLauncher.Plugin.Qrcode
 {
-    public class Main : IPlugin
+    public class Main : BasePlugin
     {
         private PluginInitContext context_;
 
-        public PluginInfo Init(PluginInitContext context)
+        public override PluginInfo Init(PluginInitContext context)
         {
             context_ = context;
             var info = new PluginInfo();
@@ -16,7 +15,7 @@ namespace CozyLauncher.Plugin.Qrcode
             return info;
         }
 
-        public List<Result> Query(Query query)
+        public override List<Result> Query(Query query)
         {
             if (query.RawQuery.StartsWith("qr ") || query.RawQuery.StartsWith("qrcode "))
             {

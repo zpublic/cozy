@@ -71,6 +71,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Ip", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Qrcode", "..\src\Practice\CozyLauncher.Plugin.Qrcode\CozyLauncher.Plugin.Qrcode.csproj", "{EAB1CD23-BBA3-414F-8810-B04415E9C9BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Fnl", "..\src\Practice\CozyLauncher.Plugin.Fnl\CozyLauncher.Plugin.Fnl.csproj", "{2621A426-AFE4-4B6F-805F-66C533442076}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Guide", "..\src\Practice\CozyLauncher.Plugin.Guide\CozyLauncher.Plugin.Guide.csproj", "{7B4606A7-77D0-42AA-91ED-B5B6963AD830}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -149,6 +153,14 @@ Global
 		{EAB1CD23-BBA3-414F-8810-B04415E9C9BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAB1CD23-BBA3-414F-8810-B04415E9C9BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAB1CD23-BBA3-414F-8810-B04415E9C9BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2621A426-AFE4-4B6F-805F-66C533442076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2621A426-AFE4-4B6F-805F-66C533442076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2621A426-AFE4-4B6F-805F-66C533442076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2621A426-AFE4-4B6F-805F-66C533442076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B4606A7-77D0-42AA-91ED-B5B6963AD830}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B4606A7-77D0-42AA-91ED-B5B6963AD830}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B4606A7-77D0-42AA-91ED-B5B6963AD830}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B4606A7-77D0-42AA-91ED-B5B6963AD830}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -171,5 +183,7 @@ Global
 		{03126F33-4289-4B37-9E51-2C36E298AA0A} = {99CDD04F-DFAB-46F3-8F43-ECBA51665848}
 		{6F153C9D-84B4-4C54-A7C8-E75C2C0DA0F2} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
 		{EAB1CD23-BBA3-414F-8810-B04415E9C9BD} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
+		{2621A426-AFE4-4B6F-805F-66C533442076} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
+		{7B4606A7-77D0-42AA-91ED-B5B6963AD830} = {7A0D3583-5847-4CCE-A7AA-690C34127EE3}
 	EndGlobalSection
 EndGlobal

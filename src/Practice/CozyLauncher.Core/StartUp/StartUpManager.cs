@@ -30,27 +30,25 @@ namespace CozyLauncher.Core.StartUp
 
         private bool GetAutoStartUpStatus()
         {
-            var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             using (RegistryKey rk = Registry.CurrentUser)
             {
                 using (RegistryKey run = rk.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run"))
                 {
                     var names = run.GetValueNames();
-                    return names.Contains("CozyLauncher") && (string)run.GetValue("CozyLauncher") == path;
+                    return names.Contains("CozyLauncher") && (string)run.GetValue("CozyLauncher") == Assembly.GetEntryAssembly().Location;
                 }
             }
         }
 
         private void SetAutoStartUpStatus(bool status)
         {
-            var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             using (RegistryKey rk = Registry.CurrentUser)
             {
                 using (RegistryKey run = rk.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run"))
                 {
                     if (status)
                     {
-                        run.SetValue("CozyLauncher", path);
+                        run.SetValue("CozyLauncher", Assembly.GetEntryAssembly().Location);
                     }
                     else
                     {
