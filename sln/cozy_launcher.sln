@@ -77,6 +77,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Guide",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Ydfy", "..\src\Practice\CozyLauncher.Plugin.Ydfy\CozyLauncher.Plugin.Ydfy.csproj", "{6CAA27E5-E972-4BC5-938E-20AABE70B511}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{766C50F2-F336-43D3-94BA-4085A584B130}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Test.Plugin", "..\src\Practice\CozyLauncher.Test.Plugin\CozyLauncher.Test.Plugin.csproj", "{58275A23-9373-437F-BCB5-AB07B2AEC363}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -167,6 +171,10 @@ Global
 		{6CAA27E5-E972-4BC5-938E-20AABE70B511}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CAA27E5-E972-4BC5-938E-20AABE70B511}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CAA27E5-E972-4BC5-938E-20AABE70B511}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58275A23-9373-437F-BCB5-AB07B2AEC363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58275A23-9373-437F-BCB5-AB07B2AEC363}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58275A23-9373-437F-BCB5-AB07B2AEC363}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58275A23-9373-437F-BCB5-AB07B2AEC363}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -192,5 +200,6 @@ Global
 		{2621A426-AFE4-4B6F-805F-66C533442076} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
 		{7B4606A7-77D0-42AA-91ED-B5B6963AD830} = {7A0D3583-5847-4CCE-A7AA-690C34127EE3}
 		{6CAA27E5-E972-4BC5-938E-20AABE70B511} = {6B37D2AC-6C6D-444F-8492-DA47118C7625}
+		{58275A23-9373-437F-BCB5-AB07B2AEC363} = {766C50F2-F336-43D3-94BA-4085A584B130}
 	EndGlobalSection
 EndGlobal
