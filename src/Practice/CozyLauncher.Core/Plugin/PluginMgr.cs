@@ -19,32 +19,14 @@ namespace CozyLauncher.Core.Plugin
             PluginInitContext context = new PluginInitContext();
             context.Api = api;
 
-            var PluginFilleList = new List<string>()
-            {
-                // Core
-                "CozyLauncher.Plugin.Core.dll",
-                "CozyLauncher.Plugin.Guide.dll",
-
-                // Primary
-                "CozyLauncher.Plugin.Program.dll",
-                "CozyLauncher.Plugin.ManualRun.dll",
-                "CozyLauncher.Plugin.Dirctory.dll",
-                "CozyLauncher.Plugin.WebSearch.dll",
-                "CozyLauncher.Plugin.Sys.dll",
-                "CozyLauncher.Plugin.Calculator.dll",
-
-                // Secondary
-                "CozyLauncher.Plugin.MouseClick.dll",
-                "CozyLauncher.Plugin.Ip.dll",
-                "CozyLauncher.Plugin.Qrcode.dll",
-                "CozyLauncher.Plugin.Fnl.dll",
-            };
+            var PluginFilleList = Directory.GetFiles(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location))
+                .Where(x => Path.GetFileName(x).StartsWith("CozyLauncher.Plugin.") && x.EndsWith(".dll"));
 
             foreach (var p in PluginFilleList)
             {
                 try
                 {
-                    Assembly asm = Assembly.LoadFile(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), p));
+                    Assembly asm = Assembly.LoadFile(p);
                     List<Type> types = asm.GetTypes().Where(o => o.IsClass && !o.IsAbstract && o.GetInterfaces().Contains(typeof(IPlugin))).ToList();
                     foreach (Type type in types)
                     {

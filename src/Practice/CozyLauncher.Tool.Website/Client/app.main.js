@@ -1,6 +1,6 @@
 requirejs.config({
     paths:{
-        'angular':'bower_components/angular/bower-angular-1.4.9/angular.min',
+        'angular':'bower_components/angular/angular.min',
         'angular-route': 'bower_components/angular-route/angular-route.min',
         'bootstrap':'bower_components/bootstrap/dist/js/bootstrap.min'
     },
