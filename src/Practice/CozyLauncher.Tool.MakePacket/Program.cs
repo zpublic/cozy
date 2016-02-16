@@ -75,6 +75,10 @@ namespace CozyLauncher.Tool.MakePacket
                 "YAMP.dll",
                 "Gma.QrCodeNet.Encoding.dll",
                 "System.Windows.Interactivity.dll",
+                "MaterialDesignColors.dll",
+                "MaterialDesignThemes.MahApps.dll",
+                "MaterialDesignThemes.Wpf.dll",
+                "MahApps.Metro.dll",
 
                 "CozyLauncher.Plugin.Core.dll",
                 "CozyLauncher.Plugin.Guide.dll",
