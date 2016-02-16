@@ -25,9 +25,13 @@ namespace CozyLauncher.Plugin.Ydfy {
                 var queryString = query.RawQuery.Substring(5);
                 var model = Request(queryString);
                 if (model.ErrorCode == 0) {
-                    result.Add(new Result { Title = model.Translation[0] });
+                    result.Add(new Result { Title = model.Translation[0], Action = x => true });
                     if (model.Detail != null) {
-                        result.AddRange(model.Detail.Explains.Select(x => new Result { Title = x }));
+                        result.AddRange(model.Detail.Explains
+                            .Select(x => new Result {
+                                Title = x,
+                                Action = y => true,
+                            }));
                     }
                     return result;
                 }
