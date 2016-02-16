@@ -89,12 +89,12 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Plugin.WebSearch.dll",
                 "CozyLauncher.Plugin.Sys.dll",
                 "CozyLauncher.Plugin.Calculator.dll",
+                "CozyLauncher.Plugin.Ydfy.dll",
 
                 "CozyLauncher.Plugin.MouseClick.dll",
                 "CozyLauncher.Plugin.Ip.dll",
                 "CozyLauncher.Plugin.Qrcode.dll",
                 "CozyLauncher.Plugin.Fnl.dll",
-                "CozyLauncher.Plugin.Ydfy.dll",
             };
             Directory.CreateDirectory("./cozy_launcher");
             foreach (var f in filelist)
