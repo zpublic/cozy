@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Http;
 using CozyLauncher.PluginBase;
 using Newtonsoft.Json;
@@ -26,8 +23,14 @@ namespace CozyLauncher.Plugin.Ydfy {
             if (query.RawQuery.StartsWith("ydfy ")) {
                 var result = new List<Result>();
                 var queryString = query.RawQuery.Substring(5);
-                result.Add(new Result { Title = Request(queryString).Translation[0] });
-                return result;
+                var model = Request(queryString);
+                if (model.ErrorCode == 0) {
+                    result.Add(new Result { Title = model.Translation[0] });
+                    if (model.Detail != null) {
+                        result.AddRange(model.Detail.Explains.Select(x => new Result { Title = x }));
+                    }
+                    return result;
+                }
             }
             return null;
         }

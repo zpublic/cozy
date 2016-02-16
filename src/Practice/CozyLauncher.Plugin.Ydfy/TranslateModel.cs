@@ -13,6 +13,24 @@ namespace CozyLauncher.Plugin.Ydfy {
         [JsonProperty("errorCode")]
         public int ErrorCode { get; set; }
 
+        [JsonProperty("basic")]
+        public TranslateDetail Detail { get; set; }
+
+    }
+
+    public class TranslateDetail {
+
+        [JsonProperty("us-phonetic")]
+        public string UsPhonetic { get; set; }
+
+        [JsonProperty("phonetic")]
+        public string Phonetic { get; set; }
+
+        [JsonProperty("uk-phonetic")]
+        public string UkPhonetic { get; set; }
+
+        [JsonProperty("explains")]
+        public string[] Explains { get; set; }
     }
 }
 
