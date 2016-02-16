@@ -2,11 +2,19 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace CozyLauncher.Plugin.Sys
 {
     public class Main : BasePlugin
     {
+        static readonly IntPtr HWND_BROADCAST = new IntPtr(0xffff);
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
+
+        private const uint WM_SYSCOMMAND = 0x0112;
+        private const uint SC_MONITORPOWER = 0xF170;
+
         private PluginInitContext context_;
 
         public override PluginInfo Init(PluginInitContext context)
@@ -36,8 +44,22 @@ namespace CozyLauncher.Plugin.Sys
                 rl.Add(r);
                 return rl;
             }
-            else if (query.RawQuery == "logoff")
+            else if (query.RawQuery == "cs")
             {
+                var rl = new List<Result>();
+                var r = new Result();
+                r.Title = "关闭屏幕";
+                r.SubTitle = "";
+                r.IcoPath = "sys";
+                r.Score = 90;
+                r.Action = e =>
+                {
+                    context_.Api.HideAndClear();
+                    SendMessage(HWND_BROADCAST, WM_SYSCOMMAND, (IntPtr)SC_MONITORPOWER, new IntPtr(2));
+                    return true;
+                };
+                rl.Add(r);
+                return rl;
             }
             return null;
         }
