@@ -44,6 +44,7 @@
             this.qrCodeImgControl1.TabIndex = 0;
             this.qrCodeImgControl1.TabStop = false;
             this.qrCodeImgControl1.Text = "qrCodeImgControl1";
+            this.qrCodeImgControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.qrCodeImgControl1_MouseDown);
             // 
             // QrcodeForm
             // 
