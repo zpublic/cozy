@@ -71,7 +71,7 @@
                             <ColumnDefinition Width="52"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Image Width="48" Height="48" Margin="2"  Grid.Column="0"
+                        <Image Width="32" Height="32" Margin="2"  Grid.Column="0"
                                Source="{Binding IcoPath, Converter={StaticResource IconConverter}}"/>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                             <TextBlock Text="{Binding Title}" FontSize="22" Foreground="#F0F0F0"></TextBlock>
