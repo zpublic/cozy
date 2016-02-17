@@ -6,24 +6,34 @@
         xmlns:viewmodel="clr-namespace:CozyLauncher.ViewModels"
         xmlns:local="clr-namespace:CozyLauncher"
         mc:Ignorable="d"
-        Title="AboutWindow" Height="300" Width="379.4">
+        Title="About" Height="350" Width="379.4">
     <Window.DataContext>
         <viewmodel:AboutWindowViewModel x:Name="ViewModel"></viewmodel:AboutWindowViewModel>
     </Window.DataContext>
     <Grid>
-        <StackPanel VerticalAlignment="Center">
+        <StackPanel VerticalAlignment="Center" Height="310" Margin="0,0,0,10">
             <TextBlock TextAlignment="Center" Margin="15">
                 <Hyperlink NavigateUri="http://cozy.laorouji.com/">
                     <Run Text="CozyLauncher v0.4"/>
                 </Hyperlink>
             </TextBlock>
-            <TextBlock Text="最好用最有情怀的快速启动工具" TextAlignment="Center" Margin="15"></TextBlock>
-            <TextBlock TextAlignment="Center" Margin="15" Height="64">
+            <TextBlock Text="最好用最有情怀的快速启动工具" TextAlignment="Center" Margin="15"/>
+            <TextBlock TextAlignment="Center" Margin="15" Height="139">
                 <Run Text="开发者："/>
                 <LineBreak/>
-                <Run Text="zapline kingwl MaxTan"/>
+                <Run Text="zapline(278998871@qq.com)"/>
                 <LineBreak/>
-                <Run Text="whuthj wjcsharp hugewave"/>
+                <Run Text="kingwl"/>
+                <LineBreak/>
+                <Run Text="MaxTan"/>
+                <LineBreak/>
+                <Run Text="whuthj"/>
+                <LineBreak/>
+                <Run Text="wjcsharp"/>
+                <LineBreak/>
+                <Run Text="hugewave"/>
+                <LineBreak/>
+                <Run Text="Kevin"/>
             </TextBlock>
             <Button Content="确定" Margin="15" Command="{Binding OkCommand}"></Button>
         </StackPanel>
