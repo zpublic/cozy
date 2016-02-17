@@ -19,5 +19,12 @@ namespace CozyLauncher.Plugin.KickassTorrents.Tests {
             var result = main.LoadData(null);
             Assert.IsNotNull(result);
         }
+
+        [Test()]
+        public void KickassTorrentsProcTest() {
+            var main = new Main();
+            var result = main.Proc("avg-109");
+            Assert.IsNotNull(result);
+        }
     }
 }

@@ -39,18 +39,30 @@ namespace CozyLauncher.Plugin.KickassTorrents {
                     Action = e => {
                         var stream = Request(querySrting);
                         var torrentList = LoadData(stream);
-                        context_.Api.PushResults(torrentList.Select(x =>
-                            new Result {
-                                Title = x.FileName,
-                                SubTitle = x.SubTitle,
+                        if (torrentList.Count > 0) {
+                            context_.Api.PushResults(torrentList.Select(x =>
+                                new Result {
+                                    Title = x.FileName,
+                                    SubTitle = x.SubTitle,
+                                    IcoPath = "sys",
+                                    Action = ex => {
+                                        Process.Start(x.TorrentUrl);
+                                        context_.Api.HideAndClear();
+                                        return true;
+                                    }
+                                }).ToList());
+                        }
+                        else {
+                            //context_.Api.Clear();
+                            context_.Api.PushResults(new[] { new Result {
+                                Title = "找不到内容",
                                 IcoPath = "sys",
                                 Action = ex => {
-                                    Process.Start(x.TorrentUrl);
                                     context_.Api.HideAndClear();
                                     return true;
                                 }
-                            }
-                        ).ToList());
+                            } }.ToList());
+                        }
                         return true;
                     }
                 });
@@ -72,19 +84,31 @@ namespace CozyLauncher.Plugin.KickassTorrents {
             }
         }
 
+        public List<TorrentModel> Proc(string querySrting) {
+            var stream = Request(querySrting);
+            var torrentList = LoadData(stream);
+            return torrentList;
+        }
+
         public List<TorrentModel> LoadData(Stream stream) {
-            var xdoc = XDocument.Load(stream);
-            return xdoc.Root.Element("channel").Elements()
-                .Where(x => x.Name == "item").Select(x =>
-                 new TorrentModel {
-                     FileName = x.Element("title").Value,
-                     TorrentUrl = x.Element("enclosure").FirstAttribute.Value,
-                     PubDate = x.Element("pubDate").Value,
-                     FileSize = long.Parse(x.Elements().First(y => y.Name.ToString().EndsWith("contentLength")).Value),
-                     Seeds = x.Elements().First(y => y.Name.ToString().EndsWith("seeds")).Value,
-                     MagnetUrl = $"magnet:?xt=urn:btih:{x.Elements().First(y => y.Name.ToString().EndsWith("infoHash")).Value}"
-                 }
-            ).ToList();
+            try {
+                var xdoc = XDocument.Load(stream);
+                return xdoc.Root.Element("channel").Elements()
+                    .Where(x => x.Name == "item").Select(x =>
+                     new TorrentModel {
+                         FileName = x.Element("title").Value,
+                         TorrentUrl = x.Element("enclosure").FirstAttribute.Value,
+                         PubDate = x.Element("pubDate").Value,
+                         FileSize = long.Parse(x.Elements().First(y => y.Name.ToString().EndsWith("contentLength")).Value),
+                         Seeds = x.Elements().First(y => y.Name.ToString().EndsWith("seeds")).Value,
+                         MagnetUrl = $"magnet:?xt=urn:btih:{x.Elements().First(y => y.Name.ToString().EndsWith("infoHash")).Value}"
+                     }
+                ).ToList();
+            }
+            catch {
+                return new List<TorrentModel>();
+            }
+
         }
 
     }
