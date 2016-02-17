@@ -27,11 +27,90 @@
         <TextBox HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Grid.Row="0" Foreground="#B81D7F" Background="#1E1C20"
                  VerticalAlignment="Top" Width="720" TextChanged="OnQueryTextChanged" x:Name="QueryTextBox" BorderThickness="0" FontSize="32"/>
 
-        <ListView MaxHeight="410" ItemsSource="{Binding ResultListView}" SelectedItem="{Binding SelectedResult}"  BorderThickness="0"
+        <ListView MaxHeight="416" ItemsSource="{Binding ResultListView}" SelectedItem="{Binding SelectedResult}"  BorderThickness="0" x:Name="ResultList"
                   SelectedIndex="{Binding SelectedResultIndex}" Focusable="False" Grid.Row="1" Background="#1E1C20"
                   Visibility="{Binding IsResultViewVisiable, Converter={StaticResource VisibilityConverter}}">
+            <ListView.Template>
+                <ControlTemplate TargetType="ListView">
+                    <ScrollViewer Focusable="false">
+                        <ScrollViewer.Template>
+                            <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                                <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
+                                        CanContentScroll="{TemplateBinding CanContentScroll}"
+                                        CanHorizontallyScroll="False"
+                                        CanVerticallyScroll="False"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        Content="{TemplateBinding Content}"
+                                        Grid.Column="0"
+                                        Margin="{TemplateBinding Padding}"
+                                        Grid.Row="0" />
+
+                                    <ScrollBar x:Name="PART_VerticalScrollBar"
+                           AutomationProperties.AutomationId="VerticalScrollBar"
+                           Cursor="Arrow"
+                           Grid.Column="1"
+                           Margin="3 0 0 0"
+                           Maximum="{TemplateBinding ScrollableHeight}"
+                           Minimum="0"
+                           Grid.Row="0"
+                           Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                           Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                           ViewportSize="{TemplateBinding ViewportHeight}">
+                                        <ScrollBar.Style>
+                                            <Style TargetType="{x:Type ScrollBar}">
+                                                <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
+                                                <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
+
+                                                <Setter Property="MinWidth" Value="0"/>
+                                                <Setter Property="Width" Value="5"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                                            <DockPanel>
+                                                                <Track x:Name="PART_Track" IsDirectionReversed="true" DockPanel.Dock="Right">
+                                                                    <Track.Thumb>
+                                                                        <Thumb>
+                                                                            <Thumb.Style>
+                                                                                <Style TargetType="{x:Type Thumb}">
+                                                                                    <Setter Property="SnapsToDevicePixels" Value="True"/>
+                                                                                    <Setter Property="OverridesDefaultStyle" Value="true"/>
+                                                                                    <Setter Property="IsTabStop" Value="false"/>
+                                                                                    <Setter Property="Focusable" Value="false"/>
+                                                                                    <Setter Property="Template">
+                                                                                        <Setter.Value>
+                                                                                            <ControlTemplate TargetType="{x:Type Thumb}">
+                                                                                                <Border CornerRadius="2" DockPanel.Dock="Right" Background="#616161" BorderBrush="Transparent" BorderThickness="0" />
+                                                                                            </ControlTemplate>
+                                                                                        </Setter.Value>
+                                                                                    </Setter>
+                                                                                </Style>
+                                                                            </Thumb.Style>
+                                                                        </Thumb>
+                                                                    </Track.Thumb>
+                                                                </Track>
+                                                            </DockPanel>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ScrollBar.Style>
+                                    </ScrollBar>
+                                </Grid>
+                            </ControlTemplate>
+                        </ScrollViewer.Template>
+                        <VirtualizingStackPanel IsItemsHost="True" />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ListView.Template>
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Height" Value="52"> </Setter>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type ListViewItem}">
