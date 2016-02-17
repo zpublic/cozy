@@ -46,7 +46,11 @@ namespace CozyLauncher.Plugin.KickassTorrents {
                                     SubTitle = x.SubTitle,
                                     IcoPath = "sys",
                                     Action = ex => {
-                                        Process.Start(x.TorrentUrl);
+                                        try
+                                        {
+                                            Process.Start(x.TorrentUrl);
+                                        }
+                                        catch (Exception) { }
                                         context_.Api.HideAndClear();
                                         return true;
                                     }
