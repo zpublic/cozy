@@ -74,6 +74,10 @@
       <Project>{6f153c9d-84b4-4c54-a7c8-e75c2c0da0f2}</Project>
       <Name>CozyLauncher.Plugin.Ip</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.KickassTorrents\CozyLauncher.Plugin.KickassTorrents.csproj">
+      <Project>{b4063b6c-7e29-491a-9b13-9ab6867b0f99}</Project>
+      <Name>CozyLauncher.Plugin.KickassTorrents</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.Plugin.ManualRun\CozyLauncher.Plugin.ManualRun.csproj">
       <Project>{728f9dbe-8312-47a8-b713-a911571a5dd8}</Project>
       <Name>CozyLauncher.Plugin.ManualRun</Name>
