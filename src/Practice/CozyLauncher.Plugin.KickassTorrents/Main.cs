@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using CozyLauncher.PluginBase;
 using System.Net.Http;
+using System.IO;
+using System.IO.Compression;
 
 namespace CozyLauncher.Plugin.KickassTorrents {
 
@@ -35,13 +37,28 @@ namespace CozyLauncher.Plugin.KickassTorrents {
                 var requestMsg = new HttpRequestMessage(HttpMethod.Get, string.Format(torrentsUrl, query));
                 var respones = client.SendAsync(requestMsg).Result;
                 var byteArray = respones.Content.ReadAsByteArrayAsync().Result;
-                //var jsonString = respones.Content.ReadAsStringAsync().Result;
-                foreach (var item in Encoding.GetEncodings()) {
-                    var t = item.GetEncoding().GetString(byteArray);
-                }
-                var test = Encoding.Unicode.GetString(byteArray);
-                return string .Empty;
+                var de = Decompress(byteArray);
+                string str = Encoding.UTF8.GetString(de);
+                return str;
             }
+        }
+
+        public static byte[] Decompress(byte[] zippedData)
+        {
+            MemoryStream ms = new MemoryStream(zippedData);
+            GZipStream compressedzipStream = new GZipStream(ms, CompressionMode.Decompress);
+            MemoryStream outBuffer = new MemoryStream();
+            byte[] block = new byte[1024];
+            while (true)
+            {
+                int bytesRead = compressedzipStream.Read(block, 0, block.Length);
+                if (bytesRead <= 0)
+                    break;
+                else
+                    outBuffer.Write(block, 0, bytesRead);
+            }
+            compressedzipStream.Close();
+            return outBuffer.ToArray();
         }
     }
 }
