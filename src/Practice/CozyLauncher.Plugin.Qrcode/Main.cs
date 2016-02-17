@@ -30,7 +30,7 @@ namespace CozyLauncher.Plugin.Qrcode
                     r.Title = query.RawQuery.Substring(7);
                 }
                 r.SubTitle = "Show me the Qrcode";
-                r.IcoPath = "app";
+                r.IcoPath = "[Res]:app";
                 r.Score = 80;
                 r.Action = e =>
                 {

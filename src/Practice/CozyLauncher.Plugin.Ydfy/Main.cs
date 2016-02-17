@@ -57,7 +57,7 @@ namespace CozyLauncher.Plugin.Ydfy {
                             {
                                 Title = x,
                                 SubTitle = "Copy this text to the clipboard",
-                                IcoPath = "txt",
+                                IcoPath = "[Res]:txt",
                                 Score = 80,
                                 Action = e =>
                                 {

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
+using CozyLauncher.ResourcesMgr;
 
 namespace CozyLauncher.Converters
 {
@@ -15,37 +11,14 @@ namespace CozyLauncher.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var name = value as string;
-            if(name != null)
+            if (name != null)
             {
-                ResourceKey resKey = null;
-                switch(name)
+                if (targetType == typeof(ImageSource))
                 {
-                    case "app":
-                        resKey = IconRes.appDrawingImageKey;
-                        break;
-                    case "baidu":
-                        resKey = IconRes.baiduDrawingImageKey;
-                        break;
-                    case "exit":
-                        resKey = IconRes.exitDrawingImageKey;
-                        break;
-                    case "folder_open":
-                        resKey = IconRes.folder_openDrawingImageKey;
-                        break;
-                    case "help":
-                        resKey = IconRes.helpDrawingImageKey;
-                        break;
-                    case "setting":
-                        resKey = IconRes.settingDrawingImageKey;
-                        break;
-                    default:
-                        resKey = IconRes.defaultDrawingImageKey;
-                        break;
+                    ImageSource img = ImageResourceMgr.Instance.Load(name);
+                    return img;
                 }
-                if(resKey != null)
-                {
-                    return Application.Current.TryFindResource(resKey);
-                }
+
             }
             return null;
         }
