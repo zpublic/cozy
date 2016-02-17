@@ -28,7 +28,7 @@ namespace CozyLauncher.Plugin.Core
                 {
                     Title       = "Exit",
                     SubTitle    = "关闭",
-                    IcoPath     = "exit",
+                    IcoPath     = "[Res]:exit",
                     Score       = 100,
                     Action      = e =>
                     {
@@ -45,7 +45,7 @@ namespace CozyLauncher.Plugin.Core
                 {
                     Title       = "Config / Setting",
                     SubTitle    = "设置",
-                    IcoPath     = "setting",
+                    IcoPath     = "[Res]:setting",
                     Score       = 100,
                     Action = e  =>
                     {
@@ -63,7 +63,7 @@ namespace CozyLauncher.Plugin.Core
                 {
                     Title       = "About",
                     SubTitle    = "关于",
-                    IcoPath     = "help",
+                    IcoPath     = "[Res]:help",
                     Score       = 100,
                     Action      = e =>
                     {
@@ -82,7 +82,7 @@ namespace CozyLauncher.Plugin.Core
                 {
                     Title = "Guide",
                     SubTitle = "向导",
-                    IcoPath = "help",
+                    IcoPath = "[Res]:help",
                     Score = 100,
                     Action = e =>
                     {
@@ -101,7 +101,7 @@ namespace CozyLauncher.Plugin.Core
                 {
                     Title = "Help",
                     SubTitle = "帮助",
-                    IcoPath = "help",
+                    IcoPath = "[Res]:help",
                     Score = 100,
                     Action = e =>
                     {
@@ -120,7 +120,7 @@ namespace CozyLauncher.Plugin.Core
                 {
                     Title = "Cozy",
                     SubTitle = "主页",
-                    IcoPath = "help",
+                    IcoPath = "[Res]:help",
                     Score = 100,
                     Action = e =>
                     {

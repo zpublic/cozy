@@ -37,7 +37,7 @@ namespace CozyLauncher.Plugin.MouseClick
                 var r = new Result();
                 r.Title = "Mouse Click";
                 r.SubTitle = "鼠标自动点击";
-                r.IcoPath = "sys";
+                r.IcoPath = "[Res]:sys";
                 r.Score = 60;
                 r.Action = e =>
                 {

@@ -47,7 +47,7 @@ namespace CozyLauncher.Plugin.Calculator
                     var r = new Result();
                     r.Title = result.Result;
                     r.SubTitle = "Copy this number to the clipboard";
-                    r.IcoPath = "calc";
+                    r.IcoPath = "[Res]:calc";
                     r.Score = 100;
                     r.Action = e =>
                     {

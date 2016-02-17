@@ -51,6 +51,7 @@ namespace CozyLauncher.ResourcesMgr
             name => name.StartsWith("[Res]:", StringComparison.OrdinalIgnoreCase), /*canLoad*/
             name => /*Load*/
             {
+                name = name.Replace("[Res]:", "");
                 ResourceKey resKey = null;
                 switch (name)
                 {

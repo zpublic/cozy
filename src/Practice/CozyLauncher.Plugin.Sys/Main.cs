@@ -33,7 +33,7 @@ namespace CozyLauncher.Plugin.Sys
                 var r = new Result();
                 r.Title = "Hosts";
                 r.SubTitle = "open hosts file";
-                r.IcoPath = "sys";
+                r.IcoPath = "[Res]:sys";
                 r.Score = 90;
                 r.Action = e =>
                 {
