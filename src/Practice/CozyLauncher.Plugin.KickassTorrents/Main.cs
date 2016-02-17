@@ -77,8 +77,6 @@ namespace CozyLauncher.Plugin.KickassTorrents {
                 var respones = client.SendAsync(requestMsg).Result;
                 var byteArray = respones.Content.ReadAsByteArrayAsync().Result;
                 var de = Helper.Decompress(byteArray);
-                //string str = Encoding.UTF8.GetString(de);
-                //var stream = respones.Content.ReadAsStreamAsync().Result;
                 var stream = new MemoryStream(de);
                 return stream;
             }
