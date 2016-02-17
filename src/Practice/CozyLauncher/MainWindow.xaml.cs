@@ -75,9 +75,11 @@ namespace CozyLauncher
             {
                 case Key.Up:
                     this.ViewModel.UpCommand.Execute(null);
+                    this.ResultList.ScrollIntoView(this.ResultList.SelectedItem);
                     break;
                 case Key.Down:
                     this.ViewModel.DownCommand.Execute(null);
+                    this.ResultList.ScrollIntoView(this.ResultList.SelectedItem);
                     break;
                 case Key.Enter:
                     this.ViewModel.DoCommand.Execute(null);
