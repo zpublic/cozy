@@ -29,13 +29,20 @@ namespace CozyLauncher.Plugin.Qrcode
 
         private void copyImage_Click(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            Clipboard.SetDataObject(qrCodeImgControl1.Image);
         }
         
 
         private void saveImage_Click(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "图片|.jpg";
+            if(sfd.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = sfd.FileName.ToString();
+                Bitmap image = new Bitmap(qrCodeImgControl1.Image);
+                image.Save(fileName);
+            }
         }
     }
 }
