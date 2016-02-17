@@ -64,10 +64,13 @@ namespace CozyLauncher.Plugin.Program
                 {
                     ret.Add(CreateResult(file, ans.Score));
                 }
-                var pyans = matcher.EvaluatePinYin(fn);
-                if (pyans.Success)
+                else
                 {
-                    ret.Add(CreateResult(file, pyans.Score));
+                    var pyans = matcher.EvaluatePinYin(fn);
+                    if (pyans.Success)
+                    {
+                        ret.Add(CreateResult(file, pyans.Score));
+                    }
                 }
             }
             return ret;
