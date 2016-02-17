@@ -23,7 +23,7 @@
                 <LineBreak/>
                 <Run Text="zapline kingwl MaxTan"/>
                 <LineBreak/>
-                <Run Text="whuthj wjcsharp"/>
+                <Run Text="whuthj wjcsharp hugewave"/>
             </TextBlock>
             <Button Content="确定" Margin="15" Command="{Binding OkCommand}"></Button>
         </StackPanel>
