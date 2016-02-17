@@ -33,7 +33,7 @@ namespace CozyLauncher.Plugin.Fnl
             var more = new Result();
             more.Title = "再来三条";
             more.SubTitle = "";
-            more.IcoPath = "txt";
+            more.IcoPath = "[Res]:txt";
             more.Score = 100;
             more.Action = e =>
             {
@@ -48,7 +48,7 @@ namespace CozyLauncher.Plugin.Fnl
                 var r = new Result();
                 r.Title = f;
                 r.SubTitle = "Copy this text to the clipboard";
-                r.IcoPath = "txt";
+                r.IcoPath = "[Res]:txt";
                 r.Score = 99;
                 r.Action = e =>
                 {

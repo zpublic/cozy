@@ -58,7 +58,7 @@ namespace CozyLauncher.Plugin.ManualRun
                 var r = new Result();
                 r.Title = acExe.Key;
                 r.SubTitle = acExe.Exe;
-                r.IcoPath = "app";
+                r.IcoPath = "[Res]:app";
                 r.Score = 100;
                 r.Action = e =>
                 {
