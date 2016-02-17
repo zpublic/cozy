@@ -99,7 +99,7 @@ namespace CozyLauncher.Plugin.Program
                     return true;
                 },
                 Title = Path.GetFileNameWithoutExtension(path),
-                IcoPath = "app",
+                IcoPath = path,
             };
             
             return res;
