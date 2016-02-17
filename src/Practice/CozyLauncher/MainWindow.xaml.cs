@@ -219,13 +219,17 @@ namespace CozyLauncher
                 return;
             }
 
+
             System.Windows.Forms.MenuItem about = new System.Windows.Forms.MenuItem("关于");
             about.Click += About_Click;
+
+            System.Windows.Forms.MenuItem guide = new System.Windows.Forms.MenuItem("向导");
+            guide.Click += Guide_Click;
 
             System.Windows.Forms.MenuItem exit = new System.Windows.Forms.MenuItem("退出");
             exit.Click += Exit_Click;
 
-            System.Windows.Forms.MenuItem[] childen = new System.Windows.Forms.MenuItem[] { about, exit };
+            System.Windows.Forms.MenuItem[] childen = new System.Windows.Forms.MenuItem[] { about, guide, exit };
             notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(childen);
         }
 
@@ -242,6 +246,11 @@ namespace CozyLauncher
         private void About_Click(object sender, EventArgs e)
         {
             About();
+        }
+
+        private void Guide_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void Exit_Click(object sender, EventArgs e)
