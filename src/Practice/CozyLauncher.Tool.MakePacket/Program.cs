@@ -90,6 +90,7 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Plugin.Sys.dll",
                 "CozyLauncher.Plugin.Calculator.dll",
                 "CozyLauncher.Plugin.Ydfy.dll",
+                "CozyLauncher.Plugin.Command.dll",
 
                 "CozyLauncher.Plugin.MouseClick.dll",
                 "CozyLauncher.Plugin.Ip.dll",
