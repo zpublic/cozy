@@ -77,6 +77,7 @@ namespace CozyLauncher.Plugin.Timestamp
                 r.IcoPath = "[Res]:app";
                 r.Title = timestamp;
                 r.SubTitle = "Copy unix timestamp to clipboard";
+                r.Score = 90;
                 list.Add(r);
                 return list;
             }
