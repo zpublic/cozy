@@ -58,7 +58,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CozyLauncher.Tool.Website",
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "49719"
-		SlnRelativePath = "..\src\Practice\CozyLauncher.Tool.Website\"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Tool.UpdateFeedGenerator", "..\src\Practice\CozyLauncher.Tool.UpdateFeedGenerator\CozyLauncher.Tool.UpdateFeedGenerator.csproj", "{310F3415-9294-42BD-8864-3149981C555F}"
@@ -82,6 +81,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Test.Plugin", "..\src\Practice\CozyLauncher.Test.Plugin\CozyLauncher.Test.Plugin.csproj", "{58275A23-9373-437F-BCB5-AB07B2AEC363}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.KickassTorrents", "..\src\Practice\CozyLauncher.Plugin.KickassTorrents\CozyLauncher.Plugin.KickassTorrents.csproj", "{B4063B6C-7E29-491A-9B13-9AB6867B0F99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.GFW", "..\src\Practice\CozyLauncher.Plugin.GFW\CozyLauncher.Plugin.GFW.csproj", "{E485DBBC-2FAD-406F-BB32-6C06B78BD783}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -181,6 +182,10 @@ Global
 		{B4063B6C-7E29-491A-9B13-9AB6867B0F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4063B6C-7E29-491A-9B13-9AB6867B0F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4063B6C-7E29-491A-9B13-9AB6867B0F99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -208,5 +213,6 @@ Global
 		{6CAA27E5-E972-4BC5-938E-20AABE70B511} = {6B37D2AC-6C6D-444F-8492-DA47118C7625}
 		{58275A23-9373-437F-BCB5-AB07B2AEC363} = {766C50F2-F336-43D3-94BA-4085A584B130}
 		{B4063B6C-7E29-491A-9B13-9AB6867B0F99} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
+		{E485DBBC-2FAD-406F-BB32-6C06B78BD783} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
 	EndGlobalSection
 EndGlobal
