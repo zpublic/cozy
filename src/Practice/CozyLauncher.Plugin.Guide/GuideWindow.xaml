@@ -8,7 +8,7 @@
         xmlns:page="clr-namespace:CozyLauncher.Plugin.Guide.GuidePage"
         xmlns:pageinfo="clr-namespace:CozyLauncher.Plugin.Guide.GuidePage.PageInfo"
         mc:Ignorable="d"
-        Title="向导" Height="724" Width="800" ShowMaxRestoreButton="False" ShowMinButton="False">
+        Title="向导" Height="724" Width="800" ShowMaxRestoreButton="False" ShowMinButton="False" ResizeMode="NoResize">
     <metroctrl:MetroWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
