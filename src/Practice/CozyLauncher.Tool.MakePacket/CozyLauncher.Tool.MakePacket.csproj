@@ -54,6 +54,10 @@
       <Project>{1ea52a6a-7583-40aa-9cf3-414753bbb4d9}</Project>
       <Name>CozyLauncher.Plugin.Calculator</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.Command\CozyLauncher.Plugin.Command.csproj">
+      <Project>{eeac9f90-64e7-47ba-b557-020f2ebe02f3}</Project>
+      <Name>CozyLauncher.Plugin.Command</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.Plugin.Core\CozyLauncher.Plugin.Core.csproj">
       <Project>{909e8061-b711-45f5-8b7b-df6854fe55a1}</Project>
       <Name>CozyLauncher.Plugin.Core</Name>

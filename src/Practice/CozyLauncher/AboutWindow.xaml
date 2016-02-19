@@ -14,7 +14,7 @@
         <StackPanel VerticalAlignment="Center" Height="310" Margin="0,0,0,10">
             <TextBlock TextAlignment="Center" Margin="15">
                 <Hyperlink NavigateUri="http://cozy.laorouji.com/">
-                    <Run Text="CozyLauncher v0.4"/>
+                    <Run Text="CozyLauncher v0.5"/>
                 </Hyperlink>
             </TextBlock>
             <TextBlock Text="最好用最有情怀的快速启动工具" TextAlignment="Center" Margin="15"/>
