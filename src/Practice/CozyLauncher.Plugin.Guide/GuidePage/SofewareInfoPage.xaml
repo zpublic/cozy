@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="CozyLauncher.Plugin.Guide.GuidePage.SofewareInfoPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CozyLauncher.Plugin.Guide.GuidePage"
+             xmlns:metroctrl="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:page="clr-namespace:CozyLauncher.Plugin.Guide.GuidePage.PageInfo"
+             mc:Ignorable="d" 
+             Width="800" Height="645">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel>
+        <TabControl x:Name="TabCtrl">
+            <TabItem>
+                <page:PageInfo1_1></page:PageInfo1_1>
+            </TabItem>
+            <TabItem>
+                <page:PageInfo1_2></page:PageInfo1_2>
+            </TabItem>
+            <TabItem>
+                <page:PageInfo1_3></page:PageInfo1_3>
+            </TabItem>
+        </TabControl>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Content="上一页" Grid.Column="0" Click="Button_Click"></Button>
+            <Button Content="下一页" Grid.Column="1" Click="Button_Click_1"></Button>
+        </Grid>
+    </StackPanel>
+</UserControl>

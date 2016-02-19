@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="CozyLauncher.Plugin.Guide.GuidePage.PageInfo.PageInfo1_2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CozyLauncher.Plugin.Guide.GuidePage.PageInfo"
+             mc:Ignorable="d" 
+             Width="800" Height="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="117"></RowDefinition>
+            <RowDefinition Height="72"></RowDefinition>
+            <RowDefinition Height="105"></RowDefinition>
+            <RowDefinition Height="113"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" FontSize="32" VerticalAlignment="Center" TextAlignment="Center">基本快捷键</TextBlock>
+        <TextBlock Grid.Row="1" FontSize="20" VerticalAlignment="Center" TextAlignment="Center">Ctrl+Alt+空格，呼出快速启动窗口</TextBlock>
+        <TextBlock Grid.Row="2" FontSize="20" VerticalAlignment="Center" TextAlignment="Center">替换系统Win+R，也可以呼出快速启动窗口，可在设置里禁用</TextBlock>
+        <TextBlock Grid.Row="3" FontSize="20" VerticalAlignment="Center" TextAlignment="Center">在输入时，按Esc键可以隐藏快速启动窗口</TextBlock>
+    </Grid>
+</UserControl>
