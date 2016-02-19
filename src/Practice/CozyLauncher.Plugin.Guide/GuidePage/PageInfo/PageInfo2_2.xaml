@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CozyLauncher.Plugin.Guide.GuidePage.PageInfo"
              mc:Ignorable="d" 
-             Width="800">
+             Width="800" Height="600">
         <UserControl.Resources>
             <ResourceDictionary>
                 <BitmapImage x:Key="Image5" UriSource="/CozyLauncher.Plugin.Guide;component/Resources/5.png"/>
@@ -14,9 +14,9 @@
         </UserControl.Resources>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="110"></RowDefinition>
-                <RowDefinition Height="205"></RowDefinition>
-                <RowDefinition Height="302"></RowDefinition>
+                <RowDefinition Height="103"></RowDefinition>
+                <RowDefinition Height="200"></RowDefinition>
+                <RowDefinition Height="297"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock FontSize="32" TextAlignment="Center" VerticalAlignment="Center" Grid.Row="0">计算器插件</TextBlock>
             <Image Source="{StaticResource Image5}" Grid.Row="1"></Image>

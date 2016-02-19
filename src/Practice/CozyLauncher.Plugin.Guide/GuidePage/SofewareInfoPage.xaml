@@ -7,18 +7,37 @@
              xmlns:metroctrl="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:page="clr-namespace:CozyLauncher.Plugin.Guide.GuidePage.PageInfo"
              mc:Ignorable="d" 
-             Width="800">
-    <Grid>
-        <TabControl>
-            <TabItem Header="主页">
+             Width="800" Height="645">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel>
+        <TabControl x:Name="TabCtrl">
+            <TabItem>
                 <page:PageInfo1_1></page:PageInfo1_1>
             </TabItem>
-            <TabItem Header="基本快捷键">
+            <TabItem>
                 <page:PageInfo1_2></page:PageInfo1_2>
             </TabItem>
-            <TabItem Header="基本操作页面">
+            <TabItem>
                 <page:PageInfo1_3></page:PageInfo1_3>
             </TabItem>
         </TabControl>
-    </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Content="上一页" Grid.Column="0" Click="Button_Click"></Button>
+            <Button Content="下一页" Grid.Column="1" Click="Button_Click_1"></Button>
+        </Grid>
+    </StackPanel>
 </UserControl>

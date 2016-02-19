@@ -24,5 +24,21 @@ namespace CozyLauncher.Plugin.Guide.GuidePage
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(TabCtrl.SelectedIndex > 0)
+            {
+                TabCtrl.SelectedIndex--;
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if(TabCtrl.SelectedIndex < TabCtrl.Items.Count - 1)
+            {
+                TabCtrl.SelectedIndex++;
+            }
+        }
     }
 }

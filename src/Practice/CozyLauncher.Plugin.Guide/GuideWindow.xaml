@@ -8,7 +8,7 @@
         xmlns:page="clr-namespace:CozyLauncher.Plugin.Guide.GuidePage"
         xmlns:pageinfo="clr-namespace:CozyLauncher.Plugin.Guide.GuidePage.PageInfo"
         mc:Ignorable="d"
-        Title="向导" Height="660" Width="800" ShowMaxRestoreButton="False" ShowMinButton="False">
+        Title="向导" Height="724" Width="800" ShowMaxRestoreButton="False" ShowMinButton="False">
     <metroctrl:MetroWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -21,7 +21,7 @@
         </ResourceDictionary>
     </metroctrl:MetroWindow.Resources>
     <StackPanel VerticalAlignment="Center">
-        <TabControl Width="800" Height="630">
+        <TabControl Width="800" Height="700">
             <TabItem Header="软件使用">
                 <TabItem.Content>
                     <page:SofewareInfoPage></page:SofewareInfoPage>
