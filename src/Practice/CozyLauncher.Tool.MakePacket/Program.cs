@@ -99,6 +99,7 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Plugin.Fnl.dll",
                 "CozyLauncher.Plugin.KickassTorrents.dll",
                 "CozyLauncher.Plugin.Hardware.dll",
+                "CozyLauncher.Plugin.Timestamp.dll",
             };
             Directory.CreateDirectory("./cozy_launcher");
             foreach (var f in filelist)

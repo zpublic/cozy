@@ -106,6 +106,10 @@
       <Project>{5d3aa1b8-dbc5-44f1-b9f4-44a4ea651df8}</Project>
       <Name>CozyLauncher.Plugin.Sys</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.Timestamp\CozyLauncher.Plugin.Timestamp.csproj">
+      <Project>{80fcbda7-f00a-4546-931e-8e59bb7a1944}</Project>
+      <Name>CozyLauncher.Plugin.Timestamp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.Plugin.WebSearch\CozyLauncher.Plugin.WebSearch.csproj">
       <Project>{7bddd754-0ca2-4772-b25d-cf4998146fa4}</Project>
       <Name>CozyLauncher.Plugin.WebSearch</Name>
