@@ -162,3 +162,4 @@ sln/packages/
 /BiliDanmaku.exe
 bower_components/
 node_modules/
+/sln/*.opendb

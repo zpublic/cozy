@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CE088805-E664-42EB-B943-C2A421EA8551}</ProjectGuid>
+    <ProjectGuid>{80FCBDA7-F00A-4546-931E-8E59BB7A1944}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyLauncher.Core</RootNamespace>
-    <AssemblyName>CozyLauncher.Core</AssemblyName>
+    <RootNamespace>CozyLauncher.Plugin.Timestamp</RootNamespace>
+    <AssemblyName>CozyLauncher.Plugin.Timestamp</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,55 +21,36 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\bin\CozyLauncher\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\sln\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Plugin\CppPluginInterop.cs" />
-    <Compile Include="Plugin\CppPluginLoader.cs" />
-    <Compile Include="Plugin\CppPluginWrapper.cs" />
-    <Compile Include="Plugin\CSharpPluginLoader.cs" />
-    <Compile Include="Plugin\IPluginLoader.cs" />
-    <Compile Include="Plugin\PluginMgr.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StartUp\StartUpManager.cs" />
-    <Compile Include="Update\FileVersionInfo.cs" />
-    <Compile Include="Update\UpdateMgr.cs" />
-    <Compile Include="Version\VersionManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CozyLauncher.Infrastructure\CozyLauncher.Infrastructure.csproj">
-      <Project>{58c2d24e-55de-4e57-a1c1-18efa0d4a5a6}</Project>
-      <Name>CozyLauncher.Infrastructure</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.PluginBase\CozyLauncher.PluginBase.csproj">
       <Project>{b2e70e72-bc0a-459d-be2a-41dd5074a3e1}</Project>
       <Name>CozyLauncher.PluginBase</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

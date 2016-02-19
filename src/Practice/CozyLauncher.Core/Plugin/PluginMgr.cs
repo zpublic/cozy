@@ -24,21 +24,11 @@ namespace CozyLauncher.Core.Plugin
 
             foreach (var p in PluginFilleList)
             {
-                try
-                {
-                    Assembly asm = Assembly.LoadFile(p);
-                    List<Type> types = asm.GetTypes().Where(o => o.IsClass && !o.IsAbstract && o.GetInterfaces().Contains(typeof(IPlugin))).ToList();
-                    foreach (Type type in types)
-                    {
-                        var plugin = Activator.CreateInstance(type) as IPlugin;
-                        plugin.Init(context);
-                        plugins_.Add(plugin);
-                    }
-                }
-                catch (Exception)
-                {
-                }
+                IPluginLoader pl = new CSharpPluginLoader(p);
+                plugins_.AddRange(pl.GetPlugins(context).AsEnumerable());
             }
+            
+            plugins_.AddRange(CppPluginLoader.Instance.GetPlugins(context).AsEnumerable());
         }
 
         public void Query(Query query)

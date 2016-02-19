@@ -68,6 +68,7 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Core.dll",
                 "CozyLauncher.Infrastructure.dll",
                 "CozyLauncher.PluginBase.dll",
+                "CozyLauncher.CppPluginLoader.dll",
 
                 "NHotkey.dll",
                 "NHotkey.Wpf.dll",
@@ -90,12 +91,15 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Plugin.Sys.dll",
                 "CozyLauncher.Plugin.Calculator.dll",
                 "CozyLauncher.Plugin.Ydfy.dll",
+                "CozyLauncher.Plugin.Command.dll",
 
                 "CozyLauncher.Plugin.MouseClick.dll",
                 "CozyLauncher.Plugin.Ip.dll",
                 "CozyLauncher.Plugin.Qrcode.dll",
                 "CozyLauncher.Plugin.Fnl.dll",
-                "CozyLauncher.Plugin.KickassTorrents.dll"
+                "CozyLauncher.Plugin.KickassTorrents.dll",
+                "CozyLauncher.Plugin.Hardware.dll",
+                "CozyLauncher.Plugin.Timestamp.dll",
             };
             Directory.CreateDirectory("./cozy_launcher");
             foreach (var f in filelist)

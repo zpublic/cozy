@@ -54,6 +54,10 @@
       <Project>{1ea52a6a-7583-40aa-9cf3-414753bbb4d9}</Project>
       <Name>CozyLauncher.Plugin.Calculator</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.Command\CozyLauncher.Plugin.Command.csproj">
+      <Project>{eeac9f90-64e7-47ba-b557-020f2ebe02f3}</Project>
+      <Name>CozyLauncher.Plugin.Command</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.Plugin.Core\CozyLauncher.Plugin.Core.csproj">
       <Project>{909e8061-b711-45f5-8b7b-df6854fe55a1}</Project>
       <Name>CozyLauncher.Plugin.Core</Name>
@@ -69,6 +73,10 @@
     <ProjectReference Include="..\CozyLauncher.Plugin.Guide\CozyLauncher.Plugin.Guide.csproj">
       <Project>{7b4606a7-77d0-42aa-91ed-b5b6963ad830}</Project>
       <Name>CozyLauncher.Plugin.Guide</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.Hardware\CozyLauncher.Plugin.Hardware.csproj">
+      <Project>{ec29c4cd-911f-43a9-83ae-f294a31fada5}</Project>
+      <Name>CozyLauncher.Plugin.Hardware</Name>
     </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.Plugin.Ip\CozyLauncher.Plugin.Ip.csproj">
       <Project>{6f153c9d-84b4-4c54-a7c8-e75c2c0da0f2}</Project>
@@ -97,6 +105,10 @@
     <ProjectReference Include="..\CozyLauncher.Plugin.Sys\CozyLauncher.Plugin.Sys.csproj">
       <Project>{5d3aa1b8-dbc5-44f1-b9f4-44a4ea651df8}</Project>
       <Name>CozyLauncher.Plugin.Sys</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.Timestamp\CozyLauncher.Plugin.Timestamp.csproj">
+      <Project>{80fcbda7-f00a-4546-931e-8e59bb7a1944}</Project>
+      <Name>CozyLauncher.Plugin.Timestamp</Name>
     </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.Plugin.WebSearch\CozyLauncher.Plugin.WebSearch.csproj">
       <Project>{7bddd754-0ca2-4772-b25d-cf4998146fa4}</Project>
