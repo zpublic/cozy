@@ -312,7 +312,7 @@ namespace CozyLauncher.ResourcesMgr
         private const uint FILE_ATTRIBUTE_NORMAL = 0x00000080;
         private const uint ILD_NORMAL = 0x00000000;
 
-        [DllImport("Shell32.dll")]
+        [DllImport("Shell32.dll", EntryPoint = "SHGetFileInfoW", CharSet = CharSet.Unicode)]
         private static extern IntPtr SHGetFileInfo(
             string pszPath,
             uint dwFileAttributes,
