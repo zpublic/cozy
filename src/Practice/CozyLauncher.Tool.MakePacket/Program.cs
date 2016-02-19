@@ -68,6 +68,7 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Core.dll",
                 "CozyLauncher.Infrastructure.dll",
                 "CozyLauncher.PluginBase.dll",
+                "CozyLauncher.CppPluginLoader.dll",
 
                 "NHotkey.dll",
                 "NHotkey.Wpf.dll",
