@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyLauncher.Core.StartUp
+namespace CozyLauncher.Infrastructure.StartUp
 {
     public class StartUpManager
     {

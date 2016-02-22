@@ -7,8 +7,9 @@ using System.ComponentModel;
 using CozyLauncher.Infrastructure.Hotkey;
 using CozyLauncher.Infrastructure.ProcessMutex;
 using CozyLauncher.Infrastructure.IPC;
-using CozyLauncher.Core.Version;
-using CozyLauncher.Core.StartUp;
+using CozyLauncher.Infrastructure.Version;
+using CozyLauncher.Infrastructure.StartUp;
+using CozyLauncher.Infrastructure.Config;
 
 namespace CozyLauncher
 {
@@ -37,19 +38,15 @@ namespace CozyLauncher
                 GlobalHotkey.Instance.Init();
                 GlobalHotkey.Instance.ReplaceWindowRAction = new Action(ShowApp);
 
-                try
-                {
-                    GlobalHotkey.Instance.Load();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("热键冲突 注册失败");
-                }
+                ConfigManager.Instance.Load();
 
-                if(!VersionManager.Instance.IsExist)
+                if (!VersionManager.Instance.IsExist)
                 {
-                    VersionManager.Instance.Version         = "0.4";
                     StartUpManager.Instance.IsAutoStartUp   = true;
+
+                    this.ViewModel.QueryCommand.Execute("guide");
+                    this.ViewModel.DoCommand.Execute(null);
+                    HideApp();
                 }
 
                 this.ViewModel.PropertyChanged += OnViewModelPropertyChanged;

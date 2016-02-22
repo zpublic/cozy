@@ -21,7 +21,6 @@ namespace CozyLauncher.Infrastructure
 
         public static string Unidecode(this char c)
         {
-            string result;
             if (c < 128)
                 return char.ToString(c);
 
