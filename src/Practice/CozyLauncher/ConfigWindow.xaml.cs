@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CozyLauncher.Infrastructure.Hotkey;
+using MahApps.Metro.Controls;
 
 namespace CozyLauncher
 {
     /// <summary>
     /// ConfigWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class ConfigWindow : Window
+    public partial class ConfigWindow : MetroWindow
     {
         public ConfigWindow()
         {

@@ -171,75 +171,30 @@ namespace CozyLauncher.Infrastructure.Hotkey
             return false;
         }
 
-        public static string ConfigFilePath
+        public string Save()
         {
-            get
+            var result = JsonConvert.SerializeObject(new HotkeySettingInfo()
             {
-                return PathTransform.LocalFullPath(@"./config.json");
-            }
+                HotkeyList = RegistedHotKey,
+                ReplaceWinR = ReplaceWindowR,
+            });
+            return result;
         }
 
-        public void Save()
+        public void Load(string result)
         {
-            try
+            var loadData = JsonConvert.DeserializeObject<HotkeySettingInfo>(result);
+            foreach (var obj in loadData.HotkeyList)
             {
-                using (var fs = new FileStream(ConfigFilePath, FileMode.Create, FileAccess.ReadWrite))
-                {
-                    using (var sw = new StreamWriter(fs))
-                    {
-                        var result = JsonConvert.SerializeObject(new HotkeySettingInfo()
-                        {
-                            HotkeyList = RegistedHotKey,
-                            ReplaceWinR = ReplaceWindowR,
-                        });
-                        if (!string.IsNullOrEmpty(result))
-                        {
-                            sw.Write(result);
-                        }
-                    }
-                }
+                RegistHotkey(obj.Key, obj.Value);
             }
-            catch (Exception)
-            {
-                // Do something
-            }
+            ReplaceWindowR = loadData.ReplaceWinR;
         }
 
-        public void Load()
+        public void LoadDefault()
         {
-            string result = null;
-
-            try
-            {
-                using (var fs = new FileStream(ConfigFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
-                {
-                    using (var sr = new StreamReader(fs))
-                    {
-                        result = sr.ReadToEnd();
-                    }
-                }
-            }
-            catch(Exception)
-            {
-
-            }
-
-            if (!string.IsNullOrEmpty(result))
-            {
-                var loadData = JsonConvert.DeserializeObject<HotkeySettingInfo>(result);
-                foreach (var obj in loadData.HotkeyList)
-                {
-                    RegistHotkey(obj.Key, obj.Value);
-                }
-                ReplaceWindowR = loadData.ReplaceWinR;
-            }
-            else
-            {
-                RegistHotkey("HotKey.ShowApp", new HotkeyModel("Ctrl+Alt+Space"));
-                ReplaceWindowR = true;
-
-                Save();
-            }
+            RegistHotkey("HotKey.ShowApp", new HotkeyModel("Ctrl+Alt+Space"));
+            ReplaceWindowR = true;
         }
     }
 }
