@@ -89,6 +89,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.KickassTorrents", "..\src\Practice\CozyLauncher.Plugin.KickassTorrents\CozyLauncher.Plugin.KickassTorrents.csproj", "{B4063B6C-7E29-491A-9B13-9AB6867B0F99}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.GFW", "..\src\Practice\CozyLauncher.Plugin.GFW\CozyLauncher.Plugin.GFW.csproj", "{E485DBBC-2FAD-406F-BB32-6C06B78BD783}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Command", "..\src\Practice\CozyLauncher.Plugin.Command\CozyLauncher.Plugin.Command.csproj", "{EEAC9F90-64E7-47BA-B557-020F2EBE02F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Hardware", "..\src\Practice\CozyLauncher.Plugin.Hardware\CozyLauncher.Plugin.Hardware.csproj", "{EC29C4CD-911F-43A9-83AE-F294A31FADA5}"
@@ -379,14 +380,18 @@ Global
 		{B4063B6C-7E29-491A-9B13-9AB6867B0F99}.Debug|x86.Build.0 = Debug|Any CPU
 		{B4063B6C-7E29-491A-9B13-9AB6867B0F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4063B6C-7E29-491A-9B13-9AB6867B0F99}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B4063B6C-7E29-491A-9B13-9AB6867B0F99}.Release|x64.ActiveCfg = Release|Any CPU
 		{B4063B6C-7E29-491A-9B13-9AB6867B0F99}.Release|x64.Build.0 = Release|Any CPU
 		{B4063B6C-7E29-491A-9B13-9AB6867B0F99}.Release|x86.ActiveCfg = Release|Any CPU
 		{B4063B6C-7E29-491A-9B13-9AB6867B0F99}.Release|x86.Build.0 = Release|Any CPU
+		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Release|x64.ActiveCfg = Release|Any CPU
+		{E485DBBC-2FAD-406F-BB32-6C06B78BD783}.Release|x86.ActiveCfg = Release|Any CPU
 		{EEAC9F90-64E7-47BA-B557-020F2EBE02F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EEAC9F90-64E7-47BA-B557-020F2EBE02F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEAC9F90-64E7-47BA-B557-020F2EBE02F3}.Debug|x64.ActiveCfg = Debug|Any CPU
