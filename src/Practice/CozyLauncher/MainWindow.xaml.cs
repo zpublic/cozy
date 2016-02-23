@@ -9,7 +9,8 @@ using CozyLauncher.Infrastructure.ProcessMutex;
 using CozyLauncher.Infrastructure.IPC;
 using CozyLauncher.Infrastructure.Version;
 using CozyLauncher.Infrastructure.StartUp;
-using CozyLauncher.Infrastructure.Config;
+using CozyLauncher.Core;
+using System.IO;
 
 namespace CozyLauncher
 {
@@ -34,11 +35,29 @@ namespace CozyLauncher
                 InitialTray();
                 GlobalHotkey.Instance.Init();
                 GlobalHotkey.Instance.ReplaceWindowRAction = new Action(ShowApp);
-                ConfigManager.Instance.Load();
 
-                if (!VersionManager.Instance.IsExist)
+                bool needShowGuide = !File.Exists(SettingObject.ConfigFilePath);
+
+                SettingObject.Instance.Load();
+                LoadSetting();
+
+                if (needShowGuide)
                 {
                     StartUpManager.Instance.IsAutoStartUp = true;
+
+                    var hkm = GlobalHotkey.Instance.GetRegistedHotkey("HotKey.ShowApp");
+
+                    SettingObject.Instance.Set("Hotkey", "IsCtrl", hkm.Ctrl);
+                    SettingObject.Instance.Set("Hotkey", "IsShift", hkm.Shift);
+                    SettingObject.Instance.Set("Hotkey", "IsAlt", hkm.Alt);
+                    SettingObject.Instance.Set("Hotkey", "IsWin", hkm.Win);
+                    SettingObject.Instance.Set("Hotkey", "Key", hkm.CharKey);
+                    SettingObject.Instance.Set("Hotkey", "ReplaceWindowR", GlobalHotkey.Instance.ReplaceWindowR);
+
+                    SettingObject.Instance.Set("Version", "version", "0.6");
+
+                    SettingObject.Instance.Save();
+
                     this.ViewModel.ShowPanel("guide");
                     HideApp();
                 }
@@ -47,6 +66,32 @@ namespace CozyLauncher
                 this.QueryTextBox.Focus();
                 this.ViewModel.Update();
             }
+        }
+
+        private void LoadSetting()
+        {
+            bool isCtrl = false;
+            bool isShift = false;
+            bool isAlt = false;
+            bool isWin = false;
+            Key key = Key.Space;
+            bool ReplaceWindowR = true;
+
+            SettingObject.Instance.Get("Hotkey", "IsCtrl", out isCtrl, false);
+            SettingObject.Instance.Get("Hotkey", "IsShift", out isShift, true);
+            SettingObject.Instance.Get("Hotkey", "IsAlt", out isAlt, true);
+            SettingObject.Instance.Get("Hotkey", "IsWin", out isWin, false);
+            SettingObject.Instance.Get("Hotkey", "Key", out key, Key.Space);
+            SettingObject.Instance.Get("Hotkey", "ReplaceWindowR", out ReplaceWindowR, true);
+
+            var model = new HotkeyModel(isCtrl, isShift, isAlt, isWin, key);
+
+            GlobalHotkey.Instance.RegistHotkey("HotKey.ShowApp", model);
+            GlobalHotkey.Instance.ReplaceWindowR = ReplaceWindowR;
+
+            string version = null;
+            SettingObject.Instance.Get("Version", "version", out version, "0.6");
+            VersionManager.Instance.Version = version;
         }
 
         private void OnWindowMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

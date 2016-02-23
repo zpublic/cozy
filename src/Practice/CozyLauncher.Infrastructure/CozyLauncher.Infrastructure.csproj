@@ -55,15 +55,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\ConfigInfo.cs" />
-    <Compile Include="Config\ConfigManager.cs" />
     <Compile Include="FileMd5.cs" />
     <Compile Include="FuzzyMatcher.cs" />
     <Compile Include="Hotkey\GlobalHotkey.cs" />
     <Compile Include="Hotkey\HotkeyModel.cs" />
     <Compile Include="Hotkey\HotkeyRegister.cs" />
     <Compile Include="Hotkey\HotkeyNative.cs" />
-    <Compile Include="Hotkey\HotkeySettingInfo.cs" />
     <Compile Include="Hotkey\ModifyKeyStatus.cs" />
     <Compile Include="Http\HttpDownload.cs" />
     <Compile Include="IPC\PipeIPCClient.cs" />
@@ -75,7 +72,6 @@
     <Compile Include="StartUp\StartUpManager.cs" />
     <Compile Include="Unidecoder.Characters.cs" />
     <Compile Include="Unidecoder.cs" />
-    <Compile Include="Version\VersionInfo.cs" />
     <Compile Include="Version\VersionManager.cs" />
   </ItemGroup>
   <ItemGroup>
