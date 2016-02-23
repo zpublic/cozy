@@ -53,6 +53,7 @@ namespace CozyLauncher.Infrastructure.Config
         public void Load()
         {
             string result = null;
+            ConfigInfo loadData = null;
 
             try
             {
@@ -62,6 +63,8 @@ namespace CozyLauncher.Infrastructure.Config
                     {
                         result = fr.ReadToEnd();
                     }
+
+                    loadData = JsonConvert.DeserializeObject<ConfigInfo>(result);
                 }
             }
             catch(Exception)
@@ -69,9 +72,8 @@ namespace CozyLauncher.Infrastructure.Config
 
             }
 
-            if(!string.IsNullOrEmpty(result))
+            if(loadData != null)
             {
-                var loadData = JsonConvert.DeserializeObject<ConfigInfo>(result);
                 GlobalHotkey.Instance.Load(loadData.HotkeyConfigInfo);
                 VersionManager.Instance.Load(loadData.VersionConfigInfo);
             }
