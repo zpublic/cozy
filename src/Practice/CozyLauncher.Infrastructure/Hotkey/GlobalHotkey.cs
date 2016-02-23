@@ -155,7 +155,7 @@ namespace CozyLauncher.Infrastructure.Hotkey
                 }
             }
         }
-
+        // "HotKey.ShowApp"
         public Action ReplaceWindowRAction;
 
         private bool ReplaceWindowRProc(int vkey, int scankey)
@@ -169,32 +169,6 @@ namespace CozyLauncher.Infrastructure.Hotkey
                 }
             }
             return false;
-        }
-
-        public string Save()
-        {
-            var result = JsonConvert.SerializeObject(new HotkeySettingInfo()
-            {
-                HotkeyList = RegistedHotKey,
-                ReplaceWinR = ReplaceWindowR,
-            });
-            return result;
-        }
-
-        public void Load(string result)
-        {
-            var loadData = JsonConvert.DeserializeObject<HotkeySettingInfo>(result);
-            foreach (var obj in loadData.HotkeyList)
-            {
-                RegistHotkey(obj.Key, obj.Value);
-            }
-            ReplaceWindowR = loadData.ReplaceWinR;
-        }
-
-        public void LoadDefault()
-        {
-            RegistHotkey("HotKey.ShowApp", new HotkeyModel("Ctrl+Alt+Space"));
-            ReplaceWindowR = true;
         }
     }
 }
