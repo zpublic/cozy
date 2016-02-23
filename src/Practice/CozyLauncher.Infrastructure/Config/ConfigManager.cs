@@ -54,6 +54,7 @@ namespace CozyLauncher.Infrastructure.Config
         {
             string result = null;
             ConfigInfo loadData = null;
+            bool isError = false;
 
             try
             {
@@ -65,23 +66,38 @@ namespace CozyLauncher.Infrastructure.Config
                     }
 
                     loadData = JsonConvert.DeserializeObject<ConfigInfo>(result);
+                    
                 }
             }
             catch(Exception)
             {
-
             }
 
-            if(loadData != null)
+            if(!isError)
             {
-                GlobalHotkey.Instance.Load(loadData.HotkeyConfigInfo);
-                VersionManager.Instance.Load(loadData.VersionConfigInfo);
-            }
-            else
-            {
-                GlobalHotkey.Instance.LoadDefault();
-                VersionManager.Instance.LoadDefaullt();
+                try
+                {
+                    GlobalHotkey.Instance.Load(loadData.HotkeyConfigInfo);
+                }
+                catch (Exception)
+                {
+                    GlobalHotkey.Instance.LoadDefault();
+                    isError = true;
+                }
 
+                try
+                {
+                    VersionManager.Instance.Load(loadData.VersionConfigInfo);
+                }
+                catch (Exception)
+                {
+                    VersionManager.Instance.LoadDefaullt();
+                    isError = true;
+                }
+            }
+
+            if(isError)
+            {
                 Save();
             }
         }
