@@ -30,29 +30,21 @@ namespace CozyLauncher
             else
             {
                 InitializeComponent();
-
                 InitCloseServer();
-
                 InitialTray();
-
                 GlobalHotkey.Instance.Init();
                 GlobalHotkey.Instance.ReplaceWindowRAction = new Action(ShowApp);
-
                 ConfigManager.Instance.Load();
 
                 if (!VersionManager.Instance.IsExist)
                 {
-                    StartUpManager.Instance.IsAutoStartUp   = true;
-
-                    this.ViewModel.QueryCommand.Execute("guide");
-                    this.ViewModel.DoCommand.Execute(null);
+                    StartUpManager.Instance.IsAutoStartUp = true;
+                    this.ViewModel.ShowPanel("guide");
                     HideApp();
                 }
 
                 this.ViewModel.PropertyChanged += OnViewModelPropertyChanged;
-
                 this.QueryTextBox.Focus();
-
                 this.ViewModel.Update();
             }
         }
@@ -249,7 +241,7 @@ namespace CozyLauncher
 
         private void Guide_Click(object sender, EventArgs e)
         {
-
+            this.ViewModel.ShowPanel("guide");
         }
 
         private void Exit_Click(object sender, EventArgs e)
