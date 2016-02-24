@@ -27,7 +27,6 @@ namespace CozyLauncher.Core.Plugin
                 IPluginLoader pl = new CSharpPluginLoader(p);
                 plugins_.AddRange(pl.GetPlugins(context).AsEnumerable());
             }
-            
             plugins_.AddRange(CppPluginLoader.Instance.GetPlugins(context).AsEnumerable());
         }
 

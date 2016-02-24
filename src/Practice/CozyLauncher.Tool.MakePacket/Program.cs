@@ -80,6 +80,8 @@ namespace CozyLauncher.Tool.MakePacket
                 "MaterialDesignThemes.MahApps.dll",
                 "MaterialDesignThemes.Wpf.dll",
                 "MahApps.Metro.dll",
+                "SharpConfig.dll",
+                "FluentScheduler.dll",
 
                 "CozyLauncher.Plugin.Core.dll",
                 "CozyLauncher.Plugin.Guide.dll",
@@ -100,6 +102,7 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Plugin.KickassTorrents.dll",
                 "CozyLauncher.Plugin.Hardware.dll",
                 "CozyLauncher.Plugin.Timestamp.dll",
+                "CozyLauncher.Plugin.BreakReminder.dll",
             };
             Directory.CreateDirectory("./cozy_launcher");
             foreach (var f in filelist)
