@@ -77,8 +77,8 @@ namespace CozyLauncher
             Key key = Key.Space;
             bool ReplaceWindowR = true;
 
-            SettingObject.Instance.Get("Hotkey", "IsCtrl", out isCtrl, false);
-            SettingObject.Instance.Get("Hotkey", "IsShift", out isShift, true);
+            SettingObject.Instance.Get("Hotkey", "IsCtrl", out isCtrl, true);
+            SettingObject.Instance.Get("Hotkey", "IsShift", out isShift, false);
             SettingObject.Instance.Get("Hotkey", "IsAlt", out isAlt, true);
             SettingObject.Instance.Get("Hotkey", "IsWin", out isWin, false);
             SettingObject.Instance.Get("Hotkey", "Key", out key, Key.Space);

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CozyLauncher.Commands;
 using System.Windows.Input;
+using CozyLauncher.Infrastructure.Version;
 
 namespace CozyLauncher.ViewModels
 {
@@ -18,6 +19,14 @@ namespace CozyLauncher.ViewModels
                 return _OkCommand = _OkCommand ?? new DelegateCommand(x => {
                     this.OnPropertyChanged("SystemCommand.Ok");
                 });
+            }
+        }
+
+        public string VersionInfo
+        {
+            get
+            {
+                return "CozyLauncher v" + VersionManager.Instance.Version;
             }
         }
     }
