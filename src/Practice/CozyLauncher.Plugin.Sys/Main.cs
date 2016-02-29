@@ -10,7 +10,7 @@ namespace CozyLauncher.Plugin.Sys
     {
         static readonly IntPtr HWND_BROADCAST = new IntPtr(0xffff);
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
+        static extern IntPtr PostMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
 
         private const uint WM_SYSCOMMAND = 0x0112;
         private const uint SC_MONITORPOWER = 0xF170;
@@ -55,7 +55,7 @@ namespace CozyLauncher.Plugin.Sys
                 r.Action = e =>
                 {
                     context_.Api.HideAndClear();
-                    SendMessage(HWND_BROADCAST, WM_SYSCOMMAND, (IntPtr)SC_MONITORPOWER, new IntPtr(2));
+                    PostMessage(HWND_BROADCAST, WM_SYSCOMMAND, (IntPtr)SC_MONITORPOWER, new IntPtr(2));
                     return true;
                 };
                 rl.Add(r);
