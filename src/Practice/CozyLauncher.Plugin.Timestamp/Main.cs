@@ -53,6 +53,19 @@ namespace CozyLauncher.Plugin.Timestamp
                 r.IcoPath = "[Res]:app";
                 r.Title = date;
                 r.SubTitle = "Copy date to clipboard";
+                r.Action = e =>
+                {
+                    context_.Api.HideAndClear();
+                    try
+                    {
+                        Clipboard.SetText(r.Title);
+                        return true;
+                    }
+                    catch (System.Runtime.InteropServices.ExternalException)
+                    {
+                        return false;
+                    }
+                };
                 list.Add(r);
                 return list;
             }
@@ -65,6 +78,19 @@ namespace CozyLauncher.Plugin.Timestamp
                     r.IcoPath = "[Res]:app";
                     r.Title = timestamp;
                     r.SubTitle = "Copy unix timestamp to clipboard";
+                    r.Action = e =>
+                    {
+                        context_.Api.HideAndClear();
+                        try
+                        {
+                            Clipboard.SetText(r.Title);
+                            return true;
+                        }
+                        catch (System.Runtime.InteropServices.ExternalException)
+                        {
+                            return false;
+                        }
+                    };
                     list.Add(r);
                     return list;
                 }
@@ -78,6 +104,19 @@ namespace CozyLauncher.Plugin.Timestamp
                 r.Title = timestamp;
                 r.SubTitle = "Copy unix timestamp to clipboard";
                 r.Score = 90;
+                r.Action = e =>
+                {
+                    context_.Api.HideAndClear();
+                    try
+                    {
+                        Clipboard.SetText(r.Title);
+                        return true;
+                    }
+                    catch (System.Runtime.InteropServices.ExternalException)
+                    {
+                        return false;
+                    }
+                };
                 list.Add(r);
                 return list;
             }
