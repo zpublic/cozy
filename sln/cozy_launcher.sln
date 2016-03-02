@@ -103,7 +103,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.InfoCol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Tool.InfoCollectServer", "..\src\Practice\CozyLauncher.Tool.InfoCollectServer\CozyLauncher.Tool.InfoCollectServer.csproj", "{F42A4450-C0FF-4C57-AEB0-A5EEF79F08AD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{90CA5841-FE01-4326-9FF3-C097E2AB1C4E}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CozyLauncher.Shared.InfoCollect", "..\src\Practice\CozyLauncher.Shared.InfoCollect\CozyLauncher.Shared.InfoCollect.shproj", "{DEB89CA1-08DE-4559-A7BA-995D526DC0A9}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\src\Practice\CozyLauncher.Shared.InfoCollect\CozyLauncher.Shared.InfoCollect.projitems*{f42a4450-c0ff-4c57-aeb0-a5eef79f08ad}*SharedItemsImports = 4
+		..\src\Practice\CozyLauncher.Shared.InfoCollect\CozyLauncher.Shared.InfoCollect.projitems*{ba4eb5cb-e720-41ba-92ab-8dfaad1ba32e}*SharedItemsImports = 4
+		..\src\Practice\CozyLauncher.Shared.InfoCollect\CozyLauncher.Shared.InfoCollect.projitems*{deb89ca1-08de-4559-a7ba-995d526dc0a9}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
@@ -505,5 +514,6 @@ Global
 		{2611F8B6-2A95-4DE4-BD29-E758EA1DDB47} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
 		{BA4EB5CB-E720-41BA-92AB-8DFAAD1BA32E} = {7A0D3583-5847-4CCE-A7AA-690C34127EE3}
 		{F42A4450-C0FF-4C57-AEB0-A5EEF79F08AD} = {99CDD04F-DFAB-46F3-8F43-ECBA51665848}
+		{DEB89CA1-08DE-4559-A7BA-995D526DC0A9} = {90CA5841-FE01-4326-9FF3-C097E2AB1C4E}
 	EndGlobalSection
 EndGlobal

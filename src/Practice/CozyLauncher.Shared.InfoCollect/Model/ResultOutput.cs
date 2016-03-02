@@ -1,4 +1,4 @@
-﻿namespace CozyLauncher.Tool.InfoCollectServer.Model
+﻿namespace CozyLauncher.Shared.InfoCollect.Model
 {
     public class ResultOutput
     {

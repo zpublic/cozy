@@ -1,4 +1,4 @@
-﻿using CozyLauncher.Tool.InfoCollectServer.Model;
+﻿using CozyLauncher.Shared.InfoCollect.Model;
 using Newtonsoft.Json;
 using System;
 
@@ -10,11 +10,11 @@ namespace CozyLauncher.Tool.InfoCollectServer.Module
         {
             var Input   = JsonConvert.DeserializeObject<InfocActiveInput>(args);
             var Result = new ResultOutput() { ok = false };
-            var Uuid    = Input.uuid;
-            if(Uuid != null)
+            var User    = Input.username;
+            if(User != null)
             {
-                Console.WriteLine(Uuid);
-                Result.ok = false;
+                Console.WriteLine(User);
+                Result.ok = true;
             }
             var Output = JsonConvert.SerializeObject(Result);
             return Output;
