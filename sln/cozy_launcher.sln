@@ -99,6 +99,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Timesta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.BreakReminder", "..\src\Practice\CozyLauncher.Plugin.BreakReminder\CozyLauncher.Plugin.BreakReminder.csproj", "{2611F8B6-2A95-4DE4-BD29-E758EA1DDB47}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.InfoCollect", "..\src\Practice\CozyLauncher.Plugin.InfoCollect\CozyLauncher.Plugin.InfoCollect.csproj", "{BA4EB5CB-E720-41BA-92AB-8DFAAD1BA32E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -444,6 +446,18 @@ Global
 		{2611F8B6-2A95-4DE4-BD29-E758EA1DDB47}.Release|x64.Build.0 = Release|Any CPU
 		{2611F8B6-2A95-4DE4-BD29-E758EA1DDB47}.Release|x86.ActiveCfg = Release|Any CPU
 		{2611F8B6-2A95-4DE4-BD29-E758EA1DDB47}.Release|x86.Build.0 = Release|Any CPU
+		{BA4EB5CB-E720-41BA-92AB-8DFAAD1BA32E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA4EB5CB-E720-41BA-92AB-8DFAAD1BA32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA4EB5CB-E720-41BA-92AB-8DFAAD1BA32E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BA4EB5CB-E720-41BA-92AB-8DFAAD1BA32E}.Debug|x64.Build.0 = Debug|Any CPU
+		{BA4EB5CB-E720-41BA-92AB-8DFAAD1BA32E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BA4EB5CB-E720-41BA-92AB-8DFAAD1BA32E}.Debug|x86.Build.0 = Debug|Any CPU
+		{BA4EB5CB-E720-41BA-92AB-8DFAAD1BA32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA4EB5CB-E720-41BA-92AB-8DFAAD1BA32E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA4EB5CB-E720-41BA-92AB-8DFAAD1BA32E}.Release|x64.ActiveCfg = Release|Any CPU
+		{BA4EB5CB-E720-41BA-92AB-8DFAAD1BA32E}.Release|x64.Build.0 = Release|Any CPU
+		{BA4EB5CB-E720-41BA-92AB-8DFAAD1BA32E}.Release|x86.ActiveCfg = Release|Any CPU
+		{BA4EB5CB-E720-41BA-92AB-8DFAAD1BA32E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -475,5 +489,6 @@ Global
 		{EC29C4CD-911F-43A9-83AE-F294A31FADA5} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
 		{80FCBDA7-F00A-4546-931E-8E59BB7A1944} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
 		{2611F8B6-2A95-4DE4-BD29-E758EA1DDB47} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
+		{BA4EB5CB-E720-41BA-92AB-8DFAAD1BA32E} = {7A0D3583-5847-4CCE-A7AA-690C34127EE3}
 	EndGlobalSection
 EndGlobal

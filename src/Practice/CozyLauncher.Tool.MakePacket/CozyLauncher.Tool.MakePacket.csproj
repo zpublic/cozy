@@ -82,6 +82,10 @@
       <Project>{ec29c4cd-911f-43a9-83ae-f294a31fada5}</Project>
       <Name>CozyLauncher.Plugin.Hardware</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.InfoCollect\CozyLauncher.Plugin.InfoCollect.csproj">
+      <Project>{ba4eb5cb-e720-41ba-92ab-8dfaad1ba32e}</Project>
+      <Name>CozyLauncher.Plugin.InfoCollect</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.Plugin.Ip\CozyLauncher.Plugin.Ip.csproj">
       <Project>{6f153c9d-84b4-4c54-a7c8-e75c2c0da0f2}</Project>
       <Name>CozyLauncher.Plugin.Ip</Name>
