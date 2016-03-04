@@ -33,5 +33,10 @@ namespace CozyLauncher.Plugin.About
                 return "CozyLauncher v" + VersionManager.Instance.Version;
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -43,7 +43,7 @@
                 <LineBreak/>
                 <Run Text="Kevin"/>
             </TextBlock>
-            <Button Content="确定" Margin="15"></Button>
+            <Button Content="确定" Margin="100,15" Click="Button_Click"/>
         </StackPanel>
     </Grid>
 </MetroCtrl:MetroWindow>

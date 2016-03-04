@@ -85,6 +85,7 @@ namespace CozyLauncher.Tool.MakePacket
 
                 "CozyLauncher.Plugin.Core.dll",
                 "CozyLauncher.Plugin.Guide.dll",
+                "CozyLauncher.Plugin.About.dll",
                 "CozyLauncher.Plugin.InfoCollect.dll",
 
                 "CozyLauncher.Plugin.Program.dll",
@@ -106,7 +107,6 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Plugin.BreakReminder.dll",
                 "CozyLauncher.Plugin.BrowserBookmark.dll",
                 "CozyLauncher.Plugin.PasswordGenerator.dll",
-                "CozyLauncher.Plugin.About.dll",
             };
             Directory.CreateDirectory("./cozy_launcher");
             foreach (var f in filelist)

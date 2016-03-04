@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CozyLauncher.Plugin.About\CozyLauncher.Plugin.About.csproj">
+      <Project>{cbfe4de1-3a83-481e-9df0-e231253e7a81}</Project>
+      <Name>CozyLauncher.Plugin.About</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.Plugin.BreakReminder\CozyLauncher.Plugin.BreakReminder.csproj">
       <Project>{2611f8b6-2a95-4de4-bd29-e758ea1ddb47}</Project>
       <Name>CozyLauncher.Plugin.BreakReminder</Name>
