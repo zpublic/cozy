@@ -166,10 +166,6 @@ namespace CozyLauncher
             {
                 Help();
             }
-            else if (e.PropertyName == "SystemCommand.About")
-            {
-                About();
-            }
             else if (e.PropertyName == "SystemCommand.ClearEditBox")
             {
                 ClearEditBox();
@@ -211,12 +207,6 @@ namespace CozyLauncher
         {
             var config = new ConfigWindow();
             config.ShowDialog();
-        }
-
-        public void About()
-        {
-            var about = new AboutWindow();
-            about.ShowDialog();
         }
 
         public void Help()
@@ -281,7 +271,7 @@ namespace CozyLauncher
 
         private void About_Click(object sender, EventArgs e)
         {
-            About();
+            this.ViewModel.ShowPanel("about");
         }
 
         private void Guide_Click(object sender, EventArgs e)
