@@ -11,26 +11,26 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
+using CozyLauncher.Infrastructure.Version;
 
-namespace CozyLauncher
+namespace CozyLauncher.Plugin.About
 {
     /// <summary>
     /// AboutWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class AboutWindow : Window
+    public partial class AboutWindow : MetroWindow
     {
         public AboutWindow()
         {
             InitializeComponent();
-
-            this.ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
-        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        public static string VersionInfo
         {
-            if(e.PropertyName == "SystemCommand.Ok")
+            get
             {
-                this.Close();
+                return "CozyLauncher v" + VersionManager.Instance.Version;
             }
         }
     }

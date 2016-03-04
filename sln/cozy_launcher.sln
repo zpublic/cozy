@@ -64,7 +64,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CozyLauncher.Tool.Website",
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "49719"
-		SlnRelativePath = "..\src\Practice\CozyLauncher.Tool.Website\"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Tool.UpdateFeedGenerator", "..\src\Practice\CozyLauncher.Tool.UpdateFeedGenerator\CozyLauncher.Tool.UpdateFeedGenerator.csproj", "{310F3415-9294-42BD-8864-3149981C555F}"
@@ -110,6 +109,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.BrowserBookmark", "..\src\Practice\CozyLauncher.Plugin.BrowserBookmark\CozyLauncher.Plugin.BrowserBookmark.csproj", "{12936AB9-CD2D-4655-BFE3-894A4AA70F8C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.PasswordGenerator", "..\src\Practice\CozyLauncher.Plugin.PasswordGenerator\CozyLauncher.Plugin.PasswordGenerator.csproj", "{321277BA-1483-40B4-B658-44167C791E66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.About", "..\src\Practice\CozyLauncher.Plugin.About\CozyLauncher.Plugin.About.csproj", "{CBFE4DE1-3A83-481E-9DF0-E231253E7A81}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -509,6 +510,18 @@ Global
 		{321277BA-1483-40B4-B658-44167C791E66}.Release|x64.Build.0 = Release|Any CPU
 		{321277BA-1483-40B4-B658-44167C791E66}.Release|x86.ActiveCfg = Release|Any CPU
 		{321277BA-1483-40B4-B658-44167C791E66}.Release|x86.Build.0 = Release|Any CPU
+		{CBFE4DE1-3A83-481E-9DF0-E231253E7A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBFE4DE1-3A83-481E-9DF0-E231253E7A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBFE4DE1-3A83-481E-9DF0-E231253E7A81}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CBFE4DE1-3A83-481E-9DF0-E231253E7A81}.Debug|x64.Build.0 = Debug|Any CPU
+		{CBFE4DE1-3A83-481E-9DF0-E231253E7A81}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CBFE4DE1-3A83-481E-9DF0-E231253E7A81}.Debug|x86.Build.0 = Debug|Any CPU
+		{CBFE4DE1-3A83-481E-9DF0-E231253E7A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBFE4DE1-3A83-481E-9DF0-E231253E7A81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBFE4DE1-3A83-481E-9DF0-E231253E7A81}.Release|x64.ActiveCfg = Release|Any CPU
+		{CBFE4DE1-3A83-481E-9DF0-E231253E7A81}.Release|x64.Build.0 = Release|Any CPU
+		{CBFE4DE1-3A83-481E-9DF0-E231253E7A81}.Release|x86.ActiveCfg = Release|Any CPU
+		{CBFE4DE1-3A83-481E-9DF0-E231253E7A81}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -545,5 +558,6 @@ Global
 		{DEB89CA1-08DE-4559-A7BA-995D526DC0A9} = {90CA5841-FE01-4326-9FF3-C097E2AB1C4E}
 		{12936AB9-CD2D-4655-BFE3-894A4AA70F8C} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
 		{321277BA-1483-40B4-B658-44167C791E66} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
+		{CBFE4DE1-3A83-481E-9DF0-E231253E7A81} = {7A0D3583-5847-4CCE-A7AA-690C34127EE3}
 	EndGlobalSection
 EndGlobal
