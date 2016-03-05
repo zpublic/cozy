@@ -28,8 +28,11 @@ namespace CozyLauncher.Core.Plugin
                 foreach (var type in types)
                 {
                     var plugin = Activator.CreateInstance(type) as IPlugin;
-                    plugin.Init(context);
-                    ps.Add(plugin);
+                    if (plugin != null)
+                    {
+                        plugin.Init(context);
+                        ps.Add(plugin);
+                    }
                 }
             }
             catch (Exception)
