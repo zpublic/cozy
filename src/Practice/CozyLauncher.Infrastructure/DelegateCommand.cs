@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace CozyLauncher.Commands
+namespace CozyLauncher.Infrastructure
 {
     public class DelegateCommand : ICommand
     {

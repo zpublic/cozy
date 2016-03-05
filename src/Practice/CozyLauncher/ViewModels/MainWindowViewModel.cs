@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using CozyLauncher.PluginBase;
-using CozyLauncher.Commands;
 using System.Windows.Input;
 using CozyLauncher.Core.Plugin;
 using CozyLauncher.Ext;
 using CozyLauncher.Infrastructure.Hotkey;
 using CozyLauncher.Infrastructure;
 using System.Diagnostics;
+using CozyLauncher.Core;
 
 namespace CozyLauncher.ViewModels
 {
@@ -221,7 +221,16 @@ namespace CozyLauncher.ViewModels
             {
                 this.OnPropertyChanged("SystemCommand.Help");
             }
+
             pm.ShowPanel(command);
+        }
+
+        public void RunCommand(string command)
+        {
+            if(command == "SystemCommand.SaveSetting")
+            {
+                this.OnPropertyChanged("SystemCommand.SaveSetting");
+            }
         }
 
         #endregion

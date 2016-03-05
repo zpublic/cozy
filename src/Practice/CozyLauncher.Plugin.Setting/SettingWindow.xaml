@@ -1,14 +1,15 @@
-﻿<MetroCtrl:MetroWindow x:Class="CozyLauncher.ConfigWindow"
+﻿<MetroCtrl:MetroWindow x:Class="CozyLauncher.Plugin.Setting.SettingWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CozyLauncher"
-        xmlns:controls="clr-namespace:CozyLauncher.Controls"
-        xmlns:viewmodel="clr-namespace:CozyLauncher.ViewModels"
+        xmlns:local="clr-namespace:CozyLauncher.Plugin.Setting"
         xmlns:MetroCtrl="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
         Title="ConfigWindow" Height="194" Width="300">
+    <MetroCtrl:MetroWindow.DataContext>
+        <local:SettingWindowViewModel x:Name="ViewModel"></local:SettingWindowViewModel>
+    </MetroCtrl:MetroWindow.DataContext>
     <MetroCtrl:MetroWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -20,11 +21,8 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </MetroCtrl:MetroWindow.Resources>
-    <Window.DataContext>
-        <viewmodel:ConfigWindowViewModel x:Name="ViewModel"></viewmodel:ConfigWindowViewModel>
-    </Window.DataContext>
     <StackPanel>
-        <controls:HotkeyControl HotkeyText="{Binding HotkeyTextStr, Mode=TwoWay}" Margin="5"></controls:HotkeyControl>
+        <local:HotkeyControl HotkeyText="{Binding HotkeyTextStr, Mode=TwoWay}" Margin="5"></local:HotkeyControl>
         <MetroCtrl:ToggleSwitch Content="Replace Win+R" IsChecked="{Binding ReplaceWinR, Mode=TwoWay}" Margin="5"></MetroCtrl:ToggleSwitch>
         <MetroCtrl:ToggleSwitch Content="AutoStartUp" IsChecked="{Binding AutoStartUp, Mode=TwoWay}" Margin="5"></MetroCtrl:ToggleSwitch>
         <Button Content="submit" Command="{Binding SubmitCommand}" Margin="5"></Button>

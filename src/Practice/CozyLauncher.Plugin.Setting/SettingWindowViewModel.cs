@@ -1,17 +1,16 @@
-﻿using CozyLauncher.Commands;
-using CozyLauncher.Infrastructure.Hotkey;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CozyLauncher.Infrastructure;
+using CozyLauncher.Infrastructure.Hotkey;
 using System.Windows.Input;
 using CozyLauncher.Infrastructure.StartUp;
-using CozyLauncher.Core;
 
-namespace CozyLauncher.ViewModels
+namespace CozyLauncher.Plugin.Setting
 {
-    public class ConfigWindowViewModel : BaseViewModel
+    public class SettingWindowViewModel : BaseViewModel
     {
         private string _HotkeyTextStr;
         public string HotkeyTextStr
@@ -68,9 +67,9 @@ namespace CozyLauncher.ViewModels
                         try
                         {
                             GlobalHotkey.Instance.RegistHotkey("HotKey.ShowApp", new HotkeyModel(HotkeyTextStr));
-                            SaveConfig();
+                            this.OnPropertyChanged("SystemCommand.SaveSetting");
                         }
-                        catch(Exception)
+                        catch (Exception)
                         {
                             // failed
                         }
@@ -79,22 +78,7 @@ namespace CozyLauncher.ViewModels
             }
         }
 
-        private void SaveConfig()
-        {
-            var hkm = GlobalHotkey.Instance.GetRegistedHotkey("HotKey.ShowApp");
-
-            SettingObject.Instance.Set("Hotkey", "IsCtrl", hkm.Ctrl);
-            SettingObject.Instance.Set("Hotkey", "IsShift", hkm.Shift);
-            SettingObject.Instance.Set("Hotkey", "IsAlt", hkm.Alt);
-            SettingObject.Instance.Set("Hotkey", "IsWin", hkm.Win);
-            SettingObject.Instance.Set("Hotkey", "Key", hkm.CharKey);
-
-            SettingObject.Instance.Set("Hotkey", "ReplaceWindowR", GlobalHotkey.Instance.ReplaceWindowR);
-
-            SettingObject.Instance.Save();
-        }
-
-        public ConfigWindowViewModel()
+        public SettingWindowViewModel()
         {
             var hkm1 = GlobalHotkey.Instance.GetRegistedHotkey("HotKey.ShowApp");
             if (hkm1 != null)

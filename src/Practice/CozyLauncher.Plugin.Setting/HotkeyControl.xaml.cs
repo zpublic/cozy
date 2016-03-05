@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CozyLauncher.Controls
+namespace CozyLauncher.Plugin.Setting
 {
     /// <summary>
     /// HotkeyControl.xaml 的交互逻辑

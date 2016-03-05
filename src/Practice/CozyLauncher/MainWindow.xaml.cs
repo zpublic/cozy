@@ -45,18 +45,7 @@ namespace CozyLauncher
                 {
                     StartUpManager.Instance.IsAutoStartUp = true;
 
-                    var hkm = GlobalHotkey.Instance.GetRegistedHotkey("HotKey.ShowApp");
-
-                    SettingObject.Instance.Set("Hotkey", "IsCtrl", hkm.Ctrl);
-                    SettingObject.Instance.Set("Hotkey", "IsShift", hkm.Shift);
-                    SettingObject.Instance.Set("Hotkey", "IsAlt", hkm.Alt);
-                    SettingObject.Instance.Set("Hotkey", "IsWin", hkm.Win);
-                    SettingObject.Instance.Set("Hotkey", "Key", hkm.CharKey);
-                    SettingObject.Instance.Set("Hotkey", "ReplaceWindowR", GlobalHotkey.Instance.ReplaceWindowR);
-
-                    SettingObject.Instance.Set("Version", "version", "0.6");
-
-                    SettingObject.Instance.Save();
+                    SaveSetting();
 
                     this.ViewModel.ShowPanel("guide");
                     HideApp();
@@ -70,12 +59,12 @@ namespace CozyLauncher
 
         private void LoadSetting()
         {
-            bool isCtrl = false;
-            bool isShift = false;
-            bool isAlt = false;
-            bool isWin = false;
-            Key key = Key.Space;
-            bool ReplaceWindowR = true;
+            bool isCtrl             = false;
+            bool isShift            = false;
+            bool isAlt              = false;
+            bool isWin              = false;
+            bool ReplaceWindowR     = false;
+            Key key                 = Key.Space;
 
             SettingObject.Instance.Get("Hotkey", "IsCtrl", out isCtrl, true);
             SettingObject.Instance.Get("Hotkey", "IsShift", out isShift, false);
@@ -92,6 +81,20 @@ namespace CozyLauncher
             string version = null;
             SettingObject.Instance.Get("Version", "version", out version, "0.6");
             VersionManager.Instance.Version = version;
+        }
+
+        private void SaveSetting()
+        {
+            var hkm = GlobalHotkey.Instance.GetRegistedHotkey("HotKey.ShowApp");
+
+            SettingObject.Instance.Set("Hotkey", "IsCtrl", hkm.Ctrl);
+            SettingObject.Instance.Set("Hotkey", "IsShift", hkm.Shift);
+            SettingObject.Instance.Set("Hotkey", "IsAlt", hkm.Alt);
+            SettingObject.Instance.Set("Hotkey", "IsWin", hkm.Win);
+            SettingObject.Instance.Set("Hotkey", "Key", hkm.CharKey);
+            SettingObject.Instance.Set("Hotkey", "ReplaceWindowR", GlobalHotkey.Instance.ReplaceWindowR);
+
+            SettingObject.Instance.Save();
         }
 
         private void OnWindowMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -158,10 +161,6 @@ namespace CozyLauncher
             {
                 ShowApp();
             }
-            else if (e.PropertyName == "SystemCommand.ShowConfig")
-            {
-                ShowConfig();
-            }
             else if(e.PropertyName == "SystemCommand.Help")
             {
                 Help();
@@ -169,6 +168,10 @@ namespace CozyLauncher
             else if (e.PropertyName == "SystemCommand.ClearEditBox")
             {
                 ClearEditBox();
+            }
+            else if(e.PropertyName == "SystemCommand.SaveSetting")
+            {
+                SaveSetting();
             }
         }
 
@@ -201,12 +204,6 @@ namespace CozyLauncher
         public void ShowApp()
         {
             Dispatcher.Invoke(ShowWox);
-        }
-
-        public void ShowConfig()
-        {
-            var config = new ConfigWindow();
-            config.ShowDialog();
         }
 
         public void Help()

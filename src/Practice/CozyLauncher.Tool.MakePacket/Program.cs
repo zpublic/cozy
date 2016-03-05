@@ -86,6 +86,7 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Plugin.Core.dll",
                 "CozyLauncher.Plugin.Guide.dll",
                 "CozyLauncher.Plugin.About.dll",
+                "CozyLauncher.Plugin.Setting.dll",
                 "CozyLauncher.Plugin.InfoCollect.dll",
 
                 "CozyLauncher.Plugin.Program.dll",
