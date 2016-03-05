@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CozyLauncher.Infrastructure;
 using CozyLauncher.Infrastructure.Hotkey;
 using System.Windows.Input;
 using CozyLauncher.Infrastructure.StartUp;
+using CozyLauncher.Infrastructure.MVVM;
 
 namespace CozyLauncher.Plugin.Setting
 {

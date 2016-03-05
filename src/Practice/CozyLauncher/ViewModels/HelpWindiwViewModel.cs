@@ -13,7 +13,7 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Drawing;
 using System.Windows.Input;
-using CozyLauncher.Infrastructure;
+using CozyLauncher.Infrastructure.MVVM;
 
 namespace CozyLauncher.ViewModels
 {

@@ -7,7 +7,7 @@ using CozyLauncher.Ext;
 using CozyLauncher.Infrastructure.Hotkey;
 using CozyLauncher.Infrastructure;
 using System.Diagnostics;
-using CozyLauncher.Core;
+using CozyLauncher.Infrastructure.MVVM;
 
 namespace CozyLauncher.ViewModels
 {
