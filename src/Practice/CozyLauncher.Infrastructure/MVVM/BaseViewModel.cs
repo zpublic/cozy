@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyLauncher.ViewModels
+namespace CozyLauncher.Infrastructure.MVVM
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

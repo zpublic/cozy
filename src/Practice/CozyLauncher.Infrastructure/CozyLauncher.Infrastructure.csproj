@@ -55,6 +55,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MVVM\BaseViewModel.cs" />
+    <Compile Include="MVVM\DelegateCommand.cs" />
     <Compile Include="FileMd5.cs" />
     <Compile Include="FuzzyMatcher.cs" />
     <Compile Include="Hotkey\GlobalHotkey.cs" />
