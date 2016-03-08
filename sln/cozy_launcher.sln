@@ -64,6 +64,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CozyLauncher.Tool.Website",
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "49719"
+		SlnRelativePath = "..\src\Practice\CozyLauncher.Tool.Website\"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Tool.UpdateFeedGenerator", "..\src\Practice\CozyLauncher.Tool.UpdateFeedGenerator\CozyLauncher.Tool.UpdateFeedGenerator.csproj", "{310F3415-9294-42BD-8864-3149981C555F}"

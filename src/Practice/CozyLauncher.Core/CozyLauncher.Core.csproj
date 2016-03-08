@@ -51,9 +51,11 @@
   <ItemGroup>
     <Compile Include="Plugin\CppPluginInterop.cs" />
     <Compile Include="Plugin\CppPluginLoader.cs" />
+    <Compile Include="Plugin\LuaPluginWrapper.cs" />
     <Compile Include="Plugin\CppPluginWrapper.cs" />
     <Compile Include="Plugin\CSharpPluginLoader.cs" />
     <Compile Include="Plugin\IPluginLoader.cs" />
+    <Compile Include="Plugin\LuaPluginLoader.cs" />
     <Compile Include="Plugin\PluginMgr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingObject.cs" />
