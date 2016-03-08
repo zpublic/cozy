@@ -114,6 +114,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.About",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Setting", "..\src\Practice\CozyLauncher.Plugin.Setting\CozyLauncher.Plugin.Setting.csproj", "{7A346CFF-4B86-467D-B01B-7FD1A200C3E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.DailySentence", "..\src\Practice\CozyLauncher.Plugin.DailySentence\CozyLauncher.Plugin.DailySentence.csproj", "{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\src\Practice\CozyLauncher.Shared.InfoCollect\CozyLauncher.Shared.InfoCollect.projitems*{f42a4450-c0ff-4c57-aeb0-a5eef79f08ad}*SharedItemsImports = 4
@@ -536,6 +538,18 @@ Global
 		{7A346CFF-4B86-467D-B01B-7FD1A200C3E2}.Release|x64.Build.0 = Release|Any CPU
 		{7A346CFF-4B86-467D-B01B-7FD1A200C3E2}.Release|x86.ActiveCfg = Release|Any CPU
 		{7A346CFF-4B86-467D-B01B-7FD1A200C3E2}.Release|x86.Build.0 = Release|Any CPU
+		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}.Debug|x64.Build.0 = Debug|Any CPU
+		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}.Debug|x86.Build.0 = Debug|Any CPU
+		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}.Release|x64.ActiveCfg = Release|Any CPU
+		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}.Release|x64.Build.0 = Release|Any CPU
+		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}.Release|x86.ActiveCfg = Release|Any CPU
+		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -574,5 +588,6 @@ Global
 		{321277BA-1483-40B4-B658-44167C791E66} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
 		{CBFE4DE1-3A83-481E-9DF0-E231253E7A81} = {7A0D3583-5847-4CCE-A7AA-690C34127EE3}
 		{7A346CFF-4B86-467D-B01B-7FD1A200C3E2} = {7A0D3583-5847-4CCE-A7AA-690C34127EE3}
+		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
 	EndGlobalSection
 EndGlobal

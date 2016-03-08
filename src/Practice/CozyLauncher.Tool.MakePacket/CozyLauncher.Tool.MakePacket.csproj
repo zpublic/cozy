@@ -74,6 +74,10 @@
       <Project>{909e8061-b711-45f5-8b7b-df6854fe55a1}</Project>
       <Name>CozyLauncher.Plugin.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyLauncher.Plugin.DailySentence\CozyLauncher.Plugin.DailySentence.csproj">
+      <Project>{7afc6fbc-8256-46d7-b881-97f45fae48f8}</Project>
+      <Name>CozyLauncher.Plugin.DailySentence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.Plugin.Dirctory\CozyLauncher.Plugin.Dirctory.csproj">
       <Project>{ebf482fc-3e9e-4ab9-bfbe-caf500964f33}</Project>
       <Name>CozyLauncher.Plugin.Dirctory</Name>
