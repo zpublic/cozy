@@ -76,11 +76,11 @@ namespace CozyLauncher.Plugin.Core
 
                 rl.Add(r);
             }
-            else if (query.RawQuery == "guide")
+            else if (query.RawQuery == "guide" || query.RawQuery == "help")
             {
                 var r = new Result()
                 {
-                    Title = "Guide",
+                    Title = "Guide / Help",
                     SubTitle = "向导",
                     IcoPath = "[Res]:help",
                     Score = 100,
@@ -88,25 +88,6 @@ namespace CozyLauncher.Plugin.Core
                     {
                         _context.Api.HideAndClear();
                         _context.Api.ShowPanel("guide");
-                        _context.Api.Clear();
-                        return true;
-                    }
-                };
-
-                rl.Add(r);
-            }
-            else if(query.RawQuery == "help")
-            {
-                var r = new Result()
-                {
-                    Title = "Help",
-                    SubTitle = "帮助",
-                    IcoPath = "[Res]:help",
-                    Score = 100,
-                    Action = e =>
-                    {
-                        _context.Api.HideAndClear();
-                        _context.Api.ShowPanel("help");
                         _context.Api.Clear();
                         return true;
                     }

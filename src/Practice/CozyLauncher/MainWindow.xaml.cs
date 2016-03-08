@@ -161,10 +161,6 @@ namespace CozyLauncher
             {
                 ShowApp();
             }
-            else if(e.PropertyName == "SystemCommand.Help")
-            {
-                Help();
-            }
             else if (e.PropertyName == "SystemCommand.ClearEditBox")
             {
                 ClearEditBox();
@@ -204,12 +200,6 @@ namespace CozyLauncher
         public void ShowApp()
         {
             Dispatcher.Invoke(ShowWox);
-        }
-
-        public void Help()
-        {
-            var help = new HelpWindow();
-            help.ShowDialog();
         }
 
         public void ClearEditBox()
