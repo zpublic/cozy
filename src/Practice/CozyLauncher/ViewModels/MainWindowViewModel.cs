@@ -8,6 +8,7 @@ using CozyLauncher.Infrastructure.Hotkey;
 using CozyLauncher.Infrastructure;
 using System.Diagnostics;
 using CozyLauncher.Infrastructure.MVVM;
+using System.Windows.Controls;
 
 namespace CozyLauncher.ViewModels
 {
