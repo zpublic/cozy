@@ -80,6 +80,9 @@
     <Compile Include="GuidePage\PageInfo\PageInfo2_2.xaml.cs">
       <DependentUpon>PageInfo2_2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GuidePage\PageInfo\TestPage.xaml.cs">
+      <DependentUpon>TestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GuidePage\SofewareInfoPage.xaml.cs">
       <DependentUpon>SofewareInfoPage.xaml</DependentUpon>
     </Compile>
@@ -90,6 +93,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CozyLauncher.Infrastructure\CozyLauncher.Infrastructure.csproj">
+      <Project>{58c2d24e-55de-4e57-a1c1-18efa0d4a5a6}</Project>
+      <Name>CozyLauncher.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyLauncher.PluginBase\CozyLauncher.PluginBase.csproj">
       <Project>{b2e70e72-bc0a-459d-be2a-41dd5074a3e1}</Project>
       <Name>CozyLauncher.PluginBase</Name>
@@ -113,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GuidePage\PageInfo\PageInfo2_2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GuidePage\PageInfo\TestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -20,8 +20,8 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </metroctrl:MetroWindow.Resources>
-    <StackPanel VerticalAlignment="Center">
-        <TabControl Width="800" Height="700">
+    <StackPanel VerticalAlignment="Top">
+        <!--<TabControl Width="800" Height="700">
             <TabItem Header="软件使用">
                 <TabItem.Content>
                     <page:SofewareInfoPage></page:SofewareInfoPage>
@@ -33,7 +33,10 @@
             <TabItem Header="其他插件">
                 <pageinfo:PageInfo2_2></pageinfo:PageInfo2_2>
             </TabItem>
-        </TabControl>
+        </TabControl>-->
+        <pageinfo:TestPage>
+            
+        </pageinfo:TestPage>
     </StackPanel>
 
 </metroctrl:MetroWindow>
