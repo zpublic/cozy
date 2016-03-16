@@ -28,5 +28,10 @@ namespace CozyLauncher.Core.Plugin
         {
             plugins_.ShowPanel(id_, command);
         }
+
+        public void RunCommand(string command)
+        {
+            plugins_.RunCommand(id_, command);
+        }
     }
 }

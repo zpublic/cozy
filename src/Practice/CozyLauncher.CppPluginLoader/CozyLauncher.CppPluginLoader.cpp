@@ -24,4 +24,9 @@ extern "C"
 	{
 		return;
 	}
+
+	__declspec(dllexport) void RunCommand(int id, wchar_t* command)
+	{
+		return;
+	}
 }

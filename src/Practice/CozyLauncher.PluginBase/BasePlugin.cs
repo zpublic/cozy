@@ -18,5 +18,9 @@ namespace CozyLauncher.PluginBase
         public virtual void ShowPanel(string command)
         {
         }
+
+        public virtual void RunCommand(string command)
+        {
+        }
     }
 }

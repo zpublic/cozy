@@ -60,6 +60,14 @@ namespace CozyLauncher.Core.Plugin
             }
         }
 
+        public void RunCommand(string command)
+        {
+            foreach (var p in plugins_)
+            {
+                p.RunCommand(command);
+            }
+        }
+
         private static int CompareResult(Result x, Result y)
         {
             return y.Score.CompareTo(x.Score);
