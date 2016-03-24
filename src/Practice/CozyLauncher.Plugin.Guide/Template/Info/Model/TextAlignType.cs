@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyLauncher.Infrastructure.Template.Info.Model
+namespace CozyLauncher.Plugin.Guide.Template.Info.Model
 {
     [Flags]
     public enum TextAlignType

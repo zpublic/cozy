@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 
-namespace CozyLauncher.Infrastructure.Template.Info
+namespace CozyLauncher.Plugin.Guide.Template.Info
 {
     public class ImageInfo : ITemplateInfo
     {

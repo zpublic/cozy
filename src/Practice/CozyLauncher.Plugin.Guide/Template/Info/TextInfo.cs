@@ -1,4 +1,4 @@
-﻿using CozyLauncher.Infrastructure.Template.Info.Model;
+﻿using CozyLauncher.Plugin.Guide.Template.Info.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace CozyLauncher.Infrastructure.Template.Info
+namespace CozyLauncher.Plugin.Guide.Template.Info
 {
     public class TextInfo : ITemplateInfo
     {

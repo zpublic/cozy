@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CozyLauncher.Infrastructure.Template.Ctrl
+namespace CozyLauncher.Plugin.Guide.Template.Ctrl
 {
     /// <summary>
     /// UserTemplateControl.xaml 的交互逻辑

@@ -1,4 +1,4 @@
-﻿using CozyLauncher.Infrastructure.Template.Info;
+﻿using CozyLauncher.Plugin.Guide.Template.Info;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace CozyLauncher.Infrastructure.Template
+namespace CozyLauncher.Plugin.Guide.Template
 {
     public class DataTemplate : TemplateBase
     {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace CozyLauncher.Infrastructure.Template.Info
+namespace CozyLauncher.Plugin.Guide.Template.Info
 {
     public class TabInfo : ITemplateInfo
     {

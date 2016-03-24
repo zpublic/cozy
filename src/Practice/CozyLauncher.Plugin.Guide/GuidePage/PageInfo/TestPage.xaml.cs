@@ -12,11 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CozyLauncher.Infrastructure.Template;
-using CozyLauncher.Infrastructure.Template.Ctrl;
 using System.IO;
-using CozyLauncher.Infrastructure.Template.Info;
-using CozyLauncher.Infrastructure.Template.Info.Model;
+using CozyLauncher.Plugin.Guide.Template;
+using CozyLauncher.Plugin.Guide.Template.Info;
+using CozyLauncher.Plugin.Guide.Template.Info.Model;
 
 namespace CozyLauncher.Plugin.Guide.GuidePage.PageInfo
 {
@@ -36,11 +35,11 @@ namespace CozyLauncher.Plugin.Guide.GuidePage.PageInfo
         {
             var mainPanel = new PanelTemplate();
 
-            var data1 = new Infrastructure.Template.DataTemplate();
+            var data1 = new Template.DataTemplate();
             data1.Info = new ImageInfo() { Path = "Resources/5.png" };
             mainPanel.Children.Add(data1);
 
-            var data2 = new Infrastructure.Template.DataTemplate();
+            var data2 = new Template.DataTemplate();
             data2.Info = new TextInfo()
             {
                 Text = "testTitle",
@@ -51,7 +50,7 @@ namespace CozyLauncher.Plugin.Guide.GuidePage.PageInfo
             };
             mainPanel.Children.Add(data2);
 
-            var data3 = new Infrastructure.Template.DataTemplate();
+            var data3 = new Template.DataTemplate();
             data3.Info = new TextInfo()
             {
                 Text = "testText",
@@ -63,7 +62,7 @@ namespace CozyLauncher.Plugin.Guide.GuidePage.PageInfo
             mainPanel.Children.Add(data3);
 
             var tab = new TabTemplate();
-            var data4 = new Infrastructure.Template.DataTemplate();
+            var data4 = new Template.DataTemplate();
             data4.Info = new TabInfo()
             {
                 Header = "test1",
@@ -78,7 +77,7 @@ namespace CozyLauncher.Plugin.Guide.GuidePage.PageInfo
             };
             tab.Children.Add(data4);
 
-            var data5 = new Infrastructure.Template.DataTemplate();
+            var data5 = new Template.DataTemplate();
             data5.Info = new TabInfo()
             {
                 Header = "test2",

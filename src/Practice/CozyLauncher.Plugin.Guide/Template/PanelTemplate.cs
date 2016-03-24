@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace CozyLauncher.Infrastructure.Template
+namespace CozyLauncher.Plugin.Guide.Template
 {
     public class PanelTemplate : TemplateBase
     {
