@@ -77,27 +77,12 @@
     <Compile Include="PathTransform.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartUp\StartUpManager.cs" />
-    <Compile Include="Template\Ctrl\UserTemplateControl.xaml.cs">
-      <DependentUpon>UserTemplateControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Template\ExtFunction.cs" />
-    <Compile Include="Template\MultiImageTextTemplate.cs" />
-    <Compile Include="Template\TemplateBase.cs" />
-    <Compile Include="Template\PureTextTemplate.cs" />
-    <Compile Include="Template\TextImageTemplate.cs" />
-    <Compile Include="Template\TextInfo.cs" />
     <Compile Include="Unidecoder.Characters.cs" />
     <Compile Include="Unidecoder.cs" />
     <Compile Include="Version\VersionManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Template\Ctrl\UserTemplateControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
