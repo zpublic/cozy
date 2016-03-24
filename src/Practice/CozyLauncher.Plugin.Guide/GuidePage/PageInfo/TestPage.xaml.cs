@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using CozyLauncher.Infrastructure.Template;
 using CozyLauncher.Infrastructure.Template.Ctrl;
 using System.IO;
+using CozyLauncher.Infrastructure.Template.Info;
+using CozyLauncher.Infrastructure.Template.Info.Model;
 
 namespace CozyLauncher.Plugin.Guide.GuidePage.PageInfo
 {
@@ -27,28 +29,73 @@ namespace CozyLauncher.Plugin.Guide.GuidePage.PageInfo
         {
             InitializeComponent();
 
-            var uri = new Uri("/CozyLauncher.Plugin.Guide;component/Resources/5.png", UriKind.RelativeOrAbsolute);
-            panel.Children.Add(new UserTemplateControl(new TextImageTemplate(true, new BitmapImage(uri),
-            new List<TextInfo>()
-                    {
-                        new TextInfo()
-                        {
-                            Text = "testTitle",
-                            Font = "微软雅黑",
-                            TextAlign = TextAlignType.Center,
-                            TextSize = 24,
-                            Margin = new MarginInfo(10),
-                        },
-                        new TextInfo()
-                        {
-                            Text = "testText",
-                            Font = "微软雅黑",
-                            TextAlign = TextAlignType.Center,
-                            TextSize = 16,
-                            Margin = new MarginInfo(20),
-                        },
-                    }
-                )));
+            TestData();
+        }
+
+        private void TestData()
+        {
+            var mainPanel = new PanelTemplate();
+
+            var data1 = new Infrastructure.Template.DataTemplate();
+            data1.Info = new ImageInfo() { Path = "Resources/5.png" };
+            mainPanel.Children.Add(data1);
+
+            var data2 = new Infrastructure.Template.DataTemplate();
+            data2.Info = new TextInfo()
+            {
+                Text = "testTitle",
+                Font = "微软雅黑",
+                TextAlign = TextAlignType.Center,
+                TextSize = 24,
+                Margin = new MarginInfo(10),
+            };
+            mainPanel.Children.Add(data2);
+
+            var data3 = new Infrastructure.Template.DataTemplate();
+            data3.Info = new TextInfo()
+            {
+                Text = "testText",
+                Font = "微软雅黑",
+                TextAlign = TextAlignType.Center,
+                TextSize = 16,
+                Margin = new MarginInfo(20),
+            };
+            mainPanel.Children.Add(data3);
+
+            var tab = new TabTemplate();
+            var data4 = new Infrastructure.Template.DataTemplate();
+            data4.Info = new TabInfo()
+            {
+                Header = "test1",
+                Content = new TextInfo()
+                {
+                    Text = "test1 content",
+                    Font = "微软雅黑",
+                    TextAlign = TextAlignType.Center,
+                    TextSize = 16,
+                    Margin = new MarginInfo(20),
+                },
+            };
+            tab.Children.Add(data4);
+
+            var data5 = new Infrastructure.Template.DataTemplate();
+            data5.Info = new TabInfo()
+            {
+                Header = "test2",
+                Content = new TextInfo()
+                {
+                    Text = "test2 content",
+                    Font = "微软雅黑",
+                    TextAlign = TextAlignType.Center,
+                    TextSize = 16,
+                    Margin = new MarginInfo(20),
+                },
+            };
+            tab.Children.Add(data5);
+
+            mainPanel.Children.Add(tab);
+
+            panel.Children.Add(mainPanel.InitTemplate());
         }
     }
 }

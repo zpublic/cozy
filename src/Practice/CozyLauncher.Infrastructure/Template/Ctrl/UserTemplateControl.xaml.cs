@@ -20,38 +20,12 @@ namespace CozyLauncher.Infrastructure.Template.Ctrl
     /// </summary>
     public partial class UserTemplateControl : UserControl
     {
-        private TemplateBase CtrlTemplate { get; set; }
-
         public UserTemplateControl(TemplateBase template = null)
         {
-            InitializeComponent();
-
             if(template != null)
             {
-                InitTemplate(template);
+                this.panel.Children.Add(template.InitTemplate());
             }
-        }
-
-        private void InitTemplate(TemplateBase template)
-        {
-            foreach(var obj in template.GetUseTemplate())
-            {
-                this.panel.Children.Add(obj);
-            }
-
-            //var type = template.GetType();
-            //if (type == typeof(PureTextTemplate) || type == typeof(SignalPureTextTemplate))
-            //{
-
-            //}
-            //else if(type == typeof(TextImageTemplate))
-            //{
-
-            //}
-            //else if(type == typeof(MultiImageTextTemplate) || type == typeof(SignalTextImageTemplate))
-            //{
-
-            //}
         }
     }
 }

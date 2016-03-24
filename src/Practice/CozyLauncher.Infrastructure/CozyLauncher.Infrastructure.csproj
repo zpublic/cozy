@@ -80,12 +80,17 @@
     <Compile Include="Template\Ctrl\UserTemplateControl.xaml.cs">
       <DependentUpon>UserTemplateControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Template\ExtFunction.cs" />
-    <Compile Include="Template\MultiImageTextTemplate.cs" />
+    <Compile Include="Template\DataTemplate.cs" />
+    <Compile Include="Template\Info\ImageInfo.cs" />
+    <Compile Include="Template\Info\ITemplateInfo.cs" />
+    <Compile Include="Template\Info\Model\ExtFunction.cs" />
+    <Compile Include="Template\Info\Model\MarginInfo.cs" />
+    <Compile Include="Template\Info\TabInfo.cs" />
+    <Compile Include="Template\PanelTemplate.cs" />
+    <Compile Include="Template\TabTemplate.cs" />
     <Compile Include="Template\TemplateBase.cs" />
-    <Compile Include="Template\PureTextTemplate.cs" />
-    <Compile Include="Template\TextImageTemplate.cs" />
-    <Compile Include="Template\TextInfo.cs" />
+    <Compile Include="Template\Info\Model\TextAlignType.cs" />
+    <Compile Include="Template\Info\TextInfo.cs" />
     <Compile Include="Unidecoder.Characters.cs" />
     <Compile Include="Unidecoder.cs" />
     <Compile Include="Version\VersionManager.cs" />
