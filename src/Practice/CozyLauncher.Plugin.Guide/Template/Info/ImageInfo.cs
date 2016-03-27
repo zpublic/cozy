@@ -26,6 +26,8 @@ namespace CozyLauncher.Plugin.Guide.Template.Info
             img.Source = new BitmapImage(new Uri("/CozyLauncher.Plugin.Guide;component/" + Path, UriKind.RelativeOrAbsolute));
             img.EndInit();
             img.Stretch = Stretch.Fill;
+            img.MaxWidth = 600;
+            img.MaxHeight = 120;
             return img;
         }
     }
