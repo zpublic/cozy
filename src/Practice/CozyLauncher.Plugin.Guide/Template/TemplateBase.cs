@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 
-namespace CozyLauncher.Infrastructure.Template
+namespace CozyLauncher.Plugin.Guide.Template
 {
     public abstract class TemplateBase
     {
-        public abstract IList<FrameworkElement> GetUseTemplate();
+        public List<TemplateBase> Children { get; set; } = new List<TemplateBase>();
+
+        public abstract FrameworkElement InitTemplate();
     }
 }
