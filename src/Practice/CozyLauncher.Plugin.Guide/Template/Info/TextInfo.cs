@@ -18,7 +18,7 @@ namespace CozyLauncher.Plugin.Guide.Template.Info
         public TextAlignType TextAlign { get; set; }
         public MarginInfo Margin { get; set; }
 
-        public UIElement GetInfoObject(int width)
+        public UIElement GetInfoObject(double width)
         {
             if(string.IsNullOrEmpty(Text) || string.IsNullOrEmpty(Font))
             {
@@ -34,11 +34,11 @@ namespace CozyLauncher.Plugin.Guide.Template.Info
             txt.FontSize    = TextSize;
             txt.FontFamily  = new FontFamily(Font);
             
-            var res = TextAlign.ToAlignment();
-            txt.HorizontalContentAlignment = HorizontalAlignment.Center;
-            txt.VerticalContentAlignment = VerticalAlignment.Center;
+            var res     = TextAlign.ToAlignment();
+            txt.Margin  = new Thickness(txt.Margin.Left, txt.Margin.Top, txt.Margin.Right, txt.Margin.Bottom);
+            txt.HorizontalContentAlignment  = HorizontalAlignment.Center;
+            txt.VerticalContentAlignment    = VerticalAlignment.Center;
 
-            txt.Margin      = new Thickness(txt.Margin.Left, txt.Margin.Top, txt.Margin.Right, txt.Margin.Bottom);
 
             return txt;
         }

@@ -10,9 +10,8 @@ namespace CozyLauncher.Plugin.Guide.Template
 {
     public abstract class TemplateBase
     {
-        [JsonIgnore]
         public IList<TemplateBase> Children { get; set; } = new List<TemplateBase>();
 
-        public abstract UIElement InitTemplate(int width);
+        public abstract UIElement InitTemplate(double width);
     }
 }

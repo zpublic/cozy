@@ -1,1 +1,81 @@
-{"ObjectType":"PanelTemplate","Content":"{\"IsHorizontal\":false}","Children":["{\"ObjectType\":\"DataTemplate\",\"Content\":\"{\\\"Info\\\":{\\\"Path\\\":\\\"Resources/5.png\\\"}}\",\"Children\":[]}","{\"ObjectType\":\"DataTemplate\",\"Content\":\"{\\\"Info\\\":{\\\"Text\\\":\\\"testTitle\\\",\\\"Font\\\":\\\"Î¢ÈíÑÅºÚ\\\",\\\"TextSize\\\":24,\\\"TextAlign\\\":0,\\\"Margin\\\":{\\\"Left\\\":10,\\\"Right\\\":10,\\\"Top\\\":10,\\\"Bottom\\\":10}}}\",\"Children\":[]}","{\"ObjectType\":\"DataTemplate\",\"Content\":\"{\\\"Info\\\":{\\\"Text\\\":\\\"testText\\\",\\\"Font\\\":\\\"Î¢ÈíÑÅºÚ\\\",\\\"TextSize\\\":16,\\\"TextAlign\\\":0,\\\"Margin\\\":{\\\"Left\\\":20,\\\"Right\\\":20,\\\"Top\\\":20,\\\"Bottom\\\":20}}}\",\"Children\":[]}","{\"ObjectType\":\"TabTemplate\",\"Content\":\"{}\",\"Children\":[\"{\\\"ObjectType\\\":\\\"DataTemplate\\\",\\\"Content\\\":\\\"{\\\\\\\"Info\\\\\\\":{\\\\\\\"Header\\\\\\\":\\\\\\\"test1\\\\\\\",\\\\\\\"Content\\\\\\\":{\\\\\\\"Text\\\\\\\":\\\\\\\"test1 content\\\\\\\",\\\\\\\"Font\\\\\\\":\\\\\\\"Î¢ÈíÑÅºÚ\\\\\\\",\\\\\\\"TextSize\\\\\\\":16,\\\\\\\"TextAlign\\\\\\\":0,\\\\\\\"Margin\\\\\\\":{\\\\\\\"Left\\\\\\\":20,\\\\\\\"Right\\\\\\\":20,\\\\\\\"Top\\\\\\\":20,\\\\\\\"Bottom\\\\\\\":20}}}}\\\",\\\"Children\\\":[]}\",\"{\\\"ObjectType\\\":\\\"DataTemplate\\\",\\\"Content\\\":\\\"{\\\\\\\"Info\\\\\\\":{\\\\\\\"Header\\\\\\\":\\\\\\\"test2\\\\\\\",\\\\\\\"Content\\\\\\\":{\\\\\\\"Text\\\\\\\":\\\\\\\"test2 content\\\\\\\",\\\\\\\"Font\\\\\\\":\\\\\\\"Î¢ÈíÑÅºÚ\\\\\\\",\\\\\\\"TextSize\\\\\\\":16,\\\\\\\"TextAlign\\\\\\\":0,\\\\\\\"Margin\\\\\\\":{\\\\\\\"Left\\\\\\\":20,\\\\\\\"Right\\\\\\\":20,\\\\\\\"Top\\\\\\\":20,\\\\\\\"Bottom\\\\\\\":20}}}}\\\",\\\"Children\\\":[]}\"]}"]}
+{
+    "IsHorizontal": false,
+    "Children": [
+        {
+            "Info": {
+                "Path": "Resources/5.png"
+            },
+            "Children": []
+        },
+        {
+            "Info": {
+                "Text": "testTitle",
+                "Font": "Î¢ÈíÑÅºÚ",
+                "TextSize": 24,
+                "TextAlign": 0,
+                "Margin": {
+                    "Left": 10,
+                    "Right": 10,
+                    "Top": 10,
+                    "Bottom": 10
+                }
+            },
+            "Children": []
+        },
+        {
+            "Info": {
+                "Text": "testText",
+                "Font": "Î¢ÈíÑÅºÚ",
+                "TextSize": 16,
+                "TextAlign": 0,
+                "Margin": {
+                    "Left": 20,
+                    "Right": 20,
+                    "Top": 20,
+                    "Bottom": 20
+                }
+            },
+            "Children": []
+        },
+        {
+            "Children": [
+                {
+                    "Info": {
+                        "Header": "test1",
+                        "Content": {
+                            "Text": "test1 content",
+                            "Font": "Î¢ÈíÑÅºÚ",
+                            "TextSize": 16,
+                            "TextAlign": 0,
+                            "Margin": {
+                                "Left": 20,
+                                "Right": 20,
+                                "Top": 20,
+                                "Bottom": 20
+                            }
+                        }
+                    },
+                    "Children": []
+                },
+                {
+                    "Info": {
+                        "Header": "test2",
+                        "Content": {
+                            "Text": "test2 content",
+                            "Font": "Î¢ÈíÑÅºÚ",
+                            "TextSize": 16,
+                            "TextAlign": 0,
+                            "Margin": {
+                                "Left": 20,
+                                "Right": 20,
+                                "Top": 20,
+                                "Bottom": 20
+                            }
+                        }
+                    },
+                    "Children": []
+                }
+            ]
+        }
+    ]
+}

@@ -93,7 +93,6 @@
     <Compile Include="Template\TemplateBase.cs" />
     <Compile Include="Template\TemplateHelper.cs" />
     <Compile Include="Template\TemplateJsonConverter.cs" />
-    <Compile Include="Template\TemplateJsonObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CozyLauncher.Infrastructure\CozyLauncher.Infrastructure.csproj">

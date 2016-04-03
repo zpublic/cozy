@@ -11,7 +11,7 @@ namespace CozyLauncher.Plugin.Guide.Template
 {
     public class TabTemplate : TemplateBase
     {
-        public override UIElement InitTemplate(int width)
+        public override UIElement InitTemplate(double width)
         {
             var ctrl = new TabControl();
 

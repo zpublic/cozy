@@ -11,21 +11,12 @@ namespace CozyLauncher.Plugin.Guide.Template
     {
         public static string Serialization(TemplateBase template)
         {
-            var obj = new TemplateJsonObject();
-            obj.ObjectType  = template.GetType().Name;
-            obj.Content     = JsonConvert.SerializeObject(template);
-            obj.Children    = template.Children.Select(x => Serialization(x));
-            return JsonConvert.SerializeObject(obj);
+            return JsonConvert.SerializeObject(template);
         }
 
         public static TemplateBase Deserialization(string obj)
         {
-            var json = JsonConvert.DeserializeObject<TemplateJsonObject>(obj);
-            var template = JsonConvert.DeserializeObject<TemplateBase>(json.Content, new TemplateConverter(), new TemplateInfoConverter());
-
-            template.Children = json.Children.Select(x => Deserialization(x)).ToList();
-
-            return template;
+            return JsonConvert.DeserializeObject<TemplateBase>(obj, new TemplateConverter(), new TemplateInfoConverter());
         }
     }
 }

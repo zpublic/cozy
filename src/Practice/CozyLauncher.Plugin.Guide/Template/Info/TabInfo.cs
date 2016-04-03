@@ -13,17 +13,16 @@ namespace CozyLauncher.Plugin.Guide.Template.Info
         public string Header { get; set; }
         public ITemplateInfo Content { get; set; }
 
-        public UIElement GetInfoObject(int width)
+        public UIElement GetInfoObject(double width)
         {
             if(string.IsNullOrEmpty(Header) || Content == null)
             {
                 throw new ArgumentNullException("header and content cannot be null");
             }
 
-            var item = new TabItem();
-
-            item.Header = Header;
-            item.Content = Content.GetInfoObject(width);
+            var item        = new TabItem();
+            item.Header     = Header;
+            item.Content    = Content.GetInfoObject(width);
 
             return item;
         }

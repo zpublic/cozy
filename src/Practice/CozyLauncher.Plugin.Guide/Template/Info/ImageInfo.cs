@@ -14,7 +14,7 @@ namespace CozyLauncher.Plugin.Guide.Template.Info
     {
         public string Path { get; set; }
 
-        public UIElement GetInfoObject(int width)
+        public UIElement GetInfoObject(double width)
         {
             if(string.IsNullOrEmpty(Path))
             {

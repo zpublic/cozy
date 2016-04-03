@@ -9,6 +9,6 @@ namespace CozyLauncher.Plugin.Guide.Template.Info
 {
     public interface ITemplateInfo
     {
-        UIElement GetInfoObject(int width);
+        UIElement GetInfoObject(double width);
     }
 }

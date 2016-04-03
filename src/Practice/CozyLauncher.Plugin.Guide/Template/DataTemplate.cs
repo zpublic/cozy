@@ -13,7 +13,7 @@ namespace CozyLauncher.Plugin.Guide.Template
     {
         public ITemplateInfo Info { get; set; }
 
-        public override UIElement InitTemplate(int width)
+        public override UIElement InitTemplate(double width)
         {
             return Info.GetInfoObject(width);
         }
