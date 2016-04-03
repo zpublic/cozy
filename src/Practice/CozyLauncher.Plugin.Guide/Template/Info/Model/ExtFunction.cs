@@ -14,11 +14,11 @@ namespace CozyLauncher.Plugin.Guide.Template.Info.Model
             var hori    = HorizontalAlignment.Left;
             var vert    = VerticalAlignment.Top;
 
-            if ((align | TextAlignType.Left) != 0)
+            if ((align & TextAlignType.Left) != 0)
             {
                 hori = HorizontalAlignment.Left;
             }
-            else if((align | TextAlignType.Right) != 0)
+            else if((align & TextAlignType.Right) != 0)
             {
                 hori = HorizontalAlignment.Right;
             }
@@ -27,11 +27,11 @@ namespace CozyLauncher.Plugin.Guide.Template.Info.Model
                 hori = HorizontalAlignment.Center;
             }
 
-            if((align | TextAlignType.Top) != 0)
+            if((align & TextAlignType.Top) != 0)
             {
                 vert = VerticalAlignment.Top;
             }
-            else if((align | TextAlignType.Bottom) != 0)
+            else if((align & TextAlignType.Bottom) != 0)
             {
                 vert = VerticalAlignment.Bottom;
             }

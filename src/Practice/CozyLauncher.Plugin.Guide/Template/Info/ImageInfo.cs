@@ -14,7 +14,7 @@ namespace CozyLauncher.Plugin.Guide.Template.Info
     {
         public string Path { get; set; }
 
-        public FrameworkElement GetInfoObject()
+        public UIElement GetInfoObject(int width)
         {
             if(string.IsNullOrEmpty(Path))
             {
@@ -24,10 +24,9 @@ namespace CozyLauncher.Plugin.Guide.Template.Info
             var img = new Image();
             img.BeginInit();
             img.Source = new BitmapImage(new Uri("/CozyLauncher.Plugin.Guide;component/" + Path, UriKind.RelativeOrAbsolute));
-            img.EndInit();
             img.Stretch = Stretch.Fill;
-            img.MaxWidth = 600;
-            img.MaxHeight = 120;
+            img.EndInit();
+            img.MaxWidth = width;
             return img;
         }
     }

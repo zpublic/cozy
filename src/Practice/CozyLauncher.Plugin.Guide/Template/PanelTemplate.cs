@@ -12,7 +12,7 @@ namespace CozyLauncher.Plugin.Guide.Template
     {
         public bool IsHorizontal { get; set; }
 
-        public override FrameworkElement InitTemplate()
+        public override UIElement InitTemplate(int width)
         {
             var panel = new StackPanel();
             panel.HorizontalAlignment = HorizontalAlignment.Center;
@@ -21,7 +21,7 @@ namespace CozyLauncher.Plugin.Guide.Template
 
             foreach(var info in Children)
             {
-                panel.Children.Add(info.InitTemplate());
+                panel.Children.Add(info.InitTemplate(width));
             }
             return panel; 
         }

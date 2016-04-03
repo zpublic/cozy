@@ -18,22 +18,26 @@ namespace CozyLauncher.Plugin.Guide.Template.Info
         public TextAlignType TextAlign { get; set; }
         public MarginInfo Margin { get; set; }
 
-        public FrameworkElement GetInfoObject()
+        public UIElement GetInfoObject(int width)
         {
             if(string.IsNullOrEmpty(Text) || string.IsNullOrEmpty(Font))
             {
                 throw new ArgumentNullException("text and fonts cannot be null");
             }
 
-            var txt         = new TextBlock();
+            var txt         = new TextBox();
+            txt.IsEnabled   = false;
+            txt.BorderThickness = new Thickness();
+            txt.Width       = width;
+
             txt.Text        = Text;
             txt.FontSize    = TextSize;
             txt.FontFamily  = new FontFamily(Font);
             
             var res = TextAlign.ToAlignment();
-            txt.HorizontalAlignment = res.Item1;
-            txt.VerticalAlignment   = res.Item2;
-            
+            txt.HorizontalContentAlignment = HorizontalAlignment.Center;
+            txt.VerticalContentAlignment = VerticalAlignment.Center;
+
             txt.Margin      = new Thickness(txt.Margin.Left, txt.Margin.Top, txt.Margin.Right, txt.Margin.Bottom);
 
             return txt;

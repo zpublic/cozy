@@ -12,19 +12,44 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CozyLauncher.Plugin.Guide.Template.Ctrl
 {
     /// <summary>
     /// UserTemplateControl.xaml 的交互逻辑
     /// </summary>
-    public partial class UserTemplateControl : UserControl
+    public partial class UserTemplateControl : StackPanel
     {
-        public UserTemplateControl(TemplateBase template = null)
+        public static readonly DependencyProperty RootTemplateProperty
+            = DependencyProperty.RegisterAttached("RootTemplate", typeof(TemplateBase), typeof(UserTemplateControl), 
+                new PropertyMetadata(null));
+
+        public UserTemplateControl()
         {
-            if(template != null)
+            this.Loaded += (s, e) =>
             {
-                this.panel.Children.Add(template.InitTemplate());
+                AdjustTemplate();
+            };
+        }
+
+        public TemplateBase RootTemplate
+        {
+            get
+            {
+                return (TemplateBase)this.GetValue(RootTemplateProperty);
+            }
+            set
+            {
+                this.SetValue(RootTemplateProperty, value);
+            }
+        }
+
+        private void AdjustTemplate()
+        {
+            if (RootTemplate != null)
+            {
+                this.Children.Add(RootTemplate.InitTemplate((int)this.Width));
             }
         }
     }

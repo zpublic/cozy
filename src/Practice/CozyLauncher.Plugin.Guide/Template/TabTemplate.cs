@@ -10,13 +10,13 @@ namespace CozyLauncher.Plugin.Guide.Template
 {
     public class TabTemplate : TemplateBase
     {
-        public override FrameworkElement InitTemplate()
+        public override UIElement InitTemplate(int width)
         {
             var ctrl = new TabControl();
 
             foreach (var info in Children)
             {
-                ctrl.Items.Add(info.InitTemplate());
+                ctrl.Items.Add(info.InitTemplate(width));
             }
 
             return ctrl;

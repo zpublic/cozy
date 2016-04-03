@@ -27,74 +27,75 @@ namespace CozyLauncher.Plugin.Guide.GuidePage.PageInfo
         public TestPage()
         {
             InitializeComponent();
-
-            TestData();
         }
 
-        private void TestData()
+        public static TemplateBase TestData
         {
-            var mainPanel = new PanelTemplate();
-
-            var data1 = new Template.DataTemplate();
-            data1.Info = new ImageInfo() { Path = "Resources/5.png" };
-            mainPanel.Children.Add(data1);
-
-            var data2 = new Template.DataTemplate();
-            data2.Info = new TextInfo()
+            get
             {
-                Text = "testTitle",
-                Font = "微软雅黑",
-                TextAlign = TextAlignType.Center,
-                TextSize = 24,
-                Margin = new MarginInfo(10),
-            };
-            mainPanel.Children.Add(data2);
+                var mainPanel = new PanelTemplate();
 
-            var data3 = new Template.DataTemplate();
-            data3.Info = new TextInfo()
-            {
-                Text = "testText",
-                Font = "微软雅黑",
-                TextAlign = TextAlignType.Center,
-                TextSize = 16,
-                Margin = new MarginInfo(20),
-            };
-            mainPanel.Children.Add(data3);
+                var data1 = new Template.DataTemplate();
+                data1.Info = new ImageInfo() { Path = "Resources/5.png" };
+                mainPanel.Children.Add(data1);
 
-            var tab = new TabTemplate();
-            var data4 = new Template.DataTemplate();
-            data4.Info = new TabInfo()
-            {
-                Header = "test1",
-                Content = new TextInfo()
+                var data2 = new Template.DataTemplate();
+                data2.Info = new TextInfo()
                 {
-                    Text = "test1 content",
+                    Text = "testTitle",
+                    Font = "微软雅黑",
+                    TextAlign = TextAlignType.Center,
+                    TextSize = 24,
+                    Margin = new MarginInfo(10),
+                };
+                mainPanel.Children.Add(data2);
+
+                var data3 = new Template.DataTemplate();
+                data3.Info = new TextInfo()
+                {
+                    Text = "testText",
                     Font = "微软雅黑",
                     TextAlign = TextAlignType.Center,
                     TextSize = 16,
                     Margin = new MarginInfo(20),
-                },
-            };
-            tab.Children.Add(data4);
+                };
+                mainPanel.Children.Add(data3);
 
-            var data5 = new Template.DataTemplate();
-            data5.Info = new TabInfo()
-            {
-                Header = "test2",
-                Content = new TextInfo()
+                var tab = new TabTemplate();
+                var data4 = new Template.DataTemplate();
+                data4.Info = new TabInfo()
                 {
-                    Text = "test2 content",
-                    Font = "微软雅黑",
-                    TextAlign = TextAlignType.Center,
-                    TextSize = 16,
-                    Margin = new MarginInfo(20),
-                },
-            };
-            tab.Children.Add(data5);
+                    Header = "test1",
+                    Content = new TextInfo()
+                    {
+                        Text = "test1 content",
+                        Font = "微软雅黑",
+                        TextAlign = TextAlignType.Center,
+                        TextSize = 16,
+                        Margin = new MarginInfo(20),
+                    },
+                };
+                tab.Children.Add(data4);
 
-            mainPanel.Children.Add(tab);
+                var data5 = new Template.DataTemplate();
+                data5.Info = new TabInfo()
+                {
+                    Header = "test2",
+                    Content = new TextInfo()
+                    {
+                        Text = "test2 content",
+                        Font = "微软雅黑",
+                        TextAlign = TextAlignType.Center,
+                        TextSize = 16,
+                        Margin = new MarginInfo(20),
+                    },
+                };
+                tab.Children.Add(data5);
 
-            panel.Children.Add(mainPanel.InitTemplate());
+                mainPanel.Children.Add(tab);
+
+                return mainPanel;
+            }
         }
     }
 }

@@ -11,6 +11,6 @@ namespace CozyLauncher.Plugin.Guide.Template
     {
         public List<TemplateBase> Children { get; set; } = new List<TemplateBase>();
 
-        public abstract FrameworkElement InitTemplate();
+        public abstract UIElement InitTemplate(int width);
     }
 }

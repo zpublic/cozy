@@ -13,7 +13,7 @@ namespace CozyLauncher.Plugin.Guide.Template.Info
         public string Header { get; set; }
         public ITemplateInfo Content { get; set; }
 
-        public FrameworkElement GetInfoObject()
+        public UIElement GetInfoObject(int width)
         {
             if(string.IsNullOrEmpty(Header) || Content == null)
             {
@@ -23,7 +23,7 @@ namespace CozyLauncher.Plugin.Guide.Template.Info
             var item = new TabItem();
 
             item.Header = Header;
-            item.Content = Content.GetInfoObject();
+            item.Content = Content.GetInfoObject(width);
 
             return item;
         }

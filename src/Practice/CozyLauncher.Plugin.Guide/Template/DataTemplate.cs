@@ -12,9 +12,9 @@ namespace CozyLauncher.Plugin.Guide.Template
     {
         public ITemplateInfo Info { get; set; }
 
-        public override FrameworkElement InitTemplate()
+        public override UIElement InitTemplate(int width)
         {
-            return Info.GetInfoObject();
+            return Info.GetInfoObject(width);
         }
     }
 }
