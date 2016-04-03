@@ -97,5 +97,23 @@ namespace CozyLauncher.Plugin.Guide.GuidePage.PageInfo
                 return mainPanel;
             }
         }
+
+        public static string TestTextData
+        {
+            get
+            {
+                if(File.Exists("test.json"))
+                {
+                    using (var fs = new FileStream("test.json", FileMode.Open))
+                    {
+                        using (var reader = new StreamReader(fs))
+                        {
+                            return reader.ReadToEnd();
+                        }
+                    }
+                }
+                return string.Empty;
+            }
+        }
     }
 }

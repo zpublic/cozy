@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:CozyLauncher.Plugin.Guide.GuidePage.PageInfo"
              xmlns:ctrl="clr-namespace:CozyLauncher.Plugin.Guide.Template.Ctrl"
              mc:Ignorable="d"  Width="800">
-    <ctrl:UserTemplateControl x:Name="MainCtrl" RootTemplate="{x:Static local:TestPage.TestData}"  Width="800">
+    <ctrl:UserTemplateControl x:Name="MainCtrl" TextTemplate="{x:Static local:TestPage.TestTextData}"  Width="800">
         
     </ctrl:UserTemplateControl>
 </UserControl>

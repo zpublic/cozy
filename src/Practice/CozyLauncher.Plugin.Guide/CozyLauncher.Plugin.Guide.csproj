@@ -46,6 +46,10 @@
       <HintPath>..\..\..\sln\packages\MaterialDesignThemes.1.4.1.485\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -87,6 +91,9 @@
     <Compile Include="Template\PanelTemplate.cs" />
     <Compile Include="Template\TabTemplate.cs" />
     <Compile Include="Template\TemplateBase.cs" />
+    <Compile Include="Template\TemplateHelper.cs" />
+    <Compile Include="Template\TemplateJsonConverter.cs" />
+    <Compile Include="Template\TemplateJsonObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CozyLauncher.Infrastructure\CozyLauncher.Infrastructure.csproj">
@@ -113,25 +120,16 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\3.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\4.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\5.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\6.png" />
+    <EmbeddedResource Include="test.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
