@@ -23,5 +23,9 @@ namespace CozyLauncher.Core.Plugin
         public void ShowPanel(string command)
         {
         }
+
+        public void RunCommand(string command)
+        {
+        }
     }
 }

@@ -228,6 +228,8 @@ namespace CozyLauncher.ViewModels
             {
                 this.OnPropertyChanged("SystemCommand.SaveSetting");
             }
+
+            pm.RunCommand(command);
         }
 
         #endregion

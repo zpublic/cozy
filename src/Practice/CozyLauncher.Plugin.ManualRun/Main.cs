@@ -1,39 +1,38 @@
 ﻿using CozyLauncher.PluginBase;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Text;
 
 namespace CozyLauncher.Plugin.ManualRun
 {
     public class Main : BasePlugin
     {
+        const string configFile = "CozyLauncher.Plugin.ManualRun.config.json";
         private PluginInitContext context_;
-        private Dictionary<string, ActionOpenDirctory> actions1_ = new Dictionary<string, ActionOpenDirctory>();
-        private Dictionary<string, ActionOpenExe> actions2_ = new Dictionary<string, ActionOpenExe>();
+        private ActionData ad_;
 
         public override PluginInfo Init(PluginInitContext context)
         {
             context_ = context;
             var info = new PluginInfo();
             info.Keyword = "*";
-
-            actions1_.Add("win", new ActionOpenDirctory()
-            {
-                Key = "win",
-                Dirctory = @"c:\windows",
-            });
-            actions2_.Add("cc", new ActionOpenExe()
-            {
-                Key = "cc",
-                Exe = "calc",
-            });
-
+            LoadActionData();
             return info;
         }
 
         public override List<Result> Query(Query query)
         {
+            if (query.RawQuery == "manual")
+            {
+                LoadActionData();
+            }
+
             ActionOpenDirctory acDir;
-            if (actions1_.TryGetValue(query.RawQuery, out acDir))
+            if (ad_.actionOpenDirctory.TryGetValue(query.RawQuery, out acDir))
             {
                 var rl = new List<Result>();
                 var r = new Result();
@@ -52,7 +51,7 @@ namespace CozyLauncher.Plugin.ManualRun
             }
 
             ActionOpenExe acExe;
-            if (actions2_.TryGetValue(query.RawQuery, out acExe))
+            if (ad_.actionOpenExe.TryGetValue(query.RawQuery, out acExe))
             {
                 var rl = new List<Result>();
                 var r = new Result();
@@ -71,6 +70,66 @@ namespace CozyLauncher.Plugin.ManualRun
             }
 
             return null;
+        }
+
+        string LocalFullPath(string file)
+        {
+            string cur = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            return Path.Combine(cur, file);
+        }
+
+        void LoadActionData()
+        {
+            ad_ = null;
+            try
+            {
+                StreamReader sr = new StreamReader(LocalFullPath(configFile), Encoding.Default);
+                var json = sr.ReadToEnd();
+                sr.Close();
+                ad_ = JsonConvert.DeserializeObject<ActionData>(json);
+            }
+            catch (Exception)
+            {
+
+            }
+            if (ad_ == null)
+            {
+                ad_ = GenerateDefaultActionData();
+                var j = JsonConvert.SerializeObject(ad_, Formatting.Indented);
+                StreamWriter sw = new StreamWriter(LocalFullPath(configFile), false, Encoding.Default);
+                sw.Write(j);
+                sw.Close();
+            }
+        }
+
+        ActionData GenerateDefaultActionData()
+        {
+            var ad = new ActionData()
+            {
+                actionOpenDirctory = new Dictionary<string, ActionOpenDirctory>()
+                {
+                    {
+                        "win",
+                        new ActionOpenDirctory()
+                        {
+                            Key = "win",
+                            Dirctory = @"c:\windows",
+                        }
+                    }
+                },
+                actionOpenExe = new Dictionary<string, ActionOpenExe>()
+                {
+                    {
+                        "cc",
+                        new ActionOpenExe()
+                        {
+                            Key = "cc",
+                            Exe = "calc",
+                        }
+                    }
+                },
+            };
+            return ad;
         }
     }
 }

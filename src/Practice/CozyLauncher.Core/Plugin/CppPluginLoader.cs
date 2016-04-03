@@ -55,5 +55,10 @@ namespace CozyLauncher.Core.Plugin
         {
             CppPluginInterop.ShowPanel(id, Marshal.StringToCoTaskMemAuto(command));
         }
+
+        public void RunCommand(int id, string command)
+        {
+            CppPluginInterop.RunCommand(id, Marshal.StringToCoTaskMemAuto(command));
+        }
     }
 }
