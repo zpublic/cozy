@@ -1,79 +1,99 @@
 {
     "IsHorizontal": false,
-    "Children": [
+    "Children": 
+    [
         {
-            "Info": {
-                "Path": "Resources/5.png"
+            "Info": 
+            {
+                "Path": "Resources/1.png"
             },
-            "Children": []
         },
         {
-            "Info": {
+            "Info" : 
+            {
                 "Text": "testTitle",
-                "Font": "Î¢ÈíÑÅºÚ",
-                "TextSize": 24,
-                "TextAlign": 0,
-                "Margin": {
-                    "Left": 10,
-                    "Right": 10,
-                    "Top": 10,
-                    "Bottom": 10
-                }
-            },
-            "Children": []
-        },
-        {
-            "Info": {
-                "Text": "testText",
-                "Font": "Î¢ÈíÑÅºÚ",
-                "TextSize": 16,
-                "TextAlign": 0,
-                "Margin": {
-                    "Left": 20,
-                    "Right": 20,
-                    "Top": 20,
-                    "Bottom": 20
-                }
-            },
-            "Children": []
-        },
-        {
-            "Children": [
+                "Style": 
                 {
-                    "Info": {
+                    "Font": "Î¢ÈíÑÅºÚ",
+                    "TextSize": 24,
+                    "TextAlign": 0,
+                    "Margin": 
+                    {
+                        "Left": 10,
+                        "Right": 10,
+                        "Top": 10,
+                        "Bottom": 10
+                    }
+                }
+            },
+        },
+        {
+            "Info" : 
+            {
+                "Text": "testText",
+                "Style": 
+                {
+                    "Font": "Î¢ÈíÑÅºÚ",
+                    "TextSize": 16,
+                    "TextAlign": 0,
+                    "Margin": 
+                    {
+                        "Left": 10,
+                        "Right": 10,
+                        "Top": 10,
+                        "Bottom": 10
+                    }
+                }
+            },
+        },
+        {
+            "Children":
+            [
+                {
+                    "Info": 
+                    {
                         "Header": "test1",
-                        "Content": {
+                        "Content": 
+                        {
                             "Text": "test1 content",
-                            "Font": "Î¢ÈíÑÅºÚ",
-                            "TextSize": 16,
-                            "TextAlign": 0,
-                            "Margin": {
-                                "Left": 20,
-                                "Right": 20,
-                                "Top": 20,
-                                "Bottom": 20
+                            "Style":
+                            {
+                                "Font": "Î¢ÈíÑÅºÚ",
+                                "TextSize": 16,
+                                "TextAlign": 0,
+                                "Margin": 
+                                {
+                                    "Left": 10,
+                                    "Right": 10,
+                                    "Top": 10,
+                                    "Bottom": 10
+                                }
                             }
-                        }
-                    },
-                    "Children": []
+                        },
+                    }
                 },
                 {
-                    "Info": {
+                    "Info": 
+                    {
                         "Header": "test2",
-                        "Content": {
+                        "Content": 
+                        {
                             "Text": "test2 content",
-                            "Font": "Î¢ÈíÑÅºÚ",
-                            "TextSize": 16,
-                            "TextAlign": 0,
-                            "Margin": {
-                                "Left": 20,
-                                "Right": 20,
-                                "Top": 20,
-                                "Bottom": 20
+                            "Style":
+                            {
+                                "Font": "Î¢ÈíÑÅºÚ",
+                                "TextSize": 16,
+                                "TextAlign": 0,
+                                "Margin":
+                                {
+                                    "Left": 10,
+                                    "Right": 10,
+                                    "Top": 10,
+                                    "Bottom": 10
+                                }
                             }
-                        }
-                    },
-                    "Children": []
+                        },
+                    }
                 }
             ]
         }

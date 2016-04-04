@@ -13,14 +13,11 @@ namespace CozyLauncher.Plugin.Guide.Template.Info
     public class TextInfo : ITemplateInfo
     {
         public string Text { get; set; }
-        public string Font { get; set; }
-        public int TextSize { get; set; }
-        public TextAlignType TextAlign { get; set; }
-        public MarginInfo Margin { get; set; }
+        public TextStyle Style { get; set; }
 
         public UIElement GetInfoObject(double width)
         {
-            if(string.IsNullOrEmpty(Text) || string.IsNullOrEmpty(Font))
+            if(string.IsNullOrEmpty(Text) || Style == null)
             {
                 throw new ArgumentNullException("text and fonts cannot be null");
             }
@@ -31,13 +28,14 @@ namespace CozyLauncher.Plugin.Guide.Template.Info
             txt.Width       = width;
 
             txt.Text        = Text;
-            txt.FontSize    = TextSize;
-            txt.FontFamily  = new FontFamily(Font);
+            txt.FontSize    = Style.TextSize;
+            txt.FontFamily  = new FontFamily(Style.Font);
             
-            var res     = TextAlign.ToAlignment();
-            txt.Margin  = new Thickness(txt.Margin.Left, txt.Margin.Top, txt.Margin.Right, txt.Margin.Bottom);
-            txt.HorizontalContentAlignment  = HorizontalAlignment.Center;
-            txt.VerticalContentAlignment    = VerticalAlignment.Center;
+            txt.Margin  = new Thickness(Style.Margin.Left, Style.Margin.Top, Style.Margin.Right, Style.Margin.Bottom);
+
+            var res     = Style.TextAlign.ToAlignment();
+            txt.HorizontalContentAlignment = res.Item1;
+            txt.VerticalContentAlignment    = res.Item2;
 
 
             return txt;

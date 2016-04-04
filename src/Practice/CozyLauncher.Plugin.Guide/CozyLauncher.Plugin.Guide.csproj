@@ -69,9 +69,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GuidePage\PageInfo\TestPage.xaml.cs">
-      <DependentUpon>TestPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="GuideWindow.xaml.cs">
       <DependentUpon>GuideWindow.xaml</DependentUpon>
     </Compile>
@@ -86,6 +83,7 @@
     <Compile Include="Template\Info\Model\ExtFunction.cs" />
     <Compile Include="Template\Info\Model\MarginInfo.cs" />
     <Compile Include="Template\Info\Model\TextAlignType.cs" />
+    <Compile Include="Template\Info\Model\TextStyle.cs" />
     <Compile Include="Template\Info\TabInfo.cs" />
     <Compile Include="Template\Info\TextInfo.cs" />
     <Compile Include="Template\PanelTemplate.cs" />
@@ -105,10 +103,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="GuidePage\PageInfo\TestPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="GuideWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
