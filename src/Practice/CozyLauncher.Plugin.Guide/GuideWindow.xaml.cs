@@ -18,9 +18,9 @@ namespace CozyLauncher.Plugin.Guide
         {
             get
             {
-                if (File.Exists("test.json"))
+                if (File.Exists("Resources/MainWindow.json"))
                 {
-                    using (var fs = new FileStream("test.json", FileMode.Open))
+                    using (var fs = new FileStream("Resources/MainWindow.json", FileMode.Open))
                     {
                         using (var reader = new StreamReader(fs))
                         {

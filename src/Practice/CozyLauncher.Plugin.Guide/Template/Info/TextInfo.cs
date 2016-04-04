@@ -13,7 +13,7 @@ namespace CozyLauncher.Plugin.Guide.Template.Info
     public class TextInfo : ITemplateInfo
     {
         public string Text { get; set; }
-        public TextStyle Style { get; set; }
+        public string Style { get; set; }
 
         public UIElement GetInfoObject(double width)
         {
@@ -27,13 +27,15 @@ namespace CozyLauncher.Plugin.Guide.Template.Info
             txt.BorderThickness = new Thickness();
             txt.Width       = width;
 
-            txt.Text        = Text;
-            txt.FontSize    = Style.TextSize;
-            txt.FontFamily  = new FontFamily(Style.Font);
-            
-            txt.Margin  = new Thickness(Style.Margin.Left, Style.Margin.Top, Style.Margin.Right, Style.Margin.Bottom);
+            var style = TextStyleManager.Instance.GetStyle(Style);
 
-            var res     = Style.TextAlign.ToAlignment();
+            txt.Text        = Text;
+            txt.FontSize    = style.TextSize;
+            txt.FontFamily  = new FontFamily(style.Font);
+            
+            txt.Margin  = new Thickness(style.Margin.Left, style.Margin.Top, style.Margin.Right, style.Margin.Bottom);
+
+            var res     = style.TextAlign.ToAlignment();
             txt.HorizontalContentAlignment = res.Item1;
             txt.VerticalContentAlignment    = res.Item2;
 

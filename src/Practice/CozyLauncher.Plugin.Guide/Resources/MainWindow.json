@@ -1,0 +1,53 @@
+{
+    "IsHorizontal": false,
+    "Children": 
+    [
+        {
+            "Info": 
+            {
+                "Path": "Resources/1.png"
+            },
+        },
+        {
+            "Info" : 
+            {
+                "Text": "testTitle",
+                "Style": "TitleStyle"
+            },
+        },
+        {
+            "Info" : 
+            {
+                "Text": "testText",
+                "Style": "TextStyle"
+            },
+        },
+        {
+            "Children":
+            [
+                {
+                    "Info": 
+                    {
+                        "Header": "test1",
+                        "Content": 
+                        {
+                            "Text": "test1 content",
+                            "Style": "TextStyle"
+                        },
+                    }
+                },
+                {
+                    "Info": 
+                    {
+                        "Header": "test2",
+                        "Content": 
+                        {
+                            "Text": "test2 content",
+                            "Style": "TextStyle"
+                        },
+                    }
+                }
+            ]
+        }
+    ]
+}
