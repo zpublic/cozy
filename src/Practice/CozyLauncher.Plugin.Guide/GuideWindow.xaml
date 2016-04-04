@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CozyLauncher.Plugin.Guide"
         xmlns:metroctrl="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:page="clr-namespace:CozyLauncher.Plugin.Guide.GuidePage"
-        xmlns:pageinfo="clr-namespace:CozyLauncher.Plugin.Guide.GuidePage.PageInfo"
+        xmlns:ctrl="clr-namespace:CozyLauncher.Plugin.Guide.Template.Ctrl"
         mc:Ignorable="d"
         Title="向导" Height="724" Width="800" ShowMaxRestoreButton="False" ShowMinButton="False" ResizeMode="NoResize">
     <metroctrl:MetroWindow.Resources>
@@ -21,6 +20,6 @@
         </ResourceDictionary>
     </metroctrl:MetroWindow.Resources>
     <StackPanel VerticalAlignment="Top">
-        <pageinfo:TestPage  Width="800"></pageinfo:TestPage>
+        <ctrl:UserTemplateControl Width="800" TextTemplate="{x:Static local:GuideWindow.ContentData}"></ctrl:UserTemplateControl>
     </StackPanel>
 </metroctrl:MetroWindow>

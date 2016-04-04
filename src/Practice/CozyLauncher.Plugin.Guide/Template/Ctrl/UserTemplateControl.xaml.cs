@@ -61,6 +61,7 @@ namespace CozyLauncher.Plugin.Guide.Template.Ctrl
             }
         }
 
+        private UIElement TemplateStorage  { get; set; }
         private void AdjustTemplate()
         {
             try
@@ -75,8 +76,13 @@ namespace CozyLauncher.Plugin.Guide.Template.Ctrl
                 }
                 else if (!string.IsNullOrEmpty(TextTemplate))
                 {
-                    var tmp = TemplateJsonConverter.Deserialization(TextTemplate);
-                    this.Children.Add(tmp.InitTemplate((int)this.Width));
+                    if(TemplateStorage == null)
+                    {
+                        var t = TemplateJsonConverter.Deserialization(TextTemplate);
+                        TemplateStorage = t.InitTemplate((int)this.Width);
+                    }
+
+                    this.Children.Add(TemplateStorage);
                 }
             }
             catch(Exception)

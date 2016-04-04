@@ -1,0 +1,31 @@
+﻿{
+    "StyleList": 
+    [
+        {
+            "Name": "TitleStyle",
+            "Font": "微软雅黑",
+            "TextAlign": 0,
+            "TextSize": 24,
+            "Margin":
+            {
+                "Left": 10,
+                "Right": 10,
+                "Top": 10,
+                "Bottom": 10
+            }
+        },
+        {
+            "Name": "TextStyle",
+            "Font": "微软雅黑",
+            "TextAlign": 0,
+            "TextSize": 16,
+            "Margin":
+            {
+                "Left": 10,
+                "Right": 10,
+                "Top": 10,
+                "Bottom": 10
+            }
+        },
+    ]
+}
