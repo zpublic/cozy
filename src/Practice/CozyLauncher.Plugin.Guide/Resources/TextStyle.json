@@ -1,9 +1,9 @@
-{
+ï»¿{
     "StyleList": 
     [
         {
             "Name": "TitleStyle",
-            "Font": "Î¢ÈíÑÅºÚ",
+            "Font": "å¾®è½¯é›…é»‘",
             "TextAlign": 0,
             "TextSize": 24,
             "Margin":
@@ -16,7 +16,7 @@
         },
         {
             "Name": "TextStyle",
-            "Font": "Î¢ÈíÑÅºÚ",
+            "Font": "å¾®è½¯é›…é»‘",
             "TextAlign": 0,
             "TextSize": 16,
             "Margin":
