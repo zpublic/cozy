@@ -1,4 +1,4 @@
-{
+﻿{
     "IsHorizontal": false,
     "Children": [
         {
@@ -10,7 +10,7 @@
         {
             "Info": {
                 "Text": "testTitle",
-                "Font": "΢���ź�",
+                "Font": "微软雅黑",
                 "TextSize": 24,
                 "TextAlign": 0,
                 "Margin": {
@@ -25,7 +25,7 @@
         {
             "Info": {
                 "Text": "testText",
-                "Font": "΢���ź�",
+                "Font": "微软雅黑",
                 "TextSize": 16,
                 "TextAlign": 0,
                 "Margin": {
@@ -44,7 +44,7 @@
                         "Header": "test1",
                         "Content": {
                             "Text": "test1 content",
-                            "Font": "΢���ź�",
+                            "Font": "微软雅黑",
                             "TextSize": 16,
                             "TextAlign": 0,
                             "Margin": {
@@ -62,7 +62,7 @@
                         "Header": "test2",
                         "Content": {
                             "Text": "test2 content",
-                            "Font": "΢���ź�",
+                            "Font": "微软雅黑",
                             "TextSize": 16,
                             "TextAlign": 0,
                             "Margin": {
