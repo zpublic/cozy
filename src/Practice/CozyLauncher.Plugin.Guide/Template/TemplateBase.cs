@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,8 @@ namespace CozyLauncher.Plugin.Guide.Template
 {
     public abstract class TemplateBase
     {
-        public List<TemplateBase> Children { get; set; } = new List<TemplateBase>();
+        public IList<TemplateBase> Children { get; set; } = new List<TemplateBase>();
 
-        public abstract FrameworkElement InitTemplate();
+        public abstract UIElement InitTemplate(double width);
     }
 }

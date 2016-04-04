@@ -1,4 +1,5 @@
 ﻿using CozyLauncher.Plugin.Guide.Template.Info;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,9 @@ namespace CozyLauncher.Plugin.Guide.Template
     {
         public ITemplateInfo Info { get; set; }
 
-        public override FrameworkElement InitTemplate()
+        public override UIElement InitTemplate(double width)
         {
-            return Info.GetInfoObject();
+            return Info.GetInfoObject(width);
         }
     }
 }

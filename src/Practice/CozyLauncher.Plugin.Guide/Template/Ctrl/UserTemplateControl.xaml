@@ -1,14 +1,8 @@
-﻿<UserControl x:Class="CozyLauncher.Plugin.Guide.Template.Ctrl.UserTemplateControl"
+﻿<StackPanel x:Class="CozyLauncher.Plugin.Guide.Template.Ctrl.UserTemplateControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CozyLauncher.Plugin.Guide.Template.Ctrl"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <StackPanel VerticalAlignment="Top" x:Name="panel">
-
-        </StackPanel>
-    </Grid>
-</UserControl>
+             mc:Ignorable="d">
+</StackPanel>

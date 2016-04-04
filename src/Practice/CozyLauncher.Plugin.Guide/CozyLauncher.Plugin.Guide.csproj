@@ -46,6 +46,10 @@
       <HintPath>..\..\..\sln\packages\MaterialDesignThemes.1.4.1.485\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -65,33 +69,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GuidePage\PageInfo\PageInfo1_1.xaml.cs">
-      <DependentUpon>PageInfo1_1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GuidePage\PageInfo\PageInfo1_2.xaml.cs">
-      <DependentUpon>PageInfo1_2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GuidePage\PageInfo\PageInfo1_3.xaml.cs">
-      <DependentUpon>PageInfo1_3.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GuidePage\PageInfo\PageInfo2_1.xaml.cs">
-      <DependentUpon>PageInfo2_1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GuidePage\PageInfo\PageInfo2_2.xaml.cs">
-      <DependentUpon>PageInfo2_2.xaml</DependentUpon>
-    </Compile>
     <Compile Include="GuidePage\PageInfo\TestPage.xaml.cs">
       <DependentUpon>TestPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GuidePage\SofewareInfoPage.xaml.cs">
-      <DependentUpon>SofewareInfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="GuideWindow.xaml.cs">
       <DependentUpon>GuideWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Template\Ctrl\Class1.cs" />
     <Compile Include="Template\Ctrl\UserTemplateControl.xaml.cs">
       <DependentUpon>UserTemplateControl.xaml</DependentUpon>
     </Compile>
@@ -106,6 +91,8 @@
     <Compile Include="Template\PanelTemplate.cs" />
     <Compile Include="Template\TabTemplate.cs" />
     <Compile Include="Template\TemplateBase.cs" />
+    <Compile Include="Template\TemplateHelper.cs" />
+    <Compile Include="Template\TemplateJsonConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CozyLauncher.Infrastructure\CozyLauncher.Infrastructure.csproj">
@@ -118,31 +105,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="GuidePage\PageInfo\PageInfo1_1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GuidePage\PageInfo\PageInfo1_2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GuidePage\PageInfo\PageInfo1_3.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GuidePage\PageInfo\PageInfo2_1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GuidePage\PageInfo\PageInfo2_2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="GuidePage\PageInfo\TestPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GuidePage\SofewareInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,25 +119,16 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\3.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\4.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\5.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\6.png" />
+    <EmbeddedResource Include="test.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

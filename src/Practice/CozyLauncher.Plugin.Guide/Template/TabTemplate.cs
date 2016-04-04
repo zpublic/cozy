@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,13 +11,13 @@ namespace CozyLauncher.Plugin.Guide.Template
 {
     public class TabTemplate : TemplateBase
     {
-        public override FrameworkElement InitTemplate()
+        public override UIElement InitTemplate(double width)
         {
             var ctrl = new TabControl();
 
             foreach (var info in Children)
             {
-                ctrl.Items.Add(info.InitTemplate());
+                ctrl.Items.Add(info.InitTemplate(width));
             }
 
             return ctrl;

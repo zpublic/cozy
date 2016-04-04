@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,16 +13,16 @@ namespace CozyLauncher.Plugin.Guide.Template
     {
         public bool IsHorizontal { get; set; }
 
-        public override FrameworkElement InitTemplate()
+        public override UIElement InitTemplate(double width)
         {
             var panel = new StackPanel();
-            panel.HorizontalAlignment = HorizontalAlignment.Center;
-            panel.VerticalAlignment = VerticalAlignment.Center;
+            panel.HorizontalAlignment   = HorizontalAlignment.Center;
+            panel.VerticalAlignment     = VerticalAlignment.Center;
             panel.Orientation = IsHorizontal ? Orientation.Horizontal : Orientation.Vertical;
 
             foreach(var info in Children)
             {
-                panel.Children.Add(info.InitTemplate());
+                panel.Children.Add(info.InitTemplate(width));
             }
             return panel; 
         }

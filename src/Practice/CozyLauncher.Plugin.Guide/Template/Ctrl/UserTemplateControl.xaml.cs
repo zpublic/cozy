@@ -12,19 +12,76 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using Newtonsoft.Json;
 
 namespace CozyLauncher.Plugin.Guide.Template.Ctrl
 {
     /// <summary>
     /// UserTemplateControl.xaml 的交互逻辑
     /// </summary>
-    public partial class UserTemplateControl : UserControl
+    public partial class UserTemplateControl : StackPanel
     {
-        public UserTemplateControl(TemplateBase template = null)
+        public static readonly DependencyProperty RootTemplateProperty = 
+            DependencyProperty.RegisterAttached("RootTemplate", typeof(TemplateBase), typeof(UserTemplateControl), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty TextTemplateProperty =
+           DependencyProperty.RegisterAttached("TextTemplate", typeof(string), typeof(UserTemplateControl), new PropertyMetadata(null));
+
+
+        public UserTemplateControl()
         {
-            if(template != null)
+            this.Loaded += (s, e) =>
             {
-                this.panel.Children.Add(template.InitTemplate());
+                AdjustTemplate();
+            };
+        }
+
+        public TemplateBase RootTemplate
+        {
+            get
+            {
+                return (TemplateBase)this.GetValue(RootTemplateProperty);
+            }
+            set
+            {
+                this.SetValue(RootTemplateProperty, value);
+            }
+        }
+
+        public string TextTemplate
+        {
+            get
+            {
+                return (string)this.GetValue(TextTemplateProperty);
+            }
+            set
+            {
+                this.SetValue(TextTemplateProperty, value);
+            }
+        }
+
+        private void AdjustTemplate()
+        {
+            try
+            {
+                if (RootTemplate != null && TextTemplate != null)
+                {
+                    throw new Exception("RootTemplate and TextTemplate cannot  be used together");
+                }
+                else if (RootTemplate != null)
+                {
+                    this.Children.Add(RootTemplate.InitTemplate((int)this.Width));
+                }
+                else if (!string.IsNullOrEmpty(TextTemplate))
+                {
+                    var tmp = TemplateJsonConverter.Deserialization(TextTemplate);
+                    this.Children.Add(tmp.InitTemplate((int)this.Width));
+                }
+            }
+            catch(Exception)
+            {
+                // TODO Deserialization Failed
             }
         }
     }
