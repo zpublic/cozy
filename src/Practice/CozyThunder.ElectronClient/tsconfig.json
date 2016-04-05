@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "system",
+        "module": "commonjs",
         "moduleResolution": "node",
         "sourceMap": true,
         "emitDecoratorMetadata": true,
@@ -9,9 +9,17 @@
         "removeComments": false,
         "noImplicitAny": false
     },
+    "filesGlob": [
+        "**/*.ts",
+        "!node_modules/**/*"
+    ],
     "exclude": [
         "node_modules",
         "typings/main",
         "typings/main.d.ts"
-    ]
+    ],
+    "compileOnSave": false,
+    "atom": {
+        "rewriteTsconfig": false
+    }
 }
