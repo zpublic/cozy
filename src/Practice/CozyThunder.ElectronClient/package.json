@@ -6,6 +6,16 @@
     "start": "electron main.js"
   },
   "devDependencies": {
-    "electron-prebuilt": "^0.37.4"
+    "electron-prebuilt": "^0.37.4",
+    "typescript": "^1.8.9",
+    "typings": "^0.7.12",
+    "webpack": "^1.12.14"
+  },
+  "dependencies": {
+    "angular2": "^2.0.0-beta.13",
+    "es6-shim": "^0.35.0",
+    "reflect-metadata": "^0.1.3",
+    "rxjs": "^5.0.0-beta.5",
+    "zone.js": "^0.6.9"
   }
 }
