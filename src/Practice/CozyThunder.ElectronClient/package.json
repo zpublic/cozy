@@ -1,0 +1,11 @@
+{
+  "name": "cozy_thunder",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^0.37.4"
+  }
+}
