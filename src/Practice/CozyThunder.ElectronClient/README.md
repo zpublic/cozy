@@ -4,5 +4,6 @@
 
     
     $ npm install
+    $ tsd install
     $ gulp build
     $ npm start

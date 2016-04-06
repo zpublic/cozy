@@ -13,6 +13,7 @@
     "gulp-typescript": "^2.12.2",
     "gulp-watch": "^4.3.5",
     "strip-sourcemap-loader": "0.0.1",
+    "tsd": "^0.6.5",
     "typescript": "^1.8.9",
     "typings": "^0.7.12",
     "webpack": "1.12.14"
