@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MMS.UI.Default">
+    <ControlTemplate x:Key="TabsTemplate" TargetType="{x:Type local:Tabs}">
+        <TabControl x:Name="tabController">
+           <TabItem Header="MMS-Home" FontSize="12" Background="#FFF3CD" BorderThickness="2,2">
+                <StackPanel>
+                   
+                </StackPanel>
+            </TabItem>
+            <!--<TabItem Header="MMS-Home" FontSize="12" Background="#FFF3CD" BorderThickness="2,2">
+                <StackPanel>
+                    <local:Edit />
+                </StackPanel>
+            </TabItem>-->
+        </TabControl>
+    </ControlTemplate>
+    <Style x:Key="TabsStyle" TargetType="{x:Type local:Tabs}">
+        <Setter Property="Template" Value="{StaticResource TabsTemplate}" />
+    </Style>
+</ResourceDictionary>
