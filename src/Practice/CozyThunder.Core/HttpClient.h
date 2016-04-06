@@ -1,5 +1,10 @@
+#ifndef __COZY_HTTP_CLIENT__
+#define __COZY_HTTP_CLIENT__
 
 #include "HttpDef.h"
+
+namespace Cozy
+{
     class HttpClient
     {
     public:
@@ -9,6 +14,9 @@
     public:
         HttpStatusCode Get(const std::string& strUrl, const IBuffer* input, IBuffer* output);
         HttpStatusCode Post(const std::string& strUrl, const IBuffer* input, IBuffer* output);
+
+        HttpStatusCode DownloadFile(const std::string& strUrl, IBuffer* output);
+        std::size_t GetFileSize(const std::string& strUrl);
 
     public:
         void SetEnableSSL(bool bIsEnableSSL);
@@ -33,8 +41,9 @@
 
     private:
         std::string __CreateHeader(const HttpHeader& header);
-        std::size_t __WriteCallback(void* pvData, std::size_t nSize, std::size_t nCount, void* pvParam);
         HttpStatusCode __SendRequest(const std::string& strUrl, const IBuffer* input, IBuffer* output, bool isGetMethod);
+        
+        static std::size_t __WriteCallback(void* pvData, std::size_t nSize, std::size_t nCount, void* pvParam);
 
     private:
         HttpHeaderList  m_HeaderList;
@@ -46,4 +55,6 @@
         bool            m_bEnableCookie;
         bool            m_bEnableAutoRedirect;
     };
+}
 
+#endif // __COZY_HTTP_CLIENT__

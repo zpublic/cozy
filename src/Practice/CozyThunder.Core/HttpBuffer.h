@@ -1,5 +1,10 @@
+#ifndef __COZY_HTTP_BUFFER__
+#define __COZY_HTTP_BUFFER__
+
 #include "HttpDef.h"
 
+namespace Cozy
+{
     class HttpBuffer : public IBuffer
     {
     public:
@@ -7,7 +12,6 @@
 
     public:
         explicit HttpBuffer();
-        explicit HttpBuffer(std::size_t size);
         explicit HttpBuffer(byte_t* data, std::size_t size);
 
         virtual std::size_t GetSize() const;
@@ -18,3 +22,6 @@
     private:
         std::vector<byte_t> m_vecData;
     };
+}
+
+#endif // __COZY_HTTP_BUFFER__    

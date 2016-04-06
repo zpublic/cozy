@@ -2,11 +2,16 @@
 #define __COZY_THUNDER_TASK_IMPL__
 
 #include "ICozyThunderTask.h"
+#include <vector>
+#include "ThreadPool.h"
 
 namespace Cozy
 {
     class CozyThunderTaskImpl : public ICozyThunderTask
     {
+    public:
+        std::integral_constant<int, /*4 **/ 1024 /** 1024*/> DefaultBlockSize;
+
     public:
         CozyThunderTaskImpl();
         ~CozyThunderTaskImpl();
@@ -31,11 +36,19 @@ namespace Cozy
         // state 1 -> 2
         virtual bool Stop();
     private:
-        ICozyThunderTaskCallback* m_pCallback;
-        int m_state;
-        const wchar_t* m_lpszCfgPath;
-        const wchar_t* m_lpszRemtotePath;
-        const wchar_t* m_lpszLocalPath;
+        static std::string ws2s(const wchar_t* ptr);
+
+    private:
+        std::vector<Block>          m_vecBlock;
+        ICozyThunderTaskCallback*   m_pCallback;
+        ThreadPool                  m_threadPool;
+        const wchar_t*  m_lpszLocalPath;
+        const wchar_t*  m_lpszRemtotePath;
+        const wchar_t*  m_lpszCfgPath;
+        std::FILE*      m_plocalFile;
+
+        int             m_state;
+        std::size_t     m_remoteSize;
     };
 }
 

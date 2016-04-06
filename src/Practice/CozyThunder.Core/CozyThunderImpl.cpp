@@ -8,7 +8,7 @@ using namespace Cozy;
 
 bool CozyThunderImpl::Initialize()
 {
-    return false;
+    return true;
 }
 
 void CozyThunderImpl::UnInitialize()
@@ -22,7 +22,7 @@ ICozyThunderTask* CozyThunderImpl::CreateTask(const wchar_t* sCfgPath)
     auto ptr = new CozyThunderTaskImpl();
     ptr->SetCfgPath(sCfgPath);
 
-    m_ThunderTaskList.push_back(ptr);
+    m_ThunderTaskList.emplace_back(ptr);
     return ptr;
 }
 

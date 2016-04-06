@@ -3,6 +3,7 @@
 
 #include "ICozyThunder.h"
 #include <vector>
+#include "ThreadPool.h"
 
 namespace Cozy
 {
@@ -22,7 +23,7 @@ namespace Cozy
         virtual bool ClearTask(ICozyThunderTask* pTask);
 
     private:
-        std::vector<ICozyThunderTask*> m_ThunderTaskList;
+        std::vector<ICozyThunderTask*>  m_ThunderTaskList;
     };
 }
 

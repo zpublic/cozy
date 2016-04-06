@@ -1,9 +1,11 @@
 #include "stdafx.h"
+#include "HttpDef.h"
 #include "HttpClient.h"
 #include <iterator>
-
+#include <vector>
 #include "curl/curl.h"
 
+using namespace Cozy;
 
 HttpClient::HttpClient()
     :m_lastStatus(InvalidStatus),
@@ -101,9 +103,10 @@ HttpStatusCode HttpClient::GetLastStatusCode() const
 
 std::string HttpClient::__CreateHeader(const HttpHeader& header)
 {
-    std::string buffer ('\0', header.first.size() + header.second.size() + 1);
-
-    return "";
+    std::string res = header.first;
+    res += ": ";
+    res += header.second;
+    return res;
 }
 
 std::size_t HttpClient::__WriteCallback(void* pvData, std::size_t nSize, std::size_t nCount, void* pvParam)
@@ -173,7 +176,7 @@ HttpStatusCode HttpClient::__SendRequest(const std::string& strUrl, const IBuffe
     nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_WRITEFUNCTION, &HttpClient::__WriteCallback);
     if (nRetCode != CURLE_OK) goto Exit0;
 
-    nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_WRITEDATA, static_cast<void*>(&output));
+    nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_WRITEDATA, static_cast<void*>(output));
     if (nRetCode != CURLE_OK) goto Exit0;
 
     if (m_nSpeedLimit)
@@ -182,7 +185,7 @@ HttpStatusCode HttpClient::__SendRequest(const std::string& strUrl, const IBuffe
 
     if (m_bEnableSSL)
     {
-        nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_SSL_VERIFYPEER, TRUE);
         if (nRetCode != CURLE_OK) goto Exit0;
     }
 
@@ -236,4 +239,33 @@ Exit0:
     }
 
     return InvalidStatus;
+}
+
+HttpStatusCode HttpClient::DownloadFile(const std::string& strUrl, IBuffer* output)
+{
+    return __SendRequest(strUrl, nullptr, output, true);
+}
+
+std::size_t HttpClient::GetFileSize(const std::string& strUrl)
+{
+    CURL *handle = curl_easy_init();
+
+    ::curl_easy_setopt(handle, CURLOPT_URL, strUrl.c_str());
+
+    ::curl_easy_setopt(handle, CURLOPT_HEADER, 1);
+
+    ::curl_easy_setopt(handle, CURLOPT_NOBODY, 1);
+
+    ::curl_easy_setopt(handle, CURLOPT_SSL_VERIFYPEER, TRUE);
+
+    if (curl_easy_perform(handle) == CURLE_OK) 
+    {
+        double len = 0.0;
+        if (CURLE_OK == ::curl_easy_getinfo(handle, CURLINFO_CONTENT_LENGTH_DOWNLOAD, &len))
+        {
+            return static_cast<std::size_t>(len + 0.5);
+        }
+    }
+
+    return 0;
 }

@@ -25,8 +25,13 @@ int main()
     }
 
     Cozy::ICozyThunder* pthunder = createFunc();
+    auto task = pthunder->CreateTask(L"");
+    task->SetRemotePath(L"https://www.baidu.com/img/bd_logo1.png");
+    task->SetLocalPath(L"D:/1.png");
+    task->Start();
 
-
+    int n;
+    std::cin >> n;
 Exit0:
     FreeLibrary(hInstLibrary);
 

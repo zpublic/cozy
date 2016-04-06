@@ -1,15 +1,9 @@
 #include "stdafx.h"
 #include "HttpBuffer.h"
 
+using namespace Cozy;
 
 HttpBuffer::HttpBuffer()
-    :HttpBuffer(DefaultBufferSize)
-{
-
-}
-
-HttpBuffer::HttpBuffer(std::size_t size)
-    :m_vecData(size)
 {
 
 }
@@ -32,14 +26,8 @@ const byte_t* HttpBuffer::GetData() const
 
 std::size_t HttpBuffer::Write(byte_t* data, std::size_t size, std::size_t offset)
 {
-    std::size_t actWriteSize = size;
-    if (offset + size > m_vecData.size())
-    {
-        actWriteSize = m_vecData.size() - offset;
-    }
-
-    m_vecData.insert(m_vecData.begin() + offset, data, data + actWriteSize);
-    return actWriteSize;
+    m_vecData.insert(m_vecData.begin() + offset, data, data + size);
+    return size;
 }
 
 void HttpBuffer::Clear()
