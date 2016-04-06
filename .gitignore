@@ -163,3 +163,4 @@ sln/packages/
 bower_components/
 node_modules/
 /sln/*.opendb
+typings/
