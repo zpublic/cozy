@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MMS.UI.Default">
+    <ControlTemplate x:Key="EditTemplate" TargetType="{x:Type local:Edit}">
+        <ScrollViewer x:Name="panel" Cursor="Cross" Height="1000">
+            <RichTextBox x:Name="textBox" BorderThickness="0">
+                <!--<FlowDocument LineHeight="5" Foreground="YellowGreen" FontSize="10">
+                    <Paragraph>
+                        <Run>
+                            sssssss
+                        </Run>
+                    </Paragraph>
+                </FlowDocument>-->
+            </RichTextBox>
+        </ScrollViewer>
+    </ControlTemplate>
+    <Style x:Key="EditStyle" TargetType="{x:Type local:Edit}">
+        <Setter Property="Template" Value="{StaticResource EditTemplate}" />
+    </Style>
+</ResourceDictionary>

@@ -10,22 +10,74 @@ using System.Windows.Media.Imaging;
 using CozyWallpaper.Core;
 using System.Windows.Input;
 using CozyWallpaper.Gui.Command;
+using MMS.UI.Default;
+using MMS.Installation;
 namespace CozyWallpaper.Gui.ViewModels
 {
     public partial class MainWindowViewModel : BaseViewModel
     {
-        private ObservableCollection<WallpaperInfo> wallpaperList = new ObservableCollection<WallpaperInfo>();
-        public ObservableCollection<WallpaperInfo> WallpaperList
+        private static MainWindowViewModel mMainWindow;
+
+        public static MainWindowViewModel GetInstance()
         {
-            get
+            if (mMainWindow == null)
             {
-                return wallpaperList;
+                mMainWindow = new MainWindowViewModel();
             }
-            set
-            {
-                Set(ref wallpaperList, value, "WallpaperList");
-            }
+            return mMainWindow;
         }
+
+        private MainWindowViewModel()
+        {
+            //PropertyChanged += new PropertyChangedEventHandler(OnPropertyChanged);
+            //LoadStorage();
+            this.NextButton = new NextButton();
+            this.BackButton = new BackButton();
+            this.UpdateButton = new UpdateButton();
+            this.Menu = Menus.GetInstance().Menu;
+
+
+            //暂时这样写
+            Task.Run(() =>
+            {
+                var images = new ZhuokuWallpaperWebSite().GetWallpaper();
+                List<ImageInfo> temp = new List<ImageInfo>();
+                foreach (var image in images)
+                {
+                    try
+                    {
+                        Uri u = new Uri(image.Url);
+                        ImageInfo item = new ImageInfo()
+                        {
+                            Title = image.Title,
+                            Url = image.Url,
+                            DownloadImage = new DownloadCommand(),
+                            SetWallpaper = new SetWallpaperCommand()
+                        };
+                        temp.Add(item);
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+                this.WallpaperList = temp;
+            });
+        }
+
+        private List<ImageInfo> mWallpaperList = new List<ImageInfo>();
+        public List<ImageInfo> WallpaperList { get { return this.mWallpaperList; } set { Set(ref this.mWallpaperList, value, "WallpaperList"); } }
+
+        private string mImage = String.Empty;
+        public string Image { get { return this.mImage; } set { this.mImage = value; OnPropertyChanged("Image"); } }
+
+        public NextButton NextButton { get; set; }
+
+        public BackButton BackButton { get; set; }
+
+        public UpdateButton UpdateButton { get; set; }
+
+        public List<NavigationItem> Menu { get; set; }
 
         private WallpaperInfo selectedWallpaperListItem;
         public WallpaperInfo SelectedWallpaperListItem
@@ -69,37 +121,7 @@ namespace CozyWallpaper.Gui.ViewModels
             }
         }
 
-        private Dictionary<string, string> UrlSet = new Dictionary<string, string>();
-
-        private ICommand updateCommand;
-        public ICommand UpdateCommand
-        {
-            get
-            {
-                return updateCommand = updateCommand ?? new DelegateCommand((x)=> 
-                {
-                    var result = WallpaperNative.GetBingWallpaperUrl();
-                    foreach (var obj in result)
-                    {
-                        if (!UrlSet.ContainsKey(obj.Url))
-                        {
-                            UrlSet[obj.Url] = obj.Title;
-                            WallpaperList.Add(new WallpaperInfo() { Title = obj.Title, Url = obj.Url });
-                        }
-                        else
-                        {
-                            // TODO no update
-                        }
-                    }
-                });
-            }
-        }
-
-        public MainWindowViewModel()
-        {
-            PropertyChanged += new PropertyChangedEventHandler(OnPropertyChanged);
-            LoadStorage();
-        }
+        public Dictionary<string, string> UrlSet = new Dictionary<string, string>();
 
         public void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
         {
@@ -138,7 +160,7 @@ namespace CozyWallpaper.Gui.ViewModels
         private void LoadImage(string url)
         {
             var img = new BitmapImage(new Uri(url));
-            img.DownloadCompleted += (sender, msg) => 
+            img.DownloadCompleted += (sender, msg) =>
             {
                 StorageImage(url, img);
             };
@@ -148,4 +170,36 @@ namespace CozyWallpaper.Gui.ViewModels
             }
         }
     }
+
+    public class DownloadCommand:ICommand
+    {
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public void Execute(object parameter)
+        {
+            WallpaperNative.DownloadImage(parameter as string);
+        }
+    }
+
+    public class SetWallpaperCommand : ICommand
+    {
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public void Execute(object parameter)
+        {
+            WallpaperNative.SetWallpaperNet(parameter as string);
+        }
+    }
+
 }

@@ -1,0 +1,40 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MMS.UI.Default"
+                    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+    <ControlTemplate x:Key="ImageBoxTemplate" TargetType="{x:Type local:ImageBox}">
+        <ScrollViewer>
+            <ItemsControl x:Name="imageItems" Margin="0,20,0,0">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Path=Children}">
+                        <Grid  Margin="10,0,0,10" Width="180" Height="160" Cursor="Hand">
+                            <Image Source="{Binding Url}" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Left" Stretch="Fill" />
+                            <TextBlock Text="Wallpaper Manager" FontFamily="Segoe UI" Foreground="#fff" FontSize="16">
+                                <TextBlock.RenderTransform>
+                                    <TransformGroup>
+                                        <RotateTransform  CenterX="94" CenterY="100" Angle="145"/>
+                                        <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                                    </TransformGroup>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                            <Grid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="下载" Command="{Binding DownloadImage}" CommandParameter="{Binding Url}" />
+                                    <MenuItem Header="设为壁纸" Command="{Binding SetWallpaper}" CommandParameter="{Binding Url}" />
+                                </ContextMenu>
+                            </Grid.ContextMenu>
+                        </Grid>
+                    </HierarchicalDataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </ControlTemplate>
+    <Style x:Key="ImageBoxStyle" TargetType="{x:Type local:ImageBox}">
+        <Setter Property="Template" Value="{StaticResource ImageBoxTemplate}" />
+    </Style>
+</ResourceDictionary>
