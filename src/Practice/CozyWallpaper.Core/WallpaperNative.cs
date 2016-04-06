@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using CozyWallpaper.Core.json;
 using CozyWallpaper.Core.Model;
+using System.Net;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace CozyWallpaper.Core
 {
@@ -27,17 +30,41 @@ namespace CozyWallpaper.Core
         public static List<WallpaperInfo> GetBingWallpaperUrl()
         {
             var content = ReadPageContent(BingWallpaperApi);
-            var obj     = JsonConvert.DeserializeObject<BingWallpaperObject>(content);
+            var obj = JsonConvert.DeserializeObject<BingWallpaperObject>(content);
             var s =
                 from o
                 in obj.images
                 select
                 new WallpaperInfo()
                 {
-                    Title   = o.copyright,
-                    Url     = o.url,
+                    Title = o.copyright,
+                    Url = o.url,
                 };
             return s.ToList();
+        }
+
+        public static string DownloadImage(string url)
+        {
+            WebClient wc = new WebClient();
+            string folder = Path.Combine(Environment.GetEnvironmentVariable("ProgramFiles"), "壁纸管家");
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+            folder = Path.Combine(folder, "images");
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+            string fileName = Path.Combine(folder, String.Format("{0}.png", DateTime.Now.ToString("yyyyMMddhhmmss")));
+            wc.DownloadFile(url, fileName);
+            return fileName;
+        }
+
+        public static void SetWallpaperNet(string url)
+        {
+            string fileName = DownloadImage(url);
+            SetWallpaper(fileName);
         }
     }
 }

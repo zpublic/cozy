@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MMS.UI.Default">
+    <ControlTemplate x:Key="DefaultMenuTemplate" TargetType="{x:Type local:Menu}">
+        <StackPanel>
+            <Menu Height="30" x:Name="mainMenu">
+                <Menu.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Path=Children}">
+                        <StackPanel Orientation="Horizontal" Margin="2,4,0,0"  >
+                            <!--<Image VerticalAlignment="Center" Source="{Binding Icon}" Width="16" Height="16" Margin="0,0,2,2"></Image>-->
+                            <TextBlock VerticalAlignment="Center"  HorizontalAlignment="Left" FontSize="14" Text="{Binding Name}"></TextBlock>
+                            <!--<Button VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Content="{Binding Name}" Command="{Binding Command}" BorderThickness="0" Background="#F0F0F0"></Button>-->
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </Menu.ItemTemplate>
+            </Menu>
+            <TextBox Height="1"/>
+        </StackPanel>
+    </ControlTemplate>
+    <Style x:Key="DefaultMenuStyle" TargetType="{x:Type local:Menu}">
+        <Setter Property="Template" Value="{StaticResource DefaultMenuTemplate}" />
+    </Style>
+</ResourceDictionary>
