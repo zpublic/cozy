@@ -43,13 +43,14 @@ int main()
     cb.Wait();
     task->Stop();
     pthunder->SaveTask(task);
+    pthunder->ClearTask(task);
 
     /*auto task = pthunder->LoadTask(L"D:/qq.exe.cfg");
     task->SetTaskCallback(&cb);
     task->Start();
     cb.Wait();
-    task->Stop();
-    pthunder->ClearTask(task);*/
+    task->Stop();*/
+    
 
 Exit0:
     ::FreeLibrary(hInstLibrary);

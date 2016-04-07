@@ -15,7 +15,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -55,9 +55,13 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\sln\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dlls\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\sln\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -94,7 +98,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Default\Message\Message.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Default\Navigation\Navigation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Default\PointSet\PointSet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,10 +144,14 @@
     <Compile Include="Default\ImageBox\ImageInfo.cs" />
     <Compile Include="Default\Menu\Menu.cs" />
     <Compile Include="Default\Menu\MenuItem.cs" />
+    <Compile Include="Default\Message\Message.cs" />
+    <Compile Include="Default\Message\MessageBox.cs" />
     <Compile Include="Default\Navigation\Convert\BorderConvert.cs" />
     <Compile Include="Default\Navigation\Convert\StatusConvert.cs" />
     <Compile Include="Default\Navigation\NavigationItem.cs" />
     <Compile Include="Default\Navigation\Navigation.cs" />
+    <Compile Include="Default\PointSet\Point.cs" />
+    <Compile Include="Default\PointSet\PointSet.cs" />
     <Compile Include="Default\Table\Table.cs" />
     <Compile Include="Default\Tabs\Tabs.cs" />
     <Compile Include="Default\Window\RepairWindow.cs" />
@@ -157,6 +173,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -211,6 +228,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Default\Connection\Images\mongo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Default\Message\Images\error.png" />
+    <Resource Include="Default\Message\Images\info.png" />
+    <Resource Include="Default\Message\Images\question.png" />
+    <Resource Include="Default\Message\Images\warn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

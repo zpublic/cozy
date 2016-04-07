@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8D5B732F-05C9-4ECC-A092-B41398B2D9CB}</ProjectGuid>
+    <ProjectGuid>{EF5E34B0-2F1C-4EBF-8AD1-4E7EB291284F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyWallpaper.Gui</RootNamespace>
-    <AssemblyName>CozyWallpaper.Gui</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>CozyThunder.Client</RootNamespace>
+    <AssemblyName>CozyThunder.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -25,7 +26,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,14 +35,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logo_exe.ico</ApplicationIcon>
+    <ApplicationIcon>logo-exe.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\..\Public\Common.Logger\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\sln\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -63,16 +70,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Command\DelegateCommand.cs" />
-    <Compile Include="Storage\WallpaperStorage.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\Buttons\BackButton.cs" />
+    <Compile Include="Handle\Download.cs" />
     <Compile Include="ViewModels\Buttons\Button.cs" />
-    <Compile Include="ViewModels\Buttons\UpdateButton.cs" />
-    <Compile Include="ViewModels\Buttons\NextButton.cs" />
+    <Compile Include="ViewModels\Buttons\DownloadButton.cs" />
+    <Compile Include="ViewModels\DownloadViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\MainWindowViewModel.Storage.cs" />
-    <Compile Include="ViewModels\Menus.cs" />
+    <Compile Include="Views\Download.xaml.cs">
+      <DependentUpon>Download.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -85,9 +90,12 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Download.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\WallpaperInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -105,7 +113,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -124,28 +138,25 @@
       <Project>{b461142d-ed6d-4a55-a3d5-612d6e58eea5}</Project>
       <Name>MMS.UI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CozyWallpaper.Core\CozyWallpaper.Core.csproj">
-      <Project>{e76123bf-57a8-4906-b9db-e31328b2133f}</Project>
-      <Name>CozyWallpaper.Core</Name>
+    <ProjectReference Include="..\CozyThunder.HttpDownload\CozyThunder.HttpDownload.csproj">
+      <Project>{c8dbb6cf-a562-403c-ae95-6974f65e9043}</Project>
+      <Name>CozyThunder.HttpDownload</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\folder.png" />
-    <Resource Include="Images\header.png" />
+    <ProjectReference Include="..\CozyThunder.Schedule\CozyThunder.Schedule.csproj">
+      <Project>{62146934-2f44-4507-a351-ccb816d12a57}</Project>
+      <Name>CozyThunder.Schedule</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\logo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="logo.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\logo_exe.ico">
+    <None Include="Images\logo-exe.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="logo_exe.ico" />
+    <Resource Include="logo-exe.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

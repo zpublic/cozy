@@ -39,12 +39,11 @@ namespace CozyThunder.Protocol.Tester
                     Console.WriteLine("OnMessage - FileBlockBeginPacket");
                     break;
                 case 10002:
-                    Console.WriteLine("OnMessage - FileBlockDataPacket");
+                    //Console.WriteLine("OnMessage - FileBlockDataPacket");
                     break;
                 case 10003:
                     Console.WriteLine("OnMessage - FileBlockEndPacket");
                     break;
-
             }
         }
     }
@@ -84,18 +83,13 @@ namespace CozyThunder.Protocol.Tester
             master.Send(peer, sp.Encode());
 
             Console.ReadKey();
-            byte[] data = new byte[1024 * 1024];
-            for (int i = 0; i < 1024 * 2; ++i)
-            {
-                for (int j = 0; j < 512; ++j)
-                    data[i * 512 + j] = (byte)(j % 128);
-            }
-            // 传输1M的数据
+            // 传输3M的数据
             FileBlockBeginPacket begin = new FileBlockBeginPacket();
             master.Send(peer, begin.Encode());
-            for (int i = 0; i < 1024 * 2; ++i)
+            byte[] b3k = new byte[1024 * 3];
+            for (int i = 0; i < 1024; ++i)
             {
-                FileBlockDataPacket d = new FileBlockDataPacket(data.Skip(i * 512).Take(512).ToArray());
+                FileBlockDataPacket d = new FileBlockDataPacket(b3k);
                 master.Send(peer, d.Encode());
             }
             FileBlockEndPacket end = new FileBlockEndPacket();
