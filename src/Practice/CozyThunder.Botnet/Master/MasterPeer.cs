@@ -11,10 +11,10 @@ namespace CozyThunder.Botnet.Master
         PeerList peerList_;
         Dictionary<string, MasterConnector> connectorList_;
 
-        public bool Start(string ip, int port, IMasterPeerListener listener)
+        public bool Start(IPAddress ip, int port, IMasterPeerListener listener)
         {
             listener_ = listener;
-            EndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
+            EndPoint = new IPEndPoint(ip, port);
             peerList_ = new PeerList();
             connectorList_ = new Dictionary<string, MasterConnector>();
             return true;

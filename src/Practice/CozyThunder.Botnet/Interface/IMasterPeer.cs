@@ -1,10 +1,11 @@
 ﻿using CozyThunder.Botnet.Common;
+using System.Net;
 
 namespace CozyThunder.Botnet.Interface
 {
     public interface IMasterPeer
     {
-        bool Start(string ip, int port, IMasterPeerListener listener);
+        bool Start(IPAddress ip, int port, IMasterPeerListener listener);
         bool Stop();
 
         bool AddPeer(Peer peer);

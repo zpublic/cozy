@@ -23,9 +23,9 @@ namespace CozyThunder.Botnet.Common
             return peers_.Remove(peer.EndPoint.ToString());
         }
 
-        public bool DelPeer(string ip, int port)
+        public bool DelPeer(IPAddress ip, int port)
         {
-            return peers_.Remove(new IPEndPoint(IPAddress.Parse(ip), port).ToString());
+            return peers_.Remove(new IPEndPoint(ip, port).ToString());
         }
 
         public IEnumerable<KeyValuePair<string, Peer>> AsEnumerable()

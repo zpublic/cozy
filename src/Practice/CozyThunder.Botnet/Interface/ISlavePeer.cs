@@ -1,8 +1,10 @@
-﻿namespace CozyThunder.Botnet.Interface
+﻿using System.Net;
+
+namespace CozyThunder.Botnet.Interface
 {
     public interface ISlavePeer
     {
-        bool Start(string ip, int port, ISlavePeerListener listener);
+        bool Start(IPAddress ip, int port, ISlavePeerListener listener);
         bool Stop();
     }
 }
