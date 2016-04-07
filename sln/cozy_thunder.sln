@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyThunder.Botnet.Tester",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyThunder.Botnet.MasterGui", "..\src\Practice\CozyThunder.Botnet.MasterGui\CozyThunder.Botnet.MasterGui.csproj", "{143DC6FC-CE2F-4818-8D26-06F71A24EA2A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{949416A8-877D-4C24-81F6-DDBF8D804C92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,5 +72,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AF9D3B2D-F641-4EE4-A713-603B93628398} = {949416A8-877D-4C24-81F6-DDBF8D804C92}
+		{143DC6FC-CE2F-4818-8D26-06F71A24EA2A} = {949416A8-877D-4C24-81F6-DDBF8D804C92}
 	EndGlobalSection
 EndGlobal
