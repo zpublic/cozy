@@ -8,8 +8,7 @@
 using namespace Cozy;
 
 HttpClient::HttpClient()
-    :m_lastStatus(InvalidStatus),
-    m_nSpeedLimit(InvalidLimit),
+    :m_nSpeedLimit(InvalidLimit),
     m_nTimeLimit(InvalidLimit),
     m_bEnableSSL(false),
     m_bEnableCookie(false),
@@ -96,11 +95,6 @@ void HttpClient::AppendHttpHeader(const HttpHeader& header)
     }
 }
 
-HttpStatusCode HttpClient::GetLastStatusCode() const
-{
-    return m_lastStatus;
-}
-
 std::string HttpClient::__CreateHeader(const HttpHeader& header)
 {
     std::string res = header.first;
@@ -126,6 +120,7 @@ HttpStatusCode HttpClient::__SendRequest(const std::string& strUrl, const IBuffe
     char* strIp = NULL;
     curl_slist* pHeaderList = NULL;
     CURLcode nRetCode;
+	HttpStatusCode statusCode = InvalidStatus;
 
     CURL* pCurl = ::curl_easy_init();
     nRetCode = ::curl_easy_setopt(pCurl, CURLOPT_URL, strUrl.c_str());
@@ -209,7 +204,7 @@ HttpStatusCode HttpClient::__SendRequest(const std::string& strUrl, const IBuffe
     }
 
     nRetCode = ::curl_easy_perform(pCurl);
-    ::curl_easy_getinfo(pCurl, CURLINFO_RESPONSE_CODE, &m_lastStatus);
+    ::curl_easy_getinfo(pCurl, CURLINFO_RESPONSE_CODE, &statusCode);
 
     if (m_bEnableCookie)
     {
@@ -238,7 +233,7 @@ Exit0:
         ::curl_slist_free_all(pHeaderList);
     }
 
-    return InvalidStatus;
+    return statusCode;
 }
 
 HttpStatusCode HttpClient::DownloadFile(const std::string& strUrl, IBuffer* output)

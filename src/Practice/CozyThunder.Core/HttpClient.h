@@ -37,8 +37,6 @@ namespace Cozy
 
         void AppendHttpHeader(const HttpHeader& header);
 
-        HttpStatusCode GetLastStatusCode() const;
-
     private:
         std::string __CreateHeader(const HttpHeader& header);
         HttpStatusCode __SendRequest(const std::string& strUrl, const IBuffer* input, IBuffer* output, bool isGetMethod);
@@ -48,7 +46,6 @@ namespace Cozy
     private:
         HttpHeaderList  m_HeaderList;
         HttpCookie      m_cookie;
-        HttpStatusCode  m_lastStatus;
         HttpLimitType   m_nSpeedLimit;
         HttpLimitType   m_nTimeLimit;
         bool            m_bEnableSSL;

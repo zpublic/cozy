@@ -57,6 +57,12 @@
     <ClInclude Include="ThreadPool.h">
       <Filter>src\threadpool</Filter>
     </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="CozyThunderTaskCallbackStdoutImpl.h">
+      <Filter>src\impl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CozyThunder.Core.cpp">
@@ -82,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="ThreadPool.cpp">
       <Filter>src\threadpool</Filter>
+    </ClCompile>
+    <ClCompile Include="CozyThunderTaskCallbackStdoutImpl.cpp">
+      <Filter>src\impl</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

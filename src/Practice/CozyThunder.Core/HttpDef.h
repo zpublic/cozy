@@ -20,7 +20,7 @@ namespace Cozy
     public:
         virtual std::size_t GetSize() const = 0;
         virtual const byte_t* GetData() const = 0;
-        virtual std::size_t Write(byte_t* data, std::size_t size, std::size_t offset = 0) = 0;
+        virtual std::size_t Write(byte_t* data, std::size_t size) = 0;
         virtual void Clear() = 0;
     };
 }

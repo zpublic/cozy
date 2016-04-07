@@ -17,4 +17,11 @@ namespace Cozy
     };
 }
 
+extern "C"
+{
+    COZY_API Cozy::ICozyThunderTaskCallback* createCallback();
+    COZY_API void releaseCallback(Cozy::ICozyThunderTaskCallback* ptr);
+}
+
+
 #endif // __COZY_THUNDER_TASK_CALLBACK__

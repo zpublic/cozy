@@ -21,8 +21,9 @@ void ThreadPool::PostTask(Task task)
     std::lock_guard<std::mutex> lock(m_taskMutex);
 
     m_taskQueue.push_back(task);
-    m_cvTask.notify_one();
     __AdjustThread();
+
+    m_cvTask.notify_one();
 }
 
 void ThreadPool::Start()
@@ -41,7 +42,7 @@ void ThreadPool::__InitThread()
 {
     std::lock_guard<std::mutex> lock(m_threadMutex);
 
-    for (int i = m_threadList.size(); i < m_minWorker; ++i)
+    for (auto i = m_threadList.size(); i < m_minWorker; ++i)
     {
         m_threadList.push_back(std::thread(std::bind(&ThreadPool::__WorkerThreadProc, this)));
     }
@@ -60,37 +61,51 @@ void ThreadPool::__AdjustThread()
 
 void ThreadPool::__WorkerThreadProc()
 {
-    std::unique_lock<std::mutex> lock(m_taskMutex);
-
     while (!m_cancleFlag)
     {
-        m_cvTask.wait(lock, [this]() 
-        { 
-            return !m_taskQueue.empty(); 
-        });
+        Task t = nullptr;
 
-        if (m_cancleFlag)
         {
-            break;
+            std::unique_lock<std::mutex> lock(m_taskMutex);
+
+            m_cvTask.wait(lock, [this]()
+            {
+                return !m_taskQueue.empty();
+            });
+
+            if (m_cancleFlag)
+            {
+                break;
+            }
+
+            if (!m_taskQueue.empty())
+            {
+                t = m_taskQueue.front();
+                m_taskQueue.pop_front();
+            }
         }
 
-        if (auto task = m_taskQueue.front())
+        if (t != nullptr)
         {
-            m_taskQueue.pop_front();
-            task();
+            t();
         }
     }
 }
 
 void ThreadPool::__ReleaseAllTask()
 {
-    std::lock_guard<std::mutex> lock(m_taskMutex);
+    {
+        std::lock_guard<std::mutex> lock(m_taskMutex);
 
-    m_taskQueue.clear();
-    m_cvTask.notify_all();
+        m_taskQueue.assign(m_maxWorker, nullptr);
+
+        m_cvTask.notify_all();
+    }
 
     for (auto& thread : m_threadList)
     {
         thread.join();
     }
+    m_threadList.clear();
+    m_taskQueue.clear();
 }

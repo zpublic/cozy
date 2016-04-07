@@ -111,7 +111,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\AngelC\cozy\src\Public\3rd\libcurl\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)../../src/Public/3rd/libcurl/bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -148,11 +148,14 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)../../src/Public/3rd/libcurl/bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Block.h" />
     <ClInclude Include="CozyThunderDef.h" />
     <ClInclude Include="CozyThunderImpl.h" />
+    <ClInclude Include="CozyThunderTaskCallbackStdoutImpl.h" />
     <ClInclude Include="CozyThunderTaskImpl.h" />
     <ClInclude Include="HttpBuffer.h" />
     <ClInclude Include="HttpClient.h" />
@@ -167,6 +170,7 @@
   <ItemGroup>
     <ClCompile Include="CozyThunder.Core.cpp" />
     <ClCompile Include="CozyThunderImpl.cpp" />
+    <ClCompile Include="CozyThunderTaskCallbackStdoutImpl.cpp" />
     <ClCompile Include="CozyThunderTaskImpl.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>

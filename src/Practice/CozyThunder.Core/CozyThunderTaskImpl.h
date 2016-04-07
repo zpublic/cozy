@@ -4,13 +4,14 @@
 #include "ICozyThunderTask.h"
 #include <vector>
 #include "ThreadPool.h"
+#include "Block.h"
 
 namespace Cozy
 {
     class CozyThunderTaskImpl : public ICozyThunderTask
     {
     public:
-        std::integral_constant<int, /*4 **/ 1024 /** 1024*/> DefaultBlockSize;
+        std::integral_constant<int, 1024 * 1024> DefaultBlockSize;
 
     public:
         CozyThunderTaskImpl();
@@ -35,20 +36,32 @@ namespace Cozy
         virtual bool Start();
         // state 1 -> 2
         virtual bool Stop();
+
+    private:
+        std::size_t InitLocalFile();
+        void InitBlock(int n);
+        void OnTaskBegin();
+        void OnBlockStatus(int id, int status);
+        void OnTaskEnd(int code);
+        void OnTaskPause();
+
     private:
         static std::string ws2s(const wchar_t* ptr);
+        void __safeWrite(std::FILE* pFile, std::size_t offset, const void* data, std::size_t size);
+        std::string __makeRange(int begin, int end);
 
     private:
         std::vector<Block>          m_vecBlock;
         ICozyThunderTaskCallback*   m_pCallback;
         ThreadPool                  m_threadPool;
-        const wchar_t*  m_lpszLocalPath;
-        const wchar_t*  m_lpszRemtotePath;
-        const wchar_t*  m_lpszCfgPath;
-        std::FILE*      m_plocalFile;
-
-        int             m_state;
-        std::size_t     m_remoteSize;
+        std::mutex                  m_fileMutex;
+        const wchar_t*              m_lpszLocalPath;
+        const wchar_t*              m_lpszRemtotePath;
+        const wchar_t*              m_lpszCfgPath;
+        std::FILE*                  m_plocalFile;
+        std::atomic<std::size_t>    m_finishblcokCount;
+        int                         m_state;
+        std::size_t                 m_remoteSize;
     };
 }
 
