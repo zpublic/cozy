@@ -12,7 +12,7 @@ namespace Cozy
     class CozyThunderTaskImpl : public ICozyThunderTask
     {
     public:
-        std::integral_constant<int, 1024 * 1024> DefaultBlockSize;
+        static const int DefaultBlockSize = 1024 * 1024;
 
     public:
         CozyThunderTaskImpl();
@@ -52,6 +52,7 @@ namespace Cozy
     private:
         static std::string ws2s(const std::wstring& ptr);
         static std::wstring s2ws(const std::string& str);
+        static std::vector<std::pair<std::size_t, std::size_t>> splitSize(std::size_t size);
         void __safeWrite(std::size_t offset, const void* data, std::size_t size);
         std::string __makeRange(int begin, int end);
 
@@ -59,6 +60,7 @@ namespace Cozy
         std::vector<Block>          m_vecBlock;
         ICozyThunderTaskCallback*   m_pCallback;
         ThreadPool                  m_threadPool;
+        std::mutex                  m_fileMutex;
         std::wstring                m_lpszLocalPath;
         std::wstring                m_lpszRemtotePath;
         std::wstring                m_lpszCfgPath;

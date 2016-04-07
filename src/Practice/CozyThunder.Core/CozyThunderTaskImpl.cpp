@@ -83,51 +83,48 @@ void CozyThunderTaskImpl::SetTaskCallback(ICozyThunderTaskCallback* pCallback)
 bool CozyThunderTaskImpl::Start()
 {
     auto size = InitFile();
-    auto blockNum = (size + DefaultBlockSize - 1) / DefaultBlockSize;
+    
+    auto rangeList = splitSize(size);
 
-    InitBlock(blockNum);
+    InitBlock(rangeList.size());
     m_threadPool.Start();
 
     OnTaskBegin();
 
-    for (int i = 0; i < blockNum; ++i)
+    for (std::size_t i = 0; i < rangeList.size(); ++i)
     {
         m_threadPool.PostTask([=]()
         {
-            int startPos = i;
-            int readSize = blockNum / blockNum;
-            std::size_t needToRead = (startPos == blockNum - 1) ? (size % DefaultBlockSize) : DefaultBlockSize;
+            int pos     = i;
+            auto range  = rangeList[pos];
 
             HttpClient client;
             HttpBuffer buffer;
             client.SetEnableSSL(true);
 
-            for (int curpos = startPos; curpos != startPos + readSize; ++curpos)
+            if (GetBlockState(pos) == BlockStatusFinish) return;
+
+            buffer.Clear();
+            OnBlockStatus(pos, 0);
+
+            auto strRange = __makeRange(range.first, range.second);
+            client.AppendHttpHeader(std::make_pair("Range", strRange));
+
+            if (client.DownloadFile(ws2s(m_lpszRemtotePath).c_str(), &buffer) / 100 == 2)
             {
-                if (GetBlockState(curpos) == BlockStatusFinish) continue;
+                __safeWrite(pos * DefaultBlockSize, buffer.GetData(), buffer.GetSize());
 
-                buffer.Clear();
-                OnBlockStatus(curpos, 0);
+                ++m_finishblcokCount;
+                OnBlockStatus(pos, 1);
 
-                auto strRange = __makeRange(curpos * DefaultBlockSize, curpos * DefaultBlockSize + needToRead - 1);
-                client.AppendHttpHeader(std::make_pair("Range", strRange));
-
-                if (client.DownloadFile(ws2s(m_lpszRemtotePath).c_str(), &buffer) / 100 == 2)
+                if (m_finishblcokCount == m_vecBlock.size())
                 {
-                    __safeWrite(curpos * DefaultBlockSize, buffer.GetData(), buffer.GetSize());
-
-                    ++m_finishblcokCount;
-                    OnBlockStatus(curpos, 1);
-
-                    if (m_finishblcokCount == m_vecBlock.size())
-                    {
-                        OnTaskEnd(0);
-                    }
+                    OnTaskEnd(0);
                 }
-                else
-                {
-                    OnBlockStatus(curpos, 2);
-                }
+            }
+            else
+            {
+                OnBlockStatus(pos, 2);
             }
         });
     }
@@ -166,6 +163,8 @@ std::wstring CozyThunderTaskImpl::s2ws(const std::string& str)
 
 void CozyThunderTaskImpl::__safeWrite(std::size_t offset, const void* data, std::size_t size)
 {
+    std::lock_guard<std::mutex> lock(m_fileMutex);
+
     m_plocalFile.seekp(offset, std::ios::beg);
     m_plocalFile.write(static_cast<const char*>(data), size);
 }
@@ -279,11 +278,25 @@ void CozyThunderTaskImpl::SetBlockInfo(const std::wstring& value)
 {
     if (value.size() == m_vecBlock.size())
     {
-        for (int i = 0; i < value.size(); ++i)
+        for (std::size_t i = 0; i < value.size(); ++i)
         {
             Block b;
             b.SetBlockStatus(value[i] - L'0');
             m_vecBlock[i] = b;
         }
     }
+}
+
+std::vector<std::pair<std::size_t, std::size_t>> CozyThunderTaskImpl::splitSize(std::size_t size)
+{
+    std::vector<std::pair<std::size_t, std::size_t>> res;
+    auto blockNum = (size + DefaultBlockSize - 1) / DefaultBlockSize;
+
+    for (unsigned int i = 0; i < blockNum; ++i)
+    {
+        std::size_t needToRead = (i == blockNum - 1) ? (size % DefaultBlockSize) : DefaultBlockSize;
+        res.emplace_back(std::make_pair(i * DefaultBlockSize, i * DefaultBlockSize + needToRead - 1));
+    }
+
+    return res;
 }

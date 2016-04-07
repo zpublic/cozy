@@ -13,11 +13,11 @@
     <Filter Include="src\impl">
       <UniqueIdentifier>{bdcefe92-5d96-4621-9f7d-6e781a9e1781}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\network">
-      <UniqueIdentifier>{3e9e8585-cde0-4a0b-bd55-b6810eedbbf9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\threadpool">
       <UniqueIdentifier>{5ef0305c-7a21-425b-99bf-eec757eb6a26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\impl\network">
+      <UniqueIdentifier>{3e9e8585-cde0-4a0b-bd55-b6810eedbbf9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -43,13 +43,13 @@
       <Filter>base</Filter>
     </ClInclude>
     <ClInclude Include="HttpClient.h">
-      <Filter>src\network</Filter>
+      <Filter>src\impl\network</Filter>
     </ClInclude>
     <ClInclude Include="HttpDef.h">
-      <Filter>src\network</Filter>
+      <Filter>src\impl\network</Filter>
     </ClInclude>
     <ClInclude Include="HttpBuffer.h">
-      <Filter>src\network</Filter>
+      <Filter>src\impl\network</Filter>
     </ClInclude>
     <ClInclude Include="CozyThunderTaskImpl.h">
       <Filter>src\impl</Filter>
@@ -75,10 +75,10 @@
       <Filter>src\impl</Filter>
     </ClCompile>
     <ClCompile Include="HttpClient.cpp">
-      <Filter>src\network</Filter>
+      <Filter>src\impl\network</Filter>
     </ClCompile>
     <ClCompile Include="HttpBuffer.cpp">
-      <Filter>src\network</Filter>
+      <Filter>src\impl\network</Filter>
     </ClCompile>
     <ClCompile Include="CozyThunderTaskImpl.cpp">
       <Filter>src\impl</Filter>

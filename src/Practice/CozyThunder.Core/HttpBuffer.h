@@ -8,9 +8,6 @@ namespace Cozy
     class HttpBuffer : public IBuffer
     {
     public:
-        std::integral_constant<int, 4096> DefaultBufferSize;
-
-    public:
         explicit HttpBuffer();
         explicit HttpBuffer(byte_t* data, std::size_t size);
 
