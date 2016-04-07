@@ -3,15 +3,16 @@
 
 #include "../CozyThunder.Core/ICozyThunder.h"
 
-#include "windows.h"
 #include <iostream>
 #include <mutex>
+#include "windows.h"
+#include "TestCallback.h"
 
 int main()
 {
     LPCTSTR lpszLibrary     = TEXT("CozyThunder.Core.dll");
     HINSTANCE hInstLibrary  = ::LoadLibrary(lpszLibrary);
-
+    TestCallback cb;
     if (hInstLibrary == nullptr)
     {
         std::cout << "load library error" << std::endl;
@@ -27,23 +28,31 @@ int main()
     }
 
     Cozy::ICozyThunder* pthunder = createFunc();
-    auto task = pthunder->CreateTask(L"");
+    auto task = pthunder->CreateTask(L"D:/qq.exe.cfg");
 
-    task->SetRemotePath(L"https://cmake.org/files/v3.5/cmake-3.5.1-win32-x86.msi");
-    task->SetLocalPath(L"D:/1.msi");
+    task->SetRemotePath(L"http://dldir1.qq.com/qqfile/qq/QQ8.2/17724/QQ8.2.exe");
+    task->SetLocalPath(L"D:/qq.exe");
 
-    typedef Cozy::ICozyThunderTaskCallback* (*CreateCallbackFunc)();
-    auto createCallbackFun = (CreateCallbackFunc)GetProcAddress(hInstLibrary, "createCallback");
-
-    auto callback = createCallbackFun();
-    task->SetTaskCallback(callback);
+    task->SetTaskCallback(&cb);
     task->Start();
     task->Stop();
+    pthunder->SaveTask(task);
 
-    task->Start(); //再次开始暂时不能用
+    task->Start();
+
+    cb.Wait();
+    task->Stop();
+    pthunder->SaveTask(task);
+
+    /*auto task = pthunder->LoadTask(L"D:/qq.exe.cfg");
+    task->SetTaskCallback(&cb);
+    task->Start();
+    cb.Wait();
+    task->Stop();
+    pthunder->ClearTask(task);*/
 
 Exit0:
-    FreeLibrary(hInstLibrary);
+    ::FreeLibrary(hInstLibrary);
 
     return 0;
 }

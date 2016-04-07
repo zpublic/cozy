@@ -11,10 +11,7 @@ using namespace Cozy;
 CozyThunderTaskImpl::CozyThunderTaskImpl()
     :m_pCallback(nullptr),
     m_threadPool(5, 10),
-    m_lpszLocalPath(nullptr),
-    m_lpszRemtotePath(nullptr),
-    m_lpszCfgPath(nullptr),
-	m_finishblcokCount(0),
+    m_finishblcokCount(0),
     m_state(0),
     m_remoteSize(-1)
 {
@@ -33,17 +30,17 @@ int CozyThunderTaskImpl::GetTaskState()
 
 const wchar_t* CozyThunderTaskImpl::GetCfgPath()
 {
-    return m_lpszCfgPath;
+    return m_lpszCfgPath.c_str();
 }
 
 const wchar_t* CozyThunderTaskImpl::GetRemotePath()
 {
-    return m_lpszRemtotePath;
+    return m_lpszRemtotePath.c_str();
 }
 
 const wchar_t* CozyThunderTaskImpl::GetLocalPath()
 {
-    return m_lpszLocalPath;
+    return m_lpszLocalPath.c_str();
 }
 
 unsigned long CozyThunderTaskImpl::GetFileSize()
@@ -59,11 +56,7 @@ unsigned int CozyThunderTaskImpl::GetBlockCount()
 // state = 0 下载开始 1 下载完成 2下载失败
 int CozyThunderTaskImpl::GetBlockState(unsigned int blockId)
 {
-    if (blockId < m_vecBlock.size())
-    {
-        return m_vecBlock[blockId].GetBlcokStatus();
-    }
-    return BlockStatusInvalid;
+    return m_vecBlock[blockId].GetBlcokStatus();
 }
 
 void CozyThunderTaskImpl::SetCfgPath(const wchar_t* path)
@@ -89,11 +82,12 @@ void CozyThunderTaskImpl::SetTaskCallback(ICozyThunderTaskCallback* pCallback)
 // state 0/2 -> 1
 bool CozyThunderTaskImpl::Start()
 {
-    auto size		= InitLocalFile();
-    auto blockNum	= (size + DefaultBlockSize - 1) / DefaultBlockSize;
+    auto size = InitFile();
+    auto blockNum = (size + DefaultBlockSize - 1) / DefaultBlockSize;
 
     InitBlock(blockNum);
     m_threadPool.Start();
+
     OnTaskBegin();
 
     for (int i = 0; i < blockNum; ++i)
@@ -118,24 +112,20 @@ bool CozyThunderTaskImpl::Start()
                 auto strRange = __makeRange(curpos * DefaultBlockSize, curpos * DefaultBlockSize + needToRead - 1);
                 client.AppendHttpHeader(std::make_pair("Range", strRange));
 
-                auto str = ws2s(m_lpszRemtotePath);
-                if (client.DownloadFile(str.c_str(), &buffer) / 100 == 2)
+                if (client.DownloadFile(ws2s(m_lpszRemtotePath).c_str(), &buffer) / 100 == 2)
                 {
-                    __safeWrite(m_plocalFile, curpos * DefaultBlockSize, buffer.GetData(), buffer.GetSize());
+                    __safeWrite(curpos * DefaultBlockSize, buffer.GetData(), buffer.GetSize());
 
                     ++m_finishblcokCount;
-                    m_vecBlock[curpos].SetBlockStatus(BlockStatusFinish);
                     OnBlockStatus(curpos, 1);
 
                     if (m_finishblcokCount == m_vecBlock.size())
                     {
-                        std::fclose(m_plocalFile);
                         OnTaskEnd(0);
                     }
                 }
                 else
                 {
-                    m_vecBlock[curpos].SetBlockStatus(BlockStatusFailed);
                     OnBlockStatus(curpos, 2);
                 }
             }
@@ -149,26 +139,35 @@ bool CozyThunderTaskImpl::Start()
 bool CozyThunderTaskImpl::Stop()
 {
     m_threadPool.Stop();
-    OnTaskPause();
-    return false;
+    m_state = 2;
+    OnTaskEnd(1);
+    return true;
 }
 
-std::string CozyThunderTaskImpl::ws2s(const wchar_t* ptr)
+std::string CozyThunderTaskImpl::ws2s(const std::wstring& str)
 {
     std::mbstate_t state = std::mbstate_t();
+    auto ptr = str.c_str();
     int len = 1 + std::wcsrtombs(NULL, &ptr, 0, &state);
     std::vector<char> mbstr(len);
     std::wcsrtombs(&mbstr[0], &ptr, mbstr.size(), &state);
     return std::string(mbstr.begin(), mbstr.end());
 }
 
-void CozyThunderTaskImpl::__safeWrite(std::FILE* pFile, std::size_t offset, const void* data, std::size_t size)
+std::wstring CozyThunderTaskImpl::s2ws(const std::string& str)
 {
-    std::lock_guard<std::mutex> lock(m_fileMutex);
+    std::mbstate_t state = std::mbstate_t();
+    auto ptr = str.c_str();
+    int len = 1 + std::mbsrtowcs(NULL, &ptr, 0, &state);
+    std::vector<wchar_t> wstr(len);
+    std::mbsrtowcs(&wstr[0], &ptr, wstr.size(), &state);
+    return std::wstring(wstr.begin(), wstr.end());
+}
 
-    std::fseek(pFile, offset, SEEK_SET);
-    std::fwrite(data, size, 1, pFile);
-    std::fflush(pFile);
+void CozyThunderTaskImpl::__safeWrite(std::size_t offset, const void* data, std::size_t size)
+{
+    m_plocalFile.seekp(offset, std::ios::beg);
+    m_plocalFile.write(static_cast<const char*>(data), size);
 }
 
 std::string CozyThunderTaskImpl::__makeRange(int begin, int end)
@@ -180,26 +179,29 @@ std::string CozyThunderTaskImpl::__makeRange(int begin, int end)
     return value;
 }
 
-std::size_t CozyThunderTaskImpl::InitLocalFile()
+std::size_t CozyThunderTaskImpl::InitFile()
 {
     auto size = this->GetFileSize();
-
     if (size <= 0) return 0;
 
-    auto str = ws2s(m_lpszLocalPath);
+    auto path = ws2s(m_lpszLocalPath);
+    m_plocalFile.open(path, std::ios::out | std::ios::binary | std::ios::_Nocreate);
+    if (!m_plocalFile.is_open())
+    {
+        m_plocalFile.open(path, std::ios::out | std::ios::binary | std::ios::_Noreplace);
+    }
 
-    m_plocalFile = std::fopen(str.c_str(), "wb+");
-    if (!m_plocalFile) return 0;
-
-    std::fseek(m_plocalFile, size - 1, SEEK_SET);
+    m_plocalFile.seekp(size - 1);
     char buffer = 0;
-    std::fwrite(&buffer, sizeof(char), 1, m_plocalFile);
+    m_plocalFile.write(&buffer, sizeof(char));
 
     return size;
 }
 
 void CozyThunderTaskImpl::OnTaskBegin()
 {
+    m_state = 1;
+
     if (m_pCallback != nullptr)
     {
         m_pCallback->OnStart();
@@ -208,6 +210,7 @@ void CozyThunderTaskImpl::OnTaskBegin()
 
 void CozyThunderTaskImpl::OnBlockStatus(int id, int status)
 {
+    m_vecBlock[id].SetBlockStatus(status);
     if (m_pCallback != nullptr)
     {
         m_pCallback->OnBlockState(id, status);
@@ -216,6 +219,12 @@ void CozyThunderTaskImpl::OnBlockStatus(int id, int status)
 
 void CozyThunderTaskImpl::OnTaskEnd(int code)
 {
+    m_plocalFile.close();
+    //std::fclose(m_plocalFile);
+    //m_plocalFile = nullptr;
+
+    m_state = 3;
+
     if (m_pCallback != nullptr)
     {
         m_pCallback->OnStop(code);
@@ -229,12 +238,13 @@ void CozyThunderTaskImpl::InitBlock(int n)
     {
         for (auto& block : m_vecBlock)
         {
+            m_state = 2;
             auto status = block.GetBlcokStatus();
-            if (status == BlockStatusStart || status == BlockStatusFailed)
+            if (status == BlockStatusFailed)
             {
-                block.SetBlockStatus(BlockStatusNew);
+                block.SetBlockStatus(BlockStatusStart);
             }
-            else if(status != BlockStatusNew)
+            else if (status == BlockStatusFinish)
             {
                 ++m_finishblcokCount;
             }
@@ -242,13 +252,38 @@ void CozyThunderTaskImpl::InitBlock(int n)
     }
     else
     {
+        m_state = 0;
         Block block{};
-        block.SetBlockStatus(BlockStatusNew);
+        block.SetBlockStatus(BlockStatusStart);
         m_vecBlock.assign(n, block);
     }
 }
 
-void CozyThunderTaskImpl::OnTaskPause()
+void CozyThunderTaskImpl::SetTaskState(int value)
 {
-    OnTaskEnd(1);
+    m_state = value;
+}
+
+void CozyThunderTaskImpl::SetFileSize(unsigned long value)
+{
+    m_remoteSize = value;
+}
+
+void CozyThunderTaskImpl::SetBlockCount(unsigned int value)
+{
+    m_vecBlock.clear();
+    InitBlock(value);
+}
+
+void CozyThunderTaskImpl::SetBlockInfo(const std::wstring& value)
+{
+    if (value.size() == m_vecBlock.size())
+    {
+        for (int i = 0; i < value.size(); ++i)
+        {
+            Block b;
+            b.SetBlockStatus(value[i] - L'0');
+            m_vecBlock[i] = b;
+        }
+    }
 }

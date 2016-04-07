@@ -155,7 +155,6 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="CozyThunderDef.h" />
     <ClInclude Include="CozyThunderImpl.h" />
-    <ClInclude Include="CozyThunderTaskCallbackStdoutImpl.h" />
     <ClInclude Include="CozyThunderTaskImpl.h" />
     <ClInclude Include="HttpBuffer.h" />
     <ClInclude Include="HttpClient.h" />
@@ -170,7 +169,6 @@
   <ItemGroup>
     <ClCompile Include="CozyThunder.Core.cpp" />
     <ClCompile Include="CozyThunderImpl.cpp" />
-    <ClCompile Include="CozyThunderTaskCallbackStdoutImpl.cpp" />
     <ClCompile Include="CozyThunderTaskImpl.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>

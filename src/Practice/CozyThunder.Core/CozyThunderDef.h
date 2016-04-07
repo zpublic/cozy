@@ -9,11 +9,9 @@
 
 namespace Cozy
 {
-    static const int BlockStatusInvalid = -1;
-    static const int BlockStatusNew     = 0;
-    static const int BlockStatusStart   = 1;
-    static const int BlockStatusFinish  = 2;
-    static const int BlockStatusFailed  = 3;
+    static const int BlockStatusStart   = 0;
+    static const int BlockStatusFinish  = 1;
+    static const int BlockStatusFailed  = 2;
 }
 
 #endif // __COZY_THUNDER_DEF__

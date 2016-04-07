@@ -9,7 +9,7 @@ namespace Cozy
     {
     public:
         Block()
-            : m_BlockStatus(BlockStatusInvalid)
+            : m_BlockStatus(BlockStatusStart)
         {
 
         }

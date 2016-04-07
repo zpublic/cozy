@@ -8,5 +8,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CozyThunderTester.cpp" />
+    <ClCompile Include="TestCallback.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TestCallback.h" />
   </ItemGroup>
 </Project>

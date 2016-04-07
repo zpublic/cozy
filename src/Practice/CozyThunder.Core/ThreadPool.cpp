@@ -3,9 +3,9 @@
 using namespace Cozy;
 
 ThreadPool::ThreadPool(int minWorker, int maxWorker)
-    :   m_minWorker(minWorker), 
-        m_maxWorker(maxWorker), 
-        m_cancleFlag(true)
+    :m_minWorker(minWorker), 
+    m_maxWorker(maxWorker), 
+    m_cancleFlag(true)
 {
 
 }
@@ -98,7 +98,6 @@ void ThreadPool::__ReleaseAllTask()
         std::lock_guard<std::mutex> lock(m_taskMutex);
 
         m_taskQueue.assign(m_maxWorker, nullptr);
-
         m_cvTask.notify_all();
     }
 

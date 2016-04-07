@@ -5,6 +5,7 @@
 #include <vector>
 #include "ThreadPool.h"
 #include "Block.h"
+#include <fstream>
 
 namespace Cozy
 {
@@ -30,6 +31,10 @@ namespace Cozy
         virtual void SetCfgPath(const wchar_t* path);
         virtual void SetRemotePath(const wchar_t* path);
         virtual void SetLocalPath(const wchar_t* path);
+        void SetTaskState(int value);
+        void SetFileSize(unsigned long value);
+        void SetBlockCount(unsigned int);
+        void SetBlockInfo(const std::wstring& value);
 
         virtual void SetTaskCallback(ICozyThunderTaskCallback* pCallback);
         // state 0/2 -> 1
@@ -38,27 +43,26 @@ namespace Cozy
         virtual bool Stop();
 
     private:
-        std::size_t InitLocalFile();
+        std::size_t InitFile();
         void InitBlock(int n);
         void OnTaskBegin();
         void OnBlockStatus(int id, int status);
         void OnTaskEnd(int code);
-        void OnTaskPause();
 
     private:
-        static std::string ws2s(const wchar_t* ptr);
-        void __safeWrite(std::FILE* pFile, std::size_t offset, const void* data, std::size_t size);
+        static std::string ws2s(const std::wstring& ptr);
+        static std::wstring s2ws(const std::string& str);
+        void __safeWrite(std::size_t offset, const void* data, std::size_t size);
         std::string __makeRange(int begin, int end);
 
     private:
         std::vector<Block>          m_vecBlock;
         ICozyThunderTaskCallback*   m_pCallback;
         ThreadPool                  m_threadPool;
-        std::mutex                  m_fileMutex;
-        const wchar_t*              m_lpszLocalPath;
-        const wchar_t*              m_lpszRemtotePath;
-        const wchar_t*              m_lpszCfgPath;
-        std::FILE*                  m_plocalFile;
+        std::wstring                m_lpszLocalPath;
+        std::wstring                m_lpszRemtotePath;
+        std::wstring                m_lpszCfgPath;
+        std::ofstream               m_plocalFile;
         std::atomic<std::size_t>    m_finishblcokCount;
         int                         m_state;
         std::size_t                 m_remoteSize;
