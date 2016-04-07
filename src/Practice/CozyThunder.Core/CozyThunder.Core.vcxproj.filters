@@ -7,6 +7,18 @@
     <Filter Include="interface">
       <UniqueIdentifier>{409edccc-6eaf-42f0-9559-71b1d57d13e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{e6cb0ebc-5a17-4dc8-a43d-8dace0fe6e8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\impl">
+      <UniqueIdentifier>{bdcefe92-5d96-4621-9f7d-6e781a9e1781}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\threadpool">
+      <UniqueIdentifier>{5ef0305c-7a21-425b-99bf-eec757eb6a26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\impl\network">
+      <UniqueIdentifier>{3e9e8585-cde0-4a0b-bd55-b6810eedbbf9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -24,6 +36,30 @@
     <ClInclude Include="ICozyThunderTaskCallback.h">
       <Filter>interface</Filter>
     </ClInclude>
+    <ClInclude Include="CozyThunderImpl.h">
+      <Filter>src\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="CozyThunderDef.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpClient.h">
+      <Filter>src\impl\network</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpDef.h">
+      <Filter>src\impl\network</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpBuffer.h">
+      <Filter>src\impl\network</Filter>
+    </ClInclude>
+    <ClInclude Include="CozyThunderTaskImpl.h">
+      <Filter>src\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadPool.h">
+      <Filter>src\threadpool</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CozyThunder.Core.cpp">
@@ -34,6 +70,21 @@
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="CozyThunderImpl.cpp">
+      <Filter>src\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpClient.cpp">
+      <Filter>src\impl\network</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpBuffer.cpp">
+      <Filter>src\impl\network</Filter>
+    </ClCompile>
+    <ClCompile Include="CozyThunderTaskImpl.cpp">
+      <Filter>src\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadPool.cpp">
+      <Filter>src\threadpool</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
