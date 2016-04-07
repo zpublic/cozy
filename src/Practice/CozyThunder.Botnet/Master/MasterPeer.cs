@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CozyThunder.Botnet.Master
 {
-    public class MasterPeer : Peer, IMasterPeer
+    public class MasterPeer : Peer, IMasterPeer, IMasterConnectorListener
     {
         IMasterPeerListener listener_;
         PeerList peerList_;
@@ -47,7 +47,7 @@ namespace CozyThunder.Botnet.Master
         {
             var connector = new MasterConnector();
             connectorList_.Add(peer.EndPoint.ToString(), connector);
-            connector.Connect(peer);
+            connector.Connect(peer, this);
             return true;
         }
 
@@ -72,6 +72,21 @@ namespace CozyThunder.Botnet.Master
                 return true;
             }
             return false;
+        }
+
+        public void OnConnect(Peer peer)
+        {
+            listener_?.OnConnect(peer);
+        }
+
+        public void OnDisConnect(Peer peer)
+        {
+            listener_?.OnDisConnect(peer);
+        }
+
+        public void OnMessage(Peer peer, string msg)
+        {
+            listener_?.OnMessage(peer, msg);
         }
     }
 }

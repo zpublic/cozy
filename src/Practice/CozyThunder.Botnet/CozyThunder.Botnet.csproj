@@ -47,6 +47,7 @@
     <Compile Include="Interface\IMasterPeerListener.cs" />
     <Compile Include="Interface\ISlavePeer.cs" />
     <Compile Include="Interface\ISlavePeerListener.cs" />
+    <Compile Include="Master\IMasterConnectorListener.cs" />
     <Compile Include="Master\MasterConnector.cs" />
     <Compile Include="Master\MasterPeer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
