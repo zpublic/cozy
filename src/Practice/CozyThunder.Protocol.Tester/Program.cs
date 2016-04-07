@@ -44,7 +44,6 @@ namespace CozyThunder.Protocol.Tester
                 case 10003:
                     Console.WriteLine("OnMessage - FileBlockEndPacket");
                     break;
-
             }
         }
     }
