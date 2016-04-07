@@ -43,6 +43,10 @@ namespace CozyThunder.Botnet.Master
                 Socket client = (Socket)ar.AsyncState;
                 client.EndConnect(ar);
                 listener_?.OnConnect(peer_);
+
+                StateObject state = new StateObject();
+                state.workSocket = client;
+                client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, ReadCallback, state);
             }
             catch { }
         }
@@ -55,6 +59,27 @@ namespace CozyThunder.Botnet.Master
                 int bytesSent = client.EndSend(ar);
             }
             catch { }
+        }
+
+        void ReadCallback(IAsyncResult ar)
+        {
+            StateObject state = (StateObject)ar.AsyncState;
+            Socket handler = state.workSocket;
+            try
+            {
+                int bytesRead = handler.EndReceive(ar);
+                if (bytesRead > 0)
+                {
+                    state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
+                    String content = state.sb.ToString();
+                    listener_?.OnMessage(peer_, content);
+                }
+                handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
+            }
+            catch
+            {
+                listener_?.OnDisConnect(peer_);
+            }
         }
     }
 }

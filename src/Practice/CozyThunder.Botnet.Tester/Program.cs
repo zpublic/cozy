@@ -81,6 +81,8 @@ namespace CozyThunder.Botnet.Tester
                 SlavePeer slave = new SlavePeer();
                 slave.Start("127.0.0.1", 48361, new SlavePeerListener());
                 Console.ReadKey();
+                slave.Send("hehe");
+                Console.ReadKey();
                 slave.Stop();
             }
             else if (r == "slave2")
