@@ -16,8 +16,11 @@ namespace CozyThunder.HttpDownload
                 byte[] by = new byte[count];
                 Stream httpFileStream = httpresponse.GetResponseStream();
                 int getByteSize = httpFileStream.Read(by, 0, (int)by.Length);
-                if (getByteSize == count)
-                    return by;
+                while (getByteSize != count)
+                {
+                    getByteSize += httpFileStream.Read(by, getByteSize, (int)by.Length - getByteSize);
+                }
+                return by;
             }
             return null;
         }
