@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyThunder.Botnet", "..\sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyThunder.Botnet.Tester", "..\src\Practice\CozyThunder.Botnet.Tester\CozyThunder.Botnet.Tester.csproj", "{AF9D3B2D-F641-4EE4-A713-603B93628398}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyThunder.Botnet.MasterGui", "..\src\Practice\CozyThunder.Botnet.MasterGui\CozyThunder.Botnet.MasterGui.csproj", "{143DC6FC-CE2F-4818-8D26-06F71A24EA2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,18 @@ Global
 		{AF9D3B2D-F641-4EE4-A713-603B93628398}.Release|x64.Build.0 = Release|Any CPU
 		{AF9D3B2D-F641-4EE4-A713-603B93628398}.Release|x86.ActiveCfg = Release|Any CPU
 		{AF9D3B2D-F641-4EE4-A713-603B93628398}.Release|x86.Build.0 = Release|Any CPU
+		{143DC6FC-CE2F-4818-8D26-06F71A24EA2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{143DC6FC-CE2F-4818-8D26-06F71A24EA2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{143DC6FC-CE2F-4818-8D26-06F71A24EA2A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{143DC6FC-CE2F-4818-8D26-06F71A24EA2A}.Debug|x64.Build.0 = Debug|Any CPU
+		{143DC6FC-CE2F-4818-8D26-06F71A24EA2A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{143DC6FC-CE2F-4818-8D26-06F71A24EA2A}.Debug|x86.Build.0 = Debug|Any CPU
+		{143DC6FC-CE2F-4818-8D26-06F71A24EA2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{143DC6FC-CE2F-4818-8D26-06F71A24EA2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{143DC6FC-CE2F-4818-8D26-06F71A24EA2A}.Release|x64.ActiveCfg = Release|Any CPU
+		{143DC6FC-CE2F-4818-8D26-06F71A24EA2A}.Release|x64.Build.0 = Release|Any CPU
+		{143DC6FC-CE2F-4818-8D26-06F71A24EA2A}.Release|x86.ActiveCfg = Release|Any CPU
+		{143DC6FC-CE2F-4818-8D26-06F71A24EA2A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

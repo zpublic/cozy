@@ -50,31 +50,31 @@ namespace CozyThunder.Botnet.Tester
             var r = Console.ReadLine();
             if (r == "master")
             {
-                MasterPeer slave = new MasterPeer();
-                slave.Start(IPAddress.Any, 48360, new MasterPeerListener());
+                MasterPeer master = new MasterPeer();
+                master.Start(IPAddress.Any, 48360, new MasterPeerListener());
                 var peer = new Peer() { EndPoint = new IPEndPoint(IPAddress.Parse("10.20.208.27"), 48361) };
-                slave.Connect(peer);
+                master.Connect(peer);
                 Console.ReadKey();
-                slave.Send(peer, "kingwl");
+                master.Send(peer, "kingwl");
                 Console.ReadKey();
-                slave.Stop();
+                master.Stop();
             }
             else if (r == "master2")
             {
-                MasterPeer slave = new MasterPeer();
-                slave.Start(IPAddress.Any, 48360, new MasterPeerListener());
+                MasterPeer master = new MasterPeer();
+                master.Start(IPAddress.Any, 48360, new MasterPeerListener());
                 var peer1 = new Peer() { EndPoint = new IPEndPoint(IPAddress.Parse("10.20.208.27"), 48361) };
                 var peer2 = new Peer() { EndPoint = new IPEndPoint(IPAddress.Parse("10.20.208.27"), 48362) };
                 var peer3 = new Peer() { EndPoint = new IPEndPoint(IPAddress.Parse("10.20.208.27"), 48363) };
-                slave.Connect(peer1);
-                slave.Connect(peer2);
-                slave.Connect(peer3);
+                master.Connect(peer1);
+                master.Connect(peer2);
+                master.Connect(peer3);
                 Console.ReadKey();
-                slave.Send(peer1, "kingwl");
-                slave.Send(peer2, "kingwlkingwl");
-                slave.Send(peer3, "kingwlkingwlkingwl");
+                master.Send(peer1, "kingwl");
+                master.Send(peer2, "kingwlkingwl");
+                master.Send(peer3, "kingwlkingwlkingwl");
                 Console.ReadKey();
-                slave.Stop();
+                master.Stop();
             }
             else if (r == "slave")
             {
