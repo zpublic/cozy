@@ -1,5 +1,6 @@
 ﻿using CozyThunder.Botnet.Common;
 using System;
+using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 
@@ -76,9 +77,7 @@ namespace CozyThunder.Botnet.Master
                 int bytesRead = handler.EndReceive(ar);
                 if (bytesRead > 0)
                 {
-                    state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
-                    String content = state.sb.ToString();
-                    listener_?.OnMessage(peer_, Encoding.ASCII.GetBytes(content));
+                    listener_?.OnMessage(peer_, state.buffer.Take(bytesRead).ToArray());
                 }
                 handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
             }
