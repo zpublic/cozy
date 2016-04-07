@@ -5,22 +5,54 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CozyThunder.Core", "..\src\Practice\CozyThunder.Core\CozyThunder.Core.vcxproj", "{066C3CC7-FA42-40F9-8FBB-A05FFD0CFE66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyThunder.Botnet", "..\src\Practice\CozyThunder.Botnet\CozyThunder.Botnet.csproj", "{233F2233-F10F-43F6-BEE8-F8207A69BB04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyThunder.Botnet.Tester", "..\src\Practice\CozyThunder.Botnet.Tester\CozyThunder.Botnet.Tester.csproj", "{AF9D3B2D-F641-4EE4-A713-603B93628398}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{066C3CC7-FA42-40F9-8FBB-A05FFD0CFE66}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{066C3CC7-FA42-40F9-8FBB-A05FFD0CFE66}.Debug|x64.ActiveCfg = Debug|x64
 		{066C3CC7-FA42-40F9-8FBB-A05FFD0CFE66}.Debug|x64.Build.0 = Debug|x64
 		{066C3CC7-FA42-40F9-8FBB-A05FFD0CFE66}.Debug|x86.ActiveCfg = Debug|Win32
 		{066C3CC7-FA42-40F9-8FBB-A05FFD0CFE66}.Debug|x86.Build.0 = Debug|Win32
+		{066C3CC7-FA42-40F9-8FBB-A05FFD0CFE66}.Release|Any CPU.ActiveCfg = Release|Win32
 		{066C3CC7-FA42-40F9-8FBB-A05FFD0CFE66}.Release|x64.ActiveCfg = Release|x64
 		{066C3CC7-FA42-40F9-8FBB-A05FFD0CFE66}.Release|x64.Build.0 = Release|x64
 		{066C3CC7-FA42-40F9-8FBB-A05FFD0CFE66}.Release|x86.ActiveCfg = Release|Win32
 		{066C3CC7-FA42-40F9-8FBB-A05FFD0CFE66}.Release|x86.Build.0 = Release|Win32
+		{233F2233-F10F-43F6-BEE8-F8207A69BB04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{233F2233-F10F-43F6-BEE8-F8207A69BB04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{233F2233-F10F-43F6-BEE8-F8207A69BB04}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{233F2233-F10F-43F6-BEE8-F8207A69BB04}.Debug|x64.Build.0 = Debug|Any CPU
+		{233F2233-F10F-43F6-BEE8-F8207A69BB04}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{233F2233-F10F-43F6-BEE8-F8207A69BB04}.Debug|x86.Build.0 = Debug|Any CPU
+		{233F2233-F10F-43F6-BEE8-F8207A69BB04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{233F2233-F10F-43F6-BEE8-F8207A69BB04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{233F2233-F10F-43F6-BEE8-F8207A69BB04}.Release|x64.ActiveCfg = Release|Any CPU
+		{233F2233-F10F-43F6-BEE8-F8207A69BB04}.Release|x64.Build.0 = Release|Any CPU
+		{233F2233-F10F-43F6-BEE8-F8207A69BB04}.Release|x86.ActiveCfg = Release|Any CPU
+		{233F2233-F10F-43F6-BEE8-F8207A69BB04}.Release|x86.Build.0 = Release|Any CPU
+		{AF9D3B2D-F641-4EE4-A713-603B93628398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF9D3B2D-F641-4EE4-A713-603B93628398}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF9D3B2D-F641-4EE4-A713-603B93628398}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AF9D3B2D-F641-4EE4-A713-603B93628398}.Debug|x64.Build.0 = Debug|Any CPU
+		{AF9D3B2D-F641-4EE4-A713-603B93628398}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AF9D3B2D-F641-4EE4-A713-603B93628398}.Debug|x86.Build.0 = Debug|Any CPU
+		{AF9D3B2D-F641-4EE4-A713-603B93628398}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF9D3B2D-F641-4EE4-A713-603B93628398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF9D3B2D-F641-4EE4-A713-603B93628398}.Release|x64.ActiveCfg = Release|Any CPU
+		{AF9D3B2D-F641-4EE4-A713-603B93628398}.Release|x64.Build.0 = Release|Any CPU
+		{AF9D3B2D-F641-4EE4-A713-603B93628398}.Release|x86.ActiveCfg = Release|Any CPU
+		{AF9D3B2D-F641-4EE4-A713-603B93628398}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
