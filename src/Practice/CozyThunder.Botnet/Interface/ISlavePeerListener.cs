@@ -4,6 +4,6 @@
     {
         void OnConnect(string host);
         void OnDisConnect();
-        void OnMessage(string msg);
+        void OnMessage(byte[] msg);
     }
 }

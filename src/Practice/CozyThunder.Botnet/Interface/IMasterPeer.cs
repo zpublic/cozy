@@ -15,5 +15,6 @@ namespace CozyThunder.Botnet.Interface
         bool Connect(Peer peer);
         bool DisConnect(Peer peer);
         bool Send(Peer peer, string msg);
+        bool Send(Peer peer, byte[] msg);
     }
 }

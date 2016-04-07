@@ -71,6 +71,17 @@ namespace CozyThunder.Botnet.Master
             return false;
         }
 
+        public bool Send(Peer peer, byte[] msg)
+        {
+            MasterConnector connector;
+            if (connectorList_.TryGetValue(peer.EndPoint.ToString(), out connector))
+            {
+                connector.Send(msg);
+                return true;
+            }
+            return false;
+        }
+
         public void OnConnect(Peer peer)
         {
             listener_?.OnConnect(peer);
@@ -81,7 +92,7 @@ namespace CozyThunder.Botnet.Master
             listener_?.OnDisConnect(peer);
         }
 
-        public void OnMessage(Peer peer, string msg)
+        public void OnMessage(Peer peer, byte[] msg)
         {
             listener_?.OnMessage(peer, msg);
         }

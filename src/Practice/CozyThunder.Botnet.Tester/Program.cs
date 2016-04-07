@@ -4,6 +4,7 @@ using System;
 using CozyThunder.Botnet.Common;
 using CozyThunder.Botnet.Master;
 using System.Net;
+using System.Text;
 
 namespace CozyThunder.Botnet.Tester
 {
@@ -21,9 +22,9 @@ namespace CozyThunder.Botnet.Tester
                 Console.WriteLine("OnDisConnect");
             }
 
-            public void OnMessage(string msg)
+            public void OnMessage(byte[] msg)
             {
-                Console.WriteLine("OnMessage - " + msg.Length.ToString());
+                Console.WriteLine("OnMessage - " + Encoding.ASCII.GetString(msg, 0, msg.Length));
             }
         }
 
@@ -39,9 +40,9 @@ namespace CozyThunder.Botnet.Tester
                 Console.WriteLine("OnDisConnect - " + peer.EndPoint.ToString());
             }
 
-            public void OnMessage(Peer peer, string msg)
+            public void OnMessage(Peer peer, byte[] msg)
             {
-                Console.WriteLine("OnMessage - " + peer.EndPoint.ToString() + " - " + msg.Length.ToString());
+                Console.WriteLine("OnMessage - " + peer.EndPoint.ToString() + " - " + Encoding.ASCII.GetString(msg, 0, msg.Length));
             }
         }
 

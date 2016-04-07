@@ -101,7 +101,7 @@ namespace CozyThunder.Botnet.MasterGui
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
         }
 
-        public void OnMessage(Peer peer, string msg)
+        public void OnMessage(Peer peer, byte[] msg)
         {
             listBox1.Items.Add("OnMessage - " + peer.EndPoint.ToString());
             listBox1.Items.Add(msg);

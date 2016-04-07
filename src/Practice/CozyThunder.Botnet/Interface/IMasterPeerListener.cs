@@ -6,6 +6,6 @@ namespace CozyThunder.Botnet.Interface
     {
         void OnConnect(Peer peer);
         void OnDisConnect(Peer peer);
-        void OnMessage(Peer peer, string msg);
+        void OnMessage(Peer peer, byte[] msg);
     }
 }

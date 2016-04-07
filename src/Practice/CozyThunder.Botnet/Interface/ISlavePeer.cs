@@ -6,5 +6,7 @@ namespace CozyThunder.Botnet.Interface
     {
         bool Start(IPAddress ip, int port, ISlavePeerListener listener);
         bool Stop();
+        void Send(string data);
+        void Send(byte[] data);
     }
 }

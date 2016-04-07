@@ -40,7 +40,7 @@ namespace CozyThunder.Botnet.Slave
                 {
                     state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
                     String content = state.sb.ToString();
-                    listener_?.OnMessage(content);
+                    listener_?.OnMessage(Encoding.ASCII.GetBytes(content));
                 }
                 handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
             }
@@ -68,6 +68,11 @@ namespace CozyThunder.Botnet.Slave
         public void Send(String data)
         {
             byte[] byteData = Encoding.ASCII.GetBytes(data);
+            master_.BeginSend(byteData, 0, byteData.Length, 0, new AsyncCallback(SendCallback), master_);
+        }
+
+        public void Send(byte[] byteData)
+        {
             master_.BeginSend(byteData, 0, byteData.Length, 0, new AsyncCallback(SendCallback), master_);
         }
 
