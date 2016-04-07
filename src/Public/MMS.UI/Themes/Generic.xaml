@@ -11,6 +11,8 @@
         <ResourceDictionary Source="/MMS.UI;Component/Default/Edit/Edit.xaml" />
         <ResourceDictionary Source="/MMS.UI;Component/Default/Navigation/Navigation.xaml" />
         <ResourceDictionary Source="/MMS.UI;Component/Default/ImageBox/ImageBox.xaml" />
+        <ResourceDictionary Source="/MMS.UI;Component/Default/PointSet/PointSet.xaml" />
+        <ResourceDictionary Source="/MMS.UI;Component/Default/Message/Message.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="{x:Type default:Window}" BasedOn="{StaticResource DefaultWindowStyle}"/>
     <Style TargetType="{x:Type default:Menu}" BasedOn="{StaticResource DefaultMenuStyle}"/>
@@ -21,4 +23,6 @@
     <Style TargetType="{x:Type default:Edit}" BasedOn="{StaticResource EditStyle}" />
     <Style TargetType="{x:Type default:Navigation}" BasedOn="{StaticResource NavigationStyle}" />
     <Style TargetType="{x:Type default:ImageBox}" BasedOn="{StaticResource ImageBoxStyle}" />
+    <Style TargetType="{x:Type default:PointSet}" BasedOn="{StaticResource PointSetStyle}" />
+    <Style TargetType="{x:Type default:Message}" BasedOn="{StaticResource MessageStyle}" />
 </ResourceDictionary>
