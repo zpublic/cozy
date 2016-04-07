@@ -1,6 +1,7 @@
 ﻿using CozyThunder.Botnet.Common;
 using CozyThunder.Botnet.Interface;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -11,13 +12,14 @@ namespace CozyThunder.Botnet.Master
     {
         IMasterPeerListener listener_;
         PeerList peerList_;
-        Socket c1_;
+        Dictionary<string, MasterConnector> connectorList_;
 
         public bool Start(string ip, int port, IMasterPeerListener listener)
         {
             listener_ = listener;
             EndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
             peerList_ = new PeerList();
+            connectorList_ = new Dictionary<string, MasterConnector>();
             return true;
         }
 
@@ -43,43 +45,33 @@ namespace CozyThunder.Botnet.Master
 
         public bool Connect(Peer peer)
         {
-            c1_ = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            c1_.BeginConnect(peer.EndPoint.Address, peer.EndPoint.Port, ConnectCallback, c1_);
+            var connector = new MasterConnector();
+            connectorList_.Add(peer.EndPoint.ToString(), connector);
+            connector.Connect(peer);
             return true;
         }
 
         public bool DisConnect(Peer peer)
         {
-            c1_?.Shutdown(SocketShutdown.Both);
-            c1_?.Close();
-            return true;
+            MasterConnector connector;
+            if (connectorList_.TryGetValue(peer.EndPoint.ToString(), out connector))
+            {
+                connector.DisConnect();
+                connectorList_.Remove(peer.EndPoint.ToString());
+                return true;
+            }
+            return false;
         }
 
         public bool Send(Peer peer, string msg)
         {
-            byte[] byteData = Encoding.ASCII.GetBytes(msg);
-            c1_.BeginSend(byteData, 0, byteData.Length, 0, new AsyncCallback(SendCallback), c1_);
-            return true;
-        }
-
-        void ConnectCallback(IAsyncResult ar)
-        {
-            try
+            MasterConnector connector;
+            if (connectorList_.TryGetValue(peer.EndPoint.ToString(), out connector))
             {
-                Socket client = (Socket)ar.AsyncState;
-                client.EndConnect(ar);
+                connector.Send(msg);
+                return true;
             }
-            catch {}
-        }
-
-        void SendCallback(IAsyncResult ar)
-        {
-            try
-            {
-                Socket client = (Socket)ar.AsyncState;
-                int bytesSent = client.EndSend(ar);
-            }
-            catch {}
+            return false;
         }
     }
 }
