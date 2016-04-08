@@ -16,15 +16,20 @@ namespace CozyThunder.DistributedDownload.MasterTester
 {
     class MasterPeerListener : IMasterPeerListener
     {
+        object lock_ = new object();
+
         public void OnConnect(Peer peer)
         {
             Console.WriteLine("OnConnect - " + peer.EndPoint.ToString());
-            subTask_[peer] = Program.task.GetSubTask();
-            i_[peer] = 0;
-            buff_[peer] = new byte[1024 * 1024 * 3];
-            if (subTask_[peer] != null)
+            lock (lock_)
             {
-                FileBlockTask f = new FileBlockTask(subTask_[peer]);
+                subTask_.Add(peer.EndPoint.ToString(), Program.task.GetSubTask());
+                i_.Add(peer.EndPoint.ToString(), 0);
+                buff_.Add(peer.EndPoint.ToString(), new byte[1024 * 1024 * 3]);
+            }
+            if (subTask_[peer.EndPoint.ToString()] != null)
+            {
+                FileBlockTask f = new FileBlockTask(subTask_[peer.EndPoint.ToString()]);
                 Program.master.Send(peer, f.Encode());
             }
         }
@@ -34,9 +39,9 @@ namespace CozyThunder.DistributedDownload.MasterTester
             Console.WriteLine("OnDisConnect - " + peer.EndPoint.ToString());
         }
 
-        Dictionary<Peer, int> i_ = new Dictionary<Peer, int>();
-        Dictionary<Peer, byte[]> buff_ = new Dictionary<Peer, byte[]>();
-        Dictionary<Peer, DownloadSubTask> subTask_ = new Dictionary<Peer, DownloadSubTask>();
+        Dictionary<string, int> i_ = new Dictionary<string, int>();
+        Dictionary<string, byte[]> buff_ = new Dictionary<string, byte[]>();
+        Dictionary<string, DownloadSubTask> subTask_ = new Dictionary<string, DownloadSubTask>();
 
         public void OnMessage(Peer peer, byte[] msg)
         {
@@ -56,27 +61,27 @@ namespace CozyThunder.DistributedDownload.MasterTester
                 case 10002:
                     FileBlockDataPacket d = new FileBlockDataPacket();
                     d.Decode(msg, 0, msg.Length);
-                    Array.Copy(d.data3k, 0, buff_[peer], i_[peer] * 1024 * 3, d.data3k.Length);
-                    i_[peer]++;
+                    Array.Copy(d.data3k, 0, buff_[peer.EndPoint.ToString()], i_[peer.EndPoint.ToString()] * 1024 * 3, d.data3k.Length);
+                    i_[peer.EndPoint.ToString()]++;
                     FileBlockBeginPacket begin2 = new FileBlockBeginPacket();
                     Program.master.Send(peer, begin2.Encode());
                     break;
                 case 10003:
-                    i_[peer] = 0;
+                    i_[peer.EndPoint.ToString()] = 0;
                     Console.WriteLine("OnMessage - FileBlockEndPacket");
-                    subTask_[peer].data = buff_[peer];
-                    var len = subTask_[peer].to - subTask_[peer].from + 1;
+                    subTask_[peer.EndPoint.ToString()].data = buff_[peer.EndPoint.ToString()];
+                    var len = subTask_[peer.EndPoint.ToString()].to - subTask_[peer.EndPoint.ToString()].from + 1;
                     if (len != Program.task.BlockSize)
                     {
-                        subTask_[peer].data = new byte[len];
-                        Array.Copy(buff_[peer], 0, subTask_[peer].data, 0, len);
+                        subTask_[peer.EndPoint.ToString()].data = new byte[len];
+                        Array.Copy(buff_[peer.EndPoint.ToString()], 0, subTask_[peer.EndPoint.ToString()].data, 0, len);
                     }
-                    if (!Program.task.UpdateTaskState(subTask_[peer], 2))
+                    if (!Program.task.UpdateTaskState(subTask_[peer.EndPoint.ToString()], 2))
                     {
-                        subTask_[peer] = Program.task.GetSubTask();
-                        if (subTask_[peer] != null)
+                        subTask_[peer.EndPoint.ToString()] = Program.task.GetSubTask();
+                        if (subTask_[peer.EndPoint.ToString()] != null)
                         {
-                            FileBlockTask f = new FileBlockTask(subTask_[peer]);
+                            FileBlockTask f = new FileBlockTask(subTask_[peer.EndPoint.ToString()]);
                             Program.master.Send(peer, f.Encode());
                         }
                     }
@@ -92,7 +97,8 @@ namespace CozyThunder.DistributedDownload.MasterTester
         static void Main(string[] args)
         {
             task = new DownloadTask();
-            task.RemotePath = @"http://speed.myzone.cn/pc_elive_1.1.rar";
+            task.RemotePath = @"http://speed.myzone.cn/pc_elive_1.1.rar"; //60M
+            //task.RemotePath = @"http://cd002.www.duba.net/duba/install/2011/ever/duba160406_100_50.exe"; //17M
             task.LocalPath = @"d:\hehe.rar";
             task.BlockSize = 1024 * 1024 * 3;
             if (task.InitTask())
@@ -104,13 +110,19 @@ namespace CozyThunder.DistributedDownload.MasterTester
 
             master = new MasterPeer();
             master.Start(IPAddress.Any, 48360, new MasterPeerListener());
-            var peer = new Peer() { EndPoint = new IPEndPoint(IPAddress.Parse("10.20.208.38"), 48360) }; //10.20.208.27 38
-            var peer2 = new Peer() { EndPoint = new IPEndPoint(IPAddress.Parse("10.20.208.30"), 48360) };
-            var peer3 = new Peer() { EndPoint = new IPEndPoint(IPAddress.Parse("10.20.208.27"), 48360) };
-            master.Connect(peer);
-            master.Connect(peer2);
-            master.Connect(peer3);
-
+            List<KeyValuePair<string, int>> peerList = new List<KeyValuePair<string, int>>()
+            {
+                new KeyValuePair<string, int>("10.20.208.27", 48360),
+                new KeyValuePair<string, int>("10.20.208.27", 48361),
+                new KeyValuePair<string, int>("10.20.208.27", 48362),
+                //new KeyValuePair<string, int>("10.20.208.30", 48360), //wyf
+                //new KeyValuePair<string, int>("10.20.208.38", 48360), //hym
+            };
+            foreach (var i in peerList)
+            {
+                var peer = new Peer() { EndPoint = new IPEndPoint(IPAddress.Parse(i.Key), i.Value) };
+                master.Connect(peer);
+            }
             Console.ReadKey();
         }
     }

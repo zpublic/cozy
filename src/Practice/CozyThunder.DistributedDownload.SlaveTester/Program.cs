@@ -52,7 +52,7 @@ namespace CozyThunder.DistributedDownload.SlaveTester
         {
             if (task_ != null)
             {
-                Console.WriteLine("Download begin");
+                Console.WriteLine("Download begin task id = " + task_.Id.ToString());
                 byte[] data = HttpDownloadRange.Download(task_.RemotePath, task_.from, task_.to);
                 Console.WriteLine("Download end");
 
@@ -73,8 +73,9 @@ namespace CozyThunder.DistributedDownload.SlaveTester
                 if (lastBlockSize == 0)
                     lastBlockSize = 3072;
                 {
-                    Array.Copy(data, 1024 * 3 * (c - 1), b3k, 0, lastBlockSize);
-                    FileBlockDataPacket d = new FileBlockDataPacket(b3k);
+                    byte[] bxk = new byte[lastBlockSize];
+                    Array.Copy(data, 1024 * 3 * (c - 1), bxk, 0, lastBlockSize);
+                    FileBlockDataPacket d = new FileBlockDataPacket(bxk);
                     autoResetEvent_.WaitOne();
                     Program.slave.Send(d.Encode());
                 }
@@ -91,8 +92,10 @@ namespace CozyThunder.DistributedDownload.SlaveTester
         public static SlavePeer slave;
         static void Main(string[] args)
         {
+            Console.Write("input port:");
+            var port = Console.ReadLine();
             slave = new SlavePeer();
-            slave.Start(IPAddress.Any, 48360, new SlavePeerListener());
+            slave.Start(IPAddress.Any, int.Parse(port), new SlavePeerListener());
             Console.ReadKey();
         }
     }

