@@ -26,6 +26,8 @@ namespace CozyThunder.DistributedDownload.MasterTester
                 subTask_.Add(peer.EndPoint.ToString(), Program.task.GetSubTask());
                 i_.Add(peer.EndPoint.ToString(), 0);
                 buff_.Add(peer.EndPoint.ToString(), new byte[1024 * 1024 * 3]);
+                sbuff_.Add(peer.EndPoint.ToString(), new byte[1024 * 1024 * 4]);
+                sbufflen_.Add(peer.EndPoint.ToString(), 0);
             }
             if (subTask_[peer.EndPoint.ToString()] != null)
             {
@@ -42,50 +44,68 @@ namespace CozyThunder.DistributedDownload.MasterTester
         Dictionary<string, int> i_ = new Dictionary<string, int>();
         Dictionary<string, byte[]> buff_ = new Dictionary<string, byte[]>();
         Dictionary<string, DownloadSubTask> subTask_ = new Dictionary<string, DownloadSubTask>();
+        Dictionary<string, byte[]> sbuff_ = new Dictionary<string, byte[]>();
+        Dictionary<string, int> sbufflen_ = new Dictionary<string, int>();
 
         public void OnMessage(Peer peer, byte[] msg)
         {
-            PacketTest t = new PacketTest(msg, 0);
-            switch (t.PacketId)
+            Array.Copy(msg, 0,
+                sbuff_[peer.EndPoint.ToString()],
+                sbufflen_[peer.EndPoint.ToString()], msg.Length);
+            sbufflen_[peer.EndPoint.ToString()] += msg.Length;
+            PacketTest t = new PacketTest(sbuff_[peer.EndPoint.ToString()], 0);
+            if (t.PacketLength > sbufflen_[peer.EndPoint.ToString()])
             {
-                case 1:
-                    StringPacket packet = new StringPacket();
-                    packet.Decode(msg, 0, msg.Length);
-                    Console.WriteLine("OnMessage - " + packet.data);
-                    break;
-                case 10001:
-                    Console.WriteLine("OnMessage - FileBlockBeginPacket");
-                    FileBlockBeginPacket begin = new FileBlockBeginPacket();
-                    Program.master.Send(peer, begin.Encode());
-                    break;
-                case 10002:
-                    FileBlockDataPacket d = new FileBlockDataPacket();
-                    d.Decode(msg, 0, msg.Length);
-                    Array.Copy(d.data3k, 0, buff_[peer.EndPoint.ToString()], i_[peer.EndPoint.ToString()] * 1024 * 3, d.data3k.Length);
-                    i_[peer.EndPoint.ToString()]++;
-                    FileBlockBeginPacket begin2 = new FileBlockBeginPacket();
-                    Program.master.Send(peer, begin2.Encode());
-                    break;
-                case 10003:
-                    i_[peer.EndPoint.ToString()] = 0;
-                    Console.WriteLine("OnMessage - FileBlockEndPacket");
-                    subTask_[peer.EndPoint.ToString()].data = buff_[peer.EndPoint.ToString()];
-                    var len = subTask_[peer.EndPoint.ToString()].to - subTask_[peer.EndPoint.ToString()].from + 1;
-                    if (len != Program.task.BlockSize)
-                    {
-                        subTask_[peer.EndPoint.ToString()].data = new byte[len];
-                        Array.Copy(buff_[peer.EndPoint.ToString()], 0, subTask_[peer.EndPoint.ToString()].data, 0, len);
-                    }
-                    if (!Program.task.UpdateTaskState(subTask_[peer.EndPoint.ToString()], 2))
-                    {
-                        subTask_[peer.EndPoint.ToString()] = Program.task.GetSubTask();
-                        if (subTask_[peer.EndPoint.ToString()] != null)
+                // string s = "拆包"; ok
+            }
+            else if (t.PacketLength < sbufflen_[peer.EndPoint.ToString()])
+            {
+                string s = "粘包";
+            }
+            else if (t.PacketLength == sbufflen_[peer.EndPoint.ToString()])
+            {
+                switch (t.PacketId)
+                {
+                    case 1:
+                        StringPacket packet = new StringPacket();
+                        packet.Decode(sbuff_[peer.EndPoint.ToString()], 0, sbufflen_[peer.EndPoint.ToString()]);
+                        Console.WriteLine("OnMessage - " + packet.data);
+                        break;
+                    case 10001:
+                        Console.WriteLine("OnMessage - FileBlockBeginPacket");
+                        FileBlockBeginPacket begin = new FileBlockBeginPacket();
+                        Program.master.Send(peer, begin.Encode());
+                        break;
+                    case 10002:
+                        FileBlockDataPacket d = new FileBlockDataPacket();
+                        d.Decode(sbuff_[peer.EndPoint.ToString()], 0, sbufflen_[peer.EndPoint.ToString()]);
+                        Array.Copy(d.data3k, 0, buff_[peer.EndPoint.ToString()], i_[peer.EndPoint.ToString()] * 1024 * 3, d.data3k.Length);
+                        i_[peer.EndPoint.ToString()]++;
+                        FileBlockBeginPacket begin2 = new FileBlockBeginPacket();
+                        Program.master.Send(peer, begin2.Encode());
+                        break;
+                    case 10003:
+                        i_[peer.EndPoint.ToString()] = 0;
+                        Console.WriteLine("OnMessage - FileBlockEndPacket");
+                        subTask_[peer.EndPoint.ToString()].data = buff_[peer.EndPoint.ToString()];
+                        var len = subTask_[peer.EndPoint.ToString()].to - subTask_[peer.EndPoint.ToString()].from + 1;
+                        if (len != Program.task.BlockSize)
                         {
-                            FileBlockTask f = new FileBlockTask(subTask_[peer.EndPoint.ToString()]);
-                            Program.master.Send(peer, f.Encode());
+                            subTask_[peer.EndPoint.ToString()].data = new byte[len];
+                            Array.Copy(buff_[peer.EndPoint.ToString()], 0, subTask_[peer.EndPoint.ToString()].data, 0, len);
                         }
-                    }
-                    break;
+                        if (!Program.task.UpdateTaskState(subTask_[peer.EndPoint.ToString()], 2))
+                        {
+                            subTask_[peer.EndPoint.ToString()] = Program.task.GetSubTask();
+                            if (subTask_[peer.EndPoint.ToString()] != null)
+                            {
+                                FileBlockTask f = new FileBlockTask(subTask_[peer.EndPoint.ToString()]);
+                                Program.master.Send(peer, f.Encode());
+                            }
+                        }
+                        break;
+                }
+                sbufflen_[peer.EndPoint.ToString()] = 0;
             }
         }
     }
@@ -115,8 +135,9 @@ namespace CozyThunder.DistributedDownload.MasterTester
                 new KeyValuePair<string, int>("10.20.208.27", 48360),
                 new KeyValuePair<string, int>("10.20.208.27", 48361),
                 new KeyValuePair<string, int>("10.20.208.27", 48362),
-                //new KeyValuePair<string, int>("10.20.208.30", 48360), //wyf
-                //new KeyValuePair<string, int>("10.20.208.38", 48360), //hym
+                new KeyValuePair<string, int>("10.20.208.30", 48360), //wyf
+                new KeyValuePair<string, int>("10.20.208.38", 48390), //hym
+                new KeyValuePair<string, int>("10.20.208.55", 48390), //hsj
             };
             foreach (var i in peerList)
             {

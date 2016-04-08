@@ -22,27 +22,45 @@ namespace CozyThunder.DistributedDownload.SlaveTester
             Console.WriteLine("OnDisConnect");
         }
 
+        byte[] sbuff_ = new byte[1024 * 4];
+        int sbufflen_ = 0;
         public void OnMessage(byte[] msg)
         {
-            PacketTest t = new PacketTest(msg, 0);
-            switch (t.PacketId)
+            Array.Copy(msg, 0,
+                sbuff_,
+                sbufflen_, msg.Length);
+            sbufflen_ += msg.Length;
+            PacketTest t = new PacketTest(sbuff_, 0);
+            if (t.PacketLength > sbufflen_)
             {
-                case 1:
-                    StringPacket packet = new StringPacket();
-                    packet.Decode(msg, 0, msg.Length);
-                    Console.WriteLine("OnMessage - " + packet.data);
-                    break;
-                case 10004:
-                    FileBlockTask task = new FileBlockTask();
-                    task.Decode(msg, 0, msg.Length);
-                    task_ = task.task_;
-                    Console.WriteLine("OnMessage - FileBlockTask");
-                    autoResetEvent_.Set();
-                    new Thread(new ThreadStart(Download)).Start();
-                    break;
-                case 10001:
-                    autoResetEvent_.Set();
-                    break;
+                // string s = "拆包"; ok
+            }
+            else if (t.PacketLength < sbufflen_)
+            {
+                string s = "粘包";
+            }
+            else if (t.PacketLength == sbufflen_)
+            {
+                switch (t.PacketId)
+                {
+                    case 1:
+                        StringPacket packet = new StringPacket();
+                        packet.Decode(msg, 0, msg.Length);
+                        Console.WriteLine("OnMessage - " + packet.data);
+                        break;
+                    case 10004:
+                        FileBlockTask task = new FileBlockTask();
+                        task.Decode(msg, 0, msg.Length);
+                        task_ = task.task_;
+                        Console.WriteLine("OnMessage - FileBlockTask");
+                        autoResetEvent_.Set();
+                        new Thread(new ThreadStart(Download)).Start();
+                        break;
+                    case 10001:
+                        autoResetEvent_.Set();
+                        break;
+                }
+                sbufflen_ = 0;
             }
         }
 
