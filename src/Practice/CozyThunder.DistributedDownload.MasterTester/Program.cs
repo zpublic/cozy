@@ -133,11 +133,12 @@ namespace CozyThunder.DistributedDownload.MasterTester
             List<KeyValuePair<string, int>> peerList = new List<KeyValuePair<string, int>>()
             {
                 new KeyValuePair<string, int>("10.20.208.27", 48360),
-                new KeyValuePair<string, int>("10.20.208.27", 48361),
-                new KeyValuePair<string, int>("10.20.208.27", 48362),
-                new KeyValuePair<string, int>("10.20.208.30", 48360), //wyf
-                new KeyValuePair<string, int>("10.20.208.38", 48390), //hym
-                new KeyValuePair<string, int>("10.20.208.55", 48390), //hsj
+                //new KeyValuePair<string, int>("10.20.208.27", 48361),
+                //new KeyValuePair<string, int>("10.20.208.27", 48362),
+                new KeyValuePair<string, int>("10.20.221.119", 48360),
+                //new KeyValuePair<string, int>("10.20.208.30", 48360), //wyf
+                //new KeyValuePair<string, int>("10.20.208.38", 48390), //hym
+                //new KeyValuePair<string, int>("10.20.208.55", 48390), //hsj
             };
             foreach (var i in peerList)
             {
