@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace CozyThunder.DistributedDownload.SlaveGui.ViewModel
+namespace CozyThunder.DistributedDownload.SlaveGui.Commands
 {
     public class DelegateCommand : ICommand
     {

@@ -37,8 +37,8 @@
                      Text="{Binding ClientState, Converter={StaticResource BoolToStatusConverter}}" BorderThickness="0"></TextBox>
             <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Margin="10,0">端口:</TextBlock>
-                <TextBox Width="100" Margin="10,0"></TextBox>
-                <Button Margin="10,0">开启</Button>
+                <TextBox Width="100" Margin="10,0" Text="{Binding Port}"></TextBox>
+                <Button Margin="10,0" Content="{Binding SwitchButtonText}" Command="{Binding SwitchButtonCommand}"></Button>
             </StackPanel>
         </Grid>
     </Grid>
