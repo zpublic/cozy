@@ -4,9 +4,42 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CozyThunder.DistributedDownload.SlaveGui"
+        xmlns:viewmodel="clr-namespace:CozyThunder.DistributedDownload.SlaveGui.ViewModel"
+        xmlns:converter="clr-namespace:CozyThunder.DistributedDownload.SlaveGui.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
+    </Window.DataContext>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="38*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ListView ItemsSource="{Binding LogCollection}" Grid.Column="1" BorderThickness="1" Margin="0,5">
+            </ListView>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <converter:BoolToStatusConverter x:Key="BoolToStatusConverter"></converter:BoolToStatusConverter>
+            </Grid.Resources>
+            <TextBox IsReadOnly="True" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                     Text="{Binding ClientState, Converter={StaticResource BoolToStatusConverter}}" BorderThickness="0"></TextBox>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Margin="10,0">端口:</TextBlock>
+                <TextBox Width="100" Margin="10,0"></TextBox>
+                <Button Margin="10,0">开启</Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
