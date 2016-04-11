@@ -31,7 +31,10 @@ namespace CozyThunder.Botnet.Slave
                 state.workSocket = client;
                 client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
             }
-            catch { }
+            catch(Exception)
+            {
+                
+            }
         }
 
         void ReadCallback(IAsyncResult ar)
