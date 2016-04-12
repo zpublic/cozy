@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CozyThunder.DistributedDownload.SlaveGui.Log;
+using System.Windows;
+using System.Windows.Threading;
+using System.Threading;
 
 namespace CozyThunder.DistributedDownload.SlaveGui.ViewModels
 {
@@ -20,12 +19,26 @@ namespace CozyThunder.DistributedDownload.SlaveGui.ViewModels
 
         public void OnDataLog(object sender, LogDataEventArgs args)
         {
-            LogCollection.Add(args.Data);
+            ThreadPool.QueueUserWorkItem(delegate
+            {
+                SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(Application.Current.Dispatcher));
+                SynchronizationContext.Current.Send(pl =>
+                {
+                    LogCollection.Add(args.Data);
+                }, null);
+            });
         }
 
         public void OnClearLog(object sender, LogClearEventArgs args)
         {
-            LogCollection.Clear();
+            ThreadPool.QueueUserWorkItem(delegate
+            {
+                SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(Application.Current.Dispatcher));
+                SynchronizationContext.Current.Send(pl =>
+                {
+                    LogCollection.Clear();
+                }, null);
+            });
         }
     }
 }
