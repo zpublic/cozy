@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.ObjectModel;
 using CozyThunder.DistributedDownload.SlaveGui.Commands;
 using System.Windows.Input;
 using CozyThunder.Botnet.Slave;
 using CozyThunder.DistributedDownload.SlaveGui.ViewModels.Slave;
+using CozyThunder.DistributedDownload.SlaveGui.Log;
 
-namespace CozyThunder.DistributedDownload.SlaveGui.ViewModel
+namespace CozyThunder.DistributedDownload.SlaveGui.ViewModels
 {
-    public class MainWindowViewModel : BaseViewModel
+    public partial class MainWindowViewModel : BaseViewModel
     {
-        public ObservableCollection<string> LogCollection { get; set; } = new ObservableCollection<string>();
-
         private bool _ClientState = false;
         public bool ClientState
         {
@@ -48,6 +46,11 @@ namespace CozyThunder.DistributedDownload.SlaveGui.ViewModel
             set { Set(ref _Port, value); }
         }
 
+        public MainWindowViewModel()
+        {
+            InitLog();
+        }
+
         private SlavePeer peer = new SlavePeer();
 
         private void OnSwitchStatus()
@@ -56,13 +59,15 @@ namespace CozyThunder.DistributedDownload.SlaveGui.ViewModel
             {
                 ClientState = false;
                 SwitchButtonText = "开启";
-                OnStartClient();
+                OnStopClient();
+                LogManager.Instalce.TaskEndLog();
             }
             else
             {
                 ClientState = true;
                 SwitchButtonText = "关闭";
-                OnStopClient();
+                OnStartClient();
+                LogManager.Instalce.TaskBeginLog();
             }
         }
 

@@ -57,6 +57,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToStatusConverter.cs" />
+    <Compile Include="Log\LogClearEventArgs.cs" />
+    <Compile Include="Log\LogDataEventArgs.cs" />
+    <Compile Include="Log\LogManager.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -97,6 +100,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Compile Include="ViewModels\MainWindowViewModel.Log.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyThunder.DistributedDownload.SlaveGui.ViewModel
+namespace CozyThunder.DistributedDownload.SlaveGui.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
