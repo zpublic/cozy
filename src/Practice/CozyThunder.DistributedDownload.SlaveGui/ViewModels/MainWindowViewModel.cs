@@ -56,13 +56,13 @@ namespace CozyThunder.DistributedDownload.SlaveGui.ViewModel
             {
                 ClientState = false;
                 SwitchButtonText = "开启";
-                OnStartClient();
+                OnStopClient();
             }
             else
             {
                 ClientState = true;
                 SwitchButtonText = "关闭";
-                OnStopClient();
+                OnStartClient();
             }
         }
 
