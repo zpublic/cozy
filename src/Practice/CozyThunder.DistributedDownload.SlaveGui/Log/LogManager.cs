@@ -48,19 +48,19 @@ namespace CozyThunder.DistributedDownload.SlaveGui.Log
             AppendLog(string.Format("开始下载 [{0} , {1}] {2}", from, to, url));
         }
 
-        public void DownloadTaskEndLog(string url)
+        public void DownloadTaskEndLog(string url, long from, long to)
         {
-            AppendLog(string.Format("完成下载 {0}", url));
+            AppendLog(string.Format("完成下载 [{0} , {1}] {2}", from, to, url));
         }
 
-        public void TransferBegin(string url)
+        public void TransferBegin(string url, long from, long to)
         {
-            AppendLog(string.Format("开始传输 {0}", url));
+            AppendLog(string.Format("开始传输 [{0} , {1}] {2}", from, to, url));
         }
 
-        public void TransferEnd(string url)
+        public void TransferEnd(string url, long from, long to)
         {
-            AppendLog(string.Format("完成传输 {0}", url));
+            AppendLog(string.Format("完成传输 [{0} , {1}] {2}", from, to, url));
         }
     }
 }
