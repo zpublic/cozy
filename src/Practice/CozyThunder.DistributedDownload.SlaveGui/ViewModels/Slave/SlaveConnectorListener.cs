@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CozyThunder.HttpDownload;
 using CozyThunder.Protocol.FileBlock;
 using CozyThunder.Schedule;
+using CozyThunder.DistributedDownload.SlaveGui.Log;
 
 namespace CozyThunder.DistributedDownload.SlaveGui.ViewModels.Slave
 {
@@ -24,14 +25,15 @@ namespace CozyThunder.DistributedDownload.SlaveGui.ViewModels.Slave
             Peer = peer;
         }
 
+
         public void OnConnect(string host)
         {
-            Console.WriteLine(host + "connect");
+            LogManager.Instalce.ConnectLog(host);
         }
 
         public void OnDisConnect()
         {
-            Console.WriteLine("disconnect");
+            LogManager.Instalce.DisconnectLog();
         }
 
         public void OnMessage(byte[] msg)
@@ -42,12 +44,15 @@ namespace CozyThunder.DistributedDownload.SlaveGui.ViewModels.Slave
             task.Decode(msg, 0, msg.Length);
 
             var downloadTask = task.task_;
-            var data = HttpDownloadRange.Download(downloadTask.RemotePath, downloadTask.from, downloadTask.to);
+            LogManager.Instalce.DownloadTaskBeginLog(downloadTask.RemotePath, downloadTask.from, downloadTask.to);
 
+            var data = HttpDownloadRange.Download(downloadTask.RemotePath, downloadTask.from, downloadTask.to);
             if (data.Length != downloadTask.to - downloadTask.from)
             {
                 throw new Exception("download error length is {0}" + (downloadTask.to - downloadTask.from));
             }
+
+            LogManager.Instalce.DownloadTaskEndLog(downloadTask.RemotePath);
 
             var header  = new FileBlockBeginPacket();
             var body    = new FileBlockDataPacket(data);
@@ -65,7 +70,9 @@ namespace CozyThunder.DistributedDownload.SlaveGui.ViewModels.Slave
             foot.Encode(buffer, offset);
             offset += foot.ByteLength;
 
+            LogManager.Instalce.TransferBegin(downloadTask.RemotePath);
             Peer.Send(buffer);
+            LogManager.Instalce.TransferEnd(downloadTask.RemotePath);
         }
     }
 }

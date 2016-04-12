@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CozyThunder.DistributedDownload.SlaveGui"
-        xmlns:viewmodel="clr-namespace:CozyThunder.DistributedDownload.SlaveGui.ViewModel"
+        xmlns:viewmodel="clr-namespace:CozyThunder.DistributedDownload.SlaveGui.ViewModels"
         xmlns:converter="clr-namespace:CozyThunder.DistributedDownload.SlaveGui.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
