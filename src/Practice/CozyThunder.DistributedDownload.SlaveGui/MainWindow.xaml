@@ -24,8 +24,7 @@
                 <ColumnDefinition Width="38*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <ListView ItemsSource="{Binding LogCollection}" Grid.Column="1" BorderThickness="1" Margin="0,5">
-            </ListView>
+            <ListView ItemsSource="{Binding LogCollection}" Grid.Column="1" BorderThickness="1" Margin="5"></ListView>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
