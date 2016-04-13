@@ -15,11 +15,11 @@ namespace CozyThunder.DistributedDownload.SlaveGui.Converters
             bool b = (bool)value;
             if(b)
             {
-                return "服务状态 : 启动";
+                return "启动";
             }
             else
             {
-                return "服务状态 : 停止";
+                return "停止";
             }
         }
 
