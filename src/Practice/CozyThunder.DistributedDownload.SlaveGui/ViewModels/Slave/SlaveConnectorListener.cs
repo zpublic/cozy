@@ -80,9 +80,9 @@ namespace CozyThunder.DistributedDownload.SlaveGui.ViewModels.Slave
             {
                 LogManager.Instalce.DownloadTaskBeginLog(task_.RemotePath, task_.from, task_.to);
                 byte[] data = HttpDownloadRange.Download(task_.RemotePath, task_.from, task_.to);
-                LogManager.Instalce.DownloadTaskEndLog(task_.RemotePath);
+                LogManager.Instalce.DownloadTaskEndLog(task_.RemotePath, task_.from, task_.to);
 
-                LogManager.Instalce.TransferBegin(task_.RemotePath);
+                LogManager.Instalce.TransferBegin(task_.RemotePath, task_.from, task_.to);
                 FileBlockBeginPacket begin = new FileBlockBeginPacket();
                 autoResetEvent_.WaitOne();
                 Peer.Send(begin.Encode());
@@ -108,7 +108,7 @@ namespace CozyThunder.DistributedDownload.SlaveGui.ViewModels.Slave
                 FileBlockEndPacket end = new FileBlockEndPacket();
                 autoResetEvent_.WaitOne();
                 Peer.Send(end.Encode());
-                LogManager.Instalce.TransferEnd(task_.RemotePath);
+                LogManager.Instalce.TransferEnd(task_.RemotePath, task_.from, task_.to);
             }
         }
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CozyThunder.DistributedDownload.SlaveGui.Log
+namespace CozyThunder.DistributedDownload.MasterGui.Log
 {
     public class LogManager
     {
@@ -23,14 +23,14 @@ namespace CozyThunder.DistributedDownload.SlaveGui.Log
             ClearLogHander(this, new LogClearEventArgs());
         }
 
-        public void TaskBeginLog()
+        public void DownloadBeginLog()
         {
-            AppendLog("开启服务");
+            AppendLog("开始下载");
         }
 
-        public void TaskEndLog()
+        public void DownloadEndLog()
         {
-            AppendLog("关闭服务");
+            AppendLog("下载完成");
         }
 
         public void ConnectLog(string addr)
@@ -43,22 +43,17 @@ namespace CozyThunder.DistributedDownload.SlaveGui.Log
             AppendLog(string.Format("已断开"));
         }
 
-        public void DownloadTaskBeginLog(string url, long from, long to)
+        public void ScheduleTask(string addr, long from, long to)
         {
-            AppendLog(string.Format("开始下载 [{0} , {1}] {2}", from, to, url));
+            AppendLog(string.Format("派发 [{0} , {1}] 到 {2}", from, to, addr));
         }
 
-        public void DownloadTaskEndLog(string url, long from, long to)
-        {
-            AppendLog(string.Format("完成下载 [{0} , {1}] {2}", from, to, url));
-        }
-
-        public void TransferBegin(string url, long from, long to)
+        public void ReceiveBegin(string url, long from, long to)
         {
             AppendLog(string.Format("开始传输 [{0} , {1}] {2}", from, to, url));
         }
 
-        public void TransferEnd(string url, long from, long to)
+        public void ReceiveEnd(string url, long from, long to)
         {
             AppendLog(string.Format("完成传输 [{0} , {1}] {2}", from, to, url));
         }
