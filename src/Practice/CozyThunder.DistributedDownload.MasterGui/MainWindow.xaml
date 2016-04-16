@@ -6,70 +6,107 @@
         xmlns:local="clr-namespace:CozyThunder.DistributedDownload.MasterGui"
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:viewmodel="clr-namespace:CozyThunder.DistributedDownload.MasterGui.ViewModels"
+        xmlns:userctrl="clr-namespace:CozyThunder.DistributedDownload.MasterGui.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="CozyThunder" Width="960" Height="640">
     <metro:MetroWindow.DataContext>
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
     </metro:MetroWindow.DataContext>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="8*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="18*"></RowDefinition>
             </Grid.RowDefinitions>
-            <ListView Grid.Row="0" ItemsSource="{Binding PeerInfoList}" SelectedItem="{Binding SelectedInfo, Mode=TwoWay}">
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="8*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" Margin="2" IsReadOnly="True" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">当前任务:</TextBox>
+                <TextBox Grid.Column="1" Margin="2" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></TextBox>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="新建任务" Margin="2"></Button>
+                <Button Grid.Column="1" Content="暂停任务" Margin="2"></Button>
+                <Button Grid.Column="2" Content="取消任务" Margin="2"></Button>
+                <Button Grid.Column="3" Content="启用分布式" Margin="2"></Button>
+                <Button Grid.Column="4" Content="禁用分布式" Margin="2"></Button>
+                <Button Grid.Column="5" Content="全局设置" Margin="2"></Button>
+            </Grid>
+            <Grid Grid.Row="2">
+                <userctrl:BlockControl ItemCount="225"></userctrl:BlockControl>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="16*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="8*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" Margin="2" IsReadOnly="True" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">地址:</TextBox>
+                <TextBox Grid.Column="1" Margin="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></TextBox>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="8*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" Margin="2" IsReadOnly="True" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">端口:</TextBox>
+                <TextBox Grid.Column="1" Margin="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></TextBox>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="添加"></Button>
+                <Button Grid.Column="1" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="删除"></Button>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="连接"></Button>
+                <Button Grid.Column="1" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="断开"></Button>
+            </Grid>
+            <ListView Grid.Row="4" ItemsSource="{Binding PeerInfoList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBox IsReadOnly="True" BorderThickness="0">
+                        <TextBox IsReadOnly="True" BorderThickness="0" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                             <TextBox.Text>
-                                <MultiBinding StringFormat="Address : {0} Port : {1}">
+                                <MultiBinding StringFormat=" {0} : {1} {2} {3}">
                                     <Binding Path="Address"></Binding>
                                     <Binding Path="Port"></Binding>
+                                    <Binding Path="Status"></Binding>
+                                    <Binding Path="Range"></Binding>
                                 </MultiBinding>
                             </TextBox.Text>
                         </TextBox>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                    <ColumnDefinition Width="18*"></ColumnDefinition>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBox IsReadOnly="True" Grid.Column="0" BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center">地址 :</TextBox>
-                <TextBox Grid.Column="1" Text="{Binding AddressText}"></TextBox>
-                <TextBox Grid.Column="2" IsReadOnly="True" BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center">端口 :</TextBox>
-                <TextBox Grid.Column="3" Text="{Binding Port}"></TextBox>
-                <Button Grid.Column="4" Margin="5" Content="添加" Command="{Binding AddPeerCommand}"></Button>
-                <Button Grid.Column="5" Margin="5" Content="删除"  Command="{Binding RemovePeerCommand}"></Button>
-            </Grid>
-        </Grid>
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="8*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <ListView Grid.Row="0" ItemsSource="{Binding LogCollection}"></ListView>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                    <ColumnDefinition Width="18*"></ColumnDefinition>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <!--
-                下面这部分暂时不写
-                <TextBox Grid.Column="0" IsReadOnly="True" BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center">Url : </TextBox>
-                <TextBox Grid.Column="1"></TextBox>
-                <Button Grid.Column="2" Content="{Binding StartButtoContent}" Command="{Binding StartCommand}"></Button>-->
-            </Grid>
         </Grid>
     </Grid>
 </metro:MetroWindow>

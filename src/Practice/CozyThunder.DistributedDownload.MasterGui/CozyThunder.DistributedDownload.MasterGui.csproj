@@ -63,14 +63,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Log\LogClearEventArgs.cs" />
-    <Compile Include="Log\LogDataEventArgs.cs" />
-    <Compile Include="Log\LogManager.cs" />
+    <Compile Include="Controls\Block.xaml.cs">
+      <DependentUpon>Block.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BlockControl.xaml.cs">
+      <DependentUpon>BlockControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Styles\BlockVisualStyle.cs" />
     <Compile Include="Models\PeerInfo.cs" />
+    <Compile Include="Models\PeerRange.cs" />
+    <Compile Include="Models\PeerStatus.cs" />
+    <Compile Include="Models\DownloadTaskInfo.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\MainWindowViewModel.Log.cs" />
-    <Compile Include="ViewModels\MainWindowViewModel.Task.cs" />
+    <Page Include="Controls\Block.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BlockControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

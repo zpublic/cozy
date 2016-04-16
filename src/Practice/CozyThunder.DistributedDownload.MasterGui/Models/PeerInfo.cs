@@ -10,5 +10,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.Models
     {
         public string Address { get; set; }
         public int Port { get; set; }
+        public PeerStatus Status { get; set; }
+        public PeerRange Range { get; set; }
     }
 }
