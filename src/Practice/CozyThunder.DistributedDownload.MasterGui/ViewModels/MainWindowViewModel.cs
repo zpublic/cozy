@@ -13,21 +13,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
 {
     public partial class MainWindowViewModel : BaseViewModel
     {
-        public ObservableCollection<PeerInfo> PeerInfoList { get; set; } = new ObservableCollection<PeerInfo>();
-
-        private string _CurrentRemotePath;
-        public string CurrentRemotePath
-        {
-            get { return _CurrentRemotePath; }
-            set { Set(ref _CurrentRemotePath, value); }
-        }
-
-        private BlockDelegate _Blocks = new BlockDelegate();
-        public BlockDelegate Blocks
-        {
-            get { return _Blocks; }
-            set { Set(ref _Blocks, value); }
-        }
+        
 
         public MainWindowViewModel()
         {

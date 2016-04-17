@@ -75,13 +75,22 @@
     <Compile Include="Controls\Block\Styles\BlockStatusColor.cs" />
     <Compile Include="Controls\IBlock.cs" />
     <Compile Include="Controls\IBlockCollection.cs" />
+    <Compile Include="MessageCenter\GlobalMessageCenter.cs" />
+    <Compile Include="Models\Comparer\PeerInfoComparer.cs" />
     <Compile Include="Models\PeerInfo.cs" />
     <Compile Include="Models\PeerRange.cs" />
     <Compile Include="Models\PeerStatus.cs" />
     <Compile Include="Models\DownloadTaskInfo.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CreateTaskWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.Command.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.Network.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.Peer.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.Task.cs" />
+    <Compile Include="Windows\CreateTaskWindow.xaml.cs">
+      <DependentUpon>CreateTaskWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\Block\BlockEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -103,6 +112,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\CreateTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

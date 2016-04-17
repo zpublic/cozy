@@ -17,7 +17,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             {
                 return _CreateTaskCommand = _CreateTaskCommand ?? new DelegateCommand(x => 
                 {
-
+                    OnCreateTask();
                 });
             }
         }
@@ -29,7 +29,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             {
                 return _PauseTaskCommand = _PauseTaskCommand ?? new DelegateCommand(x =>
                 {
-
+                    OnPauseTask();
                 });
             }
         }
@@ -41,7 +41,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             {
                 return _ResumeTaskCommand = _ResumeTaskCommand ?? new DelegateCommand(x =>
                 {
-
+                    OnResumeTask();
                 });
             }
         }
@@ -53,7 +53,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             {
                 return _CalcneTaskCommand = _CalcneTaskCommand ?? new DelegateCommand(x =>
                 {
-
+                    OnCalcleTask();
                 });
             }
         }
@@ -65,7 +65,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             {
                 return _EnableDistributedCommand = _EnableDistributedCommand ?? new DelegateCommand(x =>
                 {
-
+                    OnEnableDistributedCommand();
                 });
             }
         }
@@ -77,7 +77,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             {
                 return _DisableDistributedCommand = _DisableDistributedCommand ?? new DelegateCommand(x =>
                 {
-
+                    OnDisableDistributedCommand();
                 });
             }
         }
@@ -89,7 +89,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             {
                 return _GlobalSettingCommand = _GlobalSettingCommand ?? new DelegateCommand(x =>
                 {
-
+                    OnGlobalSetting();
                 });
             }
         }
@@ -101,7 +101,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             {
                 return _AddPeerCommand = _AddPeerCommand ?? new DelegateCommand(x =>
                 {
-
+                    OnAddPeer();
                 });
             }
         }
@@ -113,7 +113,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             {
                 return _RemovePeerCommand = _RemovePeerCommand ?? new DelegateCommand(x =>
                 {
-
+                    OnRemovePeer();
                 });
             }
         }
@@ -125,7 +125,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             {
                 return _ConnectPeerCommand = _ConnectPeerCommand ?? new DelegateCommand(x =>
                 {
-
+                    OnConnectPeer();
                 });
             }
         }
@@ -137,7 +137,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             {
                 return _DisconnectPeerCommand = _DisconnectPeerCommand ?? new DelegateCommand(x =>
                 {
-
+                    OnDisconnectPeer();
                 });
             }
         }

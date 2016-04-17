@@ -116,7 +116,7 @@
                 <Button Grid.Column="1" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                         Content="断开" Command="{Binding DisconnectPeerCommand}"></Button>
             </Grid>
-            <ListView Grid.Row="4" ItemsSource="{Binding PeerInfoList}" Margin="2">
+            <ListView Grid.Row="4" ItemsSource="{Binding PeerInfoList}" Margin="2" SelectedItem="{Binding SelectedInfo, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBox IsReadOnly="True" BorderThickness="0" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">

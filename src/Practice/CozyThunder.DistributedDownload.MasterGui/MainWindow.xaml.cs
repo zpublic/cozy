@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+using CozyThunder.DistributedDownload.MasterGui.MessageCenter;
+using CozyThunder.DistributedDownload.MasterGui.Models;
+using CozyThunder.DistributedDownload.MasterGui.Windows;
 
 namespace CozyThunder.DistributedDownload.MasterGui
 {
@@ -24,6 +27,29 @@ namespace CozyThunder.DistributedDownload.MasterGui
         public MainWindow()
         {
             InitializeComponent();
+
+            this.Loaded += (s, e) => { RegistMessage(); };
+            this.Closed += (s, e) => { UnregistMessage(); };
+        }
+
+        private void RegistMessage()
+        {
+            GlobalMessageCenter.Instance.RegistMessage("CreateDownloadTask", OnCreateDownload);
+        }
+
+        private void UnregistMessage()
+        {
+            GlobalMessageCenter.Instance.UnregistMessage("CreateDownloadTask", OnCreateDownload);
+        }
+
+        private void OnCreateDownload(object args)
+        {
+            var task = args as DownloadTaskInfo;
+            if(task != null)
+            {
+                var window = new CreateTaskWindow(task);
+                window.ShowDialog();
+            }
         }
     }
 }
