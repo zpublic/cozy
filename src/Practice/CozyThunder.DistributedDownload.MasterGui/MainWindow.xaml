@@ -7,6 +7,7 @@
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:viewmodel="clr-namespace:CozyThunder.DistributedDownload.MasterGui.ViewModels"
         xmlns:userctrl="clr-namespace:CozyThunder.DistributedDownload.MasterGui.Controls"
+        xmlns:blockstyle="clr-namespace:CozyThunder.DistributedDownload.MasterGui.Controls.Block.Styles"
         mc:Ignorable="d"
         Title="CozyThunder" Width="960" Height="640">
     <metro:MetroWindow.DataContext>
@@ -21,6 +22,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="18*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
@@ -28,8 +30,12 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="8*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Margin="2" IsReadOnly="True" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">当前任务:</TextBox>
-                <TextBox Grid.Column="1" Margin="2" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></TextBox>
+
+                <TextBox Grid.Column="0" Margin="2" IsReadOnly="True" BorderThickness="0" 
+                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center">当前任务:</TextBox>
+                <TextBox Grid.Column="1" Margin="2" IsReadOnly="True" VerticalContentAlignment="Center" 
+                         HorizontalContentAlignment="Left" Text="{Binding CurrentRemotePath}"></TextBox>
+
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -39,16 +45,27 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="新建任务" Margin="2"></Button>
-                <Button Grid.Column="1" Content="暂停任务" Margin="2"></Button>
-                <Button Grid.Column="2" Content="取消任务" Margin="2"></Button>
-                <Button Grid.Column="3" Content="启用分布式" Margin="2"></Button>
-                <Button Grid.Column="4" Content="禁用分布式" Margin="2"></Button>
-                <Button Grid.Column="5" Content="全局设置" Margin="2"></Button>
+                <Button Grid.Column="0" Content="新建任务" Margin="2" Command="{Binding CreateTaskCommand}"></Button>
+                <Button Grid.Column="1" Content="暂停任务" Margin="2" Command="{Binding PauseTaskCommand}"></Button>
+                <Button Grid.Column="2" Content="启动任务" Margin="2" Command="{Binding ResumeTaskCommand}"></Button>
+                <Button Grid.Column="3" Content="取消任务" Margin="2" Command="{Binding CancleTaskCommand}"></Button>
+                <Button Grid.Column="4" Content="启用分布式" Margin="2" Command="{Binding EnableDistributedCommand}"></Button>
+                <Button Grid.Column="5" Content="禁用分布式" Margin="2" Command="{Binding DisableDistributedCommand}"></Button>
+                <Button Grid.Column="6" Content="全局设置" Margin="2" Command="{Binding GlobalSettingCommand}"></Button>
             </Grid>
-            <Grid Grid.Row="2">
-                <userctrl:BlockControl ItemCount="225"></userctrl:BlockControl>
+            <ProgressBar Grid.Row="2" Height="Auto"></ProgressBar>
+            <Grid Grid.Row="3">
+                <Grid.Resources>
+                    <blockstyle:BlockVisualStyle x:Key="downloadstyle" Margin="5">
+                        <blockstyle:BlockVisualStyle.StatusColors>
+                            <blockstyle:BlockStatusColor FreeColor="WhiteSmoke" CompleteColor="Green" DownloadingColor="Blue" FailedColor="Red">
+                            </blockstyle:BlockStatusColor>
+                        </blockstyle:BlockVisualStyle.StatusColors>
+                    </blockstyle:BlockVisualStyle>
+                </Grid.Resources>
+                <userctrl:BlockControl ItemCount="225" BlockDelegate="{Binding Blocks}" BlockStyle="{StaticResource downloadstyle}"></userctrl:BlockControl>
             </Grid>
         </Grid>
         <Grid Grid.Column="1">
@@ -64,34 +81,42 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="8*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Margin="2" IsReadOnly="True" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">地址:</TextBox>
-                <TextBox Grid.Column="1" Margin="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></TextBox>
+                <TextBox Grid.Column="0" Margin="2" IsReadOnly="True" BorderThickness="0" VerticalContentAlignment="Center" 
+                         HorizontalContentAlignment="Center">地址:</TextBox>
+                <TextBox Grid.Column="1" Margin="2" VerticalContentAlignment="Center" 
+                          Text="{Binding Address}" HorizontalContentAlignment="Left"></TextBox>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="8*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Margin="2" IsReadOnly="True" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">端口:</TextBox>
-                <TextBox Grid.Column="1" Margin="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></TextBox>
+                <TextBox Grid.Column="0" Margin="2" IsReadOnly="True" BorderThickness="0" VerticalContentAlignment="Center" 
+                         HorizontalContentAlignment="Center">端口:</TextBox>
+                <TextBox Grid.Column="1" Margin="2" VerticalContentAlignment="Center" 
+                          Text="{Binding Port}" HorizontalContentAlignment="Left"></TextBox>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="添加"></Button>
-                <Button Grid.Column="1" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="删除"></Button>
+                <Button Grid.Column="0" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Content="添加" Command="{Binding AddPeerCommand}"></Button>
+                <Button Grid.Column="1" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Content="删除" Command="{Binding RemovePeerCommand}"></Button>
             </Grid>
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="连接"></Button>
-                <Button Grid.Column="1" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="断开"></Button>
+                <Button Grid.Column="0" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Content="连接" Command="{Binding ConnectPeerCommand}"></Button>
+                <Button Grid.Column="1" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Content="断开" Command="{Binding DisconnectPeerCommand}"></Button>
             </Grid>
-            <ListView Grid.Row="4" ItemsSource="{Binding PeerInfoList}">
+            <ListView Grid.Row="4" ItemsSource="{Binding PeerInfoList}" Margin="2">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBox IsReadOnly="True" BorderThickness="0" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
