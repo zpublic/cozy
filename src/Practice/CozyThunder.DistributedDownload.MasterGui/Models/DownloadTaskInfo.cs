@@ -10,8 +10,6 @@ namespace CozyThunder.DistributedDownload.MasterGui.Models
     {
         public string RemotePath { get; set; }
         public string LocalPath { get; set; }
-        public int MinThread { get; set; }
-        public int MaxThread { get; set; }
-        public bool EnableDistributed { get; set; }
+        public bool IsEnableDistributed { get; set; }
     }
 }

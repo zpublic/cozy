@@ -7,12 +7,13 @@ using System.Collections.ObjectModel;
 using CozyThunder.DistributedDownload.MasterGui.Models;
 using CozyThunder.DistributedDownload.MasterGui.Commands;
 using System.Windows.Input;
+using CozyThunder.DistributedDownload.MasterGui.Controls.Block;
 
 namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
 {
     public partial class MainWindowViewModel : BaseViewModel
     {
-        public ObservableCollection<PeerInfo> PeerInfoList { get; set; } = new ObservableCollection<PeerInfo>();
+        
 
         public MainWindowViewModel()
         {

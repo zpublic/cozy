@@ -12,14 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CozyThunder.DistributedDownload.MasterGui.Controls.Styles;
+using CozyThunder.DistributedDownload.MasterGui.Controls.Block.Styles;
+using CozyThunder.DistributedDownload.MasterGui.Controls.Block;
 
 namespace CozyThunder.DistributedDownload.MasterGui.Controls
 {
     /// <summary>
     /// BlockControl.xaml 的交互逻辑
     /// </summary>
-    public partial class BlockControl : UserControl
+    public partial class BlockControl : UserControl, IBlockCollection
     {
         public static readonly DependencyProperty ItemCountProperty = DependencyProperty.Register("ItemCount", typeof(int), typeof(BlockControl), 
             new PropertyMetadata(0, new PropertyChangedCallback(OnItemCountChanged)));
@@ -27,7 +28,11 @@ namespace CozyThunder.DistributedDownload.MasterGui.Controls
         public static readonly DependencyProperty BlockStyleProperty = DependencyProperty.Register("BlockStyle", typeof(BlockVisualStyle), typeof(BlockControl),
            new PropertyMetadata(null, new PropertyChangedCallback(OnBlockStyleChanged)));
 
-        static void OnItemCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public static readonly DependencyProperty BlockDelegateProperty = DependencyProperty.Register("BlockDelegate", typeof(BlockDelegate), typeof(BlockControl),
+          new PropertyMetadata(null, new PropertyChangedCallback(OnBlockDelegateChanged)));
+
+
+        private static void OnItemCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var obj = d as BlockControl;
             if(obj != null)
@@ -36,7 +41,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.Controls
             }
         }
 
-        static void OnBlockStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnBlockStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var obj = d as BlockControl;
             if (obj != null)
@@ -45,7 +50,16 @@ namespace CozyThunder.DistributedDownload.MasterGui.Controls
             }
         }
 
-        void OnItemCountChanged(int value)
+        private static void OnBlockDelegateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var obj = d as BlockControl;
+            if (obj != null)
+            {
+                obj.OnBlockDelegateChanged((BlockDelegate)e.NewValue);
+            }
+        }
+
+        public void OnItemCountChanged(int value)
         {
             int v = this.BlockGrid.Children.Count;
             if (value > v)
@@ -53,8 +67,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.Controls
                 BlockVisualStyle style = BlockStyle ?? BlockVisualStyle.DefaultStyle;
                 for (int i = 0; i < value - v; ++i)
                 {
-                    var ctrl = new Block();
-                    ctrl.Margin = new Thickness(2);
+                    var ctrl = new BlockEntry();
                     style.UseStyle(ctrl);
                     this.BlockGrid.Children.Add(ctrl);
                 }
@@ -66,9 +79,14 @@ namespace CozyThunder.DistributedDownload.MasterGui.Controls
             }
         }
 
+        public void OnBlockDelegateChanged(BlockDelegate obj)
+        {
+            obj.Target = this;
+        }
+
         public void OnBlockStyleChanged(BlockVisualStyle style)
         {
-            foreach(Block obj in this.BlockGrid.Children)
+            foreach(BlockEntry obj in this.BlockGrid.Children)
             {
                 style.UseStyle(obj);
             }
@@ -98,9 +116,26 @@ namespace CozyThunder.DistributedDownload.MasterGui.Controls
             }
         }
 
+        public BlockDelegate BlockDelegate
+        {
+            get
+            {
+                return (BlockDelegate)this.GetValue(BlockDelegateProperty);
+            }
+            set
+            {
+                this.SetValue(BlockDelegateProperty, value);
+            }
+        }
+
         public BlockControl()
         {
             InitializeComponent();
+        }
+
+        public IBlock GetBlockItem(int index)
+        {
+            return this.BlockGrid.Children[index] as BlockEntry;
         }
     }
 }
