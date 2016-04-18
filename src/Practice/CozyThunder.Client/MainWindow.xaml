@@ -1,0 +1,9 @@
+﻿<src:Window x:Class="CozyThunder.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:src="clr-namespace:MMS.UI.Default;assembly=MMS.UI"
+        Height="580" Width="820" Icon="/Images/logo.ico" Title="CozyThunder V1">
+    <Grid Background="#fff">
+        <Frame Source="{Binding Page}" NavigationUIVisibility="Hidden" />
+    </Grid>
+</src:Window>

@@ -139,6 +139,12 @@ Cozy
 >>
 >> CozyKnight - 山寨金山游侠，游戏内存修改工具  
 >>
+>> CozyEncodingConverter - 批量文件编码转换  
+>>
+>> CozyThunder - 支持断点续传和多线程下载的可视化下载工具  
+>>
+>> CozyLauncher - 史诗级巨坑，慢慢填  
+>>
 
 玩法一览
 --------------------------------

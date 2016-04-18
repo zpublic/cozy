@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CozyWallpaper.Gui.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,12 @@ namespace CozyWallpaper.Gui
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MMS.UI.Default.Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = MainWindowViewModel.GetInstance();
         }
     }
 }

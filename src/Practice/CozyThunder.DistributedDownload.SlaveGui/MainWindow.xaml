@@ -1,0 +1,46 @@
+﻿<metro:MetroWindow x:Class="CozyThunder.DistributedDownload.SlaveGui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CozyThunder.DistributedDownload.SlaveGui"
+        xmlns:viewmodel="clr-namespace:CozyThunder.DistributedDownload.SlaveGui.ViewModels"
+        xmlns:converter="clr-namespace:CozyThunder.DistributedDownload.SlaveGui.Converters"
+        xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="18*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="38*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ListView ItemsSource="{Binding LogCollection}" Grid.Column="1" BorderThickness="1" Margin="5"></ListView>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <converter:BoolToStatusConverter x:Key="BoolToStatusConverter"></converter:BoolToStatusConverter>
+            </Grid.Resources>
+            <TextBox IsReadOnly="True" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                     Text="{Binding ClientState, StringFormat='服务状态 : {0}', Converter={StaticResource BoolToStatusConverter}}" BorderThickness="0"></TextBox>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBox IsReadOnly="True" Margin="5" TextAlignment="Center" HorizontalAlignment="Center" BorderThickness="0">端口:</TextBox>
+                <TextBox Width="100" Margin="5" Text="{Binding Port}"></TextBox>
+                <Button Margin="5" Content="{Binding Path=SwitchButtonText}" Command="{Binding SwitchButtonCommand}"></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</metro:MetroWindow>

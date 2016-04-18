@@ -1,0 +1,56 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MMS.UI.Default">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary>
+            <local:TypeConvert x:Key="TypeConvert" />
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+    <ControlTemplate x:Key="ExplorerTemplate" TargetType="{x:Type local:Explorer}">
+        <Grid Margin="0,4,4,4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="26" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="18" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="#FFF3CD">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="资源管理器" Grid.Column="0" />
+            </Grid>
+            <Grid Grid.Row="1" Background="#BCC7D8">
+
+            </Grid>
+            <ScrollViewer Grid.Row="2" BorderThickness="0">
+                <TreeView x:Name="explorerTree">
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Path=Children}">
+                            <StackPanel Orientation="Horizontal" >
+                                <Image VerticalAlignment="Center" Source="{Binding Type,Converter={StaticResource TypeConvert}}" Width="16" Height="16" Margin="0,0,2,2"></Image>
+                                <TextBlock VerticalAlignment="Center" Text="{Binding Text}"></TextBlock>
+                                <StackPanel.ContextMenu>
+                                    <ContextMenu Name="RightMenu" StaysOpen="true" ItemsSource="{Binding Type}">
+                                        <ContextMenu.ItemTemplate>
+                                            <DataTemplate>
+                                                <MenuItem Header="{Binding Text}" Command="{Binding Command}"/>
+                                            </DataTemplate>
+                                        </ContextMenu.ItemTemplate>
+                                    </ContextMenu>
+                                </StackPanel.ContextMenu>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </ScrollViewer>
+            <Grid Grid.Row="3" Background="#F0F0F0"></Grid>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="ExplorerStyle" TargetType="{x:Type local:Explorer}">
+        <Setter Property="Template" Value="{StaticResource ExplorerTemplate}" />
+        <Setter Property="Width" Value="300" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+</ResourceDictionary>

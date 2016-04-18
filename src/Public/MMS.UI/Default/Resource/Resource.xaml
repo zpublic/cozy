@@ -1,0 +1,278 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--button effect-->
+    <!--Storyboard x:Key="OnMouseEnter1">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image">
+            <LinearDoubleKeyFrame KeyTime="0" Value="0.5"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+    <Storyboard x:Key="OnMouseMove1">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image">
+            <LinearDoubleKeyFrame KeyTime="0" Value="1"/>
+            <LinearDoubleKeyFrame KeyTime="0:0:0.3" Value="0.5"/>
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard-->
+    <!--button-->
+    <ControlTemplate x:Key="win_btn_mini" TargetType="{x:Type Button}">
+        <Grid Width="26" Height="20">
+            <Image x:Name="min_normal" Source="Images\minimize_26x20_normal.png" Stretch="UniformToFill"/>
+            <Image x:Name="min_over" Source="Images\minimize_26x20_over.png" Stretch="UniformToFill" Opacity="0"/>
+            <Image x:Name="min_down" Source="Images\minimize_26x20_down.png" Stretch="UniformToFill" Opacity="0" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="Opacity" TargetName="min_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Opacity" TargetName="min_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Opacity" TargetName="min_down" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Opacity" TargetName="min_over" Value="1"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+        <!--ControlTemplate.Triggers>
+            <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                <BeginStoryboard Storyboard="{StaticResource OnMouseEnter1}"/>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                <BeginStoryboard x:Name="OnMouseMove1_BeginStoryboard1" Storyboard="{StaticResource OnMouseMove1}"/>
+            </EventTrigger>
+        </ControlTemplate.Triggers-->
+    </ControlTemplate>
+    <ControlTemplate x:Key="win_btn_max" TargetType="{x:Type Button}">
+        <Grid Width="25" Height="20">
+            <Image x:Name="max_mormal" Source="Images\maximize_25x20_normal.png" Stretch="UniformToFill" />
+            <Image x:Name="max_over" Source="Images\maximize_25x20_over.png" Stretch="UniformToFill" Opacity="0"/>
+            <Image x:Name="max_down" Source="Images\maximize_25x20_down.png" Stretch="UniformToFill" Opacity="0" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="Opacity" TargetName="max_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Opacity" TargetName="max_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Opacity" TargetName="max_down" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Opacity" TargetName="max_over" Value="1"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+        <!--ControlTemplate.Triggers>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                <BeginStoryboard Storyboard="{StaticResource OnMouseEnter1}"/>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                <BeginStoryboard x:Name="OnMouseMove1_BeginStoryboard1" Storyboard="{StaticResource OnMouseMove1}"/>
+            </EventTrigger>
+        </ControlTemplate.Triggers-->
+    </ControlTemplate>
+    <ControlTemplate x:Key="win_btn_restore" TargetType="{x:Type Button}">
+        <Grid Width="25" Height="20">
+            <Image x:Name="restore_normal" Source="Images\restore_down_25x20_normal.png" Stretch="UniformToFill" />
+            <Image x:Name="restore_over" Source="Images\restore_down_25x20_over.png" Stretch="UniformToFill" Opacity="0"/>
+            <Image x:Name="restore_down" Source="Images\restore_down_25x20_down.png" Stretch="UniformToFill" Opacity="0" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="Opacity" TargetName="restore_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Opacity" TargetName="restore_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Opacity" TargetName="restore_down" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Opacity" TargetName="restore_over" Value="1"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+        <!--ControlTemplate.Triggers>
+            <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                <BeginStoryboard Storyboard="{StaticResource OnMouseEnter1}"/>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                <BeginStoryboard x:Name="OnMouseMove1_BeginStoryboard1" Storyboard="{StaticResource OnMouseMove1}"/>
+            </EventTrigger>
+        </ControlTemplate.Triggers-->
+    </ControlTemplate>
+    <ControlTemplate x:Key="win_btn_close" TargetType="{x:Type Button}">
+        <Grid Width="45" Height="20">
+            <Image x:Name="close_normal" Source="Images\window_close_45x20_normal.png" Stretch="UniformToFill" />
+            <Image x:Name="close_over" Source="Images\window_close_45x20_over.png" Stretch="UniformToFill" Opacity="0"/>
+            <Image x:Name="close_down" Source="Images\window_close_45x20_down.png" Stretch="UniformToFill" Opacity="0" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="Opacity" TargetName="close_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Opacity" TargetName="close_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Opacity" TargetName="close_down" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Opacity" TargetName="close_over" Value="1"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+        <!--ControlTemplate.Triggers>
+            <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                <BeginStoryboard Storyboard="{StaticResource OnMouseEnter1}"/>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                <BeginStoryboard x:Name="OnMouseMove1_BeginStoryboard1" Storyboard="{StaticResource OnMouseMove1}"/>
+            </EventTrigger>
+        </ControlTemplate.Triggers-->
+    </ControlTemplate>
+    <ControlTemplate x:Key="table_btn_first_step" TargetType="{x:Type Button}">
+        <Grid Width="16" Height="16">
+            <Image x:Name="first_step_normal" Source="Images\first-step.png" Stretch="UniformToFill" />
+            <Image x:Name="first_step_over" Source="Images\first-step.png" Stretch="UniformToFill" Opacity="0"/>
+            <Image x:Name="first_step_down" Source="Images\first-step.png" Stretch="UniformToFill" Opacity="0" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="Opacity" TargetName="first_step_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Opacity" TargetName="first_step_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Opacity" TargetName="first_step_down" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Opacity" TargetName="first_step_over" Value="1"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+        <!--ControlTemplate.Triggers>
+            <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                <BeginStoryboard Storyboard="{StaticResource OnMouseEnter1}"/>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                <BeginStoryboard x:Name="OnMouseMove1_BeginStoryboard1" Storyboard="{StaticResource OnMouseMove1}"/>
+            </EventTrigger>
+        </ControlTemplate.Triggers-->
+    </ControlTemplate>
+    <ControlTemplate x:Key="table_btn_step" TargetType="{x:Type Button}">
+        <Grid Width="16" Height="16">
+            <Image x:Name="step_normal" Source="Images\step.png" Stretch="UniformToFill" />
+            <Image x:Name="step_over" Source="Images\step.png" Stretch="UniformToFill" Opacity="0"/>
+            <Image x:Name="step_down" Source="Images\step.png" Stretch="UniformToFill" Opacity="0" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="Opacity" TargetName="step_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Opacity" TargetName="step_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Opacity" TargetName="step_down" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Opacity" TargetName="step_over" Value="1"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+        <!--ControlTemplate.Triggers>
+            <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                <BeginStoryboard Storyboard="{StaticResource OnMouseEnter1}"/>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                <BeginStoryboard x:Name="OnMouseMove1_BeginStoryboard1" Storyboard="{StaticResource OnMouseMove1}"/>
+            </EventTrigger>
+        </ControlTemplate.Triggers-->
+    </ControlTemplate>
+    <ControlTemplate x:Key="table_btn_next" TargetType="{x:Type Button}">
+        <Grid Width="16" Height="16">
+            <Image x:Name="next_normal" Source="Images\next.png" Stretch="UniformToFill" />
+            <Image x:Name="next_over" Source="Images\next.png" Stretch="UniformToFill" Opacity="0"/>
+            <Image x:Name="next_down" Source="Images\next.png" Stretch="UniformToFill" Opacity="0" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="Opacity" TargetName="next_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Opacity" TargetName="next_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Opacity" TargetName="next_down" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Opacity" TargetName="next_over" Value="1"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+        <!--ControlTemplate.Triggers>
+            <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                <BeginStoryboard Storyboard="{StaticResource OnMouseEnter1}"/>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                <BeginStoryboard x:Name="OnMouseMove1_BeginStoryboard1" Storyboard="{StaticResource OnMouseMove1}"/>
+            </EventTrigger>
+        </ControlTemplate.Triggers-->
+    </ControlTemplate>
+    <ControlTemplate x:Key="table_btn_next_last" TargetType="{x:Type Button}">
+        <Grid Width="16" Height="16">
+            <Image x:Name="next_last_normal" Source="Images\next-last.png" Stretch="UniformToFill" />
+            <Image x:Name="next_last_over" Source="Images\next-last.png" Stretch="UniformToFill" Opacity="0"/>
+            <Image x:Name="next_last_down" Source="Images\next-last.png" Stretch="UniformToFill" Opacity="0" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="Opacity" TargetName="next_last_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Opacity" TargetName="next_last_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Opacity" TargetName="next_last_down" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Opacity" TargetName="next_last_over" Value="1"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+        <!--ControlTemplate.Triggers>
+            <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                <BeginStoryboard Storyboard="{StaticResource OnMouseEnter1}"/>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                <BeginStoryboard x:Name="OnMouseMove1_BeginStoryboard1" Storyboard="{StaticResource OnMouseMove1}"/>
+            </EventTrigger>
+        </ControlTemplate.Triggers-->
+    </ControlTemplate>
+    <ControlTemplate x:Key="table_btn_refresh" TargetType="{x:Type Button}">
+        <Grid Width="16" Height="16">
+            <Image x:Name="refresh_normal" Source="Images\refresh.png" Stretch="UniformToFill" />
+            <Image x:Name="refresh_over" Source="Images\refresh.png" Stretch="UniformToFill" Opacity="0"/>
+            <Image x:Name="refresh_down" Source="Images\refresh.png" Stretch="UniformToFill" Opacity="0" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="Opacity" TargetName="refresh_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Opacity" TargetName="refresh_over" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Opacity" TargetName="refresh_down" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Opacity" TargetName="refresh_over" Value="1"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+        <!--ControlTemplate.Triggers>
+            <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                <BeginStoryboard Storyboard="{StaticResource OnMouseEnter1}"/>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                <BeginStoryboard x:Name="OnMouseMove1_BeginStoryboard1" Storyboard="{StaticResource OnMouseMove1}"/>
+            </EventTrigger>
+        </ControlTemplate.Triggers-->
+    </ControlTemplate>
+</ResourceDictionary>

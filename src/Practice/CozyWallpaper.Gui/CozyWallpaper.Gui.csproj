@@ -33,7 +33,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo_exe.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\..\Public\Common.Logger\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\sln\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -60,8 +66,13 @@
     <Compile Include="Command\DelegateCommand.cs" />
     <Compile Include="Storage\WallpaperStorage.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Buttons\BackButton.cs" />
+    <Compile Include="ViewModels\Buttons\Button.cs" />
+    <Compile Include="ViewModels\Buttons\UpdateButton.cs" />
+    <Compile Include="ViewModels\Buttons\NextButton.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.Storage.cs" />
+    <Compile Include="ViewModels\Menus.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -105,12 +116,37 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Public\Common.Logger\Common.Logger.csproj">
+      <Project>{c2c92005-3adc-49e2-85a2-8bd031190485}</Project>
+      <Name>Common.Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Public\MMS.UI\MMS.UI.csproj">
+      <Project>{b461142d-ed6d-4a55-a3d5-612d6e58eea5}</Project>
+      <Name>MMS.UI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyWallpaper.Core\CozyWallpaper.Core.csproj">
       <Project>{e76123bf-57a8-4906-b9db-e31328b2133f}</Project>
       <Name>CozyWallpaper.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\folder.png" />
+    <Resource Include="Images\header.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\logo_exe.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo_exe.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

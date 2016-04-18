@@ -49,6 +49,8 @@
     <Compile Include="WallpaperNative.cs" />
     <Compile Include="WallpaperNative.IO.cs" />
     <Compile Include="WallpaperNative.Utils.cs" />
+    <Compile Include="WallpaperWebSite\WallpaperWebSite.cs" />
+    <Compile Include="WallpaperWebSite\ZhuokuWallpaperWebSite.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

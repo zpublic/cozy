@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:default="clr-namespace:MMS.UI.Default">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/MMS.UI;Component/Default/Window/Window.xaml" />
+        <ResourceDictionary Source="/MMS.UI;Component/Default/Menu/Menu.xaml" />
+        <ResourceDictionary Source="/MMS.UI;Component/Default/Connection/Connection.xaml" />
+        <ResourceDictionary Source="/MMS.UI;Component/Default/Explorer/Explorer.xaml" />
+        <ResourceDictionary Source="/MMS.UI;Component/Default/Tabs/Tabs.xaml" />
+        <ResourceDictionary Source="/MMS.UI;Component/Default/Table/Table.xaml" />
+        <ResourceDictionary Source="/MMS.UI;Component/Default/Edit/Edit.xaml" />
+        <ResourceDictionary Source="/MMS.UI;Component/Default/Navigation/Navigation.xaml" />
+        <ResourceDictionary Source="/MMS.UI;Component/Default/ImageBox/ImageBox.xaml" />
+        <ResourceDictionary Source="/MMS.UI;Component/Default/PointSet/PointSet.xaml" />
+        <ResourceDictionary Source="/MMS.UI;Component/Default/Message/Message.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <Style TargetType="{x:Type default:Window}" BasedOn="{StaticResource DefaultWindowStyle}"/>
+    <Style TargetType="{x:Type default:Menu}" BasedOn="{StaticResource DefaultMenuStyle}"/>
+    <Style TargetType="{x:Type default:Connection}" BasedOn="{StaticResource ConnectionStyle}" />
+    <Style TargetType="{x:Type default:Explorer}" BasedOn="{StaticResource ExplorerStyle}" />
+    <Style TargetType="{x:Type default:Tabs}" BasedOn="{StaticResource TabsStyle}" />
+    <Style TargetType="{x:Type default:Table}" BasedOn="{StaticResource TableStyle}" />
+    <Style TargetType="{x:Type default:Edit}" BasedOn="{StaticResource EditStyle}" />
+    <Style TargetType="{x:Type default:Navigation}" BasedOn="{StaticResource NavigationStyle}" />
+    <Style TargetType="{x:Type default:ImageBox}" BasedOn="{StaticResource ImageBoxStyle}" />
+    <Style TargetType="{x:Type default:PointSet}" BasedOn="{StaticResource PointSetStyle}" />
+    <Style TargetType="{x:Type default:Message}" BasedOn="{StaticResource MessageStyle}" />
+</ResourceDictionary>

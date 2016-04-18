@@ -7,6 +7,8 @@ using System.IO;
 using CozyWallpaper.Gui.Storage;
 using CozyWallpaper.Gui.Model;
 using System.Windows.Media.Imaging;
+using CozyWallpaper.Core;
+using MMS.UI.Default;
 
 namespace CozyWallpaper.Gui.ViewModels
 {
@@ -50,21 +52,21 @@ namespace CozyWallpaper.Gui.ViewModels
 
             using (FileStream fs = new FileStream(JsonFileName, FileMode.Open, FileAccess.Read))
             {
-                var reader  = new StreamReader(fs);
-                var data    = reader.ReadToEnd();
+                var reader = new StreamReader(fs);
+                var data = reader.ReadToEnd();
                 Storage.ReadStorageJosn(data);
             }
 
             foreach (var obj in Storage.GetWallpapers())
             {
                 var abspath = Path.GetFullPath(ImagePath + obj.FileName + obj.Extension);
-                var img     = new BitmapImage(new Uri(abspath));
+                var img = new BitmapImage(new Uri(abspath));
                 lock (objLocker)
                 {
-                    ImageDictionary[obj.Url]    = img;
-                    UrlSet[obj.Url]             = obj.Titile;
+                    ImageDictionary[obj.Url] = img;
+                    UrlSet[obj.Url] = obj.Titile;
                 }
-                WallpaperList.Add(new WallpaperInfo() { Url = obj.Url, Title = obj.Titile });
+                //WallpaperList.Add(new WallpaperInfo() { Url = obj.Url, Title = obj.Titile });
             }
         }
     }

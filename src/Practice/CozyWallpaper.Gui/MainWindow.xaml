@@ -1,12 +1,10 @@
-﻿<Window x:Class="CozyWallpaper.Gui.MainWindow"
+﻿<src:Window x:Class="CozyWallpaper.Gui.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:viewmodel="clr-namespace:CozyWallpaper.Gui.ViewModels"
-        Title="CozyWallpaper" Height="350" Width="525">
-    <Window.DataContext>
-        <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
-    </Window.DataContext>
-    <Grid>
+        xmlns:src="clr-namespace:MMS.UI.Default;assembly=MMS.UI"
+        Title="壁纸管家" Height="580" Width="820" Icon="/Images/logo.ico">
+
+    <!--<Grid>
         <StackPanel>
             <Button Content="Update" Height="20" Command="{Binding UpdateCommand}"></Button>
             <StackPanel Orientation="Horizontal" Height="300">
@@ -24,5 +22,41 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
+    </Grid>-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Image Source="/Images/header.png" Stretch="Fill" Grid.Row="0" />
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <src:Navigation Grid.Column="0" Source="{Binding Menu}" />
+            <!--<Frame Grid.Column="1" NavigationUIVisibility="Hidden" Background="#ffffff" Source="{Binding CurrentPage}" />-->
+            <Grid Grid.Column="1" Background="#fff">
+                <src:ImageBox Source="{Binding WallpaperList}" />
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2" Background="#ffffff">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" BorderBrush="#FFC6C6C6" BorderThickness="0,0,1,0" />
+            <Grid Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90" />
+                    <ColumnDefinition Width="90" />
+                    <ColumnDefinition Width="90" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Background="#ffffff" VerticalAlignment="Center" HorizontalAlignment="Right" Width="80" Height="25" BorderBrush="#FFABABAB" BorderThickness="1" Content="{Binding BackButton.Text}" IsEnabled="{Binding BackButton.IsEnabled}" Visibility="{Binding BackButton.ButtonVisiblity}" Command="{Binding BackButton.Command}" Cursor="Hand" />
+                <Button Grid.Column="1" Background="#065999" VerticalAlignment="Center" HorizontalAlignment="Right" Width="80" Height="25" BorderBrush="#06599900" BorderThickness="1" Content="{Binding NextButton.Text}" IsEnabled="{Binding NextButton.IsEnabled}" Visibility="{Binding NextButton.ButtonVisiblity}" Command="{Binding NextButton.Command}" Cursor="Hand" Foreground="#ffffff" />
+                <Button Grid.Column="2" Background="#ffffff" VerticalAlignment="Center" HorizontalAlignment="Right" Width="80" Height="25" BorderBrush="#FFABABAB" BorderThickness="1" Content="{Binding UpdateButton.Text}" IsEnabled="{Binding UpdateButton.IsEnabled}" Visibility="{Binding UpdateButton.ButtonVisiblity}" Command="{Binding UpdateButton.Command}" Cursor="Hand" />
+            </Grid>
+        </Grid>
     </Grid>
-</Window>
+</src:Window>

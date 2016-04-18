@@ -1,0 +1,40 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MMS.UI.Default">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary>
+            <local:StatusConvert x:Key="StatusConvert" />
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <local:BorderConvert x:Key="BorderConvert" />
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+
+    <ControlTemplate x:Key="NavigationTemplate" TargetType="{x:Type local:Navigation}">
+        <Grid Background="#ffffff">
+            <Border BorderThickness="0,0,1,0" BorderBrush="#FFC6C6C6">
+                <ItemsControl Margin="0,10,0,0" x:Name="menus">
+                    <ItemsControl.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Path=Children}">
+                            <Grid Height="30" Margin="0,5,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" BorderThickness="{Binding Status,Converter={StaticResource BorderConvert}}" BorderBrush="#FFC6C6C6" >
+                                    <Image Source="{Binding Status, Converter={StaticResource StatusConvert}}" Height="12" Width="12" HorizontalAlignment="Left" Margin="10,0,0,0" />
+                                </Border>
+                                <Border Grid.Column="1" BorderThickness="{Binding Status,Converter={StaticResource BorderConvert}}" BorderBrush="#FFC6C6C6">
+                                    <TextBlock FontFamily="Segoe UI" FontSize="13" TextWrapping="Wrap" MaxWidth="200"  Margin="5,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Text}" Foreground="#FF444444" Opacity="1"/>
+                                </Border>
+                            </Grid>
+                        </HierarchicalDataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <Style x:Key="NavigationStyle" TargetType="{x:Type local:Navigation}">
+        <Setter Property="Template" Value="{StaticResource NavigationTemplate}" />
+    </Style>
+</ResourceDictionary>
