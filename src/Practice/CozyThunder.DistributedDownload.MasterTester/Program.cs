@@ -132,8 +132,8 @@ namespace CozyThunder.DistributedDownload.MasterTester
             master.Start(IPAddress.Any, 48360, new MasterPeerListener());
             List<KeyValuePair<string, int>> peerList = new List<KeyValuePair<string, int>>()
             {
-                new KeyValuePair<string, int>("10.20.208.27", 48234),
-                new KeyValuePair<string, int>("10.20.208.27", 48235),
+                new KeyValuePair<string, int>("127.0.0.1", 48360),
+                //new KeyValuePair<string, int>("10.20.208.27", 48235),
                 //new KeyValuePair<string, int>("10.20.208.27", 48362),
                 //new KeyValuePair<string, int>("10.20.221.119", 48360),
                 //new KeyValuePair<string, int>("10.20.208.30", 48360), //wyf

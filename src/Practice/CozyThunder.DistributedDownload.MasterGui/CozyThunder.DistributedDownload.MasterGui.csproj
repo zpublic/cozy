@@ -77,6 +77,7 @@
     <Compile Include="Controls\IBlockCollection.cs" />
     <Compile Include="MessageCenter\GlobalMessageCenter.cs" />
     <Compile Include="Models\Comparer\PeerInfoComparer.cs" />
+    <Compile Include="Models\Listener\MainMasterListener.cs" />
     <Compile Include="Models\PeerInfo.cs" />
     <Compile Include="Models\PeerRange.cs" />
     <Compile Include="Models\PeerStatus.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="ViewModels\CreateTaskWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.Command.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.Message.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.Network.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.Peer.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.Task.cs" />
@@ -145,7 +147,24 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CozyThunder.Botnet\CozyThunder.Botnet.csproj">
+      <Project>{233f2233-f10f-43f6-bee8-f8207a69bb04}</Project>
+      <Name>CozyThunder.Botnet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyThunder.HttpDownload\CozyThunder.HttpDownload.csproj">
+      <Project>{c8dbb6cf-a562-403c-ae95-6974f65e9043}</Project>
+      <Name>CozyThunder.HttpDownload</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyThunder.Protocol\CozyThunder.Protocol.csproj">
+      <Project>{5494a100-2b93-4683-a1f1-31bcf2671c08}</Project>
+      <Name>CozyThunder.Protocol</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyThunder.Schedule\CozyThunder.Schedule.csproj">
+      <Project>{62146934-2f44-4507-a351-ccb816d12a57}</Project>
+      <Name>CozyThunder.Schedule</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
