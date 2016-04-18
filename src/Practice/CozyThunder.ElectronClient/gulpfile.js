@@ -14,10 +14,13 @@ var gulp = require('gulp'),
  * Build the app and watch for source file changes.
  ******************************************************************************/
 gulp.task('watch', ['copy.html'], function(done) {
-    watch('www/app/**/*.html', function() {
+    watch('app/**/*.html', function() {
         gulp.start('copy.html');
     });
-    bundle(true, done);
+
+    watch('app/**/*.ts', function() {
+        bundle(false, done);
+    });
 });
 
 

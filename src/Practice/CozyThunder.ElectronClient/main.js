@@ -23,6 +23,9 @@ function createWindow() {
     // Open the DevTools.
     // mainWindow.webContents.openDevTools();
 
+    //隐藏菜单
+    //mainWindow.setMenu(null);
+
     // Emitted when the window is closed.
     mainWindow.on('closed', function() {
         // Dereference the window object, usually you would store windows
