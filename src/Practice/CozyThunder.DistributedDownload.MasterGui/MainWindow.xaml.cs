@@ -29,7 +29,11 @@ namespace CozyThunder.DistributedDownload.MasterGui
             InitializeComponent();
 
             this.Loaded += (s, e) => { RegistMessage(); };
-            this.Closed += (s, e) => { UnregistMessage(); };
+            this.Closed += (s, e) => 
+            {
+                GlobalMessageCenter.Instance.Send("App.Clear");
+                UnregistMessage();
+            };
         }
 
         private void RegistMessage()

@@ -1,6 +1,9 @@
-﻿using CozyThunder.DistributedDownload.MasterGui.Controls.Block;
+﻿using CozyThunder.Botnet.Common;
+using CozyThunder.DistributedDownload.MasterGui.Controls.Block;
 using CozyThunder.DistributedDownload.MasterGui.MessageCenter;
 using CozyThunder.DistributedDownload.MasterGui.Models;
+using CozyThunder.Protocol.FileBlock;
+using CozyThunder.Schedule;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,10 +28,51 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             set { Set(ref _Blocks, value); }
         }
 
+        public DownloadTask CurrentTask { get; set; }
+
+        private object lockObject = new object();
         public void OnCreateTask()
         {
             var task = new DownloadTaskInfo();
             GlobalMessageCenter.Instance.Send("CreateDownloadTask", task);
+
+            var filesize = HttpDownload.HttpFileSplit.TryGetContentLength(task.RemotePath);
+            if(filesize <= 0)
+            {
+                GlobalMessageCenter.Instance.Send("TaskError.Size");
+                return;
+            }
+
+            var downloadTask = new DownloadTask()
+            {
+                RemotePath  = task.RemotePath,
+                LocalPath   = task.LocalPath,
+                CfgPath     = task.LocalPath + ".cfg",
+                BlockSize   = 3 * 1024 * 1024,
+            };
+
+            if(downloadTask.InitTask())
+            {
+                CurrentTask = downloadTask;
+                CurrentRemotePath = CurrentTask.RemotePath;
+            }
+
+            foreach(var info in PeerInfoList)
+            {
+                var peer = PeerInfo2Peer(info);
+
+                subTask_.Add(peer.EndPoint.ToString(), CurrentTask.GetSubTask());
+                i_.Add(peer.EndPoint.ToString(), 0);
+                buff_.Add(peer.EndPoint.ToString(), new byte[1024 * 1024 * 3]);
+                sbuff_.Add(peer.EndPoint.ToString(), new byte[1024 * 1024 * 4]);
+                sbufflen_.Add(peer.EndPoint.ToString(), 0);
+
+                if (subTask_[peer.EndPoint.ToString()] != null)
+                {
+                    FileBlockTask f = new FileBlockTask(subTask_[peer.EndPoint.ToString()]);
+                    master.Send(peer, f.Encode());
+                }
+            }
         }
 
         public void OnPauseTask()
@@ -42,16 +86,6 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
         }
 
         public void OnCalcleTask()
-        {
-
-        }
-
-        public void OnEnableDistributedCommand()
-        {
-
-        }
-
-        public void OnDisableDistributedCommand()
         {
 
         }
