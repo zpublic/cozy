@@ -1,4 +1,5 @@
-﻿using CozyThunder.DistributedDownload.MasterGui.MessageCenter;
+﻿using CozyThunder.Botnet.Common;
+using CozyThunder.DistributedDownload.MasterGui.MessageCenter;
 using CozyThunder.DistributedDownload.MasterGui.Models;
 using CozyThunder.DistributedDownload.MasterGui.Models.Comparer;
 using System;
@@ -49,7 +50,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             {
                 Address = Address,
                 Port = Port,
-                Status = PeerStatus.Free,
+                Status = PeerStatus.Unknow,
                 Range = PeerRange.Empty,
             };
 
@@ -89,12 +90,25 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
 
         public void OnConnectPeer()
         {
-
+            var peer = PeerInfo2Peer(SelectedInfo);
+            master.Connect(peer);
         }
 
         public void OnDisconnectPeer()
         {
+            var peer = PeerInfo2Peer(SelectedInfo);
+            master.DisConnect(peer);
+        }
 
+        private static Peer PeerInfo2Peer(PeerInfo info)
+        {
+            IPAddress addr;
+            if (IPAddress.TryParse(info.Address, out addr))
+            {
+                return new Peer() { EndPoint = new IPEndPoint(addr, info.Port) };
+            }
+
+            return null;
         }
     }
 }

@@ -119,16 +119,16 @@
             <ListView Grid.Row="4" ItemsSource="{Binding PeerInfoList}" Margin="2" SelectedItem="{Binding SelectedInfo, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBox IsReadOnly="True" BorderThickness="0" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                            <TextBox.Text>
+                        <TextBlock>
+                            <TextBlock.Text>
                                 <MultiBinding StringFormat=" {0} : {1} {2} {3}">
                                     <Binding Path="Address"></Binding>
                                     <Binding Path="Port"></Binding>
                                     <Binding Path="Status"></Binding>
                                     <Binding Path="Range"></Binding>
                                 </MultiBinding>
-                            </TextBox.Text>
-                        </TextBox>
+                            </TextBlock.Text>
+                        </TextBlock>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
