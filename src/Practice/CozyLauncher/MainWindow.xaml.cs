@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -136,7 +136,7 @@ namespace CozyLauncher
             if (textbox != null)
             {
                 var text = textbox.Text.Trim();
-                if (!string.IsNullOrWhiteSpace(text))
+                if (text.length > 0)
                 {
                     this.ViewModel.QueryCommand.Execute(text);
                 }
