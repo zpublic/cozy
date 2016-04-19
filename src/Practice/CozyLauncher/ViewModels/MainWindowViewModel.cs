@@ -97,12 +97,12 @@ namespace CozyLauncher.ViewModels
             }
         }
 
-        private ICommand _DwonCommand;
+        private ICommand _DownCommand;
         public ICommand DownCommand
         {
             get
             {
-                return _DwonCommand = _DwonCommand ?? new DelegateCommand(x =>
+                return _DownCommand = _DownCommand ?? new DelegateCommand(x =>
                 {
                     if (SelectedResultIndex == -1)
                     {

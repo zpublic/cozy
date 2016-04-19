@@ -136,7 +136,7 @@ namespace CozyLauncher
             if (textbox != null)
             {
                 var text = textbox.Text.Trim();
-                if (!string.IsNullOrWhiteSpace(text))
+                if (text.Length > 0)
                 {
                     this.ViewModel.QueryCommand.Execute(text);
                 }
