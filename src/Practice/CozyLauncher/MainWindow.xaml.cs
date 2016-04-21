@@ -133,7 +133,7 @@ namespace CozyLauncher
         private void OnQueryTextChanged(object sender, TextChangedEventArgs e)
         {
             var textbox = sender as TextBox;
-            if (textbox != null)
+            //if (textbox != null)
             {
                 var text = textbox.Text.Trim();
                 if (text.Length > 0)
