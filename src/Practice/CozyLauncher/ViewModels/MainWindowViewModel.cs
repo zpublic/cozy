@@ -53,7 +53,7 @@ namespace CozyLauncher.ViewModels
                 return _QueryCommand = _QueryCommand ?? new DelegateCommand(x =>
                 {
                     var text = x as string;
-                    if (text != null && text != "")
+                    if (text.Length > 0)
                     {
                         Query q = new Query();
                         q.RawQuery = text;
@@ -82,17 +82,9 @@ namespace CozyLauncher.ViewModels
             {
                 return _UpCommand = _UpCommand ?? new DelegateCommand(x =>
                 {
-                    if (SelectedResultIndex == -1)
-                    {
+                    SelectedResultIndex--;
+                    if (SelectedResultIndex < 0)
                         SelectedResultIndex = 0;
-                    }
-                    else
-                    {
-                        if (SelectedResultIndex > 0 && ResultListView.Count > 1)
-                        {
-                            SelectedResultIndex--;
-                        }
-                    }
                 });
             }
         }
@@ -104,17 +96,9 @@ namespace CozyLauncher.ViewModels
             {
                 return _DownCommand = _DownCommand ?? new DelegateCommand(x =>
                 {
-                    if (SelectedResultIndex == -1)
-                    {
-                        SelectedResultIndex = 0;
-                    }
-                    else
-                    {
-                        if (SelectedResultIndex < ResultListView.Count - 1 && ResultListView.Count > 1)
-                        {
-                            SelectedResultIndex++;
-                        }
-                    }
+                    SelectedResultIndex++;
+                    if (SelectedResultIndex > ResultListView.Count - 1)
+                        SelectedResultIndex = ResultListView.Count - 1;
                 });
             }
         }
@@ -193,10 +177,7 @@ namespace CozyLauncher.ViewModels
 
             if (results.Count > 0)
             {
-                if (!IsResultViewVisiable)
-                {
-                    IsResultViewVisiable = true;
-                }
+                IsResultViewVisiable = true;
 
                 ResultListView.AddRange(results);
 
