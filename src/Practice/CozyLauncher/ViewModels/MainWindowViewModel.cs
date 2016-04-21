@@ -53,7 +53,7 @@ namespace CozyLauncher.ViewModels
                 return _QueryCommand = _QueryCommand ?? new DelegateCommand(x =>
                 {
                     var text = x as string;
-                    if (text.Length > 0)
+                    if (!String.IsNullOrEmpty(text))
                     {
                         Query q = new Query();
                         q.RawQuery = text;
