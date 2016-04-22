@@ -1,0 +1,22 @@
+{
+  "name": "cozy_thunder",
+  "description": "",
+  "main": "main.js",
+  "authors": [
+    "max"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "semantic": "semantic-ui#~2.1.8"
+  }
+}
