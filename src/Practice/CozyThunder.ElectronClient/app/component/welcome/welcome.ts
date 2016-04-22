@@ -14,4 +14,8 @@ export class Welcome {
         this.name = "hello";
         this.names = ["Ari", "Carlos", "Felipe", "Nate"];
     }
+
+    addArticle(title: HTMLInputElement, link: HTMLInputElement): void {
+        console.log(`Adding article title: ${title.value} and link: ${link.value}`);
+    }
 }
