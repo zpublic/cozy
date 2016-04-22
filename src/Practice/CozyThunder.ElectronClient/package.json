@@ -8,7 +8,7 @@
   "devDependencies": {
     "awesome-typescript-loader": "^0.16.2",
     "del": "^2.2.0",
-    "electron-prebuilt": "^0.37.5",
+    "electron-prebuilt": "^0.37.6",
     "gulp": "^3.9.1",
     "gulp-typescript": "^2.12.2",
     "gulp-watch": "^4.3.5",
@@ -20,10 +20,10 @@
   },
   "dependencies": {
     "angular2": "2.0.0-beta.13",
-    "systemjs": "0.19.25",
     "es6-shim": "^0.35.0",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.2",
+    "systemjs": "0.19.25",
     "zone.js": "0.6.6"
   }
 }
