@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:s="clr-namespace:CozyDesigner.Controls">
+                    xmlns:s="clr-namespace:CozyDesigner.Resources.Controls">
     <Style TargetType="{x:Type s:Toolbox}">
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="Focusable" Value="False"/>

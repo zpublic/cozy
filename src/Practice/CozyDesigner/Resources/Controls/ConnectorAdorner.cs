@@ -5,7 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Controls;
 
-namespace CozyDesigner.Controls
+namespace CozyDesigner.Resources.Controls
 {
     public class ConnectorAdorner : Adorner
     {

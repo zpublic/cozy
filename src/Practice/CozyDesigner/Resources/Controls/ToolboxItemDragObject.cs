@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace CozyDesigner.Controls
+namespace CozyDesigner.Resources.Controls
 {
     // Wraps info of the dragged object into a class
     public class ToolboxItemDragObject

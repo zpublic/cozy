@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace CozyDesigner.Controls
+namespace CozyDesigner.Resources.Controls
 {
     public partial class DesignerCanvas
     {

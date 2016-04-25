@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace CozyDesigner.Controls
+namespace CozyDesigner.Resources.Controls
 {
     // Implements ItemsControl for ToolboxItems
     public class Toolbox : ItemsControl

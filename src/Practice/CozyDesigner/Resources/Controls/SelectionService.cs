@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CozyDesigner.Controls
+namespace CozyDesigner.Resources.Controls
 {
     internal class SelectionService
     {

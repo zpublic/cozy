@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace CozyDesigner.Controls
+namespace CozyDesigner.Resources.Controls
 {
     // Note: I couldn't find a useful open source library that does
     // orthogonal routing so started to write something on my own.

@@ -7,7 +7,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace CozyDesigner.Controls
+namespace CozyDesigner.Resources.Controls
 {
     public class Connection : Control, ISelectable, INotifyPropertyChanged
     {

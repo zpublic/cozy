@@ -58,19 +58,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Controls\Connection.xaml">
+    <Page Include="Resources\Controls\Connection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\DesignerItem.xaml">
+    <Page Include="Resources\Controls\DesignerItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Toolbox.xaml">
+    <Page Include="Resources\Controls\Toolbox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\ToolboxItem.xaml">
+    <Page Include="Resources\Controls\ToolboxItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -82,24 +82,24 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\Connection.cs" />
-    <Compile Include="Controls\ConnectionAdorner.cs" />
-    <Compile Include="Controls\Connector.cs" />
-    <Compile Include="Controls\ConnectorAdorner.cs" />
-    <Compile Include="Controls\DesignerCanvas.Commands.cs" />
-    <Compile Include="Controls\DesignerCanvas.cs" />
-    <Compile Include="Controls\DesignerItem.cs" />
-    <Compile Include="Controls\DragThumb.cs" />
-    <Compile Include="Controls\IGroupable.cs" />
-    <Compile Include="Controls\ISelectable.cs" />
-    <Compile Include="Controls\PathFinder.cs" />
-    <Compile Include="Controls\RelativePositionPanel.cs" />
-    <Compile Include="Controls\ResizeThumb.cs" />
-    <Compile Include="Controls\RubberbandAdorner.cs" />
-    <Compile Include="Controls\SelectionService.cs" />
-    <Compile Include="Controls\Toolbox.cs" />
-    <Compile Include="Controls\ToolboxItem.cs" />
-    <Compile Include="Controls\ToolboxItemDragObject.cs" />
+    <Compile Include="Resources\Controls\Connection.cs" />
+    <Compile Include="Resources\Controls\ConnectionAdorner.cs" />
+    <Compile Include="Resources\Controls\Connector.cs" />
+    <Compile Include="Resources\Controls\ConnectorAdorner.cs" />
+    <Compile Include="Resources\Controls\DesignerCanvas.Commands.cs" />
+    <Compile Include="Resources\Controls\DesignerCanvas.cs" />
+    <Compile Include="Resources\Controls\DesignerItem.cs" />
+    <Compile Include="Resources\Controls\DragThumb.cs" />
+    <Compile Include="Resources\Controls\IGroupable.cs" />
+    <Compile Include="Resources\Controls\ISelectable.cs" />
+    <Compile Include="Resources\Controls\PathFinder.cs" />
+    <Compile Include="Resources\Controls\RelativePositionPanel.cs" />
+    <Compile Include="Resources\Controls\ResizeThumb.cs" />
+    <Compile Include="Resources\Controls\RubberbandAdorner.cs" />
+    <Compile Include="Resources\Controls\SelectionService.cs" />
+    <Compile Include="Resources\Controls\Toolbox.cs" />
+    <Compile Include="Resources\Controls\ToolboxItem.cs" />
+    <Compile Include="Resources\Controls\ToolboxItemDragObject.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

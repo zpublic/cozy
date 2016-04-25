@@ -7,7 +7,7 @@ using System.Windows.Input;
 using System.Windows.Markup;
 using System.Xml;
 
-namespace CozyDesigner.Controls
+namespace CozyDesigner.Resources.Controls
 {
     public partial class DesignerCanvas : Canvas
     {
