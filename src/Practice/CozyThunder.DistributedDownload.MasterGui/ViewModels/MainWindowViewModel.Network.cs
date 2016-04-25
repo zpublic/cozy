@@ -42,7 +42,6 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
                 if (info != null)
                 {
                     info.Status = PeerStatus.Free;
-                    // TODO NotifyChanged;
                 }
             }
         }
@@ -58,7 +57,6 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
                 if (info != null)
                 {
                     info.Status = PeerStatus.Unknow;
-                    // TODO NotifyChanged;
                 }
             }
         }

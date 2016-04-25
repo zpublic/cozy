@@ -19,17 +19,17 @@ namespace CozyLauncher.Core.Plugin
             PluginInitContext context = new PluginInitContext();
             context.Api = api;
 
-            var PluginFilleList = Directory.GetFiles(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location))
+            var PluginFileList = Directory.GetFiles(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location))
                 .Where(x => Path.GetFileName(x).StartsWith("CozyLauncher.Plugin.") && x.EndsWith(".dll"));
-            foreach (var p in PluginFilleList)
+            foreach (var p in PluginFileList)
             {
                 IPluginLoader pl = new CSharpPluginLoader(p);
                 plugins_.AddRange(pl.GetPlugins(context).AsEnumerable());
             }
 
-            var LuaPluginFilleList = Directory.GetFiles(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location))
+            var LuaPluginFileList = Directory.GetFiles(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location))
                 .Where(x => Path.GetFileName(x).StartsWith("CozyLauncher.Plugin.") && x.EndsWith(".lua"));
-            foreach (var p in LuaPluginFilleList)
+            foreach (var p in LuaPluginFileList)
             {
                 IPluginLoader pl = new LuaPluginLoader(p);
                 plugins_.AddRange(pl.GetPlugins(context).AsEnumerable());
