@@ -76,6 +76,7 @@
     <Compile Include="Controls\IBlock.cs" />
     <Compile Include="Controls\IBlockCollection.cs" />
     <Compile Include="MessageCenter\GlobalMessageCenter.cs" />
+    <Compile Include="Common\NotifyObject.cs" />
     <Compile Include="Models\Comparer\PeerInfoComparer.cs" />
     <Compile Include="Models\Listener\MainMasterListener.cs" />
     <Compile Include="Models\PeerInfo.cs" />
