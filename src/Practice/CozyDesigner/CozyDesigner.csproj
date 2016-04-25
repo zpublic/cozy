@@ -58,6 +58,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\Connection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DesignerItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Toolbox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -74,6 +82,21 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\Connection.cs" />
+    <Compile Include="Controls\ConnectionAdorner.cs" />
+    <Compile Include="Controls\Connector.cs" />
+    <Compile Include="Controls\ConnectorAdorner.cs" />
+    <Compile Include="Controls\DesignerCanvas.Commands.cs" />
+    <Compile Include="Controls\DesignerCanvas.cs" />
+    <Compile Include="Controls\DesignerItem.cs" />
+    <Compile Include="Controls\DragThumb.cs" />
+    <Compile Include="Controls\IGroupable.cs" />
+    <Compile Include="Controls\ISelectable.cs" />
+    <Compile Include="Controls\PathFinder.cs" />
+    <Compile Include="Controls\RelativePositionPanel.cs" />
+    <Compile Include="Controls\ResizeThumb.cs" />
+    <Compile Include="Controls\RubberbandAdorner.cs" />
+    <Compile Include="Controls\SelectionService.cs" />
     <Compile Include="Controls\Toolbox.cs" />
     <Compile Include="Controls\ToolboxItem.cs" />
     <Compile Include="Controls\ToolboxItemDragObject.cs" />
@@ -97,7 +120,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Styles\ScrollBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\Shared.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\ToolBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -3,22 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CozyDesigner"
+        xmlns:c="clr-namespace:CozyDesigner.Controls"
         mc:Ignorable="d"
         Title="CozyDesigner" Height="850" Width="1000">
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Styles/Expander.xaml"/>
-                <ResourceDictionary Source="Resources/Styles/GroupBox.xaml"/>
-                <ResourceDictionary Source="Resources/CozyDesignerToolbar.xaml"/>
-                <ResourceDictionary Source="Controls/ToolBox.xaml"/>
-                <ResourceDictionary Source="Controls/ToolBoxItem.xaml"/>
-                <ResourceDictionary Source="Resources/Stencils/UseCaseDiagramStencil.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
-
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -46,6 +33,9 @@
             <GroupBox Header="设计面板" Grid.Column="1" Margin="3,0,0,0">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto"
                       VerticalScrollBarVisibility="Auto">
+                    <c:DesignerCanvas Focusable="true" x:Name="MyDesigner"
+                            Background="{StaticResource WindowBackgroundBrush}"
+                            Margin="10" FocusVisualStyle="{x:Null}" />
                 </ScrollViewer>
             </GroupBox>
         </Grid>
