@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Experiment", "Experiment", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyDesigner.DiagramTest", "..\src\Practice\CozyDesigner.DiagramTest\CozyDesigner.DiagramTest.csproj", "{7053632D-6E44-4DA6-A05A-0E849C8D5417}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyDesigner", "..\src\Practice\CozyDesigner\CozyDesigner.csproj", "{8BA87FDD-165B-4CE7-960A-5427EA805BB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{7053632D-6E44-4DA6-A05A-0E849C8D5417}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7053632D-6E44-4DA6-A05A-0E849C8D5417}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7053632D-6E44-4DA6-A05A-0E849C8D5417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BA87FDD-165B-4CE7-960A-5427EA805BB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BA87FDD-165B-4CE7-960A-5427EA805BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BA87FDD-165B-4CE7-960A-5427EA805BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BA87FDD-165B-4CE7-960A-5427EA805BB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
