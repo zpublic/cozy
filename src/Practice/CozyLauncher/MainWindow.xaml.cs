@@ -133,10 +133,10 @@ namespace CozyLauncher
         private void OnQueryTextChanged(object sender, TextChangedEventArgs e)
         {
             var textbox = sender as TextBox;
-            if (textbox != null)
+            //if (textbox != null)
             {
-                var text = textbox.Text.Trim();
-                if (!string.IsNullOrWhiteSpace(text))
+                var text = textbox.Text;//.Trim();
+                if (!String.IsNullOrEmpty(text))
                 {
                     this.ViewModel.QueryCommand.Execute(text);
                 }
