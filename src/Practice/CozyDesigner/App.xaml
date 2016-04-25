@@ -11,12 +11,11 @@
                 <ResourceDictionary Source="Resources/Styles/GroupBox.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/ScrollBar.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/ToolBar.xaml"/>
-                <ResourceDictionary Source="Resources/CozyDesignerToolbar.xaml"/>
+                <ResourceDictionary Source="Resources/Stencils/UseCaseDiagramStencil.xaml"/>
                 <ResourceDictionary Source="Controls/ToolBox.xaml"/>
                 <ResourceDictionary Source="Controls/ToolBoxItem.xaml"/>
                 <ResourceDictionary Source="Controls/Connection.xaml"/>
                 <ResourceDictionary Source="Controls/DesignerItem.xaml"/>
-                <ResourceDictionary Source="Resources/Stencils/UseCaseDiagramStencil.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
