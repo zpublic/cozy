@@ -42,6 +42,8 @@
                 <Run Text="hugewave"/>
                 <LineBreak/>
                 <Run Text="Kevin"/>
+                <LineBreak/>
+                <Run Text="Yao"/>
             </TextBlock>
             <Button Content="确定" Margin="100,15" Click="Button_Click"/>
         </StackPanel>
