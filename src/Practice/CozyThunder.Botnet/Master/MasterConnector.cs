@@ -61,7 +61,6 @@ namespace CozyThunder.Botnet.Master
             }
             catch
             {
-
                 int a = 3;
             }
         }
