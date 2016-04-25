@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Net;
 using CozyThunder.DistributedDownload.MasterGui.Models.Listener;
+using System.Threading;
 
 namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
 {
@@ -13,7 +14,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
     {
         public MainWindowViewModel()
         {
-            master.Start(IPAddress.Any, 48360, new MainMasterListener());
+            master.Start(IPAddress.Any, 48234, new MainMasterListener());
             RegistMessage();
         }
 
@@ -21,6 +22,23 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
         {
             master.Stop();
             UnregistMessage();
+        }
+
+        private int _ProgressValue;
+        public int ProgressValue
+        {
+            get { return _ProgressValue; }
+            set { Set(ref _ProgressValue, value); }
+        }
+
+        private void AddProgress()
+        {
+            ProgressValue++;
+        }
+
+        private void ClearProgress()
+        {
+            ProgressValue = 0;
         }
     }
 }

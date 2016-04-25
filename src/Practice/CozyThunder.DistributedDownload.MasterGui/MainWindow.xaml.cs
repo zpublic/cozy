@@ -39,10 +39,12 @@ namespace CozyThunder.DistributedDownload.MasterGui
         private void RegistMessage()
         {
             GlobalMessageCenter.Instance.RegistMessage("CreateDownloadTask", OnCreateDownload);
+            GlobalMessageCenter.Instance.RegistMessage("MainWindow.UIThreadInvoke", OnUIThradInvoke);
         }
 
         private void UnregistMessage()
         {
+            GlobalMessageCenter.Instance.UnregistMessage("MainWindow.UIThreadInvoke", OnUIThradInvoke);
             GlobalMessageCenter.Instance.UnregistMessage("CreateDownloadTask", OnCreateDownload);
         }
 
@@ -53,6 +55,15 @@ namespace CozyThunder.DistributedDownload.MasterGui
             {
                 var window = new CreateTaskWindow(task);
                 window.ShowDialog();
+            }
+        }
+
+        private void OnUIThradInvoke(object arg1)
+        {
+            var act = arg1 as Action;
+            if(act != null)
+            {
+                this.Dispatcher.Invoke(act);
             }
         }
     }
