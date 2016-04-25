@@ -1,10 +1,11 @@
-﻿using System;
+﻿using CozyDesigner.Resources.Controls;
+using System;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
-namespace CozyDesigner.Resources.Controls
+namespace CozyDesigner.Resources.Thumbs
 {
     public class DragThumb : Thumb
     {

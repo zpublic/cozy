@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CozyDesigner.Resources.Controls
+namespace CozyDesigner.Logic.Select
 {
     public interface IGroupable
     {

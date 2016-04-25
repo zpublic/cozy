@@ -4,8 +4,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Controls;
+using CozyDesigner.Resources.Controls;
 
-namespace CozyDesigner.Resources.Controls
+namespace CozyDesigner.Resources.Adorners
 {
     public class ConnectorAdorner : Adorner
     {

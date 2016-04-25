@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CozyDesigner.Logic.Select;
+using CozyDesigner.Resources.Thumbs;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

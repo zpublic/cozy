@@ -83,20 +83,20 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Resources\Controls\Connection.cs" />
-    <Compile Include="Resources\Controls\ConnectionAdorner.cs" />
+    <Compile Include="Resources\Adorners\ConnectionAdorner.cs" />
     <Compile Include="Resources\Controls\Connector.cs" />
-    <Compile Include="Resources\Controls\ConnectorAdorner.cs" />
+    <Compile Include="Resources\Adorners\ConnectorAdorner.cs" />
     <Compile Include="Resources\Controls\DesignerCanvas.Commands.cs" />
     <Compile Include="Resources\Controls\DesignerCanvas.cs" />
     <Compile Include="Resources\Controls\DesignerItem.cs" />
-    <Compile Include="Resources\Controls\DragThumb.cs" />
-    <Compile Include="Resources\Controls\IGroupable.cs" />
-    <Compile Include="Resources\Controls\ISelectable.cs" />
+    <Compile Include="Resources\Thumbs\DragThumb.cs" />
+    <Compile Include="Logic\Select\IGroupable.cs" />
+    <Compile Include="Logic\Select\ISelectable.cs" />
     <Compile Include="Resources\Controls\PathFinder.cs" />
     <Compile Include="Resources\Controls\RelativePositionPanel.cs" />
-    <Compile Include="Resources\Controls\ResizeThumb.cs" />
-    <Compile Include="Resources\Controls\RubberbandAdorner.cs" />
-    <Compile Include="Resources\Controls\SelectionService.cs" />
+    <Compile Include="Resources\Thumbs\ResizeThumb.cs" />
+    <Compile Include="Resources\Adorners\RubberbandAdorner.cs" />
+    <Compile Include="Logic\Select\SelectionService.cs" />
     <Compile Include="Resources\Controls\Toolbox.cs" />
     <Compile Include="Resources\Controls\ToolboxItem.cs" />
     <Compile Include="Resources\Controls\ToolboxItemDragObject.cs" />

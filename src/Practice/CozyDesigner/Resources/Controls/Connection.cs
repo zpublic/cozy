@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CozyDesigner.Logic.Select;
+using CozyDesigner.Resources.Adorners;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;

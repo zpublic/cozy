@@ -1,5 +1,5 @@
 ﻿
-namespace CozyDesigner.Resources.Controls
+namespace CozyDesigner.Logic.Select
 {
     // Common interface for items that can be selected
     // on the DesignerCanvas; used by DesignerItem and Connection

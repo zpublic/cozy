@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CozyDesigner.Logic.Select;
+using CozyDesigner.Resources.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -6,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
-namespace CozyDesigner.Resources.Controls
+namespace CozyDesigner.Resources.Thumbs
 {
     public class ResizeThumb : Thumb
     {

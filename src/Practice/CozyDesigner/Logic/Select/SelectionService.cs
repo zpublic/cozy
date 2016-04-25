@@ -1,8 +1,9 @@
-﻿using System;
+﻿using CozyDesigner.Resources.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CozyDesigner.Resources.Controls
+namespace CozyDesigner.Logic.Select
 {
     internal class SelectionService
     {
