@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CozyThunder.DistributedDownload.MasterGui.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,29 +9,8 @@ using System.Threading.Tasks;
 
 namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : NotifyObject
     {
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        protected bool Set<T>(ref T field, T value, [CallerMemberName]string propertyName = "")
-        {
-            if (Equals(field, value))
-            {
-                return false;
-            }
-
-            field = value;
-            OnPropertyChanged(propertyName);
-            return true;
-        }
     }
 }
