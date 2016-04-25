@@ -50,8 +50,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type c:Connection}">
-                    <Canvas DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"
-                            ContextMenu="{StaticResource ConnectionContextMenu}">
+                    <Canvas DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
                         <Path Name="PART_ConnectionPath"
                               StrokeThickness="2"
                               Stroke="{StaticResource SolidBorderBrush}"
