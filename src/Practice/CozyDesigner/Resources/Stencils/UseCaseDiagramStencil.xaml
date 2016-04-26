@@ -4,58 +4,18 @@
                     xmlns:t="clr-namespace:CozyDesigner.Resources.Controls.Toolbox">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../CozyDesignerControlsStyle.xaml"/>
+        <ResourceDictionary Source="UseCaseDiagram/Actor.xaml"/>
+        <ResourceDictionary Source="UseCaseDiagram/UseCase.xaml"/>
+        <ResourceDictionary Source="UseCaseDiagram/Container.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    
-    <Brush x:Key="ItemStroke">#FFD69436</Brush>
-    <LinearGradientBrush x:Key="ItemBrush" StartPoint="0,0" EndPoint="0,1">
-        <LinearGradientBrush.GradientStops>
-            <GradientStop Color="#FAFBE9" Offset="0" />
-            <GradientStop Color="Orange" Offset="1" />
-        </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
-
-    <Brush x:Key="ItemStroke1">#ACADCD</Brush>
-    <LinearGradientBrush x:Key="ItemBrush1" StartPoint="0,0" EndPoint="0,1" >
-        <GradientStop Color="#FEFEFE" Offset="0"/>
-        <GradientStop Color="#BDBEDE" Offset="1"/>
-    </LinearGradientBrush>
-
-    <Style x:Key="UseCaseDiagramStencilStyle" TargetType="Path">
-        <Setter Property="Fill" Value="{StaticResource ItemBrush}"/>
-        <Setter Property="Stroke" Value="{StaticResource ItemStroke}"/>
-        <Setter Property="StrokeThickness" Value="1"/>
-        <Setter Property="StrokeLineJoin" Value="Round"/>
-        <Setter Property="Stretch" Value="Fill"/>
-        <Setter Property="IsHitTestVisible" Value="False"/>
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
-    </Style>
-
-    <Style x:Key="UseCase" TargetType="Path" BasedOn="{StaticResource UseCaseDiagramStencilStyle}">
-        <Setter Property="Data" Value="M 10,20 A 20,20 0 1 1 50,20 A 20,20 0 1 1 10,20"/>
-    </Style>
-
-    <Style x:Key="Contaner" TargetType="Path" BasedOn="{StaticResource UseCaseDiagramStencilStyle}">
-        <Setter Property="Data" Value="M 0,0 H 60 V40 H 0 Z"/>
-    </Style>
-
-    <Style x:Key="Document" TargetType="Path" BasedOn="{StaticResource UseCaseDiagramStencilStyle}">
-        <Setter Property="Data" Value="M 0,0 H 60 V 40 C 30,30 30,50 0,40 Z"/>
-    </Style>
-
-    <Style x:Key="Document_DragThumb" TargetType="Path" BasedOn="{StaticResource Document}">
-        <Setter Property="IsHitTestVisible" Value="true"/>
-        <Setter Property="Fill" Value="Transparent"/>
-        <Setter Property="Stroke" Value="Transparent"/>
-    </Style>
 
     <t:Toolbox x:Key="UseCaseDiagramStencil" ItemSize="60,60">
         <ItemsControl.Items>
-            <Path Width="34.8333" Height="42.75" ToolTip="角色" Stretch="Fill" Fill="#FF000000" 
-                  Data="F1 M 38,17.4167C 33.6278,17.4167 30.0833,20.9611 30.0833,25.3333C 30.0833,29.7056 33.6278,33.25 38,33.25C 42.3723,33.25 45.9167,29.7056 45.9167,25.3333C 45.9167,20.9611 42.3722,17.4167 38,17.4167 Z M 30.0833,44.3333L 29.4774,58.036C 32.2927,59.4011 35.4528,60.1667 38.7917,60.1667C 41.5308,60.1667 44.1496,59.6515 46.5564,58.7126L 45.9167,44.3333C 46.9722,44.8611 49.0834,49.0833 49.0834,49.0833C 49.0834,49.0833 50.1389,50.6667 50.6667,57L 55.4166,55.4167L 53.8333,47.5C 53.8333,47.5 50.6667,36.4167 44.3332,36.4168L 31.6666,36.4168C 25.3333,36.4167 22.1667,47.5 22.1667,47.5L 20.5833,55.4166L 25.3333,56.9999C 25.8611,50.6666 26.9167,49.0832 26.9167,49.0832C 26.9167,49.0832 29.0278,44.8611 30.0833,44.3333 Z ">
+            <Path Style="{StaticResource Actor}" ToolTip="角色">
             </Path>
             <Path Style="{StaticResource UseCase}" ToolTip="用例">
             </Path>
-            <Path Style="{StaticResource Contaner}" ToolTip="容器">
+            <Path Style="{StaticResource Container}" ToolTip="容器">
             </Path>
         </ItemsControl.Items>
     </t:Toolbox>
