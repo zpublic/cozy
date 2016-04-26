@@ -15,8 +15,6 @@ namespace CozyDesigner.Resources.Controls.Connection
     {
         private Adorner connectionAdorner;
 
-        #region Properties
-
         public Guid ID { get; set; }
 
         // source connector
@@ -156,7 +154,7 @@ namespace CozyDesigner.Resources.Controls.Connection
             }
         }
 
-        private ArrowSymbol sourceArrowSymbol = ArrowSymbol.None;
+        private ArrowSymbol sourceArrowSymbol = ArrowSymbol.Diamond;
         public ArrowSymbol SourceArrowSymbol
         {
             get { return sourceArrowSymbol; }
@@ -234,8 +232,6 @@ namespace CozyDesigner.Resources.Controls.Connection
                 }
             }
         }
-
-        #endregion
 
         public Connection(Connector source, Connector sink)
         {
@@ -372,8 +368,6 @@ namespace CozyDesigner.Resources.Controls.Connection
             }
         }
 
-        #region INotifyPropertyChanged Members
-
         // we could use DependencyProperties as well to inform others of property changes
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -385,14 +379,5 @@ namespace CozyDesigner.Resources.Controls.Connection
                 handler(this, new PropertyChangedEventArgs(name));
             }
         }
-
-        #endregion
-    }
-
-    public enum ArrowSymbol
-    {
-        None,
-        Arrow,
-        Diamond
     }
 }

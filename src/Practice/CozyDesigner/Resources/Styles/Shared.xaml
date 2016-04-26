@@ -99,7 +99,6 @@
     <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="#DDD" />
 
     <!-- Border Brushes -->
-
     <LinearGradientBrush x:Key="NormalBorderBrush" StartPoint="0,0" EndPoint="0,1">
         <GradientBrush.GradientStops>
             <GradientStopCollection>
