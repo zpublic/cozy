@@ -12,10 +12,18 @@
     <t:Toolbox x:Key="UseCaseDiagramStencil" ItemSize="60,60">
         <ItemsControl.Items>
             <Path Style="{StaticResource Actor}" ToolTip="角色">
+                <c:DesignerItem.ResizeDecoratorTemplate>
+                    <ControlTemplate>
+                    </ControlTemplate>
+                </c:DesignerItem.ResizeDecoratorTemplate>
             </Path>
             <Path Style="{StaticResource UseCase}" ToolTip="用例">
             </Path>
             <Path Style="{StaticResource Container}" ToolTip="容器">
+                <c:DesignerItem.ConnectorDecoratorTemplate>
+                    <ControlTemplate>
+                    </ControlTemplate>
+                </c:DesignerItem.ConnectorDecoratorTemplate>
             </Path>
         </ItemsControl.Items>
     </t:Toolbox>

@@ -104,7 +104,7 @@ namespace CozyDesigner.Resources.Controls
 
                     Canvas.SetZIndex(newItem, this.Children.Count);
                     this.Children.Add(newItem);
-                    SetConnectorDecoratorTemplate(newItem);
+                    SetConnectorTemplate(newItem);
 
                     //update selection
                     this.SelectionService.SelectItem(newItem);
@@ -142,12 +142,17 @@ namespace CozyDesigner.Resources.Controls
             return size;
         }
 
-        private void SetConnectorDecoratorTemplate(DesignerItem item)
+        private void SetConnectorTemplate(DesignerItem item)
         {
             if (item.ApplyTemplate() && item.Content is UIElement)
             {
                 ControlTemplate template = DesignerItem.GetConnectorDecoratorTemplate(item.Content as UIElement);
                 Control decorator = item.Template.FindName("PART_ConnectorDecorator", item) as Control;
+                if (decorator != null && template != null)
+                    decorator.Template = template;
+
+                template = DesignerItem.GetResizeDecoratorTemplate(item.Content as UIElement);
+                decorator = item.Template.FindName("PART_ResizeDecorator", item) as Control;
                 if (decorator != null && template != null)
                     decorator.Template = template;
             }
