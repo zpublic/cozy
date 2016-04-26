@@ -86,10 +86,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Logic\Select\IDataSource.cs" />
     <Compile Include="Resources\Controls\Connection\Connection.cs" />
     <Compile Include="Resources\Adorners\ConnectionAdorner.cs" />
     <Compile Include="Resources\Controls\Connection\Connector.cs" />
     <Compile Include="Resources\Adorners\ConnectorAdorner.cs" />
+    <Compile Include="Resources\Controls\DesignerCanvas.DataSource.cs" />
     <Compile Include="Resources\Controls\DesignerCanvas.Commands.cs" />
     <Compile Include="Resources\Controls\DesignerCanvas.cs" />
     <Compile Include="Resources\Controls\DesignerItem.cs" />
