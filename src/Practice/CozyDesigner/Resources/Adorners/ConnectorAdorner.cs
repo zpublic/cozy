@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Controls;
 using CozyDesigner.Resources.Controls;
+using CozyDesigner.Resources.Controls.Connection;
 
 namespace CozyDesigner.Resources.Adorners
 {
