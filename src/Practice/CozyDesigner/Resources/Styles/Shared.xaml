@@ -7,8 +7,8 @@
     <SolidColorBrush x:Key="ToolbarGroupHeaderBrush" Color="#200077EF"/>
 
     <LinearGradientBrush x:Key="ToolbarBrush" ColorInterpolationMode="ScRgbLinearInterpolation" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#D7E3F2" Offset="0.1"/>
-        <GradientStop Color="#E3F4FF" Offset="1"/>
+        <GradientStop Color="#5fd9cd" Offset="0.1"/>
+        <GradientStop Color="#EAF786" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="ToolbarSelectedBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
@@ -94,7 +94,7 @@
 
     <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#EEE" />
 
-    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FFF" />
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FFB5A1" />
 
     <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="#DDD" />
 

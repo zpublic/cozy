@@ -4,8 +4,8 @@
     <Brush x:Key="ItemStroke">#FFD69436</Brush>
     <LinearGradientBrush x:Key="ItemBrush" StartPoint="0,0" EndPoint="0,1">
         <LinearGradientBrush.GradientStops>
-            <GradientStop Color="#FAFBE9" Offset="0" />
-            <GradientStop Color="Orange" Offset="1" />
+            <GradientStop Color="#B8FFB8" Offset="0" />
+            <GradientStop Color="#B8F4FF" Offset="1" />
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
 
