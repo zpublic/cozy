@@ -1,9 +1,11 @@
 import { Component } from "angular2/core";
 import { NgFor } from "angular2/common";
+import { Article } from "../article/article";
 
 @Component({
     selector: "my-app",
-    templateUrl: "build/component/welcome/welcome.html"
+    templateUrl: "build/component/welcome/welcome.html",
+    directives: [Article]
 })
 export class Welcome {
 
