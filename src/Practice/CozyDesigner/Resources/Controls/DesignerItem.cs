@@ -61,6 +61,20 @@ namespace CozyDesigner.Resources.Controls
             element.SetValue(DragThumbTemplateProperty, value);
         }
 
+        // can be used to replace the default template for the ResizeDecorator
+        public static readonly DependencyProperty ResizeDecoratorTemplateProperty =
+            DependencyProperty.RegisterAttached("ResizeDecoratorTemplate", typeof(ControlTemplate), typeof(DesignerItem));
+
+        public static ControlTemplate GetResizeDecoratorTemplate(UIElement element)
+        {
+            return (ControlTemplate)element.GetValue(ResizeDecoratorTemplateProperty);
+        }
+
+        public static void SetResizeDecoratorTemplate(UIElement element, ControlTemplate value)
+        {
+            element.SetValue(ResizeDecoratorTemplateProperty, value);
+        }
+
         // can be used to replace the default template for the ConnectorDecorator
         public static readonly DependencyProperty ConnectorDecoratorTemplateProperty =
             DependencyProperty.RegisterAttached("ConnectorDecoratorTemplate", typeof(ControlTemplate), typeof(DesignerItem));

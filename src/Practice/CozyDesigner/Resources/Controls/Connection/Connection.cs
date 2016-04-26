@@ -9,13 +9,11 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace CozyDesigner.Resources.Controls
+namespace CozyDesigner.Resources.Controls.Connection
 {
     public class Connection : Control, ISelectable, INotifyPropertyChanged
     {
         private Adorner connectionAdorner;
-
-        #region Properties
 
         public Guid ID { get; set; }
 
@@ -156,7 +154,7 @@ namespace CozyDesigner.Resources.Controls
             }
         }
 
-        private ArrowSymbol sourceArrowSymbol = ArrowSymbol.None;
+        private ArrowSymbol sourceArrowSymbol = ArrowSymbol.Diamond;
         public ArrowSymbol SourceArrowSymbol
         {
             get { return sourceArrowSymbol; }
@@ -234,8 +232,6 @@ namespace CozyDesigner.Resources.Controls
                 }
             }
         }
-
-        #endregion
 
         public Connection(Connector source, Connector sink)
         {
@@ -372,8 +368,6 @@ namespace CozyDesigner.Resources.Controls
             }
         }
 
-        #region INotifyPropertyChanged Members
-
         // we could use DependencyProperties as well to inform others of property changes
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -385,14 +379,5 @@ namespace CozyDesigner.Resources.Controls
                 handler(this, new PropertyChangedEventArgs(name));
             }
         }
-
-        #endregion
-    }
-
-    public enum ArrowSymbol
-    {
-        None,
-        Arrow,
-        Diamond
     }
 }

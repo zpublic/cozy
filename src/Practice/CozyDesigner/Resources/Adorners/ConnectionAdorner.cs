@@ -1,4 +1,5 @@
 ﻿using CozyDesigner.Resources.Controls;
+using CozyDesigner.Resources.Controls.Connection;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;

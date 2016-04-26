@@ -58,7 +58,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Resources\Controls\Connection.xaml">
+    <Page Include="Resources\Controls\Connection\ArrowSymbolStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Controls\Connection\Connection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\CozyDesignerControlsStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -66,11 +74,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Controls\Toolbox.xaml">
+    <Page Include="Resources\Controls\Toolbox\Toolbox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Controls\ToolboxItem.xaml">
+    <Page Include="Resources\Controls\Toolbox\ToolboxItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -82,29 +90,31 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Resources\Controls\Connection.cs" />
+    <Compile Include="Logic\Select\IDataSource.cs" />
+    <Compile Include="Resources\Controls\Connection\ArrowSymbol.cs" />
+    <Compile Include="Resources\Controls\Connection\Connection.cs" />
     <Compile Include="Resources\Adorners\ConnectionAdorner.cs" />
-    <Compile Include="Resources\Controls\Connector.cs" />
+    <Compile Include="Resources\Controls\Connection\Connector.cs" />
     <Compile Include="Resources\Adorners\ConnectorAdorner.cs" />
+    <Compile Include="Resources\Controls\DesignerCanvas.DataSource.cs" />
     <Compile Include="Resources\Controls\DesignerCanvas.Commands.cs" />
     <Compile Include="Resources\Controls\DesignerCanvas.cs" />
     <Compile Include="Resources\Controls\DesignerItem.cs" />
     <Compile Include="Resources\Thumbs\DragThumb.cs" />
     <Compile Include="Logic\Select\IGroupable.cs" />
     <Compile Include="Logic\Select\ISelectable.cs" />
-    <Compile Include="Resources\Controls\PathFinder.cs" />
-    <Compile Include="Resources\Controls\RelativePositionPanel.cs" />
+    <Compile Include="Resources\Controls\Connection\PathFinder.cs" />
     <Compile Include="Resources\Thumbs\ResizeThumb.cs" />
     <Compile Include="Resources\Adorners\RubberbandAdorner.cs" />
     <Compile Include="Logic\Select\SelectionService.cs" />
-    <Compile Include="Resources\Controls\Toolbox.cs" />
-    <Compile Include="Resources\Controls\ToolboxItem.cs" />
-    <Compile Include="Resources\Controls\ToolboxItemDragObject.cs" />
+    <Compile Include="Resources\Controls\Toolbox\Toolbox.cs" />
+    <Compile Include="Resources\Controls\Toolbox\ToolboxItem.cs" />
+    <Compile Include="Resources\Controls\Toolbox\ToolboxItemDragObject.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Resources\CozyDesignerBoard.xaml">
+    <Page Include="Resources\Frame\CozyDesignerBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -112,15 +122,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\CozyDesignerToolbar.xaml">
+    <Page Include="Resources\Frame\CozyDesignerToolbar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\CozyDesignerToolbox.xaml">
+    <Page Include="Resources\Frame\CozyDesignerToolbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Stencils\MindMapStencil.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Stencils\UseCaseDiagramStencil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Stencils\UseCaseDiagram\Actor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Stencils\UseCaseDiagram\Container.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Stencils\UseCaseDiagram\Shared.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Stencils\UseCaseDiagram\UseCase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -175,7 +205,9 @@
   <ItemGroup>
     <Resource Include="AppIcon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\Stencils\MindMap\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CozyDesigner.Resources.Stencils.UseCaseDiagram">
+    <Brush x:Key="ItemStroke">#FFD69436</Brush>
+    <LinearGradientBrush x:Key="ItemBrush" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#B8FFB8" Offset="0" />
+            <GradientStop Color="#B8F4FF" Offset="1" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <Style x:Key="UseCaseDiagramStencilStyle" TargetType="Path">
+        <Setter Property="Fill" Value="{StaticResource ItemBrush}"/>
+        <Setter Property="Stroke" Value="{StaticResource ItemStroke}"/>
+        <Setter Property="StrokeThickness" Value="1"/>
+        <Setter Property="StrokeLineJoin" Value="Round"/>
+        <Setter Property="Stretch" Value="Fill"/>
+        <Setter Property="IsHitTestVisible" Value="False"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+    </Style>
+</ResourceDictionary>

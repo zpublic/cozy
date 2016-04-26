@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CozyDesigner.Resources.Controls.Connection">
+    <!-- base style for all arrow shapes -->
+    <Style x:Key="ArrowSymbolBaseStyle" TargetType="Path">
+        <Setter Property="Fill" Value="{StaticResource SolidBorderBrush}"/>
+        <Setter Property="Stretch" Value="Fill"/>
+    </Style>
+
+    <!-- Arrow -->
+    <Style x:Key="Arrow" TargetType="Path" BasedOn="{StaticResource ArrowSymbolBaseStyle}">
+        <Setter Property="Data" Value="M0,0 8,4 0,8 Z"/>
+    </Style>
+
+    <!-- Diamond  -->
+    <Style x:Key="Diamond" TargetType="Path" BasedOn="{StaticResource ArrowSymbolBaseStyle}">
+        <Setter Property="Data" Value="M-5,0 0,-5 5,0 0,5 Z"/>
+    </Style>
+</ResourceDictionary>

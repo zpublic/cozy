@@ -2,8 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:CozyDesigner.Resources">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Frame/CozyDesignerToolbar.xaml"/>
-        <ResourceDictionary Source="Frame/CozyDesignerToolbox.xaml"/>
-        <ResourceDictionary Source="Frame/CozyDesignerBoard.xaml"/>
+        <ResourceDictionary Source="Controls/Toolbox/Toolbox.xaml"/>
+        <ResourceDictionary Source="Controls/Toolbox/ToolboxItem.xaml"/>
+        <ResourceDictionary Source="Controls/Connection/Connection.xaml"/>
+        <ResourceDictionary Source="Controls/DesignerItem.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

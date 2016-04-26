@@ -1,5 +1,4 @@
-﻿using CozyDesigner.Resources.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +6,7 @@ namespace CozyDesigner.Logic.Select
 {
     internal class SelectionService
     {
-        private DesignerCanvas designerCanvas;
+        private IDataSource dataSource;
 
         private List<ISelectable> currentSelection;
         internal List<ISelectable> CurrentSelection
@@ -21,9 +20,9 @@ namespace CozyDesigner.Logic.Select
             }
         }
 
-        public SelectionService(DesignerCanvas canvas)
+        public SelectionService(IDataSource dataSource)
         {
-            this.designerCanvas = canvas;
+            this.dataSource = dataSource;
         }
 
         internal void SelectItem(ISelectable item)
@@ -79,20 +78,20 @@ namespace CozyDesigner.Logic.Select
         internal void SelectAll()
         {
             ClearSelection();
-            CurrentSelection.AddRange(designerCanvas.Children.OfType<ISelectable>());
+            CurrentSelection.AddRange(dataSource.GetSelectableList());
             CurrentSelection.ForEach(item => item.IsSelected = true);
         }
 
         internal List<IGroupable> GetGroupMembers(IGroupable item)
         {
-            IEnumerable<IGroupable> list = designerCanvas.Children.OfType<IGroupable>();
+            IEnumerable<IGroupable> list = dataSource.GetGroupableList();
             IGroupable rootItem = GetRoot(list, item);
             return GetGroupMembers(list, rootItem);
         }
 
         internal IGroupable GetGroupRoot(IGroupable item)
         {
-            IEnumerable<IGroupable> list = designerCanvas.Children.OfType<IGroupable>();
+            IEnumerable<IGroupable> list = dataSource.GetGroupableList();
             return GetRoot(list, item);
         }
 

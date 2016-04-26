@@ -8,7 +8,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace CozyDesigner.Resources.Controls
+namespace CozyDesigner.Resources.Controls.Connection
 {
     public class Connector : Control, INotifyPropertyChanged
     {
