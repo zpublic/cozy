@@ -1,5 +1,6 @@
 ﻿using CozyDesigner.Logic.Select;
 using CozyDesigner.Resources.Adorners;
+using CozyDesigner.Resources.Controls.Toolbox;
 using System;
 using System.IO;
 using System.Windows;
