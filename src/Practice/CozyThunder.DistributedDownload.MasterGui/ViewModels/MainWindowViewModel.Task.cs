@@ -36,42 +36,85 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             var task = new DownloadTaskInfo();
             GlobalMessageCenter.Instance.Send("CreateDownloadTask", task);
 
-            var filesize = HttpDownload.HttpFileSplit.TryGetContentLength(task.RemotePath);
-            if(filesize <= 0)
+            if(task.IsValid)
             {
-                GlobalMessageCenter.Instance.Send("TaskError.Size");
-                return;
-            }
-
-            var downloadTask = new DownloadTask()
-            {
-                RemotePath  = task.RemotePath,
-                LocalPath   = task.LocalPath,
-                CfgPath     = task.LocalPath + ".cfg",
-                BlockSize   = 3 * 1024 * 1024,
-            };
-
-            if(downloadTask.InitTask())
-            {
-                CurrentTask = downloadTask;
-                CurrentRemotePath = CurrentTask.RemotePath;
-            }
-
-            foreach(var info in PeerInfoList)
-            {
-                var peer = PeerInfo2Peer(info);
-
-                subTask_.Add(peer.EndPoint.ToString(), CurrentTask.GetSubTask());
-                i_.Add(peer.EndPoint.ToString(), 0);
-                buff_.Add(peer.EndPoint.ToString(), new byte[1024 * 1024 * 3]);
-                sbuff_.Add(peer.EndPoint.ToString(), new byte[1024 * 1024 * 4]);
-                sbufflen_.Add(peer.EndPoint.ToString(), 0);
-
-                if (subTask_[peer.EndPoint.ToString()] != null)
+                var filesize = HttpDownload.HttpFileSplit.TryGetContentLength(task.RemotePath);
+                if (filesize <= 0)
                 {
-                    FileBlockTask f = new FileBlockTask(subTask_[peer.EndPoint.ToString()]);
-                    master.Send(peer, f.Encode());
+                    GlobalMessageCenter.Instance.Send("TaskError.Size");
+                    return;
                 }
+
+                var blockSize = (filesize + 224) / 225;
+                var downloadTask = new DownloadTask()
+                {
+                    RemotePath = task.RemotePath,
+                    LocalPath = task.LocalPath,
+                    CfgPath = task.LocalPath + ".cfg",
+                    BlockSize = blockSize,
+                };
+
+                if (downloadTask.InitTask())
+                {
+                    CurrentTask = downloadTask;
+                    CurrentRemotePath = CurrentTask.RemotePath;
+                }
+
+                ClearProgress();
+
+                if(task.IsEnableDistributed)
+                {
+                    foreach (var info in PeerInfoList)
+                    {
+                        var peer = PeerInfo2Peer(info);
+                        var subtask = CurrentTask.GetSubTask();
+                        InstPeer(peer, subtask, blockSize);
+
+                        if (subTask_[peer.EndPoint.ToString()] != null)
+                        {
+                            FileBlockTask f = new FileBlockTask(subTask_[peer.EndPoint.ToString()]);
+                            master.Send(peer, f.Encode());
+                        }
+                    }
+                }
+            }
+        }
+
+        private void InstPeer(Peer peer, DownloadSubTask task, long blockSize)
+        {
+            var temp = peer.EndPoint.ToString();
+            if (!subTask_.ContainsKey(temp))
+            {
+                subTask_.Add(temp, task);
+            }
+
+            if (!msgbuff.ContainsKey(temp))
+            {
+                msgbuff.Add(temp, new Common.MessageBuffer());
+            }
+
+            if (!sbuff_.ContainsKey(temp))
+            {
+                sbuff_.Add(temp, new Common.MessageBuffer());
+            }
+        }
+
+        private void UninstPeer(Peer peer)
+        {
+            var temp = peer.EndPoint.ToString();
+            if (subTask_.ContainsKey(temp))
+            {
+                subTask_.Remove(temp);
+            }
+
+            if (msgbuff.ContainsKey(temp))
+            {
+                msgbuff.Remove(temp);
+            }
+
+            if (sbuff_.ContainsKey(temp))
+            {
+                sbuff_.Remove(temp);
             }
         }
 

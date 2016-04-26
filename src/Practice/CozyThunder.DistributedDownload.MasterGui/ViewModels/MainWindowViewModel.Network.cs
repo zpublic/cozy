@@ -8,6 +8,7 @@ using CozyThunder.Botnet.Common;
 using CozyThunder.DistributedDownload.MasterGui.Models;
 using CozyThunder.DistributedDownload.MasterGui.MessageCenter;
 using CozyThunder.Protocol;
+using CozyThunder.DistributedDownload.MasterGui.Common;
 
 namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
 {
@@ -36,13 +37,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             var peer = arg as Peer;
             if (peer != null)
             {
-                var addr = peer.EndPoint.Address.ToString();
-                var port = peer.EndPoint.Port;
-                var info = PeerInfoList.Where(x => x.Address == addr && x.Port == port).First();
-                if (info != null)
-                {
-                    info.Status = PeerStatus.Free;
-                }
+                SetPeerInfoStatus(peer, PeerStatus.Free);
             }
         }
 
@@ -51,18 +46,11 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             var peer = arg as Peer;
             if (peer != null)
             {
-                var addr = peer.EndPoint.Address.ToString();
-                var port = peer.EndPoint.Port;
-                var info = PeerInfoList.Where(x => x.Address == addr && x.Port == port).First();
-                if (info != null)
-                {
-                    info.Status = PeerStatus.Unknow;
-                }
+                SetPeerInfoStatus(peer, PeerStatus.Unknow);
             }
         }
 
-        private Dictionary<string, byte[]> sbuff_ = new Dictionary<string, byte[]>();
-        private Dictionary<string, int> sbufflen_ = new Dictionary<string, int>();
+        private Dictionary<string, MessageBuffer> sbuff_ = new Dictionary<string, MessageBuffer>();
 
         private void OnMessageMessage(object arg1, object arg2)
         {
@@ -70,20 +58,18 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             var data = arg2 as byte[];
             if (peer != null && data != null)
             {
-                Array.Copy(data, 0, sbuff_[peer.EndPoint.ToString()],
-                    sbufflen_[peer.EndPoint.ToString()], data.Length);
-                sbufflen_[peer.EndPoint.ToString()] += data.Length;
+                sbuff_[peer.EndPoint.ToString()].Append(data, data.Length);
             }
-            PacketTest t = new PacketTest(sbuff_[peer.EndPoint.ToString()], 0);
-            if (t.PacketLength > sbufflen_[peer.EndPoint.ToString()])
+            PacketTest t = new PacketTest(sbuff_[peer.EndPoint.ToString()].RawData, 0);
+            if (t.PacketLength > sbuff_[peer.EndPoint.ToString()].Length)
             {
                 //拆包
             }
-            else if (t.PacketLength < sbufflen_[peer.EndPoint.ToString()])
+            else if (t.PacketLength < sbuff_[peer.EndPoint.ToString()].Length)
             {
                 //粘包
             }
-            else if (t.PacketLength == sbufflen_[peer.EndPoint.ToString()])
+            else if (t.PacketLength == sbuff_[peer.EndPoint.ToString()].Length)
             {
                 //完整包
                 MessageDispatch(peer, data, t.PacketId);
