@@ -8,13 +8,14 @@ using System.Collections.ObjectModel;
 using CozyPlague.Models;
 using System.IO;
 using Newtonsoft.Json;
+using CozyPlague.Ext;
 
 namespace CozyPlague.ViewModels
 {
     public class MainWindowViewModel : NotifyObject
     {
-        public ObservableCollection<Palette> PaletteCollection { get; set; } = new ObservableCollection<Palette>();
-        public ObservableCollection<UserColor> UserColorCollection { get; set; } = new ObservableCollection<UserColor>();
+        public ExtObservableCollection<Palette> PaletteCollection { get; set; } = new ExtObservableCollection<Palette>();
+        public ExtObservableCollection<UserColor> UserColorCollection { get; set; } = new ExtObservableCollection<UserColor>();
 
         private Palette _SelectedPalette;
         public Palette SelectedPalette
@@ -43,11 +44,8 @@ namespace CozyPlague.ViewModels
                 {
                     using (var reader = new StreamReader(fs))
                     {
-                        var res = JsonConvert.DeserializeObject<ObservableCollection<Palette>>(reader.ReadToEnd());
-                        foreach(var obj in res)
-                        {
-                            PaletteCollection.Add(obj);
-                        }
+                        var res = JsonConvert.DeserializeObject<List<Palette>>(reader.ReadToEnd());
+                        PaletteCollection.AddRange(res);
                     }
                 }
             }
@@ -58,11 +56,8 @@ namespace CozyPlague.ViewModels
                 {
                     using (var reader = new StreamReader(fs))
                     {
-                        var res = JsonConvert.DeserializeObject<ObservableCollection<UserColor>>(reader.ReadToEnd());
-                        foreach (var obj in res)
-                        {
-                            UserColorCollection.Add(obj);
-                        }
+                        var res = JsonConvert.DeserializeObject<List<UserColor>>(reader.ReadToEnd());
+                        UserColorCollection.AddRange(res);
                     }
                 }
             }

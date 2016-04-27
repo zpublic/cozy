@@ -8,7 +8,7 @@
         xmlns:converter="clr-namespace:CozyPlague.Converters"
         xmlns:mahapps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="CozyPlague" Height="350" Width="525">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel x:Name="ViewModel"></viewmodel:MainWindowViewModel>
     </Window.DataContext>
@@ -20,7 +20,7 @@
                         <ColumnDefinition Width="3*"></ColumnDefinition>
                         <ColumnDefinition Width="7*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <ListView x:Name="ColorList" Margin="5" Grid.Column="0" ItemsSource="{Binding UserColorCollection}" SelectedItem="{Binding SelectedUserColor, Mode=TwoWay}">
+                    <ListView x:Name="ColorList" Margin="5" Grid.Column="0" ItemsSource="{Binding UserColorCollection, IsAsync=True}" SelectedItem="{Binding SelectedUserColor, Mode=TwoWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}" ></TextBlock>
@@ -41,7 +41,7 @@
                         <ColumnDefinition Width="3*"></ColumnDefinition>
                         <ColumnDefinition Width="7*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <ListView Grid.Column="0" ItemsSource="{Binding PaletteCollection}" SelectedItem="{Binding SelectedPalette}">
+                    <ListView Grid.Column="0" ItemsSource="{Binding PaletteCollection, IsAsync=True}" SelectedItem="{Binding SelectedPalette}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}"></TextBlock>
