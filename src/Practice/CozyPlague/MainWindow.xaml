@@ -1,4 +1,4 @@
-﻿<mahapps:MetroWindow x:Class="CozyPlague.MainWindow"
+﻿<Window x:Class="CozyPlague.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -20,7 +20,12 @@
                         <ColumnDefinition Width="3*"></ColumnDefinition>
                         <ColumnDefinition Width="7*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <ListView x:Name="ColorList" Margin="5" Grid.Column="0" ItemsSource="{Binding UserColorCollection, IsAsync=True}" SelectedItem="{Binding SelectedUserColor, Mode=TwoWay}">
+                    <ListView x:Name="ColorList" Margin="5" Grid.Column="0" ItemsSource="{Binding UserColorCollection}" SelectedItem="{Binding SelectedUserColor, Mode=TwoWay}">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel IsVirtualizing="True" VirtualizationMode="Recycling" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}" ></TextBlock>
@@ -35,13 +40,19 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Palette">
+            <TabItem Header="Palette" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"></ColumnDefinition>
                         <ColumnDefinition Width="7*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <ListView Grid.Column="0" ItemsSource="{Binding PaletteCollection, IsAsync=True}" SelectedItem="{Binding SelectedPalette}">
+                    <ListView Grid.Column="0"
+                              ItemsSource="{Binding PaletteCollection}" SelectedItem="{Binding SelectedPalette}">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel IsVirtualizing="True" VirtualizationMode="Recycling" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}"></TextBlock>
@@ -52,4 +63,4 @@
             </TabItem>
         </TabControl>
     </Grid>
-</mahapps:MetroWindow>
+</Window>
