@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CozyPlague"
         xmlns:viewmodel="clr-namespace:CozyPlague.ViewModels"
-        xmlns:converter="clr-namespace:CozyPlague.Converters"
         xmlns:mahapps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:controls="clr-namespace:CozyPlague.Controls"
         mc:Ignorable="d"
         Title="CozyPlague" Height="350" Width="525">
     <Window.DataContext>
@@ -33,10 +33,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     <Grid Grid.Column="1">
-                        <Grid.Resources>
-                            <converter:StrToColorConverter x:Key="ColorConverter"></converter:StrToColorConverter>
-                        </Grid.Resources>
-                        <Rectangle Margin="5" Fill="{Binding ElementName=ColorList, Path=SelectedItem, Converter={StaticResource ColorConverter}}"></Rectangle>
+                        <controls:UserColorControls UserColor="{Binding ElementName=ColorList, Path=SelectedItem}"></controls:UserColorControls>
                     </Grid>
                 </Grid>
             </TabItem>
