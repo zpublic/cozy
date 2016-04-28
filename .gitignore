@@ -164,3 +164,4 @@ bower_components/
 node_modules/
 /sln/*.opendb
 typings/
+/sln/cozy_thunder.VC.db
