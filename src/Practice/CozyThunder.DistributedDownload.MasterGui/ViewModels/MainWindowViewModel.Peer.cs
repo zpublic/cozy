@@ -1,4 +1,5 @@
-﻿using CozyThunder.DistributedDownload.MasterGui.MessageCenter;
+﻿using CozyThunder.Botnet.Common;
+using CozyThunder.DistributedDownload.MasterGui.MessageCenter;
 using CozyThunder.DistributedDownload.MasterGui.Models;
 using CozyThunder.DistributedDownload.MasterGui.Models.Comparer;
 using System;
@@ -16,6 +17,17 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
     {
         public ObservableCollection<PeerInfo> PeerInfoList { get; set; } = new ObservableCollection<PeerInfo>();
 
+        internal void SetPeerInfoStatus(Peer peer, PeerStatus status)
+        {
+            var addr = peer.EndPoint.Address.ToString();
+            var port = peer.EndPoint.Port;
+            var info = PeerInfoList.Where(x => x.Address == addr && x.Port == port).First();
+            if (info != null)
+            {
+                info.Status = status;
+            }
+        }
+
         private PeerInfo _SelectedInfo;
         public PeerInfo SelectedInfo
         {
@@ -23,14 +35,14 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             set { Set(ref _SelectedInfo, value); }
         }
 
-        private string _Address;
+        private string _Address = "127.0.0.1";
         public string Address
         {
             get { return _Address; }
             set { Set(ref _Address, value); }
         }
 
-        private int _Port = 48336;
+        private int _Port = 48234;
         public int Port
         {
             get { return _Port; }
@@ -49,7 +61,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
             {
                 Address = Address,
                 Port = Port,
-                Status = PeerStatus.Free,
+                Status = PeerStatus.Unknow,
                 Range = PeerRange.Empty,
             };
 
@@ -89,12 +101,31 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
 
         public void OnConnectPeer()
         {
-
+            if(SelectedInfo != null)
+            {
+                var peer = PeerInfo2Peer(SelectedInfo);
+                master.Connect(peer);
+            }
         }
 
         public void OnDisconnectPeer()
         {
+            if (SelectedInfo != null)
+            {
+                var peer = PeerInfo2Peer(SelectedInfo);
+                master.DisConnect(peer);
+            }
+        }
 
+        private static Peer PeerInfo2Peer(PeerInfo info)
+        {
+            IPAddress addr;
+            if (IPAddress.TryParse(info.Address, out addr))
+            {
+                return new Peer() { EndPoint = new IPEndPoint(addr, info.Port) };
+            }
+
+            return null;
         }
     }
 }

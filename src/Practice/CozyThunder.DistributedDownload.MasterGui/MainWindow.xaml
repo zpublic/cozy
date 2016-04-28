@@ -55,7 +55,7 @@
                 <Button Grid.Column="5" Content="禁用分布式" Margin="2" Command="{Binding DisableDistributedCommand}"></Button>
                 <Button Grid.Column="6" Content="全局设置" Margin="2" Command="{Binding GlobalSettingCommand}"></Button>
             </Grid>
-            <ProgressBar Grid.Row="2" Height="Auto"></ProgressBar>
+            <ProgressBar Grid.Row="2" Height="Auto" Minimum="0" Maximum="225" Value="{Binding ProgressValue}" ></ProgressBar>
             <Grid Grid.Row="3">
                 <Grid.Resources>
                     <blockstyle:BlockVisualStyle x:Key="downloadstyle" Margin="5">
@@ -119,16 +119,16 @@
             <ListView Grid.Row="4" ItemsSource="{Binding PeerInfoList}" Margin="2" SelectedItem="{Binding SelectedInfo, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBox IsReadOnly="True" BorderThickness="0" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                            <TextBox.Text>
+                        <TextBlock>
+                            <TextBlock.Text>
                                 <MultiBinding StringFormat=" {0} : {1} {2} {3}">
                                     <Binding Path="Address"></Binding>
                                     <Binding Path="Port"></Binding>
                                     <Binding Path="Status"></Binding>
                                     <Binding Path="Range"></Binding>
                                 </MultiBinding>
-                            </TextBox.Text>
-                        </TextBox>
+                            </TextBlock.Text>
+                        </TextBlock>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

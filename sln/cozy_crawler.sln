@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exe", "Exe", "{0802395F-CEE7-444A-885E-3333704A5A20}"
 EndProject
@@ -24,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Runner", "..\src\Practice\CozyCrawler.Runner\CozyCrawler.Runner.csproj", "{E76573D8-D242-499D-9DEF-6B4B2C87CA4E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Component", "..\src\Practice\CozyCrawler.Componet\CozyCrawler.Component.csproj", "{70444045-8D12-4155-A9AC-A122C2FE89D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyCrawler.Peise", "..\src\Practice\CozyCrawler.Peise\CozyCrawler.Peise.csproj", "{CB060771-2A76-4621-B92A-41155E37B583}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{70444045-8D12-4155-A9AC-A122C2FE89D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70444045-8D12-4155-A9AC-A122C2FE89D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70444045-8D12-4155-A9AC-A122C2FE89D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB060771-2A76-4621-B92A-41155E37B583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB060771-2A76-4621-B92A-41155E37B583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB060771-2A76-4621-B92A-41155E37B583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB060771-2A76-4621-B92A-41155E37B583}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,5 +83,6 @@ Global
 		{C8422B27-968D-42EB-A1D7-3368D113692A} = {0802395F-CEE7-444A-885E-3333704A5A20}
 		{1F47F8C5-138D-43BE-931F-614A6E2FF8A5} = {0802395F-CEE7-444A-885E-3333704A5A20}
 		{8056CFF1-F42E-4864-92E6-A2C746644845} = {0802395F-CEE7-444A-885E-3333704A5A20}
+		{CB060771-2A76-4621-B92A-41155E37B583} = {0802395F-CEE7-444A-885E-3333704A5A20}
 	EndGlobalSection
 EndGlobal

@@ -12,7 +12,7 @@ namespace CozyThunder.DistributedDownload.MasterGui.ViewModels
 {
     public class CreateTaskWindowViewModel : BaseViewModel
     {
-        private string _RemotePath;
+        private string _RemotePath = @"http://speed.myzone.cn/pc_elive_1.1.rar";
         public string RemotePath
         {
             get { return _RemotePath; }

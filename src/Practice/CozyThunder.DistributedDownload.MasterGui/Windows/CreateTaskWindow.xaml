@@ -43,7 +43,8 @@
                 <ColumnDefinition Width="4*"></ColumnDefinition>
                 <ColumnDefinition Width="6*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <CheckBox Grid.Column="0" Content="启用分布式下载" Margin="10,2,2,2" HorizontalContentAlignment="Center"></CheckBox>
+            <CheckBox Grid.Column="0" Content="启用分布式下载" Margin="10,2,2,2" HorizontalContentAlignment="Center"
+                      IsChecked="{Binding IsEnableDistributed}"></CheckBox>
             <Button Grid.Column="1" Content="开始下载" Margin="2"  Command="{Binding SubmitCommand}"></Button>
         </Grid>
     </Grid>

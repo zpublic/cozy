@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Stencils/UseCaseDiagramStencil.xaml"/>
+        <ResourceDictionary Source="../Stencils/MindMapStencil.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <StackPanel x:Key="CozyDesignerToolbox" Grid.Column="0" Margin="0,0,5,0">
+        <Expander Header="用例图" Content="{StaticResource UseCaseDiagramStencil}" IsExpanded="True"/>
+        <Expander Header="思维导图" Content="{StaticResource MindMapStencil}" IsExpanded="True"/>
+        <Expander Header="UML图" IsExpanded="False"/>
+        <Expander Header="流程图" IsExpanded="False"/>
+    </StackPanel>
+</ResourceDictionary>

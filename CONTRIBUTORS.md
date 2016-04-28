@@ -11,7 +11,8 @@ List of contributors
     小才(hugewave@yeah.net)
 	whuthj
 	wjcsharp(wjcsharp@gmail.com)
+	liguifa
 
     ☆
     狗蛋（654997004）
-    
+    AngryPowman(me@powman.org)

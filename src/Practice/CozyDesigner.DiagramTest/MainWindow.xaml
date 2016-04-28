@@ -1,0 +1,65 @@
+﻿<Window x:Class="CozyDesigner.DiagramTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CozyDesigner.DiagramTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Template/DesignerItem.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Canvas>
+        <ContentControl Width="130"
+                    MinWidth="50"
+                    Height="130"
+                    MinHeight="50"
+                    Canvas.Top="85"
+                    Canvas.Left="303"
+                    Style="{StaticResource MoveStyle}">
+            <Ellipse Fill="Red"
+               IsHitTestVisible="False"/>
+        </ContentControl>
+        <ContentControl Width="130"
+                    MinWidth="50"
+                    Height="130"
+                    MinHeight="50"
+                    Canvas.Top="150"
+                    Canvas.Left="150"
+                    Selector.IsSelected="True"
+                    Style="{StaticResource MoveAndRotateStyle}">
+            <Path Fill="Blue"
+            Data="M 0,5 5,0 10,5 5,10 Z"
+            Stretch="Fill"
+            IsHitTestVisible="False"/>
+        </ContentControl>
+        <ContentControl Width="130"
+                    MinWidth="50"
+                    Height="130"
+                    MinHeight="50"
+                    Canvas.Top="10"
+                    Canvas.Left="189"
+                    Selector.IsSelected="True"
+                    Style="{StaticResource MoveAndResizeStyle}">
+            <Ellipse Fill="Red"
+               IsHitTestVisible="False"/>
+        </ContentControl>
+        <ContentControl Width="130"
+                    MinWidth="50"
+                    Height="130"
+                    MinHeight="50"
+                    Canvas.Top="50"
+                    Canvas.Left="35"
+                    Selector.IsSelected="True"
+                    Style="{StaticResource MoveAndResizeAndRotateStyle}">
+            <Path Fill="Blue"
+            Data="M 0,5 5,0 10,5 5,10 Z"
+            Stretch="Fill"
+            IsHitTestVisible="False"/>
+        </ContentControl>
+    </Canvas>
+</Window>
