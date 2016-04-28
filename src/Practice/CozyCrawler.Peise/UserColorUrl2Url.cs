@@ -89,7 +89,7 @@ namespace CozyCrawler.Peise
                 {
                     var res = new UserColor()
                     {
-                        Name = nameNode.InnerText,
+                        Name = nameNode.InnerText.Trim(),
                         Url = UrlStart + nameNode.Attributes["href"].Value.Trim(),
                     };
                     var Ref = colornode.InnerText;
