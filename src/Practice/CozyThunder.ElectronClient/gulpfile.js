@@ -13,18 +13,19 @@ var gulp = require('gulp'),
  * watch
  * Build the app and watch for source file changes.
  ******************************************************************************/
-gulp.task('watch', ['copy.html','copy.css'], function(done) {
-    watch('app/**/*.html', function() {
+gulp.task('watch', ['copy.html', 'copy.css'], function (done) {
+    watch('app/**/*.html', function () {
         gulp.start('copy.html');
     });
-    
-    watch('app/**/*.css',function(){
+
+    watch('app/**/*.css', function () {
         gulp.start('copy.css');
     })
 
-    watch('app/**/*.ts', function() {
-        bundle(false, done);
-    });
+    // watch('app/**/*.ts', function() {
+    //     bundle(false, done);
+    // });
+    bundle(true, done);
 });
 
 
@@ -32,15 +33,15 @@ gulp.task('watch', ['copy.html','copy.css'], function(done) {
  * build
  * Build the app once, without watching for source file changes.
  ******************************************************************************/
-gulp.task('build', ['copy.html'], function(done) {
+gulp.task('build', ['copy.html'], function (done) {
     bundle(false, done);
 });
 
 
 
-gulp.task('copy.css',function(done){
-   return gulp.src('app/**/*.css')
-        .pipe(gulp.dest('www/build')); 
+gulp.task('copy.css', function (done) {
+    return gulp.src('app/**/*.css')
+        .pipe(gulp.dest('www/build'));
 });
 
 
@@ -48,7 +49,7 @@ gulp.task('copy.css',function(done){
  * copy.html
  * Copy html files to build directory.
  ******************************************************************************/
-gulp.task('copy.html', function() {
+gulp.task('copy.html', function () {
     return gulp.src('app/**/*.html')
         .pipe(gulp.dest('www/build'));
 });
@@ -58,7 +59,7 @@ gulp.task('copy.html', function() {
  * clean
  * Delete previous build files.
  ******************************************************************************/
-gulp.task('clean', function(done) {
+gulp.task('clean', function (done) {
     del(['www/build'], done);
 });
 
