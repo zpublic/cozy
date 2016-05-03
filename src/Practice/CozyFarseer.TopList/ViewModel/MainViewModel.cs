@@ -2,6 +2,8 @@ using GalaSoft.MvvmLight;
 using System.Collections.ObjectModel;
 using CozyFarseer.TopList.Model;
 using CozyFarseer.TopList.Network;
+using RestSharp;
+using System.Windows;
 
 namespace CozyFarseer.TopList.ViewModel
 {
@@ -19,17 +21,14 @@ namespace CozyFarseer.TopList.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        public ObservableCollection<FarseerNode> FarseerNodeList { get; set; } = new ObservableCollection<FarseerNode>();
 
-        public ObservableCollection<FarseerNode> FarseerNodeList { get; set; }
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel()
         {
-            TopListUpdate.Last(x => 
-            {
-                int i = x.code;
-            });
+            TopListUpdate.Last(OnContentUpdate);
             ////if (IsInDesignMode)
             ////{
             ////    // Code runs in Blend --> create design time data.
@@ -38,6 +37,32 @@ namespace CozyFarseer.TopList.ViewModel
             ////{
             ////    // Code runs "for real"
             ////}
+        }
+
+        private void OnContentUpdate(IRestResponse<FarseerTopList> resp)
+        {
+            if(resp.ResponseStatus == ResponseStatus.Completed)
+            {
+                var result = resp.Data;
+                if(result.code == 0)
+                {
+                    Application.Current.Dispatcher.Invoke(()=> 
+                    {
+                        foreach (var obj in result.ret.list)
+                        {
+                            FarseerNodeList.Add(obj);
+                        }
+                    });
+                }
+                else
+                {
+                    //TODO Failed
+                }
+            }
+            else if(resp.ResponseStatus == ResponseStatus.TimedOut)
+            {
+                //TODO timeout
+            }
         }
     }
 }
