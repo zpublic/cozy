@@ -7,12 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="480">
     <Grid Width="480" Height="200" Background="#FFE0E0E0">
-        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="20,20,0,0" VerticalAlignment="Top" Width="100" Stretch="Fill" Source="/CozyFarseer.TopList;component/Resources/head.jpg"/>
-        <Label x:Name="label" Content="王文撸" HorizontalAlignment="Left" Margin="134,39,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label x:Name="label1" Content="11天前" HorizontalAlignment="Left" Margin="134,75,0,0" VerticalAlignment="Top" Foreground="Gray"/>
-        <Label x:Name="label2" Content="胜率100%" HorizontalAlignment="Left" Margin="37,125,0,0" VerticalAlignment="Top" Foreground="Gray"/>
-        <Label x:Name="label3" Content="预言价格上涨" HorizontalAlignment="Left" Margin="48,151,0,0" VerticalAlignment="Top" Foreground="Red"/>
-        <Label x:Name="label4" Content="预言成功" HorizontalAlignment="Left" Margin="275,151,0,0" VerticalAlignment="Top" Foreground="Red"/>
+        <Image x:Name="AvatarImage" HorizontalAlignment="Left" Height="100" Margin="20,20,0,0" VerticalAlignment="Top" Width="100" Stretch="Fill"/>
+        <Label x:Name="NickLabel" HorizontalAlignment="Left" Margin="134,39,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label x:Name="TimeLabel" HorizontalAlignment="Left" Margin="134,75,0,0" VerticalAlignment="Top" Foreground="Gray"/>
+        <Label x:Name="AccuracyLabel" HorizontalAlignment="Left" Margin="37,125,0,0" VerticalAlignment="Top" Foreground="Gray"/>
+        <Label x:Name="TTypeLabel" HorizontalAlignment="Left" Margin="48,151,0,0" VerticalAlignment="Top" Foreground="Red"/>
+        <Label x:Name="TStatusLabel" HorizontalAlignment="Left" Margin="275,151,0,0" VerticalAlignment="Top" Foreground="Red"/>
         <Canvas Margin="380,100,0,0">
             <Path Stroke="Yellow" Fill="Red">
                 <Path.Data>

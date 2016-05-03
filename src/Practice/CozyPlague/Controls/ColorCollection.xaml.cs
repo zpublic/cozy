@@ -13,14 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CozyPlague
+namespace CozyPlague.Controls
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// ColorCollection.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ColorCollection : UserControl
     {
-        public MainWindow()
+        public static readonly DependencyProperty ColorBlockSizeProperty =
+            DependencyProperty.Register("ColorBlockSize", typeof(Size), typeof(ColorCollection), new PropertyMetadata(Size.Empty));
+
+        public ColorCollection()
         {
             InitializeComponent();
         }

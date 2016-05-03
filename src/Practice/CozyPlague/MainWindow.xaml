@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CozyPlague"
         xmlns:viewmodel="clr-namespace:CozyPlague.ViewModels"
-        xmlns:mahapps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:controls="clr-namespace:CozyPlague.Controls"
         mc:Ignorable="d"
         Title="CozyPlague" Height="350" Width="525">
