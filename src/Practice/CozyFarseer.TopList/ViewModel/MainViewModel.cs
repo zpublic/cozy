@@ -1,4 +1,7 @@
 using GalaSoft.MvvmLight;
+using System.Collections.ObjectModel;
+using CozyFarseer.TopList.Model;
+using CozyFarseer.TopList.Network;
 
 namespace CozyFarseer.TopList.ViewModel
 {
@@ -16,11 +19,17 @@ namespace CozyFarseer.TopList.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+
+        public ObservableCollection<FarseerNode> FarseerNodeList { get; set; }
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel()
         {
+            TopListUpdate.Last(x => 
+            {
+                int i = x.code;
+            });
             ////if (IsInDesignMode)
             ////{
             ////    // Code runs in Blend --> create design time data.
