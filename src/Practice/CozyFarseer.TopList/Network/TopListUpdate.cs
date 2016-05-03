@@ -31,5 +31,20 @@ namespace CozyFarseer.TopList.Network
 
             return $"count/GetTopList?num={count}&pid={pid}&tagid={tagid}&t={t}";
         }
+
+        public static void Load(string url, Action<IRestResponse> callback)
+        {
+            var client = new RestClient(BaseUrl);
+
+            var request = new RestRequest(url, Method.GET);
+            request.Timeout = 5000;
+
+            request.AddHeader("User-Agent", DefaultUserAnget);
+
+            client.ExecuteAsync<FarseerTopList>(request, resp =>
+            {
+                callback?.Invoke(resp);
+            });
+        }
     }
 }
