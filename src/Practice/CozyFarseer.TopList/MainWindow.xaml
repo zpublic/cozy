@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CozyFarseer.TopList"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525"
-        DataContext="{Binding Main, Source={StaticResource Locator}}">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="800" Width="500"
+        DataContext="{Binding Main, Source={StaticResource Locator}}" WindowStartupLocation="CenterScreen">
+    <StackPanel Orientation="Vertical" >
+
+    </StackPanel>
 </Window>
