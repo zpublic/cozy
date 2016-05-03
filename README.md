@@ -17,6 +17,8 @@ Cozy
 >> [WpfCozy - WPF学习工程](doc/LearnWpfCozy.md)
 >>
 >> StoreCozy - win8.1 store app学习工程  
+>>
+>> MvvmCozy - Mvvm和MvvmLight学习工程
 >
 >
 > Public - 公共代码目录  
