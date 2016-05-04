@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:CozyFarseer.TopList"
         xmlns:c="clr-namespace:CozyFarseer.TopList.Controls"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="800" Width="511"
+        Title="{Binding Title}" Height="500" Width="511"
         DataContext="{Binding Main, Source={StaticResource Locator}}" WindowStartupLocation="CenterScreen">
     <Grid>
-        <ListView ItemsSource="{Binding FarseerNodeList}">
+        <ListView ItemsSource="{Binding FarseerNodeList}" HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <c:FarseerNodeItem />
