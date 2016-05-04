@@ -7,14 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="480">
     <Grid Width="480" Height="200" Background="#FFE0E0E0">
-        <Image x:Name="AvatarImage" HorizontalAlignment="Left" Height="100" Margin="20,20,0,0" VerticalAlignment="Top" Width="100" Stretch="Fill"/>
-        <Label x:Name="NickLabel" HorizontalAlignment="Left" Margin="134,39,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label x:Name="TimeLabel" HorizontalAlignment="Left" Margin="134,75,0,0" VerticalAlignment="Top" Foreground="Gray"/>
-        <Label x:Name="AccuracyLabel" HorizontalAlignment="Left" Margin="37,125,0,0" VerticalAlignment="Top" Foreground="Gray"/>
-        <Label x:Name="TTypeLabel" HorizontalAlignment="Left" Margin="48,151,0,0" VerticalAlignment="Top" Foreground="Red"/>
-        <Label x:Name="TStatusLabel" HorizontalAlignment="Left" Margin="275,151,0,0" VerticalAlignment="Top" Foreground="Red"/>
+        <Image Source="{Binding AvatarImage}" HorizontalAlignment="Left" Height="100" Margin="20,20,0,0" VerticalAlignment="Top" Width="100" Stretch="Fill"/>
+        <Label Content="{Binding Nick}" HorizontalAlignment="Left" Margin="134,39,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="{Binding Time}" HorizontalAlignment="Left" Margin="134,75,0,0" VerticalAlignment="Top" Foreground="Gray"/>
+        <Label Content="{Binding Accuracy}" HorizontalAlignment="Left" Margin="37,125,0,0" VerticalAlignment="Top" Foreground="Gray"/>
+        <Label Content="{Binding TType}" HorizontalAlignment="Left" Margin="48,151,0,0" VerticalAlignment="Top" Foreground="Red"/>
+        <Label Content="{Binding TStatus}" HorizontalAlignment="Left" Margin="275,151,0,0" VerticalAlignment="Top" Foreground="Red"/>
         <Canvas Margin="380,100,0,0">
-            <Path Stroke="Yellow" Fill="Red">
+            <Path Stroke="Red" Fill="Red">
                 <Path.Data>
                     <PathGeometry>
                         <PathGeometry.Figures>

@@ -6,15 +6,13 @@
         xmlns:local="clr-namespace:CozyFarseer.TopList"
         xmlns:c="clr-namespace:CozyFarseer.TopList.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="500"
+        Title="{Binding Title}" Height="800" Width="511"
         DataContext="{Binding Main, Source={StaticResource Locator}}" WindowStartupLocation="CenterScreen">
     <Grid>
         <ListView ItemsSource="{Binding FarseerNodeList}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <c:FarseerNodeItem Nick="{Binding nick}" Avatar="{Binding avatar}" Accuracy="{Binding accuracy}" 
-                                   TextContent="{Binding content}" Time="{Binding time}" TType="{Binding ttype}" 
-                                   TStatus="{Binding tstatus}"></c:FarseerNodeItem>
+                    <c:FarseerNodeItem />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

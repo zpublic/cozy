@@ -86,6 +86,7 @@
     <Compile Include="Model\FarseerList.cs" />
     <Compile Include="Model\FarseerNode.cs" />
     <Compile Include="Network\TopListUpdate.cs" />
+    <Compile Include="ViewModel\FarseerNodeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="Controls\FarseerNodeItem.xaml">

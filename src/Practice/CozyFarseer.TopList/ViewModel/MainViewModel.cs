@@ -21,7 +21,18 @@ namespace CozyFarseer.TopList.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        public ObservableCollection<FarseerNode> FarseerNodeList { get; set; } = new ObservableCollection<FarseerNode>();
+        ObservableCollection<FarseerNodeViewModel> _farseerNodeList = new ObservableCollection<FarseerNodeViewModel>();
+        public ObservableCollection<FarseerNodeViewModel> FarseerNodeList
+        {
+            get
+            {
+                return _farseerNodeList;
+            }
+            set
+            {
+                Set("FarseerNodeList", ref value);
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -39,6 +50,8 @@ namespace CozyFarseer.TopList.ViewModel
             ////}
         }
 
+        public string Title { get; } = "CozyFarseer";
+
         private void OnContentUpdate(IRestResponse<FarseerTopList> resp)
         {
             if(resp.ResponseStatus == ResponseStatus.Completed)
@@ -50,7 +63,7 @@ namespace CozyFarseer.TopList.ViewModel
                     {
                         foreach (var obj in result.ret.list)
                         {
-                            FarseerNodeList.Add(obj);
+                            _farseerNodeList.Add(new FarseerNodeViewModel(obj));
                         }
                     });
                 }
