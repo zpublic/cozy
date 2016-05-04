@@ -1,7 +1,9 @@
 ﻿using CozyFarseer.TopList.Controls;
+using CozyFarseer.TopList.Extension;
 using CozyFarseer.TopList.Model;
 using GalaSoft.MvvmLight;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
@@ -45,48 +47,45 @@ namespace CozyFarseer.TopList.ViewModel
             get { return Node.content; }
         }
 
+        public int Likes
+        {
+            get { return Node.likes; }
+        }
+
         public string Time
         {
-            get { return Node.time.ToString(); }
+            get { return Node.time.ToTotalTime(); }
         }
 
-        private readonly string[] TTypeDesc = { "未知", "具体看涨", "具体看跌", "纯看涨", "纯看跌" };
-        public string TType
+        public int TType
         {
-            get
-            {
-                if (Node.ttype >= -1 && Node.ttype < TTypeDesc.Length - 1)
-                {
-                    return TTypeDesc[Node.ttype + 1];
-                }
-                return TTypeDesc[0];
-            }
+            get { return Node.ttype; }
         }
 
-        private readonly string[] TStatusDesc = { "未知", "进行中", "成功", "失败" };
-        public string TStatus
+        public int TStatus
         {
-            get
-            {
-                if (Node.tstatus >= -1 && Node.tstatus < TStatusDesc.Length - 1)
-                {
-                    return TStatusDesc[Node.tstatus + 1];
-                }
-                return TStatusDesc[0];
-            }
+            get { return Node.tstatus; }
         }
 
         private const string defaultAvator = "/CozyFarseer.TopList;component/Resources/default.jpg";
+        private Dictionary<string, BitmapImage> ImageCache { get; set; } = new Dictionary<string, BitmapImage>();
+
         public BitmapImage AvatarImage
         {
             get
             {
-                var s = new BitmapImage();
-                s.BeginInit();
-                s.UriSource = new Uri("http://api.imxz.net" + Node.avatar);
-                s.EndInit();
-                s.CacheOption = BitmapCacheOption.OnLoad;
-                return s;
+                if(!ImageCache.ContainsKey(Node.avatar))
+                {
+                    var s = new BitmapImage();
+                    s.BeginInit();
+                    s.UriSource = new Uri("http://api.imxz.net" + Node.avatar);
+                    s.EndInit();
+                    s.CacheOption = BitmapCacheOption.OnLoad;
+
+                    ImageCache[Node.avatar] = s;
+                    return s;
+                }
+                return ImageCache[Node.avatar];
             }
         }
     }

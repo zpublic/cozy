@@ -79,10 +79,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\TStatusToColorConverter.cs" />
+    <Compile Include="Converters\TStatusToContentConverter.cs" />
+    <Compile Include="Converters\TTypeToContentConverter.cs" />
+    <Compile Include="Converters\TTypeToColorConverter.cs" />
     <Compile Include="Extension\ContentConverter.cs" />
     <Compile Include="Controls\FarseerNodeItem.xaml.cs">
       <DependentUpon>FarseerNodeItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extension\TimeExtension.cs" />
     <Compile Include="Model\FarseerList.cs" />
     <Compile Include="Model\FarseerNode.cs" />
     <Compile Include="Network\TopListUpdate.cs" />
