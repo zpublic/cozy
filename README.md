@@ -145,11 +145,13 @@ Cozy
 >>
 >> CozyThunder - 支持断点续传和多线程下载的可视化下载工具  
 >>
->> CozyLauncher - 史诗级巨坑，慢慢填  
+>> CozyLauncher - 快捷启动命令行工具，史诗级巨坑，慢慢填  
 >>
 >> CozyDesigner - 画软件工程相关图的工具  
 >>
 >> CozyPlague - 配色方案查看工具  
+>>
+>> CozyCozyFarseer - 玩玩先知  
 >>
 
 玩法一览
