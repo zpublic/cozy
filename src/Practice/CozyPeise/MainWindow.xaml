@@ -13,7 +13,15 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="0.618*" />
         </Grid.ColumnDefinitions>
-        <Rectangle Fill="Gray" Grid.Column="0" />
-        <c:PeiseDisplay Grid.Column="1" DataContext="{Binding PeiseDisplayX}"/>
+        <ListView x:Name="listView" Grid.Column="0" BorderThickness="0"
+                  ItemsSource="{Binding Palettes}"
+                  SelectedItem="{Binding CurPeiseListItem, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <c:PeiseListItem />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <c:PeiseDisplay Grid.Column="1" DataContext="{Binding CurPeiseDisplay}"/>
     </Grid>
 </Window>

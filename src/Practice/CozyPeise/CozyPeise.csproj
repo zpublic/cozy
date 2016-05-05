@@ -85,11 +85,19 @@
     <Compile Include="Controls\PeiseDisplay.xaml.cs">
       <DependentUpon>PeiseDisplay.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PeiseListItem.xaml.cs">
+      <DependentUpon>PeiseListItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Palette.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PeiseDisplayViewModel.cs" />
+    <Compile Include="ViewModel\PeiseListItemViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="Controls\PeiseDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PeiseListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
