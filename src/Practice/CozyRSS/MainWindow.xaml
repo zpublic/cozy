@@ -3,68 +3,34 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         xmlns:local="clr-namespace:CozyRSS"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{StaticResource MaterialDesignFont}"
         mc:Ignorable="d"
+        DataContext="{Binding Main, Source={StaticResource Locator}}" 
         Title="CozyRSS" Height="720" Width="1028" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="Resources/TitleBar.xaml" />
+                <ResourceDictionary Source="Resources/RSSContentFrame.xaml" />
+                <ResourceDictionary Source="Resources/RSSListFrame.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Window.CommandBindings>
-        <CommandBinding Command="{x:Static SystemCommands.CloseWindowCommand}" />
-    </Window.CommandBindings>
     <materialDesign:DialogHost Identifier="RootDialog">
-        <materialDesign:DrawerHost>
+        <materialDesign:DrawerHost x:Name="RSSListFrame" IsLeftDrawerOpen="False">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <ContentControl Content="{StaticResource RSSListFrame}" />
+            </materialDesign:DrawerHost.LeftDrawerContent>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <materialDesign:ColorZone Padding="16" Mode="PrimaryDark"
-                                  materialDesign:ShadowAssist.ShadowDepth="Depth5"
-                                  Grid.Row="0" Grid.ColumnSpan="2">
-                    <DockPanel>
-                        <TextBlock HorizontalAlignment="Left" FontSize="24">CozyRSS</TextBlock>
-                        <materialDesign:PopupBox HorizontalAlignment="Right" StaysOpen="False"
-                                                 PlacementMode="BottomAndAlignRightEdges">
-                            <StackPanel>
-                                <Button Content="全部更新" />
-                                <Button Content="添加订阅" />
-                                <Button Content="退出">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Click">
-                                            <ei:CallMethodAction
-                                                MethodName="Close"
-                                                TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Button>
-                            </StackPanel>
-                        </materialDesign:PopupBox>
-                    </DockPanel>
-                </materialDesign:ColorZone>
-                <Grid Grid.Row="1" Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="70" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                </Grid>
+                <ContentControl Content="{StaticResource TitleBar}" Grid.Row="0"/>
+                <ContentControl Content="{StaticResource RSSContentFrame}" Grid.Row="1"/>
             </Grid>
         </materialDesign:DrawerHost>
     </materialDesign:DialogHost>
