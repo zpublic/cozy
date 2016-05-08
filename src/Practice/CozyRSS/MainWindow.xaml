@@ -4,31 +4,48 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CozyRSS"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{StaticResource MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1028">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="70" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Rectangle Fill="Gray" Grid.Row="0" Grid.ColumnSpan="2" />
-        <Rectangle Fill="PaleGreen" Grid.Row="1" Grid.Column="0" />
-        <Grid Grid.Row="1" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="70" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Rectangle Fill="Black" Grid.Row="0" Grid.ColumnSpan="2" />
-            <Rectangle Fill="Green" Grid.Row="1" Grid.Column="0" />
-            <Rectangle Fill="Red" Grid.Row="1" Grid.Column="1" />
-        </Grid>
-    </Grid>
+        Title="CozyRSS" Height="720" Width="1028">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <materialDesign:DialogHost Identifier="RootDialog">
+        <materialDesign:DrawerHost>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <materialDesign:ColorZone Padding="16" Mode="PrimaryDark"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                                  Grid.Row="0" Grid.ColumnSpan="2">
+                    <DockPanel>
+                        <TextBlock HorizontalAlignment="Left" FontSize="24">CozyRSS</TextBlock>
+                        <materialDesign:PackIcon HorizontalAlignment="Right"  Kind="Close" />
+                    </DockPanel>
+                </materialDesign:ColorZone>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </Grid>
+        </materialDesign:DrawerHost>
+    </materialDesign:DialogHost>
 </Window>
