@@ -4,8 +4,9 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+        <ResourceDictionary Source="Styles/RSSListFrame.ListItem.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Grid x:Key="RSSListFrame" Width="200">
+    <Grid x:Key="RSSListFrame" Width="400">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition />
@@ -16,6 +17,10 @@
                           HorizontalAlignment="Right" VerticalAlignment="Center"
                           IsChecked="{Binding ElementName=RSSListFrame, Path=IsLeftDrawerOpen}" />
         </DockPanel>
-        <ListBox Margin="0 16 0 16" SelectedIndex="0" Grid.Row="1"></ListBox>
+        <ListBox Margin="0 16 0 16" SelectedIndex="0" Grid.Row="1">
+            <ListBoxItem Style="{StaticResource RSSListFrame_ListItemStyle}"/>
+            <ListBoxItem Style="{StaticResource RSSListFrame_ListItemStyle}"/>
+            <ListBoxItem Style="{StaticResource RSSListFrame_ListItemStyle}"/>
+        </ListBox>
     </Grid>
 </ResourceDictionary>
