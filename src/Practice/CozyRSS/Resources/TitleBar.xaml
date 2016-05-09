@@ -13,7 +13,7 @@
             <ToggleButton HorizontalAlignment="Left" VerticalAlignment="Center"
                           Style="{StaticResource MaterialDesignHamburgerToggleButton}"
                           IsChecked="{Binding ElementName=RSSListFrame, Path=IsLeftDrawerOpen}" />
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24">CozyRSS 0.1</TextBlock>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24">CozyRSS 0.3</TextBlock>
             <materialDesign:PopupBox HorizontalAlignment="Right" VerticalAlignment="Center" StaysOpen="False"
                                                  PlacementMode="BottomAndAlignRightEdges">
                 <StackPanel>
