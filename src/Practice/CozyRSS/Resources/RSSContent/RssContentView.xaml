@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:CozyRSS.Resources.RSSContent">
-    <WebBrowser x:Key="RssContentView" Source="https://isocpp.org/blog/2016/05/cppcast-episode-56-conan-with-diego-rodriguez-losada">
+    <WebBrowser x:Key="RssContentView">
     </WebBrowser>
 </ResourceDictionary>
