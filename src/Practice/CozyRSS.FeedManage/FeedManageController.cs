@@ -39,6 +39,7 @@ namespace CozyRSS.FeedManage
                         if (feeds?.subCategories.Count > 0 || feeds?.subNodes.Count > 0)
                         {
                             _feedTree = feeds;
+                            resetParent(_feedTree);
                             return true;
                         }
                     }

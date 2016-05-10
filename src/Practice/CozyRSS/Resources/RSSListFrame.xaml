@@ -6,21 +6,20 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
         <ResourceDictionary Source="Styles/RSSListFrame.ListItem.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Grid x:Key="RSSListFrame" Width="400">
+    <Grid x:Key="RSSListFrame" Width="400" DataContext="{Binding RSSListFrameViewModel}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0">
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24">订阅列表</TextBlock>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24" Text="{Binding Title}" />
             <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}"
                           HorizontalAlignment="Right" VerticalAlignment="Center"
                           IsChecked="{Binding ElementName=RSSListFrame, Path=IsLeftDrawerOpen}" />
         </DockPanel>
-        <ListBox Margin="0 16 0 16" SelectedIndex="0" Grid.Row="1">
-            <ListBoxItem Style="{StaticResource RSSListFrame_ListItemStyle}"/>
-            <ListBoxItem Style="{StaticResource RSSListFrame_ListItemStyle}"/>
-            <ListBoxItem Style="{StaticResource RSSListFrame_ListItemStyle}"/>
+        <ListBox Margin="0 16 0 16" SelectedIndex="0" Grid.Row="1"
+                 ItemsSource="{Binding RSSListFrame_ListItems}"
+                 ItemContainerStyle="{StaticResource RSSListFrame_ListItemStyle}">
         </ListBox>
     </Grid>
 </ResourceDictionary>

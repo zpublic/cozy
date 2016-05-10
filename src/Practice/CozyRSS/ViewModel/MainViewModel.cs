@@ -7,8 +7,8 @@ namespace CozyRSS.ViewModel
     {
         public MainViewModel()
         {
-            //var f = RssService.GetRssFeed("https://isocpp.org/blog/rss");
-            //var f2= RssService.GetRssFeed("http://www.peise.net/rss.php?rssid=32");
         }
+
+        public RSSListFrameViewModel RSSListFrameViewModel { get; } = new RSSListFrameViewModel();
     }
 }
