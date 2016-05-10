@@ -46,6 +46,7 @@
     <Compile Include="Parser\Rss20FeedFormatter.cs" />
     <Compile Include="Parser\Rss20ImageFormatter.cs" />
     <Compile Include="Parser\Rss20ItemFormatter.cs" />
+    <Compile Include="Parser\RssFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
