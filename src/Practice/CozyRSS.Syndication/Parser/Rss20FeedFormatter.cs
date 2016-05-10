@@ -1,4 +1,6 @@
 ﻿using CozyRSS.Syndication.Model;
+using System.Linq;
+
 using System.Xml;
 
 namespace CozyRSS.Syndication.Parser {
@@ -7,12 +9,12 @@ namespace CozyRSS.Syndication.Parser {
 
         public static SyndicationFeed Parse(XmlNode node) {
 
-            SyndicationFeed feed = RssFormatter.Parese<SyndicationFeed>(node);
-            foreach (XmlNode i in node.SelectNodes("item")) {
-                SyndicationItem item = RssFormatter.Parese<SyndicationItem>(i);
-                if (item.IsValid())
-                    feed.items.Add(item);
-            }
+            var feed = RssFormatter.Parese<SyndicationFeed>(node);
+            feed.items = node.SelectNodes("item")
+                .Cast<XmlNode>()
+                .Select(RssFormatter.Parese<SyndicationItem>)
+                .Where(x => x.IsValid())
+                .ToList();
             return feed;
         }
     }

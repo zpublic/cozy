@@ -21,7 +21,7 @@ namespace CozyRSS.Syndication.Model
         public SyndicationImage image { get; set; }
         public string pubDate { get; set; } // rfc 822格式
         public string lastBuildDate { get; set; }
-        public List<SyndicationItem> items { get; set; } = new List<SyndicationItem>();
+        public List<SyndicationItem> items { get; set; }
         #endregion
 
         #region 暂不关注的elements
