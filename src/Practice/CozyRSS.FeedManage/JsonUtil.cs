@@ -2,7 +2,7 @@
 
 namespace CozyRSS.FeedManage
 {
-    public class JsonUtil
+    class JsonUtil
     {
         public static FeedCategory Json2Obj(string json)
         {
@@ -11,7 +11,7 @@ namespace CozyRSS.FeedManage
 
         public static string Obj2Json(FeedCategory root)
         {
-            return JsonConvert.SerializeObject(root);
+            return JsonConvert.SerializeObject(root, Formatting.Indented);
         }
     }
 }

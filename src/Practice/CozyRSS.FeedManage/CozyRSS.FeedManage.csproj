@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FeedCategory.cs" />
+    <Compile Include="FeedManageController.cs" />
     <Compile Include="FeedNode.cs" />
     <Compile Include="JsonUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
