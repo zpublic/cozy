@@ -6,7 +6,7 @@ module.exports = {
         path.normalize('es6-shim/es6-shim.min'),
         'reflect-metadata',
         path.normalize('zone.js/dist/zone.min'),
-        path.resolve('app/main.ts')
+        path.resolve('app/app.ts')
     ],
     output: {
         path: path.resolve('www/build/js'),
@@ -22,7 +22,7 @@ module.exports = {
                 query: {
                     doTypeCheck: true,
                     resolveGlobs: false,
-                    externals: ["typings/browser.d.ts"]
+                    externals: ["typings/tsd.d.ts"]
                 },
                 include: path.resolve('app'),
                 exclude: /node_modules/

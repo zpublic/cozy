@@ -13,15 +13,15 @@ namespace CozyRSS.Syndication.Model
 
         #region 关注的elements
         // 必备
-        public string title;
-        public string description;
-        public string link;
+        public string title { get; set; }
+        public string description { get; set; }
+        public string link { get; set; }
 
         // 可选
-        public SyndicationImage image;
-        public string pubDate; // rfc 822格式
-        public string lastBuildDate;
-        public List<SyndicationItem> items = new List<SyndicationItem>();
+        public SyndicationImage image { get; set; }
+        public string pubDate { get; set; } // rfc 822格式
+        public string lastBuildDate { get; set; }
+        public List<SyndicationItem> items { get; set; }
         #endregion
 
         #region 暂不关注的elements
