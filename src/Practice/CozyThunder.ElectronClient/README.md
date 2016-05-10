@@ -4,5 +4,7 @@
 
     
     $ npm install
+    $ bower install
+    $ tsd install
     $ gulp build
     $ npm start
