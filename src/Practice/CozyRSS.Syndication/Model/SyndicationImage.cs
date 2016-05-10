@@ -3,9 +3,9 @@
     public class SyndicationImage
     {
         // 必备
-        public string url;
-        public string title;
-        public string link;
+        public string url { get; set; }
+        public string title { get; set; }
+        public string link { get; set; }
 
         /*
         // 可选
