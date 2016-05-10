@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="CozyPeise.Controls.PeiseDisplay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CozyPeise.Controls"
+             mc:Ignorable="d" 
+             DataContext="{Binding PeiseDisplayViewModel}" 
+             d:DesignHeight="800" d:DesignWidth="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.618*" />
+        </Grid.RowDefinitions>
+        <Rectangle Fill="{Binding Color0}" Grid.Row="0" />
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.618*" />
+            </Grid.ColumnDefinitions>
+            <Rectangle Fill="{Binding Color1}" Grid.Column="0"/>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.618*" />
+                </Grid.RowDefinitions>
+                <Rectangle Fill="{Binding Color2}" Grid.Row="0" />
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.618*" />
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Fill="{Binding Color3}" Grid.Column="0"/>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="0.618*" />
+                        </Grid.RowDefinitions>
+                        <Rectangle Fill="{Binding Color4}" Grid.Row="0" />
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="0.618*" />
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Fill="{Binding Color5}" Grid.Column="0"/>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="0.618*" />
+                                </Grid.RowDefinitions>
+                                <Rectangle Fill="{Binding Color6}" Grid.Row="0" />
+                                <Rectangle Fill="{Binding Color7}" Grid.Row="1" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CozyRSS.Resources">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+        <ResourceDictionary Source="Styles/RSSListFrame.ListItem.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <Grid x:Key="RSSListFrame" Width="400">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24">订阅列表</TextBlock>
+            <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}"
+                          HorizontalAlignment="Right" VerticalAlignment="Center"
+                          IsChecked="{Binding ElementName=RSSListFrame, Path=IsLeftDrawerOpen}" />
+        </DockPanel>
+        <ListBox Margin="0 16 0 16" SelectedIndex="0" Grid.Row="1">
+            <ListBoxItem Style="{StaticResource RSSListFrame_ListItemStyle}"/>
+            <ListBoxItem Style="{StaticResource RSSListFrame_ListItemStyle}"/>
+            <ListBoxItem Style="{StaticResource RSSListFrame_ListItemStyle}"/>
+        </ListBox>
+    </Grid>
+</ResourceDictionary>

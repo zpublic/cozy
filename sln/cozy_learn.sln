@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cozy", "..\src\Learn\Cozy\Cozy.csproj", "{B195B4A4-9CEE-4742-8436-3E022EAAA157}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfCozy", "..\src\Learn\WpfCozy\WpfCozy.csproj", "{73EB5963-9E60-4FD2-AE5D-2A918D37644C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreCozy", "..\src\Learn\StoreCozy\StoreCozy.csproj", "{02A908A6-ED61-4685-83AB-84B6464061F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmCozy", "..\src\Practice\MvvmCozy\MvvmCozy.csproj", "{3D590F0D-6DF2-4B16-A401-D36725698D00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +79,26 @@ Global
 		{02A908A6-ED61-4685-83AB-84B6464061F7}.Release|x86.ActiveCfg = Release|x86
 		{02A908A6-ED61-4685-83AB-84B6464061F7}.Release|x86.Build.0 = Release|x86
 		{02A908A6-ED61-4685-83AB-84B6464061F7}.Release|x86.Deploy.0 = Release|x86
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Debug|ARM.Build.0 = Debug|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Debug|x64.Build.0 = Debug|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Debug|x86.Build.0 = Debug|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Release|ARM.ActiveCfg = Release|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Release|ARM.Build.0 = Release|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Release|x64.ActiveCfg = Release|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Release|x64.Build.0 = Release|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Release|x86.ActiveCfg = Release|Any CPU
+		{3D590F0D-6DF2-4B16-A401-D36725698D00}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,14 @@
+﻿<Window x:Class="MvvmCozy.View.MvvmView1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.galasoft.ch/ignore"
+        mc:Ignorable="d ignore"
+        DataContext="{Binding View1, Source={StaticResource Locator}}">
+
+    <Grid>
+        <Label x:Name="Title" Content="{Binding Title}" HorizontalAlignment="Left" Margin="237,130,0,0" VerticalAlignment="Top" FontSize="40"/>
+        <Label x:Name="SubTitle" Content="{Binding SubTitle}" HorizontalAlignment="Left" Margin="237,221,0,0" VerticalAlignment="Top" FontSize="28"/>
+    </Grid>
+</Window>

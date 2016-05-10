@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CozyRSS.Resources">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="RSSContent/RSSContentTitle.xaml" />
+        <ResourceDictionary Source="RSSContent/RSSContentList.xaml" />
+        <ResourceDictionary Source="RSSContent/RssContentView.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <Grid x:Key="RSSContentFrame">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ContentControl Content="{StaticResource RSSContentTitle}" />
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ContentControl Content="{StaticResource RSSContentList}" />
+            <ContentControl Grid.Column="1" Content="{StaticResource RssContentView}" />
+        </Grid>
+    </Grid>
+</ResourceDictionary>

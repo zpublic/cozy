@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:local="clr-namespace:CozyRSS.Resources.RSSContent">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <materialDesign:ColorZone x:Key="RSSContentTitle" Padding="16" Mode="PrimaryLight" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+        <DockPanel>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20">Standard C++</TextBlock>
+            <DockPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button Content="全部设为已读" FontSize="20"/>
+                <Button Content="刷新" Margin="10 0 0 0" FontSize="20"/>
+            </DockPanel>
+        </DockPanel>
+    </materialDesign:ColorZone>
+</ResourceDictionary>
