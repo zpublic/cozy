@@ -6,21 +6,17 @@ namespace CozyRSS.Syndication.Parser {
 
     public class RssFormatter {
 
-        private XmlNode rootNode;
-
         public T Formatter<T>(string root, Uri url) {
             var reader = XmlReader.Create(url.AbsoluteUri);
             var doc = new XmlDocument();
             doc.Load(reader);
-            rootNode = doc.SelectSingleNode(root);
-            return Parese(rootNode, Activator.CreateInstance<T>());
+            return Parese(doc.SelectSingleNode(root), Activator.CreateInstance<T>());
         }
 
         public T Formatter<T>(string root, string xml) {
             var doc = new XmlDocument();
             doc.LoadXml(xml);
-            rootNode = doc.SelectSingleNode(root);
-            return Parese(rootNode, Activator.CreateInstance<T>());
+            return Parese(doc.SelectSingleNode(root), Activator.CreateInstance<T>());
         }
 
         private T Parese<T>(XmlNode node, T obj) {
