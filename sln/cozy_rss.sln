@@ -11,10 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyRSS.FeedManage", "..\sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyRSS.FeedManage.Tester", "..\src\Practice\CozyRSS.FeedManage.Tester\CozyRSS.FeedManage.Tester.csproj", "{E91C9443-4960-48CA-B179-A29A91C1B558}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tester", "Tester", "{1E9DBFE5-0D1E-4B15-B1CE-9B17FFE4F750}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Module", "Module", "{E11ABB42-FAF5-4D65-9A9B-2A5EC9184CA9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyRSS.Syndication.Tester", "..\src\Practice\CozyRSS.Syndication.Tester\CozyRSS.Syndication.Tester.csproj", "{A3C21F03-B6B4-45C9-9231-887A8A1B55FA}"
 EndProject
 Global
@@ -46,11 +42,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{D842C7EC-5A4A-4991-B156-ACB8BD85B435} = {E11ABB42-FAF5-4D65-9A9B-2A5EC9184CA9}
-		{0430E1F6-7A6D-41FF-B483-B78403CC08AD} = {E11ABB42-FAF5-4D65-9A9B-2A5EC9184CA9}
-		{E91C9443-4960-48CA-B179-A29A91C1B558} = {1E9DBFE5-0D1E-4B15-B1CE-9B17FFE4F750}
-		{A3C21F03-B6B4-45C9-9231-887A8A1B55FA} = {1E9DBFE5-0D1E-4B15-B1CE-9B17FFE4F750}
 	EndGlobalSection
 EndGlobal
