@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 
@@ -45,10 +43,10 @@ namespace CozyRSS.Syndication.Parser {
                                 array[i] = (dynamic)(listIttemType.GetType().GetConstructors()[0].Invoke(null));
                                 var source = Parese(nodes[i], Activator.CreateInstance(assemblyName, typeName).Unwrap());
                                 var sourceType = source.GetType();
-                                var xxxxx = sourceType.GetProperties()
+                                var properties = sourceType.GetProperties()
                                     .Where(y => array[i].GetType().GetProperty(y.Name) != null)
                                     .ToList();
-                                foreach (var propertyInfo in xxxxx) {
+                                foreach (var propertyInfo in properties) {
                                     array[i].GetType().GetProperty(propertyInfo.Name)
                                         .SetValue(array[i], propertyInfo.GetValue(source));
                                 }
@@ -66,29 +64,6 @@ namespace CozyRSS.Syndication.Parser {
                     }
                 });
             return item;
-        }
-
-        public static TItem Formatter<TItem>(XmlNode node) {
-            var item = Activator.CreateInstance<TItem>();
-            item.GetType().GetProperties()
-                .Where(x => x.PropertyType.Name == "String")
-                .ToList()
-                .ForEach(x => x.SetValue(item, node.SelectSingleNode(x.Name)?.InnerText));
-            return item;
-        }
-
-        private void FillData(object source, ref object target) {
-            target = source;
-            var targetType = target.GetType();
-            var sourceType = source.GetType();
-            var list = sourceType.GetProperties()
-                .Where(x => targetType.GetProperty(x.Name) != null)
-                .ToList();
-
-            foreach (var propertyInfo in list) {
-                targetType.GetProperty(propertyInfo.Name)
-                    .SetValue(target, propertyInfo.GetValue(source));
-            }
         }
 
     }
