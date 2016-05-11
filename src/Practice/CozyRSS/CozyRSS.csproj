@@ -87,8 +87,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Resources\Dialog\AddFeedDialog.xaml.cs">
+      <DependentUpon>AddFeedDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\FeedManageService.cs" />
     <Compile Include="Services\RssService.cs" />
+    <Compile Include="ViewModel\Dialog\AddFeedDialogViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RSSListFrameViewModel.cs" />
     <Compile Include="ViewModel\RSSListFrame_ListItemViewModel.cs" />
@@ -105,6 +109,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Dialog\AddFeedDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\RSSContentFrame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
