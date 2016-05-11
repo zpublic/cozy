@@ -6,17 +6,21 @@ namespace CozyRSS.Syndication.Parser {
 
     public class RssFormatter {
 
-        private readonly XmlNode rootNode;
+        private XmlNode rootNode;
 
-        public RssFormatter(string root, string url) {
-            var reader = XmlReader.Create(url);
+        public T Formatter<T>(string root, Uri url) {
+            var reader = XmlReader.Create(url.AbsoluteUri);
             var doc = new XmlDocument();
             doc.Load(reader);
             rootNode = doc.SelectSingleNode(root);
+            return Parese(rootNode, Activator.CreateInstance<T>());
         }
 
-        public T Formatter<T>() {
-            return Parese<T>(rootNode, Activator.CreateInstance<T>());
+        public T Formatter<T>(string root, string xml) {
+            var doc = new XmlDocument();
+            doc.LoadXml(xml);
+            rootNode = doc.SelectSingleNode(root);
+            return Parese(rootNode, Activator.CreateInstance<T>());
         }
 
         private T Parese<T>(XmlNode node, T obj) {
@@ -25,38 +29,21 @@ namespace CozyRSS.Syndication.Parser {
                 .ToList()
                 .ForEach(x => {
                     if (x.PropertyType.Name == "String") {
-                        //第一种String类型
                         x.SetValue(item, node.SelectSingleNode(x.Name)?.InnerText);
                     }
                     else if (x.PropertyType.Name.StartsWith("List")) {
-                        //第二种List<T>类型
                         var splite = x.PropertyType.AssemblyQualifiedName.Split(',');
                         var typeName = splite[0].Substring(splite[0].IndexOf('[') + 2);
                         var assemblyName = splite[1];
-                        var nodeName = x.Name.Substring(0, x.Name.Length - 1);
-                        var nodes = node.SelectNodes(nodeName);
-                        if (nodes?.Count > 0) {
-                            var list = (dynamic)x.GetValue(item);
-                            var array = list.ToArray().GetType().GetConstructors()[0].Invoke(new object[] { nodes.Count });
-                            var listIttemType = Activator.CreateInstance(assemblyName, typeName).Unwrap();
-                            for (int i = 0; i < nodes.Count; i++) {
-                                array[i] = (dynamic)(listIttemType.GetType().GetConstructors()[0].Invoke(null));
-                                var source = Parese(nodes[i], Activator.CreateInstance(assemblyName, typeName).Unwrap());
-                                var sourceType = source.GetType();
-                                var properties = sourceType.GetProperties()
-                                    .Where(y => array[i].GetType().GetProperty(y.Name) != null)
-                                    .ToList();
-                                foreach (var propertyInfo in properties) {
-                                    array[i].GetType().GetProperty(propertyInfo.Name)
-                                        .SetValue(array[i], propertyInfo.GetValue(source));
-                                }
-                                list.Add(array[i]);
-                            }
-                            x.SetValue(item, list);
+                        var nodes = node.SelectNodes(x.Name.Substring(0, x.Name.Length - 1));
+                        nodes = nodes?.Count > 0 ? nodes : node.SelectSingleNode(x.Name).ChildNodes;
+                        var list = (dynamic)x.GetValue(item) ?? x.PropertyType.GetConstructors()[0].Invoke(null);
+                        foreach (XmlNode n in nodes) {
+                            list.Add((dynamic)Parese(n, Activator.CreateInstance(assemblyName, typeName).Unwrap()));
                         }
+                        x.SetValue(item, list);
                     }
                     else {
-                        //剩下的就是class类型
                         var splite = x.PropertyType.AssemblyQualifiedName.Split(',');
                         var typeName = splite[0];
                         var assemblyName = splite[1];
@@ -65,6 +52,5 @@ namespace CozyRSS.Syndication.Parser {
                 });
             return item;
         }
-
     }
 }
