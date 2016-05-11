@@ -9,10 +9,10 @@ namespace CozyRSS.Syndication.Parser {
 
         public static SyndicationFeed Parse(XmlNode node) {
 
-            var feed = RssFormatter.Parese<SyndicationFeed>(node);
+            var feed = RssFormatter.Formatter<SyndicationFeed>(node);
             feed.items = node.SelectNodes("item")
                 .Cast<XmlNode>()
-                .Select(RssFormatter.Parese<SyndicationItem>)
+                .Select(RssFormatter.Formatter<SyndicationItem>)
                 .Where(x => x.IsValid())
                 .ToList();
             return feed;

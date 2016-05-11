@@ -16,8 +16,8 @@ namespace CozyRSS.Syndication.Tester.Parser {
 
         [TestMethod()]
         public void PareseTestTest() {
-            var result = formatter.Parese<SyndicationFeed>();
-            Assert.Fail();
+            var result = formatter.Formatter<SyndicationFeed>();
+            Assert.IsTrue(result.items.Count > 0);
         }
     }
 }
