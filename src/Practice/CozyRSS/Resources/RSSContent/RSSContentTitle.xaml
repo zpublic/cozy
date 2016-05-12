@@ -7,10 +7,11 @@
     </ResourceDictionary.MergedDictionaries>
     <materialDesign:ColorZone x:Key="RSSContentTitle" Padding="16" Mode="PrimaryLight" materialDesign:ShadowAssist.ShadowDepth="Depth1">
         <DockPanel>
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20">Standard C++</TextBlock>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Text="{Binding Title}" />
             <DockPanel HorizontalAlignment="Right" VerticalAlignment="Center">
                 <Button Content="全部设为已读" FontSize="20"/>
-                <Button Content="刷新" Margin="10 0 0 0" FontSize="20"/>
+                <Button Content="刷新" Margin="10 0 0 0" FontSize="20"
+                        Command="{Binding UpdateContentCommand}"/>
             </DockPanel>
         </DockPanel>
     </materialDesign:ColorZone>
