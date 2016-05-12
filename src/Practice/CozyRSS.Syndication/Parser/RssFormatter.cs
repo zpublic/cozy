@@ -10,16 +10,16 @@ namespace CozyRSS.Syndication.Parser {
             var reader = XmlReader.Create(url.AbsoluteUri);
             var doc = new XmlDocument();
             doc.Load(reader);
-            return Parese(doc.SelectSingleNode(root), Activator.CreateInstance<T>());
+            return Parse(doc.SelectSingleNode(root), Activator.CreateInstance<T>());
         }
 
         public T Formatter<T>(string root, string xml) {
             var doc = new XmlDocument();
             doc.LoadXml(xml);
-            return Parese(doc.SelectSingleNode(root), Activator.CreateInstance<T>());
+            return Parse(doc.SelectSingleNode(root), Activator.CreateInstance<T>());
         }
 
-        private T Parese<T>(XmlNode node, T obj) {
+        private T Parse<T>(XmlNode node, T obj) {
             var item = obj;
             item.GetType().GetProperties()
                 .ToList()
@@ -35,7 +35,7 @@ namespace CozyRSS.Syndication.Parser {
                         nodes = nodes?.Count > 0 ? nodes : node.SelectSingleNode(x.Name).ChildNodes;
                         var list = (dynamic)x.GetValue(item) ?? x.PropertyType.GetConstructors()[0].Invoke(null);
                         foreach (XmlNode n in nodes) {
-                            list.Add((dynamic)Parese(n, Activator.CreateInstance(assemblyName, typeName).Unwrap()));
+                            list.Add((dynamic)Parse(n, Activator.CreateInstance(assemblyName, typeName).Unwrap()));
                         }
                         x.SetValue(item, list);
                     }
@@ -43,7 +43,7 @@ namespace CozyRSS.Syndication.Parser {
                         var splite = x.PropertyType.AssemblyQualifiedName.Split(',');
                         var typeName = splite[0];
                         var assemblyName = splite[1];
-                        x.SetValue(item, Parese(node.SelectSingleNode(x.Name), Activator.CreateInstance(assemblyName, typeName).Unwrap()));
+                        x.SetValue(item, Parse(node.SelectSingleNode(x.Name), Activator.CreateInstance(assemblyName, typeName).Unwrap()));
                     }
                 });
             return item;

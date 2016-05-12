@@ -43,7 +43,6 @@
     <Compile Include="Model\SyndicationFeed.cs" />
     <Compile Include="Model\SyndicationImage.cs" />
     <Compile Include="Model\SyndicationItem.cs" />
-    <Compile Include="Parser\Rss20FeedFormatter.cs" />
     <Compile Include="Parser\Rss20ImageFormatter.cs" />
     <Compile Include="Parser\Rss20ItemFormatter.cs" />
     <Compile Include="Parser\RssFormatter.cs" />
