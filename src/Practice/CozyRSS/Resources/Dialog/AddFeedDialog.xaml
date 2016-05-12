@@ -14,14 +14,12 @@
         <Label Content="请键入您需要订阅的 Feed 地址."
                Margin="20,60" FontSize="20"
                HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top"
+        <TextBox x:Name="UrlTextBox" HorizontalAlignment="Left" VerticalAlignment="Top"
                  Height="30" Width="410" Margin="20,110" />
         <Button Content="添加" Margin="20,170" Width="80"
                 HorizontalAlignment="Left" VerticalAlignment="Top"
-                Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
-            <Button.CommandParameter>
-                <system:Boolean>True</system:Boolean>
-            </Button.CommandParameter>
+                Command="{x:Static wpf:DialogHost.CloseDialogCommand}"
+                CommandParameter="{Binding Text,ElementName=UrlTextBox}" >
         </Button>
         <Button Content="取消" Margin="350,170" Width="80"
                 HorizontalAlignment="Left" VerticalAlignment="Top"

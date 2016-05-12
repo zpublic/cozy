@@ -36,7 +36,7 @@ namespace CozyRSS.FeedManage
                     using (var reader = new StreamReader(fs))
                     {
                         var feeds = JsonUtil.Json2Obj(reader.ReadToEnd());
-                        if (feeds?.subCategories.Count > 0 || feeds?.subNodes.Count > 0)
+                        if (feeds?.subCategories?.Count > 0 || feeds?.subNodes?.Count > 0)
                         {
                             _feedTree = feeds;
                             resetParent(_feedTree);
@@ -50,14 +50,20 @@ namespace CozyRSS.FeedManage
 
         void resetParent(FeedCategory category)
         {
-            foreach (var c in category.subCategories)
+            if (category.subCategories != null)
             {
-                c.parent = category;
-                resetParent(c);
+                foreach (var c in category.subCategories)
+                {
+                    c.parent = category;
+                    resetParent(c);
+                }
             }
-            foreach (var n in category.subNodes)
+            if (category.subNodes != null)
             {
-                n.parent = category;
+                foreach (var n in category.subNodes)
+                {
+                    n.parent = category;
+                }
             }
         }
 
@@ -76,17 +82,19 @@ namespace CozyRSS.FeedManage
             parentCategory.subCategories.Add(new FeedCategory() { name = categoryName, parent = parentCategory });
         }
 
-        public void AddFeed(string FeedName, string FeedUrl)
+        public FeedNode AddFeed(string FeedName, string FeedUrl)
         {
             if (_feedTree == null)
                 _feedTree = new FeedCategory() { name = "root" };
-            AddFeed(_feedTree, FeedName, FeedUrl);
+            return AddFeed(_feedTree, FeedName, FeedUrl);
         }
-        public void AddFeed(FeedCategory parentCategory, string FeedName, string FeedUrl)
+        public FeedNode AddFeed(FeedCategory parentCategory, string FeedName, string FeedUrl)
         {
             if (parentCategory.subNodes == null)
                 parentCategory.subNodes = new List<FeedNode>();
-            parentCategory.subNodes.Add(new FeedNode() { name = FeedName, url = FeedUrl, parent = parentCategory });
+            FeedNode i = new FeedNode() { name = FeedName, url = FeedUrl, parent = parentCategory };
+            parentCategory.subNodes.Add(i);
+            return i;
         }
 
         public void RemoveCategory(FeedCategory category)

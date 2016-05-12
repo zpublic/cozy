@@ -27,5 +27,12 @@ namespace CozyRSS.ViewModel
                 _RSSListFrame_ListItems.Remove(m);
             });
         }
+
+        public void AddFeed(string url)
+        {
+            var i = FeedManageService.FeedManage.AddFeed(url);
+            if (i != null)
+                _RSSListFrame_ListItems.Add(new RSSListFrame_ListItemViewModel(i));
+        }
     }
 }
