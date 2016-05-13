@@ -1,6 +1,6 @@
 ﻿using CozyRSS.Syndication.Model;
 using CozyRSS.Syndication.Parser;
-using System.Xml;
+using System;
 
 namespace CozyRSS.Services
 {
@@ -8,11 +8,9 @@ namespace CozyRSS.Services
     {
         public static SyndicationFeed GetRssFeed(string url)
         {
-            XmlReader reader = XmlReader.Create(url);
-            XmlDocument doc = new XmlDocument();
-            doc.Load(reader);
-            SyndicationFeed item = Rss20FeedFormatter.Parse(doc.SelectSingleNode("rss/channel"));
-            return item;
+            RssFormatter formatter = new RssFormatter();
+            var result = formatter.Formatter<SyndicationFeed>("rss/channel", new Uri("url"));
+            return result;
         }
     }
 }

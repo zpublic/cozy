@@ -19,6 +19,10 @@ namespace CozyRSS.ViewModel
 
         private void ClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
         {
+            if (eventArgs.Parameter is string)
+            {
+                RSSListFrameViewModel.AddFeed(eventArgs.Parameter as string);
+            }
         }
 
         public RSSListFrameViewModel RSSListFrameViewModel { get; } = new RSSListFrameViewModel();
