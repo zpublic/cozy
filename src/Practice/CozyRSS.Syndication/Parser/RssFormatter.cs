@@ -8,14 +8,14 @@ namespace CozyRSS.Syndication.Parser {
 
     public class RssFormatter {
 
-        public SyndicationFeed Formatter(string url) {
+        public SyndicationFeed Parse(string url) {
             var reader = XmlReader.Create(url);
             var doc = new XmlDocument();
             doc.Load(reader);
             var rootNode = GetRootNode(doc);
             var isAtom = rootNode.Name == "feed";
             var type = isAtom ? typeof(AtomFeed) : typeof(SyndicationFeed);
-            var reslut = Parse(GetRootNode(doc), Activator.CreateInstance(type));
+            var reslut = Parse(rootNode, Activator.CreateInstance(type));
             return isAtom ? Convert((AtomFeed)reslut) : (SyndicationFeed)reslut;
         }
 

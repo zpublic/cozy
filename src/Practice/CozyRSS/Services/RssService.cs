@@ -9,7 +9,7 @@ namespace CozyRSS.Services
         public static SyndicationFeed GetRssFeed(string url)
         {
             RssFormatter formatter = new RssFormatter();
-            var result = formatter.Formatter(url);
+            var result = formatter.Parse(url);
             return result;
         }
     }
