@@ -14,6 +14,9 @@
         <Grid Background="#eee">
             <Rectangle Fill="#aaa" VerticalAlignment="Top" Height="1"/>
         </Grid>
-        <TextBlock Text="{Binding ViewContent}" Margin="10 12 10 10" FontSize="12" />
+        <TextBlock Text="{Binding ViewContent}" Margin="10 12 10 10" FontSize="12"
+                   TextWrapping="Wrap"
+                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                   ScrollViewer.HorizontalScrollBarVisibility="Auto" />
     </StackPanel>
 </ResourceDictionary>

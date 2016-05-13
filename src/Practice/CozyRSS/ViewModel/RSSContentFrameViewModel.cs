@@ -11,8 +11,8 @@ namespace CozyRSS.ViewModel
         {
             UpdateContentCommand = new RelayCommand(() =>
             {
-                var feed = RssService.GetRssFeed("http://feed.cnblogs.com/blog/u/132703/rss");
-                //var feed = RssService.GetRssFeed("http://www.peise.net/rss.php?rssid=32");
+                // 很不稳定 var feed = RssService.GetRssFeed("http://feed.cnblogs.com/blog/u/132703/rss");
+                var feed = RssService.GetRssFeed("http://www.peise.net/rss.php?rssid=32");
                 if (feed.items.Count > 0)
                 {
                     _RSSContentList_ListItems.Clear();
