@@ -7,11 +7,11 @@ namespace CozyRSS.Syndication.Parser {
 
     public class RssFormatter {
 
-        public SyndicationFeed Formatter( string url) {
+        public SyndicationFeed Formatter(string url) {
             var reader = XmlReader.Create(url);
             var doc = new XmlDocument();
             doc.Load(reader);
-            return Parse(doc.SelectSingleNode("rss/channel"), Activator.CreateInstance<SyndicationFeed>());
+            return Parse(GetRootPath(doc), new SyndicationFeed());
         }
 
         private T Parse<T>(XmlNode node, T obj) {
@@ -42,5 +42,38 @@ namespace CozyRSS.Syndication.Parser {
                 });
             return item;
         }
+
+        private XmlNode GetRootPath(XmlDocument doc) {
+            var name = doc.DocumentElement.Name;
+            switch (name) {
+                case "rss":
+                    return doc.SelectSingleNode("rss/channel");
+                case "feed":
+                    return doc.SelectSingleNode("feed");
+                default:
+                    throw new Exception("暂时只支持 rss和atom协议");
+            }
+        }
+
+
+        /*使用XPath解析Atom协议格式笔记
+         * 
+         * atom协议的xml有点特殊
+         * 用常规的SelectNode()来解析，会一直报空值，原因是XML有设定XMLNamespace造成无法使用
+         * 
+         * 解决方法：
+         *      加载完xml后要对Namespace进行设定
+         *
+         *  XmlNamespaceManager nsm = new XmlNamespaceManager(doc.NameTable);
+         *  nsm.AddNamespace("atom", "http://www.w3.org/2005/Atom");
+         *  nsm.AddNamespace("app", "http://purl.org/atom/app#");
+         *  nsm.AddNamespace("media", "http://search.yahoo.com/mrss/");
+         *  nsm.AddNamespace("openSearch", "http://a9.com/-/spec/opensearchrss/1.0/");
+         *  nsm.AddNamespace("gd", "http://schemas.google.com/g/2005");
+         *  nsm.AddNamespace("yt", "http://gdata.youtube.com/schemas/2007");
+         *  doc.SelectSingleNode("atom:feed",nsm);
+         *  
+         *  但这种使用方法会影响到Parse()解析的统一性，暂不采用。 在此作记录防后人跳坑
+         */
     }
 }
