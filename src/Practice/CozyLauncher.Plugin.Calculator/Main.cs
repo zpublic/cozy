@@ -41,6 +41,7 @@ namespace CozyLauncher.Plugin.Calculator
             try
             {
                 var result = yampContext.Run(query.RawQuery);
+
                 if (result.Output != null && !string.IsNullOrEmpty(result.Result))
                 {
                     var rl = new List<Result>();
