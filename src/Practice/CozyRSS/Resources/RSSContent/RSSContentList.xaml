@@ -6,6 +6,8 @@
     </ResourceDictionary.MergedDictionaries>
     <ListBox x:Key="RSSContentList" Margin="0 1 0 1" BorderThickness="0 0 0 1" SelectedIndex="1"
              ItemsSource="{Binding RSSListFrame_ListItems}"
-             ItemContainerStyle="{StaticResource RSSContentList_ListItemStyle}">
+             ItemContainerStyle="{StaticResource RSSContentList_ListItemStyle}"
+             SelectedItem="{Binding RSSListFrame_SelectedItem,Mode=TwoWay}"
+             ScrollViewer.VerticalScrollBarVisibility="Visible">
     </ListBox>
 </ResourceDictionary>

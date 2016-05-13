@@ -3,6 +3,16 @@
                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                     xmlns:local="clr-namespace:CozyRSS.Resources.Styles">
     <Style x:Key="RSSContentList_ListItemStyle" TargetType="{x:Type ListBoxItem}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="#efefef"/>
+                <Setter Property="Foreground" Value="BlueViolet"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="true">
+                <Setter Property="Background" Value="Coral"/>
+                <Setter Property="Foreground" Value="BlueViolet"/>
+            </Trigger>
+        </Style.Triggers>
         <Setter Property="Template" >
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">

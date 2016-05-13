@@ -1,6 +1,19 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:CozyRSS.Resources.RSSContent">
-    <Grid x:Key="RssContentView">
-    </Grid>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <StackPanel x:Key="RssContentView">
+        <Label Content="{Binding ViewTitle}" FontSize="20" Height="32" />
+        <StackPanel Orientation="Horizontal">
+            <Label Content="{Binding ViewTime}" FontSize="16" Foreground="Gray" />
+            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="20 0 0 0">打开页面</Button>
+            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="10 0 0 0">设为未读</Button>
+        </StackPanel>
+        <Grid Background="#eee">
+            <Rectangle Fill="#aaa" VerticalAlignment="Top" Height="1"/>
+        </Grid>
+        <TextBlock Text="{Binding ViewContent}" Margin="10 12 10 10" FontSize="12" />
+    </StackPanel>
 </ResourceDictionary>
