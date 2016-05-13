@@ -95,6 +95,7 @@
     <Compile Include="ViewModel\Dialog\AddFeedDialogViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RSSContentFrameViewModel.cs" />
+    <Compile Include="ViewModel\RSSContentList_ListItemViewModel.cs" />
     <Compile Include="ViewModel\RSSListFrameViewModel.cs" />
     <Compile Include="ViewModel\RSSListFrame_ListItemViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />

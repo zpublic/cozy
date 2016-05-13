@@ -14,13 +14,13 @@
                         <DockPanel>
                             <materialDesign:PackIcon Width="20" Height="20" Kind="RssBox"
                                                      Margin="4" HorizontalAlignment="Left" />
-                            <TextBlock Grid.Row="1" Text="CppCast Episode 56: Conan with Diego Rodriguez-Losada"
+                            <TextBlock Grid.Row="1" Text="{Binding Title}"
                                    FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left"
-                                   MaxWidth="340" ToolTip="CppCast Episode 56: Conan with Diego Rodriguez-Losada" />
-                            <materialDesign:PackIcon Width="20" Height="20" Kind="StarOutline"
+                                   MaxWidth="340" ToolTip="{Binding Title}" />
+                            <materialDesign:PackIcon Width="20" Height="20" Kind="{Binding Icon}"
                                                      Margin="4" HorizontalAlignment="Right" />
                         </DockPanel>
-                        <TextBlock Grid.Row="1" Text="2016-05-09 11:21:17 AM"
+                        <TextBlock Grid.Row="1" Text="{Binding Time}"
                                    FontSize="12" Margin="28 0 0 0" Foreground="Gray" MaxWidth="350" />
                     </Grid>
                 </ControlTemplate>
