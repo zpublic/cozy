@@ -6,7 +6,7 @@
         <ResourceDictionary Source="RSSContent/RSSContentList.xaml" />
         <ResourceDictionary Source="RSSContent/RssContentView.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Grid x:Key="RSSContentFrame">
+    <Grid x:Key="RSSContentFrame" DataContext="{Binding RSSContentFrameViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition />

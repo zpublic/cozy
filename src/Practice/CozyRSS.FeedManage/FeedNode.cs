@@ -2,15 +2,13 @@
 
 namespace CozyRSS.FeedManage
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class FeedNode
     {
-        [JsonProperty]
         public string name;
 
-        [JsonProperty]
         public string url;
 
+        [JsonIgnore]
         public FeedCategory parent;
     }
 }

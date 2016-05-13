@@ -26,6 +26,7 @@ namespace CozyRSS.ViewModel
         }
 
         public RSSListFrameViewModel RSSListFrameViewModel { get; } = new RSSListFrameViewModel();
+        public RSSContentFrameViewModel RSSContentFrameViewModel { get; } = new RSSContentFrameViewModel();
 
         public RelayCommand OpenAddFeedDialogCommand { get; private set; }
     }

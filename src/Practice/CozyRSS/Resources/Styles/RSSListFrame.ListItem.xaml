@@ -8,7 +8,7 @@
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <DockPanel Margin="5" Background="Gray">
                         <TextBlock Text="{Binding Name}" FontSize="20" Margin="10"
-                                   MaxWidth="350" ToolTip="{Binding Name}"
+                                   MaxWidth="290" ToolTip="{Binding Name}"
                                    HorizontalAlignment="Left" VerticalAlignment="Center" />
                         <TextBlock Text="{Binding News}" Foreground="Red" FontSize="20" Margin="10"
                                    HorizontalAlignment="Left" VerticalAlignment="Center"  />
