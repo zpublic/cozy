@@ -27,7 +27,6 @@ namespace CozyRSS.Syndication.Parser {
                         var typeName = splite[0].Substring(splite[0].IndexOf('[') + 2);
                         var assemblyName = splite[1];
                         var nodes = node.SelectNodes(x.Name.Substring(0, x.Name.Length - 1));
-                        nodes = nodes?.Count > 0 ? nodes : node.SelectSingleNode(x.Name).ChildNodes;
                         var list = (dynamic)x.GetValue(item) ?? x.PropertyType.GetConstructors()[0].Invoke(null);
                         foreach (XmlNode n in nodes) {
                             list.Add((dynamic)Parse(n, Activator.CreateInstance(assemblyName, typeName).Unwrap()));
