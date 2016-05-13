@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher", "..\src\Practice\CozyLauncher\CozyLauncher.csproj", "{36C16B10-D17D-4A58-BD46-0F938DA82CC8}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -64,6 +64,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CozyLauncher.Tool.Website",
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "49719"
+		SlnRelativePath = "..\src\Practice\CozyLauncher.Tool.Website\"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Tool.UpdateFeedGenerator", "..\src\Practice\CozyLauncher.Tool.UpdateFeedGenerator\CozyLauncher.Tool.UpdateFeedGenerator.csproj", "{310F3415-9294-42BD-8864-3149981C555F}"
@@ -115,6 +116,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Setting", "..\src\Practice\CozyLauncher.Plugin.Setting\CozyLauncher.Plugin.Setting.csproj", "{7A346CFF-4B86-467D-B01B-7FD1A200C3E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.DailySentence", "..\src\Practice\CozyLauncher.Plugin.DailySentence\CozyLauncher.Plugin.DailySentence.csproj", "{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Express", "..\src\Practice\CozyLauncher.Plugin.Express\CozyLauncher.Plugin.Express.csproj", "{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -550,6 +553,18 @@ Global
 		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}.Release|x64.Build.0 = Release|Any CPU
 		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}.Release|x86.ActiveCfg = Release|Any CPU
 		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8}.Release|x86.Build.0 = Release|Any CPU
+		{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E}.Debug|x64.Build.0 = Debug|Any CPU
+		{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E}.Debug|x86.Build.0 = Debug|Any CPU
+		{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E}.Release|x64.ActiveCfg = Release|Any CPU
+		{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E}.Release|x64.Build.0 = Release|Any CPU
+		{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E}.Release|x86.ActiveCfg = Release|Any CPU
+		{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -589,5 +604,6 @@ Global
 		{CBFE4DE1-3A83-481E-9DF0-E231253E7A81} = {7A0D3583-5847-4CCE-A7AA-690C34127EE3}
 		{7A346CFF-4B86-467D-B01B-7FD1A200C3E2} = {7A0D3583-5847-4CCE-A7AA-690C34127EE3}
 		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
+		{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E} = {6B37D2AC-6C6D-444F-8492-DA47118C7625}
 	EndGlobalSection
 EndGlobal

@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using CozyLauncher.PluginBase;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using CozyLauncher.PluginBase;
-using Newtonsoft.Json;
 using System.Windows.Forms;
 
-namespace CozyLauncher.Plugin.Ydfy {
-
-    public class Main : BasePlugin {
-
+namespace CozyLauncher.Plugin.Ydfy
+{
+    public class Main : BasePlugin
+    {
         private PluginInitContext context_;
 
         private const string translteUrl = "http://fanyi.youdao.com/openapi.do?keyfrom=CozyLauncher&key=1040605813&type=data&doctype=json&version=1.1&q=";
@@ -27,6 +27,13 @@ namespace CozyLauncher.Plugin.Ydfy {
             {
                 var result = new List<Result>();
                 var queryString = query.RawQuery.Substring(5);
+
+                // fix bug:防止Request的时候出现Json异常
+                if (queryString.Equals(""))
+                {
+                    return null;
+                }
+
                 var model = Request(queryString);
                 if (model.ErrorCode == 0)
                 {
