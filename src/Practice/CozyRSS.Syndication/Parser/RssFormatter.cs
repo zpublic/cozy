@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Xml;
 using CozyRSS.Syndication.Model;
+using CozyRSS.Syndication.Extensions;
 
 namespace CozyRSS.Syndication.Parser {
 
@@ -20,7 +21,7 @@ namespace CozyRSS.Syndication.Parser {
                 .ToList()
                 .ForEach(x => {
                     if (x.PropertyType.Name == "String") {
-                        x.SetValue(item, node.SelectSingleNode(x.Name)?.InnerText);
+                        x.SetValue(item, node.SelectSingleNodeEx(x.Name)?.InnerText);
                     }
                     else if (x.PropertyType.Name.StartsWith("List")) {
                         var splite = x.PropertyType.AssemblyQualifiedName.Split(',');
@@ -37,7 +38,7 @@ namespace CozyRSS.Syndication.Parser {
                         var splite = x.PropertyType.AssemblyQualifiedName.Split(',');
                         var typeName = splite[0];
                         var assemblyName = splite[1];
-                        x.SetValue(item, Parse(node.SelectSingleNode(x.Name), Activator.CreateInstance(assemblyName, typeName).Unwrap()));
+                        x.SetValue(item, Parse(node.SelectSingleNodeEx(x.Name), Activator.CreateInstance(assemblyName, typeName).Unwrap()));
                     }
                 });
             return item;
@@ -49,7 +50,7 @@ namespace CozyRSS.Syndication.Parser {
                 case "rss":
                     return doc.SelectSingleNode("rss/channel");
                 case "feed":
-                    return doc.SelectSingleNode("feed");
+                    return doc.SelectSingleNodeEx("feed");
                 default:
                     throw new Exception("暂时只支持 rss和atom协议");
             }

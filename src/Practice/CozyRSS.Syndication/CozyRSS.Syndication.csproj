@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\XmlNodeEx.cs" />
     <Compile Include="Model\SyndicationFeed.cs" />
     <Compile Include="Model\SyndicationImage.cs" />
     <Compile Include="Model\SyndicationItem.cs" />
