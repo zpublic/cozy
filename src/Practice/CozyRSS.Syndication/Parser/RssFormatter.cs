@@ -12,7 +12,11 @@ namespace CozyRSS.Syndication.Parser {
             var reader = XmlReader.Create(url);
             var doc = new XmlDocument();
             doc.Load(reader);
-            return Parse(GetRootPath(doc), new SyndicationFeed());
+            var rootNode = GetRootNode(doc);
+            var isAtom = rootNode.Name == "feed";
+            var type = isAtom ? typeof(AtomFeed) : typeof(SyndicationFeed);
+            var reslut = Parse(GetRootNode(doc), Activator.CreateInstance(type));
+            return isAtom ? Convert((AtomFeed)reslut) : (SyndicationFeed)reslut;
         }
 
         private T Parse<T>(XmlNode node, T obj) {
@@ -27,7 +31,7 @@ namespace CozyRSS.Syndication.Parser {
                         var splite = x.PropertyType.AssemblyQualifiedName.Split(',');
                         var typeName = splite[0].Substring(splite[0].IndexOf('[') + 2);
                         var assemblyName = splite[1];
-                        var nodes = node.SelectNodes(x.Name.Substring(0, x.Name.Length - 1));
+                        var nodes = node.SelectNodesEx(x.Name.Substring(0, x.Name.Length - 1));
                         var list = (dynamic)x.GetValue(item) ?? x.PropertyType.GetConstructors()[0].Invoke(null);
                         foreach (XmlNode n in nodes) {
                             list.Add((dynamic)Parse(n, Activator.CreateInstance(assemblyName, typeName).Unwrap()));
@@ -44,7 +48,7 @@ namespace CozyRSS.Syndication.Parser {
             return item;
         }
 
-        private XmlNode GetRootPath(XmlDocument doc) {
+        private XmlNode GetRootNode(XmlDocument doc) {
             var name = doc.DocumentElement.Name;
             switch (name) {
                 case "rss":
@@ -54,6 +58,20 @@ namespace CozyRSS.Syndication.Parser {
                 default:
                     throw new Exception("暂时只支持 rss和atom协议");
             }
+        }
+
+        private SyndicationFeed Convert(AtomFeed model) {
+            var result = new SyndicationFeed {
+                title = model.title,
+                pubDate = model.updated,
+                items = model.entrys.Select(x => new SyndicationItem {
+                    link = x.id,
+                    title = x.title,
+                    pubDate = x.published,
+                    description = x.summary
+                }).ToList()
+            };
+            return result;
         }
 
 
