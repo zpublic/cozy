@@ -13,7 +13,9 @@
             <ToggleButton HorizontalAlignment="Left" VerticalAlignment="Center"
                           Style="{StaticResource MaterialDesignHamburgerToggleButton}"
                           IsChecked="{Binding ElementName=RSSListFrame, Path=IsLeftDrawerOpen}" />
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24">CozyRSS 0.3</TextBlock>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24">
+                CozyRSS - 本软件由 睿笃科技（上海）有限公司 赞助支持
+            </TextBlock>
             <materialDesign:PopupBox HorizontalAlignment="Right" VerticalAlignment="Center" StaysOpen="False"
                                                  PlacementMode="BottomAndAlignRightEdges">
                 <StackPanel>
