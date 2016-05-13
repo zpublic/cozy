@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Linq;
 using System.Xml;
+using CozyRSS.Syndication.Model;
 
 namespace CozyRSS.Syndication.Parser {
 
     public class RssFormatter {
 
-        public T Formatter<T>(string root, Uri url) {
-            var reader = XmlReader.Create(url.AbsoluteUri);
+        public SyndicationFeed Formatter( string url) {
+            var reader = XmlReader.Create(url);
             var doc = new XmlDocument();
             doc.Load(reader);
-            return Parse(doc.SelectSingleNode(root), Activator.CreateInstance<T>());
-        }
-
-        public T Formatter<T>(string root, string xml) {
-            var doc = new XmlDocument();
-            doc.LoadXml(xml);
-            return Parse(doc.SelectSingleNode(root), Activator.CreateInstance<T>());
+            return Parse(doc.SelectSingleNode("rss/channel"), Activator.CreateInstance<SyndicationFeed>());
         }
 
         private T Parse<T>(XmlNode node, T obj) {

@@ -17,15 +17,9 @@ namespace CozyRSS.Syndication.Tester.Parser {
         }
 
         [TestMethod()]
-        public void ParseItemsTest() {
-            var result = formatter.Formatter<SyndicationFeed>("rss/channel", File.ReadAllText("peise.xml"));
-            Assert.IsTrue(result.items.Count > 0);
-        }
-
-        [TestMethod()]
         public void ParseItemTest()
         {
-            var result = formatter.Formatter<SyndicationFeed>("rss/channel", new Uri("http://www.peise.net/rss.php?rssid=32"));
+            var result = formatter.Formatter("http://www.peise.net/rss.php?rssid=32");
             Assert.IsTrue(result.items.Count > 0);
         }
     }
