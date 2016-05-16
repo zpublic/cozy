@@ -65,6 +65,15 @@ namespace CozyRSS.ViewModel
 
         public string ViewTitle { get { return _RSSListFrame_SelectedItem?.Item?.title; } }
         public string ViewTime { get { return _RSSListFrame_SelectedItem?.Item?.pubDate; } }
-        public string ViewContent { get { return _RSSListFrame_SelectedItem?.Item?.description; } }
+        public string ViewContent
+        {
+            get
+            {
+                return _RSSListFrame_SelectedItem?.Item?.description?
+                    .Replace("&nbsp;", " ")
+                    .Replace('<', '[')
+                    .Replace('>', ']');
+            }
+        }
     }
 }
