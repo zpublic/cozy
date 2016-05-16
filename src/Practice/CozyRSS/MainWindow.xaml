@@ -9,7 +9,9 @@
         FontFamily="{StaticResource MaterialDesignFont}"
         mc:Ignorable="d"
         DataContext="{Binding Main, Source={StaticResource Locator}}" 
-        Title="CozyRSS" Height="720" Width="1028" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
+        Title="CozyRSS" Height="720" Width="1028"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        ResizeMode="CanResizeWithGrip" AllowsTransparency="True">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -27,7 +29,7 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70" />
-                    <RowDefinition />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <ContentControl Content="{StaticResource TitleBar}" Grid.Row="0"/>
                 <ContentControl Content="{StaticResource RSSContentFrame}" Grid.Row="1"/>
