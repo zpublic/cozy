@@ -9,6 +9,18 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <materialDesign:ColorZone x:Key="TitleBar" Padding="16" Mode="PrimaryDark" materialDesign:ShadowAssist.ShadowDepth="Depth5">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseLeftButtonDown">
+                <i:InvokeCommandAction
+                        Command="{Binding MoveWindowCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
+            </i:EventTrigger>
+            <i:EventTrigger EventName="MouseDoubleClick">
+                <i:InvokeCommandAction
+                        Command="{Binding DoubleClickCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
         <DockPanel>
             <ToggleButton HorizontalAlignment="Left" VerticalAlignment="Center"
                           Style="{StaticResource MaterialDesignHamburgerToggleButton}"

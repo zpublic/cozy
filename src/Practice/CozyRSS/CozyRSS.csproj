@@ -91,6 +91,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Actions\MainWindow.Actions.cs" />
     <Compile Include="Resources\Dialog\AddFeedDialog.xaml.cs">
       <DependentUpon>AddFeedDialog.xaml</DependentUpon>
     </Compile>
