@@ -1,6 +1,7 @@
 ﻿using CozyRSS.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System.Collections.ObjectModel;
 
 namespace CozyRSS.ViewModel
@@ -11,17 +12,13 @@ namespace CozyRSS.ViewModel
         {
             UpdateContentCommand = new RelayCommand(() =>
             {
-                // 很不稳定 var feed = RssService.GetRssFeed("http://feed.cnblogs.com/blog/u/132703/rss");
-                var feed = RssService.GetRssFeed("http://www.peise.net/rss.php?rssid=32");
-                if (feed.items.Count > 0)
+                // _UpdateContent(m.ListItem.Feed.url);
+            });
+            Messenger.Default.Register<RSSListFrame_ListItemViewModelMsg>(this, true, m =>
+            {
+                if (m.MsgType == "FlushFeedCommand")
                 {
-                    _RSSContentList_ListItems.Clear();
-                    foreach (var i in feed.items)
-                    {
-                        _RSSContentList_ListItems.Add(new RSSContentList_ListItemViewModel(i));
-                    }
-                    RSSListFrame_SelectedItem = _RSSContentList_ListItems[0];
-                    Title = feed.title;
+                    _UpdateContent(m.ListItem.Feed.url);
                 }
             });
         }
@@ -35,8 +32,7 @@ namespace CozyRSS.ViewModel
             }
             set
             {
-                _title = value;
-                Set("Title", ref value);
+                Set("Title", ref _title, value + " - （招聘菲佣会叠衣服-ZeaLotSean）");
             }
         }
 
@@ -69,10 +65,30 @@ namespace CozyRSS.ViewModel
         {
             get
             {
+                /*
                 return _RSSListFrame_SelectedItem?.Item?.description?
                     .Replace("&nbsp;", " ")
                     .Replace('<', '[')
-                    .Replace('>', ']');
+                    .Replace('>', ']');*/
+                return _RSSListFrame_SelectedItem?.Item?.description?
+                    .Replace("&nbsp;", " ")
+                    .Replace("<b>", "")
+                    .Replace("</br>", "");
+            }
+        }
+
+        void _UpdateContent(string url)
+        {
+            var feed = RssService.GetRssFeed(url);
+            if (feed.items.Count > 0)
+            {
+                _RSSContentList_ListItems.Clear();
+                foreach (var i in feed.items)
+                {
+                    _RSSContentList_ListItems.Add(new RSSContentList_ListItemViewModel(i));
+                }
+                RSSListFrame_SelectedItem = _RSSContentList_ListItems[0];
+                Title = feed.title;
             }
         }
     }

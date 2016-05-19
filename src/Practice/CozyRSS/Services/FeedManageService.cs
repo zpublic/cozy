@@ -16,7 +16,20 @@ namespace CozyRSS.Services
             {
                 _controller = new FeedManageController();
             }
-            _controller.ReadFromFile(_cfgFile);
+            if (!_controller.ReadFromFile(_cfgFile))
+            {
+                _SetDefaultFeeds();
+                Save();
+            }
+        }
+
+        private void _SetDefaultFeeds()
+        {
+            _controller.AddFeed("博客园_老肉鸡", "http://feed.cnblogs.com/blog/u/132703/rss");
+            _controller.AddFeed("知乎每日精选", "http://www.zhihu.com/rss");
+            _controller.AddFeed("科学松鼠会", "http://songshuhui.net/feed");
+            _controller.AddFeed("虎嗅网", "http://www.huxiu.com/rss/0.xml");
+            _controller.AddFeed("36氪", "http://36kr.com/feed");
         }
 
         public void Save()

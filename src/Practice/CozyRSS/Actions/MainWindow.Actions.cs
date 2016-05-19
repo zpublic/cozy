@@ -37,7 +37,7 @@ namespace CozyRSS.Actions
         }
         public readonly Action<object> MoveWindowAction;
         public readonly Action<object> DoubleClickAction;
-        public readonly Action OpenAddFeedDialogAction; 
+        public readonly Action OpenAddFeedDialogAction;
 
         public RSSListFrameViewModel RSSListFrameViewModel;
         private void ClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)

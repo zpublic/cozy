@@ -22,7 +22,7 @@
         </ResourceDictionary>
     </Window.Resources>
     <materialDesign:DialogHost Identifier="RootDialog">
-        <materialDesign:DrawerHost x:Name="RSSListFrame" IsLeftDrawerOpen="False">
+        <materialDesign:DrawerHost x:Name="RSSListFrame" IsLeftDrawerOpen="{Binding IsLeftDrawerOpen,Mode=TwoWay}">
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <ContentControl Content="{StaticResource RSSListFrame}" />
             </materialDesign:DrawerHost.LeftDrawerContent>

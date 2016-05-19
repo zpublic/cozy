@@ -166,3 +166,4 @@ node_modules/
 typings/
 /sln/cozy_thunder.VC.db
 /sln/*.db
+/sln/my_rss.json

@@ -15,7 +15,11 @@
         <Grid Background="#eee">
             <Rectangle Fill="#aaa" VerticalAlignment="Top" Height="1"/>
         </Grid>
-        <bc:HtmlTextBlock Html="{Binding ViewContent}"
-                          TextWrapping="Wrap" Margin="10 12 10 10" />
+        <TextBlock Text="{Binding ViewContent}" Margin="10 12 10 10" FontSize="12"
+                   TextWrapping="Wrap"
+                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                   ScrollViewer.HorizontalScrollBarVisibility="Auto" />
+        <!--bc:HtmlTextBlock Html="{Binding ViewContent}"
+                          TextWrapping="Wrap" Margin="10 12 10 10" /-->
     </StackPanel>
 </ResourceDictionary>

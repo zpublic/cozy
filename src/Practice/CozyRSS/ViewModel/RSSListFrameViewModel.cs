@@ -7,14 +7,6 @@ namespace CozyRSS.ViewModel
 {
     public class RSSListFrameViewModel : ViewModelBase
     {
-        public string Title { get; } = "订阅列表栏";
-
-        ObservableCollection<RSSListFrame_ListItemViewModel> _RSSListFrame_ListItems 
-            = new ObservableCollection<RSSListFrame_ListItemViewModel>();
-        public ObservableCollection<RSSListFrame_ListItemViewModel> RSSListFrame_ListItems
-        {
-            get { return _RSSListFrame_ListItems; }
-        }
         public RSSListFrameViewModel()
         {
             FeedManageService.FeedManage.Load();
@@ -22,10 +14,22 @@ namespace CozyRSS.ViewModel
             {
                 _RSSListFrame_ListItems.Add(new RSSListFrame_ListItemViewModel(i));
             }
-            Messenger.Default.Register<RSSListFrame_ListItemViewModel>(this, true, m =>
+            Messenger.Default.Register<RSSListFrame_ListItemViewModelMsg>(this, true, m =>
             {
-                _RSSListFrame_ListItems.Remove(m);
+                if (m.MsgType == "RemoveFeedCommand")
+                {
+                    _RSSListFrame_ListItems.Remove(m.ListItem);
+                }
             });
+        }
+
+        public string Title { get; } = "订阅列表栏";
+
+        ObservableCollection<RSSListFrame_ListItemViewModel> _RSSListFrame_ListItems
+            = new ObservableCollection<RSSListFrame_ListItemViewModel>();
+        public ObservableCollection<RSSListFrame_ListItemViewModel> RSSListFrame_ListItems
+        {
+            get { return _RSSListFrame_ListItems; }
         }
 
         public void AddFeed(string url)

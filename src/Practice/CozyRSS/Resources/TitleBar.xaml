@@ -33,6 +33,7 @@
                 <StackPanel>
                     <Button Content="全部更新" />
                     <Button Content="添加订阅" Command="{Binding OpenAddFeedDialogCommand}" />
+                    <Button Content="关于" />
                     <Button Content="退出">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">

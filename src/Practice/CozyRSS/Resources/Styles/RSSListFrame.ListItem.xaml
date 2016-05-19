@@ -16,7 +16,7 @@
                                                  PlacementMode="BottomAndAlignRightEdges">
                             <StackPanel>
                                 <Button Content="设为已读" />
-                                <Button Content="更新" />
+                                <Button Content="更新" Command="{Binding FlushFeedCommand}"/>
                                 <Separator />
                                 <Button Content="复制地址" />
                                 <Button Content="删除" Command="{Binding RemoveFeedCommand}" />
