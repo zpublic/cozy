@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace CozyLauncher.Plugin.Express
@@ -15,19 +16,21 @@ namespace CozyLauncher.Plugin.Express
     {
         private PluginInitContext context_;
 
-        private const string __UID = "66900";
+        //private const string __UID = "66900";
 
-        private const string __KEY = "83967ace18fe4a96acbc349731913f92";
+        //private const string __KEY = "83967ace18fe4a96acbc349731913f92";
 
-        private const string __URL = @"http://www.kuaidiapi.cn/rest/?";
+        //private const string __URL = @"http://www.kuaidiapi.cn/rest/?";
 
-        private string __PARAM = @"uid=" + __UID + "&key=" + __KEY;
+        //private string __PARAM = @"uid=" + __UID + "&key=" + __KEY;
+
+        //private string __TEST = @"uid=66900&key=83967ace18fe4a96acbc349731913f92&order=881754461664541778&id=yuantong";
+
+        private const string __URL = "http://api.open.baidu.com/pae/channel/data/asyncqury?appid=4001";
 
         private const string __KEYWORD = "kdcx";
 
         private const string __TIPS = @"请输入快递缩写,例如顺丰:shunfeng+空格单号";
-
-        //private string __TEST = @"uid=66900&key=83967ace18fe4a96acbc349731913f92&order=881754461664541778&id=yuantong";
 
         /// <summary>
         /// 快递信息
@@ -154,24 +157,39 @@ namespace CozyLauncher.Plugin.Express
         {
             List<Result> _list = new List<Result>();
 
-            using (var client = new HttpClient())
-            {
-                var _msg = new HttpRequestMessage(HttpMethod.Get,
-                                                        __URL +
-                                                        __PARAM +
-                                                        @"&order=" + _order +
-                                                        @"&id=" + _id);
+            HttpClientHandler _handler = new HttpClientHandler();
 
-                var respones = client.SendAsync(_msg).Result;
+            // 这里为false表示不采用HttpClient的默认Cookie,而是采用httpRequestmessage的Cookie
+            _handler.UseCookies = false;
+
+            using (var _client = new HttpClient(_handler))
+            {
+                string _cookie = GetCookie(_id, _order, _client);
+
+                var request = new HttpRequestMessage(HttpMethod.Get,
+                                                   __URL +
+                                                   //__PARAM +
+                                                   //@"&order=" + _order +
+                                                   //@"&id=" + _id);
+                                                   @"&com=" + _id +
+                                                   @"&nu=" + _order +
+                                                   @"&qq-pf-to=pcqq.c2c");
+
+                request.Headers.Add("Cookie", _cookie);
+
+                HttpResponseMessage respones = _client.SendAsync(request).Result;
+
                 var jsonString = respones.Content.ReadAsStringAsync().Result;
+
                 var _expressModel = JsonConvert.DeserializeObject<ExpressModel>(jsonString);
 
-                if (_expressModel.Errcode == "0000")
+                // 是否是错误
+                if (_expressModel.Status == 0)
                 {
                     // 第一条状态信息
                     Result _result = new Result
                     {
-                        Title = _expressModel.Name + "单号:" + _expressModel.Order + ",快递状态:" + _expressModel.getStatus(),
+                        Title = "快递状态:" + _expressModel.Data.Info.GetStatus(),
                         SubTitle = "Copy this text to the clipboard",
                         IcoPath = "txt",
                         Score = 20,
@@ -181,9 +199,7 @@ namespace CozyLauncher.Plugin.Express
 
                             try
                             {
-                                Clipboard.SetText(_expressModel.Name);
-
-                                return true;
+                                return false;
                             }
                             catch (System.Runtime.InteropServices.ExternalException)
                             {
@@ -195,13 +211,14 @@ namespace CozyLauncher.Plugin.Express
                     _list.Add(_result);
 
                     // 表单
-                    for (int i = _expressModel.Data.Length - 1; i > 0; --i)
+                    //for (int i = _expressModel.Data.Info.Context.Length - 1; i > 0; --i)
+                    for (int i = 0; i < _expressModel.Data.Info.Context.Length; ++i)
                     {
-                        ExpressData _data = _expressModel.Data[i];
+                        ExpressContext _data = _expressModel.Data.Info.Context[i];
 
                         _result = new Result
                         {
-                            Title = _data.Time + "_" + _data.Content,
+                            Title = _data.Time() + "_" + _data.Desc,
                             SubTitle = "Copy this text to the clipboard",
                             IcoPath = "txt",
                             Score = 20,
@@ -211,7 +228,7 @@ namespace CozyLauncher.Plugin.Express
 
                                 try
                                 {
-                                    Clipboard.SetText(_expressModel.Name);
+                                    Clipboard.SetText(_data.Time() + "_" + _data.Desc);
 
                                     return true;
                                 }
@@ -239,7 +256,7 @@ namespace CozyLauncher.Plugin.Express
 
                             try
                             {
-                                Clipboard.SetText(_expressModel.Name);
+                                Clipboard.SetText(_expressModel.Message);
 
                                 return true;
                             }
@@ -257,6 +274,39 @@ namespace CozyLauncher.Plugin.Express
 
                 return _list;
             }
+        }
+
+        private static string GetCookie(string _id, string _order, HttpClient _client)
+        {
+            var _msg = new HttpRequestMessage(HttpMethod.Get,
+                                              __URL +
+                                              @"&com=" + _id +
+                                              @"&nu=" + _order +
+                                              @"&qq-pf-to=pcqq.c2c");
+
+            HttpResponseMessage _respones = _client.SendAsync(_msg).Result;
+
+            IEnumerable<string> _cookies = _respones.Headers.GetValues("Set-Cookie");
+
+            string _cookie = "";
+
+            foreach (string _str in _cookies)
+            {
+                _cookie = GetCookieValue(_str);
+
+                break;
+            }
+
+            return _cookie;
+        }
+
+        private static string GetCookieValue(string _cookie)
+        {
+            Regex _regex = new Regex(".*?;");
+            Match _value = _regex.Match(_cookie);
+            string _cookieValue = _value.Groups[0].Value;
+
+            return _cookieValue.Substring(0, _cookieValue.Length - 1);
         }
     }
 }
