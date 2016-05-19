@@ -11,7 +11,7 @@
         DataContext="{Binding Main, Source={StaticResource Locator}}" 
         Title="CozyRSS" Height="720" Width="1028"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
-        ResizeMode="CanResizeWithGrip" AllowsTransparency="True">
+        ResizeMode="CanResizeWithGrip" AllowsTransparency="True" MinWidth="800" MinHeight="600">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
