@@ -12,7 +12,7 @@ namespace CozyRSS.ViewModel
         {
             UpdateContentCommand = new RelayCommand(() =>
             {
-                // _UpdateContent(m.ListItem.Feed.url);
+                _UpdateContent("https://isocpp.org/blog/rss");
             });
             Messenger.Default.Register<RSSListFrame_ListItemViewModelMsg>(this, true, m =>
             {
@@ -32,7 +32,7 @@ namespace CozyRSS.ViewModel
             }
             set
             {
-                Set("Title", ref _title, value + " - （招聘菲佣会叠衣服-ZeaLotSean）");
+                Set("Title", ref _title, value);
             }
         }
 

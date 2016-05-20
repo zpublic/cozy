@@ -4,14 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CozyRSS"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{StaticResource MaterialDesignFont}"
         mc:Ignorable="d"
         DataContext="{Binding Main, Source={StaticResource Locator}}" 
         Title="CozyRSS" Height="720" Width="1028"
-        WindowStartupLocation="CenterScreen" WindowStyle="None"
-        ResizeMode="CanResizeWithGrip" AllowsTransparency="True" MinWidth="800" MinHeight="600">
+        WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+        ResizeMode="CanResizeWithGrip"  MinWidth="800" MinHeight="600">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -21,19 +18,17 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <materialDesign:DialogHost Identifier="RootDialog">
-        <materialDesign:DrawerHost x:Name="RSSListFrame" IsLeftDrawerOpen="{Binding IsLeftDrawerOpen,Mode=TwoWay}">
-            <materialDesign:DrawerHost.LeftDrawerContent>
-                <ContentControl Content="{StaticResource RSSListFrame}" />
-            </materialDesign:DrawerHost.LeftDrawerContent>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="70" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <ContentControl Content="{StaticResource TitleBar}" Grid.Row="0"/>
-                <ContentControl Content="{StaticResource RSSContentFrame}" Grid.Row="1"/>
-            </Grid>
-        </materialDesign:DrawerHost>
-    </materialDesign:DialogHost>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ContentControl Content="{StaticResource TitleBar}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" />
+        <ContentControl Content="{StaticResource RSSListFrame}" Grid.Column="0" Grid.Row="1" />
+        <ContentControl Content="{StaticResource RSSContentFrame}" Grid.Column="1" Grid.Row="1"/>
+    </Grid>
 </Window>

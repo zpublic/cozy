@@ -2,13 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                     xmlns:local="clr-namespace:CozyRSS.Resources">
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-    <materialDesign:ColorZone x:Key="TitleBar" Padding="16" Mode="PrimaryDark" materialDesign:ShadowAssist.ShadowDepth="Depth5">
+    <DockPanel x:Key="TitleBar">
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
                 <i:InvokeCommandAction
@@ -21,30 +16,39 @@
                         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
             </i:EventTrigger>
         </i:Interaction.Triggers>
-        <DockPanel>
-            <ToggleButton HorizontalAlignment="Left" VerticalAlignment="Center"
-                          Style="{StaticResource MaterialDesignHamburgerToggleButton}"
-                          IsChecked="{Binding ElementName=RSSListFrame, Path=IsLeftDrawerOpen}" />
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24">
-                CozyRSS - 本软件由 睿笃科技（上海）有限公司 赞助支持 （请我喝了一杯咖啡）
+        <TextBlock HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" FontSize="24">
+                CozyRSS
+        </TextBlock>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="30,0,0,0">
+            <!-- 赞助64 -->
+            <TextBlock FontSize="16">
+                本软件由 睿笃科技（上海）有限公司 赞助支持
             </TextBlock>
-            <materialDesign:PopupBox HorizontalAlignment="Right" VerticalAlignment="Center" StaysOpen="False"
-                                                 PlacementMode="BottomAndAlignRightEdges">
-                <StackPanel>
-                    <Button Content="全部更新" />
-                    <Button Content="添加订阅" Command="{Binding OpenAddFeedDialogCommand}" />
-                    <Button Content="关于" />
-                    <Button Content="退出">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Click">
-                                <ei:CallMethodAction
+            <!-- 赞助38.88 -->
+            <TextBlock FontSize="12">
+                招聘菲佣会叠衣服-ZeaLotSean
+            </TextBlock>
+            <!-- 赞助25 -->
+            <TextBlock FontSize="10">
+                勾股自动化 www.mce-china.com
+            </TextBlock>
+        </StackPanel>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Height="25" Command="{Binding OpenAddFeedDialogCommand}">添加订阅</Button>
+        <!--Popup HorizontalAlignment="Right" VerticalAlignment="Center" StaysOpen="False">
+            <StackPanel>
+                <Button Content="全部更新" />
+                <Button Content="添加订阅" Command="{Binding OpenAddFeedDialogCommand}" />
+                <Button Content="关于" />
+                <Button Content="退出">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ei:CallMethodAction
                                                 MethodName="Close"
                                                 TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </Button>
-                </StackPanel>
-            </materialDesign:PopupBox>
-        </DockPanel>
-    </materialDesign:ColorZone>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </StackPanel>
+        </-->
+    </DockPanel>
 </ResourceDictionary>
