@@ -19,16 +19,23 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
+            <RowDefinition Height="2" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ContentControl Content="{StaticResource TitleBar}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" />
-        <ContentControl Content="{StaticResource RSSListFrame}" Grid.Column="0" Grid.Row="1" />
-        <ContentControl Content="{StaticResource RSSContentFrame}" Grid.Column="1" Grid.Row="1"/>
+        <ContentControl Content="{StaticResource TitleBar}" Grid.Row="0" />
+        <Grid Background="#eee" Grid.Row="1">
+            <Rectangle Fill="#aaa" VerticalAlignment="Top" Height="2"/>
+        </Grid>
+        <Grid  Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400" MinWidth="350"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ContentControl Content="{StaticResource RSSListFrame}" Grid.Column="0" Grid.Row="1" />
+            <GridSplitter Width="2" Background="Gray" />
+            <ContentControl Content="{StaticResource RSSContentFrame}" Grid.Column="1" Grid.Row="1"/>
+        </Grid>
     </Grid>
 </Window>

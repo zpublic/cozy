@@ -15,7 +15,7 @@ namespace CozyRSS.ViewModel
     public class RSSListFrame_ListItemViewModel : ViewModelBase
     {
         public string Name { get { return _feed?.name; } }
-        public string News { get { return "10"; } }
+        public string News { get { return ""; } }
 
         public RSSListFrame_ListItemViewModel(FeedNode feed)
         {

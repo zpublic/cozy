@@ -4,7 +4,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Styles/RSSListFrame.ListItem.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Grid x:Key="RSSListFrame" Width="400" DataContext="{Binding RSSListFrameViewModel}" >
+    <Grid x:Key="RSSListFrame" DataContext="{Binding RSSListFrameViewModel}" >
         <ListBox SelectedIndex="0"
                  ItemsSource="{Binding RSSListFrame_ListItems}"
                  ItemContainerStyle="{StaticResource RSSListFrame_ListItemStyle}">
