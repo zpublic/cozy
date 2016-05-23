@@ -96,7 +96,7 @@ namespace CozyRSS.ViewModel
         async void _UpdateContent(string url)
         {
             var feed = await Task.Run(() => RssService.GetRssFeed(url));
-            if (feed.items.Count > 0)
+            if (feed?.items.Count > 0)
             {
                 _RSSContentList_ListItems.Clear();
                 foreach (var i in feed.items)

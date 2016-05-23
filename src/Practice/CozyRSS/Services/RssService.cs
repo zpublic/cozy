@@ -8,9 +8,16 @@ namespace CozyRSS.Services
     {
         public static SyndicationFeed GetRssFeed(string url)
         {
-            RssFormatter formatter = new RssFormatter();
-            var result = formatter.Formatter(url);
-            return result;
+            try
+            {
+                RssFormatter formatter = new RssFormatter();
+                var result = formatter.Formatter(url);
+                return result;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }
