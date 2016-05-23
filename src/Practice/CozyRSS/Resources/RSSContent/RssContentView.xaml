@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:bc="http://www.quickzip.org/BaseControls"
+                    xmlns:h2xaml="clr-namespace:CozyRSS.Html2Xaml;assembly=CozyRSS.Html2Xaml"
                     xmlns:local="clr-namespace:CozyRSS.Resources.RSSContent">
     <StackPanel x:Key="RssContentView">
         <Label Content="{Binding ViewTitle}" FontSize="20" Height="32" />
@@ -12,9 +13,9 @@
         <Grid Background="#eee">
             <Rectangle Fill="#aaa" VerticalAlignment="Top" Height="1"/>
         </Grid>
-        <TextBlock Text="{Binding ViewContent}" Margin="10 12 10 10" FontSize="12"
-                   TextWrapping="Wrap"
-                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                   ScrollViewer.HorizontalScrollBarVisibility="Auto" />
+        <RichTextBox h2xaml:Properties.Html="{Binding ViewContent}"
+                     Margin="10 12 10 10" FontSize="12"
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                     ScrollViewer.HorizontalScrollBarVisibility="Auto" />
     </StackPanel>
 </ResourceDictionary>

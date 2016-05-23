@@ -178,6 +178,10 @@
       <Project>{0430e1f6-7a6d-41ff-b483-b78403cc08ad}</Project>
       <Name>CozyRSS.FeedManage</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyRSS.Html2Xaml\CozyRSS.Html2Xaml.csproj">
+      <Project>{5f55b450-93b9-4d59-a4c4-7d49825601a6}</Project>
+      <Name>CozyRSS.Html2Xaml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyRSS.Syndication\CozyRSS.Syndication.csproj">
       <Project>{d842c7ec-5a4a-4991-b156-acb8bd85b435}</Project>
       <Name>CozyRSS.Syndication</Name>
