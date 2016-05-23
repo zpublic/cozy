@@ -37,12 +37,12 @@
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="30,0,0,0">
                 <!-- 拉风哥请我吃饭 -->
-                <!--TextBlock FontSize="24" Foreground="Red">
-                天地三清 道法无常 天地无极 乾坤借法 元阳入体
-            </>
-            <TextBlock FontSize="24" Foreground="Red">
+                <TextBlock FontSize="24" Foreground="Red">
+                天地三清 道法无常 天地无极 乾坤借法 鸳鸯入体
+                </TextBlock>
+                <TextBlock FontSize="24" Foreground="Red">
                 五毒不侵 九阳纯金之体 化元神功 邪魔退散 退散 退散
-            </TextBlock-->
+                </TextBlock>
             </StackPanel>
             <Button HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Height="25" Command="{Binding OpenAddFeedDialogCommand}">添加订阅</Button>
             <!--Popup HorizontalAlignment="Right" VerticalAlignment="Center" StaysOpen="False">
