@@ -3,48 +3,49 @@
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
                     xmlns:local="clr-namespace:CozyRSS.Resources">
-    <DockPanel x:Key="TitleBar">
+    <ContentControl x:Key="TitleBar">
         <i:Interaction.Triggers>
+            <i:EventTrigger EventName="PreviewMouseDoubleClick">
+                <i:InvokeCommandAction
+                        Command="{Binding DoubleClickCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
+            </i:EventTrigger>
             <i:EventTrigger EventName="MouseLeftButtonDown">
                 <i:InvokeCommandAction
                         Command="{Binding MoveWindowCommand}"
                         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
             </i:EventTrigger>
-            <i:EventTrigger EventName="MouseDoubleClick">
-                <i:InvokeCommandAction
-                        Command="{Binding DoubleClickCommand}"
-                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
-            </i:EventTrigger>
         </i:Interaction.Triggers>
-        <TextBlock HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" FontSize="24">
+        <DockPanel Background="White">
+            <TextBlock HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" FontSize="24">
                 CozyRSS
-        </TextBlock>
-        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="30,0,0,0">
-            <!-- 泡面赞助64 -->
-            <TextBlock FontSize="16">
+            </TextBlock>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="30,0,0,0">
+                <!-- 泡面赞助64 -->
+                <TextBlock FontSize="16">
                 本软件由 睿笃科技（上海）有限公司 赞助支持
-            </TextBlock>
-            <!-- ZeaLotSean赞助38.88 -->
-            <TextBlock FontSize="12">
+                </TextBlock>
+                <!-- ZeaLotSean赞助38.88 -->
+                <TextBlock FontSize="12">
                 招聘菲佣会叠衣服-ZeaLotSean
-            </TextBlock>
-            <!-- 小才赞助25 -->
-            <TextBlock FontSize="10">
+                </TextBlock>
+                <!-- 小才赞助25 -->
+                <TextBlock FontSize="10">
                 勾股自动化 www.mce-china.com
-            </TextBlock>
-        </StackPanel>
+                </TextBlock>
+            </StackPanel>
 
-        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="30,0,0,0">
-            <!-- 拉风哥请我吃饭 -->
-            <!--TextBlock FontSize="24" Foreground="Red">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="30,0,0,0">
+                <!-- 拉风哥请我吃饭 -->
+                <!--TextBlock FontSize="24" Foreground="Red">
                 天地三清 道法无常 天地无极 乾坤借法 元阳入体
             </>
             <TextBlock FontSize="24" Foreground="Red">
                 五毒不侵 九阳纯金之体 化元神功 邪魔退散 退散 退散
             </TextBlock-->
-        </StackPanel>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Height="25" Command="{Binding OpenAddFeedDialogCommand}">添加订阅</Button>
-        <!--Popup HorizontalAlignment="Right" VerticalAlignment="Center" StaysOpen="False">
+            </StackPanel>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Height="25" Command="{Binding OpenAddFeedDialogCommand}">添加订阅</Button>
+            <!--Popup HorizontalAlignment="Right" VerticalAlignment="Center" StaysOpen="False">
             <StackPanel>
                 <Button Content="全部更新" />
                 <Button Content="添加订阅" Command="{Binding OpenAddFeedDialogCommand}" />
@@ -60,5 +61,6 @@
                 </Button>
             </StackPanel>
         </-->
-    </DockPanel>
+        </DockPanel>
+    </ContentControl>
 </ResourceDictionary>
