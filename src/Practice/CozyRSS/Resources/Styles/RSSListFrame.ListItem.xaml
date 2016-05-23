@@ -11,10 +11,14 @@
                                    HorizontalAlignment="Left" VerticalAlignment="Center" />
                         <TextBlock Text="{Binding News}" Foreground="Red" FontSize="20" Margin="10"
                                    HorizontalAlignment="Left" VerticalAlignment="Center"  />
-                        <Button Content="更新"
-                                HorizontalAlignment="Right" VerticalAlignment="Center"
-                                Width="100" Height="25"
+                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Button Content="删除"
+                                Width="50" Height="25"
+                                Command="{Binding RemoveFeedCommand}" />
+                            <Button Content="更新"
+                                Width="50" Height="25"
                                 Command="{Binding FlushFeedCommand}" />
+                        </StackPanel>
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>

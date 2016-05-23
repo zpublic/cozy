@@ -20,18 +20,28 @@
                 CozyRSS
         </TextBlock>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="30,0,0,0">
-            <!-- 赞助64 -->
+            <!-- 泡面赞助64 -->
             <TextBlock FontSize="16">
                 本软件由 睿笃科技（上海）有限公司 赞助支持
             </TextBlock>
-            <!-- 赞助38.88 -->
+            <!-- ZeaLotSean赞助38.88 -->
             <TextBlock FontSize="12">
                 招聘菲佣会叠衣服-ZeaLotSean
             </TextBlock>
-            <!-- 赞助25 -->
+            <!-- 小才赞助25 -->
             <TextBlock FontSize="10">
                 勾股自动化 www.mce-china.com
             </TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="30,0,0,0">
+            <!-- 拉风哥请我吃饭 -->
+            <!--TextBlock FontSize="24" Foreground="Red">
+                天地三清 道法无常 天地无极 乾坤借法 元阳入体
+            </>
+            <TextBlock FontSize="24" Foreground="Red">
+                五毒不侵 九阳纯金之体 化元神功 邪魔退散 退散 退散
+            </TextBlock-->
         </StackPanel>
         <Button HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Height="25" Command="{Binding OpenAddFeedDialogCommand}">添加订阅</Button>
         <!--Popup HorizontalAlignment="Right" VerticalAlignment="Center" StaysOpen="False">

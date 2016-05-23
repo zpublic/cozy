@@ -6,7 +6,6 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:CozyRSS.Resources.Dialog"
         mc:Ignorable="d" 
-        DataContext="{Binding AddFeedDialog, Source={StaticResource Locator}}" 
         WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow"
         Height="260" Width="450">
     <Canvas Width="450" Height="240">

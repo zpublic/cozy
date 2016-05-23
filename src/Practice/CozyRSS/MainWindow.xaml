@@ -35,7 +35,9 @@
             </Grid.ColumnDefinitions>
             <ContentControl Content="{StaticResource RSSListFrame}" Grid.Column="0" Grid.Row="1" />
             <GridSplitter Width="2" Background="Gray" />
-            <ContentControl Content="{StaticResource RSSContentFrame}" Grid.Column="1" Grid.Row="1"/>
+            <ContentControl Content="{StaticResource RSSContentFrame}"
+                            Grid.Column="1" Grid.Row="1"
+                            Margin="20,5,10,10" />
         </Grid>
     </Grid>
 </Window>
