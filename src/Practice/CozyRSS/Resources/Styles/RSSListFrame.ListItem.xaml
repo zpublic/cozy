@@ -7,20 +7,14 @@
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <DockPanel Margin="5" Background="Gray">
                         <TextBlock Text="{Binding Name}" FontSize="20" Margin="10"
-                                   MaxWidth="290" ToolTip="{Binding Name}"
+                                   MaxWidth="200" ToolTip="{Binding Name}"
                                    HorizontalAlignment="Left" VerticalAlignment="Center" />
                         <TextBlock Text="{Binding News}" Foreground="Red" FontSize="20" Margin="10"
                                    HorizontalAlignment="Left" VerticalAlignment="Center"  />
-                        <!--materialDesign:PopupBox HorizontalAlignment="Right" VerticalAlignment="Center" StaysOpen="False"
-                                                 PlacementMode="BottomAndAlignRightEdges">
-                            <StackPanel>
-                                <Button Content="设为已读" />
-                                <Button Content="更新" Command="{Binding FlushFeedCommand}"/>
-                                <Separator />
-                                <Button Content="复制地址" />
-                                <Button Content="删除" Command="{Binding RemoveFeedCommand}" />
-                            </StackPanel>
-                        </-->
+                        <Button Content="更新"
+                                HorizontalAlignment="Right" VerticalAlignment="Center"
+                                Width="100" Height="25"
+                                Command="{Binding FlushFeedCommand}" />
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>

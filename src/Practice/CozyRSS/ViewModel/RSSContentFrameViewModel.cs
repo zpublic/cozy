@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace CozyRSS.ViewModel
 {
@@ -77,9 +78,12 @@ namespace CozyRSS.ViewModel
             }
         }
 
-        void _UpdateContent(string url)
+        async void _UpdateContent(string url)
         {
-            var feed = RssService.GetRssFeed(url);
+            var feed = await Task.Run(() =>
+            {
+                return RssService.GetRssFeed(url);
+            });
             if (feed.items.Count > 0)
             {
                 _RSSContentList_ListItems.Clear();

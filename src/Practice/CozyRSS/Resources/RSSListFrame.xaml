@@ -11,8 +11,6 @@
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0">
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24" Text="{Binding Title}" />
-            <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Center"
-                          IsChecked="{Binding ElementName=RSSListFrame, Path=IsLeftDrawerOpen}" />
         </DockPanel>
         <ListBox Margin="0 16 0 16" SelectedIndex="0" Grid.Row="1"
                  ItemsSource="{Binding RSSListFrame_ListItems}"

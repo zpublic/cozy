@@ -1,6 +1,5 @@
 ﻿using CozyRSS.Resources.Dialog;
 using CozyRSS.ViewModel;
-using CozyRSS.ViewModel.Dialog;
 using System;
 using System.Windows;
 
@@ -30,8 +29,8 @@ namespace CozyRSS.Actions
 
             OpenAddFeedDialogAction = () =>
             {
-                AddFeedDialog dlg = new AddFeedDialog() { DataContext = new AddFeedDialogViewModel() };
-                // showdlg
+                AddFeedDialog dlg = new AddFeedDialog();
+                dlg.ShowDialog();
             };
         }
         public readonly Action<object> MoveWindowAction;

@@ -18,7 +18,7 @@ namespace CozyRSS.Resources.Dialog
     /// <summary>
     /// AddFeedDialog.xaml 的交互逻辑
     /// </summary>
-    public partial class AddFeedDialog : UserControl
+    public partial class AddFeedDialog : Window
     {
         public AddFeedDialog()
         {

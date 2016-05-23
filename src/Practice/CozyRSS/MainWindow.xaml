@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CozyRSS"
         mc:Ignorable="d"
         DataContext="{Binding Main, Source={StaticResource Locator}}" 
-        Title="CozyRSS" Height="720" Width="1028"
+        Title="CozyRSS" Height="720" Width="1450"
         WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
         ResizeMode="CanResizeWithGrip"  MinWidth="800" MinHeight="600">
     <Window.Resources>
@@ -20,7 +20,7 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="400" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
