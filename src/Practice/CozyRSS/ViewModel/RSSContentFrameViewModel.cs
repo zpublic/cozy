@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace CozyRSS.ViewModel
@@ -14,6 +15,19 @@ namespace CozyRSS.ViewModel
             UpdateContentCommand = new RelayCommand(() =>
             {
                 _UpdateContent("https://isocpp.org/blog/rss");
+            });
+            OpenWebPageCommand = new RelayCommand(() =>
+            {
+                if (_RSSListFrame_SelectedItem?.Item?.link != null)
+                {
+                    try
+                    {
+                        Process proc = new Process();
+                        proc.StartInfo.FileName = _RSSListFrame_SelectedItem?.Item.link;
+                        proc.Start();
+                    }
+                    catch { }
+                }
             });
             Messenger.Default.Register<RSSListFrame_ListItemViewModelMsg>(this, true, m =>
             {
@@ -38,6 +52,7 @@ namespace CozyRSS.ViewModel
         }
 
         public RelayCommand UpdateContentCommand { get; }
+        public RelayCommand OpenWebPageCommand { get; }
 
         ObservableCollection<RSSContentList_ListItemViewModel> _RSSContentList_ListItems
             = new ObservableCollection<RSSContentList_ListItemViewModel>();

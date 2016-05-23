@@ -7,7 +7,7 @@
         <Label Content="{Binding ViewTitle}" FontSize="20" Height="32" />
         <StackPanel Orientation="Horizontal">
             <Label Content="{Binding ViewTime}" FontSize="16" Foreground="Gray" />
-            <Button Margin="20 0 0 0">打开页面</Button>
+            <Button Margin="20 0 0 0" Command="{Binding OpenWebPageCommand}" >打开页面</Button>
             <Button Margin="10 0 0 0">设为未读</Button>
         </StackPanel>
         <Grid Background="#eee">
