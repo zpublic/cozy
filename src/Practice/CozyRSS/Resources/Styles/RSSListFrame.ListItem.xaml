@@ -5,21 +5,20 @@
         <Setter Property="Template" >
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <DockPanel Margin="5" Background="Gray">
-                        <TextBlock Text="{Binding Name}" FontSize="20" Margin="10"
-                                   MaxWidth="200" ToolTip="{Binding Name}"
-                                   HorizontalAlignment="Left" VerticalAlignment="Center" />
-                        <TextBlock Text="{Binding News}" Foreground="Red" FontSize="20" Margin="10"
-                                   HorizontalAlignment="Left" VerticalAlignment="Center"  />
-                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <StackPanel FlowDirection="LeftToRight" Margin="5" Background="Gray" Orientation="Horizontal">
+                        <StackPanel VerticalAlignment="Center">
                             <Button Content="删除"
-                                Width="50" Height="25"
+                                Width="40" Height="30"
                                 Command="{Binding RemoveFeedCommand}" />
                             <Button Content="更新"
-                                Width="50" Height="25"
+                                Width="40" Height="30"
                                 Command="{Binding FlushFeedCommand}" />
                         </StackPanel>
-                    </DockPanel>
+                        <TextBlock Text="{Binding Name}" FontSize="20" Margin="20"
+                                   ToolTip="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding News}" Foreground="Red" FontSize="20" Margin="10"
+                                   HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
