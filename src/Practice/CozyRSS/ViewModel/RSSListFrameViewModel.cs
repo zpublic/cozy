@@ -14,6 +14,10 @@ namespace CozyRSS.ViewModel
             {
                 _RSSListFrame_ListItems.Add(new RSSListFrame_ListItemViewModel(i));
             }
+            if (_RSSListFrame_ListItems.Count > 0)
+            {
+                RSSListFrame_SelectedItem = _RSSListFrame_ListItems[0];
+            }
             Messenger.Default.Register<RSSListFrame_ListItemViewModelMsg>(this, true, m =>
             {
                 if (m.MsgType == "RemoveFeedCommand")
@@ -30,6 +34,20 @@ namespace CozyRSS.ViewModel
         public ObservableCollection<RSSListFrame_ListItemViewModel> RSSListFrame_ListItems
         {
             get { return _RSSListFrame_ListItems; }
+        }
+
+        RSSListFrame_ListItemViewModel _RSSListFrame_SelectedItem;
+        public RSSListFrame_ListItemViewModel RSSListFrame_SelectedItem
+        {
+            get { return _RSSListFrame_SelectedItem; }
+            set
+            {
+                if (_RSSListFrame_SelectedItem != null)
+                    _RSSListFrame_SelectedItem.BkColor = "LightGray";
+                Set("RSSListFrame_SelectedItem", ref _RSSListFrame_SelectedItem, value);
+                _RSSListFrame_SelectedItem.BkColor = "Gray";
+                _RSSListFrame_SelectedItem.FlushFeedCommand.Execute(_RSSListFrame_SelectedItem.Feed.url);
+            }
         }
 
         public void AddFeed(string url)

@@ -1,7 +1,6 @@
 using CozyRSS.Actions;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 
 namespace CozyRSS.ViewModel
 {
@@ -17,24 +16,6 @@ namespace CozyRSS.ViewModel
             OpenAddFeedDialogCommand = new RelayCommand(_actions.OpenAddFeedDialogAction);
             MoveWindowCommand = new RelayCommand<object>(_actions.MoveWindowAction);
             DoubleClickCommand = new RelayCommand<object>(_actions.DoubleClickAction);
-
-            Messenger.Default.Register<RSSListFrame_ListItemViewModelMsg>(this, true, m =>
-            {
-                IsLeftDrawerOpen = false;
-            });
-        }
-
-        bool _IsLeftDrawerOpen = false;
-        public bool IsLeftDrawerOpen
-        {
-            get
-            {
-                return _IsLeftDrawerOpen;
-            }
-            set
-            {
-                Set("IsLeftDrawerOpen",ref _IsLeftDrawerOpen, value);
-            }
         }
 
         public RSSListFrameViewModel RSSListFrameViewModel { get; } 

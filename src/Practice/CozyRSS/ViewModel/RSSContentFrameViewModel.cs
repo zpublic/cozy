@@ -18,12 +18,12 @@ namespace CozyRSS.ViewModel
             });
             OpenWebPageCommand = new RelayCommand(() =>
             {
-                if (_RSSListFrame_SelectedItem?.Item?.link != null)
+                if (_RSSContentList_SelectedItem?.Item?.link != null)
                 {
                     try
                     {
                         Process proc = new Process();
-                        proc.StartInfo.FileName = _RSSListFrame_SelectedItem?.Item.link;
+                        proc.StartInfo.FileName = _RSSContentList_SelectedItem?.Item.link;
                         proc.Start();
                     }
                     catch { }
@@ -56,18 +56,18 @@ namespace CozyRSS.ViewModel
 
         ObservableCollection<RSSContentList_ListItemViewModel> _RSSContentList_ListItems
             = new ObservableCollection<RSSContentList_ListItemViewModel>();
-        public ObservableCollection<RSSContentList_ListItemViewModel> RSSListFrame_ListItems
+        public ObservableCollection<RSSContentList_ListItemViewModel> RSSContentList_ListItems
         {
             get { return _RSSContentList_ListItems; }
         }
 
-        RSSContentList_ListItemViewModel _RSSListFrame_SelectedItem;
-        public RSSContentList_ListItemViewModel RSSListFrame_SelectedItem
+        RSSContentList_ListItemViewModel _RSSContentList_SelectedItem;
+        public RSSContentList_ListItemViewModel RSSContentList_SelectedItem
         {
-            get { return _RSSListFrame_SelectedItem; }
+            get { return _RSSContentList_SelectedItem; }
             set
             {
-                _RSSListFrame_SelectedItem = value;
+                _RSSContentList_SelectedItem = value;
                 RaisePropertyChanged("RSSListFrame_SelectedItem");
                 RaisePropertyChanged("ViewTitle");
                 RaisePropertyChanged("ViewTime");
@@ -75,8 +75,8 @@ namespace CozyRSS.ViewModel
             }
         }
 
-        public string ViewTitle { get { return _RSSListFrame_SelectedItem?.Item?.title; } }
-        public string ViewTime { get { return _RSSListFrame_SelectedItem?.Item?.pubDate; } }
+        public string ViewTitle { get { return _RSSContentList_SelectedItem?.Item?.title; } }
+        public string ViewTime { get { return _RSSContentList_SelectedItem?.Item?.pubDate; } }
         public string ViewContent
         {
             get
@@ -86,7 +86,7 @@ namespace CozyRSS.ViewModel
                     .Replace("&nbsp;", " ")
                     .Replace('<', '[')
                     .Replace('>', ']');*/
-                return _RSSListFrame_SelectedItem?.Item?.description?
+                return _RSSContentList_SelectedItem?.Item?.description?
                     .Replace("&nbsp;", " ")
                     .Replace("<b>", "")
                     .Replace("</br>", "");
@@ -103,7 +103,7 @@ namespace CozyRSS.ViewModel
                 {
                     _RSSContentList_ListItems.Add(new RSSContentList_ListItemViewModel(i));
                 }
-                RSSListFrame_SelectedItem = _RSSContentList_ListItems[0];
+                RSSContentList_SelectedItem = _RSSContentList_ListItems[0];
                 Title = feed.title;
             }
         }

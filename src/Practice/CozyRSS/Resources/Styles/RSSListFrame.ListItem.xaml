@@ -5,7 +5,7 @@
         <Setter Property="Template" >
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <StackPanel FlowDirection="LeftToRight" Margin="5" Background="Gray" Orientation="Horizontal">
+                    <StackPanel FlowDirection="LeftToRight" Margin="5" Background="{Binding BkColor}" Orientation="Horizontal">
                         <StackPanel VerticalAlignment="Center">
                             <Button Content="删除"
                                 Width="40" Height="30"

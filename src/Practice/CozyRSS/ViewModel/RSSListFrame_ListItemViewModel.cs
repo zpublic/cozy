@@ -16,6 +16,12 @@ namespace CozyRSS.ViewModel
     {
         public string Name { get { return _feed?.name; } }
         public string News { get { return ""; } }
+        string _BkColor = "LightGray";
+        public string BkColor
+        {
+            get { return _BkColor; }
+            set { Set("BkColor", ref _BkColor, value); }
+        }
 
         public RSSListFrame_ListItemViewModel(FeedNode feed)
         {
@@ -29,8 +35,6 @@ namespace CozyRSS.ViewModel
             FlushFeedCommand = new RelayCommand(() =>
             {
                 Messenger.Default.Send<RSSListFrame_ListItemViewModelMsg, RSSContentFrameViewModel>(
-                    new RSSListFrame_ListItemViewModelMsg() { ListItem = this, MsgType = "FlushFeedCommand" });
-                Messenger.Default.Send<RSSListFrame_ListItemViewModelMsg, MainViewModel>(
                     new RSSListFrame_ListItemViewModelMsg() { ListItem = this, MsgType = "FlushFeedCommand" });
             });
         }
