@@ -37,6 +37,11 @@ namespace CozyRSS.ViewModel
                 Messenger.Default.Send<RSSListFrame_ListItemViewModelMsg, RSSContentFrameViewModel>(
                     new RSSListFrame_ListItemViewModelMsg() { ListItem = this, MsgType = "FlushFeedCommand" });
             });
+            SelectFeedCommand = new RelayCommand(() =>
+            {
+                Messenger.Default.Send<RSSListFrame_ListItemViewModelMsg, RSSContentFrameViewModel>(
+                    new RSSListFrame_ListItemViewModelMsg() { ListItem = this, MsgType = "SelectFeedCommand" });
+            });
         }
         FeedNode _feed;
         public FeedNode Feed
@@ -52,6 +57,12 @@ namespace CozyRSS.ViewModel
         }
 
         public RelayCommand FlushFeedCommand
+        {
+            get;
+            private set;
+        }
+
+        public RelayCommand SelectFeedCommand
         {
             get;
             private set;

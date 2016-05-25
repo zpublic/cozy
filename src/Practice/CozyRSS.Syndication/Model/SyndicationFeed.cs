@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CozyRSS.Syndication.Model
 {
+    [Serializable]
     public class SyndicationFeed
     {
         public bool IsValid()

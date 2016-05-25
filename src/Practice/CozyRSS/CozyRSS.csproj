@@ -81,6 +81,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Actions\MainWindow.Actions.cs" />
+    <Compile Include="Misc\WebBrowserHelper.cs" />
     <Compile Include="Resources\Dialog\AddFeedDialog.xaml.cs">
       <DependentUpon>AddFeedDialog.xaml</DependentUpon>
     </Compile>
@@ -178,9 +179,9 @@
       <Project>{0430e1f6-7a6d-41ff-b483-b78403cc08ad}</Project>
       <Name>CozyRSS.FeedManage</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CozyRSS.Html2Xaml\CozyRSS.Html2Xaml.csproj">
-      <Project>{5f55b450-93b9-4d59-a4c4-7d49825601a6}</Project>
-      <Name>CozyRSS.Html2Xaml</Name>
+    <ProjectReference Include="..\CozyRSS.Picasso\CozyRSS.Picasso.csproj">
+      <Project>{72729948-7c8c-47a6-a30d-63fb6d8834ce}</Project>
+      <Name>CozyRSS.Picasso</Name>
     </ProjectReference>
     <ProjectReference Include="..\CozyRSS.Syndication\CozyRSS.Syndication.csproj">
       <Project>{d842c7ec-5a4a-4991-b156-acb8bd85b435}</Project>

@@ -35,6 +35,10 @@ namespace CozyRSS.ViewModel
                 {
                     _UpdateContent(m.ListItem.Feed.url);
                 }
+                else if (m.MsgType == "SelectFeedCommand")
+                {
+                    _UpdateContent(m.ListItem.Feed.url, false);
+                }
             });
         }
 
@@ -81,6 +85,7 @@ namespace CozyRSS.ViewModel
         {
             get
             {
+                return _RSSContentList_SelectedItem?.Item?.description;
                 /*
                 return _RSSListFrame_SelectedItem?.Item?.description?
                     .Replace("&nbsp;", " ")
@@ -93,9 +98,9 @@ namespace CozyRSS.ViewModel
             }
         }
 
-        async void _UpdateContent(string url)
+        async void _UpdateContent(string url, bool needFlush = true)
         {
-            var feed = await Task.Run(() => RssService.GetRssFeed(url));
+            var feed = await Task.Run(() => RssService.RssSrv.GetRssFeed(url));
             if (feed?.items.Count > 0)
             {
                 _RSSContentList_ListItems.Clear();
@@ -105,6 +110,19 @@ namespace CozyRSS.ViewModel
                 }
                 RSSContentList_SelectedItem = _RSSContentList_ListItems[0];
                 Title = feed.title;
+            }
+            if (needFlush || feed == null || feed.items == null || feed.items.Count == 0)
+            {
+                feed = await Task.Run(() => RssService.RssSrv.FlushRssFeed(url));
+                if (feed?.items.Count > 0)
+                {
+                    _RSSContentList_ListItems.Clear();
+                    foreach (var i in feed.items)
+                    {
+                        _RSSContentList_ListItems.Add(new RSSContentList_ListItemViewModel(i));
+                    }
+                    Title = feed.title;
+                }
             }
         }
     }

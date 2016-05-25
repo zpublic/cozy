@@ -1,6 +1,7 @@
 ﻿using CozyRSS.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CozyRSS.ViewModel
@@ -9,15 +10,18 @@ namespace CozyRSS.ViewModel
     {
         public RSSListFrameViewModel()
         {
+            List<string> urls = new List<string>();
             FeedManageService.FeedManage.Load();
             foreach (var i in FeedManageService.FeedManage.GetFeeds())
             {
                 _RSSListFrame_ListItems.Add(new RSSListFrame_ListItemViewModel(i));
+                urls.Add(i.url);
             }
             if (_RSSListFrame_ListItems.Count > 0)
             {
                 RSSListFrame_SelectedItem = _RSSListFrame_ListItems[0];
             }
+            RssService.RssSrv.Init(urls);
             Messenger.Default.Register<RSSListFrame_ListItemViewModelMsg>(this, true, m =>
             {
                 if (m.MsgType == "RemoveFeedCommand")
@@ -46,7 +50,7 @@ namespace CozyRSS.ViewModel
                     _RSSListFrame_SelectedItem.BkColor = "LightGray";
                 Set("RSSListFrame_SelectedItem", ref _RSSListFrame_SelectedItem, value);
                 _RSSListFrame_SelectedItem.BkColor = "Gray";
-                _RSSListFrame_SelectedItem.FlushFeedCommand.Execute(_RSSListFrame_SelectedItem.Feed.url);
+                _RSSListFrame_SelectedItem.SelectFeedCommand.Execute(_RSSListFrame_SelectedItem.Feed.url);
             }
         }
 
