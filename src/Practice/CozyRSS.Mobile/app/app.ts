@@ -3,6 +3,7 @@ import {StatusBar} from 'ionic-native';
 import {MainPage} from './pages/main/main';
 import {ActionSheetsPage} from './pages/action-sheets/action-sheets';
 import {NavigationPage} from './pages/navigation/navigation';
+import {IconsPage} from './pages/icons/icons';
 
 
 @App({
@@ -10,7 +11,7 @@ import {NavigationPage} from './pages/navigation/navigation';
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
-  rootPage: any = NavigationPage;
+  rootPage: any = IconsPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
