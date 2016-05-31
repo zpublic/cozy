@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "postinstall": "typings install",
+    "typings": "typings"
+  },
   "dependencies": {
     "@angular/common": "^2.0.0-rc.1",
     "@angular/compiler": "^2.0.0-rc.1",
@@ -17,6 +21,7 @@
   },
   "devDependencies": {
     "del": "2.2.0",
+    "es6-promise": "^3.2.1",
     "gulp": "3.9.1",
     "gulp-rename": "^1.2.2",
     "gulp-watch": "4.3.5",
@@ -25,7 +30,9 @@
     "ionic-gulp-html-copy": "^1.0.0",
     "ionic-gulp-sass-build": "^1.0.0",
     "ionic-gulp-scripts-copy": "^2.0.0",
-    "run-sequence": "1.1.5"
+    "run-sequence": "1.1.5",
+    "typescript": "^1.8.10",
+    "typings": "^1.0.4"
   },
   "cordovaPlugins": [
     "cordova-plugin-console",
