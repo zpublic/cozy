@@ -2,34 +2,65 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                     xmlns:local="clr-namespace:CozyRSS.Resources">
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-    <materialDesign:ColorZone x:Key="TitleBar" Padding="16" Mode="PrimaryDark" materialDesign:ShadowAssist.ShadowDepth="Depth5">
-        <DockPanel>
-            <ToggleButton HorizontalAlignment="Left" VerticalAlignment="Center"
-                          Style="{StaticResource MaterialDesignHamburgerToggleButton}"
-                          IsChecked="{Binding ElementName=RSSListFrame, Path=IsLeftDrawerOpen}" />
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24">CozyRSS 0.3</TextBlock>
-            <materialDesign:PopupBox HorizontalAlignment="Right" VerticalAlignment="Center" StaysOpen="False"
-                                                 PlacementMode="BottomAndAlignRightEdges">
-                <StackPanel>
-                    <Button Content="全部更新" />
-                    <Button Content="添加订阅" Command="{Binding OpenAddFeedDialogCommand}" />
-                    <Button Content="退出">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Click">
-                                <ei:CallMethodAction
+    <ContentControl x:Key="TitleBar">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="PreviewMouseDoubleClick">
+                <i:InvokeCommandAction
+                        Command="{Binding DoubleClickCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
+            </i:EventTrigger>
+            <i:EventTrigger EventName="MouseLeftButtonDown">
+                <i:InvokeCommandAction
+                        Command="{Binding MoveWindowCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <DockPanel Background="White">
+            <TextBlock HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" FontSize="24">
+                CozyRSS
+            </TextBlock>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="30,0,0,0">
+                <!-- 泡面赞助64 -->
+                <TextBlock FontSize="16">
+                本软件由 睿笃科技（上海）有限公司 赞助支持
+                </TextBlock>
+                <!-- ZeaLotSean赞助38.88 -->
+                <TextBlock FontSize="12">
+                招聘菲佣会叠衣服-ZeaLotSean
+                </TextBlock>
+                <!-- 小才赞助25 -->
+                <TextBlock FontSize="10">
+                勾股自动化 www.mce-china.com
+                </TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="30,0,0,0">
+                <!-- 拉风哥请我吃饭 -->
+                <TextBlock FontSize="24" Foreground="Red">
+                天地三清 道法无常 天地无极 乾坤借法 鸳鸯入体
+                </TextBlock>
+                <TextBlock FontSize="24" Foreground="Red">
+                五毒不侵 九阳纯金之体 化元神功 邪魔退散 退散 退散
+                </TextBlock>
+            </StackPanel>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Height="25" Command="{Binding OpenAddFeedDialogCommand}">添加订阅</Button>
+            <!--Popup HorizontalAlignment="Right" VerticalAlignment="Center" StaysOpen="False">
+            <StackPanel>
+                <Button Content="全部更新" />
+                <Button Content="添加订阅" Command="{Binding OpenAddFeedDialogCommand}" />
+                <Button Content="关于" />
+                <Button Content="退出">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ei:CallMethodAction
                                                 MethodName="Close"
                                                 TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </Button>
-                </StackPanel>
-            </materialDesign:PopupBox>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </StackPanel>
+        </-->
         </DockPanel>
-    </materialDesign:ColorZone>
+    </ContentControl>
 </ResourceDictionary>

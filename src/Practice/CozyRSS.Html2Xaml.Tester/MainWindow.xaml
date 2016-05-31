@@ -1,0 +1,24 @@
+﻿<Window x:Class="CozyRSS.Html2Xaml.Tester.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CozyRSS.Html2Xaml.Tester"
+        xmlns:h2xaml="clr-namespace:CozyRSS.Html2Xaml;assembly=CozyRSS.Html2Xaml"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <RichTextBox>
+            <h2xaml:Properties.Html>
+                <![CDATA[
+                     <p>This is a list:</p>
+                     <ul>
+                         <li>Item 1</li>
+                         <li>Item 2</li>
+                         <li>Item 3</li>
+                     </ul>
+                 ]]>
+            </h2xaml:Properties.Html>
+        </RichTextBox>
+    </Grid>
+</Window>

@@ -11,6 +11,8 @@ namespace CozyRSS.ViewModel
             _item = i;
         }
 
+        public SyndicationItem Item { get { return _item; } }
+
         public string Title { get { return _item?.title; } }
         public string Time { get { return _item?.pubDate; } }
         public string Icon { get; } = "StarOutline";

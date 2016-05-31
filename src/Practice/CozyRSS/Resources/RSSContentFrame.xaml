@@ -9,10 +9,14 @@
     <Grid x:Key="RSSContentFrame" DataContext="{Binding RSSContentFrameViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
+            <RowDefinition Height="1" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <ContentControl Content="{StaticResource RSSContentTitle}" />
-        <Grid Grid.Row="1">
+        <Grid Background="#eee" Grid.Row="1">
+            <Rectangle Fill="#aaa" VerticalAlignment="Top" Height="1"/>
+        </Grid>
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="400" />
                 <ColumnDefinition />

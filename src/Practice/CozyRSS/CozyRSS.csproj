@@ -9,11 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CozyRSS</RootNamespace>
     <AssemblyName>CozyRSS</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -50,14 +51,6 @@
       <HintPath>..\..\..\sln\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\sln\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MaterialDesignThemes.Wpf, Version=1.5.0.523, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\sln\packages\MaterialDesignThemes.1.5.0.523\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\sln\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -87,6 +80,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Actions\MainWindow.Actions.cs" />
+    <Compile Include="Misc\WebBrowserHelper.cs" />
     <Compile Include="Resources\Dialog\AddFeedDialog.xaml.cs">
       <DependentUpon>AddFeedDialog.xaml</DependentUpon>
     </Compile>
@@ -183,6 +178,10 @@
     <ProjectReference Include="..\CozyRSS.FeedManage\CozyRSS.FeedManage.csproj">
       <Project>{0430e1f6-7a6d-41ff-b483-b78403cc08ad}</Project>
       <Name>CozyRSS.FeedManage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyRSS.Picasso\CozyRSS.Picasso.csproj">
+      <Project>{72729948-7c8c-47a6-a30d-63fb6d8834ce}</Project>
+      <Name>CozyRSS.Picasso</Name>
     </ProjectReference>
     <ProjectReference Include="..\CozyRSS.Syndication\CozyRSS.Syndication.csproj">
       <Project>{d842c7ec-5a4a-4991-b156-acb8bd85b435}</Project>

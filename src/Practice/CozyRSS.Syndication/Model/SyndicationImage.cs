@@ -1,5 +1,8 @@
-﻿namespace CozyRSS.Syndication.Model
+﻿using System;
+
+namespace CozyRSS.Syndication.Model
 {
+    [Serializable]
     public class SyndicationImage
     {
         // 必备

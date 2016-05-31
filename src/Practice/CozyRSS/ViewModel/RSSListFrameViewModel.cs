@@ -1,31 +1,57 @@
 ﻿using CozyRSS.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CozyRSS.ViewModel
 {
     public class RSSListFrameViewModel : ViewModelBase
     {
+        public RSSListFrameViewModel()
+        {
+            List<string> urls = new List<string>();
+            FeedManageService.FeedManage.Load();
+            foreach (var i in FeedManageService.FeedManage.GetFeeds())
+            {
+                _RSSListFrame_ListItems.Add(new RSSListFrame_ListItemViewModel(i));
+                urls.Add(i.url);
+            }
+            if (_RSSListFrame_ListItems.Count > 0)
+            {
+                RSSListFrame_SelectedItem = _RSSListFrame_ListItems[0];
+            }
+            RssService.RssSrv.Init(urls);
+            Messenger.Default.Register<RSSListFrame_ListItemViewModelMsg>(this, true, m =>
+            {
+                if (m.MsgType == "RemoveFeedCommand")
+                {
+                    _RSSListFrame_ListItems.Remove(m.ListItem);
+                }
+            });
+        }
+
         public string Title { get; } = "订阅列表栏";
 
-        ObservableCollection<RSSListFrame_ListItemViewModel> _RSSListFrame_ListItems 
+        ObservableCollection<RSSListFrame_ListItemViewModel> _RSSListFrame_ListItems
             = new ObservableCollection<RSSListFrame_ListItemViewModel>();
         public ObservableCollection<RSSListFrame_ListItemViewModel> RSSListFrame_ListItems
         {
             get { return _RSSListFrame_ListItems; }
         }
-        public RSSListFrameViewModel()
+
+        RSSListFrame_ListItemViewModel _RSSListFrame_SelectedItem;
+        public RSSListFrame_ListItemViewModel RSSListFrame_SelectedItem
         {
-            FeedManageService.FeedManage.Load();
-            foreach (var i in FeedManageService.FeedManage.GetFeeds())
+            get { return _RSSListFrame_SelectedItem; }
+            set
             {
-                _RSSListFrame_ListItems.Add(new RSSListFrame_ListItemViewModel(i));
+                if (_RSSListFrame_SelectedItem != null)
+                    _RSSListFrame_SelectedItem.BkColor = "LightGray";
+                Set("RSSListFrame_SelectedItem", ref _RSSListFrame_SelectedItem, value);
+                _RSSListFrame_SelectedItem.BkColor = "Gray";
+                _RSSListFrame_SelectedItem.SelectFeedCommand.Execute(_RSSListFrame_SelectedItem.Feed.url);
             }
-            Messenger.Default.Register<RSSListFrame_ListItemViewModel>(this, true, m =>
-            {
-                _RSSListFrame_ListItems.Remove(m);
-            });
         }
 
         public void AddFeed(string url)

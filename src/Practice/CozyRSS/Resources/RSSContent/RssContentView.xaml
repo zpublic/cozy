@@ -1,6 +1,25 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:bc="http://www.quickzip.org/BaseControls"
+                    xmlns:misc="clr-namespace:CozyRSS.Misc"
                     xmlns:local="clr-namespace:CozyRSS.Resources.RSSContent">
     <Grid x:Key="RssContentView">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label Content="{Binding ViewTitle}" FontSize="16" Height="32" />
+            <StackPanel Orientation="Horizontal">
+                <Label Content="{Binding ViewTime}" FontSize="14" Foreground="Gray" />
+                <Button Margin="20 0 0 0" Command="{Binding OpenWebPageCommand}" >打开页面</Button>
+                <Button Margin="10 0 0 0">设为未读</Button>
+            </StackPanel>
+            <Grid Background="#eee">
+                <Rectangle Fill="#aaa" VerticalAlignment="Top" Height="1"/>
+            </Grid>
+        </StackPanel>
+        <WebBrowser misc:WebBrowserHelper.Body="{Binding ViewContent}" Grid.Row="1" />
     </Grid>
+    
 </ResourceDictionary>

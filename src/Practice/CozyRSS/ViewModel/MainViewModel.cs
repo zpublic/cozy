@@ -1,33 +1,28 @@
-using CozyRSS.Resources.Dialog;
-using CozyRSS.ViewModel.Dialog;
+using CozyRSS.Actions;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MaterialDesignThemes.Wpf;
 
 namespace CozyRSS.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+        MainWindowActions _actions;
         public MainViewModel()
         {
-            OpenAddFeedDialogCommand = new RelayCommand(() =>
-            {
-                AddFeedDialog dlg = new AddFeedDialog() { DataContext = new AddFeedDialogViewModel() };
-                DialogHost.Show(dlg, "RootDialog", ClosingEventHandler);
-            });
+            RSSListFrameViewModel = new RSSListFrameViewModel();
+            RSSContentFrameViewModel = new RSSContentFrameViewModel();
+            _actions = new MainWindowActions();
+            _actions.RSSListFrameViewModel = RSSListFrameViewModel;
+            OpenAddFeedDialogCommand = new RelayCommand(_actions.OpenAddFeedDialogAction);
+            MoveWindowCommand = new RelayCommand<object>(_actions.MoveWindowAction);
+            DoubleClickCommand = new RelayCommand<object>(_actions.DoubleClickAction);
         }
 
-        private void ClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
-        {
-            if (eventArgs.Parameter is string)
-            {
-                RSSListFrameViewModel.AddFeed(eventArgs.Parameter as string);
-            }
-        }
-
-        public RSSListFrameViewModel RSSListFrameViewModel { get; } = new RSSListFrameViewModel();
-        public RSSContentFrameViewModel RSSContentFrameViewModel { get; } = new RSSContentFrameViewModel();
+        public RSSListFrameViewModel RSSListFrameViewModel { get; } 
+        public RSSContentFrameViewModel RSSContentFrameViewModel { get; } 
 
         public RelayCommand OpenAddFeedDialogCommand { get; private set; }
+        public RelayCommand<object> MoveWindowCommand { get; private set; }
+        public RelayCommand<object> DoubleClickCommand { get; private set; }
     }
 }
