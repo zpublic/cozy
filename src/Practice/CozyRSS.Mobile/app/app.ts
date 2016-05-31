@@ -7,13 +7,14 @@ import {IconsPage} from './pages/icons/icons';
 import {AlertsPage} from './pages/alerts/alerts';
 import {BadgesPage} from './pages/badges/badges';
 import {CheckboxesPage} from './pages/checkboxes/checkboxes';
+import {DatetimePage} from './pages/datetime/datetime';
 
 @App({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
-  rootPage: any = CheckboxesPage;
+  rootPage: any = DatetimePage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
