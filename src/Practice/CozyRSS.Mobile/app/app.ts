@@ -5,6 +5,7 @@ import {ActionSheetsPage} from './pages/action-sheets/action-sheets';
 import {NavigationPage} from './pages/navigation/navigation';
 import {IconsPage} from './pages/icons/icons';
 import {AlertsPage} from './pages/alerts/alerts';
+import {BadgesPage} from './pages/badges/badges';
 
 
 @App({
@@ -12,7 +13,7 @@ import {AlertsPage} from './pages/alerts/alerts';
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
-  rootPage: any = AlertsPage;
+  rootPage: any = BadgesPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
