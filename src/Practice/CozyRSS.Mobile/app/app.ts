@@ -11,13 +11,14 @@ import {DatetimePage} from './pages/datetime/datetime';
 import {GesturesPage} from './pages/gestures/gestures';
 import {GridPage} from './pages/grid/grid';
 import {LoadingPage} from './pages/loading/loading';
+import {ModalsPage} from './pages/modals/modals';
 
 @App({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
-  rootPage: any = LoadingPage;
+  rootPage: any = ModalsPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
