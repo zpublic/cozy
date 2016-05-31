@@ -6,14 +6,14 @@ import {NavigationPage} from './pages/navigation/navigation';
 import {IconsPage} from './pages/icons/icons';
 import {AlertsPage} from './pages/alerts/alerts';
 import {BadgesPage} from './pages/badges/badges';
-
+import {CheckboxesPage} from './pages/checkboxes/checkboxes';
 
 @App({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
-  rootPage: any = BadgesPage;
+  rootPage: any = CheckboxesPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
