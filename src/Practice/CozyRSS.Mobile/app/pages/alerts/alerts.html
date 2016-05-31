@@ -1,13 +1,29 @@
 
-<ion-navbar *navbar hideBackButton>
+<ion-navbar *navbar>
   <ion-title>Alerts</ion-title>
 </ion-navbar>
 
 <ion-content>
   <ion-list>
-    <button ion-item  (click)="navBasicAlertPage()">
+    <button ion-item (click)="navBasicAlertPage()">
       <ion-icon  name="medical" item-left></ion-icon>
       basic
+    </button>
+    <button ion-item (click)="navPromptAlertPage()">
+      <ion-icon  name="medical" item-left></ion-icon>
+      prompt
+    </button>
+    <button ion-item (click)="navConfirmAlertPage()">
+      <ion-icon  name="medical" item-left></ion-icon>
+      confirm
+    </button>
+    <button ion-item (click)="navRadioAlertPage()">
+      <ion-icon  name="medical" item-left></ion-icon>
+      radio
+    </button>
+    <button ion-item (click)="navCheckboxAlertPage()">
+      <ion-icon  name="medical" item-left></ion-icon>
+      checkbox
     </button>
   </ion-list>
 </ion-content>
