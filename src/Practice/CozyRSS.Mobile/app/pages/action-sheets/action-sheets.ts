@@ -3,7 +3,7 @@ import {Platform, Page, ActionSheet, NavController} from 'ionic-angular';
 @Page({
   templateUrl: './build/pages/action-sheets/action-sheets.html'
 })
-export class BasicPage {
+export class ActionSheetsPage {
   constructor(public platform: Platform, public nav: NavController) { }
 
   openMenu() {
