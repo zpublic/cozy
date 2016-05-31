@@ -1,6 +1,7 @@
 import {App, Platform} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {MainPage} from './pages/main/main';
+import {BasicPage} from './pages/action-sheets/action-sheets';
 
 
 @App({
@@ -8,7 +9,7 @@ import {MainPage} from './pages/main/main';
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
-  rootPage: any = MainPage;
+  rootPage: any = BasicPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
