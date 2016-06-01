@@ -13,13 +13,14 @@ import {GridPage} from './pages/grid/grid';
 import {LoadingPage} from './pages/loading/loading';
 import {ModalsPage} from './pages/modals/modals';
 import {RadiosPage} from './pages/radios/radios';
+import {ButtonsPage} from './pages/buttons/buttons';
 
 @App({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
-  rootPage: any = RadiosPage;
+  rootPage: any = ButtonsPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
