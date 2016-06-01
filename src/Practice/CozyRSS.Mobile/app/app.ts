@@ -16,13 +16,14 @@ import {RadiosPage} from './pages/radios/radios';
 import {ToastPage} from './pages/toast/toast';
 import {ToastNativePage} from './native-pages/toast/toast';
 import {SplashscreenService} from './native-pages/splashscreen/splashscreen';
+import {DisplayDataAj2Page} from './angular-pages/display-data/display-data';
 
 @App({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
-  rootPage: any = ToastPage;
+  rootPage: any = DisplayDataAj2Page;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
