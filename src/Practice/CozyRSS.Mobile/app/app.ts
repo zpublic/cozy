@@ -15,6 +15,7 @@ import {ModalsPage} from './pages/modals/modals';
 import {RadiosPage} from './pages/radios/radios';
 import {ToastPage} from './pages/toast/toast';
 import {ToastNativePage} from './native-pages/toast/toast';
+import {SplashscreenService} from './native-pages/splashscreen/splashscreen';
 
 @App({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
@@ -25,8 +26,8 @@ export class MyApp {
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      SplashscreenService.show();
+      SplashscreenService.hide();
       StatusBar.styleDefault();
     });
   }
