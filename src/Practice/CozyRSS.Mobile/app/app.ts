@@ -16,18 +16,23 @@ import {RadiosPage} from './pages/radios/radios';
 import {ButtonsPage} from './pages/buttons/buttons';
 import {SearchBarsPage} from './pages/searchbars/searchbars'
 import {SelectsPage} from './pages/selects/selects'
+import {ToastPage} from './pages/toast/toast';
+import {ToastNativePage} from './native-pages/toast/toast';
+import {SplashscreenService} from './native-pages/splashscreen/splashscreen';
+import {DisplayDataAj2Page} from './angular-pages/display-data/display-data';
+import {UserInputAj2Page} from './angular-pages/user-input/user-input';
+import {FormsAj2Page} from './angular-pages/forms/forms';
 
 @App({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
-  rootPage: any = SelectsPage;
-
+  rootPage: any = MainPage;
   constructor(platform: Platform) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      SplashscreenService.show();
+      SplashscreenService.hide();
       StatusBar.styleDefault();
     });
   }

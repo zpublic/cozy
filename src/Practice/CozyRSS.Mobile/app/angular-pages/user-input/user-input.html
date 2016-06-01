@@ -1,0 +1,25 @@
+{{clickMessage}}
+<button (click)="onClickMe()">Click me!</button>
+
+<input (keyup)="onKey($event)">
+<p>{{values}}</p>
+
+<input #box (keyup)="0">
+<p>{{box.value}}</p>
+
+<input #box2 (keyup)="onKey2(box2.value)">
+<p>{{values2}}</p>
+
+<input #box3 (keyup.enter)="values3=box3.value">
+<p>{{values3}}</p>
+
+<input #box4
+  (keyup.enter)="values4=box4.value"
+  (blur)="values4=box4.value">
+<p>{{values4}}</p>
+
+<input #newHero
+  (keyup.enter)="addHero(newHero.value)"
+  (blur)="addHero(newHero.value); newHero.value='' ">
+<button (click)=addHero(newHero.value)>Add</button>
+<ul><li *ngFor="let hero of heroes">{{hero}}</li></ul>
