@@ -16,6 +16,7 @@ import {SearchBarsPage} from '../searchbars/searchbars'
 import {SelectsPage} from '../selects/selects'
 import {ToastPage} from '../toast/toast';
 import {InputsPage} from '../inputs/inputs'
+import {SlidesPage} from '../slides/slides'
 
 @Page({
   templateUrl: './build/pages/main/main.html'
@@ -86,6 +87,10 @@ export class MainPage {
   
   navSelects(){
     this.nav.push(SelectsPage);
+  }
+  
+  navSlides(){
+    this.nav.push(SlidesPage);
   }
   
   navToast(){
