@@ -1,23 +1,28 @@
 import {Page, Alert, NavController} from 'ionic-angular';
-import {ActionSheetsPage} from '../action-sheets/action-sheets';
-import {NavigationPage} from '../navigation/navigation';
-import {IconsPage} from '../icons/icons';
-import {AlertsPage} from '../alerts/alerts';
-import {BadgesPage} from '../badges/badges';
-import {CheckboxesPage} from '../checkboxes/checkboxes';
-import {DatetimePage} from '../datetime/datetime';
-import {GesturesPage} from '../gestures/gestures';
-import {GridPage} from '../grid/grid';
-import {LoadingPage} from '../loading/loading';
-import {ModalsPage} from '../modals/modals';
-import {RadiosPage} from '../radios/radios';
-import {ButtonsPage} from '../buttons/buttons';
-import {SearchBarsPage} from '../searchbars/searchbars';
-import {SelectsPage} from '../selects/selects'
-import {ToastPage} from '../toast/toast';
-import {InputsPage} from '../inputs/inputs';
-import {SlidesPage} from '../slides/slides';
-import {TogglesPage} from '../toggles/toggles';
+import {ActionSheetsPage} from '../../pages/action-sheets/action-sheets';
+import {NavigationPage} from '../../pages/navigation/navigation';
+import {IconsPage} from '../../pages/icons/icons';
+import {AlertsPage} from '../../pages/alerts/alerts';
+import {BadgesPage} from '../../pages/badges/badges';
+import {CheckboxesPage} from '../../pages/checkboxes/checkboxes';
+import {DatetimePage} from '../../pages/datetime/datetime';
+import {GesturesPage} from '../../pages/gestures/gestures';
+import {GridPage} from '../../pages/grid/grid';
+import {LoadingPage} from '../../pages/loading/loading';
+import {ModalsPage} from '../../pages/modals/modals';
+import {RadiosPage} from '../../pages/radios/radios';
+import {ButtonsPage} from '../../pages/buttons/buttons';
+import {SearchBarsPage} from '../../pages/searchbars/searchbars'
+import {SelectsPage} from '../../pages/selects/selects'
+import {ToastPage} from '../../pages/toast/toast';
+import {ToastNativePage} from '../../native-pages/toast/toast';
+import {SplashscreenService} from '../../native-pages/splashscreen/splashscreen';
+import {DisplayDataAj2Page} from '../../angular-pages/display-data/display-data';
+import {UserInputAj2Page} from '../../angular-pages/user-input/user-input';
+import {FormsAj2Page} from '../../angular-pages/forms/forms';
+import {InputsPage} from '../../pages/inputs/inputs'
+import {SlidesPage} from '../../pages/slides/slides'
+import {TogglesPage} from '../../pages/toggles/toggles'
 
 @Page({
   templateUrl: './build/pages/main/main.html'

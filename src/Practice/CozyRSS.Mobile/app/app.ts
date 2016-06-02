@@ -6,18 +6,16 @@ import {SplashscreenService} from './native-pages/splashscreen/splashscreen';
 import {DisplayDataAj2Page} from './angular-pages/display-data/display-data';
 import {UserInputAj2Page} from './angular-pages/user-input/user-input';
 import {FormsAj2Page} from './angular-pages/forms/forms';
-
+import {CozyRssMainPage} from './cozyrss/mainpage'
 @App({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 
 export class MyApp {
-  rootPage: any = MainPage;
+  rootPage: any = CozyRssMainPage;
   constructor(platform: Platform) {
     platform.ready().then(() => {
-      SplashscreenService.show();
-      SplashscreenService.hide();
       StatusBar.styleDefault();
     });
   }
