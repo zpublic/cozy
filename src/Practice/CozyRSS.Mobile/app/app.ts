@@ -13,20 +13,22 @@ import {GridPage} from './pages/grid/grid';
 import {LoadingPage} from './pages/loading/loading';
 import {ModalsPage} from './pages/modals/modals';
 import {RadiosPage} from './pages/radios/radios';
+import {ButtonsPage} from './pages/buttons/buttons';
+import {SearchBarsPage} from './pages/searchbars/searchbars'
+import {SelectsPage} from './pages/selects/selects'
 import {ToastPage} from './pages/toast/toast';
 import {ToastNativePage} from './native-pages/toast/toast';
 import {SplashscreenService} from './native-pages/splashscreen/splashscreen';
 import {DisplayDataAj2Page} from './angular-pages/display-data/display-data';
 import {UserInputAj2Page} from './angular-pages/user-input/user-input';
 import {FormsAj2Page} from './angular-pages/forms/forms';
-
+import {InputsPage} from './pages/inputs/inputs'
 @App({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
-  rootPage: any = MainPage;
-
+  rootPage: any = InputsPage;
   constructor(platform: Platform) {
     platform.ready().then(() => {
       SplashscreenService.show();

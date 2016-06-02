@@ -1,0 +1,68 @@
+<ion-navbar *navbar>
+  <ion-title>Inputs</ion-title>
+</ion-navbar>
+
+<ion-content>
+  <form (submit)="processForm($event)" [ngFormModel]="form">
+    <ion-list>
+      <ion-item>
+        <ion-input ngControl="firstName" type=text placeholder="FirstName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input ngControl="lastName" type=password placeholder="LastName"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label fixed>Fixed</ion-label>
+        <ion-input type=text></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Fixed</ion-label>
+        <ion-input type=text></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label floating>Floating</ion-label>
+        <ion-input type=text></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Floating</ion-label>
+        <ion-input type=text></ion-input>
+      </ion-item>
+      
+       <ion-item>
+        <ion-label>Inline</ion-label>
+        <ion-input type=text></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Inline</ion-label>
+        <ion-input type=text></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label stacked>Stacked</ion-label>
+        <ion-input type=text></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Stacked</ion-label>
+        <ion-input type=text></ion-input>
+      </ion-item>
+    </ion-list>
+    
+    <ion-list inset>
+      <ion-item>
+        <ion-label>Inset</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Inset</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+    </ion-list>
+    
+    <div padding>
+      <button block type="submit">Create Account</button>
+    </div>
+  </form>
+  
+</ion-content>
