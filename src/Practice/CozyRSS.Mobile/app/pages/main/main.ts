@@ -24,6 +24,7 @@ import {InputsPage} from '../../pages/inputs/inputs'
 import {SlidesPage} from '../../pages/slides/slides'
 import {TogglesPage} from '../../pages/toggles/toggles'
 import {CardsPage} from '../../pages/cards/cards'
+import {ListsPage} from '../../pages/lists/lists'
 
 @Page({
   templateUrl: './build/pages/main/main.html'
@@ -74,6 +75,10 @@ export class MainPage {
   
   navInputs(){
     this.nav.push(InputsPage);
+  }
+  
+  navLists(){
+    this.nav.push(ListsPage);
   }
   
   navLoading(){
