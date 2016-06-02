@@ -1,0 +1,9 @@
+<ion-navbar *navbar>
+	<ion-title>Tabs</ion-title>
+</ion-navbar>
+
+<ion-tabs>
+	<ion-tab tabIcon="call" [root]="tabOne" tabBadge="{{BadgeCountOne}}" tabBadgeStyle="danger"></ion-tab>
+	<ion-tab tabIcon="chatbubbles" [root]="tabTwo" tabBadge="{{BadgeCountTwo}}" tabBageStyle="danger"></ion-tab>
+	<ion-tab tabIcon="musical-notes" [root]="tabThree" tabBadge="{{BadgeCountThree > 0 ? BadgeCountThree : null}}"></ion-tab>
+</ion-tabs>
