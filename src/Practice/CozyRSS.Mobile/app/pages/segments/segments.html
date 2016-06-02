@@ -1,0 +1,74 @@
+<ion-navbar *navbar>
+
+  <ion-title>
+    Segments
+  </ion-title>
+
+</ion-navbar>
+
+<ion-toolbar [attr.primary]="isAndroid ? '' : null">
+  <ion-segment [(ngModel)]="pet" [attr.light]="isAndroid ? '' : null">
+    <ion-segment-button value="puppies">
+      Puppies
+    </ion-segment-button>
+    <ion-segment-button value="kittens">
+      Kittens
+    </ion-segment-button>
+    <ion-segment-button value="ducklings">
+      Ducklings
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
+
+
+<ion-content>
+
+  <div [ngSwitch]="pet">
+    <ion-list *ngSwitchWhen="'puppies'">
+      <ion-item>
+        <h2>Ruby</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Oscar</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Zoey</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Otto</h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchWhen="'kittens'">
+      <ion-item>
+        <h2>Luna</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Milo</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Bandit</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Nala</h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchWhen="'ducklings'">
+      <ion-item>
+        <h2>Daffy</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Huey</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Dewey</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Louie</h2>
+      </ion-item>
+    </ion-list>
+  </div>
+
+
+</ion-content>

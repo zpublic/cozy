@@ -20,9 +20,13 @@ import {SplashscreenService} from '../../native-pages/splashscreen/splashscreen'
 import {DisplayDataAj2Page} from '../../angular-pages/display-data/display-data';
 import {UserInputAj2Page} from '../../angular-pages/user-input/user-input';
 import {FormsAj2Page} from '../../angular-pages/forms/forms';
-import {InputsPage} from '../../pages/inputs/inputs'
-import {SlidesPage} from '../../pages/slides/slides'
-import {TogglesPage} from '../../pages/toggles/toggles'
+import {InputsPage} from '../../pages/inputs/inputs';
+import {SlidesPage} from '../../pages/slides/slides';
+import {TogglesPage} from '../../pages/toggles/toggles';
+import {CardsPage} from '../../pages/cards/cards';
+import {ListsPage} from '../../pages/lists/lists';
+import {SegmentPage} from '../../pages/segments/segments';
+import {TabsPage} from '../../pages/tabs/tabs';
 
 @Page({
   templateUrl: './build/pages/main/main.html'
@@ -45,6 +49,10 @@ export class MainPage {
   
   navButtons(){
     this.nav.push(ButtonsPage);
+  }
+  
+  navCards(){
+    this.nav.push(CardsPage);
   }
   
   navCheckBoxes(){
@@ -71,6 +79,10 @@ export class MainPage {
     this.nav.push(InputsPage);
   }
   
+  navLists(){
+    this.nav.push(ListsPage);
+  }
+  
   navLoading(){
     this.nav.push(LoadingPage);
   }
@@ -91,12 +103,20 @@ export class MainPage {
     this.nav.push(SearchBarsPage);
   }
   
+  navSegment(){
+    this.nav.push(SegmentPage);
+  }
+  
   navSelects(){
     this.nav.push(SelectsPage);
   }
   
   navSlides(){
     this.nav.push(SlidesPage);
+  }
+  
+  navTabs(){
+    this.nav.push(TabsPage);
   }
   
   navToast(){

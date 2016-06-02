@@ -8,7 +8,7 @@ import {CozyRssMainPage} from './cozyrss/mainpage'
 })
 
 export class MyApp {
-  rootPage: any = CozyRssMainPage;
+  rootPage: any = MainPage;
   constructor(platform: Platform) {
     platform.ready().then(() => {
       StatusBar.styleDefault();
