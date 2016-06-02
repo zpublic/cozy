@@ -1,0 +1,64 @@
+<ion-navbar *navbar>
+  <ion-title>
+    Cards
+  </ion-title>
+</ion-navbar>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      Basic Card Header
+    </ion-card-header>
+    <ion-card-content>
+      Basic Card Content
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      List in Cards
+    </ion-card-header>
+    <ion-list>
+      <button ion-item *ngFor="let obj of lists">
+        <ion-icon name="{{obj.ico}}" item-left></ion-icon>
+        {{obj.content}}
+      </button>
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <div>
+      <img src="http://h.hiphotos.baidu.com/baike/w%3D268/sign=e5bebe26c895d143da76e3254bf08296/f9198618367adab4edf449668bd4b31c8701e4eb.jpg"
+      />
+    </div>
+
+    <ion-card-content>
+      <h2 class="card-title">
+        Run-D.M.C.
+      </h2>
+      <p>
+        The American hip hop group widely acknowledged as one of the most influential acts in the history of hip hop.
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <button clear small danger>
+          <ion-icon name='star'></ion-icon>
+          Favorite
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button clear small danger>
+          <ion-icon name='musical-notes'></ion-icon>
+          Listen
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button clear small danger>
+          <ion-icon name='share-alt'></ion-icon>
+          Share
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>

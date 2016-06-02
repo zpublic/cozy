@@ -23,6 +23,7 @@ import {FormsAj2Page} from '../../angular-pages/forms/forms';
 import {InputsPage} from '../../pages/inputs/inputs'
 import {SlidesPage} from '../../pages/slides/slides'
 import {TogglesPage} from '../../pages/toggles/toggles'
+import {CardsPage} from '../../pages/cards/cards'
 
 @Page({
   templateUrl: './build/pages/main/main.html'
@@ -45,6 +46,10 @@ export class MainPage {
   
   navButtons(){
     this.nav.push(ButtonsPage);
+  }
+  
+  navCards(){
+    this.nav.push(CardsPage);
   }
   
   navCheckBoxes(){
