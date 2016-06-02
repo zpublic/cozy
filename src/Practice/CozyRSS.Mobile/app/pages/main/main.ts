@@ -20,11 +20,12 @@ import {SplashscreenService} from '../../native-pages/splashscreen/splashscreen'
 import {DisplayDataAj2Page} from '../../angular-pages/display-data/display-data';
 import {UserInputAj2Page} from '../../angular-pages/user-input/user-input';
 import {FormsAj2Page} from '../../angular-pages/forms/forms';
-import {InputsPage} from '../../pages/inputs/inputs'
-import {SlidesPage} from '../../pages/slides/slides'
-import {TogglesPage} from '../../pages/toggles/toggles'
-import {CardsPage} from '../../pages/cards/cards'
-import {ListsPage} from '../../pages/lists/lists'
+import {InputsPage} from '../../pages/inputs/inputs';
+import {SlidesPage} from '../../pages/slides/slides';
+import {TogglesPage} from '../../pages/toggles/toggles';
+import {CardsPage} from '../../pages/cards/cards';
+import {ListsPage} from '../../pages/lists/lists';
+import {SegmentPage} from '../../pages/segment/segment'
 
 @Page({
   templateUrl: './build/pages/main/main.html'
@@ -99,6 +100,10 @@ export class MainPage {
   
   navSearchBars(){
     this.nav.push(SearchBarsPage);
+  }
+  
+  navSegment(){
+    this.nav.push(SegmentPage);
   }
   
   navSelects(){
