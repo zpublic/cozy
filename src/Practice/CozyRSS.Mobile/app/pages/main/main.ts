@@ -12,11 +12,12 @@ import {LoadingPage} from '../loading/loading';
 import {ModalsPage} from '../modals/modals';
 import {RadiosPage} from '../radios/radios';
 import {ButtonsPage} from '../buttons/buttons';
-import {SearchBarsPage} from '../searchbars/searchbars'
+import {SearchBarsPage} from '../searchbars/searchbars';
 import {SelectsPage} from '../selects/selects'
 import {ToastPage} from '../toast/toast';
-import {InputsPage} from '../inputs/inputs'
-import {SlidesPage} from '../slides/slides'
+import {InputsPage} from '../inputs/inputs';
+import {SlidesPage} from '../slides/slides';
+import {TogglesPage} from '../toggles/toggles';
 
 @Page({
   templateUrl: './build/pages/main/main.html'
@@ -95,6 +96,10 @@ export class MainPage {
   
   navToast(){
     this.nav.push(ToastPage);
+  }
+  
+  navToggles(){
+    this.nav.push(TogglesPage);
   }
   
   navUndefined(){
