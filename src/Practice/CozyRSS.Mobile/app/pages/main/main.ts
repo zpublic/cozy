@@ -1,4 +1,4 @@
-import {Page} from 'ionic-angular';
+import {Page, Alert, NavController} from 'ionic-angular';
 import {ActionSheetsPage} from '../../pages/action-sheets/action-sheets';
 import {NavigationPage} from '../../pages/navigation/navigation';
 import {IconsPage} from '../../pages/icons/icons';
@@ -21,11 +21,98 @@ import {DisplayDataAj2Page} from '../../angular-pages/display-data/display-data'
 import {UserInputAj2Page} from '../../angular-pages/user-input/user-input';
 import {FormsAj2Page} from '../../angular-pages/forms/forms';
 import {InputsPage} from '../../pages/inputs/inputs'
+import {SlidesPage} from '../../pages/slides/slides'
+import {TogglesPage} from '../../pages/toggles/toggles'
 
 @Page({
-  templateUrl: 'build/pages/main/main.html'
+  templateUrl: './build/pages/main/main.html'
 })
 export class MainPage {
-  // this tells the tabs component which Pages
-  // should be each tab's root Page
+  constructor(public nav: NavController) {
+  }
+  
+  navActionSheets(){
+    this.nav.push(ActionSheetsPage);
+  }
+  
+  navAlerts(){
+    this.nav.push(AlertsPage);
+  }
+  
+  navBadges(){
+    this.nav.push(BadgesPage);
+  }
+  
+  navButtons(){
+    this.nav.push(ButtonsPage);
+  }
+  
+  navCheckBoxes(){
+    this.nav.push(CheckboxesPage);
+  }
+  
+  navDateTime(){
+    this.nav.push(DatetimePage);
+  }
+  
+  navGestures(){
+    this.nav.push(GesturesPage);
+  }
+  
+  navGrid(){
+    this.nav.push(GridPage);
+  }
+  
+  navIcons(){
+    this.nav.push(IconsPage);
+  }
+  
+  navInputs(){
+    this.nav.push(InputsPage);
+  }
+  
+  navLoading(){
+    this.nav.push(LoadingPage);
+  }
+  
+  navModals(){
+    this.nav.push(ModalsPage);
+  }
+  
+  navNavigation(){
+    this.nav.push(NavigationPage);
+  }
+  
+  navRadios(){
+    this.nav.push(RadiosPage);
+  }
+  
+  navSearchBars(){
+    this.nav.push(SearchBarsPage);
+  }
+  
+  navSelects(){
+    this.nav.push(SelectsPage);
+  }
+  
+  navSlides(){
+    this.nav.push(SlidesPage);
+  }
+  
+  navToast(){
+    this.nav.push(ToastPage);
+  }
+  
+  navToggles(){
+    this.nav.push(TogglesPage);
+  }
+  
+  navUndefined(){
+    let alert = Alert.create({
+      title: 'undefined',
+      message: 'call to undefined page',
+      buttons: ['Ok']
+     });
+     this.nav.present(alert);
+  }
 }
