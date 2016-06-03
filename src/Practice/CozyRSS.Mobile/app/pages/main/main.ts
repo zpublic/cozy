@@ -27,6 +27,7 @@ import {CardsPage} from '../../pages/cards/cards';
 import {ListsPage} from '../../pages/lists/lists';
 import {SegmentPage} from '../../pages/segments/segments';
 import {TabsPage} from '../../pages/tabs/tabs';
+import {ToolbarsPage} from '../../pages/toolbars/toolbars';
 
 @Page({
   templateUrl: './build/pages/main/main.html'
@@ -117,6 +118,10 @@ export class MainPage {
   
   navTabs(){
     this.nav.push(TabsPage);
+  }
+  
+  navToolbars(){
+    this.nav.push(ToolbarsPage);
   }
   
   navToast(){
