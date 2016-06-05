@@ -1,6 +1,31 @@
 <ion-navbar *navbar>
-	<ion-title>{{title}}</ion-title>
+ <ion-buttons end>
+   <button>
+     <ion-icon name="star"></ion-icon>
+   </button>
+   <button>
+     <ion-icon name="star"></ion-icon>
+   </button>
+   <button>
+     <ion-icon name="star"></ion-icon>
+   </button>
+ </ion-buttons>
 </ion-navbar>
 <ion-content>
-    <h2>Rss正文内容</h2>
+  <ion-card>
+    <ion-card-content>
+      {{item.title}}
+    </ion-card-content>
+    <ion-item>
+       <ion-note item-left>
+         {{item.time}}
+       </ion-note>
+       <ion-note item-right>
+        {{item.source}}
+       </ion-note>
+    </ion-item>
+    <ion-card-content>
+      {{item.content}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>
