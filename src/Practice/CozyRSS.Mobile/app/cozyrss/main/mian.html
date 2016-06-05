@@ -1,18 +1,7 @@
-<ion-toolbar>
-  <ion-buttons start>
-    <button (click)="onFavorite()">
-       <ion-icon name="star"></ion-icon>
-     </button>
-  </ion-buttons>
-  <ion-title>CozyRSS</ion-title>
-  <ion-buttons end>
-    <button>
-       <ion-icon name="refresh"></ion-icon>
-     </button>
-  </ion-buttons>
-</ion-toolbar>
-<ion-tabs>
-  <ion-tab tabTitle="首页" [root]="rssList"></ion-tab>
-  <ion-tab tabTitle="频道" [root]="rsschannel"></ion-tab>
-  <ion-tab tabTitle="设置" [root]="setting"></ion-tab>
-</ion-tabs>
+<ion-content>
+  <ion-tabs tabbarPlacement="bottom">
+    <ion-tab tabTitle="首页" [root]="rssList"></ion-tab>
+    <ion-tab tabTitle="频道" [root]="rsschannel"></ion-tab>
+    <ion-tab tabTitle="设置" [root]="setting"></ion-tab>
+  </ion-tabs>
+</ion-content>

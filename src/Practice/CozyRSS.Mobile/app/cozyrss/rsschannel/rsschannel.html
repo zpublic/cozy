@@ -1,3 +1,18 @@
+<ion-navbar *navbar>
+  <ion-title>
+    CozyRSS
+  </ion-title>
+  <ion-buttons end>
+    <button>
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-navbar>
 <ion-content>
-    <h2>频道</h2>
+  <ion-list>
+    <ion-item *ngFor="let channel of channels" (click)="channelSelected(channel)">
+      {{channel}}
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+  </ion-list>
 </ion-content>

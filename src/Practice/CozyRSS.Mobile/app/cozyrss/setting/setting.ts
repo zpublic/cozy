@@ -1,8 +1,10 @@
-import {Page} from 'ionic-angular';
+import {Page, Alert} from 'ionic-angular';
 
 @Page({
-    templateUrl: './build/cozyrss/setting/setting.html'
+  templateUrl: './build/cozyrss/setting/setting.html'
 })
 export class SettingPage {
-
+  onAboutClicked(){
+    
+  }
 }
