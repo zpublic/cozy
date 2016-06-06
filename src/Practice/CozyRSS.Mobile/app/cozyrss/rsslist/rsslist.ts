@@ -1,34 +1,48 @@
 import {Page, NavController} from 'ionic-angular';
-import {RssDetailPage} from '../rssdetail/rssdetail';
+import {RssSourcePage} from '../rsssource/rsssource';
 
 @Page({
     templateUrl: './build/cozyrss/rsslist/rsslist.html'
 })
 export class RssListPage {
 
-
     constructor(public nav: NavController) {
+
     }
 
     items = [
         {
-            title: 'Pokémon Yellow',
+            title: 'C++博客 原创精华区',
+            num: 0,
+            icon: 'arrow-forward',
+            isAdd: false,
         },
         {
-            title: 'Super Metroid',
+            title: '虎嗅网',
+            num: 10,
+            icon: 'arrow-forward',
+            isAdd: false,
         },
         {
-            title: 'Mega Man X',
+            title: '知乎日报',
+            num: 2,
+            icon: 'arrow-forward',
+            isAdd: false,
         },
+        
         {
-            title: 'The Legend of Zelda',
-        },
-        {
-            title: 'Pac-Man',
-        },
+            title: '从Url添加',
+            num: 0,
+            icon: 'add',
+            isAdd: true,
+        }
     ];
 
     itemSelected(item) {
-        this.nav.push(RssDetailPage, { item: item });
+        if(item.isAdd) {
+            
+        } else {
+            this.nav.push(RssSourcePage, { item: item });
+        }
     }
 }

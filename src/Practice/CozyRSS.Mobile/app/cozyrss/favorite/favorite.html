@@ -1,0 +1,20 @@
+<ion-navbar *navbar>
+  <ion-title>
+    我的收藏  
+  </ion-title>
+</ion-navbar>
+<ion-content>
+  <ion-card *ngFor="let item of items" (click)="itemSelected(item)">
+    <ion-card-content>
+      <p>{{item.title}}</p>
+    </ion-card-content>
+    <ion-item>
+       <ion-note item-left>
+         {{item.time}}
+       </ion-note>
+       <ion-note item-right>
+        {{item.source}}
+       </ion-note>
+    </ion-item>
+  </ion-card>
+</ion-content>
