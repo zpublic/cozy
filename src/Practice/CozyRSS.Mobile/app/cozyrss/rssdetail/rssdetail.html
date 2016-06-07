@@ -1,15 +1,16 @@
 <ion-navbar *navbar>
- <ion-buttons end>
-   <button>
+  <ion-title>内容</ion-title>
+  <ion-buttons end>
+    <button>
      <ion-icon name="star"></ion-icon>
    </button>
-   <button>
-     <ion-icon name="star"></ion-icon>
+    <button>
+     <ion-icon name="cut"></ion-icon>
    </button>
-   <button>
-     <ion-icon name="star"></ion-icon>
+    <button>
+     <ion-icon name="expand"></ion-icon>
    </button>
- </ion-buttons>
+  </ion-buttons>
 </ion-navbar>
 <ion-content>
   <ion-card>
@@ -17,12 +18,12 @@
       {{item.title}}
     </ion-card-content>
     <ion-item>
-       <ion-note item-left>
-         {{item.time}}
-       </ion-note>
-       <ion-note item-right>
+      <ion-note item-left>
+        {{item.time}}
+      </ion-note>
+      <ion-note item-right>
         {{item.source}}
-       </ion-note>
+      </ion-note>
     </ion-item>
     <ion-card-content>
       {{item.content}}
