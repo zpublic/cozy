@@ -1,24 +1,24 @@
 <ion-navbar *navbar>
   <ion-title>
-    添加频道  
+    添加频道
   </ion-title>
   <ion-buttons end>
-    <button>
+    <button (click)="onAddSourceDone()">
       <ion-icon name="checkmark"></ion-icon>
     </button>
   </ion-buttons>
 </ion-navbar>
-<ion-content>
+<ion-content class="addrsssource-content">
   <ion-label fixed>
     名称:
   </ion-label>
-  <ion-input></ion-input>
-  
+  <ion-input [(ngModel)]="sourceName"></ion-input>
+
   <ion-label fixed>
     地址:
   </ion-label>
-  <ion-input type="url"></ion-input>
-  
+  <ion-input type="url" [(ngModel)]="sourceUrl"></ion-input>
+
   <ion-label fixed>
     类别:
   </ion-label>

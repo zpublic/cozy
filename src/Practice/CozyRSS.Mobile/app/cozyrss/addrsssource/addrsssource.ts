@@ -1,4 +1,4 @@
-import {Page} from 'ionic-angular';
+import {Page, NavController} from 'ionic-angular';
 
 @Page({
   templateUrl: './build/cozyrss/addrsssource/addrsssource.html'
@@ -14,9 +14,19 @@ export class AddRSSSourcePage {
     "博客",
     "其他",
   ];
-  selectedChannel: any;
+  selectedChannel = this.channels[0];
+  sourceName: string;
+  sourceUrl: string;
+
+  constructor(public nav: NavController) {
+
+  }
 
   onChannelSelected(channel) {
     this.selectedChannel = channel;
+  }
+
+  onAddSourceDone() {
+    this.nav.pop();
   }
 }
