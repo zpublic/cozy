@@ -8,6 +8,5 @@ export class RssDetailPage {
 
   constructor(public params: NavParams) {
     this.item = params.data.item;
-    console.log(JSON.stringify(this.item));
   }
 }
