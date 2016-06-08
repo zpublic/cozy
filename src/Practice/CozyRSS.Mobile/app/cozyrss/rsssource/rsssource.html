@@ -1,10 +1,10 @@
 <ion-navbar *navbar>
   <ion-title>
-    {{title}}
+    {{source.name}}
   </ion-title>
 </ion-navbar>
 <ion-content>
-  <ion-card *ngFor="let item of items" (click)="itemSelected(item)">
+  <ion-card *ngFor="let item of source.contents" (click)="itemSelected(item)">
     <ion-card-content>
       <p>{{item.title}}</p>
     </ion-card-content>
@@ -13,7 +13,7 @@
          {{item.time}}
        </ion-note>
        <ion-note item-right>
-        {{item.source}}
+        {{item.author}}
        </ion-note>
     </ion-item>
   </ion-card>
