@@ -42,7 +42,8 @@
     "cordova-plugin-device",
     "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard",
-    "cordova-plugin-x-toast"
+    "cordova-plugin-x-toast",
+    "cordova-plugin-file"
   ],
   "cordovaPlatforms": [],
   "name": "cozyrss.mobile",
