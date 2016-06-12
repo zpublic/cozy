@@ -24,8 +24,8 @@ export class RssChannelPage {
   channelSelected(channel) {
     this.nav.push(ChannelDetailPage, { channel: channel });
   }
-  
-  onAddChannelClicked(){
+
+  onAddChannelClicked() {
     this.nav.push(AddRSSSourcePage);
   }
 }

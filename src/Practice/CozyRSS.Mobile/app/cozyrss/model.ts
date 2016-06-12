@@ -1,5 +1,6 @@
 export interface RSSContent {
   title?: string;
+  url?: string;
   time?: string;
   author?: string;
   content?: string;
