@@ -116,8 +116,14 @@ export class ModelService {
       .then(function (values) {
         _self.rssSourceList = values[0];
         _self.rssFavoriteList = values[1];
-        resolveFn();
+        return null;
       }).catch(function (error) {
+        _self.rssSourceList = [];
+        _self.rssFavoriteList = [];
+        return _self.saveAll();
+      }).then(function(x){
+        resolveFn();
+      }).catch(function(error){
         rejectFn(error);
       })
 
@@ -136,16 +142,18 @@ export class ModelService {
     return this.rssSourceList;
   }
 
-  mapSources(map): void {
+  mapSources(map): Promise<any> {
     map(this.rssSourceList);
+    return this.saveSources();
   }
 
   getFavorite(): RSSContent[] {
     return this.rssFavoriteList;
   }
 
-  mapFavorite(map): void {
+  mapFavorite(map): Promise<any> {
     map(this.rssFavoriteList);
+    return this.saveFavorite();
   }
 
   testData() {
