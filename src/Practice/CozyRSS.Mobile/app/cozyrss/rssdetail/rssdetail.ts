@@ -1,4 +1,5 @@
 import {Page, NavParams, NavController, Toast} from 'ionic-angular';
+import {Clipboard} from 'ionic-native';
 import {RSSContent} from '../model';
 import {ModelService} from '../services/model.service';
 
@@ -37,7 +38,28 @@ export class RssDetailPage {
     })
   }
 
-  copyToClipBoard() {
+  copyToClipboard() {
+    let _self = this;
+    Clipboard.copy(this.content.title + ' : ' + this.content.url)
+    .then(function(x){
+      console.log(x);
+      
+      let toast = Toast.create({
+          message: 'content is already copy to clipboard',
+          duration: 1000,
+        });
 
+        _self.nav.present(toast);
+    })
+    .catch(function(error){
+      console.log(error);
+
+      let toast = Toast.create({
+          message: 'copy to clipboard failed',
+          duration: 1000,
+        });
+
+        _self.nav.present(toast);
+    })
   }
 }
