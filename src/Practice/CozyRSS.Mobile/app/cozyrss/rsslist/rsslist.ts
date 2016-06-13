@@ -1,4 +1,4 @@
-import {Page, NavController, Toast} from 'ionic-angular';
+import {Page, NavController} from 'ionic-angular';
 import {RssSourcePage} from '../rsssource/rsssource';
 import {FavoritePage} from '../favorite/favorite';
 import {RSSSource} from '../model';
