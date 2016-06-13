@@ -41,21 +41,21 @@ export class RssDetailPage {
   copyToClipboard() {
     let _self = this;
     Clipboard.copy(this.content.title + ' : ' + this.content.url)
-    .then(function(x){
-      let toast = Toast.create({
+      .then(function (x) {
+        let toast = Toast.create({
           message: 'content is already copy to clipboard',
           duration: 1000,
         });
 
         _self.nav.present(toast);
-    })
-    .catch(function(error){
-      let toast = Toast.create({
+      })
+      .catch(function (error) {
+        let toast = Toast.create({
           message: 'copy to clipboard failed',
           duration: 1000,
         });
 
         _self.nav.present(toast);
-    })
+      })
   }
 }
