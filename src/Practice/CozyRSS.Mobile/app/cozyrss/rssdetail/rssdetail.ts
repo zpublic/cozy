@@ -42,8 +42,6 @@ export class RssDetailPage {
     let _self = this;
     Clipboard.copy(this.content.title + ' : ' + this.content.url)
     .then(function(x){
-      console.log(x);
-      
       let toast = Toast.create({
           message: 'content is already copy to clipboard',
           duration: 1000,
@@ -52,8 +50,6 @@ export class RssDetailPage {
         _self.nav.present(toast);
     })
     .catch(function(error){
-      console.log(error);
-
       let toast = Toast.create({
           message: 'copy to clipboard failed',
           duration: 1000,
