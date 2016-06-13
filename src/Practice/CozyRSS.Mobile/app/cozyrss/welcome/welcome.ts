@@ -47,14 +47,12 @@ export class WelcomePage {
       .then(function (x) {
         let toast = Toast.create({
           message: 'Load Success',
-          duration: 3000
         });
         _self.nav.present(toast);
       })
       .catch(function (error) {
         let toast = Toast.create({
           message: 'Load Failed : ' + JSON.stringify(error),
-          duration: 3000
         });
       })
       .then(function (x) {

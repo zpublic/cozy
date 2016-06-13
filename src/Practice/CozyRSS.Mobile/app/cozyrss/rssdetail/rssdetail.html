@@ -1,10 +1,10 @@
 <ion-navbar *navbar>
   <ion-title>内容</ion-title>
   <ion-buttons end>
-    <button (click)="setFavorite()">
+    <button (click)="addFavorite()">
      <ion-icon name="star"></ion-icon>
    </button>
-    <button>
+    <button (click)="copyToClipboard()">
      <ion-icon name="cut"></ion-icon>
    </button>
     <button>

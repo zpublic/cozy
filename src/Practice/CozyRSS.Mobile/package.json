@@ -43,7 +43,11 @@
     "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard",
     "cordova-plugin-x-toast",
-    "cordova-plugin-file"
+    "cordova-plugin-file",
+    {
+      "locator": "https://github.com/VersoSolutions/CordovaClipboard.git",
+      "id": "com.verso.cordova.clipboard"
+    }
   ],
   "cordovaPlatforms": [],
   "name": "cozyrss.mobile",
