@@ -6,12 +6,12 @@
 <ion-content>
   <ion-list>
     <div *ngFor="let source of sources">
-      <ion-item *ngIf="source.channel == channel">
+      <ion-item *ngIf="source.channel == channel" (press)="onSourcePress(source)">
         <ion-label>
           <h2>{{source.name}}</h2>
           <p>{{source.url}}</p>
         </ion-label>
-        <ion-toggle [(ngModel)]="source.enable"></ion-toggle>
+        <ion-toggle [(ngModel)]="source.enable" (click)="onSourceChange()"></ion-toggle>
       </ion-item>
     </div>
   </ion-list>

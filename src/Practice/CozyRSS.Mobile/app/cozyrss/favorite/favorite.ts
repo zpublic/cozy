@@ -27,7 +27,7 @@ export class FavoritePage {
           handler: () => {
             this.models.mapFavorite(function (favorite: RSSContent[]) {
               favorite.splice(favorite.indexOf(item), 1);
-            })
+            });
           }
         }
       ],
