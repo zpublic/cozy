@@ -39,7 +39,6 @@ export class WelcomePage {
 
     let loading = Loading.create({
       content: 'Please wait...',
-      duration: 5000,
     });
     this.nav.present(loading);
 
@@ -47,12 +46,14 @@ export class WelcomePage {
       .then(function (x) {
         let toast = Toast.create({
           message: 'Load Success',
+          duration: 1000,
         });
         _self.nav.present(toast);
       })
       .catch(function (error) {
         let toast = Toast.create({
           message: 'Load Failed : ' + JSON.stringify(error),
+          duration: 1000,
         });
       })
       .then(function (x) {
