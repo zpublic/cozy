@@ -4,7 +4,7 @@
   </ion-title>
 </ion-navbar>
 <ion-content>
-  <ion-card *ngFor="let item of items" (click)="itemSelected(item)">
+  <ion-card *ngFor="let item of items" (click)="itemSelected(item)" (press)="itemHold(item)">
     <ion-card-content>
       <p>{{item.title}}</p>
     </ion-card-content>
