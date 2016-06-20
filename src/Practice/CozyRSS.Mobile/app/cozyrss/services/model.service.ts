@@ -1,11 +1,16 @@
 import {Injectable} from '@angular/core';
 import {File} from 'ionic-native';
+import {FileService} from '../services/file.service';
 import {RSSContent, RSSSource} from '../model';
 
 @Injectable()
 export class ModelService {
   private rssSourceList: RSSSource[];
   private rssFavoriteList: RSSContent[];
+
+  constructor(private file: FileService) {
+
+  }
 
   private _saveFile(path, dir, file, data): Promise<any> {
     let resolveFn, rejectFn;
@@ -15,6 +20,8 @@ export class ModelService {
       rejectFn = reject;
     });
 
+    let _self = this;
+
     File.checkDir(path, dir)
       .catch(function (x) {
         return File.createDir(path, dir, false);
@@ -23,7 +30,7 @@ export class ModelService {
         return File.createFile(path + dir, file, true);
       })
       .then(function (x) {
-        return File.writeExistingFile(path + dir, file, JSON.stringify(data));
+        return _self.file.writeExistingFile(path + dir, file, JSON.stringify(data));
       })
       .then(function () {
         resolveFn();
@@ -121,9 +128,9 @@ export class ModelService {
         _self.rssSourceList = [];
         _self.rssFavoriteList = [];
         return _self.saveAll();
-      }).then(function(x){
+      }).then(function (x) {
         resolveFn();
-      }).catch(function(error){
+      }).catch(function (error) {
         rejectFn(error);
       })
 
@@ -154,9 +161,5 @@ export class ModelService {
   mapFavorite(map): Promise<any> {
     map(this.rssFavoriteList);
     return this.saveFavorite();
-  }
-
-  constructor() {
-
   }
 }
