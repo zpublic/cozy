@@ -1,16 +1,18 @@
 <ion-navbar *navbar>
   <ion-title>
-    {{title}}
+    {{channel}}
   </ion-title>
 </ion-navbar>
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let channel of channels">
-      <ion-label>
-        <h2>{{channel.name}}</h2>
-        <p>{{channel.url}}</p>
-      </ion-label>
-      <ion-toggle [(ngModel)]="channel.enable"></ion-toggle>
-    </ion-item>
+    <div *ngFor="let source of sources">
+      <ion-item *ngIf="source.channel == channel" (press)="onSourcePress(source)">
+        <ion-label>
+          <h2>{{source.name}}</h2>
+          <p>{{source.url}}</p>
+        </ion-label>
+        <ion-toggle [(ngModel)]="source.enable" (click)="onSourceChange()"></ion-toggle>
+      </ion-item>
+    </div>
   </ion-list>
 </ion-content>

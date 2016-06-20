@@ -1,30 +1,46 @@
-import {Page, NavParams} from 'ionic-angular';
+import {Page, NavParams, NavController, ActionSheet} from 'ionic-angular';
+import {ModelService} from '../services/model.service';
+import {RSSSource} from '../model'
 
 @Page({
   templateUrl: './build/cozyrss/channeldetail/channeldetail.html'
 })
 export class ChannelDetailPage {
-  title: string;
-  source: string;
-  channels = [
-    {
-      name: 'InfoQ-donet',
-      url: 'http://www.infoq.com/cn/feed/dotnet/news',
-      enable: true,
-    },
-    {
-      name: '酷壳',
-      url: 'http://coolshell.cn/feed',
-      enable: false,
-    },
-    {
-      name: '科学松鼠会',
-      url: 'http://songshuhui.net/feed',
-      enable: false,
-    }
-  ];
+  channel: string;
+  sources = [];
 
-  constructor(public params: NavParams) {
-    this.title = params.data.channel;
+  constructor(private params: NavParams, private models: ModelService, private nav: NavController) {
+    this.channel = params.data.channel;
+    this.sources = this.models.getSources();
+  }
+
+  onSourceChange() {
+    this.models.saveSources();
+  }
+
+  onSourcePress(source) {
+    let actionSheet = ActionSheet.create({
+      title: 'Action',
+      buttons: [
+        {
+          text: 'Edit',
+          role: 'edit',
+          handler: () => {
+            console.log("edit " + JSON.stringify(source));
+          }
+        },
+        {
+          text: 'remove',
+          role: 'remove',
+          handler: () => {
+            this.models.mapSources(function (sources: RSSSource[]) {
+              sources.splice(sources.indexOf(source), 1);
+            });
+          }
+        }
+      ],
+    });
+
+    this.nav.present(actionSheet);
   }
 }

@@ -1,50 +1,21 @@
 import {Page, NavController} from 'ionic-angular';
 import {RssSourcePage} from '../rsssource/rsssource';
 import {FavoritePage} from '../favorite/favorite';
+import {RSSSource} from '../model';
+import {ModelService} from '../services/model.service';
 
 @Page({
-  templateUrl: './build/cozyrss/rsslist/rsslist.html'
+  templateUrl: './build/cozyrss/rsslist/rsslist.html',
 })
 export class RssListPage {
+  rssList: RSSSource[];
 
-  constructor(public nav: NavController) {
-
+  constructor(private nav: NavController, private models: ModelService) {
+    this.rssList = this.models.getSources();
   }
 
-  items = [
-    {
-      title: 'C++博客 原创精华区',
-      num: 0,
-      icon: 'arrow-forward',
-      isAdd: false,
-    },
-    {
-      title: '虎嗅网',
-      num: 10,
-      icon: 'arrow-forward',
-      isAdd: false,
-    },
-    {
-      title: '知乎日报',
-      num: 2,
-      icon: 'arrow-forward',
-      isAdd: false,
-    },
-
-    {
-      title: '从Url添加',
-      num: 0,
-      icon: 'add',
-      isAdd: true,
-    }
-  ];
-
   itemSelected(item) {
-    if (item.isAdd) {
-
-    } else {
-      this.nav.push(RssSourcePage, { item: item });
-    }
+    this.nav.push(RssSourcePage, { item: item });
   }
 
   onFavorite() {

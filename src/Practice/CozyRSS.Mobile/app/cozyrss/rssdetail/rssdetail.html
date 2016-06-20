@@ -1,10 +1,10 @@
 <ion-navbar *navbar>
   <ion-title>内容</ion-title>
   <ion-buttons end>
-    <button>
+    <button (click)="addFavorite()">
      <ion-icon name="star"></ion-icon>
    </button>
-    <button>
+    <button (click)="copyToClipboard()">
      <ion-icon name="cut"></ion-icon>
    </button>
     <button>
@@ -15,18 +15,18 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-      {{item.title}}
+      {{content.title}}
     </ion-card-content>
     <ion-item>
       <ion-note item-left>
-        {{item.time}}
+        {{content.time}}
       </ion-note>
       <ion-note item-right>
-        {{item.source}}
+        {{content.author}}
       </ion-note>
     </ion-item>
     <ion-card-content>
-      {{item.content}}
+      {{content.content}}
     </ion-card-content>
   </ion-card>
 </ion-content>
