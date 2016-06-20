@@ -2,10 +2,11 @@ import {App, Platform} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {WelcomePage} from './cozyrss/welcome/welcome';
 import {ModelService} from './cozyrss/services/model.service';
+import {FileService} from './cozyrss/services/file.service';
 
 @App({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
-  providers: [ModelService],
+  providers: [ModelService, FileService],
 })
 
 export class MyApp {
