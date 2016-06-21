@@ -153,7 +153,11 @@ Cozy
 >>
 >> CozyCozyFarseer - 玩玩先知  
 >>
->> CozyPeise - 配色方案查看工具（v2）
+>> CozyPeise - 配色方案查看工具（v2）  
+>>
+>> CozyRSS - 基于wpf的RSS阅读器  
+>>
+>> CozyRSS.Mobile - 基于Ionic2的RSS阅读器  
 >>
 
 玩法一览
