@@ -26,7 +26,7 @@ export class SettingPage {
         title: 'http test',
         message: res.text(),
         buttons: ['ok']
-      }))
+      }));
     });
   }
 }
