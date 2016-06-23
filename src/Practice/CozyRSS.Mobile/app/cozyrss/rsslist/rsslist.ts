@@ -1,4 +1,4 @@
-import {Page, NavController, Loading} from 'ionic-angular';
+import {Page, NavController, Loading, Toast} from 'ionic-angular';
 import {RssSourcePage} from '../rsssource/rsssource';
 import {FavoritePage} from '../favorite/favorite';
 import {RSSSource, RSSContent, FeedItem} from '../model';
@@ -16,28 +16,6 @@ export class RssListPage {
     this.rssList = this.models.getSources();
   }
 
-  private _updateSource(source: RSSSource, items: FeedItem[]) {
-    let count = 0;
-    let contents = items.map(function (item): RSSContent {
-      if (source.contents.find(function (content) {
-        return content.url == item.guid;
-      }) == undefined) {
-        count++;
-      }
-      return {
-        title: item.title,
-        url: item.guid,
-        time: item.pubDate,
-        author: item.author,
-        content: item.content,
-      };
-    });
-
-    source.news = count;
-    source.contents = contents;
-
-    return this.models.saveSources();
-  }
 
   itemSelected(item) {
     this.nav.push(RssSourcePage, { item: item });
@@ -60,17 +38,31 @@ export class RssListPage {
       return x.enable;
     }).forEach(function (x) {
 
-      let source = x;
-      _self.feeds.readFeed(source.url)
+      _self.feeds.readFeed(x.url)
         .then(function (data) {
-          return _self._updateSource(x, data.items);
+          return _self.feeds.diffContent(x, data.items);
         })
-        .catch(function (error) {
-          console.log(error);
+        .then(function (content) {
+          return _self.models.mapSources(function (sources: RSSSource[]) {
+            x.news += content.length;
+            x.contents = x.contents.concat(content);
+          });
         })
-        .then(function (x) {
+        .then(function (param) {
+          let toast = Toast.create({
+            message: 'refresh success',
+          });
+          _self.nav.present(toast);
+        })
+        .catch(function (err) {
+          let toast = Toast.create({
+            message: JSON.stringify(err),
+          });
+          _self.nav.present(toast);
+        })
+        .then(function (param) {
           loading.dismiss();
-        });
+        })
     })
   }
 }

@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http, URLSearchParams} from '@angular/http';
+import {FeedItem, RSSSource, RSSContent} from '../model';
 
 @Injectable()
 export class FeedService {
@@ -8,6 +9,27 @@ export class FeedService {
 
   constructor(private http: Http) {
 
+  }
+
+  diffContent(source: RSSSource, items: FeedItem[]): RSSContent[] {
+    let new_contents = items
+      .filter(function (item) {
+        return source.contents.find(function (content) {
+          return content.url == item.guid;
+        }) == undefined;
+      })
+      .map(function (item) {
+        return {
+          title: item.title,
+          url: item.guid,
+          time: item.pubDate,
+          author: item.author,
+          content: item.content,
+          read: false,
+        };
+      });
+
+    return new_contents;
   }
 
   readFeed(url: string): Promise<any> {

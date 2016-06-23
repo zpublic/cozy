@@ -32,8 +32,6 @@ export class AddRSSSourcePage {
     let _self = this;
 
     this.models.mapSources(function (sources: RSSSource[]) {
-      console.log(sources);
-
       sources.push({
         name: _self.sourceName,
         url: _self.sourceUrl,

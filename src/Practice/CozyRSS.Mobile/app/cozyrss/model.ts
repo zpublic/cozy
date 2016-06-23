@@ -4,6 +4,7 @@ export interface RSSContent {
   time?: string;
   author?: string;
   content?: string;
+  read?: boolean;
 }
 
 export interface RSSSource {
