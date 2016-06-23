@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import {File} from 'ionic-native';
+import {Platform} from 'ionic-angular'
 import {FileService} from '../services/file.service';
 import {RSSContent, RSSSource} from '../model';
 
 @Injectable()
 export class ModelService {
-  private rssSourceList: RSSSource[];
-  private rssFavoriteList: RSSContent[];
+  private rssSourceList: RSSSource[] = [];
+  private rssFavoriteList: RSSContent[] = [];
 
-  constructor(private file: FileService) {
+  constructor(private file: FileService, private platform: Platform) {
 
   }
 
@@ -20,24 +21,28 @@ export class ModelService {
       rejectFn = reject;
     });
 
-    let _self = this;
+    if (this.platform.is('ios') || this.platform.is('android')) {
+      let _self = this;
+      File.checkDir(path, dir)
+        .catch(function (x) {
+          return File.createDir(path, dir, false);
+        })
+        .then(function (x) {
+          return File.createFile(path + dir, file, true);
+        })
+        .then(function (x) {
+          return _self.file.writeExistingFile(path + dir, file, JSON.stringify(data));
+        })
+        .then(function () {
+          resolveFn();
+        })
+        .catch(function (error) {
+          rejectFn(error);
+        })
 
-    File.checkDir(path, dir)
-      .catch(function (x) {
-        return File.createDir(path, dir, false);
-      })
-      .then(function (x) {
-        return File.createFile(path + dir, file, true);
-      })
-      .then(function (x) {
-        return _self.file.writeExistingFile(path + dir, file, JSON.stringify(data));
-      })
-      .then(function () {
-        resolveFn();
-      })
-      .catch(function (error) {
-        rejectFn(error);
-      })
+    } else {
+      resolveFn();
+    }
 
     return promise;
   }
@@ -119,20 +124,25 @@ export class ModelService {
 
     let _self = this;
 
-    Promise.all([_self.loadSources(), _self.loadFavorite()])
-      .then(function (values) {
-        _self.rssSourceList = values[0];
-        _self.rssFavoriteList = values[1];
-        return null;
-      }).catch(function (error) {
-        _self.rssSourceList = [];
-        _self.rssFavoriteList = [];
-        return _self.saveAll();
-      }).then(function (x) {
-        resolveFn();
-      }).catch(function (error) {
-        rejectFn(error);
-      })
+    if (this.platform.is('ios') || this.platform.is('android')) {
+
+      Promise.all([_self.loadSources(), _self.loadFavorite()])
+        .then(function (values) {
+          _self.rssSourceList = values[0];
+          _self.rssFavoriteList = values[1];
+          return null;
+        }).catch(function (error) {
+          _self.rssSourceList = [];
+          _self.rssFavoriteList = [];
+          return _self.saveAll();
+        }).then(function (x) {
+          resolveFn();
+        }).catch(function (error) {
+          rejectFn(error);
+        })
+    } else {
+      resolveFn();
+    }
 
     return promise;
   }

@@ -26,7 +26,7 @@
 //
 //
 
-import {Page, NavController, Loading, Toast} from 'ionic-angular';
+import {Page, NavController, Loading, Toast, Platform} from 'ionic-angular';
 import {MainPage} from '../main/main';
 import {ModelService} from '../services/model.service';
 
@@ -34,31 +34,35 @@ import {ModelService} from '../services/model.service';
   templateUrl: './build/cozyrss/welcome/welcome.html',
 })
 export class WelcomePage {
-  constructor(private nav: NavController, private models: ModelService) {
-    let _self = this;
+  constructor(private nav: NavController, private models: ModelService, private platform: Platform) {
+    if (this.platform.is('android') || this.platform.is('ios')) {
+      let _self = this;
 
-    let loading = Loading.create({
-      content: 'Please wait...',
-    });
-    this.nav.present(loading);
-
-    _self.models.init()
-      .then(function (x) {
-        let toast = Toast.create({
-          message: 'Load Success',
-          duration: 1000,
-        });
-        _self.nav.present(toast);
-      })
-      .catch(function (error) {
-        let toast = Toast.create({
-          message: 'Load Failed : ' + JSON.stringify(error),
-          duration: 1000,
-        });
-      })
-      .then(function (x) {
-        loading.dismiss();
-        _self.nav.push(MainPage);
+      let loading = Loading.create({
+        content: 'Please wait...',
       });
+      this.nav.present(loading);
+
+      _self.models.init()
+        .then(function (x) {
+          let toast = Toast.create({
+            message: 'Load Success',
+            duration: 1000,
+          });
+          _self.nav.present(toast);
+        })
+        .catch(function (error) {
+          let toast = Toast.create({
+            message: 'Load Failed : ' + JSON.stringify(error),
+            duration: 1000,
+          });
+        })
+        .then(function (x) {
+          loading.dismiss();
+          _self.nav.push(MainPage);
+        });
+    } else {
+      this.nav.push(MainPage);
+    }
   }
 }
