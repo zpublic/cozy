@@ -14,3 +14,23 @@ export interface RSSSource {
   channel?: string;
   contents?: RSSContent[];
 }
+
+export interface FeedItem {
+  author?: string;
+  categories?: any[];
+  content?: string;
+  description?: string;
+  guid?: string;
+  link?: string;
+  pubDate?: string;
+  thumbnail?: string;
+  title?: string;
+}
+
+export interface FeedObject {
+  author?: string;
+  description?: string;
+  image?: string;
+  link?: string;
+  title?: string;
+}
