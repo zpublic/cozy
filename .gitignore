@@ -168,3 +168,4 @@ typings/
 /sln/*.db
 /sln/my_rss.json
 /src/Practice/CozyRSS.Mobile/.vscode/.browse.VC.db
+/src/Practice/CozyCat.Engine/packages
