@@ -62,15 +62,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\CozyCat.Plugin.Mouse\CozyCat.Plugin.Mouse.csproj">
+    <ProjectReference Include="..\CozyCat.Plugin.Mouse\CozyCat.Plugin.Mouse.csproj">
       <Project>{6f1437ea-3ebb-4e36-b54c-91756adb0802}</Project>
       <Name>CozyCat.Plugin.Mouse</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CozyLua.Plugin\CozyLua.Plugin.csproj">
+    <ProjectReference Include="..\CozyLua.Plugin\CozyLua.Plugin.csproj">
       <Project>{69f9878e-3491-4d23-a77b-bc659190a638}</Project>
       <Name>CozyLua.Plugin</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CozyLua.Runner\CozyLua.Runner.csproj">
+    <ProjectReference Include="..\CozyLua.Runner\CozyLua.Runner.csproj">
       <Project>{9dd7e5b2-fcea-4049-a027-e4441ed516da}</Project>
       <Name>CozyLua.Runner</Name>
     </ProjectReference>

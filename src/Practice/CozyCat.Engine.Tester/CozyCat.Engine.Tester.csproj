@@ -50,7 +50,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CozyCat.Engine\CozyCat.Engine\CozyCat.Engine.csproj">
+    <ProjectReference Include="..\CozyCat.Engine\CozyCat.Engine.csproj">
       <Project>{3ac4135a-6bd0-499b-a10a-3f8d2d0fe8b2}</Project>
       <Name>CozyCat.Engine</Name>
     </ProjectReference>
