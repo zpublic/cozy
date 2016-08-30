@@ -162,6 +162,8 @@ Cozy
 >> CozyCat - 山寨按键精灵，用lua脚本做系统操作控制  
 >>
 >> CozyRSS2 - UWP版的RSS阅读器  
+>>  
+>> CozyDumpAnalyse - 通过程序来处理一下dmp文件  
 >>
 
 玩法一览
