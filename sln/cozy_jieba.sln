@@ -9,6 +9,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "CozyJieba.Segmenter.Tester"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "CozyJieba.Segmenter.Common", "..\src\Practice\CozyJieba.Segmenter.Common\CozyJieba.Segmenter.Common.fsproj", "{FD4DB383-7D62-44AB-B633-FC348273057B}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "CozyJieba.Play", "..\src\Practice\CozyJieba.Play\CozyJieba.Play.fsproj", "{4626AC57-8F42-4577-AA08-4D7D317467F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FD4DB383-7D62-44AB-B633-FC348273057B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD4DB383-7D62-44AB-B633-FC348273057B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD4DB383-7D62-44AB-B633-FC348273057B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4626AC57-8F42-4577-AA08-4D7D317467F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4626AC57-8F42-4577-AA08-4D7D317467F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4626AC57-8F42-4577-AA08-4D7D317467F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4626AC57-8F42-4577-AA08-4D7D317467F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
