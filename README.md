@@ -164,7 +164,9 @@ Cozy
 >> CozyRSS2 - UWP版的RSS阅读器  
 >>  
 >> CozyDumpAnalyse - 通过程序来处理一下dmp文件  
->>
+>>  
+>> CozyJieba - 结巴分词相关  
+>>  
 
 玩法一览
 --------------------------------
