@@ -5,10 +5,10 @@ open System.Drawing
 
 [<EntryPoint>]
 let main argv = 
-    let image = @"d:\data\lulu.jpg"
-    let image2 = @"d:\data\lulu2.jpg"
-    let image3 = @"d:\data\lulu3.jpg"
-    let image4 = @"d:\data\lulu4.jpg"
+    let image = @"d:\data\img\lulu.jpg"
+    let image2 = @"d:\data\img\lulu2.jpg"
+    let image3 = @"d:\data\img\lulu3.jpg"
+    let image4 = @"d:\data\img\lulu4.jpg"
     let fac = new ImageFactory()
 
     fac.Load(image)

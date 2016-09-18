@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyIris.Demo", "..\src\Pra
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "CozyIris.FDemo", "..\src\Practice\CozyIris.FDemo\CozyIris.FDemo.fsproj", "{7F7428F5-8B39-454B-B6B9-675EDBE0EF6D}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "CozyIris.DynamicQrcode", "..\src\Practice\CozyIris.DynamicQrcode\CozyIris.DynamicQrcode.fsproj", "{38510411-3721-4984-A99E-8A3D625506D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7F7428F5-8B39-454B-B6B9-675EDBE0EF6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F7428F5-8B39-454B-B6B9-675EDBE0EF6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F7428F5-8B39-454B-B6B9-675EDBE0EF6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38510411-3721-4984-A99E-8A3D625506D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38510411-3721-4984-A99E-8A3D625506D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38510411-3721-4984-A99E-8A3D625506D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38510411-3721-4984-A99E-8A3D625506D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
