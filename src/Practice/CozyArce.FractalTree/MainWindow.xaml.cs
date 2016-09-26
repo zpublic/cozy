@@ -13,10 +13,11 @@ namespace CozyArce.FractalTree
         const double Arg = PI / 5;
         const double GoldenSection = 0.618;
         Random rand = new Random();
-        CozyTree tree = new CozyTree();
+        CozyTree tree;
 
         public CozyTree Generate()
         {
+            tree = new CozyTree();
             DrawTree(new Point(500, 850), PI / 2, 200, 30);
             return tree;
         }
@@ -35,12 +36,15 @@ namespace CozyArce.FractalTree
                 width = width,
             });
 
-            width -= (short)rand.Next(3, 6);
+            width -= (short)rand.Next(5, 8);
             if (width < 1) width = 1;
-            var sub = rand.Next(2, 5);
+            var sub = rand.Next(2, 4);
             for (var i = 0; i < sub; ++i)
             {
-                DrawTree(end, angle + (rand.NextDouble() - 0.5) * PI / 2, rand.NextDouble() * length, width);
+                var len = rand.NextDouble();
+                if (len < 0.4) len += 0.4;
+                if (len > 0.8) len -= 0.2;
+                DrawTree(end, angle + (rand.NextDouble() - 0.5) * PI / 2, len * length, width);
             }
         }
     }
@@ -70,12 +74,19 @@ namespace CozyArce.FractalTree
 
     public partial class MainWindow : Window
     {
+        ITreeGenerator g;
+        ITreeRender r;
 
         public MainWindow()
         {
             InitializeComponent();
-            ITreeGenerator g = new LowGenerator();
-            ITreeRender r = new LowRender(xCanvas);
+            g = new LowGenerator();
+            r = new LowRender(xCanvas);
+        }
+
+        private void button_Click_1(object sender, RoutedEventArgs e)
+        {
+            xCanvas.Children.Clear();
             r.Draw(g.Generate());
         }
     }
