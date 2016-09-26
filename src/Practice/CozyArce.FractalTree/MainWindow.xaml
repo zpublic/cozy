@@ -17,6 +17,7 @@
                 Margin="0,10,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Content="gen1" Click="button_Click_1" />
+                Click="button_Click_1"
+                Content="gen1" />
     </Grid>
 </Window>

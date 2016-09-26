@@ -23,7 +23,27 @@ namespace CozyArce.FractalTree
         }
         public void DrawTree(Point begin, double angle, double length, short width)
         {
-            if (length < 3) return;
+            if (length < 5)
+            {
+                if (length < 4.98)
+                {
+                    tree.Leaves.Add(new CozyLeaf()
+                    {
+                        begin = begin,
+                        end = new Point(begin.X + 2 * Math.Cos(angle), begin.Y + 2 * Math.Cos(angle)),
+                    });
+                    return;
+                }
+                else
+                {
+                    tree.Flowers.Add(new CozyFlower()
+                    {
+                        pos = begin,
+                        size = 3,
+                    });
+                }
+                return;
+            }
 
             int x = (int)(begin.X + length * Math.Cos(angle));
             int y = (int)(begin.Y - length * Math.Sin(angle));
@@ -60,13 +80,39 @@ namespace CozyArce.FractalTree
         {
             foreach(var b in tree.Branchs)
             {
-                LineGeometry myLineGeometry = new LineGeometry();
-                myLineGeometry.StartPoint = b.begin;
-                myLineGeometry.EndPoint = b.end;
+                LineGeometry geo = new LineGeometry();
+                geo.StartPoint = b.begin;
+                geo.EndPoint = b.end;
                 Path myPath = new Path();
                 myPath.Stroke = Brushes.Black;
                 myPath.StrokeThickness = b.width;
-                myPath.Data = myLineGeometry;
+                myPath.Data = geo;
+                _canvas.Children.Add(myPath);
+            }
+            foreach (var b in tree.Leaves)
+            {
+                EllipseGeometry geo = new EllipseGeometry();
+                geo.Center = b.begin;
+                geo.RadiusX = 5;
+                geo.RadiusY = 3;
+                Path myPath = new Path();
+                myPath.Stroke = Brushes.Green;
+                myPath.StrokeThickness = 1;
+                myPath.Fill = Brushes.Green;
+                myPath.Data = geo;
+                _canvas.Children.Add(myPath);
+            }
+            foreach (var b in tree.Flowers)
+            {
+                EllipseGeometry geo = new EllipseGeometry();
+                geo.Center = b.pos;
+                geo.RadiusX = 5;
+                geo.RadiusY = 3;
+                Path myPath = new Path();
+                myPath.Stroke = Brushes.Pink;
+                myPath.StrokeThickness = 1;
+                myPath.Fill = Brushes.Pink;
+                myPath.Data = geo;
                 _canvas.Children.Add(myPath);
             }
         }
