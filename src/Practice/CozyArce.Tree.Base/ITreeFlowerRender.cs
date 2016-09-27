@@ -2,8 +2,8 @@
 
 namespace CozyArce.Tree.Base
 {
-    public interface ITreeRender
+    public interface ITreeFlowerRender
     {
-        void Draw(CozyTree tree);
+        void Draw(CozyFlower x);
     }
 }

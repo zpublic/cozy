@@ -100,6 +100,14 @@
       <Project>{319daad5-f691-4c61-b2f0-dedc50f2bb85}</Project>
       <Name>CozyArce.Tree.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyArce.Tree.Generator.Sample\CozyArce.Tree.Generator.Sample.csproj">
+      <Project>{b30041f8-48ad-49c7-8d83-2ad17f5a2ba2}</Project>
+      <Name>CozyArce.Tree.Generator.Sample</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyArce.Tree.Render.Sample\CozyArce.Tree.Render.Sample.csproj">
+      <Project>{06904895-380e-4e99-8c2a-7cbc6d6aa465}</Project>
+      <Name>CozyArce.Tree.Render.Sample</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

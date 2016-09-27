@@ -1,4 +1,6 @@
-﻿namespace CozyArce.Tree.Base
+﻿using CozyArce.Tree.Base.Model;
+
+namespace CozyArce.Tree.Base
 {
     public interface ITreeGenerator
     {
