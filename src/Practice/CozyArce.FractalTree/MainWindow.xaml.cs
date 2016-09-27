@@ -14,13 +14,20 @@ namespace CozyArce.FractalTree
         public MainWindow()
         {
             InitializeComponent();
-            //g = new LowGenerator();
-            g = new SensitivePlantGenerator();
-            r = new LowRender(xCanvas);
         }
 
         private void button_Click_1(object sender, RoutedEventArgs e)
         {
+            g = new LowGenerator();
+            r = new LowRender(xCanvas);
+            xCanvas.Children.Clear();
+            r.Draw(g.Generate());
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            g = new SensitivePlantGenerator();
+            r = new LowRender(xCanvas);
             xCanvas.Children.Clear();
             r.Draw(g.Generate());
         }

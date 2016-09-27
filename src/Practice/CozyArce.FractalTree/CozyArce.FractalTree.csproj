@@ -104,6 +104,10 @@
       <Project>{b30041f8-48ad-49c7-8d83-2ad17f5a2ba2}</Project>
       <Name>CozyArce.Tree.Generator.Sample</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyArce.Tree.Generator.SensitivePlant\CozyArce.Tree.Generator.SensitivePlant.csproj">
+      <Project>{4e9f54c8-d302-4580-a1a8-d47c2a37326f}</Project>
+      <Name>CozyArce.Tree.Generator.SensitivePlant</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyArce.Tree.Render.Sample\CozyArce.Tree.Render.Sample.csproj">
       <Project>{06904895-380e-4e99-8c2a-7cbc6d6aa465}</Project>
       <Name>CozyArce.Tree.Render.Sample</Name>
