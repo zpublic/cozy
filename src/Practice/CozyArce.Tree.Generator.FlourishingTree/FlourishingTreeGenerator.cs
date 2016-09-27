@@ -19,24 +19,26 @@ namespace CozyArce.Tree.Generator.FlourishingTree
         }
         public void DrawTree(Point begin, double angle, double length, short width)
         {
-            if (length < 8)
+            if (length < 10)
             {
-                if (length < 7.98)
+                if (length < 7)
                 {
-                    tree.Leaves.Add(new CozyLeaf()
+                    if (length < 6.98)
                     {
-                        begin = begin,
-                        end = new Point(begin.X + 2 * Math.Cos(angle), begin.Y + 2 * Math.Cos(angle)),
-                    });
-                    return;
-                }
-                else
-                {
-                    tree.Flowers.Add(new CozyFlower()
+                        tree.Leaves.Add(new CozyLeaf()
+                        {
+                            begin = begin,
+                            end = new Point(begin.X + 2 * Math.Cos(angle), begin.Y + 2 * Math.Cos(angle)),
+                        });
+                    }
+                    else
                     {
-                        pos = begin,
-                        size = 3,
-                    });
+                        tree.Flowers.Add(new CozyFlower()
+                        {
+                            pos = begin,
+                            size = 3,
+                        });
+                    }
                 }
                 return;
             }

@@ -4,6 +4,7 @@ using CozyArce.Tree.Render.Sample;
 using CozyArce.Tree.Generator.SensitivePlant;
 using System.Windows;
 using CozyArce.Tree.Generator.FlourishingTree;
+using System.Diagnostics;
 
 namespace CozyArce.FractalTree
 {

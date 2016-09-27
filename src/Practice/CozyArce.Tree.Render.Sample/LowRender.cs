@@ -58,7 +58,7 @@ namespace CozyArce.Tree.Render.Sample
                 myPath.StrokeThickness = 1;
                 myPath.Fill = Brushes.Green;
                 myPath.Data = geo;
-                //myPath.Effect = _effect2;
+                myPath.Effect = _effect2;
                 _canvas.Children.Add(myPath);
             }
             foreach (var b in tree.Flowers)
