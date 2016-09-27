@@ -1,6 +1,7 @@
 ﻿using CozyArce.Tree.Base;
 using CozyArce.Tree.Generator.Sample;
 using CozyArce.Tree.Render.Sample;
+using CozyArce.Tree.Generator.SensitivePlant;
 using System.Windows;
 
 namespace CozyArce.FractalTree
@@ -13,7 +14,8 @@ namespace CozyArce.FractalTree
         public MainWindow()
         {
             InitializeComponent();
-            g = new LowGenerator();
+            //g = new LowGenerator();
+            g = new SensitivePlantGenerator();
             r = new LowRender(xCanvas);
         }
 
