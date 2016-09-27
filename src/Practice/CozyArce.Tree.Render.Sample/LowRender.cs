@@ -2,12 +2,31 @@
 using CozyArce.Tree.Base.Model;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Shapes;
 
 namespace CozyArce.Tree.Render.Sample
 {
     public class LowRender : ITreeRender
     {
+        Effect _effect1 = new DropShadowEffect()
+        {
+            Direction = 225,
+            BlurRadius = 7,
+            Color = Colors.Gray,
+        };
+        Effect _effect2 = new DropShadowEffect()
+        {
+            Direction = 225,
+            BlurRadius = 4,
+            Color = Colors.Green,
+        };
+        Effect _effect3 = new DropShadowEffect()
+        {
+            Direction = 225,
+            BlurRadius = 3,
+            Color = Colors.Pink,
+        };
         public Canvas _canvas;
         public LowRender(Canvas canvas)
         {
@@ -25,6 +44,7 @@ namespace CozyArce.Tree.Render.Sample
                 myPath.Stroke = Brushes.Black;
                 myPath.StrokeThickness = b.width;
                 myPath.Data = geo;
+                myPath.Effect = _effect1;
                 _canvas.Children.Add(myPath);
             }
             foreach (var b in tree.Leaves)
@@ -38,6 +58,7 @@ namespace CozyArce.Tree.Render.Sample
                 myPath.StrokeThickness = 1;
                 myPath.Fill = Brushes.Green;
                 myPath.Data = geo;
+                //myPath.Effect = _effect2;
                 _canvas.Children.Add(myPath);
             }
             foreach (var b in tree.Flowers)
@@ -51,6 +72,7 @@ namespace CozyArce.Tree.Render.Sample
                 myPath.StrokeThickness = 1;
                 myPath.Fill = Brushes.Pink;
                 myPath.Data = geo;
+                myPath.Effect = _effect3;
                 _canvas.Children.Add(myPath);
             }
         }
