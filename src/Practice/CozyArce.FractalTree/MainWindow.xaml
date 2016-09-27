@@ -5,26 +5,33 @@
         xmlns:local="clr-namespace:CozyArce.FractalTree"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="CozyArce"
-        Width="1100"
+        Width="1200"
         Height="1000"
         WindowStartupLocation="CenterScreen"
         WindowStyle="ToolWindow"
         mc:Ignorable="d">
     <Grid>
-        <Canvas x:Name="xCanvas" Margin="100,0,0,0" />
+        <Canvas x:Name="xCanvas" Margin="200,0,0,0" />
         <Button x:Name="button"
-                Width="75"
-                Margin="0,10,0,0"
+                Width="150"
+                Margin="10,10,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Click="button_Click_1"
                 Content="LowTree" />
         <Button x:Name="button1"
-                Width="75"
-                Margin="0,40,0,0"
+                Width="150"
+                Margin="10,40,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Click="button1_Click"
                 Content="SensitivePlant" />
+        <Button x:Name="button2"
+                Width="150"
+                Margin="10,70,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="button2_Click"
+                Content="FlourishingTree" />
     </Grid>
 </Window>

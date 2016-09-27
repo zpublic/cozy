@@ -100,6 +100,10 @@
       <Project>{319daad5-f691-4c61-b2f0-dedc50f2bb85}</Project>
       <Name>CozyArce.Tree.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CozyArce.Tree.Generator.FlourishingTree\CozyArce.Tree.Generator.FlourishingTree.csproj">
+      <Project>{213894e5-9cfa-4faa-97a3-6fbd3d0b0551}</Project>
+      <Name>CozyArce.Tree.Generator.FlourishingTree</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CozyArce.Tree.Generator.Sample\CozyArce.Tree.Generator.Sample.csproj">
       <Project>{b30041f8-48ad-49c7-8d83-2ad17f5a2ba2}</Project>
       <Name>CozyArce.Tree.Generator.Sample</Name>
