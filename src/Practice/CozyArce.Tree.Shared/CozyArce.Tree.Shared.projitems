@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>ff037de7-622c-4515-9b35-119b54fbc84c</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>CozyArce.Tree.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BaseTreeRender.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ITreeBranchRender.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ITreeFlowerRender.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ITreeGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ITreeLeafRender.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ITreeRender.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\CozyBranch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\CozyFlower.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\CozyLeaf.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\CozyTree.cs" />
+  </ItemGroup>
+</Project>

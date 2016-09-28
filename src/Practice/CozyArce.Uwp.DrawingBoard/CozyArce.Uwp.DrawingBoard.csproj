@@ -127,6 +127,9 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <Import Project="..\CozyArce.Tree.Shared\CozyArce.Tree.Shared.projitems" Label="Shared" />
+  <Import Project="..\CozyArce.Tree.Generators\CozyArce.Tree.Generators.projitems" Label="Shared" />
+  <Import Project="..\CozyArce.Tree.Renders\CozyArce.Tree.Renders.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

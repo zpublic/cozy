@@ -5,9 +5,29 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:CozyArce.Uwp.DrawingBoard"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      MinWidth="1200"
+      MinHeight="1000"
       Unloaded="Page_Unloaded"
       mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <canvas:CanvasControl x:Name="canvas" Draw="canvas_Draw" />
+        <canvas:CanvasControl x:Name="canvas"
+                              Width="auto"
+                              Height="1000"
+                              Margin="200,0,0,0"
+                              Draw="canvas_Draw" />
+        <Button x:Name="button"
+                Width="180"
+                Margin="10,10,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="button_Click"
+                Content="Button" />
+        <Button x:Name="button1"
+                Width="180"
+                Margin="10,50,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="button1_Click"
+                Content="Button" />
     </Grid>
 </Page>

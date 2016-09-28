@@ -17,7 +17,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyArce.Tree.Generator.Flo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyArce.Uwp.DrawingBoard", "..\src\Practice\CozyArce.Uwp.DrawingBoard\CozyArce.Uwp.DrawingBoard.csproj", "{B4F233F8-4D4B-4183-8B14-BD4816986628}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CozyArce.Tree.Shared", "..\src\Practice\CozyArce.Tree.Shared\CozyArce.Tree.Shared.shproj", "{FF037DE7-622C-4515-9B35-119B54FBC84C}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CozyArce.Tree.Generators", "..\src\Practice\CozyArce.Tree.Generators\CozyArce.Tree.Generators.shproj", "{B8DA5784-A5D2-43AB-97FD-0149C2E079FE}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CozyArce.Tree.Renders", "..\src\Practice\CozyArce.Tree.Renders\CozyArce.Tree.Renders.shproj", "{E440913B-B87F-4FB1-BFAA-D2A84DB4FB3D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DeprecatedTres", "DeprecatedTres", "{44669213-6A7B-4931-A1D8-0BDE26FBDB42}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\src\Practice\CozyArce.Tree.Generators\CozyArce.Tree.Generators.projitems*{b4f233f8-4d4b-4183-8b14-bd4816986628}*SharedItemsImports = 4
+		..\src\Practice\CozyArce.Tree.Renders\CozyArce.Tree.Renders.projitems*{b4f233f8-4d4b-4183-8b14-bd4816986628}*SharedItemsImports = 4
+		..\src\Practice\CozyArce.Tree.Shared\CozyArce.Tree.Shared.projitems*{b4f233f8-4d4b-4183-8b14-bd4816986628}*SharedItemsImports = 4
+		..\src\Practice\CozyArce.Tree.Generators\CozyArce.Tree.Generators.projitems*{b8da5784-a5d2-43ab-97fd-0149c2e079fe}*SharedItemsImports = 13
+		..\src\Practice\CozyArce.Tree.Renders\CozyArce.Tree.Renders.projitems*{e440913b-b87f-4fb1-bfaa-d2a84db4fb3d}*SharedItemsImports = 13
+		..\src\Practice\CozyArce.Tree.Shared\CozyArce.Tree.Shared.projitems*{ff037de7-622c-4515-9b35-119b54fbc84c}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
@@ -148,5 +164,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2E37B380-E463-40DB-B35E-1F1F35F7401E} = {44669213-6A7B-4931-A1D8-0BDE26FBDB42}
+		{319DAAD5-F691-4C61-B2F0-DEDC50F2BB85} = {44669213-6A7B-4931-A1D8-0BDE26FBDB42}
+		{B30041F8-48AD-49C7-8D83-2AD17F5A2BA2} = {44669213-6A7B-4931-A1D8-0BDE26FBDB42}
+		{06904895-380E-4E99-8C2A-7CBC6D6AA465} = {44669213-6A7B-4931-A1D8-0BDE26FBDB42}
+		{4E9F54C8-D302-4580-A1A8-D47C2A37326F} = {44669213-6A7B-4931-A1D8-0BDE26FBDB42}
+		{213894E5-9CFA-4FAA-97A3-6FBD3D0B0551} = {44669213-6A7B-4931-A1D8-0BDE26FBDB42}
 	EndGlobalSection
 EndGlobal
