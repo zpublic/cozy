@@ -1,5 +1,6 @@
 ﻿using CozyArce.Tree.Generators;
 using CozyArce.Tree.Renders;
+using CozyArce.Tree.Shared;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -12,16 +13,17 @@ namespace CozyArce.Uwp.DrawingBoard
         {
             this.InitializeComponent();
         }
-        bool _NeedDraw = false;
+        ITreeGenerator g;
+        ITreeRender r;
 
         void canvas_Draw(
             CanvasControl sender,
             CanvasDrawEventArgs args)
         {
-            _NeedDraw = false;
-            var g = new LowGenerator();
             var r = new LowRender(sender, args);
-            r.Draw(g.Generate());
+            var tree = g?.Generate();
+            if (tree != null)
+                r?.Draw(tree);
         }
 
         void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -32,11 +34,13 @@ namespace CozyArce.Uwp.DrawingBoard
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            g = new LowGenerator();
             canvas.Invalidate();
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            g = new FlourishingTreeGenerator();
             canvas.Invalidate();
         }
     }

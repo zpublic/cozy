@@ -9,6 +9,7 @@
     <Import_RootNamespace>CozyArce.Tree.Generators</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)FlourishingTreeGenerator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LowGenerator.cs" />
   </ItemGroup>
 </Project>
