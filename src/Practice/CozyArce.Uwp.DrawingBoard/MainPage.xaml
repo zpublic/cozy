@@ -1,0 +1,13 @@
+﻿<Page x:Class="CozyArce.Uwp.DrawingBoard.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:CozyArce.Uwp.DrawingBoard"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Unloaded="Page_Unloaded"
+      mc:Ignorable="d">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <canvas:CanvasControl x:Name="canvas" Draw="canvas_Draw" />
+    </Grid>
+</Page>
