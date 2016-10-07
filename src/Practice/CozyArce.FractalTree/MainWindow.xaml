@@ -33,5 +33,12 @@
                 VerticalAlignment="Top"
                 Click="button2_Click"
                 Content="FlourishingTree" />
+        <Button x:Name="button3"
+                Width="150"
+                Margin="10,100,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="button3_Click"
+                Content="Sample Tree" />
     </Grid>
 </Window>
