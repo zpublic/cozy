@@ -116,7 +116,7 @@ namespace CozyArce.Tree.Generator.SensitivePlant
                 angle -= 2 * PI;
             while (angle < 0)
                 angle += 2 * PI;
-            if (angle < PI / 4 && angle > -PI / 4)
+            if (angle < PI / 4 || angle > 7*PI / 4)
             {
                 if (start.X < end.X)
                     return true;
