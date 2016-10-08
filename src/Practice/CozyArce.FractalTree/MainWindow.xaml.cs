@@ -5,6 +5,7 @@ using CozyArce.Tree.Generator.SensitivePlant;
 using System.Windows;
 using CozyArce.Tree.Generator.FlourishingTree;
 using System.Diagnostics;
+using CozyArce.Tree.Generator.Sample2;
 
 namespace CozyArce.FractalTree
 {
@@ -37,6 +38,14 @@ namespace CozyArce.FractalTree
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             g = new FlourishingTreeGenerator();
+            r = new LowRender(xCanvas);
+            xCanvas.Children.Clear();
+            r.Draw(g.Generate());
+        }
+
+        private void button3_Click(object sender, RoutedEventArgs e)
+        {
+            g = new SampleTree();
             r = new LowRender(xCanvas);
             xCanvas.Children.Clear();
             r.Draw(g.Generate());
