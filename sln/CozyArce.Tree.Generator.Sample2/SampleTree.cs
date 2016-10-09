@@ -84,7 +84,8 @@ namespace CozyArce.Tree.Generator.Sample2
                     case GrowDirection.Left: nextAngle = angle + (rand.NextDouble() - 0.1) * PI / 2; break;
                     case GrowDirection.Right: nextAngle = angle + (rand.NextDouble() - 0.7) * PI / 2; break;
                 }
-                DrawTree(end, nextAngle, len * length, width);
+                if (canAcceptAngle(nextAngle))
+                    DrawTree(end, nextAngle, len * length, width);
             }
         }
 
@@ -93,12 +94,27 @@ namespace CozyArce.Tree.Generator.Sample2
             direction = direct;
             return this;
         }
-    }
 
-    public enum GrowDirection
-    {
-        TallAndStraight,
-        Left,
-        Right,
-    }
+        private bool canAcceptAngle(double angle)
+        {
+            while (angle > 2 * PI)
+                angle -= 2 * PI;
+            while (angle < 0)
+                angle += 2 * PI;
+            if (direction == GrowDirection.Left && angle > PI / 2 && angle < 3 * PI / 2)
+                return true;
+            if (direction == GrowDirection.Right && (angle < PI / 2 || angle > 3 * PI / 2))
+                return true;
+            if (direction == GrowDirection.TallAndStraight && angle > 0 && angle < PI)
+                return true;
+            return false;
+        }
+}
+
+public enum GrowDirection
+{
+    TallAndStraight,
+    Left,
+    Right,
+}
 }
