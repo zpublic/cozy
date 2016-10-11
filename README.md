@@ -143,7 +143,7 @@ Cozy
 >>
 >> CozyEncodingConverter - 批量文件编码转换  
 >>
->> CozyThunder - 支持断点续传和多线程下载的可视化下载工具  
+>> CozyThunder - 支持断点续传和多线程下载的可视化下载工具(关注局域网下载加速)  
 >>
 >> CozyLauncher - 快捷启动命令行工具，史诗级巨坑，慢慢填  
 >>
