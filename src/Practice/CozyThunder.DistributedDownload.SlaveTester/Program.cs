@@ -37,7 +37,7 @@ namespace CozyThunder.DistributedDownload.SlaveTester
             }
             else if (t.PacketLength < sbufflen_)
             {
-                string s = "粘包";
+                //string s = "粘包";
             }
             else if (t.PacketLength == sbufflen_)
             {

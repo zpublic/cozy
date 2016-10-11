@@ -60,7 +60,7 @@ namespace CozyThunder.DistributedDownload.MasterTester
             }
             else if (t.PacketLength < sbufflen_[peer.EndPoint.ToString()])
             {
-                string s = "粘包";
+                //string s = "粘包";
             }
             else if (t.PacketLength == sbufflen_[peer.EndPoint.ToString()])
             {
