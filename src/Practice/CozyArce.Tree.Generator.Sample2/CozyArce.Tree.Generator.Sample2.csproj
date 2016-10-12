@@ -47,7 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Practice\CozyArce.Tree.Base\CozyArce.Tree.Base.csproj">
+    <ProjectReference Include="..\CozyArce.Tree.Base\CozyArce.Tree.Base.csproj">
       <Project>{319daad5-f691-4c61-b2f0-dedc50f2bb85}</Project>
       <Name>CozyArce.Tree.Base</Name>
     </ProjectReference>

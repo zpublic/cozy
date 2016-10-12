@@ -25,7 +25,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CozyArce.Tree.Renders", "..
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deprecated", "Deprecated", "{44669213-6A7B-4931-A1D8-0BDE26FBDB42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyArce.Tree.Generator.Sample2", "CozyArce.Tree.Generator.Sample2\CozyArce.Tree.Generator.Sample2.csproj", "{4589CCC7-2197-45C2-8E6D-CF3B17829357}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyArce.Tree.Generator.Sample2", "..\src\Practice\CozyArce.Tree.Generator.Sample2\CozyArce.Tree.Generator.Sample2.csproj", "{4589CCC7-2197-45C2-8E6D-CF3B17829357}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
