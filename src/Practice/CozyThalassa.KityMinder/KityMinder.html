@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        #minder-view {
+            position: absolute;
+            border: 1px solid #ccc;
+            left: 10px;
+            top: 10px;
+            bottom: 10px;
+            right: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="./kityminder/kityminder.core.css">
+    <script type="text/javascript" src="./kity/kity.min.js"></script>
+    <script type="text/javascript" src="./kityminder/kityminder.core.min.js"></script>
+</head>
+<body>
+    <script id="minder-view" type="application/kityminder" minder-data-type="json">
+        {
+        "root": {
+        "data": {
+        "text": "猫仔的文档"
+        },
+        "children": [
+        { "data": { "text": "3D模型" } },
+        { "data": { "text": "原画", "priority": 1 } },
+        { "data": { "text": "切图", "priority": 2 } },
+        { "data": { "text": "代码工具", "priority": 2 } },
+        { "data": { "text": "音乐", "priority": 3 } },
+        { "data": { "text": "其他", "hyperlink": "http://www.baidu.com/more" } }
+        ]
+        }
+        }
+    </script>
+    <script type="text/javascript">
+    var km = window.km = new kityminder.Minder();
+    km.setup('#minder-view');
+    //km.disable();
+    //km.execCommand('hand');
+    </script>
+</body>
+</html>
