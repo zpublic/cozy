@@ -13,6 +13,7 @@ namespace CozyFreeGame.WinClient
         public bool finish = false;
         Random r = new Random();
         List<Button> btnList = new List<Button>();
+        TwoWordLib lib = WordPairGenerator.Instance.Gen();
 
         public FormNormal2()
         {
@@ -38,15 +39,15 @@ namespace CozyFreeGame.WinClient
 
         void initLevel()
         {
-            this.Text = "当前关卡" + (level + 1) + "  共14关";
-            if (level < TwoWord.LevelMax)
+            this.Text = "当前关卡" + (level + 1) + "  共10关";
+            if (level < lib.LevelMax)
             {
                 answer = r.Next(9);
                 foreach (var i in btnList)
                 {
-                    i.Text = TwoWord.Word1[level].ToString();
+                    i.Text = lib.LevelWords[level].Word1.ToString();
                 }
-                btnList[answer].Text = TwoWord.Word2[level].ToString();
+                btnList[answer].Text = lib.LevelWords[level].Word2.ToString();
             }
             else
             {

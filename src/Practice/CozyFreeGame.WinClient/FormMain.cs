@@ -123,5 +123,20 @@ namespace CozyFreeGame.WinClient
         {
             Close();
         }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            NoImpl();
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            NoImpl();
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            NoImpl();
+        }
     }
 }

@@ -1,11 +1,47 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace CozyFreeGame.GameData
 {
-    public class TwoWord
+    public class WordPair
     {
-        public static char[] Word1 = { '巴', '失', '悄', '大', '戍', '白', '兵', '竟', '鸣', '柬', '壳', '含', '士', '己' };
-        public static char[] Word2 = { '巳', '矢', '俏', '太', '戌', '自', '乒', '竞', '呜', '束', '亮', '合', '土', '已' };
-        public static int LevelMax = Word1.Count();
+        public char Word1;
+        public char Word2;
+    }
+
+    public class TwoWordLib
+    {
+        public int LevelMax;
+        public WordPair[] LevelWords;
+    }
+
+    public class WordPairGenerator
+    {
+        static string Lib = "壁璧刑形绞跤彻砌歼奸魅魁搀馋遗遣碗婉诞蜒巴巳失矢悄俏大太戍戌白自兵乒竟竞鸣呜柬束壳亮含合士土己已籍藉误娱";
+        static WordPair[] LevelWords;
+        private static readonly WordPairGenerator _inst;
+        static WordPairGenerator()
+        {
+            _inst = new WordPairGenerator();
+            LevelWords = new WordPair[Lib.Length / 2];
+            for (var i = 0; i < Lib.Length / 2; i++)
+            {
+                LevelWords[i] = new WordPair() { Word1 = Lib[i * 2], Word2 = Lib[i * 2 + 1] };
+            }
+        }
+        public static WordPairGenerator Instance
+        {
+            get { return _inst; }
+        }
+        private WordPairGenerator()
+        { }
+
+        public TwoWordLib Gen()
+        {
+            TwoWordLib lib = new TwoWordLib();
+            lib.LevelMax = 10;
+            lib.LevelWords = LevelWords.OrderBy(o => Guid.NewGuid()).Take(lib.LevelMax).ToArray();
+            return lib;
+        }
     }
 }
