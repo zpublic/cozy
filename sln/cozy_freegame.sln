@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyFreeGame.WinClient", "..\src\Practice\CozyFreeGame.WinClient\CozyFreeGame.WinClient.csproj", "{9C3819CE-3039-4196-8FEF-5642F43C10D4}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CozyFreeGame.GameData", "..\src\Practice\CozyFreeGame.GameData\CozyFreeGame.GameData.shproj", "{B0A2FE6A-D342-4CDE-BF04-03C65E3CE0E1}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\src\Practice\CozyFreeGame.GameData\CozyFreeGame.GameData.projitems*{9c3819ce-3039-4196-8fef-5642f43c10d4}*SharedItemsImports = 4
+		..\src\Practice\CozyFreeGame.GameData\CozyFreeGame.GameData.projitems*{b0a2fe6a-d342-4cde-bf04-03c65e3ce0e1}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C3819CE-3039-4196-8FEF-5642F43C10D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C3819CE-3039-4196-8FEF-5642F43C10D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C3819CE-3039-4196-8FEF-5642F43C10D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C3819CE-3039-4196-8FEF-5642F43C10D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
