@@ -136,7 +136,15 @@ namespace CozyFreeGame.WinClient
 
         private void button15_Click(object sender, EventArgs e)
         {
-            NoImpl();
+            Hide();
+            Stopwatch sw = new Stopwatch();
+            FormSpecial1 f = new FormSpecial1();
+            sw.Start();
+            f.ShowDialog();
+            sw.Stop();
+            if (f.finish)
+                MessageBox.Show("百里挑一模式完成时间:" + sw.ElapsedMilliseconds + "ms");
+            Show();
         }
     }
 }

@@ -9,6 +9,7 @@
     <Import_RootNamespace>CozyFreeGame.GameData</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ThreeWord.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TwoWord.cs" />
   </ItemGroup>
 </Project>

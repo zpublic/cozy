@@ -13,7 +13,7 @@ namespace CozyFreeGame.WinClient
         public bool finish = false;
         Random r = new Random();
         List<Button> btnList = new List<Button>();
-        TwoWordLib lib = WordPairGenerator.Instance.Gen();
+        TwoWordLib lib = TwoWordLibGenerator.Instance.Gen();
 
         public FormNormal1()
         {

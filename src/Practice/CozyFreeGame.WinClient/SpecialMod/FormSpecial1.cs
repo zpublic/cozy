@@ -6,17 +6,17 @@ using System.Windows.Forms;
 
 namespace CozyFreeGame.WinClient
 {
-    public partial class FormNormal3 : Form
+    public partial class FormSpecial1 : Form
     {
         int level = 0;
         int answer = 0;
-        int width = 5;
+        int width = 10;
         public bool finish = false;
         Random r = new Random();
         List<Button> btnList = new List<Button>();
-        TwoWordLib lib = TwoWordLibGenerator.Instance.Gen();
+        ThreeWordLib lib = ThreeWordLibGenerator.Instance.Gen();
 
-        public FormNormal3()
+        public FormSpecial1()
         {
             CenterToScreen();
             InitializeComponent();
@@ -26,9 +26,9 @@ namespace CozyFreeGame.WinClient
                 {
                     var btn = new Button();
                     btn.Name = "btn" + (i * width + j);
-                    btn.Font = new Font("宋体", 28);
-                    btn.Size = new Size(80, 70);
-                    btn.Location = new Point(10 + j * 90, 10 + i * 85);
+                    btn.Font = new Font("宋体", 22);
+                    btn.Size = new Size(50, 50);
+                    btn.Location = new Point(10 + j * 60, 10 + i * 60);
                     btn.Click += btnClick;
                     btnList.Add(btn);
                     Controls.Add(btn);
@@ -39,15 +39,18 @@ namespace CozyFreeGame.WinClient
 
         void initLevel()
         {
-            this.Text = "当前关卡" + (level + 1) + "  共10关";
+            this.Text = "当前关卡" + (level + 1) + "  共3关";
             if (level < lib.LevelMax)
             {
                 answer = r.Next(width * width);
                 foreach (var i in btnList)
                 {
-                    i.Text = lib.LevelWords[level].Word1.ToString();
+                    if (r.Next(2) == 0)
+                        i.Text = lib.LevelWords[level].Word2.ToString();
+                    else
+                        i.Text = lib.LevelWords[level].Word3.ToString();
                 }
-                btnList[answer].Text = lib.LevelWords[level].Word2.ToString();
+                btnList[answer].Text = lib.LevelWords[level].Word1.ToString();
             }
             else
             {

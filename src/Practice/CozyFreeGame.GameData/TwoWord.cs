@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace CozyFreeGame.GameData
 {
-    public class WordPair
+    public class TwoWord
     {
         public char Word1;
         public char Word2;
@@ -12,28 +12,28 @@ namespace CozyFreeGame.GameData
     public class TwoWordLib
     {
         public int LevelMax;
-        public WordPair[] LevelWords;
+        public TwoWord[] LevelWords;
     }
 
-    public class WordPairGenerator
+    public class TwoWordLibGenerator
     {
         static string Lib = "壁璧刑形绞跤彻砌歼奸魅魁搀馋遗遣碗婉诞蜒巴巳失矢悄俏大太戍戌白自兵乒竟竞鸣呜柬束壳亮含合士土己已籍藉误娱";
-        static WordPair[] LevelWords;
-        private static readonly WordPairGenerator _inst;
-        static WordPairGenerator()
+        static TwoWord[] LevelWords;
+        private static readonly TwoWordLibGenerator _inst;
+        static TwoWordLibGenerator()
         {
-            _inst = new WordPairGenerator();
-            LevelWords = new WordPair[Lib.Length / 2];
+            _inst = new TwoWordLibGenerator();
+            LevelWords = new TwoWord[Lib.Length / 2];
             for (var i = 0; i < Lib.Length / 2; i++)
             {
-                LevelWords[i] = new WordPair() { Word1 = Lib[i * 2], Word2 = Lib[i * 2 + 1] };
+                LevelWords[i] = new TwoWord() { Word1 = Lib[i * 2], Word2 = Lib[i * 2 + 1] };
             }
         }
-        public static WordPairGenerator Instance
+        public static TwoWordLibGenerator Instance
         {
             get { return _inst; }
         }
-        private WordPairGenerator()
+        private TwoWordLibGenerator()
         { }
 
         public TwoWordLib Gen()

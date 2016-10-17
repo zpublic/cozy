@@ -52,6 +52,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="SpecialMod\FormSpecial1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpecialMod\FormSpecial1.Designer.cs">
+      <DependentUpon>FormSpecial1.cs</DependentUpon>
+    </Compile>
     <Compile Include="NormalMode\FormNormal6.cs">
       <SubType>Form</SubType>
     </Compile>
