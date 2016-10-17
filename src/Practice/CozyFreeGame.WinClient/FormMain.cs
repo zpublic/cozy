@@ -126,7 +126,15 @@ namespace CozyFreeGame.WinClient
 
         private void button13_Click(object sender, EventArgs e)
         {
-            NoImpl();
+            Hide();
+            Stopwatch sw = new Stopwatch();
+            FormSpecial2 f = new FormSpecial2();
+            sw.Start();
+            f.ShowDialog();
+            sw.Stop();
+            if (f.finish)
+                MessageBox.Show("震动模式普通难度完成时间:" + sw.ElapsedMilliseconds + "ms");
+            Show();
         }
 
         private void button14_Click(object sender, EventArgs e)
