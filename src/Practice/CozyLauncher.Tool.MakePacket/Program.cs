@@ -109,6 +109,8 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Plugin.BrowserBookmark.dll",
                 "CozyLauncher.Plugin.PasswordGenerator.dll",
                 "CozyLauncher.Plugin.DailySentence.dll",
+                "CozyLauncher.Plugin.Cyjl.dll",
+                "成语词典.txt",
             };
             Directory.CreateDirectory("./cozy_launcher");
             foreach (var f in filelist)
