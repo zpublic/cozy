@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DBE4C5C7-D967-4C14-B56D-29D55B151170}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{AD4CC55B-67C1-4B0F-BB41-D0CD96193562}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CozyDump.Api.Tester</RootNamespace>
-    <AssemblyName>CozyDump.Api.Tester</AssemblyName>
+    <RootNamespace>CozyDump.Core</RootNamespace>
+    <AssemblyName>CozyDump.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,20 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="MiniDumpReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CozyDump.Api\CozyDump.Api.csproj">
       <Project>{868958e9-130a-4b37-8ba9-f71908e54c1c}</Project>
       <Name>CozyDump.Api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CozyDump.Core\CozyDump.Core.csproj">
-      <Project>{ad4cc55b-67c1-4b0f-bb41-d0cd96193562}</Project>
-      <Name>CozyDump.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

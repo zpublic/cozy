@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyDump.Api", "..\src\Prac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyDump.Api.Tester", "..\src\Practice\CozyDump.Api.Tester\CozyDump.Api.Tester.csproj", "{DBE4C5C7-D967-4C14-B56D-29D55B151170}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyDump.InfoView", "..\src\Practice\CozyDump.InfoView\CozyDump.InfoView.csproj", "{E7227B37-8BD4-403A-961C-97A527E872A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyDump.Core", "..\src\Practice\CozyDump.Core\CozyDump.Core.csproj", "{AD4CC55B-67C1-4B0F-BB41-D0CD96193562}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{52FD93B7-A806-4309-9995-E464C754320B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +27,19 @@ Global
 		{DBE4C5C7-D967-4C14-B56D-29D55B151170}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBE4C5C7-D967-4C14-B56D-29D55B151170}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBE4C5C7-D967-4C14-B56D-29D55B151170}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7227B37-8BD4-403A-961C-97A527E872A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7227B37-8BD4-403A-961C-97A527E872A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7227B37-8BD4-403A-961C-97A527E872A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7227B37-8BD4-403A-961C-97A527E872A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD4CC55B-67C1-4B0F-BB41-D0CD96193562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD4CC55B-67C1-4B0F-BB41-D0CD96193562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD4CC55B-67C1-4B0F-BB41-D0CD96193562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD4CC55B-67C1-4B0F-BB41-D0CD96193562}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DBE4C5C7-D967-4C14-B56D-29D55B151170} = {52FD93B7-A806-4309-9995-E464C754320B}
 	EndGlobalSection
 EndGlobal

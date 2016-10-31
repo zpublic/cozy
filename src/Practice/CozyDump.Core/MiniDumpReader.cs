@@ -1,9 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using static CozyDump.Api.DumpApi;
+using static CozyDump.Api.Model.DumpApiModel;
+using static CozyDump.Api.DbghelpApi;
+using static CozyDump.Api.Kernel32Api;
 
-namespace CozyDump.Api
+namespace CozyDump.Core
 {
     public class MiniDumpReader : IDisposable
     {
@@ -19,7 +21,7 @@ namespace CozyDump.Api
         // the current offset in the dump being mapped
         ulong _mapCurrentOffset;
         // the current size of the mapping
-        UInt32 _mappedCurrentSize;
+        uint _mappedCurrentSize;
 
         public MiniDumpReader(string dumpFileName)
         {
@@ -56,6 +58,7 @@ namespace CozyDump.Api
                 throw ex;
             }
         }
+
         public MINIDUMP_DIRECTORY ReadStreamType(MINIDUMP_STREAM_TYPE strmType)
         {
             MINIDUMP_DIRECTORY dir = new MINIDUMP_DIRECTORY();
@@ -90,6 +93,7 @@ namespace CozyDump.Api
             }
             return dir;
         }
+
         // map a section of the dump specified by a location into memory 
         // return the address of the section
         public IntPtr MapStream(MINIDUMP_LOCATION_DESCRIPTOR loc)
@@ -158,8 +162,9 @@ namespace CozyDump.Api
                 (int)(newbaseOffset - _mapCurrentOffset + nLeftover);
             return retval;
         }
-        // get a string name from a relative address in the dump
-        public string GetNameFromRva(uint rva)
+
+        // get a string from a relative address in the dump
+        public string GetStringFromRva(uint rva)
         {
             var retstr = string.Empty;
             if (rva != 0)
@@ -167,13 +172,14 @@ namespace CozyDump.Api
                 var locDesc = new MINIDUMP_LOCATION_DESCRIPTOR()
                 {
                     Rva = rva,
-                    DataSize = 600
+                    DataSize = 1024
                 };
                 var locname = MapStream(locDesc);
                 retstr = Marshal.PtrToStringBSTR(locname + 4); // ' skip length
             }
             return retstr;
         }
+
         public void Dispose()
         {
             if (_addrFileMapping != IntPtr.Zero)

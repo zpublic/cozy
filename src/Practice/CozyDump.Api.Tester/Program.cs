@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using CozyDump.Core;
+using System;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using static CozyDump.Api.DumpApi;
+using static CozyDump.Api.Model.DumpApiModel;
 
 namespace CozyDump.Api.Tester
 {
@@ -28,18 +25,18 @@ namespace CozyDump.Api.Tester
                             {
                                 case MINIDUMP_STREAM_TYPE.ModuleListStream:
                                     var moduleStream = rdr.MapStream(strmDir.location);
-                                    var moduleList = Marshal.PtrToStructure<MINIDUMP_MODULE_LIST>(moduleStream);
+                                    var NumberOfModules = Marshal.ReadInt32(moduleStream);
                                     var ndescSize = (uint)(Marshal.SizeOf<MINIDUMP_MODULE>() - 4);
                                     var locRva = new MINIDUMP_LOCATION_DESCRIPTOR()
                                     {
-                                        Rva = (uint)(locStream.Rva + Marshal.SizeOf<MINIDUMP_MODULE_LIST>()),
+                                        Rva = (uint)(locStream.Rva + Marshal.SizeOf<uint>()),
                                         DataSize = (uint)(ndescSize + 4)
                                     };
-                                    for (int i = 0; i < moduleList.NumberOfModules; i++)
+                                    for (int i = 0; i < NumberOfModules; i++)
                                     {
                                         var ptr = rdr.MapStream(locRva);
                                         var moduleinfo = Marshal.PtrToStructure<MINIDUMP_MODULE>(ptr);
-                                        var moduleName = rdr.GetNameFromRva(moduleinfo.ModuleNameRva);
+                                        var moduleName = rdr.GetStringFromRva(moduleinfo.ModuleNameRva);
                                         Console.WriteLine(string.Format("  {0}", moduleName));
 
                                         locRva.Rva += ndescSize;

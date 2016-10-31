@@ -40,8 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DumpApi.cs" />
-    <Compile Include="MiniDumpReader.cs" />
+    <Compile Include="DbghelpApi.cs" />
+    <Compile Include="Kernel32Api.cs" />
+    <Compile Include="Model\MINIDUMP_DIRECTORY.cs" />
+    <Compile Include="Model\MINIDUMP_LOCATION_DESCRIPTOR.cs" />
+    <Compile Include="Model\MINIDUMP_MEMORY_DESCRIPTOR.cs" />
+    <Compile Include="Model\MINIDUMP_MODULE.cs" />
+    <Compile Include="Model\MINIDUMP_MODULE_LIST.cs" />
+    <Compile Include="Model\MINIDUMP_THREAD.cs" />
+    <Compile Include="Model\MINIDUMP_THREAD_LIST.cs" />
+    <Compile Include="Model\VS_FIXEDFILEINFO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
