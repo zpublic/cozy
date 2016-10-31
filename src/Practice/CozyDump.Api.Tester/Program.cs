@@ -11,7 +11,7 @@ namespace CozyDump.Api.Tester
         {
             try
             {
-                var dumpFileName = @"c:\lbsymbol\1335.dmp";
+                var dumpFileName = @"c:\lbsymbol\2006.dmp";
                 using (var rdr = new MiniDumpReader(dumpFileName))
                 {
                     foreach (MINIDUMP_STREAM_TYPE strmType in Enum.GetValues(typeof(MINIDUMP_STREAM_TYPE)))
