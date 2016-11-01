@@ -43,10 +43,13 @@
     <Compile Include="DbghelpApi.cs" />
     <Compile Include="Kernel32Api.cs" />
     <Compile Include="Model\MINIDUMP_DIRECTORY.cs" />
+    <Compile Include="Model\MINIDUMP_EXCEPTION.cs" />
+    <Compile Include="Model\MINIDUMP_EXCEPTION_STREAM.cs" />
     <Compile Include="Model\MINIDUMP_LOCATION_DESCRIPTOR.cs" />
     <Compile Include="Model\MINIDUMP_MEMORY_DESCRIPTOR.cs" />
     <Compile Include="Model\MINIDUMP_MODULE.cs" />
     <Compile Include="Model\MINIDUMP_MODULE_LIST.cs" />
+    <Compile Include="Model\MINIDUMP_SYSTEM_INFO.cs" />
     <Compile Include="Model\MINIDUMP_THREAD.cs" />
     <Compile Include="Model\MINIDUMP_THREAD_LIST.cs" />
     <Compile Include="Model\VS_FIXEDFILEINFO.cs" />

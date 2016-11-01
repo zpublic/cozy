@@ -20,8 +20,7 @@ namespace CozyDump.Core
             if (locStream.Rva != 0)
             {
                 var addrStream = rdr_.MapStream(locStream);
-                var moduleStream = rdr_.MapStream(strmDir.location);
-                var NumberOfThreads = Marshal.ReadInt32(moduleStream);
+                var NumberOfThreads = Marshal.ReadInt32(addrStream);
                 var ndescSize = (uint)(Marshal.SizeOf<MINIDUMP_THREAD>() - 4);
                 var locRva = new MINIDUMP_LOCATION_DESCRIPTOR()
                 {
@@ -45,8 +44,7 @@ namespace CozyDump.Core
             if (locStream.Rva != 0)
             {
                 var addrStream = rdr_.MapStream(locStream);
-                var moduleStream = rdr_.MapStream(strmDir.location);
-                var NumberOfModules = Marshal.ReadInt32(moduleStream);
+                var NumberOfModules = Marshal.ReadInt32(addrStream);
                 var ndescSize = (uint)(Marshal.SizeOf<MINIDUMP_MODULE>() - 4);
                 var locRva = new MINIDUMP_LOCATION_DESCRIPTOR()
                 {
@@ -63,6 +61,30 @@ namespace CozyDump.Core
                 }
             }
         }
+        void ParseSystemInfoStream()
+        {
+            _ExistSystemInfoStream = false;
+            var strmDir = rdr_.ReadStreamType(MINIDUMP_STREAM_TYPE.SystemInfoStream);
+            var locStream = strmDir.location;
+            if (locStream.Rva != 0)
+            {
+                var addrStream = rdr_.MapStream(locStream);
+                _systemInfo = Marshal.PtrToStructure<MINIDUMP_SYSTEM_INFO>(addrStream);
+                _ExistSystemInfoStream = true;
+            }
+        }
+        void ParseExceptionStream()
+        {
+            _ExistExceptionStream = false;
+            var strmDir = rdr_.ReadStreamType(MINIDUMP_STREAM_TYPE.ExceptionStream);
+            var locStream = strmDir.location;
+            if (locStream.Rva != 0)
+            {
+                var addrStream = rdr_.MapStream(locStream);
+                _exception = Marshal.PtrToStructure<MINIDUMP_EXCEPTION_STREAM>(addrStream);
+                _ExistExceptionStream = true;
+            }
+        }
         #endregion
         bool parseSuccessed = false;
         public bool ParseSuccessed { get { return parseSuccessed; } }
@@ -74,8 +96,10 @@ namespace CozyDump.Core
                 rdr_ = new MiniDumpReader(filepath);
                 ParseThreadListStream();
                 ParseModuleListStream();
+                ParseSystemInfoStream();
+                ParseExceptionStream();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 parseSuccessed = false;
             }

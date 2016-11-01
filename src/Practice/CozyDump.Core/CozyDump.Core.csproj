@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MiniDumpParser.cs" />
+    <Compile Include="MiniDumpParser.ExceptionStream.cs" />
     <Compile Include="MiniDumpParser.ModuleListStream.cs" />
+    <Compile Include="MiniDumpParser.SystemInfoStream.cs" />
     <Compile Include="MiniDumpReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

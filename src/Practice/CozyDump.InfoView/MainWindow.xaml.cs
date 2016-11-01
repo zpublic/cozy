@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using MahApps.Metro;
+using System.Windows;
 
 namespace CozyDump.InfoView
 {
