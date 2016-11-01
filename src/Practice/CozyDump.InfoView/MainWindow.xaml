@@ -7,6 +7,85 @@
         Title="CozyDumpAnalyse"
         Width="1400"
         Height="720"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d">
-    <Grid />
+    <Grid>
+        <TabControl x:Name="tabControlMain"
+                    Width="1372"
+                    Height="599"
+                    Margin="10,80,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    TabStripPlacement="Left">
+            <TabItem Header="ThreadListStream">
+                <Grid Background="#FFE5E5E5" />
+            </TabItem>
+            <TabItem Header="ModuleListStream">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock x:Name="textBlock"
+                               Width="815"
+                               Height="445"
+                               Margin="168,62,0,0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               Text="TextBlock"
+                               TextWrapping="Wrap" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="MemoryListStream">
+                <Grid Background="#FFE5E5E5" />
+            </TabItem>
+            <TabItem Header="ExceptionStream">
+                <Grid Background="#FFE5E5E5" />
+            </TabItem>
+            <TabItem Header="SystemInfoStream">
+                <Grid Background="#FFE5E5E5" />
+            </TabItem>
+            <TabItem Header="UnloadedModuleListStream">
+                <Grid Background="#FFE5E5E5" />
+            </TabItem>
+            <TabItem Header="MiscInfoStream">
+                <Grid Background="#FFE5E5E5" />
+            </TabItem>
+            <TabItem Header="HandleDataStream">
+                <Grid Background="#FFE5E5E5" />
+            </TabItem>
+            <TabItem Header="MemoryInfoListStream">
+                <Grid Background="#FFE5E5E5" />
+            </TabItem>
+            <TabItem Header="ThreadInfoListStream">
+                <Grid Background="#FFE5E5E5" />
+            </TabItem>
+        </TabControl>
+        <Label x:Name="label"
+               Margin="74,27,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="dump文件路径：" />
+        <TextBox x:Name="textBoxDumpPath"
+                 Width="928"
+                 Height="23"
+                 Margin="183,29,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 Text=""
+                 TextWrapping="Wrap" />
+        <Button x:Name="buttonSelectFile"
+                Width="75"
+                Height="45"
+                Margin="1148,17,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="buttonSelectFile_Click"
+                Content="选择文件" />
+        <Button x:Name="buttonAnalyse"
+                Width="75"
+                Height="45"
+                Margin="1259,17,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="buttonAnalyse_Click"
+                Content="开始分析" />
+    </Grid>
 </Window>

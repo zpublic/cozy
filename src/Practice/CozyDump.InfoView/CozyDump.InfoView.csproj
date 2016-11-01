@@ -95,6 +95,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CozyDump.Api\CozyDump.Api.csproj">
+      <Project>{868958e9-130a-4b37-8ba9-f71908e54c1c}</Project>
+      <Name>CozyDump.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CozyDump.Core\CozyDump.Core.csproj">
+      <Project>{ad4cc55b-67c1-4b0f-bb41-d0cd96193562}</Project>
+      <Name>CozyDump.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
