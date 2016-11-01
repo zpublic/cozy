@@ -7,6 +7,8 @@
         Title="CozyDumpAnalyse"
         Width="1400"
         Height="720"
+        DataContext="{Binding Main,
+                              Source={StaticResource Locator}}"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d">
@@ -29,7 +31,7 @@
                                Margin="168,62,0,0"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top"
-                               Text="TextBlock"
+                               Text="{Binding ModuleText}"
                                TextWrapping="Wrap" />
                 </Grid>
             </TabItem>
@@ -69,7 +71,7 @@
                  Margin="183,29,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 Text=""
+                 Text="{Binding DumpPath}"
                  TextWrapping="Wrap" />
         <Button x:Name="buttonSelectFile"
                 Width="75"
@@ -77,7 +79,7 @@
                 Margin="1148,17,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Click="buttonSelectFile_Click"
+                Command="{Binding SelectFileCommand}"
                 Content="选择文件" />
         <Button x:Name="buttonAnalyse"
                 Width="75"
@@ -85,7 +87,7 @@
                 Margin="1259,17,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Click="buttonAnalyse_Click"
+                Command="{Binding AnalyseCommand}"
                 Content="开始分析" />
     </Grid>
 </Window>
