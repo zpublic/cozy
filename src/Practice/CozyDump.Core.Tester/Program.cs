@@ -17,7 +17,7 @@ namespace CozyDump.Core.Tester
                 {
                     if (parser.ExistModuleListStream())
                     {
-                        Console.WriteLine(parser.ModuleNums);
+                        Console.WriteLine(parser.ModuleNum);
                         for (var i = 0; i < 3; ++i)
                         {
                             var moduleName = parser.GetStringFromRva(parser.ModuleInfo(i).ModuleNameRva);
@@ -26,22 +26,30 @@ namespace CozyDump.Core.Tester
                     }
                     if (parser.ExistThreadListStream())
                     {
-                        Console.WriteLine(parser.ThreadNums);
+                        Console.WriteLine(parser.ThreadNum);
                         for (var i = 0; i < 3; ++i)
                         {
                             Console.WriteLine(parser.ThreadInfo(i).ThreadId);
                         }
                     }
-                    if (parser.ExistSystemInfoStream())
+                    if (parser.ExistMemoryListStream())
                     {
-                        var si = parser.SystemInfo();
-                        Console.WriteLine("ostarget = {0}.{1}.{2}", si.MajorVersion, si.MinorVersion, si.BuildNumber);
+                        Console.WriteLine(parser.MemoryRangeNum);
+                        for (var i = 0; i < 3; ++i)
+                        {
+                            Console.WriteLine(parser.MemoryRange(i).StartOfMemoryRange);
+                        }
                     }
                     if (parser.ExistExceptionStream())
                     {
                         var errorCode = parser.ExceptionStream().ExceptionRecord.ExceptionCode;
                         string errorMessage = new Win32Exception((int)errorCode).Message;
                         Console.WriteLine(errorMessage);
+                    }
+                    if (parser.ExistSystemInfoStream())
+                    {
+                        var si = parser.SystemInfo();
+                        Console.WriteLine("ostarget = {0}.{1}.{2}", si.MajorVersion, si.MinorVersion, si.BuildNumber);
                     }
                 }
             }

@@ -4,7 +4,7 @@ namespace CozyDump.Api.Model
 {
     public static partial class DumpApiModel
     {
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential, Pack = 4)]
         public struct MINIDUMP_MODULE_LIST
         {
             public uint NumberOfModules;

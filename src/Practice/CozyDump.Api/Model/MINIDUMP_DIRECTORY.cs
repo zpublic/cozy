@@ -29,7 +29,7 @@ namespace CozyDump.Api.Model
             LastReservedStream = 0xFFFF
         }
 
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential, Pack = 4)]
         public struct MINIDUMP_DIRECTORY
         {
             public MINIDUMP_STREAM_TYPE streamType;

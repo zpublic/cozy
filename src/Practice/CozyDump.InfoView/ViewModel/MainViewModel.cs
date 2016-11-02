@@ -41,7 +41,7 @@ namespace CozyDump.InfoView.ViewModel
             _dumpParser = new MiniDumpParser();
             _dumpParser.Parse(DumpPath);
             string output = "";
-            for (var i = 0; i < _dumpParser.ModuleNums; ++i)
+            for (var i = 0; i < _dumpParser.ModuleNum; ++i)
             {
                 var moduleName = _dumpParser.GetStringFromRva(_dumpParser.ModuleInfo(i).ModuleNameRva);
                 output += moduleName;

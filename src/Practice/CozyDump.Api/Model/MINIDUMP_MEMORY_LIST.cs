@@ -5,10 +5,10 @@ namespace CozyDump.Api.Model
     public static partial class DumpApiModel
     {
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
-        public struct MINIDUMP_THREAD_LIST
+        public struct MINIDUMP_MEMORY_LIST
         {
-            public uint NumberOfThreads;
-            public MINIDUMP_THREAD[] Threads;
+            public uint NumberOfMemoryRanges;
+            public MINIDUMP_MEMORY_DESCRIPTOR[] MemoryRanges;
         }
     }
 }

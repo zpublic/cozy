@@ -10,7 +10,7 @@ namespace CozyDump.Core
         {
             return (parseSuccessed && _threads.NumberOfThreads > 0);
         }
-        public uint ThreadNums { get { return _threads.NumberOfThreads; } }
+        public uint ThreadNum { get { return _threads.NumberOfThreads; } }
         public MINIDUMP_THREAD ThreadInfo(int index)
         {
             return _threads.Threads[index];

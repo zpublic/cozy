@@ -21,11 +21,11 @@ namespace CozyDump.Core
             {
                 var addrStream = rdr_.MapStream(locStream);
                 var NumberOfThreads = Marshal.ReadInt32(addrStream);
-                var ndescSize = (uint)(Marshal.SizeOf<MINIDUMP_THREAD>() - 4);
+                var ndescSize = (uint)(Marshal.SizeOf<MINIDUMP_THREAD>());
                 var locRva = new MINIDUMP_LOCATION_DESCRIPTOR()
                 {
                     Rva = (uint)(locStream.Rva + Marshal.SizeOf<uint>()),
-                    DataSize = (uint)(ndescSize + 4)
+                    DataSize = ndescSize
                 };
                 _threads.NumberOfThreads = (uint)NumberOfThreads;
                 _threads.Threads = new MINIDUMP_THREAD[NumberOfThreads];
@@ -45,11 +45,11 @@ namespace CozyDump.Core
             {
                 var addrStream = rdr_.MapStream(locStream);
                 var NumberOfModules = Marshal.ReadInt32(addrStream);
-                var ndescSize = (uint)(Marshal.SizeOf<MINIDUMP_MODULE>() - 4);
+                var ndescSize = (uint)(Marshal.SizeOf<MINIDUMP_MODULE>());
                 var locRva = new MINIDUMP_LOCATION_DESCRIPTOR()
                 {
                     Rva = (uint)(locStream.Rva + Marshal.SizeOf<uint>()),
-                    DataSize = (uint)(ndescSize + 4)
+                    DataSize = ndescSize
                 };
                 _modules.NumberOfModules = (uint)NumberOfModules;
                 _modules.Modules = new MINIDUMP_MODULE[NumberOfModules];
@@ -61,16 +61,28 @@ namespace CozyDump.Core
                 }
             }
         }
-        void ParseSystemInfoStream()
+        void ParseMemoryListStream()
         {
-            _ExistSystemInfoStream = false;
-            var strmDir = rdr_.ReadStreamType(MINIDUMP_STREAM_TYPE.SystemInfoStream);
+            var strmDir = rdr_.ReadStreamType(MINIDUMP_STREAM_TYPE.MemoryListStream);
             var locStream = strmDir.location;
             if (locStream.Rva != 0)
             {
                 var addrStream = rdr_.MapStream(locStream);
-                _systemInfo = Marshal.PtrToStructure<MINIDUMP_SYSTEM_INFO>(addrStream);
-                _ExistSystemInfoStream = true;
+                var NumberOfMemoryRanges = Marshal.ReadInt32(addrStream);
+                var ndescSize = (uint)(Marshal.SizeOf<MINIDUMP_MEMORY_DESCRIPTOR>());
+                var locRva = new MINIDUMP_LOCATION_DESCRIPTOR()
+                {
+                    Rva = (uint)(locStream.Rva + Marshal.SizeOf<uint>()),
+                    DataSize = ndescSize
+                };
+                _memories.NumberOfMemoryRanges = (uint)NumberOfMemoryRanges;
+                _memories.MemoryRanges = new MINIDUMP_MEMORY_DESCRIPTOR[NumberOfMemoryRanges];
+                for (int i = 0; i < NumberOfMemoryRanges; i++)
+                {
+                    var ptr = rdr_.MapStream(locRva);
+                    _memories.MemoryRanges[i] = Marshal.PtrToStructure<MINIDUMP_MEMORY_DESCRIPTOR>(ptr);
+                    locRva.Rva += ndescSize;
+                }
             }
         }
         void ParseExceptionStream()
@@ -85,6 +97,18 @@ namespace CozyDump.Core
                 _ExistExceptionStream = true;
             }
         }
+        void ParseSystemInfoStream()
+        {
+            _ExistSystemInfoStream = false;
+            var strmDir = rdr_.ReadStreamType(MINIDUMP_STREAM_TYPE.SystemInfoStream);
+            var locStream = strmDir.location;
+            if (locStream.Rva != 0)
+            {
+                var addrStream = rdr_.MapStream(locStream);
+                _systemInfo = Marshal.PtrToStructure<MINIDUMP_SYSTEM_INFO>(addrStream);
+                _ExistSystemInfoStream = true;
+            }
+        }
         #endregion
         bool parseSuccessed = false;
         public bool ParseSuccessed { get { return parseSuccessed; } }
@@ -96,8 +120,9 @@ namespace CozyDump.Core
                 rdr_ = new MiniDumpReader(filepath);
                 ParseThreadListStream();
                 ParseModuleListStream();
-                ParseSystemInfoStream();
+                ParseMemoryListStream();
                 ParseExceptionStream();
+                ParseSystemInfoStream();
             }
             catch (Exception)
             {

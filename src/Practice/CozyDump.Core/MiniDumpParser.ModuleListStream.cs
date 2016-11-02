@@ -10,7 +10,7 @@ namespace CozyDump.Core
         {
             return (parseSuccessed && _modules.NumberOfModules > 0);
         }
-        public uint ModuleNums { get { return _modules.NumberOfModules; } }
+        public uint ModuleNum { get { return _modules.NumberOfModules; } }
         public MINIDUMP_MODULE ModuleInfo(int index)
         {
             return _modules.Modules[index];
