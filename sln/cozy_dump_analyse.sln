@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{52FD93B7-A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyDump.Core.Tester", "..\src\Practice\CozyDump.Core.Tester\CozyDump.Core.Tester.csproj", "{A0A67A87-588A-4AAC-BD78-E6EF8BA72B93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyDump.ModuleStatistics", "..\src\Practice\CozyDump.ModuleStatistics\CozyDump.ModuleStatistics.csproj", "{C0187773-72CA-41F9-9697-2E8D3FD97A0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{A0A67A87-588A-4AAC-BD78-E6EF8BA72B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0A67A87-588A-4AAC-BD78-E6EF8BA72B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0A67A87-588A-4AAC-BD78-E6EF8BA72B93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0187773-72CA-41F9-9697-2E8D3FD97A0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0187773-72CA-41F9-9697-2E8D3FD97A0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0187773-72CA-41F9-9697-2E8D3FD97A0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0187773-72CA-41F9-9697-2E8D3FD97A0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,5 +54,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DBE4C5C7-D967-4C14-B56D-29D55B151170} = {52FD93B7-A806-4309-9995-E464C754320B}
 		{A0A67A87-588A-4AAC-BD78-E6EF8BA72B93} = {52FD93B7-A806-4309-9995-E464C754320B}
+		{C0187773-72CA-41F9-9697-2E8D3FD97A0C} = {52FD93B7-A806-4309-9995-E464C754320B}
 	EndGlobalSection
 EndGlobal
