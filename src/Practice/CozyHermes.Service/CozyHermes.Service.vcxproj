@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7C48C3D4-2497-4D85-A885-A7E119E53901}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>CozyHermesService</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NN_USE_WINSOCK;NN_HAVE_WINDOWS;NN_HAVE_WINSOCK;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Mswsock.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NN_USE_WINSOCK;NN_HAVE_WINDOWS;NN_HAVE_WINSOCK;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Mswsock.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="nanomsg\aio\ctx.h" />
+    <ClInclude Include="nanomsg\aio\fsm.h" />
+    <ClInclude Include="nanomsg\aio\pool.h" />
+    <ClInclude Include="nanomsg\aio\timer.h" />
+    <ClInclude Include="nanomsg\aio\timerset.h" />
+    <ClInclude Include="nanomsg\aio\usock.h" />
+    <ClInclude Include="nanomsg\aio\usock_win.h" />
+    <ClInclude Include="nanomsg\aio\worker.h" />
+    <ClInclude Include="nanomsg\aio\worker_win.h" />
+    <ClInclude Include="nanomsg\bus.h" />
+    <ClInclude Include="nanomsg\core\ep.h" />
+    <ClInclude Include="nanomsg\core\global.h" />
+    <ClInclude Include="nanomsg\core\sock.h" />
+    <ClInclude Include="nanomsg\devices\device.h" />
+    <ClInclude Include="nanomsg\inproc.h" />
+    <ClInclude Include="nanomsg\ipc.h" />
+    <ClInclude Include="nanomsg\nn.h" />
+    <ClInclude Include="nanomsg\pair.h" />
+    <ClInclude Include="nanomsg\pipeline.h" />
+    <ClInclude Include="nanomsg\protocol.h" />
+    <ClInclude Include="nanomsg\protocols\bus\bus.h" />
+    <ClInclude Include="nanomsg\protocols\bus\xbus.h" />
+    <ClInclude Include="nanomsg\protocols\pair\pair.h" />
+    <ClInclude Include="nanomsg\protocols\pair\xpair.h" />
+    <ClInclude Include="nanomsg\protocols\pipeline\pull.h" />
+    <ClInclude Include="nanomsg\protocols\pipeline\push.h" />
+    <ClInclude Include="nanomsg\protocols\pipeline\xpull.h" />
+    <ClInclude Include="nanomsg\protocols\pipeline\xpush.h" />
+    <ClInclude Include="nanomsg\protocols\pubsub\pub.h" />
+    <ClInclude Include="nanomsg\protocols\pubsub\sub.h" />
+    <ClInclude Include="nanomsg\protocols\pubsub\trie.h" />
+    <ClInclude Include="nanomsg\protocols\pubsub\xpub.h" />
+    <ClInclude Include="nanomsg\protocols\pubsub\xsub.h" />
+    <ClInclude Include="nanomsg\protocols\reqrep\rep.h" />
+    <ClInclude Include="nanomsg\protocols\reqrep\req.h" />
+    <ClInclude Include="nanomsg\protocols\reqrep\task.h" />
+    <ClInclude Include="nanomsg\protocols\reqrep\xrep.h" />
+    <ClInclude Include="nanomsg\protocols\reqrep\xreq.h" />
+    <ClInclude Include="nanomsg\protocols\survey\respondent.h" />
+    <ClInclude Include="nanomsg\protocols\survey\surveyor.h" />
+    <ClInclude Include="nanomsg\protocols\survey\xrespondent.h" />
+    <ClInclude Include="nanomsg\protocols\survey\xsurveyor.h" />
+    <ClInclude Include="nanomsg\protocols\utils\dist.h" />
+    <ClInclude Include="nanomsg\protocols\utils\excl.h" />
+    <ClInclude Include="nanomsg\protocols\utils\fq.h" />
+    <ClInclude Include="nanomsg\protocols\utils\lb.h" />
+    <ClInclude Include="nanomsg\protocols\utils\priolist.h" />
+    <ClInclude Include="nanomsg\pubsub.h" />
+    <ClInclude Include="nanomsg\reqrep.h" />
+    <ClInclude Include="nanomsg\survey.h" />
+    <ClInclude Include="nanomsg\tcp.h" />
+    <ClInclude Include="nanomsg\transport.h" />
+    <ClInclude Include="nanomsg\transports\inproc\binproc.h" />
+    <ClInclude Include="nanomsg\transports\inproc\cinproc.h" />
+    <ClInclude Include="nanomsg\transports\inproc\inproc.h" />
+    <ClInclude Include="nanomsg\transports\inproc\ins.h" />
+    <ClInclude Include="nanomsg\transports\inproc\msgqueue.h" />
+    <ClInclude Include="nanomsg\transports\inproc\sinproc.h" />
+    <ClInclude Include="nanomsg\transports\ipc\aipc.h" />
+    <ClInclude Include="nanomsg\transports\ipc\bipc.h" />
+    <ClInclude Include="nanomsg\transports\ipc\cipc.h" />
+    <ClInclude Include="nanomsg\transports\ipc\ipc.h" />
+    <ClInclude Include="nanomsg\transports\ipc\sipc.h" />
+    <ClInclude Include="nanomsg\transports\tcp\atcp.h" />
+    <ClInclude Include="nanomsg\transports\tcp\btcp.h" />
+    <ClInclude Include="nanomsg\transports\tcp\ctcp.h" />
+    <ClInclude Include="nanomsg\transports\tcp\stcp.h" />
+    <ClInclude Include="nanomsg\transports\tcp\tcp.h" />
+    <ClInclude Include="nanomsg\transports\utils\backoff.h" />
+    <ClInclude Include="nanomsg\transports\utils\base64.h" />
+    <ClInclude Include="nanomsg\transports\utils\dns.h" />
+    <ClInclude Include="nanomsg\transports\utils\dns_getaddrinfo.h" />
+    <ClInclude Include="nanomsg\transports\utils\dns_getaddrinfo_a.h" />
+    <ClInclude Include="nanomsg\transports\utils\iface.h" />
+    <ClInclude Include="nanomsg\transports\utils\literal.h" />
+    <ClInclude Include="nanomsg\transports\utils\port.h" />
+    <ClInclude Include="nanomsg\transports\utils\streamhdr.h" />
+    <ClInclude Include="nanomsg\transports\ws\aws.h" />
+    <ClInclude Include="nanomsg\transports\ws\bws.h" />
+    <ClInclude Include="nanomsg\transports\ws\cws.h" />
+    <ClInclude Include="nanomsg\transports\ws\sha1.h" />
+    <ClInclude Include="nanomsg\transports\ws\sws.h" />
+    <ClInclude Include="nanomsg\transports\ws\ws.h" />
+    <ClInclude Include="nanomsg\transports\ws\ws_handshake.h" />
+    <ClInclude Include="nanomsg\utils\alloc.h" />
+    <ClInclude Include="nanomsg\utils\atomic.h" />
+    <ClInclude Include="nanomsg\utils\attr.h" />
+    <ClInclude Include="nanomsg\utils\chunk.h" />
+    <ClInclude Include="nanomsg\utils\chunkref.h" />
+    <ClInclude Include="nanomsg\utils\clock.h" />
+    <ClInclude Include="nanomsg\utils\closefd.h" />
+    <ClInclude Include="nanomsg\utils\condvar.h" />
+    <ClInclude Include="nanomsg\utils\cont.h" />
+    <ClInclude Include="nanomsg\utils\efd.h" />
+    <ClInclude Include="nanomsg\utils\efd_eventfd.h" />
+    <ClInclude Include="nanomsg\utils\efd_pipe.h" />
+    <ClInclude Include="nanomsg\utils\efd_socketpair.h" />
+    <ClInclude Include="nanomsg\utils\efd_win.h" />
+    <ClInclude Include="nanomsg\utils\err.h" />
+    <ClInclude Include="nanomsg\utils\fast.h" />
+    <ClInclude Include="nanomsg\utils\fd.h" />
+    <ClInclude Include="nanomsg\utils\hash.h" />
+    <ClInclude Include="nanomsg\utils\list.h" />
+    <ClInclude Include="nanomsg\utils\msg.h" />
+    <ClInclude Include="nanomsg\utils\mutex.h" />
+    <ClInclude Include="nanomsg\utils\once.h" />
+    <ClInclude Include="nanomsg\utils\queue.h" />
+    <ClInclude Include="nanomsg\utils\random.h" />
+    <ClInclude Include="nanomsg\utils\sem.h" />
+    <ClInclude Include="nanomsg\utils\sleep.h" />
+    <ClInclude Include="nanomsg\utils\stopwatch.h" />
+    <ClInclude Include="nanomsg\utils\strcasecmp.h" />
+    <ClInclude Include="nanomsg\utils\strcasestr.h" />
+    <ClInclude Include="nanomsg\utils\strncasecmp.h" />
+    <ClInclude Include="nanomsg\utils\thread.h" />
+    <ClInclude Include="nanomsg\utils\thread_win.h" />
+    <ClInclude Include="nanomsg\utils\win.h" />
+    <ClInclude Include="nanomsg\utils\wire.h" />
+    <ClInclude Include="nanomsg\ws.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CozyHermes.Service.cpp" />
+    <ClCompile Include="nanomsg\aio\ctx.c" />
+    <ClCompile Include="nanomsg\aio\fsm.c" />
+    <ClCompile Include="nanomsg\aio\pool.c" />
+    <ClCompile Include="nanomsg\aio\timer.c" />
+    <ClCompile Include="nanomsg\aio\timerset.c" />
+    <ClCompile Include="nanomsg\aio\usock.c" />
+    <ClCompile Include="nanomsg\aio\worker.c" />
+    <ClCompile Include="nanomsg\core\ep.c" />
+    <ClCompile Include="nanomsg\core\epbase.c" />
+    <ClCompile Include="nanomsg\core\global.c" />
+    <ClCompile Include="nanomsg\core\pipe.c" />
+    <ClCompile Include="nanomsg\core\poll.c" />
+    <ClCompile Include="nanomsg\core\sock.c" />
+    <ClCompile Include="nanomsg\core\sockbase.c" />
+    <ClCompile Include="nanomsg\core\symbol.c" />
+    <ClCompile Include="nanomsg\devices\device.c" />
+    <ClCompile Include="nanomsg\protocols\bus\bus.c" />
+    <ClCompile Include="nanomsg\protocols\bus\xbus.c" />
+    <ClCompile Include="nanomsg\protocols\pair\pair.c" />
+    <ClCompile Include="nanomsg\protocols\pair\xpair.c" />
+    <ClCompile Include="nanomsg\protocols\pipeline\pull.c" />
+    <ClCompile Include="nanomsg\protocols\pipeline\push.c" />
+    <ClCompile Include="nanomsg\protocols\pipeline\xpull.c" />
+    <ClCompile Include="nanomsg\protocols\pipeline\xpush.c" />
+    <ClCompile Include="nanomsg\protocols\pubsub\pub.c" />
+    <ClCompile Include="nanomsg\protocols\pubsub\sub.c" />
+    <ClCompile Include="nanomsg\protocols\pubsub\trie.c" />
+    <ClCompile Include="nanomsg\protocols\pubsub\xpub.c" />
+    <ClCompile Include="nanomsg\protocols\pubsub\xsub.c" />
+    <ClCompile Include="nanomsg\protocols\reqrep\rep.c" />
+    <ClCompile Include="nanomsg\protocols\reqrep\req.c" />
+    <ClCompile Include="nanomsg\protocols\reqrep\task.c" />
+    <ClCompile Include="nanomsg\protocols\reqrep\xrep.c" />
+    <ClCompile Include="nanomsg\protocols\reqrep\xreq.c" />
+    <ClCompile Include="nanomsg\protocols\survey\respondent.c" />
+    <ClCompile Include="nanomsg\protocols\survey\surveyor.c" />
+    <ClCompile Include="nanomsg\protocols\survey\xrespondent.c" />
+    <ClCompile Include="nanomsg\protocols\survey\xsurveyor.c" />
+    <ClCompile Include="nanomsg\protocols\utils\dist.c" />
+    <ClCompile Include="nanomsg\protocols\utils\excl.c" />
+    <ClCompile Include="nanomsg\protocols\utils\fq.c" />
+    <ClCompile Include="nanomsg\protocols\utils\lb.c" />
+    <ClCompile Include="nanomsg\protocols\utils\priolist.c" />
+    <ClCompile Include="nanomsg\transports\inproc\binproc.c" />
+    <ClCompile Include="nanomsg\transports\inproc\cinproc.c" />
+    <ClCompile Include="nanomsg\transports\inproc\inproc.c" />
+    <ClCompile Include="nanomsg\transports\inproc\ins.c" />
+    <ClCompile Include="nanomsg\transports\inproc\msgqueue.c" />
+    <ClCompile Include="nanomsg\transports\inproc\sinproc.c" />
+    <ClCompile Include="nanomsg\transports\ipc\aipc.c" />
+    <ClCompile Include="nanomsg\transports\ipc\bipc.c" />
+    <ClCompile Include="nanomsg\transports\ipc\cipc.c" />
+    <ClCompile Include="nanomsg\transports\ipc\ipc.c" />
+    <ClCompile Include="nanomsg\transports\ipc\sipc.c" />
+    <ClCompile Include="nanomsg\transports\tcp\atcp.c" />
+    <ClCompile Include="nanomsg\transports\tcp\btcp.c" />
+    <ClCompile Include="nanomsg\transports\tcp\ctcp.c" />
+    <ClCompile Include="nanomsg\transports\tcp\stcp.c" />
+    <ClCompile Include="nanomsg\transports\tcp\tcp.c" />
+    <ClCompile Include="nanomsg\transports\utils\backoff.c" />
+    <ClCompile Include="nanomsg\transports\utils\base64.c" />
+    <ClCompile Include="nanomsg\transports\utils\dns.c" />
+    <ClCompile Include="nanomsg\transports\utils\iface.c" />
+    <ClCompile Include="nanomsg\transports\utils\literal.c" />
+    <ClCompile Include="nanomsg\transports\utils\port.c" />
+    <ClCompile Include="nanomsg\transports\utils\streamhdr.c" />
+    <ClCompile Include="nanomsg\transports\ws\aws.c" />
+    <ClCompile Include="nanomsg\transports\ws\bws.c" />
+    <ClCompile Include="nanomsg\transports\ws\cws.c" />
+    <ClCompile Include="nanomsg\transports\ws\sha1.c" />
+    <ClCompile Include="nanomsg\transports\ws\sws.c" />
+    <ClCompile Include="nanomsg\transports\ws\ws.c" />
+    <ClCompile Include="nanomsg\transports\ws\ws_handshake.c" />
+    <ClCompile Include="nanomsg\utils\alloc.c" />
+    <ClCompile Include="nanomsg\utils\atomic.c" />
+    <ClCompile Include="nanomsg\utils\chunk.c" />
+    <ClCompile Include="nanomsg\utils\chunkref.c" />
+    <ClCompile Include="nanomsg\utils\clock.c" />
+    <ClCompile Include="nanomsg\utils\closefd.c" />
+    <ClCompile Include="nanomsg\utils\condvar.c" />
+    <ClCompile Include="nanomsg\utils\efd.c" />
+    <ClCompile Include="nanomsg\utils\err.c" />
+    <ClCompile Include="nanomsg\utils\hash.c" />
+    <ClCompile Include="nanomsg\utils\list.c" />
+    <ClCompile Include="nanomsg\utils\msg.c" />
+    <ClCompile Include="nanomsg\utils\mutex.c" />
+    <ClCompile Include="nanomsg\utils\once.c" />
+    <ClCompile Include="nanomsg\utils\queue.c" />
+    <ClCompile Include="nanomsg\utils\random.c" />
+    <ClCompile Include="nanomsg\utils\sem.c" />
+    <ClCompile Include="nanomsg\utils\sleep.c" />
+    <ClCompile Include="nanomsg\utils\stopwatch.c" />
+    <ClCompile Include="nanomsg\utils\strcasecmp.c" />
+    <ClCompile Include="nanomsg\utils\strcasestr.c" />
+    <ClCompile Include="nanomsg\utils\strncasecmp.c" />
+    <ClCompile Include="nanomsg\utils\thread.c" />
+    <ClCompile Include="nanomsg\utils\wire.c" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="nanomsg\aio\usock_win.inc" />
+    <None Include="nanomsg\aio\worker_win.inc" />
+    <None Include="nanomsg\core\README" />
+    <None Include="nanomsg\pkgconfig.in" />
+    <None Include="nanomsg\protocols\utils\README" />
+    <None Include="nanomsg\README" />
+    <None Include="nanomsg\transports\utils\dns_getaddrinfo.inc" />
+    <None Include="nanomsg\transports\utils\dns_getaddrinfo_a.inc" />
+    <None Include="nanomsg\transports\utils\README" />
+    <None Include="nanomsg\utils\efd_eventfd.inc" />
+    <None Include="nanomsg\utils\efd_pipe.inc" />
+    <None Include="nanomsg\utils\efd_socketpair.inc" />
+    <None Include="nanomsg\utils\efd_win.inc" />
+    <None Include="nanomsg\utils\README" />
+    <None Include="nanomsg\utils\thread_win.inc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

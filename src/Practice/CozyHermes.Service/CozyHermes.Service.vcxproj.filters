@@ -1,0 +1,777 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="main">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="nanomsg">
+      <UniqueIdentifier>{d1c8308e-cdd9-48a8-b5c0-dc3f249f46d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\aio">
+      <UniqueIdentifier>{19b5e45d-11dd-43c4-98bf-ec2635d2fada}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\core">
+      <UniqueIdentifier>{14fc3a82-3381-4c81-b4c1-4c8f65d40e0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\devices">
+      <UniqueIdentifier>{ce890c42-6cc6-4791-8221-b51ede487a49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\protocols">
+      <UniqueIdentifier>{f4ec5e09-3e09-4882-b92d-9a44b74d2040}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\transports">
+      <UniqueIdentifier>{3965a1f9-96b4-4c15-99da-885c9a1bd18c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\utils">
+      <UniqueIdentifier>{42af07e1-b03c-41c1-bead-0576a6d0fb47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\transports\inproc">
+      <UniqueIdentifier>{65b7474e-c897-4e64-95fd-5afb8c23d201}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\transports\ipc">
+      <UniqueIdentifier>{69aa11a8-2f58-4855-8904-d4f879d23c96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\transports\tcp">
+      <UniqueIdentifier>{2adbe70e-621e-473e-ba81-39132db36ac1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\transports\utils">
+      <UniqueIdentifier>{030e01d6-119e-47e6-884a-94058cc7a88f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\transports\ws">
+      <UniqueIdentifier>{3a620b81-b38d-4ada-b795-08c68d6f66cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\protocols\bus">
+      <UniqueIdentifier>{7c0deea7-73a2-4f79-893b-1d4a9b53b78f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\protocols\pair">
+      <UniqueIdentifier>{f80f4ca0-1379-42f9-98eb-0d7897145bc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\protocols\pipeline">
+      <UniqueIdentifier>{85f4427e-4f14-4d88-bc48-b9e1840a2ec9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\protocols\pubsub">
+      <UniqueIdentifier>{0df41156-eff2-4f2f-b657-998f562e751e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\protocols\reqrep">
+      <UniqueIdentifier>{12c92caf-b821-448f-9722-e9ab7ab0d5df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\protocols\survey">
+      <UniqueIdentifier>{412edd12-00f1-4fb6-8ee5-f07ef5c35966}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nanomsg\protocols\utils">
+      <UniqueIdentifier>{fce64114-522d-4e67-83cd-cb5ff115fb5b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\bus.h">
+      <Filter>nanomsg</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\inproc.h">
+      <Filter>nanomsg</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\ipc.h">
+      <Filter>nanomsg</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\nn.h">
+      <Filter>nanomsg</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\pair.h">
+      <Filter>nanomsg</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\pipeline.h">
+      <Filter>nanomsg</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocol.h">
+      <Filter>nanomsg</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\pubsub.h">
+      <Filter>nanomsg</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\reqrep.h">
+      <Filter>nanomsg</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\survey.h">
+      <Filter>nanomsg</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\tcp.h">
+      <Filter>nanomsg</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transport.h">
+      <Filter>nanomsg</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\ws.h">
+      <Filter>nanomsg</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\aio\ctx.h">
+      <Filter>nanomsg\aio</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\aio\fsm.h">
+      <Filter>nanomsg\aio</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\aio\pool.h">
+      <Filter>nanomsg\aio</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\aio\timer.h">
+      <Filter>nanomsg\aio</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\aio\timerset.h">
+      <Filter>nanomsg\aio</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\aio\usock.h">
+      <Filter>nanomsg\aio</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\aio\usock_win.h">
+      <Filter>nanomsg\aio</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\aio\worker.h">
+      <Filter>nanomsg\aio</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\aio\worker_win.h">
+      <Filter>nanomsg\aio</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\alloc.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\atomic.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\attr.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\chunk.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\chunkref.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\clock.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\closefd.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\condvar.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\cont.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\efd.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\efd_eventfd.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\efd_pipe.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\efd_socketpair.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\efd_win.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\err.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\fast.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\fd.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\hash.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\list.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\msg.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\mutex.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\once.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\queue.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\random.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\sem.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\sleep.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\stopwatch.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\strcasecmp.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\strcasestr.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\strncasecmp.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\thread.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\thread_win.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\win.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\utils\wire.h">
+      <Filter>nanomsg\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\core\ep.h">
+      <Filter>nanomsg\core</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\core\global.h">
+      <Filter>nanomsg\core</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\core\sock.h">
+      <Filter>nanomsg\core</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\devices\device.h">
+      <Filter>nanomsg\devices</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\inproc\binproc.h">
+      <Filter>nanomsg\transports\inproc</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\inproc\cinproc.h">
+      <Filter>nanomsg\transports\inproc</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\inproc\inproc.h">
+      <Filter>nanomsg\transports\inproc</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\inproc\ins.h">
+      <Filter>nanomsg\transports\inproc</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\inproc\msgqueue.h">
+      <Filter>nanomsg\transports\inproc</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\inproc\sinproc.h">
+      <Filter>nanomsg\transports\inproc</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\ipc\aipc.h">
+      <Filter>nanomsg\transports\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\ipc\bipc.h">
+      <Filter>nanomsg\transports\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\ipc\cipc.h">
+      <Filter>nanomsg\transports\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\ipc\ipc.h">
+      <Filter>nanomsg\transports\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\ipc\sipc.h">
+      <Filter>nanomsg\transports\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\tcp\atcp.h">
+      <Filter>nanomsg\transports\tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\tcp\btcp.h">
+      <Filter>nanomsg\transports\tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\tcp\ctcp.h">
+      <Filter>nanomsg\transports\tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\tcp\stcp.h">
+      <Filter>nanomsg\transports\tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\tcp\tcp.h">
+      <Filter>nanomsg\transports\tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\utils\backoff.h">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\utils\base64.h">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\utils\dns.h">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\utils\dns_getaddrinfo.h">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\utils\dns_getaddrinfo_a.h">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\utils\iface.h">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\utils\literal.h">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\utils\port.h">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\utils\streamhdr.h">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\ws\aws.h">
+      <Filter>nanomsg\transports\ws</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\ws\bws.h">
+      <Filter>nanomsg\transports\ws</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\ws\cws.h">
+      <Filter>nanomsg\transports\ws</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\ws\sha1.h">
+      <Filter>nanomsg\transports\ws</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\ws\sws.h">
+      <Filter>nanomsg\transports\ws</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\ws\ws.h">
+      <Filter>nanomsg\transports\ws</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\transports\ws\ws_handshake.h">
+      <Filter>nanomsg\transports\ws</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\bus\bus.h">
+      <Filter>nanomsg\protocols\bus</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\bus\xbus.h">
+      <Filter>nanomsg\protocols\bus</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\pair\pair.h">
+      <Filter>nanomsg\protocols\pair</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\pair\xpair.h">
+      <Filter>nanomsg\protocols\pair</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\pipeline\pull.h">
+      <Filter>nanomsg\protocols\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\pipeline\push.h">
+      <Filter>nanomsg\protocols\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\pipeline\xpull.h">
+      <Filter>nanomsg\protocols\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\pipeline\xpush.h">
+      <Filter>nanomsg\protocols\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\pubsub\pub.h">
+      <Filter>nanomsg\protocols\pubsub</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\pubsub\sub.h">
+      <Filter>nanomsg\protocols\pubsub</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\pubsub\trie.h">
+      <Filter>nanomsg\protocols\pubsub</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\pubsub\xpub.h">
+      <Filter>nanomsg\protocols\pubsub</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\pubsub\xsub.h">
+      <Filter>nanomsg\protocols\pubsub</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\reqrep\rep.h">
+      <Filter>nanomsg\protocols\reqrep</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\reqrep\req.h">
+      <Filter>nanomsg\protocols\reqrep</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\reqrep\task.h">
+      <Filter>nanomsg\protocols\reqrep</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\reqrep\xrep.h">
+      <Filter>nanomsg\protocols\reqrep</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\reqrep\xreq.h">
+      <Filter>nanomsg\protocols\reqrep</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\survey\respondent.h">
+      <Filter>nanomsg\protocols\survey</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\survey\surveyor.h">
+      <Filter>nanomsg\protocols\survey</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\survey\xrespondent.h">
+      <Filter>nanomsg\protocols\survey</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\survey\xsurveyor.h">
+      <Filter>nanomsg\protocols\survey</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\utils\dist.h">
+      <Filter>nanomsg\protocols\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\utils\excl.h">
+      <Filter>nanomsg\protocols\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\utils\fq.h">
+      <Filter>nanomsg\protocols\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\utils\lb.h">
+      <Filter>nanomsg\protocols\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="nanomsg\protocols\utils\priolist.h">
+      <Filter>nanomsg\protocols\utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CozyHermes.Service.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\aio\ctx.c">
+      <Filter>nanomsg\aio</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\aio\fsm.c">
+      <Filter>nanomsg\aio</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\aio\pool.c">
+      <Filter>nanomsg\aio</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\aio\timer.c">
+      <Filter>nanomsg\aio</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\aio\timerset.c">
+      <Filter>nanomsg\aio</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\aio\usock.c">
+      <Filter>nanomsg\aio</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\aio\worker.c">
+      <Filter>nanomsg\aio</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\alloc.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\atomic.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\chunk.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\chunkref.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\clock.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\closefd.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\condvar.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\efd.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\err.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\hash.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\list.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\msg.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\mutex.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\once.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\queue.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\random.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\sem.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\sleep.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\stopwatch.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\strcasecmp.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\strcasestr.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\strncasecmp.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\thread.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\utils\wire.c">
+      <Filter>nanomsg\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\core\ep.c">
+      <Filter>nanomsg\core</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\core\epbase.c">
+      <Filter>nanomsg\core</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\core\global.c">
+      <Filter>nanomsg\core</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\core\pipe.c">
+      <Filter>nanomsg\core</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\core\poll.c">
+      <Filter>nanomsg\core</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\core\sock.c">
+      <Filter>nanomsg\core</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\core\sockbase.c">
+      <Filter>nanomsg\core</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\core\symbol.c">
+      <Filter>nanomsg\core</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\devices\device.c">
+      <Filter>nanomsg\devices</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\inproc\binproc.c">
+      <Filter>nanomsg\transports\inproc</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\inproc\cinproc.c">
+      <Filter>nanomsg\transports\inproc</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\inproc\inproc.c">
+      <Filter>nanomsg\transports\inproc</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\inproc\ins.c">
+      <Filter>nanomsg\transports\inproc</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\inproc\msgqueue.c">
+      <Filter>nanomsg\transports\inproc</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\inproc\sinproc.c">
+      <Filter>nanomsg\transports\inproc</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\ipc\aipc.c">
+      <Filter>nanomsg\transports\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\ipc\bipc.c">
+      <Filter>nanomsg\transports\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\ipc\cipc.c">
+      <Filter>nanomsg\transports\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\ipc\ipc.c">
+      <Filter>nanomsg\transports\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\ipc\sipc.c">
+      <Filter>nanomsg\transports\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\tcp\atcp.c">
+      <Filter>nanomsg\transports\tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\tcp\btcp.c">
+      <Filter>nanomsg\transports\tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\tcp\ctcp.c">
+      <Filter>nanomsg\transports\tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\tcp\stcp.c">
+      <Filter>nanomsg\transports\tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\tcp\tcp.c">
+      <Filter>nanomsg\transports\tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\utils\backoff.c">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\utils\base64.c">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\utils\dns.c">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\utils\iface.c">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\utils\literal.c">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\utils\port.c">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\utils\streamhdr.c">
+      <Filter>nanomsg\transports\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\ws\aws.c">
+      <Filter>nanomsg\transports\ws</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\ws\bws.c">
+      <Filter>nanomsg\transports\ws</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\ws\cws.c">
+      <Filter>nanomsg\transports\ws</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\ws\sha1.c">
+      <Filter>nanomsg\transports\ws</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\ws\sws.c">
+      <Filter>nanomsg\transports\ws</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\ws\ws.c">
+      <Filter>nanomsg\transports\ws</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\transports\ws\ws_handshake.c">
+      <Filter>nanomsg\transports\ws</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\bus\bus.c">
+      <Filter>nanomsg\protocols\bus</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\bus\xbus.c">
+      <Filter>nanomsg\protocols\bus</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\pair\pair.c">
+      <Filter>nanomsg\protocols\pair</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\pair\xpair.c">
+      <Filter>nanomsg\protocols\pair</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\pipeline\pull.c">
+      <Filter>nanomsg\protocols\pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\pipeline\push.c">
+      <Filter>nanomsg\protocols\pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\pipeline\xpull.c">
+      <Filter>nanomsg\protocols\pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\pipeline\xpush.c">
+      <Filter>nanomsg\protocols\pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\pubsub\pub.c">
+      <Filter>nanomsg\protocols\pubsub</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\pubsub\sub.c">
+      <Filter>nanomsg\protocols\pubsub</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\pubsub\trie.c">
+      <Filter>nanomsg\protocols\pubsub</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\pubsub\xpub.c">
+      <Filter>nanomsg\protocols\pubsub</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\pubsub\xsub.c">
+      <Filter>nanomsg\protocols\pubsub</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\reqrep\rep.c">
+      <Filter>nanomsg\protocols\reqrep</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\reqrep\req.c">
+      <Filter>nanomsg\protocols\reqrep</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\reqrep\task.c">
+      <Filter>nanomsg\protocols\reqrep</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\reqrep\xrep.c">
+      <Filter>nanomsg\protocols\reqrep</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\reqrep\xreq.c">
+      <Filter>nanomsg\protocols\reqrep</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\survey\respondent.c">
+      <Filter>nanomsg\protocols\survey</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\survey\surveyor.c">
+      <Filter>nanomsg\protocols\survey</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\survey\xrespondent.c">
+      <Filter>nanomsg\protocols\survey</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\survey\xsurveyor.c">
+      <Filter>nanomsg\protocols\survey</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\utils\dist.c">
+      <Filter>nanomsg\protocols\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\utils\excl.c">
+      <Filter>nanomsg\protocols\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\utils\fq.c">
+      <Filter>nanomsg\protocols\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\utils\lb.c">
+      <Filter>nanomsg\protocols\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="nanomsg\protocols\utils\priolist.c">
+      <Filter>nanomsg\protocols\utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="nanomsg\pkgconfig.in">
+      <Filter>nanomsg</Filter>
+    </None>
+    <None Include="nanomsg\README">
+      <Filter>nanomsg</Filter>
+    </None>
+    <None Include="nanomsg\aio\usock_win.inc">
+      <Filter>nanomsg\aio</Filter>
+    </None>
+    <None Include="nanomsg\aio\worker_win.inc">
+      <Filter>nanomsg\aio</Filter>
+    </None>
+    <None Include="nanomsg\utils\efd_eventfd.inc">
+      <Filter>nanomsg\utils</Filter>
+    </None>
+    <None Include="nanomsg\utils\efd_pipe.inc">
+      <Filter>nanomsg\utils</Filter>
+    </None>
+    <None Include="nanomsg\utils\efd_socketpair.inc">
+      <Filter>nanomsg\utils</Filter>
+    </None>
+    <None Include="nanomsg\utils\efd_win.inc">
+      <Filter>nanomsg\utils</Filter>
+    </None>
+    <None Include="nanomsg\utils\README">
+      <Filter>nanomsg\utils</Filter>
+    </None>
+    <None Include="nanomsg\utils\thread_win.inc">
+      <Filter>nanomsg\utils</Filter>
+    </None>
+    <None Include="nanomsg\core\README">
+      <Filter>nanomsg\core</Filter>
+    </None>
+    <None Include="nanomsg\transports\utils\dns_getaddrinfo.inc">
+      <Filter>nanomsg\transports\utils</Filter>
+    </None>
+    <None Include="nanomsg\transports\utils\dns_getaddrinfo_a.inc">
+      <Filter>nanomsg\transports\utils</Filter>
+    </None>
+    <None Include="nanomsg\transports\utils\README">
+      <Filter>nanomsg\transports\utils</Filter>
+    </None>
+    <None Include="nanomsg\protocols\utils\README">
+      <Filter>nanomsg\protocols\utils</Filter>
+    </None>
+  </ItemGroup>
+</Project>
