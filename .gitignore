@@ -169,3 +169,5 @@ typings/
 /sln/my_rss.json
 /src/Practice/CozyRSS.Mobile/.vscode/.browse.VC.db
 project.lock.json
+/src/Practice/CozyHammer.MnistSvm/libsvm.dll
+/src/Practice/CozyHammer.MnistSvm/LIBSVM_COPYRIGHT
