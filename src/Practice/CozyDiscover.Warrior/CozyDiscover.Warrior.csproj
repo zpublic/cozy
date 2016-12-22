@@ -52,8 +52,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Game\BagInstance.cs" />
+    <Compile Include="Game\Bag\PlayerBag.cs" />
+    <Compile Include="Game\Items\Dagger.cs" />
+    <Compile Include="Game\Items\Item.cs" />
+    <Compile Include="Game\Items\ItemManager.cs" />
     <Compile Include="Game\MainCore.cs" />
+    <Compile Include="Game\MainRandom.cs" />
     <Compile Include="Game\MapInstance.cs" />
     <Compile Include="Game\PlayerInstance.cs" />
     <Compile Include="Program.cs" />

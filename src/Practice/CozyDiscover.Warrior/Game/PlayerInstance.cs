@@ -1,8 +1,12 @@
-﻿namespace CozyDiscover.Warrior.Game
+﻿using CozyDiscover.Warrior.Game.Bag;
+
+namespace CozyDiscover.Warrior.Game
 {
     public class PlayerInstance
     {
         public static readonly PlayerInstance Instance = new PlayerInstance();
+
+        public PlayerBag Bag = new PlayerBag();
 
         public string Name = "zapline";
         public int Level = 1;
