@@ -102,6 +102,7 @@ namespace CozyLauncher.Tool.MakePacket
                 "CozyLauncher.Plugin.Ip.dll",
                 "CozyLauncher.Plugin.Qrcode.dll",
                 "CozyLauncher.Plugin.Fnl.dll",
+                "CozyLauncher.Plugin.Znl.dll",
                 "CozyLauncher.Plugin.KickassTorrents.dll",
                 "CozyLauncher.Plugin.Hardware.dll",
                 "CozyLauncher.Plugin.Timestamp.dll",

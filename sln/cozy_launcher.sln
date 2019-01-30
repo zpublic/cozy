@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher", "..\src\Practice\CozyLauncher\CozyLauncher.csproj", "{36C16B10-D17D-4A58-BD46-0F938DA82CC8}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -120,6 +120,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Express", "..\src\Practice\CozyLauncher.Plugin.Express\CozyLauncher.Plugin.Express.csproj", "{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Cyjl", "..\src\Practice\CozyLauncher.Plugin.Cyjl\CozyLauncher.Plugin.Cyjl.csproj", "{7027218D-5211-4CE8-A886-D0F4EE493FAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyLauncher.Plugin.Znl", "..\src\Practice\CozyLauncher.Plugin.Znl\CozyLauncher.Plugin.Znl.csproj", "{F4C560F4-7156-44DE-9E59-6D85E5BB85E1}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -579,6 +581,18 @@ Global
 		{7027218D-5211-4CE8-A886-D0F4EE493FAD}.Release|x64.Build.0 = Release|Any CPU
 		{7027218D-5211-4CE8-A886-D0F4EE493FAD}.Release|x86.ActiveCfg = Release|Any CPU
 		{7027218D-5211-4CE8-A886-D0F4EE493FAD}.Release|x86.Build.0 = Release|Any CPU
+		{F4C560F4-7156-44DE-9E59-6D85E5BB85E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4C560F4-7156-44DE-9E59-6D85E5BB85E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4C560F4-7156-44DE-9E59-6D85E5BB85E1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F4C560F4-7156-44DE-9E59-6D85E5BB85E1}.Debug|x64.Build.0 = Debug|Any CPU
+		{F4C560F4-7156-44DE-9E59-6D85E5BB85E1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F4C560F4-7156-44DE-9E59-6D85E5BB85E1}.Debug|x86.Build.0 = Debug|Any CPU
+		{F4C560F4-7156-44DE-9E59-6D85E5BB85E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4C560F4-7156-44DE-9E59-6D85E5BB85E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4C560F4-7156-44DE-9E59-6D85E5BB85E1}.Release|x64.ActiveCfg = Release|Any CPU
+		{F4C560F4-7156-44DE-9E59-6D85E5BB85E1}.Release|x64.Build.0 = Release|Any CPU
+		{F4C560F4-7156-44DE-9E59-6D85E5BB85E1}.Release|x86.ActiveCfg = Release|Any CPU
+		{F4C560F4-7156-44DE-9E59-6D85E5BB85E1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -620,5 +634,9 @@ Global
 		{7AFC6FBC-8256-46D7-B881-97F45FAE48F8} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
 		{FEDF2692-BD58-4AC6-9B02-FDF7F79EC17E} = {6B37D2AC-6C6D-444F-8492-DA47118C7625}
 		{7027218D-5211-4CE8-A886-D0F4EE493FAD} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
+		{F4C560F4-7156-44DE-9E59-6D85E5BB85E1} = {DED63B3E-03D2-4DDD-8229-F180A8E6515E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8BBC617-8DD6-4725-BB02-92A8C22040C8}
 	EndGlobalSection
 EndGlobal
