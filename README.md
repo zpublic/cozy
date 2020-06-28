@@ -217,9 +217,7 @@ Mockplus（.mp）
 
 仓库地址
 --------------------------------
-Coding(国内丶快！diff功能比OSC做得好）  
-<https://coding.net/u/zapline/p/cozy/git>  
-OSC(国内丶快！）  
-<http://git.oschina.net/zapline/cozy>  
+OSC/gitee(国内丶快！）  
+<https://gitee.com/zapline/cozy>  
 github  
 <https://github.com/zpublic/cozy>  
